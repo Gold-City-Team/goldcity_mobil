@@ -18,7 +18,7 @@ class AppThemeDark extends AppTheme with IDarkTheme {
         primary: Colors.blue,
         secondary: Colors.green,
         surface: Colors.blue, //xx
-        background: Color(0xfff6f9fc), //xx
+        background: const Color(0xfff6f9fc), //xx
         error: Colors.red[900]!,
         onPrimary: Colors.greenAccent,
         onSecondary: Colors.black, //x
