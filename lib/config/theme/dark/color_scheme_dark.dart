@@ -1,20 +1,27 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class ColorSchemeDark {
   ColorSchemeDark._init();
   static ColorSchemeDark? _instace;
-  static ColorSchemeDark? get instance {
+  static ColorSchemeDark get instance {
     _instace ??= ColorSchemeDark._init();
-    return _instace;
+    return _instace!;
   }
 
-  final Color brown = Color.fromARGB(255, 125, 48, 20);
-  final Color red = Color.fromARGB(255, 61, 61, 61);
-  final Color white = Color.fromARGB(255, 0, 0, 0);
-  final Color gray = Color.fromARGB(255, 0, 14, 119);
-  final Color lightGray = Color.fromARGB(255, 150, 10, 10);
-  final Color darkGray = Color.fromARGB(255, 77, 255, 0);
-  final Color black = Color.fromARGB(255, 255, 0, 0);
-
-  final Color azure = Color.fromARGB(255, 0, 0, 0);
+  ColorScheme get appColorScheme {
+    return ColorScheme(
+        primary: Colors.blue,
+        secondary: Colors.green,
+        surface: Colors.blue, //xx
+        background: const Color(0xfff6f9fc), //xx
+        error: Colors.red[900]!,
+        onPrimary: Colors.greenAccent,
+        onSecondary: Colors.black, //x
+        onSurface: Colors.purple.shade300,
+        onBackground: Colors.black12,
+        onError: const Color(0xFFF9B916), //xx
+        brightness: Brightness.dark);
+  }
 }
