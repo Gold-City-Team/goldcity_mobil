@@ -15,5 +15,6 @@ class AppThemeLight extends AppTheme with ILightTheme {
   @override
   ThemeData get theme => ThemeData(
       useMaterial3: true,
+      scaffoldBackgroundColor: Colors.red,
       colorScheme: ColorSchemeLight.instance.appColorScheme);
 }

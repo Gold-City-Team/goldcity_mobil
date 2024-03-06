@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:goldcity/config/navigation/navigation_route.dart';
+import 'package:goldcity/config/navigation/navigation_service.dart';
 import 'package:goldcity/config/notifier/provider_list.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:provider/provider.dart';
@@ -21,9 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: context.watch<ThemeNotifier>().currentTheme,
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: locator.get<NavigationRoute>().generateRoute,
-      navigatorKey: locator.get<NavigationService>().navigatorKey,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      onGenerateRoute: NavigationRoute.instance.generateRoute,
+      navigatorKey: NavigationService.instance.navigatorKey,
     );
   }
 }

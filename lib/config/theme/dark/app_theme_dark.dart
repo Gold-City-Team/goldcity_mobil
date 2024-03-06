@@ -13,5 +13,7 @@ class AppThemeDark extends AppTheme with IDarkTheme {
 
   @override
   ThemeData get theme => ThemeData(
-      useMaterial3: true, colorScheme: ColorSchemeDark.instance.appColorScheme);
+      scaffoldBackgroundColor: Colors.blue,
+      useMaterial3: true,
+      colorScheme: ColorSchemeDark.instance.appColorScheme);
 }
