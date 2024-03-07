@@ -15,6 +15,15 @@ class SplashView extends StatelessWidget {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, SplashViewModel value) => Scaffold(
+        body: Center(
+            child: Text(
+          "Merhaba Dünya!",
+          style: context
+              .watch<ThemeNotifier>()
+              .currentTheme
+              .textTheme
+              .displayLarge,
+        )),
         floatingActionButton: FloatingActionButton(
           onPressed: () => context.read<ThemeNotifier>().toggleTheme(),
         ),

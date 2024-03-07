@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class ColorSchemeDark {
@@ -12,16 +10,19 @@ class ColorSchemeDark {
 
   ColorScheme get appColorScheme {
     return ColorScheme(
-        primary: Colors.blue,
-        secondary: Colors.green,
-        surface: Colors.blue, //xx
-        background: const Color(0xfff6f9fc), //xx
+        primary: textColor,
+        secondary: Color.fromARGB(255, 156, 103, 4),
+        surface: Color.fromARGB(255, 74, 1, 1), //xx
+        background: backgroundColor, //xx
         error: Colors.red[900]!,
-        onPrimary: Colors.greenAccent,
+        onPrimary: Color.fromARGB(255, 116, 150, 217),
         onSecondary: Colors.black, //x
         onSurface: Colors.purple.shade300,
         onBackground: Colors.black12,
         onError: const Color(0xFFF9B916), //xx
         brightness: Brightness.dark);
   }
+
+  var textColor = const Color.fromRGBO(210, 210, 210, 1);
+  var backgroundColor = const Color.fromRGBO(18, 18, 18, 1);
 }
