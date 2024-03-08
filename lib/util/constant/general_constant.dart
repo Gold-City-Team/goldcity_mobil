@@ -2,4 +2,5 @@
 
 class GeneralConstant {
   static const FONT_FAMILY = "Encode";
+  static const LANG_ASSET_PATH = "assets/translations";
 }

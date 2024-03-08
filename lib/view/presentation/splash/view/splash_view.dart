@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/view/presentation/splash/view_model/splash_view_model.dart';
 import 'package:provider/provider.dart';
@@ -16,16 +18,16 @@ class SplashView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, SplashViewModel value) => Scaffold(
         body: Center(
-            child: Text(
-          "Merhaba Dünya!",
-          style: context
-              .watch<ThemeNotifier>()
-              .currentTheme
-              .textTheme
-              .displayLarge,
-        )),
+            child: Text(LocaleKeys.hello.tr(),
+                style: context
+                    .watch<ThemeNotifier>()
+                    .currentTheme
+                    .textTheme
+                    .displayLarge)),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.read<ThemeNotifier>().toggleTheme(),
+          onPressed: () => {
+            context.read<ThemeNotifier>().toggleTheme(),
+          },
         ),
       ),
     );
