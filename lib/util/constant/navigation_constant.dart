@@ -2,4 +2,5 @@
 
 class NavigationConstant {
   static const DEFAULT = '/';
+  static const PROJECT_DETAIL = '/project_detail';
 }

@@ -212,6 +212,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "gap",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/gap-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "glob",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/glob-2.1.2",
       "packageUri": "lib/",
@@ -560,7 +566,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-08T07:08:05.951550Z",
+  "generated": "2024-03-14T12:20:14.363568Z",
   "generator": "pub",
   "generatorVersion": "3.2.0"
 }

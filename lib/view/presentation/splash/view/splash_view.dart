@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/splash/view_model/splash_view_model.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:provider/provider.dart';
@@ -32,18 +34,27 @@ class SplashView extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => {
-            if (context.read<ThemeNotifier>().appTheme == APP_THEME.LIGHT)
-              {
-                context.setLocale(const Locale("tr", "TR")),
-              }
-            else
-              {
-                context.setLocale(const Locale("en", "US")),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: () => value.navigateProjectDetail(),
+            ),
+            Gap(context.midSpacerSize),
+            FloatingActionButton(
+              onPressed: () => {
+                if (context.read<ThemeNotifier>().appTheme == APP_THEME.LIGHT)
+                  {
+                    context.setLocale(const Locale("tr", "TR")),
+                  }
+                else
+                  {
+                    context.setLocale(const Locale("en", "US")),
+                  },
+                context.read<ThemeNotifier>().toggleTheme(),
               },
-            context.read<ThemeNotifier>().toggleTheme(),
-          },
+            ),
+          ],
         ),
       ),
     );
