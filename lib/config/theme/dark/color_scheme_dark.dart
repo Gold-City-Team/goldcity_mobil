@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:goldcity/config/theme/color_scheme.dart';
 
-class ColorSchemeDark {
+class ColorSchemeDark extends IColorScheme {
   ColorSchemeDark._init();
   static ColorSchemeDark? _instace;
   static ColorSchemeDark get instance {
@@ -10,7 +11,7 @@ class ColorSchemeDark {
 
   ColorScheme get appColorScheme {
     return ColorScheme(
-        primary: textColor,
+        primary: oppositeColor,
         secondary: Color.fromARGB(255, 156, 103, 4),
         surface: Color.fromARGB(255, 74, 1, 1), //xx
         background: backgroundColor, //xx
@@ -23,6 +24,18 @@ class ColorSchemeDark {
         brightness: Brightness.dark);
   }
 
-  var textColor = const Color.fromRGBO(210, 210, 210, 1);
-  var backgroundColor = const Color.fromRGBO(18, 18, 18, 1);
+  @override
+  Color get backgroundColor => const Color.fromRGBO(18, 18, 18, 1);
+
+  @override
+  Color get goldColor => const Color.fromARGB(255, 175, 124, 3);
+
+  @override
+  Color get oppositeColor => const Color.fromARGB(255, 255, 255, 255);
+
+  @override
+  Color get subTitleColor => const Color.fromARGB(255, 171, 171, 171);
+
+  @override
+  Color get titleColor => const Color.fromARGB(255, 210, 210, 210);
 }
