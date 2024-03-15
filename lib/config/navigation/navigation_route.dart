@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
+import 'package:goldcity/view/presentation/project/story/view/story_view.dart';
 import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
 
 class NavigationRoute {
@@ -15,9 +16,12 @@ class NavigationRoute {
       /* DEFAULT */
       NavigationConstant.DEFAULT =>
         normalNavigate(const SplashView(), NavigationConstant.DEFAULT),
-      /* DEFAULT */
+      /* PROJECT DETAIL */
       NavigationConstant.PROJECT_DETAIL => normalNavigate(
           const ProjectDetailView(), NavigationConstant.PROJECT_DETAIL),
+      /* STORY */
+      NavigationConstant.STORY =>
+        normalNavigate(const StoryView(), NavigationConstant.STORY),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
       /* */

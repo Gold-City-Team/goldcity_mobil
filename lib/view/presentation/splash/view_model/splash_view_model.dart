@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
@@ -15,6 +17,10 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   void init() {}
 
   void navigateProjectDetail() {
-    navigation.navigateToPageClear(path: NavigationConstant.PROJECT_DETAIL);
+    navigation.navigateToPage(path: NavigationConstant.PROJECT_DETAIL);
+  }
+
+  void navigateStory() {
+    navigation.navigateToPage(path: NavigationConstant.STORY);
   }
 }

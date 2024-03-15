@@ -8,10 +8,12 @@ import 'package:provider/provider.dart';
 extension applicationColorToThemeColor on BuildContext {
   Color toColor(APPLICATION_COLOR color) {
     return switch (color) {
-      APPLICATION_COLOR.TITLE => read<ThemeNotifier>().colorScheme.titleColor,
+      APPLICATION_COLOR.TITLE => watch<ThemeNotifier>().colorScheme.titleColor,
       APPLICATION_COLOR.SUBTITLE =>
-        read<ThemeNotifier>().colorScheme.subTitleColor,
-      APPLICATION_COLOR.GOLD => read<ThemeNotifier>().colorScheme.goldColor,
+        watch<ThemeNotifier>().colorScheme.subTitleColor,
+      APPLICATION_COLOR.GOLD => watch<ThemeNotifier>().colorScheme.goldColor,
+      APPLICATION_COLOR.BACKGROUND_COLOR =>
+        watch<ThemeNotifier>().colorScheme.backgroundColor,
     };
   }
 
