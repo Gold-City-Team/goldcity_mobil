@@ -21,7 +21,7 @@ class NavigationRoute {
           const ProjectDetailView(), NavigationConstant.PROJECT_DETAIL),
       /* STORY */
       NavigationConstant.STORY =>
-        normalNavigate(const StoryView(), NavigationConstant.STORY),
+        normalNavigate(StoryView(), NavigationConstant.STORY),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
       /* */
