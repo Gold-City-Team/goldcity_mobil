@@ -15,7 +15,7 @@ class StoryFlagWidget extends StatelessWidget {
         borderRadius: context.midRadius,
         color: isSelected
             ? context.toColor(APPLICATION_COLOR.GOLD)
-            : context.toColor(APPLICATION_COLOR.GOLD).withAlpha(120),
+            : context.toColor(APPLICATION_COLOR.GOLD).withAlpha(100),
       ),
       margin: const EdgeInsets.symmetric(horizontal: 5),
     );
