@@ -6,6 +6,7 @@ import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/view/presentation/project/story/view_model/story_view_model.dart';
 import 'package:goldcity/view/presentation/project/story/widget/story_flag_widget.dart';
 import 'package:goldcity/view/presentation/project/story/widget/story_media_widget.dart';
+import 'package:goldcity/view/presentation/project/story/widget/story_text_widget.dart';
 import 'package:provider/provider.dart';
 
 class StoryView extends StatelessWidget {
@@ -50,36 +51,41 @@ class StoryView extends StatelessWidget {
                   },
                 ),
               ),
-              Row(
-                children: [
-                  Flexible(
-                    flex: 1,
-                    child: GestureDetector(
-                      onTap: () {
-                        value.previusStory();
-                      },
-                      child: Container(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: GestureDetector(
-                      onTap: () {
-                        value.nextStory();
-                      },
-                      child: Container(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                ],
-              )
+              const StoryTextWidget(),
+              controllerWidget(value),
             ],
           ),
         );
       },
+    );
+  }
+
+  Widget controllerWidget(StoryViewModel value) {
+    return Row(
+      children: [
+        Flexible(
+          flex: 1,
+          child: GestureDetector(
+            onTap: () {
+              value.previusStory();
+            },
+            child: Container(
+              color: Colors.transparent,
+            ),
+          ),
+        ),
+        Flexible(
+          flex: 2,
+          child: GestureDetector(
+            onTap: () {
+              value.nextStory();
+            },
+            child: Container(
+              color: Colors.transparent,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

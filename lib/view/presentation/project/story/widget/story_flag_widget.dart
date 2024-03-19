@@ -17,7 +17,7 @@ class StoryFlagWidget extends StatelessWidget {
             ? context.toColor(APPLICATION_COLOR.GOLD)
             : context.toColor(APPLICATION_COLOR.GOLD).withAlpha(100),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 5),
+      margin: context.smallSpacerOnlyHorizontal,
     );
   }
 }
