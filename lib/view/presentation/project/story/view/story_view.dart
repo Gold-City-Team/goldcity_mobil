@@ -1,70 +1,91 @@
+import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/project/story/view_model/story_view_model.dart';
+import 'package:goldcity/view/presentation/project/story/widget/story_flag_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
+import 'package:provider/provider.dart';
 
-class StoryView extends StatefulWidget {
-  StoryView({super.key});
+class StoryView extends StatelessWidget {
+  const StoryView({super.key});
 
-  @override
-  State<StoryView> createState() => _StoryViewState();
-}
-
-class _StoryViewState extends State<StoryView> {
-  final photos = [
-    "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg",
-    "https://wallpapercave.com/wp/wp2752752.jpg",
-    "https://wallpapercave.com/wp/wp2752761.jpg",
-    "https://wallpapercave.com/wp/wp2752760.jpg"
-  ];
-  int index = 0;
   @override
   Widget build(BuildContext context) {
     return BaseView<StoryViewModel>(
       viewModel: StoryViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.init();
       },
-      onPageBuilder: (BuildContext context, StoryViewModel value) => Scaffold(
-        body: Stack(children: [
-          SizedBox(
-            width: context.sWidth,
-            height: context.sHeight,
-            child: NormalNetworkImage(source: photos[index]),
-          ),
-          Row(
+      onPageBuilder: (BuildContext context, StoryViewModel value) {
+        return DismissiblePage(
+          isFullScreen: true,
+          backgroundColor:
+              context.watch<ThemeNotifier>().colorScheme.backgroundColor,
+          onDismissed: () {
+            value.navigation.pop();
+          },
+          child: Stack(
             children: [
-              Flexible(
-                flex: 1,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      index = index == 0 ? 0 : index - 1;
-                    });
+              Observer(builder: (context) {
+                return value.storyList.isNotEmpty
+                    ? SizedBox(
+                        height: context.sHeight,
+                        child: NormalNetworkImage(
+                          source: value.storyList[value.index],
+                        ),
+                      )
+                    : const SizedBox.shrink();
+              }),
+              SafeArea(
+                child: Observer(
+                  builder: (context) {
+                    return SizedBox(
+                      height: 10,
+                      child: Row(
+                        children: List.generate(
+                          value.storyList.length,
+                          (index) => Expanded(
+                              child: StoryFlagWidget(index == value.index)),
+                        ),
+                      ),
+                    );
                   },
-                  child: Container(
-                    color: Colors.transparent,
-                  ),
                 ),
               ),
-              Flexible(
-                flex: 2,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      index = index > 2 ? 3 : index + 1;
-                    });
-                  },
-                  child: Container(
-                    color: Colors.transparent,
+              Row(
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: GestureDetector(
+                      onTap: () {
+                        value.previusStory();
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                  Flexible(
+                    flex: 2,
+                    child: GestureDetector(
+                      onTap: () {
+                        value.nextStory();
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
-          )
-        ]),
-      ),
+          ),
+        );
+      },
     );
   }
 }

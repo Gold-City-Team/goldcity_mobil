@@ -10,3 +10,7 @@ extension ScreenSizeExtension on BuildContext {
   double get sHeight => MediaQuery.of(this).size.height;
   double get sWidth => MediaQuery.of(this).size.width;
 }
+
+extension RadiusExtension on BuildContext {
+  BorderRadius get midRadius => const BorderRadius.all(Radius.circular(10));
+}

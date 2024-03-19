@@ -134,6 +134,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "dismissible_page",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/dismissible_page-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "easy_localization",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/easy_localization-3.0.5",
       "packageUri": "lib/",
@@ -566,7 +572,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-14T12:20:14.363568Z",
+  "generated": "2024-03-19T08:31:51.031474Z",
   "generator": "pub",
   "generatorVersion": "3.2.0"
 }

@@ -39,9 +39,6 @@ class SplashView extends StatelessWidget {
               onPressed: () => value.navigateStory(),
             ),
             Gap(context.midSpacerSize),
-            FloatingActionButton(
-              onPressed: () => value.navigateProjectDetail(),
-            ),
           ],
         ),
       ),
