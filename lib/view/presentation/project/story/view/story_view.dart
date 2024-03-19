@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
-import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/project/story/view_model/story_view_model.dart';
 import 'package:goldcity/view/presentation/project/story/widget/story_flag_widget.dart';
-import 'package:goldcity/view/widget/image/normal_network_image.dart';
+import 'package:goldcity/view/presentation/project/story/widget/story_media_widget.dart';
 import 'package:provider/provider.dart';
 
 class StoryView extends StatelessWidget {
@@ -32,12 +31,7 @@ class StoryView extends StatelessWidget {
             children: [
               Observer(builder: (context) {
                 return value.storyList.isNotEmpty
-                    ? SizedBox(
-                        height: context.sHeight,
-                        child: NormalNetworkImage(
-                          source: value.storyList[value.index],
-                        ),
-                      )
+                    ? StoryMediaWidget(value.storyList[value.index])
                     : const SizedBox.shrink();
               }),
               SafeArea(
