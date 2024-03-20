@@ -36,7 +36,7 @@ class SplashView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton(
-              onPressed: () => value.navigateStory(),
+              onPressed: () => value.navigateProjectDetail(),
             ),
             Gap(context.midSpacerSize),
           ],
