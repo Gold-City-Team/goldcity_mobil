@@ -1,0 +1,1 @@
+ /Users/zafercetin/Documents/goldcity/.dart_tool/flutter_build/b3351c43635ef5b38d9d66046ec88a0a/native_assets.yaml: 

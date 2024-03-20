@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
@@ -33,35 +34,41 @@ class ProjectDetailView extends StatelessWidget {
         }),
         body: SafeArea(
           child: SingleChildScrollView(
-              padding: context.zeroSpacer, child: bodyItems(context)),
+              padding: context.zeroSpacer, child: bodyItems(context, value)),
         ),
       ),
     );
   }
 
-  Widget bodyItems(BuildContext context) => Column(
+  Widget bodyItems(BuildContext context, ProjectDetailViewModel value) =>
+      Column(
         children: [
           const ProjectDetailBannerWidget(),
           Gap(context.largeSpacerSize),
           Container(
-            height: 60,
+            height: 66,
             margin: context.midSpacerOnlyLeft,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Row(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.white,
-                          border: Border.all(
-                              color: context.toColor(APPLICATION_COLOR.GOLD))),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: const NormalNetworkImage(
-                            source:
-                                "https://wallpapercave.com/wp/wp2752752.jpg"),
+                    GestureDetector(
+                      onTap: () => value.navigation
+                          .navigateToPage(path: NavigationConstant.STORY),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(33),
+                            color: Colors.white,
+                            border: Border.all(
+                                color:
+                                    context.toColor(APPLICATION_COLOR.GOLD))),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(33),
+                          child: const NormalNetworkImage(
+                              source:
+                                  "https://wallpapercave.com/wp/wp2752752.jpg"),
+                        ),
                       ),
                     ),
                     Gap(context.midSpacerSize)
