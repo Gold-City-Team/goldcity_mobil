@@ -37,7 +37,7 @@ class ProjectDetailBannerWidget extends StatelessWidget {
         ),
         Positioned(
           bottom: 0,
-          left: context.largeSpacerSize,
+          left: context.midSpacerSize,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
