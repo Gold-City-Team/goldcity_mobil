@@ -4,7 +4,9 @@ import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/project_detail_banner_widget.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/project_detail_story_head_widget.dart';
@@ -45,6 +47,19 @@ class ProjectDetailView extends StatelessWidget {
         children: [
           const ProjectDetailBannerWidget(),
           Gap(context.largeSpacerSize),
+          Padding(
+            padding: context.midSpacerOnlyHorizontal,
+            child: MaterialButton(
+                minWidth: context.sWidth,
+                onPressed: () => value.navigation
+                    .navigateToPage(path: NavigationConstant.MAP),
+                color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                child: const LabelText(
+                  textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
+                  text: "Olanaklar",
+                )),
+          ),
+          Gap(context.largeSpacerSize),
           Container(
             margin: context.midSpacerOnlyLeft,
             child: const LabelText(
@@ -65,15 +80,34 @@ class ProjectDetailView extends StatelessWidget {
           ),
           Gap(context.largeSpacerSize),
           Container(
-            height: 150,
+            height: 110,
             margin: context.midSpacerOnlyLeft,
             child: ListView.builder(
+              itemCount: 30,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return const ProjectDetailStoryHeadWidget();
               },
             ),
-          )
+          ),
+          Container(
+            margin: context.midSpacerOnlyLeft,
+            child: const LabelText(
+              text: "Ödüller",
+              fontSize: FONT_SIZE.TITLE_LARGE,
+              textColor: APPLICATION_COLOR.GOLD,
+            ),
+          ),
+          Gap(context.smallSpacerSize),
+          Container(
+            margin: context.midSpacerOnlyLeft,
+            child: const LabelText(
+              text:
+                  "211.677m²’lik alanı ile Toros Dağları’nın eteklerine kurulu Goldcity, göz kamaştıran yapısıyla bir otel, lüks rezidanslar ve onların etrafında yine aynı güzellikteki villa ve dairelerden oluşmaktadır. Goldcity’nin aynı zamanda havuzlu müstakil villaları, dubleks teras katları ve lüks apartman dairelerinden oluşan çeşitli emlak ve mülklerinin satışı devam etmektedir.",
+              textColor: APPLICATION_COLOR.SUBTITLE,
+              fontSize: FONT_SIZE.BODY_MEDIUM,
+            ),
+          ),
         ],
       );
 }

@@ -18,8 +18,8 @@ class ProjectDetailStoryHeadWidget extends StatelessWidget {
           GestureDetector(
             onTap: () => null,
             child: Container(
-              height: 70,
-              width: 70,
+              height: 66,
+              width: 66,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(33),
                   color: Colors.white,

@@ -12,11 +12,11 @@ class ColorSchemeDark extends IColorScheme {
   ColorScheme get appColorScheme {
     return ColorScheme(
         primary: oppositeColor,
-        secondary: Color.fromARGB(255, 156, 103, 4),
-        surface: Color.fromARGB(255, 74, 1, 1), //xx
+        secondary: const Color.fromARGB(255, 156, 103, 4),
+        surface: const Color.fromARGB(255, 74, 1, 1), //xx
         background: backgroundColor, //xx
         error: Colors.red[900]!,
-        onPrimary: Color.fromARGB(255, 116, 150, 217),
+        onPrimary: const Color.fromARGB(255, 116, 150, 217),
         onSecondary: Colors.black, //x
         onSurface: Colors.purple.shade300,
         onBackground: Colors.black12,

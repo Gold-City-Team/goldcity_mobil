@@ -27,6 +27,7 @@ dependencies:
   easy_localization: ^3.0.5
   gap: ^3.0.1
   dismissible_page: ^1.0.2
+  google_maps_flutter: ^2.6.0
 
 dev_dependencies:
   flutter_test:

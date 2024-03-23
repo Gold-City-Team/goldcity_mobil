@@ -1,6 +1,12 @@
 // ignore_for_file: constant_identifier_names, camel_case_types
 
-enum APPLICATION_COLOR { GOLD, TITLE, SUBTITLE, BACKGROUND_COLOR }
+enum APPLICATION_COLOR {
+  GOLD,
+  TITLE,
+  SUBTITLE,
+  BACKGROUND_COLOR,
+  OPPOSITE_COLOR
+}
 
 enum FONT_SIZE {
   DISPLAY_LARGE,

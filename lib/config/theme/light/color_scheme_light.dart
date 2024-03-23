@@ -20,7 +20,7 @@ class ColorSchemeLight extends IColorScheme {
         onSecondary: Colors.green,
         onSurface: Colors.green.shade300,
         onBackground: Colors.green,
-        onError: Color(0xFFF9B916),
+        onError: const Color(0xFFF9B916),
         brightness: Brightness.light);
   }
 
