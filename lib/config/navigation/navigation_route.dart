@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
-import 'package:goldcity/view/presentation/map/view/gold_map_view.dart';
+import 'package:goldcity/view/presentation/gold_map/view/gold_map_view.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
 import 'package:goldcity/view/presentation/project/story/view/story_view.dart';
 import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
