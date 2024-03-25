@@ -40,12 +40,12 @@ class FacilitiesWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 LabelText(
-                  text: "Ödüller",
+                  text: "Gold City",
                   fontSize: FONT_SIZE.TITLE_MEDIUM,
                   textColor: APPLICATION_COLOR.TITLE,
                 ),
                 LabelText(
-                  text: "Lorem ipsum dolor sit amet",
+                  text: "Lorem ipsum dolor sit amet.",
                   fontSize: FONT_SIZE.TITLE_SMALL,
                   textColor: APPLICATION_COLOR.SUBTITLE,
                 ),

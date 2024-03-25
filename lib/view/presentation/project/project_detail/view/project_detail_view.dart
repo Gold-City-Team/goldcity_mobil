@@ -60,6 +60,19 @@ class ProjectDetailView extends StatelessWidget {
                 )),
           ),
           Gap(context.largeSpacerSize),
+          Padding(
+            padding: context.midSpacerOnlyHorizontal,
+            child: MaterialButton(
+                minWidth: context.sWidth,
+                onPressed: () => value.navigation
+                    .navigateToPage(path: NavigationConstant.MAP),
+                color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                child: const LabelText(
+                  textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
+                  text: "Kayıt Ol",
+                )),
+          ),
+          Gap(context.largeSpacerSize),
           Container(
             margin: context.midSpacerOnlyLeft,
             child: const LabelText(
