@@ -16,7 +16,7 @@ class ProjectDetailStoryHeadWidget extends StatelessWidget {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () => null,
+            onTap: () => {},
             child: Container(
               height: 66,
               width: 66,
