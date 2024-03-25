@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/gold_map/view/gold_map_view.dart';
+import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
 import 'package:goldcity/view/presentation/project/story/view/story_view.dart';
 import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
@@ -26,6 +27,9 @@ class NavigationRoute {
       /* MAP */
       NavigationConstant.MAP =>
         normalNavigate(GoldMapView(), NavigationConstant.MAP),
+      /* LEAD APPLY */
+      NavigationConstant.LEAD_APPLY =>
+        normalNavigate(const LeadApplyView(), NavigationConstant.LEAD_APPLY),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
       /* */

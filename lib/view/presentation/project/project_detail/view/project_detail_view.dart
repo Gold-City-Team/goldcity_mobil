@@ -65,7 +65,7 @@ class ProjectDetailView extends StatelessWidget {
             child: MaterialButton(
                 minWidth: context.sWidth,
                 onPressed: () => value.navigation
-                    .navigateToPage(path: NavigationConstant.MAP),
+                    .navigateToPage(path: NavigationConstant.LEAD_APPLY),
                 color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
                 child: const LabelText(
                   textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
