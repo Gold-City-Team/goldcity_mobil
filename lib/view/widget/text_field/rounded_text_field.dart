@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
 
 import 'package:goldcity/util/enum/input_type.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
 
 class RoundedTextField extends StatefulWidget {
   final String initValue;
@@ -43,8 +45,8 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: context.largeRadius,
-        color: Colors.white,
+        borderRadius: context.midRadius,
+        color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
       ),
       alignment: Alignment.centerLeft,
       width: context.sWidth,
@@ -62,6 +64,9 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
       keyboardType: getInputType(inputType),
       autocorrect: false,
       maxLength: widget.maxLength,
+      cursorColor: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+      style:
+          TextStyle(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
       obscureText: inputType == InputType.PASSWORD,
       decoration: InputDecoration.collapsed(
         hintText: widget.hintText,

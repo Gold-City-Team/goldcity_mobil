@@ -14,6 +14,9 @@ class AppThemeDark extends AppTheme with IDarkTheme {
 
   @override
   ThemeData get theme => ThemeData(
+      textSelectionTheme: TextSelectionThemeData(
+          selectionColor: ColorSchemeDark.instance.goldColor,
+          selectionHandleColor: ColorSchemeDark.instance.goldColor),
       useMaterial3: true,
       colorScheme: ColorSchemeDark.instance.appColorScheme,
       textTheme: TextTheme(

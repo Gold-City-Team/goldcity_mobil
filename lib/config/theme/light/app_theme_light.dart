@@ -16,6 +16,9 @@ class AppThemeLight extends AppTheme with ILightTheme {
   @override
   ThemeData get theme => ThemeData(
       useMaterial3: true,
+      textSelectionTheme: TextSelectionThemeData(
+          selectionColor: ColorSchemeLight.instance.goldColor,
+          selectionHandleColor: ColorSchemeLight.instance.goldColor),
       colorScheme: ColorSchemeLight.instance.appColorScheme,
       textTheme: TextTheme(
         displayLarge: TextStyle(

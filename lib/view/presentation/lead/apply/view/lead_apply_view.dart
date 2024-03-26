@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/config/notifier/theme_notifier.dart';
+import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/lead/apply/view_model/lead_apply_view_model.dart';
 import 'package:goldcity/view/widget/text_field/rounded_text_field.dart';
+import 'package:provider/provider.dart';
 
 class LeadApplyView extends StatelessWidget {
   const LeadApplyView({super.key});
@@ -15,11 +18,17 @@ class LeadApplyView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, LeadApplyViewModel value) =>
           Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => context.read<ThemeNotifier>().toggleTheme(),
+        ),
         body: SafeArea(
-          child: Column(
-            children: [
-              RoundedTextField(newText: (newText) => null),
-            ],
+          child: Padding(
+            padding: context.midSpacerOnlyHorizontal,
+            child: Column(
+              children: [
+                RoundedTextField(newText: (newText) => null),
+              ],
+            ),
           ),
         ),
       ),
