@@ -140,6 +140,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "dio",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/dio-5.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "dismissible_page",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/dismissible_page-1.0.2",
       "packageUri": "lib/",
@@ -662,7 +668,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-23T07:08:04.572971Z",
+  "generated": "2024-03-26T12:59:41.315368Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }

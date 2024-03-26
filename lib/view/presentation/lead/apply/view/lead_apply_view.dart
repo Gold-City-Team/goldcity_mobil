@@ -27,6 +27,9 @@ class LeadApplyView extends StatelessWidget {
             child: Column(
               children: [
                 RoundedTextField(newText: (newText) => null),
+                RoundedTextField(newText: (newText) => null),
+                RoundedTextField(newText: (newText) => null),
+                RoundedTextField(newText: (newText) => null),
               ],
             ),
           ),
