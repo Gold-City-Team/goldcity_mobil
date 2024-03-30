@@ -15,6 +15,13 @@ class SendLeadApplyDto {
     required this.tel,
   });
   Map<String, dynamic> toJson() {
-    return {"campaignName": campaignName};
+    return {
+      campaignName: "campaignName",
+      language: "language",
+      dataSource: "dataSource",
+      email: "email",
+      fullName: "fullName",
+      tel: "tel",
+    };
   }
 }
