@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
+import 'package:goldcity/domain/usecase/lead_usecase.dart';
+import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lead_apply_view_model.g.dart';
@@ -9,9 +12,26 @@ part 'lead_apply_view_model.g.dart';
 class LeadApplyViewModel = _LeadApplyViewModelBase with _$LeadApplyViewModel;
 
 abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
+  late LeadUseCase _leadUseCase;
+
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
-  void init() {}
+  void init() {
+    _leadUseCase = locator<LeadUseCase>();
+  }
+
+  void apply() {
+    _leadUseCase.leadApply(
+      SendLeadApplyDto(
+        campaignName: "campaignName",
+        language: "language",
+        dataSource: "dataSource",
+        email: "email",
+        fullName: "fullName",
+        tel: "tel",
+      ),
+    );
+  }
 }

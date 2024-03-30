@@ -29,6 +29,7 @@ dependencies:
   gap: ^3.0.1
   dismissible_page: ^1.0.2
   google_maps_flutter: ^2.6.0
+  get_it: ^7.6.0
 
 dev_dependencies:
   flutter_test:

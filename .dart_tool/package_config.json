@@ -242,6 +242,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "get_it",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/get_it-7.6.7",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "glob",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/glob-2.1.2",
       "packageUri": "lib/",
@@ -668,7 +674,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-26T12:59:41.315368Z",
+  "generated": "2024-03-30T11:34:55.394163Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }
