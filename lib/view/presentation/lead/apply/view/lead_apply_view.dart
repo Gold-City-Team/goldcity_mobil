@@ -4,6 +4,7 @@ import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/lead/apply/view_model/lead_apply_view_model.dart';
+import 'package:goldcity/view/widget/app_bar/normal_app_bar.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:goldcity/view/widget/text_field/rounded_text_field.dart';
 
@@ -28,6 +29,10 @@ class LeadApplyView extends StatelessWidget {
             padding: context.midSpacerOnlyHorizontal,
             child: Column(
               children: [
+                NormalAppBar(
+                  backPressed: () => null,
+                  title: "Başvuru yap",
+                ),
                 LabelText(text: LocaleKeys.nameSurnameQuestion.tr()),
                 RoundedTextField(
                     key: const Key("fullName"),
