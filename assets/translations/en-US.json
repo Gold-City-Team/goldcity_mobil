@@ -1,4 +1,7 @@
 {
     "companyName": "Gold City",
-    "slogan": "We build life, not houses."
+    "slogan": "We build life, not houses.",
+    "nameSurnameQuestion": "Full Name",
+    "telephoneQuestion": "Telephone Number",
+    "mailQuestion": "E-mail adress"
 }

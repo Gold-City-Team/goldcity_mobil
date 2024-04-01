@@ -22,15 +22,19 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
     _leadUseCase = locator<LeadUseCase>();
   }
 
+  String mailAdress = "";
+  String telephone = "";
+  String fullName = "";
+
   void apply() {
     _leadUseCase.leadApply(
       SendLeadApplyDto(
         campaignName: "MOBILE",
         language: "tr-TR",
         dataSource: "MOBILE",
-        email: "emaill@gmail.com",
-        fullName: "fullName",
-        tel: "+905350755376",
+        email: mailAdress,
+        fullName: fullName,
+        tel: telephone,
       ),
     );
   }
