@@ -9,7 +9,7 @@ class RemoteManager {
         connectTimeout: const Duration(seconds: 5),
         sendTimeout: const Duration(seconds: 5),
         receiveTimeout: const Duration(seconds: 5),
-        baseUrl: "https://citirdan.denizegece.com.tr",
+        baseUrl: "https://api.goldcitycondominium.com",
       ),
     );
   }

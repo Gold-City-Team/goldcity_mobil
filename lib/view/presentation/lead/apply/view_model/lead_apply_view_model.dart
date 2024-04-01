@@ -25,12 +25,12 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
   void apply() {
     _leadUseCase.leadApply(
       SendLeadApplyDto(
-        campaignName: "campaignName",
-        language: "language",
-        dataSource: "dataSource",
-        email: "email",
+        campaignName: "MOBILE",
+        language: "tr-TR",
+        dataSource: "MOBILE",
+        email: "emaill@gmail.com",
         fullName: "fullName",
-        tel: "tel",
+        tel: "+905350755376",
       ),
     );
   }

@@ -16,12 +16,12 @@ class SendLeadApplyDto {
   });
   Map<String, dynamic> toJson() {
     return {
-      campaignName: "campaignName",
-      language: "language",
-      dataSource: "dataSource",
-      email: "email",
-      fullName: "fullName",
-      tel: "tel",
+      "campaignName": campaignName,
+      "language": language,
+      "dataSource": dataSource,
+      "email": email,
+      "fullName": fullName,
+      "tel": tel,
     };
   }
 }
