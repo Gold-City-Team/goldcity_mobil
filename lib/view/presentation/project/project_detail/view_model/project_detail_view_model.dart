@@ -15,4 +15,6 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {}
+
+  Future<void> getProjectDetail() async {}
 }
