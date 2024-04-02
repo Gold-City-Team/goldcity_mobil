@@ -14,6 +14,8 @@ extension applicationColorToThemeColor on BuildContext {
       APPLICATION_COLOR.GOLD => watch<ThemeNotifier>().colorScheme.goldColor,
       APPLICATION_COLOR.BACKGROUND_COLOR =>
         watch<ThemeNotifier>().colorScheme.backgroundColor,
+      APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR =>
+        watch<ThemeNotifier>().colorScheme.closeBackgroundColor,
       APPLICATION_COLOR.OPPOSITE_COLOR =>
         watch<ThemeNotifier>().colorScheme.oppositeColor,
     };

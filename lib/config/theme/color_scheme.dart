@@ -8,4 +8,5 @@ abstract class IColorScheme {
   Color get subTitleColor;
 
   Color get backgroundColor;
+  Color get closeBackgroundColor;
 }

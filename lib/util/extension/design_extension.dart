@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goldcity/util/enum/input_type.dart';
 
 extension SpacerSizeExtension on BuildContext {
   double get veryLargeSpacerSize => 40;
@@ -34,4 +35,17 @@ extension MarginPaddingExtension on BuildContext {
   EdgeInsets get smallSpacerOnlyVertical =>
       const EdgeInsets.symmetric(vertical: 5);
   EdgeInsets get largeSpacerOnlyRight => const EdgeInsets.only(right: 20);
+}
+
+extension GetTextInputType on InputType {
+  getInputType() {
+    return switch (this) {
+      InputType.MAIL => TextInputType.emailAddress,
+      InputType.TEXT => TextInputType.text,
+      InputType.PHONE => TextInputType.phone,
+      InputType.PASSWORD => TextInputType.visiblePassword,
+      InputType.VISIBLE_PASSWORD => TextInputType.visiblePassword,
+      InputType.NUMBER => TextInputType.number,
+    };
+  }
 }

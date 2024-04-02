@@ -5,14 +5,14 @@ import 'package:goldcity/util/enum/input_type.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 
-class RoundedTextField extends StatefulWidget {
+class ErrorableRoundedTextField extends StatefulWidget {
   final String initValue;
   final String hintText;
   final int? maxLength;
   final InputType inputType;
 
   final Function(String) newText;
-  const RoundedTextField({
+  const ErrorableRoundedTextField({
     super.key,
     this.initValue = "",
     this.hintText = "",
@@ -22,10 +22,11 @@ class RoundedTextField extends StatefulWidget {
   });
 
   @override
-  State<RoundedTextField> createState() => _RoundedTextFieldState();
+  State<ErrorableRoundedTextField> createState() =>
+      _ErrorableRoundedTextFieldState();
 }
 
-class _RoundedTextFieldState extends State<RoundedTextField> {
+class _ErrorableRoundedTextFieldState extends State<ErrorableRoundedTextField> {
   final _controller = TextEditingController();
 
   @override
