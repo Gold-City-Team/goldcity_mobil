@@ -21,11 +21,13 @@ class ProjectDetailView extends StatelessWidget {
     return BaseView<ProjectDetailViewModel>(
       viewModel: ProjectDetailViewModel(),
       onModelReady: (model) {
+        model.init();
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, ProjectDetailViewModel value) =>
           Scaffold(
         floatingActionButton: FloatingActionButton(onPressed: () {
+          value.getProjectDetail();
           if (context.read<ThemeNotifier>().appTheme == APP_THEME.LIGHT) {
             context.setLocale(const Locale("tr", "TR"));
           } else {

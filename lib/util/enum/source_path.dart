@@ -6,7 +6,7 @@ extension SourcePathExtension on SourcePath {
   String rawValue({List<dynamic>? data}) {
     return switch (this) {
       SourcePath.LEAD => '/lead',
-      SourcePath.PROJECT => '/project/${data?[0]}',
+      SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage',
     };
   }
 }
