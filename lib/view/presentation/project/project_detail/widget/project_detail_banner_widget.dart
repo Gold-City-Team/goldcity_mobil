@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -9,7 +7,10 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class ProjectDetailBannerWidget extends StatelessWidget {
-  const ProjectDetailBannerWidget({super.key});
+  final String title;
+  final String slogan;
+  const ProjectDetailBannerWidget(
+      {super.key, required this.title, required this.slogan});
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +43,14 @@ class ProjectDetailBannerWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const LabelText(
-                text: "Gold Signature",
+              LabelText(
+                text: title,
                 textColor: APPLICATION_COLOR.GOLD,
                 fontSize: FONT_SIZE.HEADLINE_LARGE,
               ),
               Gap(context.smallSpacerSize),
               LabelText(
-                text: LocaleKeys.slogan.tr(),
+                text: slogan,
                 textColor: APPLICATION_COLOR.SUBTITLE,
                 fontSize: FONT_SIZE.BODY_LARGE,
               ),

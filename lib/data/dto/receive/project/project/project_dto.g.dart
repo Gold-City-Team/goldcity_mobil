@@ -8,14 +8,14 @@ part of 'project_dto.dart';
 
 ProjectDto _$ProjectDtoFromJson(Map<String, dynamic> json) => ProjectDto(
       id: json['id'] as int?,
-      projectDetailDto: json['projectDetailDto'] == null
+      projectDetail: json['projectDetail'] == null
           ? null
           : ProjectDetailDto.fromJson(
-              json['projectDetailDto'] as Map<String, dynamic>),
+              json['projectDetail'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'projectDetailDto': instance.projectDetailDto,
+      'projectDetail': instance.projectDetail,
     };

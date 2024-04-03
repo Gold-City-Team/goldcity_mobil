@@ -6,17 +6,17 @@ part 'project_dto.g.dart';
 @JsonSerializable()
 class ProjectDto {
   int? id;
-  ProjectDetailDto? projectDetailDto;
+  ProjectDetailDto? projectDetail;
 
-  ProjectDto({this.id, this.projectDetailDto});
+  ProjectDto({this.id, this.projectDetail});
   factory ProjectDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProjectDtoToJson(this);
   ProjectEntity toEntity() => ProjectEntity(
         id: id ?? 0,
-        detail: projectDetailDto != null
-            ? projectDetailDto!.toEntity()
+        detail: projectDetail != null
+            ? projectDetail!.toEntity()
             : ProjectDetailDto().toEntity(),
       );
 }

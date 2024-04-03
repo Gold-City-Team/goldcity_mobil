@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
@@ -24,12 +25,14 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     getProjectDetail();
   }
 
+  @observable
+  ProjectEntity? projectEntity;
+  @action
   Future<void> getProjectDetail() async {
     var result = await _projectUseCase.getDetail(1);
     if (result.isRight) {
-      debugPrint("result ${result.right.id}");
-    } else {
-      debugPrint("resultante ${result.left.status}");
+      debugPrint("${result.right.detail.id}");
+      projectEntity = result.right;
     }
   }
 }

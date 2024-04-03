@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
@@ -47,7 +48,15 @@ class ProjectDetailView extends StatelessWidget {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ProjectDetailBannerWidget(),
+          Observer(builder: (context) {
+            if (value.projectEntity == null) {
+              return const SizedBox.shrink();
+            }
+            return ProjectDetailBannerWidget(
+              title: value.projectEntity!.detail.title,
+              slogan: value.projectEntity!.detail.slogan,
+            );
+          }),
           Gap(context.largeSpacerSize),
           Padding(
             padding: context.midSpacerOnlyHorizontal,
