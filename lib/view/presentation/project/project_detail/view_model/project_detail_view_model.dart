@@ -27,12 +27,10 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   @observable
   ProjectEntity? projectEntity;
+
   @action
   Future<void> getProjectDetail() async {
     var result = await _projectUseCase.getDetail(1);
-    if (result.isRight) {
-      debugPrint("${result.right.detail.id}");
-      projectEntity = result.right;
-    }
+    if (result.isRight) projectEntity = result.right;
   }
 }
