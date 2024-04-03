@@ -26,6 +26,8 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   Future<void> getProjectDetail() async {
     var result = await _projectUseCase.getDetail(1);
-    debugPrint("result ${result.id}");
+    if (result.isRight) {
+      debugPrint("result ${result.right.id}");
+    }
   }
 }
