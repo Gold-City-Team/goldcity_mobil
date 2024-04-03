@@ -28,6 +28,8 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     var result = await _projectUseCase.getDetail(1);
     if (result.isRight) {
       debugPrint("result ${result.right.id}");
+    } else {
+      debugPrint("resultante ${result.left.status}");
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:goldcity/config/interceptor/authentication_interceptor.dart';
 
 class RemoteManager {
   late Dio networkManager;
@@ -11,6 +12,6 @@ class RemoteManager {
         receiveTimeout: const Duration(seconds: 5),
         baseUrl: "https://api.goldcitycondominium.com",
       ),
-    );
+    )..interceptors.addAll([AuthenticationInterceptor()]);
   }
 }
