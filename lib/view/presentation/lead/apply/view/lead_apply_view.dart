@@ -57,17 +57,15 @@ class LeadApplyView extends StatelessWidget {
                 RoundedTextField(
                     key: const Key("mailAdress"),
                     newText: (newText) => value.mailAdress = newText),
-                Padding(
-                  padding: context.midSpacerOnlyHorizontal,
-                  child: MaterialButton(
-                    minWidth: context.sWidth,
-                    onPressed: () => value.apply(),
-                    color: context
-                        .toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
-                    child: const LabelText(
-                      textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
-                      text: "Olanaklar",
-                    ),
+                Gap(context.midSpacerSize),
+                MaterialButton(
+                  minWidth: context.sWidth,
+                  onPressed: () => value.apply(),
+                  color:
+                      context.toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
+                  child: const LabelText(
+                    textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
+                    text: "Başvuru Yap",
                   ),
                 ),
               ],
