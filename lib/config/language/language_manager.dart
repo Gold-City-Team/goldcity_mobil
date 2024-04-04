@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
 class LanguageManager {
@@ -7,6 +8,13 @@ class LanguageManager {
   }
 
   LanguageManager._init();
+  BuildContext? context;
+  String getLanguage() {
+    if (context != null) {
+      return context!.locale.toLanguageTag();
+    }
+    return "tr-TR";
+  }
 
   final enLocal = const Locale("en", "US");
   final trLocal = const Locale("tr", "TR");

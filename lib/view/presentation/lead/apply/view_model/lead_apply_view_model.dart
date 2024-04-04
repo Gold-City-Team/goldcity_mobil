@@ -38,6 +38,6 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
       ),
     );
 
-    navigation.pop();
+    // navigation.pop();
   }
 }
