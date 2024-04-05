@@ -10,25 +10,28 @@ class NormalAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        GestureDetector(
-            onTap: backPressed,
-            child: Padding(
-              padding: context.largeSpacerOnlyRight,
-              child: const Icon(
-                Icons.arrow_back_ios_new_sharp,
-                size: 28,
-              ),
-            )),
-        Gap(context.midSpacerSize),
-        title.isNotEmpty
-            ? LabelText(
-                text: title,
-              )
-            : const SizedBox.shrink()
-      ],
+    return SizedBox(
+      height: 40,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GestureDetector(
+              onTap: backPressed,
+              child: Padding(
+                padding: context.largeSpacerOnlyRight,
+                child: const Icon(
+                  Icons.arrow_back_ios_new_sharp,
+                  size: 28,
+                ),
+              )),
+          Gap(context.midSpacerSize),
+          title.isNotEmpty
+              ? LabelText(
+                  text: title,
+                )
+              : const SizedBox.shrink()
+        ],
+      ),
     );
   }
 }

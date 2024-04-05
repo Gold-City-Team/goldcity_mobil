@@ -29,39 +29,43 @@ class LeadApplyView extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: context.midSpacerOnlyHorizontal,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Stack(
               children: [
                 NormalAppBar(
                   backPressed: () => value.navigation.pop(),
                   title: "Başvuru yap",
                 ),
-                Gap(context.largeSpacerSize),
-                LabelText(text: LocaleKeys.nameSurnameQuestion.tr()),
-                Gap(context.midSpacerSize),
-                RoundedTextField(
-                    key: const Key("fullName"),
-                    newText: (newText) => value.fullName = newText),
-                Gap(context.midSpacerSize),
-                LabelText(text: LocaleKeys.telephoneQuestion.tr()),
-                Gap(context.midSpacerSize),
-                RoundedTextField(
-                    key: const Key("telephone"),
-                    newText: (newText) => value.telephone = newText),
-                Gap(context.midSpacerSize),
-                LabelText(text: LocaleKeys.mailQuestion.tr()),
-                Gap(context.midSpacerSize),
-                RoundedTextField(
-                    key: const Key("mailAdress"),
-                    newText: (newText) => value.mailAdress = newText),
-                Gap(context.largeSpacerSize),
-                SizedBox(
-                  height: 50,
-                  child: NormalButton(
-                    onTap: () => null,
-                    text: "Gönder",
-                  ),
-                )
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LabelText(text: LocaleKeys.nameSurnameQuestion.tr()),
+                    Gap(context.midSpacerSize),
+                    RoundedTextField(
+                        key: const Key("fullName"),
+                        newText: (newText) => value.fullName = newText),
+                    Gap(context.midSpacerSize),
+                    LabelText(text: LocaleKeys.telephoneQuestion.tr()),
+                    Gap(context.midSpacerSize),
+                    RoundedTextField(
+                        key: const Key("telephone"),
+                        newText: (newText) => value.telephone = newText),
+                    Gap(context.midSpacerSize),
+                    LabelText(text: LocaleKeys.mailQuestion.tr()),
+                    Gap(context.midSpacerSize),
+                    RoundedTextField(
+                        key: const Key("mailAdress"),
+                        newText: (newText) => value.mailAdress = newText),
+                    Gap(context.largeSpacerSize),
+                    SizedBox(
+                      height: 50,
+                      child: NormalButton(
+                        onTap: () => null,
+                        text: "Gönder",
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
