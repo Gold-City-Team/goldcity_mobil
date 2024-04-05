@@ -23,6 +23,8 @@ class NormalButton extends StatelessWidget {
       width: context.sWidth,
       child: TextButton(
         style: ButtonStyle(
+          shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(borderRadius: context.midRadius)),
           backgroundColor: MaterialStatePropertyAll(
             context.toColor(backgroundColor),
           ),

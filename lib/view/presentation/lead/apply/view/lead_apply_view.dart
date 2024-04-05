@@ -56,10 +56,10 @@ class LeadApplyView extends StatelessWidget {
                     newText: (newText) => value.mailAdress = newText),
                 Gap(context.midSpacerSize),
                 SizedBox(
-                  height: 100,
+                  height: 50,
                   child: NormalButton(
                     onTap: () => null,
-                    text: "mner",
+                    text: "Gönder",
                   ),
                 )
               ],
