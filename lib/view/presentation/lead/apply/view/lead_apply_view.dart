@@ -54,7 +54,7 @@ class LeadApplyView extends StatelessWidget {
                 RoundedTextField(
                     key: const Key("mailAdress"),
                     newText: (newText) => value.mailAdress = newText),
-                Gap(context.midSpacerSize),
+                Gap(context.largeSpacerSize),
                 SizedBox(
                   height: 50,
                   child: NormalButton(
