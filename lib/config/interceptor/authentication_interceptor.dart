@@ -1,8 +1,6 @@
 // ignore_for_file: implementation_imports, depend_on_referenced_packages
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:goldcity/config/language/language_manager.dart';
 
 class AuthenticationInterceptor implements Interceptor {
   @override
@@ -14,9 +12,7 @@ class AuthenticationInterceptor implements Interceptor {
   @override
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    debugPrint("test ${LanguageManager.instance.getLanguage()}");
     options.headers.addAll({
-      "language": LanguageManager.instance.getLanguage(),
       "Authorization":
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9tb2JpbGVwaG9uZSI6Iis5MDU1MjIyMDMyMTQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsImV4cCI6MTkxMjA0NDExMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDEifQ.FEPg6ddA3gdXO4ktDV5vR6ECQKkY1PGfaOoo4hmYuoQ"
     });

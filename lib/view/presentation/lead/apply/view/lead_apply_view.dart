@@ -60,7 +60,7 @@ class LeadApplyView extends StatelessWidget {
                     SizedBox(
                       height: 50,
                       child: NormalButton(
-                        onTap: () => null,
+                        onTap: () => value.apply(),
                         text: "Gönder",
                       ),
                     ),
