@@ -19,13 +19,19 @@ class NormalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      minWidth: context.sWidth,
-      onPressed: () => onTap(),
-      color: context.toColor(backgroundColor),
-      child: LabelText(
-        textColor: textColor,
-        text: text,
+    return SizedBox(
+      width: context.sWidth,
+      child: TextButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(
+            context.toColor(backgroundColor),
+          ),
+        ),
+        onPressed: () => onTap(),
+        child: LabelText(
+          textColor: textColor,
+          text: text,
+        ),
       ),
     );
   }

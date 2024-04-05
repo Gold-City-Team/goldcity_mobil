@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
-import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
-import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/lead/apply/view_model/lead_apply_view_model.dart';
 import 'package:goldcity/view/widget/app_bar/normal_app_bar.dart';
+import 'package:goldcity/view/widget/button/normal_button.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:goldcity/view/widget/text_field/rounded_text_field.dart';
 
@@ -56,16 +55,13 @@ class LeadApplyView extends StatelessWidget {
                     key: const Key("mailAdress"),
                     newText: (newText) => value.mailAdress = newText),
                 Gap(context.midSpacerSize),
-                MaterialButton(
-                  minWidth: context.sWidth,
-                  onPressed: () => value.apply(),
-                  color:
-                      context.toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
-                  child: const LabelText(
-                    textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
-                    text: "Başvuru Yap",
+                SizedBox(
+                  height: 100,
+                  child: NormalButton(
+                    onTap: () => null,
+                    text: "mner",
                   ),
-                ),
+                )
               ],
             ),
           ),
