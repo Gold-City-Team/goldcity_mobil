@@ -21,7 +21,7 @@ class SendLeadApplyDto {
       "dataSource": dataSource,
       "email": email,
       "fullName": fullName,
-      "tel": tel,
+      "tel": tel
     };
   }
 }
