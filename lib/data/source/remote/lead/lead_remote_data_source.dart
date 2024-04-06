@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
 import 'package:goldcity/injection_container.dart';
@@ -19,6 +20,7 @@ class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
 
       return null;
     } on DioException catch (e) {
+      debugPrint("test");
       return BaseErrorModel.fromJson(e.response?.data ?? {});
     }
   }

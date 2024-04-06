@@ -141,7 +141,7 @@
     },
     {
       "name": "dio",
-      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/dio-5.4.2",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/dio-5.4.2+1",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -680,7 +680,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-04-03T06:36:13.900316Z",
+  "generated": "2024-04-06T09:02:12.520803Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }

@@ -26,8 +26,8 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
   String telephone = "";
   String fullName = "";
 
-  void apply() {
-    _leadUseCase.leadApply(
+  Future<void> apply() async {
+    await _leadUseCase.leadApply(
       SendLeadApplyDto(
         campaignName: "MOBILE",
         language: "tr-TR",
