@@ -4,5 +4,6 @@
     "nameSurnameQuestion": "Full Name",
     "telephoneQuestion": "Telephone Number",
     "mailQuestion": "E-mail adress",
-    "applicationFormTitle": "Application Form"
+    "applicationFormTitle": "Application Form",
+    "send": "Send"
 }

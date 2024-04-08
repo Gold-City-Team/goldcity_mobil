@@ -4,5 +4,6 @@
     "nameSurnameQuestion": "Ad Soyad",
     "telephoneQuestion": "Telefon Numarası",
     "mailQuestion": "E-posta adresi",
-    "applicationFormTitle": "Başvuru Formu"
+    "applicationFormTitle": "Başvuru Formu",
+    "send": "Gönder"
 }

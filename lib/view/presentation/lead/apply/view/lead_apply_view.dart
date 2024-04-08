@@ -24,7 +24,7 @@ class LeadApplyView extends StatelessWidget {
       onPageBuilder: (BuildContext context, LeadApplyViewModel value) =>
           Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.setLocale(const Locale("en", "US")),
+          onPressed: () => context.setLocale(const Locale("tr", "TR")),
         ),
         body: SafeArea(
           child: Padding(
@@ -61,7 +61,7 @@ class LeadApplyView extends StatelessWidget {
                       height: 50,
                       child: NormalButton(
                         onTap: () => value.apply(),
-                        text: "Gönder",
+                        text: LocaleKeys.send.tr(),
                       ),
                     ),
                   ],

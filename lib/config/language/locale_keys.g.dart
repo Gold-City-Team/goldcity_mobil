@@ -7,5 +7,6 @@ abstract class  LocaleKeys {
   static const telephoneQuestion = 'telephoneQuestion';
   static const mailQuestion = 'mailQuestion';
   static const applicationFormTitle = 'applicationFormTitle';
+  static const send = 'send';
 
 }
