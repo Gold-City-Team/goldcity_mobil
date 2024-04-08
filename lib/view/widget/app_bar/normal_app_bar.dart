@@ -17,14 +17,11 @@ class NormalAppBar extends StatelessWidget {
         children: [
           GestureDetector(
               onTap: backPressed,
-              child: Padding(
-                padding: context.largeSpacerOnlyRight,
-                child: const Icon(
-                  Icons.arrow_back_ios_new_sharp,
-                  size: 28,
-                ),
+              child: const Icon(
+                Icons.arrow_back_ios_new_sharp,
+                size: 28,
               )),
-          Gap(context.midSpacerSize),
+          Gap(context.largeSpacerSize),
           title.isNotEmpty
               ? LabelText(
                   text: title,

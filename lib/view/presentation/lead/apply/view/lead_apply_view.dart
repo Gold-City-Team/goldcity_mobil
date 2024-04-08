@@ -24,7 +24,7 @@ class LeadApplyView extends StatelessWidget {
       onPageBuilder: (BuildContext context, LeadApplyViewModel value) =>
           Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () => context.setLocale(const Locale("tr", "TR")),
+          onPressed: () => context.setLocale(const Locale("en", "US")),
         ),
         body: SafeArea(
           child: Padding(
@@ -33,7 +33,7 @@ class LeadApplyView extends StatelessWidget {
               children: [
                 NormalAppBar(
                   backPressed: () => value.navigation.pop(),
-                  title: "Başvuru yap",
+                  title: LocaleKeys.applicationFormTitle.tr(),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
