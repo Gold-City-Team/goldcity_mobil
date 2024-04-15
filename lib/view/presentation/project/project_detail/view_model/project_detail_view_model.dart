@@ -30,7 +30,9 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> getProjectDetail() async {
-    var result = await _projectUseCase.getDetail(1);
-    if (result.isRight) projectEntity = result.right;
+    var result = _projectUseCase.getDetail(1);
+    result.listen((event) {
+      if (event.isRight) projectEntity = event.right;
+    });
   }
 }

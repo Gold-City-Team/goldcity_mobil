@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/language/language_manager.dart';
 import 'package:goldcity/config/navigation/navigation_route.dart';
 import 'package:goldcity/config/navigation/navigation_service.dart';
 import 'package:goldcity/config/notifier/provider_list.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
+import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:goldcity/injection_container.dart' as di;
 
@@ -13,6 +16,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   di.init();
   await EasyLocalization.ensureInitialized();
+  await Hive.initFlutter();
+  locator<LocalManager>().init();
   runApp(
     EasyLocalization(
       path: GeneralConstant.LANG_ASSET_PATH,

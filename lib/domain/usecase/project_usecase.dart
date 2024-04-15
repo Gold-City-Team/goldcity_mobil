@@ -5,7 +5,7 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 class ProjectUseCase {
-  Future<Either<BaseErrorModel, ProjectEntity>> getDetail(int id) {
+  Stream<Either<BaseErrorModel, ProjectEntity>> getDetail(int id) {
     return locator<ProjectRepository>().getDetail(id);
   }
 }

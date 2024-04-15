@@ -19,4 +19,6 @@ class ProjectDto {
             ? projectDetail!.toEntity()
             : ProjectDetailDto().toEntity(),
       );
+
+  ProjectDto fromJson(Map<String, dynamic> json) => _$ProjectDtoFromJson(json);
 }

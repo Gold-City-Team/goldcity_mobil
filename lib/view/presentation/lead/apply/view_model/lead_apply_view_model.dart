@@ -37,7 +37,6 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
         tel: telephone,
       ),
     );
-
     // navigation.pop();
   }
 }

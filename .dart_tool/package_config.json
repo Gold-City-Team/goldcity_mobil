@@ -302,6 +302,18 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "hive",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/hive-2.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "hive_flutter",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "html",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/html-0.15.4",
       "packageUri": "lib/",
@@ -436,6 +448,24 @@
     {
       "name": "path",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/path-1.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "path_provider",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/path_provider-2.1.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "path_provider_android",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/path_provider_android-2.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "path_provider_foundation",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -680,7 +710,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-04-06T09:02:12.520803Z",
+  "generated": "2024-04-15T08:45:36.567948Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }
