@@ -9,8 +9,12 @@ import 'package:goldcity/view/widget/text/label_text.dart';
 class ProjectDetailBannerWidget extends StatelessWidget {
   final String title;
   final String slogan;
+  final VoidCallback onGalleryTap;
   const ProjectDetailBannerWidget(
-      {super.key, required this.title, required this.slogan});
+      {super.key,
+      required this.title,
+      required this.slogan,
+      required this.onGalleryTap});
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +61,27 @@ class ProjectDetailBannerWidget extends StatelessWidget {
             ],
           ),
         ),
+        GestureDetector(
+          onTap: () => onGalleryTap(),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: context.midSpacer,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                ),
+                width: 40,
+                height: 40,
+                child: const Icon(
+                  Icons.play_arrow,
+                  size: 24,
+                ),
+              ),
+            ),
+          ),
+        )
       ],
     );
   }

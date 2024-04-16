@@ -6,4 +6,5 @@ class NavigationConstant {
   static const STORY = '/story';
   static const MAP = '/map';
   static const LEAD_APPLY = '/lead_apply';
+  static const GALLERY = '/gallery';
 }

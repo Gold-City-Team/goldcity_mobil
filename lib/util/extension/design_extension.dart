@@ -35,6 +35,9 @@ extension MarginPaddingExtension on BuildContext {
   EdgeInsets get smallSpacerOnlyVertical =>
       const EdgeInsets.symmetric(vertical: 5);
   EdgeInsets get largeSpacerOnlyRight => const EdgeInsets.only(right: 20);
+
+  EdgeInsets get midSpacer => const EdgeInsets.all(10);
+  EdgeInsets get largeSpacer => const EdgeInsets.all(20);
 }
 
 extension GetTextInputType on InputType {

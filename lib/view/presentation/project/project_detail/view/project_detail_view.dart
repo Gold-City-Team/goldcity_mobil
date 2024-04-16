@@ -53,6 +53,8 @@ class ProjectDetailView extends StatelessWidget {
               return const SizedBox.shrink();
             }
             return ProjectDetailBannerWidget(
+              onGalleryTap: () => value.navigation
+                  .navigateToPage(path: NavigationConstant.GALLERY),
               title: value.projectEntity!.detail.title,
               slogan: value.projectEntity!.detail.slogan,
             );
