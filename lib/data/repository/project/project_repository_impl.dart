@@ -2,6 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:goldcity/data/source/local/project/project_local_data_source.dart';
 import 'package:goldcity/data/source/remote/project/project_remote_data_source.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
+import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
 import 'package:goldcity/domain/repository/project/project_repository.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
@@ -17,6 +18,17 @@ class ProjectRepositoryImpl implements ProjectRepository {
     var result = await locator<ProjectRemoteDataSource>().getDetail(id);
     if (result.isRight) {
       yield Right(result.right.toEntity());
+    } else {
+      yield Left(result.left);
+    }
+  }
+
+  @override
+  Stream<Either<BaseErrorModel, List<ProjectGalleryEntity>>> getGallery(
+      int projectId) async* {
+    var result = await locator<ProjectRemoteDataSource>().getGallery(projectId);
+    if (result.isRight) {
+      yield Right(result.right.map((e) => e.toEntity()).toList());
     } else {
       yield Left(result.left);
     }

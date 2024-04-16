@@ -3,12 +3,15 @@ import 'package:either_dart/either.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/receive/project/project/project_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/enum/source_path.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ProjectRemoteDataSource {
   Future<Either<BaseErrorModel, ProjectDto>> getDetail(int id);
+  Future<Either<BaseErrorModel, List<ProjectGalleryDto>>> getGallery(
+      int projectId);
 }
 
 class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
@@ -23,6 +26,24 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
           [ProjectDto.fromJson(result.data ?? {})]);
 
       return Right(ProjectDto.fromJson(result.data ?? {}));
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, List<ProjectGalleryDto>>> getGallery(
+      int projectId) async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.PROJECT_GALLERY.rawValue(data: [projectId]));
+
+      return Right(
+        (result.data as List)
+            .map((e) => ProjectGalleryDto.fromJson(e))
+            .toList(),
+      );
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }

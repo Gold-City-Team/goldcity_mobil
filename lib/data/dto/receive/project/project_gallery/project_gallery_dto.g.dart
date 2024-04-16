@@ -1,0 +1,25 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'project_gallery_dto.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProjectGalleryDto _$ProjectGalleryDtoFromJson(Map<String, dynamic> json) =>
+    ProjectGalleryDto(
+      id: json['id'] as int?,
+      media: json['media'] == null
+          ? null
+          : MediaDto.fromJson(json['media'] as Map<String, dynamic>),
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+    );
+
+Map<String, dynamic> _$ProjectGalleryDtoToJson(ProjectGalleryDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'media': instance.media,
+      'title': instance.title,
+      'description': instance.description,
+    };
