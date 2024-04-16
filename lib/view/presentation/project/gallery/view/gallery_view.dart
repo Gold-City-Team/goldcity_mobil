@@ -35,6 +35,7 @@ class _GalleryViewState extends State<GalleryView> {
       viewModel: GalleryViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.init();
       },
       onPageBuilder: (BuildContext context, GalleryViewModel value) =>
           const Scaffold(),

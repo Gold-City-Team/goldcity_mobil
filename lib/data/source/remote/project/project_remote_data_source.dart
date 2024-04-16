@@ -10,8 +10,7 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ProjectRemoteDataSource {
   Future<Either<BaseErrorModel, ProjectDto>> getDetail(int id);
-  Future<Either<BaseErrorModel, List<ProjectGalleryDto>>> getGallery(
-      int projectId);
+  Future<Either<BaseErrorModel, ProjectGalleryDto>> getGallery(int projectId);
 }
 
 class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
@@ -32,18 +31,14 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
   }
 
   @override
-  Future<Either<BaseErrorModel, List<ProjectGalleryDto>>> getGallery(
+  Future<Either<BaseErrorModel, ProjectGalleryDto>> getGallery(
       int projectId) async {
     try {
       var result = await locator<RemoteManager>()
           .networkManager
           .get(SourcePath.PROJECT_GALLERY.rawValue(data: [projectId]));
 
-      return Right(
-        (result.data as List)
-            .map((e) => ProjectGalleryDto.fromJson(e))
-            .toList(),
-      );
+      return Right(ProjectGalleryDto.fromJson(result.data ?? {}));
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }

@@ -24,11 +24,11 @@ class ProjectRepositoryImpl implements ProjectRepository {
   }
 
   @override
-  Stream<Either<BaseErrorModel, List<ProjectGalleryEntity>>> getGallery(
+  Stream<Either<BaseErrorModel, ProjectGalleryEntity>> getGallery(
       int projectId) async* {
     var result = await locator<ProjectRemoteDataSource>().getGallery(projectId);
     if (result.isRight) {
-      yield Right(result.right.map((e) => e.toEntity()).toList());
+      yield Right(result.right.toEntity());
     } else {
       yield Left(result.left);
     }
