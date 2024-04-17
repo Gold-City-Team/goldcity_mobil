@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
@@ -22,10 +23,15 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     getGallery();
   }
 
+  @observable
+  ProjectGalleryEntity? projectGallery;
+
+  @action
   void getGallery() {
     _projectUseCase.projectGallery(1).listen((event) {
       if (event.isRight) {
-        debugPrint("event is right ${event.right.projectGallery.length}");
+        projectGallery = event.right;
+        debugPrint("test ${projectGallery!.projectGallery.first.media.url}");
       }
     });
   }

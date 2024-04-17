@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/language/language_manager.dart';
 import 'package:goldcity/config/navigation/navigation_route.dart';
@@ -18,6 +19,10 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
   locator<LocalManager>().init();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(
     EasyLocalization(
       path: GeneralConstant.LANG_ASSET_PATH,
