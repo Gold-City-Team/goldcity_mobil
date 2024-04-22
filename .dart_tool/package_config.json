@@ -662,6 +662,36 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "video_player",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/video_player-2.8.6",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "video_player_android",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/video_player_android-2.4.14",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "video_player_avfoundation",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.5.7",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "video_player_platform_interface",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/video_player_platform_interface-6.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "video_player_web",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/video_player_web-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "vm_service",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/vm_service-13.0.0",
       "packageUri": "lib/",
@@ -710,7 +740,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-04-15T08:45:36.567948Z",
+  "generated": "2024-04-20T06:20:41.423374Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }

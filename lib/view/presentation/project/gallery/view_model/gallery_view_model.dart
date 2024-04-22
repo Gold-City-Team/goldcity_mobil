@@ -31,7 +31,6 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     _projectUseCase.projectGallery(1).listen((event) {
       if (event.isRight) {
         projectGallery = event.right;
-        debugPrint("test ${projectGallery!.projectGallery.first.media.url}");
       }
     });
   }

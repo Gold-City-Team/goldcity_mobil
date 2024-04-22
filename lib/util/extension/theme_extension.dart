@@ -18,6 +18,8 @@ extension applicationColorToThemeColor on BuildContext {
         watch<ThemeNotifier>().colorScheme.closeBackgroundColor,
       APPLICATION_COLOR.OPPOSITE_COLOR =>
         watch<ThemeNotifier>().colorScheme.oppositeColor,
+      APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR =>
+        watch<ThemeNotifier>().colorScheme.extraCloseBackgroundColor,
     };
   }
 

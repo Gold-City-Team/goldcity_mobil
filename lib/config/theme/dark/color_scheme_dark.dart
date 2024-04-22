@@ -41,4 +41,6 @@ class ColorSchemeDark extends IColorScheme {
 
   @override
   Color get closeBackgroundColor => const Color.fromARGB(255, 234, 234, 234);
+  @override
+  Color get extraCloseBackgroundColor => const Color.fromARGB(255, 37, 37, 37);
 }

@@ -28,6 +28,8 @@ extension MarginPaddingExtension on BuildContext {
   EdgeInsets get largeSpacerOnlyLeft => const EdgeInsets.only(left: 20);
   EdgeInsets get midSpacerOnlyLeft => const EdgeInsets.only(left: 10);
   EdgeInsets get smallSpacerOnlyLeft => const EdgeInsets.only(left: 5);
+  EdgeInsets get midSpacerOnlyVertical =>
+      const EdgeInsets.symmetric(vertical: 5);
   EdgeInsets get midSpacerOnlyHorizontal =>
       const EdgeInsets.symmetric(horizontal: 10);
   EdgeInsets get smallSpacerOnlyHorizontal =>
@@ -38,6 +40,8 @@ extension MarginPaddingExtension on BuildContext {
 
   EdgeInsets get midSpacer => const EdgeInsets.all(10);
   EdgeInsets get largeSpacer => const EdgeInsets.all(20);
+
+  EdgeInsets get smallSpacerOnlyBottom => const EdgeInsets.only(bottom: 5);
 }
 
 extension GetTextInputType on InputType {

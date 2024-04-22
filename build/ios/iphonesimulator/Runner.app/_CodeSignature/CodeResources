@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		/WV06Zlz7hHlhHuE0FMgiGGGhDM=
+		Tfx50yi2N39Jj3sgXadFXTZ/H9A=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		2kvCfgEFyb/NB7P2/gjDIrEyyRk=
+		MtZg/UlqJ4A7b46hJYti91mco2Y=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		2M9oOPnluSjKM49X3ouWz7m4M+c=
+		YrrBbEedxxXI3Q5q7OxSm2vBpMk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
 		<data>
@@ -126,7 +126,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		76k09T+CJ42qMGBkf/hNwNnc0k4=
+		XlVfDi0lIQgR0SzRMk49WW1kl0o=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -267,6 +267,26 @@
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
 		6uLTlq7fgHHWA8emYDf4ImHC+AY=
+		</data>
+		<key>Frameworks/video_player_avfoundation.framework/Info.plist</key>
+		<data>
+		BiddZIup0db4enHnkF70U3WJMV0=
+		</data>
+		<key>Frameworks/video_player_avfoundation.framework/_CodeSignature/CodeResources</key>
+		<data>
+		MdPvo3rwTfZ+NUBbxAsX9jtnQso=
+		</data>
+		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation</key>
+		<data>
+		9JLBXMp2yspikBJLfIwJoYOOrEk=
+		</data>
+		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/Info.plist</key>
+		<data>
+		lj6uKdy94Cnxsg6DJpuFIfSVXTQ=
+		</data>
+		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		/LX0ZlwxwIAIhjZaDB8EiH5KpXA=
 		</data>
 		<key>GoogleMaps.bundle/Assets.car</key>
 		<data>
@@ -1162,7 +1182,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EfdAetQqJJYCILMM6TnTNMYXIcSzWBZfmppnH9Z6kd4=
+			QafxUtV7UuV/pL3ygNGQs/HYXMeVckC7FRZl7QEN0Ss=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1176,7 +1196,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sbPLHW7gq5KDA6LALkS13i/N3Tu1JLm/UFuNXlr/npo=
+			9Uh6xyclJtAt9XKKoWEkRwBaywhwXmnvN3oqkn399L8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -1204,7 +1224,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XxQUBhQQ1j/OxA5Ww5Xqcdr0+dmsc9WnohXFG2Yqhms=
+			abhR8X6f7bsX5OMvRXW37NqYzzRETZxv/fhLwlDYxKw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
@@ -1302,7 +1322,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			NiQ+fWw2jQdu/AiOAehlRDENhQp1ZanFigkIMnc13L4=
+			1O47e224UhqUaywN9D+PwINw2VABtbxjKdaCg7oglK0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -1548,6 +1568,41 @@
 			<key>hash2</key>
 			<data>
 			BWQouTi9VwGKYAGdFcPB7i+nJ/I2h1mLu9k0hIsYCxo=
+			</data>
+		</dict>
+		<key>Frameworks/video_player_avfoundation.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GypkkLt/F3q1DAH/gYAgT9MUylN3P8/ncrAwzL8jbwI=
+			</data>
+		</dict>
+		<key>Frameworks/video_player_avfoundation.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			134VK+9fEZVEN00HWvhxfUIoI+qv8mVob0CT34TfAdc=
+			</data>
+		</dict>
+		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FZ13UnvlplyRzb8YCa//KWoV6D6drk7HLe5qrC6zByE=
+			</data>
+		</dict>
+		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ll4+5IyQznjzsi+Fab+UJOrECtxfO9ub1QVYEfI25I4=
+			</data>
+		</dict>
+		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bS2g2NkwIn1CjB2TY7CtbjoS4sm2jFzilxWKdBL8jDE=
 			</data>
 		</dict>
 		<key>GoogleMaps.bundle/Assets.car</key>
