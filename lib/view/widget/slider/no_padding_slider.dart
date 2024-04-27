@@ -9,7 +9,6 @@ class NoPaddingSlider extends StatefulWidget {
   final double value;
   final double max;
   final double min;
-  final bool darkBackground;
   final void Function(double) changed;
   final VoidCallback changeStart;
   final void Function(double) changeEnd;
@@ -18,7 +17,6 @@ class NoPaddingSlider extends StatefulWidget {
       {this.value = 0,
       this.max = 100,
       this.min = 0,
-      this.darkBackground = false,
       required this.changed,
       required this.changeStart,
       required this.changeEnd,

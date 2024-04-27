@@ -41,6 +41,38 @@ mixin _$VideoFrameViewModel on _VideoFrameViewModelBase, Store {
     });
   }
 
+  late final _$oldPositionAtom =
+      Atom(name: '_VideoFrameViewModelBase.oldPosition', context: context);
+
+  @override
+  double get oldPosition {
+    _$oldPositionAtom.reportRead();
+    return super.oldPosition;
+  }
+
+  @override
+  set oldPosition(double value) {
+    _$oldPositionAtom.reportWrite(value, super.oldPosition, () {
+      super.oldPosition = value;
+    });
+  }
+
+  late final _$isOpacityFullAtom =
+      Atom(name: '_VideoFrameViewModelBase.isOpacityFull', context: context);
+
+  @override
+  bool get isOpacityFull {
+    _$isOpacityFullAtom.reportRead();
+    return super.isOpacityFull;
+  }
+
+  @override
+  set isOpacityFull(bool value) {
+    _$isOpacityFullAtom.reportWrite(value, super.isOpacityFull, () {
+      super.isOpacityFull = value;
+    });
+  }
+
   late final _$_VideoFrameViewModelBaseActionController =
       ActionController(name: '_VideoFrameViewModelBase', context: context);
 
@@ -78,10 +110,67 @@ mixin _$VideoFrameViewModel on _VideoFrameViewModelBase, Store {
   }
 
   @override
+  dynamic onChangeEnd(double lastPosition) {
+    final _$actionInfo = _$_VideoFrameViewModelBaseActionController.startAction(
+        name: '_VideoFrameViewModelBase.onChangeEnd');
+    try {
+      return super.onChangeEnd(lastPosition);
+    } finally {
+      _$_VideoFrameViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic onChanging(double value) {
+    final _$actionInfo = _$_VideoFrameViewModelBaseActionController.startAction(
+        name: '_VideoFrameViewModelBase.onChanging');
+    try {
+      return super.onChanging(value);
+    } finally {
+      _$_VideoFrameViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void _autoToggleOpacity() {
+    final _$actionInfo = _$_VideoFrameViewModelBaseActionController.startAction(
+        name: '_VideoFrameViewModelBase._autoToggleOpacity');
+    try {
+      return super._autoToggleOpacity();
+    } finally {
+      _$_VideoFrameViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void toggleOpacity() {
+    final _$actionInfo = _$_VideoFrameViewModelBaseActionController.startAction(
+        name: '_VideoFrameViewModelBase.toggleOpacity');
+    try {
+      return super.toggleOpacity();
+    } finally {
+      _$_VideoFrameViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic onChangeStart() {
+    final _$actionInfo = _$_VideoFrameViewModelBaseActionController.startAction(
+        name: '_VideoFrameViewModelBase.onChangeStart');
+    try {
+      return super.onChangeStart();
+    } finally {
+      _$_VideoFrameViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isPlaying: ${isPlaying},
-position: ${position}
+position: ${position},
+oldPosition: ${oldPosition},
+isOpacityFull: ${isOpacityFull}
     ''';
   }
 }

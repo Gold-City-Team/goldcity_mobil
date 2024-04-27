@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
 
 class VideoPlayerSelfController extends StatelessWidget {
   final bool isPlaying;
@@ -13,12 +15,15 @@ class VideoPlayerSelfController extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onTap(),
         child: CircleAvatar(
+          backgroundColor: context.toColor(APPLICATION_COLOR.LIGHT),
           maxRadius: 28,
           child: isPlaying
-              ? const Icon(
+              ? Icon(
+                  color: context.toColor(APPLICATION_COLOR.GOLD),
                   Icons.pause,
                 )
-              : const Icon(
+              : Icon(
+                  color: context.toColor(APPLICATION_COLOR.GOLD),
                   Icons.play_arrow,
                 ),
         ),

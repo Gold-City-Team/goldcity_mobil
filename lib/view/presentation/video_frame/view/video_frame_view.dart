@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
@@ -8,7 +6,6 @@ import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/video_frame/view_model/video_frame_view_model.dart';
 import 'package:goldcity/view/presentation/video_frame/widget/video_player_self_controller.dart';
 import 'package:goldcity/view/widget/slider/no_padding_slider.dart';
-import 'package:mobx/mobx.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoFrameView extends StatefulWidget {
@@ -50,12 +47,25 @@ class _VideoFrameViewState extends State<VideoFrameView> {
         body: Stack(
           children: [
             VideoPlayer(_controller),
-            Container(color: Colors.black.withOpacity(.7)),
+            Observer(
+              builder: (context) => AnimatedOpacity(
+                opacity: value.isOpacityFull ? 1 : 0,
+                duration: const Duration(milliseconds: 100),
+                child: Container(
+                  color: Colors.black.withOpacity(.7),
+                ),
+              ),
+            ),
+            GestureDetector(onTap: () => value.toggleOpacity()),
             Observer(builder: (context) {
-              return Center(
-                child: VideoPlayerSelfController(
-                  isPlaying: value.isPlaying,
-                  onTap: () => value.toggleVideo(),
+              return AnimatedOpacity(
+                duration: const Duration(milliseconds: 100),
+                opacity: value.isOpacityFull ? 1 : 0,
+                child: Center(
+                  child: VideoPlayerSelfController(
+                    isPlaying: value.isPlaying,
+                    onTap: () => value.toggleVideo(),
+                  ),
                 ),
               );
             }),
@@ -63,16 +73,19 @@ class _VideoFrameViewState extends State<VideoFrameView> {
               children: [
                 const Spacer(),
                 Observer(builder: (context) {
-                  return Padding(
-                    padding: context.midSpacerOnlyHorizontal,
-                    child: NoPaddingSlider(
-                      max: _controller.value.duration.inSeconds.toDouble(),
-                      min: 0,
-                      value: value.position,
-                      changed: (e) => null,
-                      changeStart: () => null,
-                      darkBackground: true,
-                      changeEnd: (e) => null,
+                  return AnimatedOpacity(
+                    duration: const Duration(milliseconds: 100),
+                    opacity: value.isOpacityFull ? 1 : 0,
+                    child: Padding(
+                      padding: context.midSpacerOnlyHorizontal,
+                      child: NoPaddingSlider(
+                        max: _controller.value.duration.inSeconds.toDouble(),
+                        min: 0,
+                        value: value.position,
+                        changed: (e) => value.onChanging(e),
+                        changeStart: () => value.onChangeStart(),
+                        changeEnd: (e) => value.onChangeEnd(e),
+                      ),
                     ),
                   );
                 }),
