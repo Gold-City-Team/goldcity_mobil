@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
@@ -19,6 +20,11 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     _projectUseCase = locator<ProjectUseCase>();
     getGallery();
   }
@@ -33,5 +39,24 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
         projectGallery = event.right;
       }
     });
+  }
+
+  @observable
+  bool isFullScreen = false;
+
+  @action
+  void toggleFullScreen() {
+    isFullScreen = !isFullScreen;
+    if (isFullScreen) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+      ]);
+    } else {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+    }
   }
 }

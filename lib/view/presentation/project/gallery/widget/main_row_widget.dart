@@ -11,8 +11,10 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class MainRowWidget extends StatelessWidget {
-  const MainRowWidget({super.key, required this.mediaEntity});
+  const MainRowWidget(
+      {super.key, required this.onFullScreen, required this.mediaEntity});
   final ProjectGalleryMediaEntity mediaEntity;
+  final VoidCallback onFullScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class MainRowWidget extends StatelessWidget {
 
   Widget mediaPart() {
     if (mediaEntity.media.mediaType == MEDIA_TYPE.VIDEO) {
-      return const VideoFrameView();
+      return VideoFrameView(fullScreen: () => onFullScreen());
     }
     return NormalNetworkImage(
       source: mediaEntity.media.url,

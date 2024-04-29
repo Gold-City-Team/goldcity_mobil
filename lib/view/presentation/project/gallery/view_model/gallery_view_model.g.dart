@@ -25,6 +25,22 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
     });
   }
 
+  late final _$isFullScreenAtom =
+      Atom(name: '_GalleryViewModelBase.isFullScreen', context: context);
+
+  @override
+  bool get isFullScreen {
+    _$isFullScreenAtom.reportRead();
+    return super.isFullScreen;
+  }
+
+  @override
+  set isFullScreen(bool value) {
+    _$isFullScreenAtom.reportWrite(value, super.isFullScreen, () {
+      super.isFullScreen = value;
+    });
+  }
+
   late final _$_GalleryViewModelBaseActionController =
       ActionController(name: '_GalleryViewModelBase', context: context);
 
@@ -40,9 +56,21 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
   }
 
   @override
+  void toggleFullScreen() {
+    final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
+        name: '_GalleryViewModelBase.toggleFullScreen');
+    try {
+      return super.toggleFullScreen();
+    } finally {
+      _$_GalleryViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-projectGallery: ${projectGallery}
+projectGallery: ${projectGallery},
+isFullScreen: ${isFullScreen}
     ''';
   }
 }

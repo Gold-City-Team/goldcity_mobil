@@ -7,4 +7,5 @@ class NavigationConstant {
   static const MAP = '/map';
   static const LEAD_APPLY = '/lead_apply';
   static const GALLERY = '/gallery';
+  static const VIDEO_FRAME = '/video_frame';
 }

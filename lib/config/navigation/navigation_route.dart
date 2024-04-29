@@ -8,6 +8,7 @@ import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dar
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
 import 'package:goldcity/view/presentation/project/story/view/story_view.dart';
 import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
+import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dart';
 
 class NavigationRoute {
   NavigationRoute._init();
@@ -34,6 +35,10 @@ class NavigationRoute {
       /* GALLERY */
       NavigationConstant.GALLERY =>
         normalNavigate(const GalleryView(), NavigationConstant.GALLERY),
+      /* VIDEO */
+      NavigationConstant.VIDEO_FRAME => normalNavigate(
+          VideoFrameView(fullScreen: () => null, isFullScreen: true),
+          NavigationConstant.VIDEO_FRAME),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
       /* */
