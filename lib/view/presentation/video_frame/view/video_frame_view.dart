@@ -45,9 +45,7 @@ class _VideoFrameViewState extends State<VideoFrameView>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    setState(() {
-      print("State $state");
-    });
+    setState(() {});
   }
 
   @override
