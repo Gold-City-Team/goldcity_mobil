@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:goldcity/domain/entity/possibility/possibility_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -9,7 +10,8 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class FacilitiesWidget extends StatelessWidget {
-  const FacilitiesWidget({super.key});
+  final PossibilityEntity possibilityEntity;
+  const FacilitiesWidget({required this.possibilityEntity, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +30,23 @@ class FacilitiesWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
+            SizedBox(
               height: 72,
               width: 72,
-              child: NormalNetworkImage(
-                  source: "https://wallpapercave.com/wp/wp2752752.jpg"),
+              child: NormalNetworkImage(source: possibilityEntity.media.url),
             ),
             Gap(context.midSpacerSize),
-            const Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 LabelText(
-                  text: "Gold City",
+                  text: possibilityEntity.title,
                   fontSize: FONT_SIZE.TITLE_MEDIUM,
                   textColor: APPLICATION_COLOR.TITLE,
                 ),
                 LabelText(
-                  text: "Lorem ipsum dolor sit amet.",
+                  text: possibilityEntity.description,
                   fontSize: FONT_SIZE.TITLE_SMALL,
                   textColor: APPLICATION_COLOR.SUBTITLE,
                 ),

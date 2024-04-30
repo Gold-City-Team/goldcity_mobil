@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/domain/entity/location/location_entity.dart';
+import 'package:goldcity/domain/entity/media/media_entity.dart';
 
 @immutable
 class PossibilityEntity {
@@ -8,6 +9,7 @@ class PossibilityEntity {
   final String description;
   final String color;
   final LocationEntity location;
+  final MediaEntity media;
 
   const PossibilityEntity({
     required this.id,
@@ -15,5 +17,6 @@ class PossibilityEntity {
     required this.description,
     required this.color,
     required this.location,
+    required this.media,
   });
 }

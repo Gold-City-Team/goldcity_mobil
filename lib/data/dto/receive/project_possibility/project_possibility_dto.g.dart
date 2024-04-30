@@ -9,10 +9,12 @@ part of 'project_possibility_dto.dart';
 ProjectPossibilityDto _$ProjectPossibilityDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectPossibilityDto(
-      id: json['id'] as int,
-      location: LocationDto.fromJson(json['location'] as Map<String, dynamic>),
-      possibilities: (json['possibilities'] as List<dynamic>)
-          .map((e) => PossibilityDto.fromJson(e as Map<String, dynamic>))
+      id: json['id'] as int?,
+      location: json['location'] == null
+          ? null
+          : LocationDto.fromJson(json['location'] as Map<String, dynamic>),
+      possibilities: (json['possibilities'] as List<dynamic>?)
+          ?.map((e) => PossibilityDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
