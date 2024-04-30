@@ -5,10 +5,17 @@ part 'possibility_dto.g.dart';
 @JsonSerializable()
 class PossibilityDto {
   int id;
+  String title;
+  String description;
+  String color;
   LocationDto location;
-  List<LocationDto> possibilities;
-  PossibilityDto(
-      {required this.id, required this.location, required this.possibilities});
+  PossibilityDto({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.color,
+    required this.location,
+  });
   factory PossibilityDto.fromJson(Map<String, dynamic> json) =>
       _$PossibilityDtoFromJson(json);
 

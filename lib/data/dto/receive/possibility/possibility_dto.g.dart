@@ -9,15 +9,17 @@ part of 'possibility_dto.dart';
 PossibilityDto _$PossibilityDtoFromJson(Map<String, dynamic> json) =>
     PossibilityDto(
       id: json['id'] as int,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      color: json['color'] as String,
       location: LocationDto.fromJson(json['location'] as Map<String, dynamic>),
-      possibilities: (json['possibilities'] as List<dynamic>)
-          .map((e) => LocationDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
     );
 
 Map<String, dynamic> _$PossibilityDtoToJson(PossibilityDto instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'title': instance.title,
+      'description': instance.description,
+      'color': instance.color,
       'location': instance.location,
-      'possibilities': instance.possibilities,
     };
