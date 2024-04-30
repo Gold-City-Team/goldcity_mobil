@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/domain/entity/location/location_entity.dart';
+import 'package:goldcity/domain/entity/possibility/possibility_entity.dart';
 
 @immutable
-class PossibilityEntity {
+class ProjectPossibilityEntity {
   final int id;
-  final String title;
-  final String description;
-  final String color;
   final LocationEntity location;
+  final List<PossibilityEntity> possibilities;
 
-  const PossibilityEntity({
+  const ProjectPossibilityEntity({
     required this.id,
-    required this.title,
-    required this.description,
-    required this.color,
     required this.location,
+    required this.possibilities,
   });
 }
