@@ -21,67 +21,90 @@ class GoldMapView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, GoldMapViewModel value) => Scaffold(
-        body: SafeArea(
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Observer(builder: (context) {
-                if (value.projectPossibilityEntity == null) {
-                  return const SizedBox.shrink();
-                }
-                return GoogleMap(
-                  mapType: MapType.terrain,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(
-                        value.projectPossibilityEntity!.location.latitude,
-                        value.projectPossibilityEntity!.location.longitude),
-                  ),
-                  tiltGesturesEnabled: true,
-                  zoomGesturesEnabled: true,
-                  zoomControlsEnabled: false,
-                  markers: value.projectPossibilityEntity!.possibilities
-                      .map(
-                        (e) => Marker(
-                          infoWindow: InfoWindow(
-                              title: e.title, snippet: e.description),
-                          markerId: MarkerId(e.id.toString()),
-                          icon: BitmapDescriptor.defaultMarkerWithHue(120),
-                          position: LatLng(
-                            e.location.latitude,
-                            e.location.longitude,
-                          ),
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Observer(builder: (context) {
+              if (value.projectPossibilityEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(
+                      value.projectPossibilityEntity!.location.latitude,
+                      value.projectPossibilityEntity!.location.longitude),
+                  zoom: 15,
+                ),
+                tiltGesturesEnabled: true,
+                zoomGesturesEnabled: true,
+                zoomControlsEnabled: false,
+                markers: value.projectPossibilityEntity!.possibilities
+                    .map(
+                      (e) => Marker(
+                        infoWindow:
+                            InfoWindow(title: e.title, snippet: e.description),
+                        markerId: MarkerId(e.id.toString()),
+                        icon: BitmapDescriptor.defaultMarkerWithHue(120),
+                        position: LatLng(
+                          e.location.latitude,
+                          e.location.longitude,
                         ),
-                      )
-                      .toSet(),
-                  myLocationButtonEnabled: false,
-                  onMapCreated: (GoogleMapController controller) {
-                    _controller.complete(controller);
-                  },
-                );
-              }),
-              Observer(builder: (context) {
-                if (value.projectPossibilityEntity == null) {
-                  return const SizedBox.shrink();
-                }
-                return SafeArea(
-                  child: Container(
-                    height: 125,
-                    alignment: Alignment.bottomCenter,
-                    child: ListView.builder(
-                      itemCount:
-                          value.projectPossibilityEntity!.possibilities.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return FacilitiesWidget(
+                      ),
+                    )
+                    .toSet(),
+                myLocationButtonEnabled: false,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              );
+            }),
+            Observer(builder: (context) {
+              if (value.projectPossibilityEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return SafeArea(
+                child: Container(
+                  height: 125,
+                  alignment: Alignment.bottomCenter,
+                  child: ListView.builder(
+                    itemCount:
+                        value.projectPossibilityEntity!.possibilities.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () async {
+                          value.changeSelectedIndex(index);
+                          _controller.future.then(
+                            (e) => e.animateCamera(
+                              CameraUpdate.newLatLng(LatLng(
+                                  value
+                                      .projectPossibilityEntity!
+                                      .possibilities[value.selectedIndex]
+                                      .location
+                                      .latitude,
+                                  value
+                                      .projectPossibilityEntity!
+                                      .possibilities[value.selectedIndex]
+                                      .location
+                                      .longitude)),
+                            ),
+                          );
+                          _controller.future.then((e) => e.showMarkerInfoWindow(
+                              MarkerId(value.projectPossibilityEntity!
+                                  .possibilities[value.selectedIndex].id
+                                  .toString())));
+                        },
+                        child: FacilitiesWidget(
                             possibilityEntity: value.projectPossibilityEntity!
-                                .possibilities[index]);
-                      },
-                    ),
+                                .possibilities[index]),
+                      );
+                    },
                   ),
-                );
-              })
-            ],
-          ),
+                ),
+              );
+            })
+          ],
         ),
       ),
     );

@@ -25,6 +25,15 @@ abstract class _GoldMapViewModelBase with Store, BaseViewModel {
   }
 
   @observable
+  int selectedIndex = 1;
+
+  @action
+  void changeSelectedIndex(int index) {
+    debugPrint("test $index");
+    selectedIndex = index;
+  }
+
+  @observable
   ProjectPossibilityEntity? projectPossibilityEntity;
   @action
   Future<void> getPossibilities() async {
