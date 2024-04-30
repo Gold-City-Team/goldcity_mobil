@@ -29,7 +29,6 @@ abstract class _GoldMapViewModelBase with Store, BaseViewModel {
 
   @action
   void changeSelectedIndex(int index) {
-    debugPrint("test $index");
     selectedIndex = index;
   }
 
