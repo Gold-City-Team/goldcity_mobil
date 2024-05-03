@@ -27,7 +27,9 @@ class ProjectDetailView extends StatelessWidget {
           }
           context.read<ThemeNotifier>().toggleTheme();
         }),
-        body: SafeArea(child: Container()),
+        body: SafeArea(
+          child: Container(),
+        ),
       ),
     );
   }
