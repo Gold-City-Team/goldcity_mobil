@@ -46,9 +46,11 @@ class MainRowWidget extends StatelessWidget {
     if (mediaEntity.media.mediaType == MEDIA_TYPE.VIDEO) {
       return VideoFrameView(fullScreen: () => onFullScreen());
     }
-    return NormalNetworkImage(
-      source: mediaEntity.media.url,
-      fit: BoxFit.contain,
+    return Center(
+      child: NormalNetworkImage(
+        source: mediaEntity.media.url,
+        fit: BoxFit.contain,
+      ),
     );
   }
 }

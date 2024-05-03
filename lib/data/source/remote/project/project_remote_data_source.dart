@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
+import 'package:flutter/material.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/receive/project/project/project_dto.dart';
@@ -37,9 +38,12 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
       var result = await locator<RemoteManager>()
           .networkManager
           .get(SourcePath.PROJECT_GALLERY.rawValue(data: [projectId]));
+      debugPrint("resultante $result");
 
       return Right(ProjectGalleryDto.fromJson(result.data ?? {}));
     } on DioException catch (e) {
+      debugPrint("errortante $e");
+
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }
   }

@@ -13,9 +13,7 @@ import 'package:goldcity/view/widget/text/label_text.dart';
 
 class GalleryRowWidget extends StatelessWidget {
   final ProjectGalleryMediaEntity mediaEntity;
-  final VoidCallback onFullScreen;
-  const GalleryRowWidget(
-      {super.key, required this.onFullScreen, required this.mediaEntity});
+  const GalleryRowWidget({super.key, required this.mediaEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +49,7 @@ class GalleryRowWidget extends StatelessWidget {
       return SizedBox(
         width: 100,
         height: 100,
-        child: VideoFrameView(fullScreen: () => onFullScreen()),
+        child: VideoFrameView(fullScreen: () => null),
       );
     }
     return SizedBox(

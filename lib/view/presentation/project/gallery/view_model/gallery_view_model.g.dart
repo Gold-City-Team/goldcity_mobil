@@ -25,6 +25,22 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
     });
   }
 
+  late final _$selectedMediaIndexAtom =
+      Atom(name: '_GalleryViewModelBase.selectedMediaIndex', context: context);
+
+  @override
+  int get selectedMediaIndex {
+    _$selectedMediaIndexAtom.reportRead();
+    return super.selectedMediaIndex;
+  }
+
+  @override
+  set selectedMediaIndex(int value) {
+    _$selectedMediaIndexAtom.reportWrite(value, super.selectedMediaIndex, () {
+      super.selectedMediaIndex = value;
+    });
+  }
+
   late final _$isFullScreenAtom =
       Atom(name: '_GalleryViewModelBase.isFullScreen', context: context);
 
@@ -56,6 +72,17 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
   }
 
   @override
+  void selectedMediaIndexChange(int newIndex) {
+    final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
+        name: '_GalleryViewModelBase.selectedMediaIndexChange');
+    try {
+      return super.selectedMediaIndexChange(newIndex);
+    } finally {
+      _$_GalleryViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void toggleFullScreen() {
     final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
         name: '_GalleryViewModelBase.toggleFullScreen');
@@ -70,6 +97,7 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
   String toString() {
     return '''
 projectGallery: ${projectGallery},
+selectedMediaIndex: ${selectedMediaIndex},
 isFullScreen: ${isFullScreen}
     ''';
   }

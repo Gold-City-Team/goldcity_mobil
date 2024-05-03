@@ -1,12 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
-import 'package:goldcity/util/constant/navigation_constant.dart';
+import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/gallery/view_model/gallery_view_model.dart';
 import 'package:goldcity/view/presentation/project/gallery/widget/gallery_row_widget.dart';
-import 'package:goldcity/view/presentation/project/gallery/widget/main_row_widget.dart';
+import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dart';
+import 'package:goldcity/view/widget/image/normal_network_image.dart';
+import 'package:goldcity/view/widget/text/label_text.dart';
 
 class GalleryView extends StatelessWidget {
   const GalleryView({super.key});
@@ -19,56 +25,129 @@ class GalleryView extends StatelessWidget {
         model.setContext(context);
         model.init();
       },
-      onPageBuilder: (BuildContext context, GalleryViewModel value) {
-        return Scaffold(
-          body: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Observer(
-                  builder: (context) {
-                    if (value.projectGallery == null) {
-                      return const SizedBox.shrink();
-                    }
-                    return Flexible(
-                      flex: 2,
-                      child: MainRowWidget(
-                        onFullScreen: () => value.navigation.navigateToPage(
-                            path: NavigationConstant.VIDEO_FRAME),
-                        mediaEntity: value.projectGallery!.projectGallery[1],
-                      ),
-                    );
-                  },
+      onPageBuilder: (BuildContext context, GalleryViewModel value) => Scaffold(
+        body: Observer(builder: (context) {
+          if (value.projectGallery == null) {
+            return const SizedBox.shrink();
+          }
+          return body(value);
+        }),
+      ),
+    );
+  }
+
+  Widget mainMediaPart(GalleryViewModel viewModel) {
+    if (viewModel.projectGallery!.projectGallery[viewModel.selectedMediaIndex]
+            .media.mediaType ==
+        MEDIA_TYPE.VIDEO) {
+      return VideoFrameView(
+        key: const Key("same"),
+        fullScreen: () => viewModel.toggleFullScreen(),
+      );
+    }
+    return Center(
+      child: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: NormalNetworkImage(
+                  source: viewModel.projectGallery!
+                      .projectGallery[viewModel.selectedMediaIndex].media.url,
+                  fit: BoxFit.contain,
                 ),
-                Gap(context.midSpacerSize),
-                Observer(
-                  builder: (context) {
-                    if (value.projectGallery == null || value.isFullScreen) {
-                      return const SizedBox.shrink();
-                    }
-                    return Flexible(
-                      flex: 3,
-                      child: ListView.builder(
-                        itemCount: value.projectGallery!.projectGallery.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: context.smallSpacerOnlyBottom,
-                            child: GalleryRowWidget(
-                              onFullScreen: () => null,
-                              mediaEntity:
-                                  value.projectGallery!.projectGallery[index],
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                )
-              ],
+              ),
+            ],
+          ),
+          Positioned(
+            right: 10,
+            child: GestureDetector(
+              onTap: () => viewModel.toggleFullScreen(),
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: viewModel.viewModelContext
+                        .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                    borderRadius: const BorderRadius.all(Radius.circular(20))),
+                child: SizedBox(
+                  child: Icon(
+                    Icons.fullscreen,
+                    size: 28,
+                    color: viewModel.viewModelContext
+                        .toColor(APPLICATION_COLOR.GOLD),
+                  ),
+                ),
+              ),
             ),
           ),
-        );
-      },
+        ],
+      ),
+    );
+  }
+
+  Widget body(GalleryViewModel viewModel) {
+    return SafeArea(
+      bottom: !viewModel.isFullScreen,
+      top: !viewModel.isFullScreen,
+      left: !viewModel.isFullScreen,
+      right: !viewModel.isFullScreen,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Flexible(flex: 2, child: mainMediaPart(viewModel)),
+          viewModel.isFullScreen != true
+              ? Gap(viewModel.viewModelContext.midSpacerSize)
+              : const SizedBox.shrink(),
+          viewModel.isFullScreen != true
+              ? Padding(
+                  padding: viewModel.viewModelContext.midSpacerOnlyLeft,
+                  child: LabelText(
+                      text: viewModel.projectGallery!
+                          .projectGallery[viewModel.selectedMediaIndex].title,
+                      fontSize: FONT_SIZE.TITLE_LARGE),
+                )
+              : const SizedBox.shrink(),
+          viewModel.isFullScreen != true
+              ? Gap(viewModel.viewModelContext.midSpacerSize)
+              : const SizedBox.shrink(),
+          viewModel.isFullScreen != true
+              ? Padding(
+                  padding: viewModel.viewModelContext.midSpacerOnlyLeft,
+                  child: LabelText(
+                      text: viewModel
+                          .projectGallery!
+                          .projectGallery[viewModel.selectedMediaIndex]
+                          .description,
+                      fontSize: FONT_SIZE.LABEL_MEDIUM),
+                )
+              : const SizedBox.shrink(),
+          viewModel.isFullScreen != true
+              ? Gap(viewModel.viewModelContext.midSpacerSize)
+              : const SizedBox.shrink(),
+          viewModel.isFullScreen != true
+              ? Flexible(
+                  flex: 3,
+                  child: ListView.builder(
+                    itemCount: viewModel.projectGallery!.projectGallery.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () => viewModel.selectedMediaIndexChange(index),
+                        child: Padding(
+                          padding: context.smallSpacerOnlyBottom,
+                          child: GalleryRowWidget(
+                            mediaEntity:
+                                viewModel.projectGallery!.projectGallery[index],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              : const SizedBox.shrink()
+        ],
+      ),
     );
   }
 }
