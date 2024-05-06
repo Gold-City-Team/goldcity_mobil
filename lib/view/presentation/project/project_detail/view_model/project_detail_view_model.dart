@@ -27,7 +27,12 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   @observable
   ProjectEntity? projectEntity;
-
+  List<String> actions = [
+    "İç Mekan",
+    "Dış Mekan",
+    "Olanaklar",
+    "Ödüller",
+  ];
   @action
   Future<void> getProjectDetail() async {
     var result = _projectUseCase.getDetail(1);

@@ -7,7 +7,7 @@ class PossibilityEntity {
   final int id;
   final String title;
   final String description;
-  final String color;
+  final double color;
   final LocationEntity location;
   final MediaEntity media;
 

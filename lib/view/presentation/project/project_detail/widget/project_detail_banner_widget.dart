@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -7,14 +8,8 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class ProjectDetailBannerWidget extends StatelessWidget {
-  final String title;
-  final String slogan;
-  final VoidCallback onGalleryTap;
-  const ProjectDetailBannerWidget(
-      {super.key,
-      required this.title,
-      required this.slogan,
-      required this.onGalleryTap});
+  final ProjectEntity projectEntity;
+  const ProjectDetailBannerWidget({super.key, required this.projectEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +17,8 @@ class ProjectDetailBannerWidget extends StatelessWidget {
       children: [
         SizedBox(
           height: context.sWidth,
-          child: const NormalNetworkImage(
-            source:
-                "https://iis-akakce.akamaized.net/p.z?%2F%2Fn11scdn%2Eakamaized%2Enet%2Fa1%2F1024%2F14%2F37%2F39%2F15%2FIMG%2D3371096655291613202%2Ejpg",
+          child: NormalNetworkImage(
+            source: projectEntity.detail.media.url,
           ),
         ),
         Container(
@@ -48,40 +42,19 @@ class ProjectDetailBannerWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               LabelText(
-                text: title,
+                text: projectEntity.detail.title,
                 textColor: APPLICATION_COLOR.GOLD,
                 fontSize: FONT_SIZE.HEADLINE_LARGE,
               ),
               Gap(context.smallSpacerSize),
               LabelText(
-                text: slogan,
+                text: projectEntity.detail.slogan,
                 textColor: APPLICATION_COLOR.SUBTITLE,
                 fontSize: FONT_SIZE.BODY_LARGE,
               ),
             ],
           ),
         ),
-        GestureDetector(
-          onTap: () => onGalleryTap(),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: context.midSpacer,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                ),
-                width: 40,
-                height: 40,
-                child: const Icon(
-                  Icons.play_arrow,
-                  size: 24,
-                ),
-              ),
-            ),
-          ),
-        )
       ],
     );
   }

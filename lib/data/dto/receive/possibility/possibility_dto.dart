@@ -9,7 +9,7 @@ class PossibilityDto {
   int? id;
   String? title;
   String? description;
-  String? color;
+  double? color;
   LocationDto? location;
   MediaDto? mediaItem;
   PossibilityDto({
@@ -27,7 +27,7 @@ class PossibilityDto {
   PossibilityEntity toEntity() => PossibilityEntity(
       id: id ?? 0,
       title: title ?? "",
-      color: color ?? "120",
+      color: color ?? 120,
       description: description ?? "",
       location:
           location != null ? location!.toEntity() : LocationDto().toEntity(),

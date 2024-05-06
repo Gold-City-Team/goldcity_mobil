@@ -45,7 +45,7 @@ class GoldMapView extends StatelessWidget {
                         infoWindow:
                             InfoWindow(title: e.title, snippet: e.description),
                         markerId: MarkerId(e.id.toString()),
-                        icon: BitmapDescriptor.defaultMarkerWithHue(120),
+                        icon: BitmapDescriptor.defaultMarkerWithHue(e.color),
                         position: LatLng(
                           e.location.latitude,
                           e.location.longitude,

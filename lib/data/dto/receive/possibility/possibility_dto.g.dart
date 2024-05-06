@@ -11,7 +11,7 @@ PossibilityDto _$PossibilityDtoFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int?,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      color: json['color'] as String?,
+      color: (json['color'] as num?)?.toDouble(),
       location: json['location'] == null
           ? null
           : LocationDto.fromJson(json['location'] as Map<String, dynamic>),
