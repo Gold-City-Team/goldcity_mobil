@@ -20,6 +20,22 @@ class AppThemeLight extends AppTheme with ILightTheme {
           selectionColor: ColorSchemeLight.instance.goldColor,
           selectionHandleColor: ColorSchemeLight.instance.goldColor),
       colorScheme: ColorSchemeLight.instance.appColorScheme,
+      dropdownMenuTheme: DropdownMenuThemeData(
+          textStyle: TextStyle(color: ColorSchemeLight.instance.titleColor),
+          inputDecorationTheme: InputDecorationTheme(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: ColorSchemeLight.instance.titleColor, width: 1.0),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: ColorSchemeLight.instance.titleColor, width: 1.0),
+            ),
+          ),
+          menuStyle: MenuStyle(
+            backgroundColor: MaterialStatePropertyAll(
+                ColorSchemeLight.instance.extraCloseBackgroundColor),
+          )),
       textTheme: TextTheme(
         displayLarge: TextStyle(
           color: ColorSchemeLight.instance.titleColor,

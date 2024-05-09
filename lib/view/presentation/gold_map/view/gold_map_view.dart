@@ -7,8 +7,14 @@ import 'package:goldcity/view/presentation/gold_map/view_model/gold_map_view_mod
 import 'package:goldcity/view/presentation/gold_map/widget/facilities_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GoldMapView extends StatelessWidget {
+class GoldMapView extends StatefulWidget {
   GoldMapView({super.key});
+
+  @override
+  State<GoldMapView> createState() => _GoldMapViewState();
+}
+
+class _GoldMapViewState extends State<GoldMapView> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
@@ -59,48 +65,93 @@ class GoldMapView extends StatelessWidget {
                 },
               );
             }),
+            SafeArea(
+              child: Observer(builder: (context) {
+                if (value.projectPossibilityEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return SafeArea(
+                  child: Container(
+                    height: 125,
+                    alignment: Alignment.bottomCenter,
+                    child: ListView.builder(
+                      itemCount:
+                          value.projectPossibilityEntity!.possibilities.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        if (value.category == null ||
+                            value.category ==
+                                value
+                                    .projectPossibilityEntity!
+                                    .possibilities[index]
+                                    .category
+                                    .translation
+                                    .title) {
+                          return GestureDetector(
+                            onTap: () async {
+                              value.changeSelectedIndex(index);
+                              _controller.future.then(
+                                (e) => e.animateCamera(
+                                  CameraUpdate.newLatLng(
+                                    LatLng(
+                                        value
+                                            .projectPossibilityEntity!
+                                            .possibilities[value.selectedIndex]
+                                            .location
+                                            .latitude,
+                                        value
+                                            .projectPossibilityEntity!
+                                            .possibilities[value.selectedIndex]
+                                            .location
+                                            .longitude),
+                                  ),
+                                ),
+                              );
+                              _controller.future.then((e) =>
+                                  e.showMarkerInfoWindow(MarkerId(value
+                                      .projectPossibilityEntity!
+                                      .possibilities[value.selectedIndex]
+                                      .id
+                                      .toString())));
+                            },
+                            child: FacilitiesWidget(
+                                possibilityEntity: value
+                                    .projectPossibilityEntity!
+                                    .possibilities[index]),
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                  ),
+                );
+              }),
+            ),
             Observer(builder: (context) {
               if (value.projectPossibilityEntity == null) {
                 return const SizedBox.shrink();
               }
               return SafeArea(
-                child: Container(
-                  height: 125,
-                  alignment: Alignment.bottomCenter,
-                  child: ListView.builder(
-                    itemCount:
-                        value.projectPossibilityEntity!.possibilities.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () async {
-                          value.changeSelectedIndex(index);
-                          _controller.future.then(
-                            (e) => e.animateCamera(
-                              CameraUpdate.newLatLng(LatLng(
-                                  value
-                                      .projectPossibilityEntity!
-                                      .possibilities[value.selectedIndex]
-                                      .location
-                                      .latitude,
-                                  value
-                                      .projectPossibilityEntity!
-                                      .possibilities[value.selectedIndex]
-                                      .location
-                                      .longitude)),
-                            ),
-                          );
-                          _controller.future.then((e) => e.showMarkerInfoWindow(
-                              MarkerId(value.projectPossibilityEntity!
-                                  .possibilities[value.selectedIndex].id
-                                  .toString())));
-                        },
-                        child: FacilitiesWidget(
-                            possibilityEntity: value.projectPossibilityEntity!
-                                .possibilities[index]),
-                      );
-                    },
-                  ),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(right: 20, top: 20),
+                          width: 250,
+                          child: DropdownMenu(
+                            hintText: "Tümü",
+                            onSelected: (category) => setState(() {
+                              value.changeCategory(category);
+                            }),
+                            dropdownMenuEntries: value.getCategoryOptions(),
+                            initialSelection: value.getCategoryOptions().first,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               );
             })

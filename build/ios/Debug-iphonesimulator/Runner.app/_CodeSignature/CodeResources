@@ -18,7 +18,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		8dtwX5akTl4BsMcujcQAzDiBJsk=
+		AlbQbrQGivCVvPZ8WNaP5qdgKxo=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		32o5eZcz4YTqKuf2GdNCCEaIwus=
+		wODr7H8kJa9RATyvYxfnJ4koRis=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		kaRNUNn9HQV/IV6idfuN5Twgotk=
+		Rq+Ad53yjA1GDlTBBqBrCREp7xY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		YrrBbEedxxXI3Q5q7OxSm2vBpMk=
+		6YJQroYlzjGOffp/GBxNyQrjFq4=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
 		<data>
@@ -126,7 +126,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		qyAuoCW6nzVsquTr7B4fGDPEHzg=
+		gUlpKYdh3zlyVY72HkeDXci86yE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -227,6 +227,30 @@
 		<key>Frameworks/Flutter.framework/icudtl.dat</key>
 		<data>
 		Ubat0LvE4LUgCwHeyl0Anx2vnzk=
+		</data>
+		<key>Frameworks/bs_flutter_selectbox.framework/Info.plist</key>
+		<data>
+		DmU+YoN0+voLT/tG5nzZw8SDrps=
+		</data>
+		<key>Frameworks/bs_flutter_selectbox.framework/_CodeSignature/CodeResources</key>
+		<data>
+		iKffnG/4w5TfE4UfaWcGUMPs/oQ=
+		</data>
+		<key>Frameworks/bs_flutter_selectbox.framework/bs_flutter_selectbox</key>
+		<data>
+		Q4LQgQoN7M31cZI2qTS/auSy6iA=
+		</data>
+		<key>Frameworks/bs_flutter_utils.framework/Info.plist</key>
+		<data>
+		8zZ3zJAj6b7hVpbsw/mGfIXg4Xo=
+		</data>
+		<key>Frameworks/bs_flutter_utils.framework/_CodeSignature/CodeResources</key>
+		<data>
+		oHy+VByG56ZMPuIjfv3bWQ6yUHI=
+		</data>
+		<key>Frameworks/bs_flutter_utils.framework/bs_flutter_utils</key>
+		<data>
+		NE2+v2Oskhk57AFEZdzzyz+g2Ww=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>
 		<data>
@@ -1133,7 +1157,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kI6nJGwXgDYfi+qALMbRBMUeorovET4JwYd/rF7nTrs=
+			wUQStHWSW0C8RnL91NV8RO69yJSh+mHruVmCkIbdUG4=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
@@ -1182,7 +1206,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5JU5/c1Du1F0GbY1thVM0g5VYt+gvXfxH1266xurNqI=
+			MgqlaZ3dMfuEtmicCZQjd6UfyzbJy8HpWV3epTww9vk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1196,7 +1220,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			w+zyCm2HgXCwq6kqigE6oqnvyZXqnn7ch0a/ii65kx4=
+			GQocc7UgY6r7GAfcPBcBva4qyQ88ztdVH2w0uc5nE9c=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -1224,7 +1248,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			abhR8X6f7bsX5OMvRXW37NqYzzRETZxv/fhLwlDYxKw=
+			tG/s7t1R5yQc7tGZpLUIZI+K3HBt8SgofsN3QOGnWxQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
@@ -1322,7 +1346,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7rrMQn5x7mzlUXe6QnqzOewhN0LuB4mIAhHAXf3kYf8=
+			rFCNnj0pbnQuMBzfNhDVycUws5FQwi+xDjSZIau8dCw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -1498,6 +1522,48 @@
 			<key>hash2</key>
 			<data>
 			ZepykIMSjfzhwAcmupMrkaqvXkhza1ZE3TdHjl8odaw=
+			</data>
+		</dict>
+		<key>Frameworks/bs_flutter_selectbox.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Alf+MT2tQI7QzbtsHt3cP9Ae6IhuQJR0AtEyTJLZIPo=
+			</data>
+		</dict>
+		<key>Frameworks/bs_flutter_selectbox.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			h4gTK0uKO6yp2U17D74foL7TQ/a7C3X4o864qVbdkeY=
+			</data>
+		</dict>
+		<key>Frameworks/bs_flutter_selectbox.framework/bs_flutter_selectbox</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QplX7j2Pc6K5GCU8+acrRc6KovJb9IIaUP9KeZ6sTcc=
+			</data>
+		</dict>
+		<key>Frameworks/bs_flutter_utils.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			co3pXka0YQeSUwFTrfnFYJLflr2hL7hYYOJOCJeEWu0=
+			</data>
+		</dict>
+		<key>Frameworks/bs_flutter_utils.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			COq9d88gGM3UQ6HRItHCHOt37RP204BxVCVmsbPPC5c=
+			</data>
+		</dict>
+		<key>Frameworks/bs_flutter_utils.framework/bs_flutter_utils</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PBb99nw/j8VVBBINFeFb8JqT910ytBxqqfepWZWRZOM=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/Info.plist</key>

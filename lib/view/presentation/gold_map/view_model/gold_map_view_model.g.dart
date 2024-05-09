@@ -25,6 +25,22 @@ mixin _$GoldMapViewModel on _GoldMapViewModelBase, Store {
     });
   }
 
+  late final _$categoryAtom =
+      Atom(name: '_GoldMapViewModelBase.category', context: context);
+
+  @override
+  String? get category {
+    _$categoryAtom.reportRead();
+    return super.category;
+  }
+
+  @override
+  set category(String? value) {
+    _$categoryAtom.reportWrite(value, super.category, () {
+      super.category = value;
+    });
+  }
+
   late final _$projectPossibilityEntityAtom = Atom(
       name: '_GoldMapViewModelBase.projectPossibilityEntity', context: context);
 
@@ -65,9 +81,32 @@ mixin _$GoldMapViewModel on _GoldMapViewModelBase, Store {
   }
 
   @override
+  void changeCategory(dynamic categoryNew) {
+    final _$actionInfo = _$_GoldMapViewModelBaseActionController.startAction(
+        name: '_GoldMapViewModelBase.changeCategory');
+    try {
+      return super.changeCategory(categoryNew);
+    } finally {
+      _$_GoldMapViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearCategory() {
+    final _$actionInfo = _$_GoldMapViewModelBaseActionController.startAction(
+        name: '_GoldMapViewModelBase.clearCategory');
+    try {
+      return super.clearCategory();
+    } finally {
+      _$_GoldMapViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 selectedIndex: ${selectedIndex},
+category: ${category},
 projectPossibilityEntity: ${projectPossibilityEntity}
     ''';
   }

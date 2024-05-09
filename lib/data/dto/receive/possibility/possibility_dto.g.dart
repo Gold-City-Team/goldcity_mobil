@@ -18,6 +18,9 @@ PossibilityDto _$PossibilityDtoFromJson(Map<String, dynamic> json) =>
       mediaItem: json['mediaItem'] == null
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
+      category: json['category'] == null
+          ? null
+          : CategoryDto.fromJson(json['category'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PossibilityDtoToJson(PossibilityDto instance) =>
@@ -28,4 +31,5 @@ Map<String, dynamic> _$PossibilityDtoToJson(PossibilityDto instance) =>
       'color': instance.color,
       'location': instance.location,
       'mediaItem': instance.mediaItem,
+      'category': instance.category,
     };
