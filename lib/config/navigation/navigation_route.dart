@@ -28,7 +28,7 @@ class NavigationRoute {
         normalNavigate(const StoryView(), NavigationConstant.STORY),
       /* MAP */
       NavigationConstant.MAP =>
-        normalNavigate(GoldMapView(), NavigationConstant.MAP),
+        normalNavigate(const GoldMapView(), NavigationConstant.MAP),
       /* LEAD APPLY */
       NavigationConstant.LEAD_APPLY =>
         normalNavigate(const LeadApplyView(), NavigationConstant.LEAD_APPLY),
