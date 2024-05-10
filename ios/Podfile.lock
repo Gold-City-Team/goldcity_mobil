@@ -1,8 +1,4 @@
 PODS:
-  - bs_flutter_selectbox (0.0.1):
-    - Flutter
-  - bs_flutter_utils (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - google_maps_flutter_ios (0.0.1):
     - Flutter
@@ -23,8 +19,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - bs_flutter_selectbox (from `.symlinks/plugins/bs_flutter_selectbox/ios`)
-  - bs_flutter_utils (from `.symlinks/plugins/bs_flutter_utils/ios`)
   - Flutter (from `Flutter`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
@@ -36,10 +30,6 @@ SPEC REPOS:
     - GoogleMaps
 
 EXTERNAL SOURCES:
-  bs_flutter_selectbox:
-    :path: ".symlinks/plugins/bs_flutter_selectbox/ios"
-  bs_flutter_utils:
-    :path: ".symlinks/plugins/bs_flutter_utils/ios"
   Flutter:
     :path: Flutter
   google_maps_flutter_ios:
@@ -52,8 +42,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/video_player_avfoundation/darwin"
 
 SPEC CHECKSUMS:
-  bs_flutter_selectbox: 6f8f2635cb0e3f10096fcd774af6d90272bb089b
-  bs_flutter_utils: 8f7e9550c45adfa0d9b77d5ac395bc33b6d18eb3
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   google_maps_flutter_ios: f135b968a67c05679e0a53538e900b5c174b0d99
   GoogleMaps: 20d7b12be49a14287f797e88e0e31bc4156aaeb4
