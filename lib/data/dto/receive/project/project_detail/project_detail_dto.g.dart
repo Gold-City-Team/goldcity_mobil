@@ -20,6 +20,9 @@ ProjectDetailDto _$ProjectDetailDtoFromJson(Map<String, dynamic> json) =>
       mediaItem: json['mediaItem'] == null
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
+      features: (json['features'] as List<dynamic>?)
+          ?.map((e) => ProjectFeaturesDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ProjectDetailDtoToJson(ProjectDetailDto instance) =>
@@ -30,4 +33,5 @@ Map<String, dynamic> _$ProjectDetailDtoToJson(ProjectDetailDto instance) =>
       'language': instance.language,
       'location': instance.location,
       'mediaItem': instance.mediaItem,
+      'features': instance.features,
     };

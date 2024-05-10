@@ -8,7 +8,9 @@ enum MEDIA_TYPE {
   @JsonValue("IMAGE")
   IMAGE,
   @JsonValue("VIDEO")
-  VIDEO
+  VIDEO,
+  @JsonValue("SVG")
+  SVG
 }
 
 @JsonSerializable()

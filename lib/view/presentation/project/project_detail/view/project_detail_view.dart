@@ -8,6 +8,7 @@ import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/button_widget.dart';
+import 'package:goldcity/view/presentation/project/project_detail/widget/features_widget.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/project_detail_banner_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -43,6 +44,17 @@ class ProjectDetailView extends StatelessWidget {
                 }
                 return ProjectDetailBannerWidget(
                   projectEntity: value.projectEntity!,
+                );
+              }),
+              Gap(context.midSpacerSize),
+              Observer(builder: (context) {
+                if (value.projectEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return Wrap(
+                  children: value.projectEntity!.detail.features
+                      .map((e) => FeaturesWidget(featuresEntity: e))
+                      .toList(),
                 );
               }),
               Gap(context.midSpacerSize),

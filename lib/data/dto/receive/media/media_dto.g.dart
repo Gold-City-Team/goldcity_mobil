@@ -21,4 +21,5 @@ Map<String, dynamic> _$MediaDtoToJson(MediaDto instance) => <String, dynamic>{
 const _$MEDIA_TYPEEnumMap = {
   MEDIA_TYPE.IMAGE: 'IMAGE',
   MEDIA_TYPE.VIDEO: 'VIDEO',
+  MEDIA_TYPE.SVG: 'SVG',
 };

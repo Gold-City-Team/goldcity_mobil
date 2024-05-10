@@ -1,6 +1,7 @@
 import 'package:goldcity/data/dto/receive/language/language_dto.dart';
 import 'package:goldcity/data/dto/receive/location/location_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_features/project_features_dto.dart';
 import 'package:goldcity/domain/entity/project/project_detail/project_detail_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'project_detail_dto.g.dart';
@@ -13,14 +14,15 @@ class ProjectDetailDto {
   LanguageDto? language;
   LocationDto? location;
   MediaDto? mediaItem;
-
+  List<ProjectFeaturesDto>? features;
   ProjectDetailDto(
       {this.id,
       this.title,
       this.slogan,
       this.language,
       this.location,
-      this.mediaItem});
+      this.mediaItem,
+      this.features});
   factory ProjectDetailDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectDetailDtoFromJson(json);
 
@@ -35,5 +37,8 @@ class ProjectDetailDto {
             mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
         location:
             location != null ? location!.toEntity() : LocationDto().toEntity(),
+        features: features != null
+            ? features!.map((e) => e.toEntity()).toList()
+            : [ProjectFeaturesDto().toEntity()],
       );
 }

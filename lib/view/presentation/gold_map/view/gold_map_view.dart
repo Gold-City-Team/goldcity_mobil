@@ -10,7 +10,7 @@ import 'package:goldcity/view/presentation/gold_map/widget/facilities_widget.dar
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoldMapView extends StatefulWidget {
-  GoldMapView({super.key});
+  const GoldMapView({super.key});
 
   @override
   State<GoldMapView> createState() => _GoldMapViewState();
