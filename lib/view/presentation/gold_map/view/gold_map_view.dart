@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/gold_map/view_model/gold_map_view_model.dart';
 import 'package:goldcity/view/presentation/gold_map/widget/facilities_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -138,13 +140,24 @@ class _GoldMapViewState extends State<GoldMapView> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(right: 20, top: 20),
+                          margin: const EdgeInsets.only(right: 10, top: 20),
                           width: 250,
                           child: DropdownMenu(
                             hintText: "Tümü",
+                            selectedTrailingIcon: Icon(
+                              Icons.arrow_drop_up,
+                              color: context.toColor(APPLICATION_COLOR.DARK),
+                            ),
+                            trailingIcon: Icon(
+                              Icons.arrow_drop_down,
+                              color: context.toColor(APPLICATION_COLOR.DARK),
+                            ),
                             onSelected: (category) => setState(() {
                               value.changeCategory(category);
                             }),
+                            textStyle: TextStyle(
+                              color: context.toColor(APPLICATION_COLOR.DARK),
+                            ),
                             dropdownMenuEntries: value.getCategoryOptions(),
                             initialSelection: value.getCategoryOptions().first,
                           ),

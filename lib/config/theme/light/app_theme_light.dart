@@ -23,6 +23,7 @@ class AppThemeLight extends AppTheme with ILightTheme {
       dropdownMenuTheme: DropdownMenuThemeData(
           textStyle: TextStyle(color: ColorSchemeLight.instance.titleColor),
           inputDecorationTheme: InputDecorationTheme(
+            hintStyle: TextStyle(color: ColorSchemeLight.instance.titleColor),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                   color: ColorSchemeLight.instance.titleColor, width: 1.0),

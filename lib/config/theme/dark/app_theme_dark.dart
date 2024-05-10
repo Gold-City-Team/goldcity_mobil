@@ -20,24 +20,27 @@ class AppThemeDark extends AppTheme with IDarkTheme {
       useMaterial3: true,
       colorScheme: ColorSchemeDark.instance.appColorScheme,
       dropdownMenuTheme: DropdownMenuThemeData(
-          textStyle: TextStyle(
+        textStyle: TextStyle(
+            color: ColorSchemeDark.instance.extraCloseBackgroundColor),
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(
               color: ColorSchemeDark.instance.extraCloseBackgroundColor),
-          inputDecorationTheme: InputDecorationTheme(
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: ColorSchemeDark.instance.extraCloseBackgroundColor,
-                  width: 1.0),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: ColorSchemeDark.instance.extraCloseBackgroundColor,
-                  width: 1.0),
-            ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color: ColorSchemeDark.instance.extraCloseBackgroundColor,
+                width: 1.0),
           ),
-          menuStyle: MenuStyle(
-            backgroundColor: MaterialStatePropertyAll(
-                ColorSchemeDark.instance.extraCloseBackgroundColor),
-          )),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color: ColorSchemeDark.instance.extraCloseBackgroundColor,
+                width: 1.0),
+          ),
+        ),
+        menuStyle: MenuStyle(
+          backgroundColor: MaterialStatePropertyAll(
+              ColorSchemeDark.instance.extraCloseBackgroundColor),
+        ),
+      ),
       textTheme: TextTheme(
         displayLarge: TextStyle(
           color: ColorSchemeDark.instance.titleColor,
