@@ -9,14 +9,27 @@ part of 'project_gallery_dto.dart';
 ProjectGalleryDto _$ProjectGalleryDtoFromJson(Map<String, dynamic> json) =>
     ProjectGalleryDto(
       id: json['id'] as int?,
-      projectGallery: (json['projectGalleries'] as List<dynamic>?)
-          ?.map(
-              (e) => ProjectGalleryMediaDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      gallery: json['gallery'] == null
+          ? null
+          : GalleryDto.fromJson(json['gallery'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProjectGalleryDtoToJson(ProjectGalleryDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'projectGalleries': instance.projectGallery,
+      'gallery': instance.gallery,
+    };
+
+GalleryDto _$GalleryDtoFromJson(Map<String, dynamic> json) => GalleryDto(
+      id: json['id'] as int?,
+      projectGallery: (json['medias'] as List<dynamic>?)
+          ?.map(
+              (e) => ProjectGalleryMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$GalleryDtoToJson(GalleryDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'medias': instance.projectGallery,
     };

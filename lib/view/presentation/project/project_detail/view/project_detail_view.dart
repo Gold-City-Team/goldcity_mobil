@@ -4,7 +4,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
-import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/button_widget.dart';
@@ -58,16 +57,20 @@ class ProjectDetailView extends StatelessWidget {
                 );
               }),
               Gap(context.midSpacerSize),
-              Center(
-                child: Wrap(
-                  children: value.actions
-                      .map((e) => GestureDetector(
-                          onTap: () => value.navigation
-                              .navigateToPage(path: NavigationConstant.MAP),
-                          child: ButtonWidget(text: e)))
-                      .toList(),
-                ),
-              ),
+              Observer(builder: (context) {
+                if (value.projectEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return Center(
+                  child: Wrap(
+                    children: value.projectEntity!.detail.buttons
+                        .map((e) => GestureDetector(
+                            onTap: () => value.projectButtonClick(e.type),
+                            child: ButtonWidget(text: e.title)))
+                        .toList(),
+                  ),
+                );
+              }),
             ],
           ),
         ),

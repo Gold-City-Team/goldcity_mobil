@@ -1,6 +1,7 @@
 import 'package:goldcity/data/dto/receive/language/language_dto.dart';
 import 'package:goldcity/data/dto/receive/location/location_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_button/project_button_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_features/project_features_dto.dart';
 import 'package:goldcity/domain/entity/project/project_detail/project_detail_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -15,6 +16,7 @@ class ProjectDetailDto {
   LocationDto? location;
   MediaDto? mediaItem;
   List<ProjectFeaturesDto>? features;
+  List<ProjectButtonDto>? buttons;
   ProjectDetailDto(
       {this.id,
       this.title,
@@ -22,23 +24,25 @@ class ProjectDetailDto {
       this.language,
       this.location,
       this.mediaItem,
-      this.features});
+      this.features,
+      this.buttons});
   factory ProjectDetailDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectDetailDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProjectDetailDtoToJson(this);
   ProjectDetailEntity toEntity() => ProjectDetailEntity(
-        id: id ?? 0,
-        title: title ?? "",
-        slogan: slogan ?? "",
-        language:
-            language != null ? language!.toEntity() : LanguageDto().toEntity(),
-        media:
-            mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
-        location:
-            location != null ? location!.toEntity() : LocationDto().toEntity(),
-        features: features != null
-            ? features!.map((e) => e.toEntity()).toList()
-            : [ProjectFeaturesDto().toEntity()],
-      );
+      id: id ?? 0,
+      title: title ?? "",
+      slogan: slogan ?? "",
+      language:
+          language != null ? language!.toEntity() : LanguageDto().toEntity(),
+      media: mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
+      location:
+          location != null ? location!.toEntity() : LocationDto().toEntity(),
+      features: features != null
+          ? features!.map((e) => e.toEntity()).toList()
+          : [ProjectFeaturesDto().toEntity()],
+      buttons: buttons != null
+          ? buttons!.map((e) => e.toEntity()).toList()
+          : [ProjectButtonDto().toEntity()]);
 }

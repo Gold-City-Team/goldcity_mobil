@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
 import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
@@ -35,7 +35,9 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
 
   @action
   void getGallery() {
-    _projectUseCase.projectGallery(1).listen((event) {
+    _projectUseCase
+        .projectGallery(4, GALLERY_TYPE.INTERIOR_GALLERY)
+        .listen((event) {
       if (event.isRight) {
         projectGallery = event.right;
       }
@@ -57,9 +59,7 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
   void toggleFullScreen() {
     isFullScreen = !isFullScreen;
 
-    if (isFullScreen &&
-        projectGallery!.projectGallery[selectedMediaIndex].media.mediaType ==
-            MEDIA_TYPE.VIDEO) {
+    if (isFullScreen) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeRight,
         DeviceOrientation.landscapeLeft,

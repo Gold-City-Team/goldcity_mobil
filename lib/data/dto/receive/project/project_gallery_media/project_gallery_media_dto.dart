@@ -6,11 +6,12 @@ part 'project_gallery_media_dto.g.dart';
 @JsonSerializable()
 class ProjectGalleryMediaDto {
   int? id;
-  MediaDto? media;
+  MediaDto? mediaItem;
   String? title;
   String? description;
 
-  ProjectGalleryMediaDto({this.id, this.media, this.title, this.description});
+  ProjectGalleryMediaDto(
+      {this.id, this.mediaItem, this.title, this.description});
   factory ProjectGalleryMediaDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectGalleryMediaDtoFromJson(json);
 
@@ -18,7 +19,8 @@ class ProjectGalleryMediaDto {
 
   ProjectGalleryMediaEntity toEntity() => ProjectGalleryMediaEntity(
         id: id ?? 0,
-        media: media != null ? media!.toEntity() : MediaDto().toEntity(),
+        media:
+            mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
         title: title ?? "",
         description: description ?? "",
       );

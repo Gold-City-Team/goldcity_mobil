@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:goldcity/domain/entity/language/language_entity.dart';
 import 'package:goldcity/domain/entity/location/location_entity.dart';
 import 'package:goldcity/domain/entity/media/media_entity.dart';
+import 'package:goldcity/domain/entity/project/project_button/project_button_entity.dart';
 import 'package:goldcity/domain/entity/project/project_features/project_features_entity.dart';
 
 @immutable
@@ -13,6 +14,7 @@ final class ProjectDetailEntity {
   final LocationEntity location;
   final MediaEntity media;
   final List<ProjectFeaturesEntity> features;
+  final List<ProjectButtonEntity> buttons;
   const ProjectDetailEntity({
     required this.id,
     required this.title,
@@ -21,5 +23,6 @@ final class ProjectDetailEntity {
     required this.location,
     required this.language,
     required this.features,
+    required this.buttons,
   });
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -16,8 +17,12 @@ import 'package:video_player/video_player.dart';
 class VideoFrameView extends StatefulWidget {
   final VoidCallback fullScreen;
   final bool isFullScreen;
+  final String url;
   const VideoFrameView(
-      {required this.fullScreen, this.isFullScreen = false, super.key});
+      {required this.fullScreen,
+      required this.url,
+      this.isFullScreen = false,
+      super.key});
 
   @override
   State<VideoFrameView> createState() => _VideoFrameViewState();
@@ -31,8 +36,7 @@ class _VideoFrameViewState extends State<VideoFrameView>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    _controller = VideoPlayerController.networkUrl(Uri.parse(
-        'https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_20mb.mp4'));
+    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.url));
     _controller.setLooping(true);
     _controller.initialize();
     if (widget.isFullScreen) {

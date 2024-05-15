@@ -42,6 +42,8 @@ class GalleryView extends StatelessWidget {
         MEDIA_TYPE.VIDEO) {
       return VideoFrameView(
         key: const Key("same"),
+        url: viewModel.projectGallery!
+            .projectGallery[viewModel.selectedMediaIndex].media.url,
         fullScreen: () => viewModel.toggleFullScreen(),
       );
     }
@@ -62,21 +64,25 @@ class GalleryView extends StatelessWidget {
           ),
           Positioned(
             right: 10,
-            child: GestureDetector(
-              onTap: () => viewModel.toggleFullScreen(),
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    color: viewModel.viewModelContext
-                        .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                    borderRadius: const BorderRadius.all(Radius.circular(20))),
-                child: SizedBox(
-                  child: Icon(
-                    Icons.fullscreen,
-                    size: 28,
-                    color: viewModel.viewModelContext
-                        .toColor(APPLICATION_COLOR.GOLD),
+            top: 10,
+            child: SafeArea(
+              child: GestureDetector(
+                onTap: () => viewModel.toggleFullScreen(),
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: viewModel.viewModelContext
+                          .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
+                  child: SizedBox(
+                    child: Icon(
+                      Icons.fullscreen,
+                      size: 28,
+                      color: viewModel.viewModelContext
+                          .toColor(APPLICATION_COLOR.GOLD),
+                    ),
                   ),
                 ),
               ),

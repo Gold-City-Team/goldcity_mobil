@@ -3,5 +3,7 @@
     "slogan": "We build life, not houses.",
     "nameSurnameQuestion": "Full Name",
     "telephoneQuestion": "Telephone Number",
-    "mailQuestion": "E-mail adress"
+    "mailQuestion": "E-mail adress",
+    "applicationFormTitle": "Application Form",
+    "send": "Send"
 }

@@ -44,7 +44,8 @@ class MainRowWidget extends StatelessWidget {
 
   Widget mediaPart() {
     if (mediaEntity.media.mediaType == MEDIA_TYPE.VIDEO) {
-      return VideoFrameView(fullScreen: () => onFullScreen());
+      return VideoFrameView(
+          fullScreen: () => onFullScreen(), url: mediaEntity.media.url);
     }
     return Center(
       child: NormalNetworkImage(

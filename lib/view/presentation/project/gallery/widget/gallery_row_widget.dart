@@ -49,7 +49,10 @@ class GalleryRowWidget extends StatelessWidget {
       return SizedBox(
         width: 100,
         height: 100,
-        child: VideoFrameView(fullScreen: () => null),
+        child: VideoFrameView(
+          fullScreen: () => null,
+          url: mediaEntity.media.url,
+        ),
       );
     }
     return SizedBox(
