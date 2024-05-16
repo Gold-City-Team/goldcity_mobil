@@ -34,7 +34,6 @@ class NavigationRoute {
       /* GALLERY */
       NavigationConstant.GALLERY =>
         normalNavigate(const GalleryView(), NavigationConstant.GALLERY),
-
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
       /* */

@@ -36,6 +36,7 @@ class _GoldMapViewState extends State<GoldMapView> {
               if (value.projectPossibilityEntity == null) {
                 return const SizedBox.shrink();
               }
+
               return GoogleMap(
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
@@ -81,14 +82,16 @@ class _GoldMapViewState extends State<GoldMapView> {
                           value.projectPossibilityEntity!.possibilities.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        if (value.category == null ||
-                            value.category ==
-                                value
-                                    .projectPossibilityEntity!
-                                    .possibilities[index]
-                                    .category
-                                    .translation
-                                    .title) {
+                        if ((value.category == null ||
+                                value.category ==
+                                    value
+                                        .projectPossibilityEntity!
+                                        .possibilities[index]
+                                        .category
+                                        .translation
+                                        .title) &&
+                            value.projectPossibilityEntity!.possibilities[index]
+                                .description.isNotEmpty) {
                           return GestureDetector(
                             onTap: () async {
                               value.changeSelectedIndex(index);

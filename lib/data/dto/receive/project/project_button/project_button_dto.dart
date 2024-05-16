@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, constant_identifier_names
 
 import 'package:goldcity/domain/entity/project/project_button/project_button_entity.dart';
 import 'package:json_annotation/json_annotation.dart';

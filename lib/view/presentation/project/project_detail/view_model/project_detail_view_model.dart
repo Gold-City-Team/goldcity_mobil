@@ -48,7 +48,8 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
       case PROJECT_BUTTON_TYPE.AWARD:
         null;
       case PROJECT_BUTTON_TYPE.POSSIBILITY:
-        navigation.navigateToPage(path: NavigationConstant.MAP);
+        navigation.navigateToPage(
+            path: NavigationConstant.MAP, data: projectEntity!.detail.location);
     }
   }
 }
