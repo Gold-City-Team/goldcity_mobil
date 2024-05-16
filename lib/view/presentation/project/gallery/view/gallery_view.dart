@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/domain/entity/project/project_gallery_media_entity/project_gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -42,53 +41,105 @@ class GalleryView extends StatelessWidget {
         MEDIA_TYPE.VIDEO) {
       return VideoFrameView(
         key: const Key("same"),
+        isFullScreen: true,
         url: viewModel.projectGallery!
             .projectGallery[viewModel.selectedMediaIndex].media.url,
         fullScreen: () => viewModel.toggleFullScreen(),
       );
     }
-    return Center(
-      child: Stack(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: NormalNetworkImage(
-                  source: viewModel.projectGallery!
-                      .projectGallery[viewModel.selectedMediaIndex].media.url,
-                  fit: BoxFit.contain,
+    return GestureDetector(
+      onTap: () => viewModel.toggleBottomListVisible(),
+      child: Center(
+        child: Stack(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: NormalNetworkImage(
+                    source: viewModel.projectGallery!
+                        .projectGallery[viewModel.selectedMediaIndex].media.url,
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          Positioned(
-            right: 10,
-            top: 10,
-            child: SafeArea(
-              child: GestureDetector(
-                onTap: () => viewModel.toggleFullScreen(),
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: viewModel.viewModelContext
-                          .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  child: SizedBox(
-                    child: Icon(
-                      Icons.fullscreen,
-                      size: 28,
-                      color: viewModel.viewModelContext
-                          .toColor(APPLICATION_COLOR.GOLD),
+              ],
+            ),
+            Positioned(
+              right: 10,
+              top: 10,
+              child: SafeArea(
+                child: GestureDetector(
+                  onTap: () => viewModel.toggleFullScreen(),
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        color: viewModel.viewModelContext
+                            .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
+                    child: SizedBox(
+                      child: Icon(
+                        Icons.fullscreen,
+                        size: 28,
+                        color: viewModel.viewModelContext
+                            .toColor(APPLICATION_COLOR.GOLD),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+            viewModel.bottomListVisible && viewModel.isFullScreen
+                ? SafeArea(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          height: 100,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount:
+                                viewModel.projectGallery!.projectGallery.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                  onTap: () =>
+                                      viewModel.selectedMediaIndexChange(index),
+                                  child: Padding(
+                                    padding: context.midSpacerOnlyLeft,
+                                    child: mediaPart(viewModel
+                                        .projectGallery!.projectGallery[index]),
+                                  ));
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : const SizedBox.shrink()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget mediaPart(ProjectGalleryMediaEntity mediaEntity) {
+    if (mediaEntity.media.mediaType == MEDIA_TYPE.VIDEO) {
+      return SizedBox(
+        width: 100,
+        height: 100,
+        child: VideoFrameView(
+          fullScreen: () => null,
+          url: mediaEntity.media.url,
+        ),
+      );
+    }
+    return SizedBox(
+      width: 100,
+      height: 100,
+      child: NormalNetworkImage(
+        source: mediaEntity.media.url,
+        fit: BoxFit.fill,
       ),
     );
   }

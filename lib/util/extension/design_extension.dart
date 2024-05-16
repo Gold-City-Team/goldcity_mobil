@@ -26,6 +26,8 @@ extension RadiusExtension on BuildContext {
 extension MarginPaddingExtension on BuildContext {
   EdgeInsets get zeroSpacer => const EdgeInsets.all(0);
   EdgeInsets get largeSpacerOnlyLeft => const EdgeInsets.only(left: 20);
+  EdgeInsets get midSpacerOnlyRight => const EdgeInsets.only(right: 10);
+
   EdgeInsets get midSpacerOnlyLeft => const EdgeInsets.only(left: 10);
   EdgeInsets get smallSpacerOnlyLeft => const EdgeInsets.only(left: 5);
   EdgeInsets get largeSpacerOnlyHorizontal =>

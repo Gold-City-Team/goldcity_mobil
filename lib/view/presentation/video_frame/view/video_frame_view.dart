@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
@@ -39,12 +36,6 @@ class _VideoFrameViewState extends State<VideoFrameView>
     _controller = VideoPlayerController.networkUrl(Uri.parse(widget.url));
     _controller.setLooping(true);
     _controller.initialize();
-    if (widget.isFullScreen) {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
-      ]);
-    }
   }
 
   @override
@@ -78,71 +69,82 @@ class _VideoFrameViewState extends State<VideoFrameView>
         body: Stack(
           children: [
             VideoPlayer(_controller),
-            Observer(
-              builder: (context) => AnimatedOpacity(
-                opacity: value.isOpacityFull ? 1 : 0,
-                duration: const Duration(milliseconds: 100),
-                child: Container(
-                  color: Colors.black.withOpacity(.7),
-                ),
-              ),
-            ),
-            GestureDetector(onTap: () => value.toggleOpacity()),
-            Observer(builder: (context) {
-              return AnimatedOpacity(
-                duration: const Duration(milliseconds: 100),
-                opacity: value.isOpacityFull ? 1 : 0,
-                child: Center(
-                  child: VideoPlayerSelfController(
-                    isPlaying: value.isPlaying,
-                    onTap: () => value.toggleVideo(),
-                  ),
-                ),
-              );
-            }),
-            Column(
-              children: [
-                const Spacer(),
-                Observer(builder: (context) {
-                  return AnimatedOpacity(
-                    duration: const Duration(milliseconds: 100),
-                    opacity: value.isOpacityFull ? 1 : 0,
-                    child: Padding(
-                      padding: context.largeSpacerOnlyHorizontal,
-                      child: NoPaddingSlider(
-                        max: _controller.value.duration.inSeconds.toDouble(),
-                        min: 0,
-                        value: value.position,
-                        changed: (e) => value.onChanging(e),
-                        changeStart: () => value.onChangeStart(),
-                        changeEnd: (e) => value.onChangeEnd(e),
+            widget.isFullScreen
+                ? Observer(
+                    builder: (context) => AnimatedOpacity(
+                      opacity: value.isOpacityFull ? 1 : 0,
+                      duration: const Duration(milliseconds: 100),
+                      child: Container(
+                        color: Colors.black.withOpacity(.7),
                       ),
                     ),
-                  );
-                }),
-                Gap(context.midSpacerSize)
-              ],
-            ),
-            Observer(builder: (context) {
-              return Positioned(
-                right: 20,
-                top: 20,
-                child: AnimatedOpacity(
-                  duration: const Duration(milliseconds: 100),
-                  opacity: value.isOpacityFull ? 1 : 0,
-                  child: GestureDetector(
-                    onTap: () => widget.fullScreen(),
-                    child: SizedBox(
-                      child: Icon(
-                        Icons.fullscreen,
-                        size: 28,
-                        color: context.toColor(APPLICATION_COLOR.GOLD),
+                  )
+                : const SizedBox.shrink(),
+            widget.isFullScreen
+                ? GestureDetector(onTap: () => value.toggleOpacity())
+                : const SizedBox.shrink(),
+            widget.isFullScreen
+                ? Observer(builder: (context) {
+                    return AnimatedOpacity(
+                      duration: const Duration(milliseconds: 100),
+                      opacity: value.isOpacityFull ? 1 : 0,
+                      child: Center(
+                        child: VideoPlayerSelfController(
+                          isPlaying: value.isPlaying,
+                          onTap: () => value.toggleVideo(),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              );
-            })
+                    );
+                  })
+                : const SizedBox.shrink(),
+            widget.isFullScreen
+                ? Column(
+                    children: [
+                      const Spacer(),
+                      Observer(builder: (context) {
+                        return AnimatedOpacity(
+                          duration: const Duration(milliseconds: 100),
+                          opacity: value.isOpacityFull ? 1 : 0,
+                          child: Padding(
+                            padding: context.largeSpacerOnlyHorizontal,
+                            child: NoPaddingSlider(
+                              max: _controller.value.duration.inSeconds
+                                  .toDouble(),
+                              min: 0,
+                              value: value.position,
+                              changed: (e) => value.onChanging(e),
+                              changeStart: () => value.onChangeStart(),
+                              changeEnd: (e) => value.onChangeEnd(e),
+                            ),
+                          ),
+                        );
+                      }),
+                      Gap(context.midSpacerSize)
+                    ],
+                  )
+                : const SizedBox.shrink(),
+            widget.isFullScreen
+                ? Observer(builder: (context) {
+                    return Positioned(
+                      right: 20,
+                      top: 20,
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 100),
+                        opacity: value.isOpacityFull ? 1 : 0,
+                        child: GestureDetector(
+                          onTap: () => widget.fullScreen(),
+                          child: SizedBox(
+                            child: Icon(
+                              Icons.fullscreen,
+                              size: 28,
+                              color: context.toColor(APPLICATION_COLOR.GOLD),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  })
+                : const SizedBox.shrink()
           ],
         ),
       ),

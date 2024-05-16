@@ -41,6 +41,22 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
     });
   }
 
+  late final _$bottomListVisibleAtom =
+      Atom(name: '_GalleryViewModelBase.bottomListVisible', context: context);
+
+  @override
+  bool get bottomListVisible {
+    _$bottomListVisibleAtom.reportRead();
+    return super.bottomListVisible;
+  }
+
+  @override
+  set bottomListVisible(bool value) {
+    _$bottomListVisibleAtom.reportWrite(value, super.bottomListVisible, () {
+      super.bottomListVisible = value;
+    });
+  }
+
   late final _$isFullScreenAtom =
       Atom(name: '_GalleryViewModelBase.isFullScreen', context: context);
 
@@ -83,6 +99,17 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
   }
 
   @override
+  void toggleBottomListVisible() {
+    final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
+        name: '_GalleryViewModelBase.toggleBottomListVisible');
+    try {
+      return super.toggleBottomListVisible();
+    } finally {
+      _$_GalleryViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void toggleFullScreen() {
     final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
         name: '_GalleryViewModelBase.toggleFullScreen');
@@ -98,6 +125,7 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
     return '''
 projectGallery: ${projectGallery},
 selectedMediaIndex: ${selectedMediaIndex},
+bottomListVisible: ${bottomListVisible},
 isFullScreen: ${isFullScreen}
     ''';
   }
