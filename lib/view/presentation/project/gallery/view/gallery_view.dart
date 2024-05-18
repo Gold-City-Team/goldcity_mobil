@@ -43,37 +43,68 @@ class GalleryView extends StatelessWidget {
         children: [
           VideoFrameView(
             key: const Key("same"),
-            isFullScreen: true,
+            isFullScreen: !viewModel.bottomListVisible && true,
             url: viewModel.projectGallery!
                 .projectGallery[viewModel.selectedMediaIndex].media.url,
             fullScreen: () => viewModel.toggleFullScreen(),
           ),
-          Positioned(
-            right: 10,
-            top: 10,
-            child: SafeArea(
-              child: GestureDetector(
-                onTap: () => viewModel.toggleFullScreen(),
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: viewModel.viewModelContext
-                          .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  child: SizedBox(
-                    child: Icon(
-                      Icons.fullscreen,
-                      size: 28,
-                      color: viewModel.viewModelContext
-                          .toColor(APPLICATION_COLOR.GOLD),
+          viewModel.isFullScreen
+              ? Positioned(
+                  left: 10,
+                  top: 10,
+                  child: SafeArea(
+                    child: GestureDetector(
+                      onTap: () => viewModel.toggleBottomListVisible(),
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            color: viewModel.viewModelContext
+                                .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20))),
+                        child: SizedBox(
+                          child: Icon(
+                            viewModel.bottomListVisible
+                                ? Icons.arrow_drop_up
+                                : Icons.arrow_drop_down,
+                            size: 28,
+                            color: viewModel.viewModelContext
+                                .toColor(APPLICATION_COLOR.GOLD),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
-          ),
+                )
+              : const SizedBox.shrink(),
+          viewModel.bottomListVisible && viewModel.isFullScreen
+              ? SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        height: 100,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              viewModel.projectGallery!.projectGallery.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                                onTap: () =>
+                                    viewModel.selectedMediaIndexChange(index),
+                                child: Padding(
+                                  padding: context.midSpacerOnlyLeft,
+                                  child: mediaPart(viewModel
+                                      .projectGallery!.projectGallery[index]),
+                                ));
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : const SizedBox.shrink()
         ],
       );
     }

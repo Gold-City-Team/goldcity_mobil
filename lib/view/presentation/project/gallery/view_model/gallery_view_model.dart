@@ -66,7 +66,7 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
   @action
   void toggleFullScreen() {
     isFullScreen = !isFullScreen;
-
+    bottomListVisible = false;
     if (isFullScreen) {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeRight,
