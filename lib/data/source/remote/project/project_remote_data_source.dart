@@ -58,6 +58,9 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
           .networkManager
           .get(SourcePath.PROJECT_LIST.rawValue());
 
+      locator<LocalManager>().cacheData(SourcePath.PROJECT_LIST.rawValue(),
+          (result.data as List).map((e) => ProjectDto.fromJson(e)).toList());
+
       return Right(
           (result.data as List).map((e) => ProjectDto.fromJson(e)).toList());
     } on DioException catch (e) {
