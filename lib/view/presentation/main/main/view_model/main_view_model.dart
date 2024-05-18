@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/view/presentation/main/home/view/home_view.dart';
+import 'package:goldcity/view/presentation/main/settings/view/settings_view.dart';
 import 'package:mobx/mobx.dart';
 
 part 'main_view_model.g.dart';
@@ -32,7 +33,7 @@ abstract class _MainViewModelBase with Store, BaseViewModel {
       case 0:
         return const HomeView();
       default:
-        return const HomeView();
+        return const SettingsView();
     }
   }
 }

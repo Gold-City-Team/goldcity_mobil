@@ -16,7 +16,12 @@ import 'package:goldcity/view/widget/text/label_text.dart';
 
 class GalleryView extends StatelessWidget {
   final GALLERY_TYPE type;
-  const GalleryView({required this.type, super.key});
+  final int projectDetailId;
+  const GalleryView({
+    required this.type,
+    required this.projectDetailId,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

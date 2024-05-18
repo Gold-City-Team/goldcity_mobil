@@ -5,6 +5,7 @@ import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_view_model.g.dart';
@@ -22,12 +23,19 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _getProjectList();
   }
 
+  @observable
   List<ProjectEntity>? projectList;
+  @action
   void _getProjectList() {
     _projectUseCase.getProjectList().listen((event) {
       if (event.isRight) {
         projectList = event.right;
       }
     });
+  }
+
+  void navigateProjectDetail(int projectId) {
+    navigation.navigateToPage(
+        path: NavigationConstant.PROJECT_DETAIL, data: projectId);
   }
 }

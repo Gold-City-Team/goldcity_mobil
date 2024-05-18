@@ -23,7 +23,8 @@ class NavigationRoute {
         normalNavigate(const SplashView(), NavigationConstant.DEFAULT),
       /* PROJECT DETAIL */
       NavigationConstant.PROJECT_DETAIL => normalNavigate(
-          const ProjectDetailView(), NavigationConstant.PROJECT_DETAIL),
+          ProjectDetailView(projectId: args.arguments as int),
+          NavigationConstant.PROJECT_DETAIL),
       /* STORY */
       NavigationConstant.STORY =>
         normalNavigate(const StoryView(), NavigationConstant.STORY),
@@ -39,7 +40,8 @@ class NavigationRoute {
       /* GALLERY */
       NavigationConstant.GALLERY => normalNavigate(
           GalleryView(
-            type: args.arguments as GALLERY_TYPE,
+            type: (args.arguments! as List)[0] as GALLERY_TYPE,
+            projectDetailId: (args.arguments! as List)[1] as int,
           ),
           NavigationConstant.GALLERY),
       /* 404 PAGE */

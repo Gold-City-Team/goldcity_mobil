@@ -17,7 +17,7 @@ class ProjectDetailViewModel = _ProjectDetailViewModelBase
 
 abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   late ProjectUseCase _projectUseCase;
-
+  int projectId = 0;
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
@@ -33,7 +33,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> getProjectDetail() async {
-    var result = _projectUseCase.getDetail(2);
+    var result = _projectUseCase.getDetail(projectId);
     result.listen((event) {
       if (event.isRight) projectEntity = event.right;
     });
@@ -44,11 +44,11 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
       case PROJECT_BUTTON_TYPE.INTERIOR_GALLERY:
         navigation.navigateToPage(
             path: NavigationConstant.GALLERY,
-            data: GALLERY_TYPE.INTERIOR_GALLERY);
+            data: [GALLERY_TYPE.INTERIOR_GALLERY, projectEntity!.detail.id]);
       case PROJECT_BUTTON_TYPE.OUTDOOR_GALLERY:
         navigation.navigateToPage(
             path: NavigationConstant.GALLERY,
-            data: GALLERY_TYPE.OUTDOOR_GALLERY);
+            data: [GALLERY_TYPE.OUTDOOR_GALLERY, projectEntity!.detail.id]);
       case PROJECT_BUTTON_TYPE.AWARD:
         null;
       case PROJECT_BUTTON_TYPE.POSSIBILITY:
