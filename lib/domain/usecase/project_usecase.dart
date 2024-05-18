@@ -11,6 +11,10 @@ class ProjectUseCase {
     return locator<ProjectRepository>().getDetail(id);
   }
 
+  Stream<Either<BaseErrorModel, List<ProjectEntity>>> getProjectList() {
+    return locator<ProjectRepository>().getProjectList();
+  }
+
   Stream<Either<BaseErrorModel, ProjectGalleryEntity>> projectGallery(
       int projectId, GALLERY_TYPE type) {
     return locator<ProjectRepository>().getGallery(projectId, type);

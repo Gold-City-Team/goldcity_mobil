@@ -35,4 +35,14 @@ class ProjectRepositoryImpl implements ProjectRepository {
       yield Left(result.left);
     }
   }
+
+  @override
+  Stream<Either<BaseErrorModel, List<ProjectEntity>>> getProjectList() async* {
+    var result = await locator<ProjectRemoteDataSource>().getProjectList();
+    if (result.isRight) {
+      yield Right(result.right.map((e) => e.toEntity()).toList());
+    } else {
+      yield Left(result.left);
+    }
+  }
 }

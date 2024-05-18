@@ -5,6 +5,7 @@ import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_e
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ProjectRepository {
+  Stream<Either<BaseErrorModel, List<ProjectEntity>>> getProjectList();
   Stream<Either<BaseErrorModel, ProjectEntity>> getDetail(int id);
   Stream<Either<BaseErrorModel, ProjectGalleryEntity>> getGallery(
       int projectId, GALLERY_TYPE type);

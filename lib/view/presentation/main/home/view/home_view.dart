@@ -11,6 +11,7 @@ class HomeView extends StatelessWidget {
       viewModel: HomeViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.init();
       },
       onPageBuilder: (BuildContext context, HomeViewModel value) => Scaffold(
         body: SafeArea(

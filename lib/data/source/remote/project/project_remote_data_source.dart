@@ -12,6 +12,7 @@ abstract class ProjectRemoteDataSource {
   Future<Either<BaseErrorModel, ProjectDto>> getDetail(int id);
   Future<Either<BaseErrorModel, ProjectGalleryDto>> getGallery(
       int projectId, GALLERY_TYPE type);
+  Future<Either<BaseErrorModel, List<ProjectDto>>> getProjectList();
 }
 
 class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
@@ -45,6 +46,20 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
       };
 
       return Right(ProjectGalleryDto.fromJson(result.data ?? {}));
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, List<ProjectDto>>> getProjectList() async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.PROJECT_LIST.rawValue());
+
+      return Right(
+          (result.data as List).map((e) => ProjectDto.fromJson(e)).toList());
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }
