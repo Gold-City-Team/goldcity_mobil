@@ -30,14 +30,13 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     getGallery();
   }
 
+  GALLERY_TYPE? gallery_type;
   @observable
   ProjectGalleryEntity? projectGallery;
 
   @action
   void getGallery() {
-    _projectUseCase
-        .projectGallery(4, GALLERY_TYPE.INTERIOR_GALLERY)
-        .listen((event) {
+    _projectUseCase.projectGallery(4, gallery_type!).listen((event) {
       if (event.isRight) {
         projectGallery = event.right;
       }

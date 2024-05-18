@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/project/project_button/project_button_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
@@ -41,10 +42,13 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   void projectButtonClick(PROJECT_BUTTON_TYPE type) {
     switch (type) {
       case PROJECT_BUTTON_TYPE.INTERIOR_GALLERY:
-        null;
+        navigation.navigateToPage(
+            path: NavigationConstant.GALLERY,
+            data: GALLERY_TYPE.INTERIOR_GALLERY);
       case PROJECT_BUTTON_TYPE.OUTDOOR_GALLERY:
-        navigation.navigateToPage(path: NavigationConstant.GALLERY);
-
+        navigation.navigateToPage(
+            path: NavigationConstant.GALLERY,
+            data: GALLERY_TYPE.OUTDOOR_GALLERY);
       case PROJECT_BUTTON_TYPE.AWARD:
         null;
       case PROJECT_BUTTON_TYPE.POSSIBILITY:

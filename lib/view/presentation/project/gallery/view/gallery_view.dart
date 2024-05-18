@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
 import 'package:goldcity/domain/entity/project/project_gallery_media_entity/project_gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -14,7 +15,8 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class GalleryView extends StatelessWidget {
-  const GalleryView({super.key});
+  final GALLERY_TYPE type;
+  const GalleryView({required this.type, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class GalleryView extends StatelessWidget {
       viewModel: GalleryViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.gallery_type = type;
         model.init();
       },
       onPageBuilder: (BuildContext context, GalleryViewModel value) => Scaffold(

@@ -1,6 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/gold_map/view/gold_map_view.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
@@ -32,8 +33,11 @@ class NavigationRoute {
       NavigationConstant.LEAD_APPLY =>
         normalNavigate(const LeadApplyView(), NavigationConstant.LEAD_APPLY),
       /* GALLERY */
-      NavigationConstant.GALLERY =>
-        normalNavigate(const GalleryView(), NavigationConstant.GALLERY),
+      NavigationConstant.GALLERY => normalNavigate(
+          GalleryView(
+            type: args.arguments as GALLERY_TYPE,
+          ),
+          NavigationConstant.GALLERY),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())
       /* */
