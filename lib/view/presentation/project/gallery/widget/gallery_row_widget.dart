@@ -13,12 +13,16 @@ import 'package:goldcity/view/widget/text/label_text.dart';
 
 class GalleryRowWidget extends StatelessWidget {
   final ProjectGalleryMediaEntity mediaEntity;
-  const GalleryRowWidget({super.key, required this.mediaEntity});
+  final bool isSelected;
+  const GalleryRowWidget(
+      {super.key, required this.isSelected, required this.mediaEntity});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+      color: isSelected
+          ? context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR)
+          : context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
       height: 100,
       child: Row(
         children: [

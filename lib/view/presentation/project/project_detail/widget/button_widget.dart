@@ -19,9 +19,12 @@ class ButtonWidget extends StatelessWidget {
       ),
       width: context.sWidth / 2 - 20,
       child: Center(
-          child: LabelText(
-        text: text,
-        fontSize: FONT_SIZE.HEADLINE_LARGE,
+          child: Padding(
+        padding: context.midSpacer,
+        child: LabelText(
+          text: text,
+          fontSize: FONT_SIZE.HEADLINE_LARGE,
+        ),
       )),
     );
   }

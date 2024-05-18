@@ -39,12 +39,42 @@ class GalleryView extends StatelessWidget {
     if (viewModel.projectGallery!.projectGallery[viewModel.selectedMediaIndex]
             .media.mediaType ==
         MEDIA_TYPE.VIDEO) {
-      return VideoFrameView(
-        key: const Key("same"),
-        isFullScreen: true,
-        url: viewModel.projectGallery!
-            .projectGallery[viewModel.selectedMediaIndex].media.url,
-        fullScreen: () => viewModel.toggleFullScreen(),
+      return Stack(
+        children: [
+          VideoFrameView(
+            key: const Key("same"),
+            isFullScreen: true,
+            url: viewModel.projectGallery!
+                .projectGallery[viewModel.selectedMediaIndex].media.url,
+            fullScreen: () => viewModel.toggleFullScreen(),
+          ),
+          Positioned(
+            right: 10,
+            top: 10,
+            child: SafeArea(
+              child: GestureDetector(
+                onTap: () => viewModel.toggleFullScreen(),
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: viewModel.viewModelContext
+                          .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
+                  child: SizedBox(
+                    child: Icon(
+                      Icons.fullscreen,
+                      size: 28,
+                      color: viewModel.viewModelContext
+                          .toColor(APPLICATION_COLOR.GOLD),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       );
     }
     return GestureDetector(
@@ -189,11 +219,22 @@ class GalleryView extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: viewModel.projectGallery!.projectGallery.length,
                     itemBuilder: (context, index) {
+                      if (viewModel.selectedMediaIndex == index) {
+                        return Padding(
+                          padding: context.smallSpacerOnlyBottom,
+                          child: GalleryRowWidget(
+                            isSelected: true,
+                            mediaEntity:
+                                viewModel.projectGallery!.projectGallery[index],
+                          ),
+                        );
+                      }
                       return GestureDetector(
                         onTap: () => viewModel.selectedMediaIndexChange(index),
                         child: Padding(
                           padding: context.smallSpacerOnlyBottom,
                           child: GalleryRowWidget(
+                            isSelected: false,
                             mediaEntity:
                                 viewModel.projectGallery!.projectGallery[index],
                           ),
