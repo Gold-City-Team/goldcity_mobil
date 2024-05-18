@@ -5,6 +5,7 @@ import 'package:goldcity/data/dto/receive/project/project_gallery/project_galler
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/gold_map/view/gold_map_view.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
+import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
 import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
 import 'package:goldcity/view/presentation/project/story/view/story_view.dart';
@@ -32,6 +33,9 @@ class NavigationRoute {
       /* LEAD APPLY */
       NavigationConstant.LEAD_APPLY =>
         normalNavigate(const LeadApplyView(), NavigationConstant.LEAD_APPLY),
+      /* MAIN */
+      NavigationConstant.MAIN =>
+        normalNavigate(const MainView(), NavigationConstant.MAIN),
       /* GALLERY */
       NavigationConstant.GALLERY => normalNavigate(
           GalleryView(

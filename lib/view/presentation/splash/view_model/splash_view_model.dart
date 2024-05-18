@@ -14,7 +14,12 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
-  void init() {}
+  void init() {
+    Future.delayed(
+      const Duration(seconds: 1),
+      () => navigation.navigateToPage(path: NavigationConstant.MAIN),
+    );
+  }
 
   void navigateProjectDetail() {
     navigation.navigateToPage(path: NavigationConstant.PROJECT_DETAIL);

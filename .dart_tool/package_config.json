@@ -548,6 +548,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "salomon_bottom_bar",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/salomon_bottom_bar-3.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sanitize_html",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/sanitize_html-2.1.0",
       "packageUri": "lib/",
@@ -788,7 +794,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-05-10T08:35:34.392563Z",
+  "generated": "2024-05-18T08:53:55.787930Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }
