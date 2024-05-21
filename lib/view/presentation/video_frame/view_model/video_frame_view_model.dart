@@ -18,13 +18,15 @@ abstract class _VideoFrameViewModelBase with Store, BaseViewModel {
   @action
   @override
   void init() {
-    isPlaying = controller.value.isPlaying;
+    Future.delayed(const Duration(seconds: 1), () {
+      isPlaying = controller.value.isPlaying;
+    });
     timer?.cancel();
     positionUpdater();
   }
 
   @observable
-  bool isPlaying = false;
+  bool isPlaying = true;
 
   @action
   void toggleVideo() {

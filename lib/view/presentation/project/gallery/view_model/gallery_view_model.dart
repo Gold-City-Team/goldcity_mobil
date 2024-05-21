@@ -56,7 +56,9 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
 
   @action
   void toggleBottomListVisible() {
-    bottomListVisible = !bottomListVisible;
+    if (isFullScreen) {
+      bottomListVisible = !bottomListVisible;
+    }
   }
 
   @observable

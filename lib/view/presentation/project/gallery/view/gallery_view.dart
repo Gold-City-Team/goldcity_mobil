@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -45,176 +44,207 @@ class GalleryView extends StatelessWidget {
   }
 
   Widget mainMediaPart(GalleryViewModel viewModel, BuildContext context) {
-    if (viewModel.projectGallery!.projectGallery[viewModel.selectedMediaIndex]
-            .media.mediaType ==
-        MEDIA_TYPE.VIDEO) {
-      return Stack(
-        children: [
-          VideoFrameView(
-            key: const Key("same"),
-            isFullScreen: !viewModel.bottomListVisible && true,
-            url: viewModel.projectGallery!
-                .projectGallery[viewModel.selectedMediaIndex].media.url,
-            fullScreen: () => viewModel.toggleFullScreen(),
-          ),
-          viewModel.isFullScreen
-              ? Positioned(
-                  left: 10,
-                  top: 10,
-                  child: SafeArea(
+    return Stack(
+      children: [
+        Column(
+          children: [
+            viewModel
+                        .projectGallery!
+                        .projectGallery[viewModel.selectedMediaIndex]
+                        .media
+                        .mediaType ==
+                    MEDIA_TYPE.VIDEO
+                ? Expanded(
+                    child: VideoFrameView(
+                      key: const Key("same"),
+                      isFullScreen: true,
+                      url: viewModel
+                          .projectGallery!
+                          .projectGallery[viewModel.selectedMediaIndex]
+                          .media
+                          .url,
+                      fullScreen: () => viewModel.toggleFullScreen(),
+                    ),
+                  )
+                : Expanded(
                     child: GestureDetector(
                       onTap: () => viewModel.toggleBottomListVisible(),
                       child: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: viewModel.viewModelContext
-                                .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20))),
-                        child: SizedBox(
-                          child: Icon(
-                            viewModel.bottomListVisible
-                                ? Icons.arrow_drop_up
-                                : Icons.arrow_drop_down,
-                            size: 28,
-                            color: viewModel.viewModelContext
-                                .toColor(APPLICATION_COLOR.GOLD),
-                          ),
+                        width: context.sWidth,
+                        color: context.toColor(APPLICATION_COLOR.DARK),
+                        child: NormalNetworkImage(
+                          source: viewModel
+                              .projectGallery!
+                              .projectGallery[viewModel.selectedMediaIndex]
+                              .media
+                              .url,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
                   ),
-                )
-              : const SizedBox.shrink(),
-          viewModel.bottomListVisible && viewModel.isFullScreen
-              ? SafeArea(
+            AnimatedOpacity(
+              duration: Duration.zero,
+              opacity: viewModel.bottomListVisible ? 1 : 0,
+              child: Container(
+                padding: viewModel.bottomListVisible
+                    ? context.midSpacerOnlyTop
+                    : EdgeInsets.zero,
+                color: context.toColor(APPLICATION_COLOR.DARK),
+                child: SafeArea(
+                  top: false,
+                  bottom: viewModel.bottomListVisible,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(
-                        height: 100,
+                        height: viewModel.bottomListVisible ? 125 : 0,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
+                          padding: EdgeInsets.zero,
                           itemCount:
                               viewModel.projectGallery!.projectGallery.length,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                                onTap: () =>
-                                    viewModel.selectedMediaIndexChange(index),
+                                onTap: () => !viewModel.bottomListVisible
+                                    ? null
+                                    : viewModel.selectedMediaIndexChange(index),
                                 child: Padding(
                                   padding: context.midSpacerOnlyLeft,
-                                  child: mediaPart(viewModel
-                                      .projectGallery!.projectGallery[index]),
+                                  child: mediaPart(
+                                      viewModel.projectGallery!
+                                          .projectGallery[index],
+                                      index == viewModel.selectedMediaIndex,
+                                      context),
                                 ));
                           },
                         ),
                       ),
                     ],
                   ),
-                )
-              : const SizedBox.shrink()
-        ],
-      );
-    }
-    debugPrint(
-        "test: ${viewModel.projectGallery!.projectGallery[viewModel.selectedMediaIndex].media.url}");
-    return GestureDetector(
-      onTap: () => viewModel.toggleBottomListVisible(),
-      child: Center(
-        child: Stack(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    color: context.toColor(APPLICATION_COLOR.DARK),
-                    child: NormalNetworkImage(
-                      source: viewModel
-                          .projectGallery!
-                          .projectGallery[viewModel.selectedMediaIndex]
-                          .media
-                          .url,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              right: 10,
-              top: 10,
-              child: SafeArea(
-                child: GestureDetector(
-                  onTap: () => viewModel.toggleFullScreen(),
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        color: viewModel.viewModelContext
-                            .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: SizedBox(
-                      child: Icon(
-                        Icons.fullscreen,
-                        size: 28,
-                        color: viewModel.viewModelContext
-                            .toColor(APPLICATION_COLOR.GOLD),
-                      ),
-                    ),
-                  ),
                 ),
               ),
-            ),
-            viewModel.bottomListVisible && viewModel.isFullScreen
-                ? SafeArea(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          height: 100,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount:
-                                viewModel.projectGallery!.projectGallery.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                  onTap: () =>
-                                      viewModel.selectedMediaIndexChange(index),
-                                  child: Padding(
-                                    padding: context.midSpacerOnlyLeft,
-                                    child: mediaPart(viewModel
-                                        .projectGallery!.projectGallery[index]),
-                                  ));
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox.shrink()
+            )
           ],
         ),
-      ),
+        viewModel.isFullScreen ||
+                viewModel
+                        .projectGallery!
+                        .projectGallery[viewModel.selectedMediaIndex]
+                        .media
+                        .mediaType !=
+                    MEDIA_TYPE.VIDEO
+            ? viewModel
+                        .projectGallery!
+                        .projectGallery[viewModel.selectedMediaIndex]
+                        .media
+                        .mediaType ==
+                    MEDIA_TYPE.VIDEO
+                ? Positioned(
+                    left: 10,
+                    top: 10,
+                    child: SafeArea(
+                      child: GestureDetector(
+                        onTap: () => viewModel.toggleBottomListVisible(),
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: viewModel.viewModelContext
+                                  .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
+                          child: SizedBox(
+                            child: Icon(
+                              viewModel.bottomListVisible
+                                  ? Icons.arrow_drop_up
+                                  : Icons.arrow_drop_down,
+                              size: 28,
+                              color: viewModel.viewModelContext
+                                  .toColor(APPLICATION_COLOR.GOLD),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Positioned(
+                    right: 10,
+                    top: 10,
+                    child: SafeArea(
+                      child: GestureDetector(
+                        onTap: () => viewModel.toggleFullScreen(),
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: viewModel.viewModelContext
+                                  .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
+                          child: SizedBox(
+                            child: Icon(
+                              Icons.fullscreen,
+                              size: 28,
+                              color: viewModel.viewModelContext
+                                  .toColor(APPLICATION_COLOR.GOLD),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+            : const SizedBox.shrink(),
+      ],
     );
   }
 
-  Widget mediaPart(ProjectGalleryMediaEntity mediaEntity) {
+  Widget mediaPart(ProjectGalleryMediaEntity mediaEntity, bool isSelected,
+      BuildContext context) {
     if (mediaEntity.media.mediaType == MEDIA_TYPE.VIDEO) {
-      return SizedBox(
-        width: 100,
-        height: 100,
-        child: VideoFrameView(
-          fullScreen: () => null,
-          url: mediaEntity.media.url,
-        ),
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 2,
+                color: context.toColor(isSelected
+                    ? APPLICATION_COLOR.GOLD
+                    : APPLICATION_COLOR.LIGHT),
+              ),
+            ),
+            width: 175,
+            height: 125,
+            child: VideoFrameView(
+              fullScreen: () => null,
+              url: mediaEntity.media.url,
+            ),
+          ),
+          SizedBox(
+            height: 50,
+            child: CircleAvatar(
+              backgroundColor: context.toColor(APPLICATION_COLOR.LIGHT),
+              maxRadius: 28,
+              child: Icon(
+                color: context.toColor(APPLICATION_COLOR.GOLD),
+                Icons.play_arrow,
+              ),
+            ),
+          )
+        ],
       );
     }
-    return SizedBox(
-      width: 100,
-      height: 100,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 2,
+          color: context.toColor(
+              isSelected ? APPLICATION_COLOR.GOLD : APPLICATION_COLOR.LIGHT),
+        ),
+      ),
+      width: 175,
+      height: 125,
       child: NormalNetworkImage(
         source: mediaEntity.media.url,
         fit: BoxFit.cover,

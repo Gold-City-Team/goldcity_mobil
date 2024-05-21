@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
@@ -35,23 +36,26 @@ class _VideoFrameViewState extends State<VideoFrameView>
 
     _controller = VideoPlayerController.networkUrl(Uri.parse(widget.url));
     _controller.setLooping(true);
-    _controller.initialize();
+    _controller.initialize().then((value) => {
+          _controller.addListener(() {
+            setState(() {
+              if (!_controller.value.isInitialized) {
+                setState(() {});
+              }
+            });
+          })
+        });
+    if (widget.isFullScreen == true) {
+      _controller.play();
+    }
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    setState(() {});
-  }
+  void didChangeAppLifecycleState(AppLifecycleState state) {}
 
   @override
   void dispose() {
     _controller.dispose();
-    if (widget.isFullScreen) {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-    }
     super.dispose();
   }
 
@@ -68,7 +72,12 @@ class _VideoFrameViewState extends State<VideoFrameView>
           Scaffold(
         body: Stack(
           children: [
-            VideoPlayer(_controller),
+            Center(
+              child: AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              ),
+            ),
             widget.isFullScreen
                 ? Observer(
                     builder: (context) => AnimatedOpacity(
@@ -125,24 +134,34 @@ class _VideoFrameViewState extends State<VideoFrameView>
                 : const SizedBox.shrink(),
             widget.isFullScreen
                 ? Observer(builder: (context) {
-                    return Positioned(
-                      right: 20,
-                      top: 20,
-                      child: AnimatedOpacity(
-                        duration: const Duration(milliseconds: 100),
-                        opacity: value.isOpacityFull ? 1 : 0,
-                        child: GestureDetector(
-                          onTap: () => widget.fullScreen(),
-                          child: SizedBox(
-                            child: Icon(
-                              Icons.fullscreen,
-                              size: 28,
-                              color: context.toColor(APPLICATION_COLOR.GOLD),
+                    return value.isOpacityFull
+                        ? Positioned(
+                            right: 10,
+                            top: 10,
+                            child: SafeArea(
+                              child: GestureDetector(
+                                onTap: () => widget.fullScreen(),
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      color: context.toColor(
+                                          APPLICATION_COLOR.OPPOSITE_COLOR),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: SizedBox(
+                                    child: Icon(
+                                      Icons.fullscreen,
+                                      size: 28,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    );
+                          )
+                        : const SizedBox.shrink();
                   })
                 : const SizedBox.shrink()
           ],
