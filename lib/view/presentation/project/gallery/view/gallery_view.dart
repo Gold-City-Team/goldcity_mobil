@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
@@ -14,7 +15,7 @@ import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dar
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
-class GalleryView extends StatelessWidget {
+class GalleryView extends StatefulWidget {
   final GALLERY_TYPE type;
   final int projectDetailId;
   const GalleryView({
@@ -24,12 +25,26 @@ class GalleryView extends StatelessWidget {
   });
 
   @override
+  State<GalleryView> createState() => _GalleryViewState();
+}
+
+class _GalleryViewState extends State<GalleryView> {
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BaseView<GalleryViewModel>(
       viewModel: GalleryViewModel(),
       onModelReady: (model) {
         model.setContext(context);
-        model.gallery_type = type;
+        model.gallery_type = widget.type;
         model.init();
       },
       onPageBuilder: (BuildContext context, GalleryViewModel value) => Scaffold(
