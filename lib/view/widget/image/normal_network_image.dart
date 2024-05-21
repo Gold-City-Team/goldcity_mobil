@@ -8,6 +8,9 @@ class NormalNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(source, cacheHeight: 500, cacheWidth: 500, fit: fit);
+    return Image.network(
+      source,
+      fit: fit,
+    );
   }
 }

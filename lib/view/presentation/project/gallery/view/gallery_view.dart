@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -37,13 +38,13 @@ class GalleryView extends StatelessWidget {
           if (value.projectGallery == null) {
             return const SizedBox.shrink();
           }
-          return body(value);
+          return body(value, context);
         }),
       ),
     );
   }
 
-  Widget mainMediaPart(GalleryViewModel viewModel) {
+  Widget mainMediaPart(GalleryViewModel viewModel, BuildContext context) {
     if (viewModel.projectGallery!.projectGallery[viewModel.selectedMediaIndex]
             .media.mediaType ==
         MEDIA_TYPE.VIDEO) {
@@ -116,6 +117,8 @@ class GalleryView extends StatelessWidget {
         ],
       );
     }
+    debugPrint(
+        "test: ${viewModel.projectGallery!.projectGallery[viewModel.selectedMediaIndex].media.url}");
     return GestureDetector(
       onTap: () => viewModel.toggleBottomListVisible(),
       child: Center(
@@ -125,10 +128,16 @@ class GalleryView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
-                  child: NormalNetworkImage(
-                    source: viewModel.projectGallery!
-                        .projectGallery[viewModel.selectedMediaIndex].media.url,
-                    fit: BoxFit.contain,
+                  child: Container(
+                    color: context.toColor(APPLICATION_COLOR.DARK),
+                    child: NormalNetworkImage(
+                      source: viewModel
+                          .projectGallery!
+                          .projectGallery[viewModel.selectedMediaIndex]
+                          .media
+                          .url,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ],
@@ -208,12 +217,12 @@ class GalleryView extends StatelessWidget {
       height: 100,
       child: NormalNetworkImage(
         source: mediaEntity.media.url,
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
       ),
     );
   }
 
-  Widget body(GalleryViewModel viewModel) {
+  Widget body(GalleryViewModel viewModel, BuildContext context) {
     return SafeArea(
       bottom: !viewModel.isFullScreen,
       top: !viewModel.isFullScreen,
@@ -222,7 +231,7 @@ class GalleryView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Flexible(flex: 2, child: mainMediaPart(viewModel)),
+          Flexible(flex: 2, child: mainMediaPart(viewModel, context)),
           viewModel.isFullScreen != true
               ? Gap(viewModel.viewModelContext.midSpacerSize)
               : const SizedBox.shrink(),

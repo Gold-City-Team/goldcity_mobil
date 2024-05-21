@@ -34,6 +34,11 @@ class MainView extends StatelessWidget {
                     selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
                   ),
                   SalomonBottomBarItem(
+                    icon: const Icon(Icons.menu_book_sharp),
+                    title: const Text("Eğitimler"),
+                    selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
+                  ),
+                  SalomonBottomBarItem(
                     icon: const Icon(Icons.settings),
                     title: const Text("ayarlar"),
                     selectedColor: context.toColor(APPLICATION_COLOR.GOLD),

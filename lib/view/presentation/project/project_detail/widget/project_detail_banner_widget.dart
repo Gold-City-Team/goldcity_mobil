@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
@@ -16,9 +18,11 @@ class ProjectDetailBannerWidget extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
+          width: context.sWidth,
           height: context.sWidth,
           child: NormalNetworkImage(
             source: projectEntity.detail.media.url,
+            fit: BoxFit.cover,
           ),
         ),
         Container(
