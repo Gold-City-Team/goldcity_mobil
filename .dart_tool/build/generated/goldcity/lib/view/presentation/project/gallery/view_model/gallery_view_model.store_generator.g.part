@@ -21,6 +21,22 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
     });
   }
 
+  late final _$categoryIndexAtom =
+      Atom(name: '_GalleryViewModelBase.categoryIndex', context: context);
+
+  @override
+  String? get categoryIndex {
+    _$categoryIndexAtom.reportRead();
+    return super.categoryIndex;
+  }
+
+  @override
+  set categoryIndex(String? value) {
+    _$categoryIndexAtom.reportWrite(value, super.categoryIndex, () {
+      super.categoryIndex = value;
+    });
+  }
+
   late final _$selectedMediaIndexAtom =
       Atom(name: '_GalleryViewModelBase.selectedMediaIndex', context: context);
 
@@ -84,6 +100,17 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
   }
 
   @override
+  void changeCategory(String value) {
+    final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
+        name: '_GalleryViewModelBase.changeCategory');
+    try {
+      return super.changeCategory(value);
+    } finally {
+      _$_GalleryViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void selectedMediaIndexChange(int newIndex) {
     final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
         name: '_GalleryViewModelBase.selectedMediaIndexChange');
@@ -120,6 +147,7 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
   String toString() {
     return '''
 projectGallery: ${projectGallery},
+categoryIndex: ${categoryIndex},
 selectedMediaIndex: ${selectedMediaIndex},
 bottomListVisible: ${bottomListVisible},
 isFullScreen: ${isFullScreen}

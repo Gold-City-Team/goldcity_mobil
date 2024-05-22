@@ -10,12 +10,16 @@ MediaDto _$MediaDtoFromJson(Map<String, dynamic> json) => MediaDto(
       id: json['id'] as int?,
       url: json['url'] as String?,
       mediaType: $enumDecodeNullable(_$MEDIA_TYPEEnumMap, json['mediaType']),
+      metaData: json['metaData'] == null
+          ? null
+          : MediaMetaDataDto.fromJson(json['metaData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MediaDtoToJson(MediaDto instance) => <String, dynamic>{
       'id': instance.id,
       'url': instance.url,
       'mediaType': _$MEDIA_TYPEEnumMap[instance.mediaType],
+      'metaData': instance.metaData,
     };
 
 const _$MEDIA_TYPEEnumMap = {
@@ -23,3 +27,13 @@ const _$MEDIA_TYPEEnumMap = {
   MEDIA_TYPE.VIDEO: 'VIDEO',
   MEDIA_TYPE.SVG: 'SVG',
 };
+
+MediaMetaDataDto _$MediaMetaDataDtoFromJson(Map<String, dynamic> json) =>
+    MediaMetaDataDto(
+      ThumbnailUrl: json['ThumbnailUrl'] as String?,
+    );
+
+Map<String, dynamic> _$MediaMetaDataDtoToJson(MediaMetaDataDto instance) =>
+    <String, dynamic>{
+      'ThumbnailUrl': instance.ThumbnailUrl,
+    };

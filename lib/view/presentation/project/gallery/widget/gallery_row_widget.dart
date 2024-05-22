@@ -1,13 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/domain/entity/project/project_gallery_media_entity/project_gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
-import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
@@ -23,10 +20,10 @@ class GalleryRowWidget extends StatelessWidget {
       color: isSelected
           ? context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR)
           : context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-      height: 100,
+      height: 150,
       child: Row(
         children: [
-          Padding(padding: context.midSpacer, child: mediaPart()),
+          Padding(padding: context.midSpacer, child: mediaPart(context)),
           Gap(context.midSpacerSize),
           Expanded(
             child: Column(
@@ -48,19 +45,35 @@ class GalleryRowWidget extends StatelessWidget {
     );
   }
 
-  Widget mediaPart() {
+  Widget mediaPart(BuildContext context) {
     if (mediaEntity.media.mediaType == MEDIA_TYPE.VIDEO) {
-      return SizedBox(
-        width: 100,
-        height: 100,
-        child: VideoFrameView(
-          fullScreen: () => null,
-          url: mediaEntity.media.url,
-        ),
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            width: 177,
+            height: 100,
+            child: NormalNetworkImage(
+              source: mediaEntity.media.mediaMetaData.thumbnail,
+              fit: BoxFit.fill,
+            ),
+          ),
+          SizedBox(
+            height: 50,
+            child: CircleAvatar(
+              backgroundColor: context.toColor(APPLICATION_COLOR.LIGHT),
+              maxRadius: 28,
+              child: Icon(
+                color: context.toColor(APPLICATION_COLOR.GOLD),
+                Icons.play_arrow,
+              ),
+            ),
+          )
+        ],
       );
     }
     return SizedBox(
-      width: 100,
+      width: 177,
       height: 100,
       child: NormalNetworkImage(
         source: mediaEntity.media.url,

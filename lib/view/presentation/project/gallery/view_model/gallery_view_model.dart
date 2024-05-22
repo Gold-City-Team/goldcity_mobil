@@ -1,8 +1,9 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
 import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
@@ -21,11 +22,6 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-
     _projectUseCase = locator<ProjectUseCase>();
     getGallery();
   }
@@ -39,8 +35,28 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     _projectUseCase.projectGallery(4, gallery_type!).listen((event) {
       if (event.isRight) {
         projectGallery = event.right;
+        categoryIndex =
+            projectGallery!.projectGallery.first.media.mediaType.toHumanText();
       }
     });
+  }
+
+  Set<String> categoryList() {
+    List<String> values = projectGallery!.projectGallery
+        .map((e) => e.media.mediaType.toHumanText())
+        .toList();
+    return values.toSet();
+  }
+
+  @observable
+  String? categoryIndex;
+
+  @action
+  void changeCategory(String value) {
+    if (value != categoryIndex) {
+      selectedMediaIndex = 0;
+      categoryIndex = value;
+    }
   }
 
   @observable
