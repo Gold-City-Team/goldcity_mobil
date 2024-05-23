@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
 import 'package:goldcity/data/source/local/project/project_local_data_source.dart';
 import 'package:goldcity/data/source/remote/project/project_remote_data_source.dart';
@@ -41,7 +40,6 @@ class ProjectRepositoryImpl implements ProjectRepository {
   Stream<Either<BaseErrorModel, List<ProjectEntity>>> getProjectList() async* {
     var localResult = locator<ProjectLocalDataSource>().getProjectList();
     if (localResult.isRight) {
-      debugPrint("test");
       yield Right(localResult.right.map((e) => e.toEntity()).toList());
     }
     var result = await locator<ProjectRemoteDataSource>().getProjectList();

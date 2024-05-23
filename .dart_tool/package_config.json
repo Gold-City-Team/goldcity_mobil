@@ -200,6 +200,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "flutter_animate",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/flutter_animate-4.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
@@ -220,6 +226,12 @@
     {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "flutter_shaders",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/flutter_shaders-0.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -794,7 +806,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-05-20T09:56:12.167943Z",
+  "generated": "2024-05-23T07:43:46.197538Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }

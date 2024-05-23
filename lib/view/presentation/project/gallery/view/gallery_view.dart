@@ -65,15 +65,19 @@ class _GalleryViewState extends State<GalleryView> {
                 return const SizedBox.shrink();
               }
               return Expanded(
-                child: MainRowWidget(
-                    mediaEntity: viewModel.projectGallery!.projectGallery
-                        .where((e) =>
-                            e.media.mediaType.toHumanText() ==
-                            viewModel.categoryIndex)
-                        .toList()[viewModel.selectedMediaIndex]),
+                child: Container(
+                  color: Colors.red,
+                  child: MainRowWidget(
+                      mediaEntity: viewModel.projectGallery!.projectGallery
+                          .where((e) =>
+                              e.media.mediaType.toHumanText() ==
+                              viewModel.categoryIndex)
+                          .toList()[viewModel.selectedMediaIndex]),
+                ),
               );
             },
           ),
+          Gap(context.midSpacerSize),
           Observer(
             builder: (context) {
               if (viewModel.projectGallery == null) {

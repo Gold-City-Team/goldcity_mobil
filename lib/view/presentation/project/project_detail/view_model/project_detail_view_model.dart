@@ -25,7 +25,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   void init() {
     _projectUseCase = locator<ProjectUseCase>();
 
-    getProjectDetail();
+    // getProjectDetail();
   }
 
   @observable

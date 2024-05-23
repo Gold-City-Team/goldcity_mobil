@@ -6,10 +6,11 @@ ProjectFeaturesDto _$ProjectFeaturesDtoFromJson(Map<String, dynamic> json) =>
     ProjectFeaturesDto(
       id: json['id'] as int?,
       title: json['title'] as String?,
+      value: json['value'] as String?,
       mediaItem: json['mediaItem'] == null
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
-    )..value = json['value'] as String?;
+    );
 
 Map<String, dynamic> _$ProjectFeaturesDtoToJson(ProjectFeaturesDto instance) =>
     <String, dynamic>{

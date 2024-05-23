@@ -10,7 +10,7 @@ class ProjectFeaturesDto {
   String? title;
   String? value;
   MediaDto? mediaItem;
-  ProjectFeaturesDto({this.id, this.title, this.mediaItem});
+  ProjectFeaturesDto({this.id, this.title, this.value, this.mediaItem});
   factory ProjectFeaturesDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectFeaturesDtoFromJson(json);
 

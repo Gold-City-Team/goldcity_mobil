@@ -17,10 +17,9 @@ class MainRowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        mediaPart(mediaEntity.media),
+        mediaPart(mediaEntity.media, context),
         Gap(context.midSpacerSize),
         Padding(
           padding: context.midSpacerOnlyLeft,
@@ -37,17 +36,16 @@ class MainRowWidget extends StatelessWidget {
     );
   }
 
-  Widget mediaPart(MediaEntity media) {
+  Widget mediaPart(MediaEntity media, BuildContext context) {
     if (media.mediaType == MEDIA_TYPE.VIDEO) {
       return Expanded(
           child: VideoFrameView(fullScreen: () => null, url: media.url));
     }
-    return Expanded(
-      child: Center(
-        child: NormalNetworkImage(
-          source: media.url,
-          fit: BoxFit.contain,
-        ),
+    return SizedBox(
+      width: context.sWidth,
+      child: NormalNetworkImage(
+        source: media.url,
+        fit: BoxFit.contain,
       ),
     );
   }
