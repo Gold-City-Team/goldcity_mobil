@@ -130,9 +130,11 @@ class _GalleryViewState extends State<GalleryView> {
               isSelected ? APPLICATION_COLOR.GOLD : APPLICATION_COLOR.LIGHT),
         ),
       ),
-      child: NormalNetworkImage(
-        source: mediaEntity.media.url,
-        fit: BoxFit.contain,
+      child: Center(
+        child: NormalNetworkImage(
+          source: mediaEntity.media.url,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }
