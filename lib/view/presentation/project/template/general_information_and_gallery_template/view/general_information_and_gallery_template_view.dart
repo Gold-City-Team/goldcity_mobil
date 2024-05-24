@@ -67,6 +67,7 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
             ),
           ],
         ).animate().fade(),
+        Gap(context.largeSpacerSize),
         Padding(
           padding: context.largeSpacerOnlyHorizontal,
           child: const LabelText(
