@@ -8,6 +8,7 @@ import 'package:goldcity/domain/entity/project/project_features/project_features
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class FeaturesWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class FeaturesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
+      width: isTablet() ? 200 : 150,
       child: Padding(
         padding: context.midSpacer,
         child: Row(
@@ -25,8 +26,8 @@ class FeaturesWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 50,
-              width: 50,
+              height: isTablet() ? 50 : 25,
+              width: isTablet() ? 50 : 25,
               child: SvgPicture.network(
                 featuresEntity.media.url,
                 color: context.toColor(APPLICATION_COLOR.GOLD),
@@ -40,9 +41,16 @@ class FeaturesWidget extends StatelessWidget {
                   LabelText(
                     text: featuresEntity.value,
                     textColor: APPLICATION_COLOR.GOLD,
-                    fontSize: FONT_SIZE.HEADLINE_MEDIUM,
+                    fontSize: isTablet()
+                        ? FONT_SIZE.HEADLINE_MEDIUM
+                        : FONT_SIZE.BODY_LARGE,
                   ),
-                  LabelText(text: featuresEntity.title)
+                  LabelText(
+                    text: featuresEntity.title,
+                    fontSize: isTablet()
+                        ? FONT_SIZE.HEADLINE_MEDIUM
+                        : FONT_SIZE.BODY_LARGE,
+                  )
                 ],
               ),
             )

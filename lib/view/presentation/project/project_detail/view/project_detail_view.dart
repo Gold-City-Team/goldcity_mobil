@@ -17,7 +17,7 @@ class ProjectDetailView extends StatelessWidget {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, ProjectDetailViewModel value) =>
-          const Scaffold(
+          Scaffold(
         body: FutureTemplateView(),
         // body: SafeArea(
 
