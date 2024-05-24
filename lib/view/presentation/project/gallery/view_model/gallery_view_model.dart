@@ -23,6 +23,10 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     _projectUseCase = locator<ProjectUseCase>();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     getGallery();
   }
 

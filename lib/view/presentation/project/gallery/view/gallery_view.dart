@@ -12,6 +12,7 @@ import 'package:goldcity/domain/entity/project/project_gallery_media_entity/proj
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/project/gallery/view_model/gallery_view_model.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
@@ -80,39 +81,41 @@ class _GalleryViewState extends State<GalleryView> {
               ),
             ),
           ),
-          Gap(context.largeSpacerSize),
-          Observer(builder: (context) {
-            if (viewModel.selectedMediaIndex == -1) {
-              return const SizedBox.shrink();
-            }
+          isTablet() ? Gap(context.largeSpacerSize) : const SizedBox.shrink(),
+          isTablet()
+              ? Observer(builder: (context) {
+                  if (viewModel.selectedMediaIndex == -1) {
+                    return const SizedBox.shrink();
+                  }
 
-            return SizedBox(
-              height: 150,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.zero,
-                itemCount: viewModel.deneme.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => {
-                      viewModel.selectedMediaIndexChange(index),
-                      carouselController.jumpToPage(index)
-                    },
-                    child: Padding(
-                      padding: context.midSpacerOnlyLeft,
-                      child: mediaPart(
-                          ProjectGalleryMediaDto(
-                                  mediaItem:
-                                      MediaDto(url: viewModel.deneme[index]))
-                              .toEntity(),
-                          viewModel.selectedMediaIndex == index,
-                          context),
+                  return SizedBox(
+                    height: 150,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.zero,
+                      itemCount: viewModel.deneme.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => {
+                            viewModel.selectedMediaIndexChange(index),
+                            carouselController.jumpToPage(index)
+                          },
+                          child: Padding(
+                            padding: context.midSpacerOnlyLeft,
+                            child: mediaPart(
+                                ProjectGalleryMediaDto(
+                                        mediaItem: MediaDto(
+                                            url: viewModel.deneme[index]))
+                                    .toEntity(),
+                                viewModel.selectedMediaIndex == index,
+                                context),
+                          ),
+                        );
+                      },
                     ),
                   );
-                },
-              ),
-            );
-          })
+                })
+              : const SizedBox.shrink()
         ],
       ),
     );

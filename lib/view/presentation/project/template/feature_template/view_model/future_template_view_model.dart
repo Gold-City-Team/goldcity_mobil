@@ -6,6 +6,7 @@ import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:mobx/mobx.dart';
 
 part 'future_template_view_model.g.dart';
@@ -22,10 +23,15 @@ abstract class _FutureTemplateViewModelBase with Store, BaseViewModel {
   void init() {
     _projectUseCase = locator<ProjectUseCase>();
 
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
+    isTablet()
+        ? SystemChrome.setPreferredOrientations([
+            DeviceOrientation.landscapeRight,
+            DeviceOrientation.landscapeLeft,
+          ])
+        : SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
     _getProjectDetail();
   }
 

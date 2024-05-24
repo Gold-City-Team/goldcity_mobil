@@ -8,6 +8,7 @@ import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:mobx/mobx.dart';
 
 part 'general_information_and_gallery_template_view_model.g.dart';
@@ -25,10 +26,15 @@ abstract class _GeneralInformationAndGalleryTemplateViewModelBase
   void init() {
     _projectUseCase = locator<ProjectUseCase>();
 
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
+    isTablet()
+        ? SystemChrome.setPreferredOrientations([
+            DeviceOrientation.landscapeRight,
+            DeviceOrientation.landscapeLeft,
+          ])
+        : SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
     _getProjectDetail();
   }
 
@@ -46,9 +52,14 @@ abstract class _GeneralInformationAndGalleryTemplateViewModelBase
   Future<void> navigateGallery() async {
     await navigation.navigateToPage(
         path: NavigationConstant.GALLERY, data: GALLERY_TYPE.INTERIOR_GALLERY);
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
+    isTablet()
+        ? SystemChrome.setPreferredOrientations([
+            DeviceOrientation.landscapeRight,
+            DeviceOrientation.landscapeLeft,
+          ])
+        : SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
   }
 }
