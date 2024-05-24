@@ -97,20 +97,24 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                   runSpacing: 10,
                   children: [1, 1, 1, 1, 1, 1, 1]
                       .map(
-                        (e) => SizedBox(
-                          width: context.sWidth / 3 - 20,
-                          height: (context.sWidth / 3 - 20) / 1.7777,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Container(
-                              color: context.toColor(APPLICATION_COLOR.DARK),
-                              child: NormalNetworkImage(
-                                fit: BoxFit.cover,
-                                source: deneme[Random().nextInt(deneme.length)],
+                        (e) => GestureDetector(
+                          onTap: () => value.navigateGallery(),
+                          child: SizedBox(
+                            width: context.sWidth / 3 - 20,
+                            height: (context.sWidth / 3 - 20) / 1.7777,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Container(
+                                color: context.toColor(APPLICATION_COLOR.DARK),
+                                child: NormalNetworkImage(
+                                  fit: BoxFit.cover,
+                                  source:
+                                      deneme[Random().nextInt(deneme.length)],
+                                ),
                               ),
                             ),
-                          ),
-                        ).animate().fade(),
+                          ).animate().fade(),
+                        ),
                       )
                       .toList(),
                 )

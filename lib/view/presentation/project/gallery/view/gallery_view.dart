@@ -1,24 +1,25 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_gallery_media/project_gallery_media_dto.dart';
+import 'package:goldcity/domain/entity/project/project_gallery_media_entity/project_gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/gallery/view_model/gallery_view_model.dart';
-import 'package:goldcity/view/presentation/project/gallery/widget/gallery_list_widget.dart';
-import 'package:goldcity/view/presentation/project/gallery/widget/main_row_widget.dart';
-import 'package:goldcity/view/widget/text/label_text.dart';
+import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class GalleryView extends StatefulWidget {
   final GALLERY_TYPE type;
-  final int projectDetailId;
+
   const GalleryView({
     required this.type,
-    required this.projectDetailId,
     super.key,
   });
 
@@ -27,15 +28,6 @@ class GalleryView extends StatefulWidget {
 }
 
 class _GalleryViewState extends State<GalleryView> {
-  @override
-  void dispose() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BaseView<GalleryViewModel>(
@@ -50,86 +42,97 @@ class _GalleryViewState extends State<GalleryView> {
     );
   }
 
+  CarouselController carouselController = CarouselController();
   Widget body(GalleryViewModel viewModel, BuildContext context) {
     return SafeArea(
-      bottom: !viewModel.isFullScreen,
-      top: !viewModel.isFullScreen,
-      left: !viewModel.isFullScreen,
-      right: !viewModel.isFullScreen,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Observer(
-            builder: (context) {
-              if (viewModel.projectGallery == null) {
-                return const SizedBox.shrink();
-              }
-              return Expanded(
-                child: Container(
-                  color: Colors.red,
-                  child: MainRowWidget(
-                      mediaEntity: viewModel.projectGallery!.projectGallery
-                          .where((e) =>
-                              e.media.mediaType.toHumanText() ==
-                              viewModel.categoryIndex)
-                          .toList()[viewModel.selectedMediaIndex]),
-                ),
-              );
-            },
-          ),
-          Gap(context.midSpacerSize),
-          Observer(
-            builder: (context) {
-              if (viewModel.projectGallery == null) {
-                return const SizedBox.shrink();
-              }
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: viewModel
-                    .categoryList()
-                    .map(
-                      (e) => Expanded(
-                        child: GestureDetector(
-                          onTap: () => viewModel.changeCategory(e),
-                          child: Container(
-                            margin: context.midSpacerOnlyHorizontal,
-                            decoration: BoxDecoration(
-                              borderRadius: context.midRadius,
-                              color: context.toColor(
-                                  viewModel.categoryIndex == e
-                                      ? APPLICATION_COLOR.GOLD
-                                      : APPLICATION_COLOR
-                                          .EXTRA_CLOSE_BACKGROUND_COLOR),
-                            ),
-                            alignment: Alignment.topCenter,
-                            padding: context.largeSpacer,
-                            child: LabelText(text: e),
-                          ),
+          Flexible(
+            flex: 2,
+            child: SizedBox(
+              width: context.sWidth,
+              child: FlutterCarousel(
+                options: CarouselOptions(
+                    onPageChanged: (index, reason) {
+                      viewModel.selectedMediaIndexChange(index);
+                    },
+                    controller: carouselController,
+                    showIndicator: false,
+                    initialPage: viewModel.selectedMediaIndex,
+                    enlargeCenterPage: true,
+                    enlargeStrategy: CenterPageEnlargeStrategy.height,
+                    pageSnapping: true),
+                items: viewModel.deneme.map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        margin: context.midSpacerOnlyHorizontal,
+                        width: context.sWidth,
+                        child: NormalNetworkImage(
+                          fit: BoxFit.contain,
+                          source: i,
                         ),
-                      ),
-                    )
-                    .toList(),
-              );
-            },
+                      );
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
           ),
           Gap(context.largeSpacerSize),
           Observer(builder: (context) {
-            if (viewModel.projectGallery == null) {
+            if (viewModel.selectedMediaIndex == -1) {
               return const SizedBox.shrink();
             }
-            return Expanded(
-              child: GalleryListWidget(
-                  onIndexChanged: (index) =>
+
+            return SizedBox(
+              height: 150,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.zero,
+                itemCount: viewModel.deneme.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () => {
                       viewModel.selectedMediaIndexChange(index),
-                  selectedIndex: viewModel.selectedMediaIndex,
-                  mediaList: viewModel.projectGallery!.projectGallery
-                      .where((e) =>
-                          e.media.mediaType.toHumanText() ==
-                          viewModel.categoryIndex)
-                      .toList()),
+                      carouselController.jumpToPage(index)
+                    },
+                    child: Padding(
+                      padding: context.midSpacerOnlyLeft,
+                      child: mediaPart(
+                          ProjectGalleryMediaDto(
+                                  mediaItem:
+                                      MediaDto(url: viewModel.deneme[index]))
+                              .toEntity(),
+                          viewModel.selectedMediaIndex == index,
+                          context),
+                    ),
+                  );
+                },
+              ),
             );
-          }),
+          })
         ],
+      ),
+    );
+  }
+
+  Widget mediaPart(ProjectGalleryMediaEntity mediaEntity, bool isSelected,
+      BuildContext context) {
+    return Container(
+      width: 266,
+      height: 150,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 2,
+          color: context.toColor(
+              isSelected ? APPLICATION_COLOR.GOLD : APPLICATION_COLOR.LIGHT),
+        ),
+      ),
+      child: NormalNetworkImage(
+        source: mediaEntity.media.url,
+        fit: BoxFit.contain,
       ),
     );
   }

@@ -39,10 +39,7 @@ class NavigationRoute {
         normalNavigate(const MainView(), NavigationConstant.MAIN),
       /* GALLERY */
       NavigationConstant.GALLERY => normalNavigate(
-          GalleryView(
-            type: (args.arguments! as List)[0] as GALLERY_TYPE,
-            projectDetailId: (args.arguments! as List)[1] as int,
-          ),
+          GalleryView(type: args.arguments! as GALLERY_TYPE),
           NavigationConstant.GALLERY),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())

@@ -16,14 +16,18 @@ class GalleryListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      scrollDirection: Axis.horizontal,
       padding: EdgeInsets.zero,
       itemCount: mediaList.length,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () => onIndexChanged(index),
-          child: GalleryRowWidget(
-              mediaEntity: mediaList[index],
-              isSelected: index == selectedIndex),
+          child: SizedBox(
+            width: 300,
+            child: GalleryRowWidget(
+                mediaEntity: mediaList[index],
+                isSelected: index == selectedIndex),
+          ),
         );
       },
     );
