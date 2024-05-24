@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -29,46 +30,48 @@ class FutureTemplateView extends StatelessWidget {
     return Stack(
       children: [
         const BackgroundWidget(),
-        SafeArea(
-          child: Container(
-            width: context.sWidth / 2,
-            margin: context.largeSpacer,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: context.largeSpacerOnlyLeft,
-                  child: const LabelText(
-                    text: "TRIO HILL RESIDENCE",
-                    fontSize: FONT_SIZE.HEADLINE_LARGE,
-                  ),
-                ),
-                Gap(context.midSpacerSize),
-                Padding(
-                  padding: context.largeSpacerOnlyLeft,
-                  child: const LabelText(
-                    text:
-                        "A world of its own that sits on an area of 211.677 m2. Lorem ipsum dolor sit amet",
-                    fontSize: FONT_SIZE.BODY_LARGE,
-                    textColor: APPLICATION_COLOR.SUBTITLE,
-                  ),
-                ),
-                Gap(context.veryLargeSpacerSize),
-                Observer(builder: (context) {
-                  if (value.projectEntity == null) {
-                    return const SizedBox.shrink();
-                  }
-                  return SizedBox(
-                    width: 400,
-                    child: Wrap(
-                      children: value.projectEntity!.detail.features
-                          .map((e) => FeaturesWidget(featuresEntity: e))
-                          .toSet()
-                          .toList(),
+        SingleChildScrollView(
+          child: SafeArea(
+            child: Container(
+              width: context.sWidth / 2,
+              margin: context.largeSpacer,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: context.largeSpacerOnlyLeft,
+                    child: const LabelText(
+                      text: "TRIO HILL RESIDENCE",
+                      fontSize: FONT_SIZE.HEADLINE_LARGE,
                     ),
-                  );
-                })
-              ],
+                  ),
+                  Gap(context.midSpacerSize),
+                  Padding(
+                    padding: context.largeSpacerOnlyLeft,
+                    child: const LabelText(
+                      text:
+                          "A world of its own that sits on an area of 211.677 m2. Lorem ipsum dolor sit amet",
+                      fontSize: FONT_SIZE.BODY_LARGE,
+                      textColor: APPLICATION_COLOR.SUBTITLE,
+                    ),
+                  ),
+                  Gap(context.veryLargeSpacerSize),
+                  Observer(builder: (context) {
+                    if (value.projectEntity == null) {
+                      return const SizedBox.shrink();
+                    }
+                    return SizedBox(
+                      width: 400,
+                      child: Wrap(
+                        children: value.projectEntity!.detail.features
+                            .map((e) => FeaturesWidget(featuresEntity: e))
+                            .toSet()
+                            .toList(),
+                      ),
+                    );
+                  })
+                ],
+              ),
             ),
           ),
         )
