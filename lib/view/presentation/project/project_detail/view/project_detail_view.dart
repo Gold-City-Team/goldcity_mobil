@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
-import 'package:goldcity/view/presentation/project/template/feature_template/view/future_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/general_information_and_gallery_template/view/general_information_and_gallery_template_view.dart';
 
 class ProjectDetailView extends StatelessWidget {
   final int projectId;
@@ -18,7 +18,7 @@ class ProjectDetailView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, ProjectDetailViewModel value) =>
           Scaffold(
-        body: FutureTemplateView(),
+        body: GeneralInformationAndGalleryTemplateView(),
         // body: SafeArea(
 
         //   child: ListView(

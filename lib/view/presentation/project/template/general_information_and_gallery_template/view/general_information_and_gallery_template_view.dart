@@ -94,34 +94,36 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
             textColor: APPLICATION_COLOR.SUBTITLE,
           ),
         ).animate().fade(),
-        Gap(context.midSpacerSize),
-        ListView.builder(
-            itemCount: 50,
-            padding: EdgeInsets.zero,
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () => value.navigateGallery(),
-                child: Padding(
-                  padding: context.midSpacerOnlyBottom,
-                  child: Container(
-                    height: context.sWidth / 1.7777,
-                    margin: context.largeSpacerOnlyHorizontal,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Container(
-                        color: context.toColor(APPLICATION_COLOR.DARK),
-                        child: NormalNetworkImage(
-                          fit: BoxFit.cover,
-                          source: deneme[Random().nextInt(deneme.length)],
+        Gap(context.largeSpacerSize),
+        Center(
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 10,
+            runSpacing: 0,
+            children: deneme
+                .map((e) => GestureDetector(
+                      onTap: () => value.navigateGallery(),
+                      child: Padding(
+                        padding: context.midSpacerOnlyBottom,
+                        child: SizedBox(
+                          width: (context.sWidth / 2) - 20,
+                          height: ((context.sWidth / 2) - 20) / 1.7777,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Container(
+                              color: context.toColor(APPLICATION_COLOR.DARK),
+                              child: NormalNetworkImage(
+                                fit: BoxFit.cover,
+                                source: deneme[Random().nextInt(deneme.length)],
+                              ),
+                            ),
+                          ).animate().fade(),
                         ),
                       ),
-                    ).animate().fade(),
-                  ),
-                ),
-              );
-            })
+                    ))
+                .toList(),
+          ),
+        )
       ],
     );
   }
