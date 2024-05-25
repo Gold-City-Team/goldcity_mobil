@@ -1,5 +1,4 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -45,7 +44,99 @@ class _GalleryViewState extends State<GalleryView> {
 
   CarouselController carouselController = CarouselController();
   Widget body(GalleryViewModel viewModel, BuildContext context) {
+    return isTablet()
+        ? tabletView(viewModel, carouselController)
+        : phoneView(viewModel, carouselController);
+  }
+
+  Widget phoneView(GalleryViewModel viewModel, CarouselController controller) {
+    ScrollController c = ScrollController();
+    return Row(
+      children: [
+        SafeArea(
+          right: false,
+          top: false,
+          bottom: false,
+          child: Observer(builder: (context) {
+            if (viewModel.selectedMediaIndex == -1) {
+              return const SizedBox.shrink();
+            }
+            return SizedBox(
+              width: 100,
+              child: ListView.builder(
+                padding: EdgeInsets.zero,
+                controller: c,
+                itemCount: viewModel.deneme.length,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    height: 150,
+                    width: 100,
+                    child: GestureDetector(
+                      onTap: () => {
+                        viewModel.selectedMediaIndexChange(index),
+                        controller.jumpToPage(index)
+                      },
+                      child: Padding(
+                        padding: context.midSpacerOnlyBottom,
+                        child: mediaPart(
+                            ProjectGalleryMediaDto(
+                                    mediaItem:
+                                        MediaDto(url: viewModel.deneme[index]))
+                                .toEntity(),
+                            viewModel.selectedMediaIndex == index,
+                            context),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
+          }),
+        ),
+        Gap(context.midSpacerSize),
+        Expanded(
+          child: FlutterCarousel(
+            options: CarouselOptions(
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    c.animateTo(index * 150,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
+                  });
+                  viewModel.selectedMediaIndexChange(index);
+                },
+                controller: controller,
+                showIndicator: false,
+                initialPage: viewModel.selectedMediaIndex,
+                enlargeCenterPage: true,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                pageSnapping: true),
+            items: viewModel.deneme.map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    margin: context.midSpacerOnlyHorizontal,
+                    width: context.sWidth,
+                    child: NormalNetworkImage(
+                      fit: BoxFit.contain,
+                      source: i,
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget tabletView(GalleryViewModel viewModel, CarouselController controller) {
     return SafeArea(
+      bottom: isTablet(),
+      top: isTablet(),
+      left: isTablet(),
+      right: isTablet(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
