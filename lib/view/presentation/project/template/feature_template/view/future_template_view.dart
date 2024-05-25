@@ -47,7 +47,7 @@ class FutureTemplateView extends StatelessWidget {
               SizedBox(
                 width: context.sWidth,
                 height: context.sWidth / 1.7777,
-                child: NormalNetworkImage(source: deneme[0], fit: BoxFit.cover),
+                child: NormalNetworkImage(source: deneme[1], fit: BoxFit.cover),
               ),
               Container(
                 width: context.sWidth,
@@ -77,15 +77,6 @@ class FutureTemplateView extends StatelessWidget {
           Padding(
             padding: context.largeSpacerOnlyHorizontal,
             child: const LabelText(
-              text: "Genel Bilgiler",
-              fontSize: FONT_SIZE.TITLE_LARGE,
-              textColor: APPLICATION_COLOR.TITLE,
-            ),
-          ).animate().fade(),
-          Gap(context.largeSpacerSize),
-          Padding(
-            padding: context.largeSpacerOnlyHorizontal,
-            child: const LabelText(
               text:
                   "• 60 residences in 3 blocks with open pool in the Goldcity Trio Hill project.\n\n• 1+1 Residence; 1 bathroom, 1 living room, 1 bathroom, open kitchen, terrace.",
               fontSize: FONT_SIZE.LABEL_LARGE,
@@ -97,8 +88,8 @@ class FutureTemplateView extends StatelessWidget {
             if (value.projectEntity == null) {
               return const SizedBox.shrink();
             }
-            return SizedBox(
-              width: 400,
+            return Padding(
+              padding: context.midSpacerOnlyHorizontal,
               child: Wrap(
                 children: value.projectEntity!.detail.features
                     .map((e) => FeaturesWidget(featuresEntity: e))

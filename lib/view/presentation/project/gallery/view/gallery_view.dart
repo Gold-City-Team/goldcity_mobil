@@ -61,7 +61,8 @@ class _GalleryViewState extends State<GalleryView> {
             if (viewModel.selectedMediaIndex == -1) {
               return const SizedBox.shrink();
             }
-            return SizedBox(
+            return Container(
+              padding: context.midSpacerOnlyTop,
               width: 100,
               child: ListView.builder(
                 padding: EdgeInsets.zero,
