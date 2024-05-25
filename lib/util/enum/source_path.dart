@@ -6,6 +6,7 @@ enum SourcePath {
   PROJECT,
   PROJECT_LIST,
   PROJECT_POSSIBILITY,
+  PROJECT_TEMPLATE_DETAIL,
   PROJECT_INTERIOR_GALLERY,
   PROJECT_OUTDOOR_GALLERY,
   MEDIA
@@ -25,6 +26,8 @@ extension SourcePathExtension on SourcePath {
         '/projectdetail/${data?[0]}/outdoorgallery',
       SourcePath.PROJECT_POSSIBILITY =>
         '/projectdetail/${data?[0]}/possibilities',
+      SourcePath.PROJECT_TEMPLATE_DETAIL =>
+        '/projectdetail/${data?[0]}/templates/${data?[1]}',
     };
   }
 }

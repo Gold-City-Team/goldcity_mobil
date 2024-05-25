@@ -38,67 +38,82 @@ class FutureTemplateView extends StatelessWidget {
   }
 
   Widget phoneView(BuildContext context, FutureTemplateViewModel value) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: context.sWidth,
-                height: context.sWidth / 1.7777,
-                child: NormalNetworkImage(source: deneme[1], fit: BoxFit.cover),
-              ),
-              Container(
-                width: context.sWidth,
-                height: context.sWidth / 1.7777,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                        Colors.transparent,
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      tileMode: TileMode.clamp),
+    return SafeArea(
+      top: false,
+      bottom: true,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Observer(builder: (context) {
+                  if (value.templateEntity == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return SizedBox(
+                    width: context.sWidth,
+                    height: context.sWidth / 1.7777,
+                    child: NormalNetworkImage(
+                        source: value.templateEntity!.mediaItem.url,
+                        fit: BoxFit.cover),
+                  );
+                }),
+                Container(
+                  width: context.sWidth,
+                  height: context.sWidth / 1.7777,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [
+                          context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                          Colors.transparent,
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        tileMode: TileMode.clamp),
+                  ),
                 ),
+              ],
+            ).animate().fade(),
+            Gap(context.largeSpacerSize),
+            Padding(
+              padding: context.largeSpacerOnlyHorizontal,
+              child: const LabelText(
+                text: "TRIO HILL RESIDENCE",
+                fontSize: FONT_SIZE.HEADLINE_LARGE,
               ),
-            ],
-          ).animate().fade(),
-          Gap(context.largeSpacerSize),
-          Padding(
-            padding: context.largeSpacerOnlyHorizontal,
-            child: const LabelText(
-              text: "TRIO HILL RESIDENCE",
-              fontSize: FONT_SIZE.HEADLINE_LARGE,
-            ),
-          ).animate().fade(),
-          Gap(context.midSpacerSize),
-          Padding(
-            padding: context.largeSpacerOnlyHorizontal,
-            child: const LabelText(
-              text:
-                  "• 60 residences in 3 blocks with open pool in the Goldcity Trio Hill project.\n\n• 1+1 Residence; 1 bathroom, 1 living room, 1 bathroom, open kitchen, terrace.",
-              fontSize: FONT_SIZE.LABEL_LARGE,
-              textColor: APPLICATION_COLOR.SUBTITLE,
-            ),
-          ).animate().fade(),
-          Gap(context.midSpacerSize),
-          Observer(builder: (context) {
-            if (value.projectEntity == null) {
-              return const SizedBox.shrink();
-            }
-            return Padding(
-              padding: context.midSpacerOnlyHorizontal,
-              child: Wrap(
-                children: value.projectEntity!.detail.features
-                    .map((e) => FeaturesWidget(featuresEntity: e))
-                    .toSet()
-                    .toList(),
-              ),
-            );
-          })
-        ],
+            ).animate().fade(),
+            Gap(context.midSpacerSize),
+            Observer(builder: (context) {
+              if (value.templateEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: context.largeSpacerOnlyHorizontal,
+                child: LabelText(
+                  text: value.templateEntity!.description,
+                  fontSize: FONT_SIZE.LABEL_LARGE,
+                  textColor: APPLICATION_COLOR.SUBTITLE,
+                ),
+              ).animate().fade();
+            }),
+            Gap(context.midSpacerSize),
+            Observer(builder: (context) {
+              if (value.templateEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: context.midSpacerOnlyHorizontal,
+                child: Wrap(
+                  children: value.templateEntity!.features
+                      .map((e) => FeaturesWidget(featuresEntity: e))
+                      .toSet()
+                      .toList(),
+                ),
+              );
+            })
+          ],
+        ),
       ),
     );
   }
@@ -123,24 +138,28 @@ class FutureTemplateView extends StatelessWidget {
                     ),
                   ),
                   Gap(context.midSpacerSize),
-                  Padding(
-                    padding: context.largeSpacerOnlyLeft,
-                    child: const LabelText(
-                      text:
-                          "A world of its own that sits on an area of 211.677 m2. Lorem ipsum dolor sit amet",
-                      fontSize: FONT_SIZE.BODY_LARGE,
-                      textColor: APPLICATION_COLOR.SUBTITLE,
-                    ),
-                  ),
+                  Observer(builder: (context) {
+                    if (value.templateEntity == null) {
+                      return const SizedBox.shrink();
+                    }
+                    return Padding(
+                      padding: context.largeSpacerOnlyLeft,
+                      child: LabelText(
+                        text: value.templateEntity!.description,
+                        fontSize: FONT_SIZE.BODY_LARGE,
+                        textColor: APPLICATION_COLOR.SUBTITLE,
+                      ),
+                    );
+                  }),
                   Gap(context.veryLargeSpacerSize),
                   Observer(builder: (context) {
-                    if (value.projectEntity == null) {
+                    if (value.templateEntity == null) {
                       return const SizedBox.shrink();
                     }
                     return SizedBox(
                       width: 400,
                       child: Wrap(
-                        children: value.projectEntity!.detail.features
+                        children: value.templateEntity!.features
                             .map((e) => FeaturesWidget(featuresEntity: e))
                             .toSet()
                             .toList(),

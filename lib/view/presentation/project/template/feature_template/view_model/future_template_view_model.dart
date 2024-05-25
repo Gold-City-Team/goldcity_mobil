@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/project/project/project_entity.dart';
-import 'package:goldcity/domain/usecase/project_usecase.dart';
+import 'package:goldcity/domain/entity/project/project_template/template_one/template_one_entity.dart';
+import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:mobx/mobx.dart';
@@ -15,13 +15,13 @@ class FutureTemplateViewModel = _FutureTemplateViewModelBase
     with _$FutureTemplateViewModel;
 
 abstract class _FutureTemplateViewModelBase with Store, BaseViewModel {
-  late ProjectUseCase _projectUseCase;
+  late ProjectDetailUseCase _projectDetailUseCase;
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
   void init() {
-    _projectUseCase = locator<ProjectUseCase>();
+    _projectDetailUseCase = locator<ProjectDetailUseCase>();
 
     isTablet()
         ? SystemChrome.setPreferredOrientations([
@@ -32,17 +32,17 @@ abstract class _FutureTemplateViewModelBase with Store, BaseViewModel {
             DeviceOrientation.portraitUp,
             DeviceOrientation.portraitDown,
           ]);
-    _getProjectDetail();
+    _getDetail();
   }
 
   @observable
-  ProjectEntity? projectEntity;
+  TemplateOneEntity? templateEntity;
 
   @action
-  Future<void> _getProjectDetail() async {
-    var result = _projectUseCase.getDetail(2);
-    result.listen((event) {
-      if (event.isRight) projectEntity = event.right;
-    });
+  Future<void> _getDetail() async {
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 5);
+    if (result.isRight) {
+      templateEntity = (result.right.template as TemplateOneEntity);
+    }
   }
 }
