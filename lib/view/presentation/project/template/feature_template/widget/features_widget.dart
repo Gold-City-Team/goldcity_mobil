@@ -18,7 +18,7 @@ class FeaturesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: isTablet() ? 200 : 150,
+      width: isTablet() ? 250 : 150,
       child: Padding(
         padding: context.midSpacer,
         child: Row(

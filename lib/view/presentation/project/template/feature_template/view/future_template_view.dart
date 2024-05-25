@@ -156,14 +156,11 @@ class FutureTemplateView extends StatelessWidget {
                     if (value.templateEntity == null) {
                       return const SizedBox.shrink();
                     }
-                    return SizedBox(
-                      width: 400,
-                      child: Wrap(
-                        children: value.templateEntity!.features
-                            .map((e) => FeaturesWidget(featuresEntity: e))
-                            .toSet()
-                            .toList(),
-                      ),
+                    return Wrap(
+                      children: value.templateEntity!.features
+                          .map((e) => FeaturesWidget(featuresEntity: e))
+                          .toSet()
+                          .toList(),
                     );
                   })
                 ],
