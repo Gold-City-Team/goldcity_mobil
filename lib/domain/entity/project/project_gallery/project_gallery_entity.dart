@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goldcity/domain/entity/project/project_gallery_media_entity/project_gallery_media_entity.dart';
+import 'package:goldcity/domain/entity/project/project_gallery_media/project_gallery_media_entity.dart';
 
 @immutable
 final class ProjectGalleryEntity {

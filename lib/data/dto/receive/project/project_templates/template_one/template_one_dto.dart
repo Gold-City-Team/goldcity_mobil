@@ -1,6 +1,6 @@
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_features/project_features_dto.dart';
-import 'package:goldcity/domain/entity/project/project_template/template_one/template_one_entity.dart';
+import 'package:goldcity/domain/entity/project/template/template_one/template_one_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'template_one_dto.g.dart';
 

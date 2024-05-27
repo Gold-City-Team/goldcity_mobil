@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
-import 'package:goldcity/domain/entity/project/project_template/template_two/template_two_entity.dart';
+import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
 import 'package:mobx/mobx.dart';
 
 part 'gallery_view_model.g.dart';

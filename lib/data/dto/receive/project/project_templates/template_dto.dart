@@ -1,10 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:goldcity/data/dto/receive/project/project_template/project_template_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_one/template_one_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_two/template_two_dto.dart';
-import 'package:goldcity/domain/entity/project/project_template/template_entity.dart';
-
-enum TEMPLATE { TEMPLATE_ONE, TEMPLATE_TWO }
+import 'package:goldcity/domain/entity/project/template/template_entity.dart';
 
 class TemplateDto {
   int? id;

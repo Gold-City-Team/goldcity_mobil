@@ -1,7 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:goldcity/domain/entity/project/project_template/template_two/template_two_entity.dart';
+import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/gold_map/view/gold_map_view.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
