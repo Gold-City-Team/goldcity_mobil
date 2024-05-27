@@ -188,14 +188,19 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                         ).animate().fade();
                       }),
                       Gap(context.midSpacerSize),
-                      Padding(
-                        padding: context.largeSpacerOnlyLeft,
-                        child: const LabelText(
-                          text: "Genel Bilgiler",
-                          fontSize: FONT_SIZE.TITLE_LARGE,
-                          textColor: APPLICATION_COLOR.TITLE,
-                        ),
-                      ).animate().fade(),
+                      Observer(builder: (context) {
+                        if (value.templateTwo == null) {
+                          return const SizedBox.shrink();
+                        }
+                        return Padding(
+                          padding: context.largeSpacerOnlyLeft,
+                          child: LabelText(
+                            text: value.templateTwo!.subTitle,
+                            fontSize: FONT_SIZE.TITLE_LARGE,
+                            textColor: APPLICATION_COLOR.TITLE,
+                          ),
+                        ).animate().fade();
+                      }),
                       Gap(context.largeSpacerSize),
                       Observer(builder: (context) {
                         if (value.templateTwo == null) {
