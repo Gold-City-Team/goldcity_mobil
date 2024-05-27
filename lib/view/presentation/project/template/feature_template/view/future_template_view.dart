@@ -76,13 +76,18 @@ class FutureTemplateView extends StatelessWidget {
               ],
             ).animate().fade(),
             Gap(context.largeSpacerSize),
-            Padding(
-              padding: context.largeSpacerOnlyHorizontal,
-              child: const LabelText(
-                text: "TRIO HILL RESIDENCE",
-                fontSize: FONT_SIZE.HEADLINE_LARGE,
-              ),
-            ).animate().fade(),
+            Observer(builder: (context) {
+              if (value.templateEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: context.largeSpacerOnlyHorizontal,
+                child: LabelText(
+                  text: value.templateEntity!.title,
+                  fontSize: FONT_SIZE.HEADLINE_LARGE,
+                ),
+              ).animate().fade();
+            }),
             Gap(context.midSpacerSize),
             Observer(builder: (context) {
               if (value.templateEntity == null) {
@@ -121,7 +126,13 @@ class FutureTemplateView extends StatelessWidget {
   Widget tabletView(BuildContext context, FutureTemplateViewModel value) {
     return Stack(
       children: [
-        const BackgroundWidget(),
+        Observer(builder: (context) {
+          if (value.templateEntity == null) {
+            return const SizedBox.shrink();
+          }
+          return BackgroundWidget(
+              backgroundImage: value.templateEntity!.mediaItem.url);
+        }),
         SingleChildScrollView(
           child: SafeArea(
             child: Container(
@@ -130,13 +141,18 @@ class FutureTemplateView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: context.largeSpacerOnlyLeft,
-                    child: const LabelText(
-                      text: "TRIO HILL RESIDENCE",
-                      fontSize: FONT_SIZE.HEADLINE_LARGE,
-                    ),
-                  ),
+                  Observer(builder: (context) {
+                    if (value.templateEntity == null) {
+                      return const SizedBox.shrink();
+                    }
+                    return Padding(
+                      padding: context.largeSpacerOnlyLeft,
+                      child: LabelText(
+                        text: value.templateEntity!.title,
+                        fontSize: FONT_SIZE.HEADLINE_LARGE,
+                      ),
+                    );
+                  }),
                   Gap(context.midSpacerSize),
                   Observer(builder: (context) {
                     if (value.templateEntity == null) {

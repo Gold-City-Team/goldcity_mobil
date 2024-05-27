@@ -5,7 +5,8 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class BackgroundWidget extends StatelessWidget {
-  const BackgroundWidget({super.key});
+  final String backgroundImage;
+  const BackgroundWidget({required this.backgroundImage, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,8 @@ class BackgroundWidget extends StatelessWidget {
           child: SizedBox(
             width: context.sWidth,
             height: context.sHeight,
-            child: const NormalNetworkImage(
-                source:
-                    "https://metrovacesa.com/wp-content/uploads/2024/05/W1P6i31-089sev_18_terraza_02-1920x1080.jpg",
-                fit: BoxFit.cover),
+            child:
+                NormalNetworkImage(source: backgroundImage, fit: BoxFit.cover),
           ),
         ),
         Positioned(
