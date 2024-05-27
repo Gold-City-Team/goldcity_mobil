@@ -6,8 +6,6 @@ import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
 import 'package:goldcity/domain/entity/project/project_template/template_two/template_two_entity.dart';
-import 'package:goldcity/domain/usecase/project_usecase.dart';
-import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
 
 part 'gallery_view_model.g.dart';
@@ -15,14 +13,11 @@ part 'gallery_view_model.g.dart';
 class GalleryViewModel = _GalleryViewModelBase with _$GalleryViewModel;
 
 abstract class _GalleryViewModelBase with Store, BaseViewModel {
-  late ProjectUseCase _projectUseCase;
-
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
   void init() {
-    _projectUseCase = locator<ProjectUseCase>();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,

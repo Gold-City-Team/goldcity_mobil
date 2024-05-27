@@ -7,6 +7,7 @@ part 'template_two_dto.g.dart';
 class TemplateTwoDto {
   int? id;
   String? title;
+  String? subTitle;
   String? description;
   MediaDto? mediaItem;
   List<TemplateTwoGalleryDto>? galleries;
@@ -21,6 +22,7 @@ class TemplateTwoDto {
 
   TemplateTwoEntity toEntity() => TemplateTwoEntity(
         description: description ?? "",
+        subTitle: subTitle ?? "",
         gallery: galleries != null
             ? galleries!.map((e) => e.toEntity()).toList()
             : [TemplateTwoGalleryDto().toEntity()],
