@@ -3,9 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
-import 'package:goldcity/domain/entity/project/project/project_entity.dart';
-import 'package:goldcity/domain/usecase/project_usecase.dart';
+import 'package:goldcity/domain/entity/project/project_template/template_two/template_two_entity.dart';
+import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
@@ -18,13 +17,13 @@ class GeneralInformationAndGalleryTemplateViewModel = _GeneralInformationAndGall
 
 abstract class _GeneralInformationAndGalleryTemplateViewModelBase
     with Store, BaseViewModel {
-  late ProjectUseCase _projectUseCase;
+  late ProjectDetailUseCase _projectDetailUseCase;
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
   void init() {
-    _projectUseCase = locator<ProjectUseCase>();
+    _projectDetailUseCase = locator<ProjectDetailUseCase>();
 
     isTablet()
         ? SystemChrome.setPreferredOrientations([
@@ -35,23 +34,24 @@ abstract class _GeneralInformationAndGalleryTemplateViewModelBase
             DeviceOrientation.portraitUp,
             DeviceOrientation.portraitDown,
           ]);
-    _getProjectDetail();
+    _getDetail();
   }
 
   @observable
-  ProjectEntity? projectEntity;
+  TemplateTwoEntity? templateTwo;
 
   @action
-  Future<void> _getProjectDetail() async {
-    var result = _projectUseCase.getDetail(2);
-    result.listen((event) {
-      if (event.isRight) projectEntity = event.right;
-    });
+  Future<void> _getDetail() async {
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 6);
+    if (result.isRight) {
+      templateTwo = (result.right.template as TemplateTwoEntity);
+    }
   }
 
-  Future<void> navigateGallery() async {
+  Future<void> navigateGallery(int selectedId) async {
     await navigation.navigateToPage(
-        path: NavigationConstant.GALLERY, data: GALLERY_TYPE.INTERIOR_GALLERY);
+        path: NavigationConstant.GALLERY,
+        data: [templateTwo!.gallery, selectedId]);
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,

@@ -14,13 +14,8 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class FutureTemplateView extends StatelessWidget {
-  FutureTemplateView({super.key});
-  final List<String> deneme = [
-    "https://metrovacesa.com/wp-content/uploads/2024/05/W1P6i31-089sev_18_terraza_02-1920x1080.jpg",
-    "https://i.pinimg.com/originals/88/19/6b/88196bee32be9593a9b77cc3137433a1.jpg",
-    "https://mir-s3-cdn-cf.behance.net/project_modules/fs/c6b16a43564835.57f4204982235.jpg",
-    "https://urvission.com/wp-content/uploads/2022/07/Luxury_modern_bathroom_Lauderdale_London_Urvission_Interiors.jpg"
-  ];
+  const FutureTemplateView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BaseView<FutureTemplateViewModel>(

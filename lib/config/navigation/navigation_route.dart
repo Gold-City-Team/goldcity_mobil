@@ -1,7 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
+import 'package:goldcity/domain/entity/project/project_template/template_two/template_two_entity.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/gold_map/view/gold_map_view.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
@@ -39,7 +39,10 @@ class NavigationRoute {
         normalNavigate(const MainView(), NavigationConstant.MAIN),
       /* GALLERY */
       NavigationConstant.GALLERY => normalNavigate(
-          GalleryView(type: args.arguments! as GALLERY_TYPE),
+          GalleryView(
+              selectedIndex: (args.arguments as List)[1] as int,
+              gallery: (args.arguments as List)[0]!
+                  as List<TemplateTwoGalleryEntity>),
           NavigationConstant.GALLERY),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())

@@ -10,36 +10,36 @@ part of 'general_information_and_gallery_template_view_model.dart';
 
 mixin _$GeneralInformationAndGalleryTemplateViewModel
     on _GeneralInformationAndGalleryTemplateViewModelBase, Store {
-  late final _$projectEntityAtom = Atom(
-      name: '_GeneralInformationAndGalleryTemplateViewModelBase.projectEntity',
+  late final _$templateTwoAtom = Atom(
+      name: '_GeneralInformationAndGalleryTemplateViewModelBase.templateTwo',
       context: context);
 
   @override
-  ProjectEntity? get projectEntity {
-    _$projectEntityAtom.reportRead();
-    return super.projectEntity;
+  TemplateTwoEntity? get templateTwo {
+    _$templateTwoAtom.reportRead();
+    return super.templateTwo;
   }
 
   @override
-  set projectEntity(ProjectEntity? value) {
-    _$projectEntityAtom.reportWrite(value, super.projectEntity, () {
-      super.projectEntity = value;
+  set templateTwo(TemplateTwoEntity? value) {
+    _$templateTwoAtom.reportWrite(value, super.templateTwo, () {
+      super.templateTwo = value;
     });
   }
 
-  late final _$_getProjectDetailAsyncAction = AsyncAction(
-      '_GeneralInformationAndGalleryTemplateViewModelBase._getProjectDetail',
+  late final _$_getDetailAsyncAction = AsyncAction(
+      '_GeneralInformationAndGalleryTemplateViewModelBase._getDetail',
       context: context);
 
   @override
-  Future<void> _getProjectDetail() {
-    return _$_getProjectDetailAsyncAction.run(() => super._getProjectDetail());
+  Future<void> _getDetail() {
+    return _$_getDetailAsyncAction.run(() => super._getDetail());
   }
 
   @override
   String toString() {
     return '''
-projectEntity: ${projectEntity}
+templateTwo: ${templateTwo}
     ''';
   }
 }

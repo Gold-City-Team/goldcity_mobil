@@ -1,13 +1,11 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
-import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/data/dto/receive/project/project_gallery/project_gallery_dto.dart';
-import 'package:goldcity/data/dto/receive/project/project_gallery_media/project_gallery_media_dto.dart';
-import 'package:goldcity/domain/entity/project/project_gallery_media_entity/project_gallery_media_entity.dart';
+import 'package:goldcity/domain/entity/project/project_template/template_two/template_two_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -16,10 +14,12 @@ import 'package:goldcity/view/presentation/project/gallery/view_model/gallery_vi
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class GalleryView extends StatefulWidget {
-  final GALLERY_TYPE type;
+  final List<TemplateTwoGalleryEntity> gallery;
+  final int selectedIndex;
 
   const GalleryView({
-    required this.type,
+    required this.gallery,
+    required this.selectedIndex,
     super.key,
   });
 
@@ -28,13 +28,29 @@ class GalleryView extends StatefulWidget {
 }
 
 class _GalleryViewState extends State<GalleryView> {
+  ScrollController c = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (isTablet()) {
+        c.jumpTo(widget.selectedIndex * (150 * 1.84));
+      } else {
+        c.animateTo(widget.selectedIndex * 150,
+            duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseView<GalleryViewModel>(
       viewModel: GalleryViewModel(),
       onModelReady: (model) {
         model.setContext(context);
-        model.gallery_type = widget.type;
+        model.gallery = widget.gallery;
+        model.selectedMediaIndex = widget.selectedIndex;
         model.init();
       },
       onPageBuilder: (BuildContext context, GalleryViewModel value) =>
@@ -50,7 +66,6 @@ class _GalleryViewState extends State<GalleryView> {
   }
 
   Widget phoneView(GalleryViewModel viewModel, CarouselController controller) {
-    ScrollController c = ScrollController();
     return Row(
       children: [
         SafeArea(
@@ -67,7 +82,7 @@ class _GalleryViewState extends State<GalleryView> {
               child: ListView.builder(
                 padding: EdgeInsets.zero,
                 controller: c,
-                itemCount: viewModel.deneme.length,
+                itemCount: viewModel.gallery!.length,
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: 150,
@@ -80,10 +95,7 @@ class _GalleryViewState extends State<GalleryView> {
                       child: Padding(
                         padding: context.midSpacerOnlyBottom,
                         child: mediaPart(
-                            ProjectGalleryMediaDto(
-                                    mediaItem:
-                                        MediaDto(url: viewModel.deneme[index]))
-                                .toEntity(),
+                            viewModel.gallery![index].mediaItem.url,
                             viewModel.selectedMediaIndex == index,
                             context),
                       ),
@@ -99,11 +111,10 @@ class _GalleryViewState extends State<GalleryView> {
           child: FlutterCarousel(
             options: CarouselOptions(
                 onPageChanged: (index, reason) {
-                  setState(() {
-                    c.animateTo(index * 150,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  });
+                  c.animateTo(index * 150,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeIn);
+
                   viewModel.selectedMediaIndexChange(index);
                 },
                 controller: controller,
@@ -112,7 +123,7 @@ class _GalleryViewState extends State<GalleryView> {
                 enlargeCenterPage: true,
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
                 pageSnapping: true),
-            items: viewModel.deneme.map((i) {
+            items: viewModel.gallery!.map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -120,7 +131,7 @@ class _GalleryViewState extends State<GalleryView> {
                     width: context.sWidth,
                     child: NormalNetworkImage(
                       fit: BoxFit.contain,
-                      source: i,
+                      source: i.mediaItem.url,
                     ),
                   );
                 },
@@ -134,10 +145,6 @@ class _GalleryViewState extends State<GalleryView> {
 
   Widget tabletView(GalleryViewModel viewModel, CarouselController controller) {
     return SafeArea(
-      bottom: isTablet(),
-      top: isTablet(),
-      left: isTablet(),
-      right: isTablet(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -149,6 +156,9 @@ class _GalleryViewState extends State<GalleryView> {
                 options: CarouselOptions(
                     onPageChanged: (index, reason) {
                       viewModel.selectedMediaIndexChange(index);
+                      if (index + 4 <= viewModel.gallery!.length) {
+                        c.jumpTo(index * (150 * 1.84));
+                      }
                     },
                     controller: carouselController,
                     showIndicator: false,
@@ -156,7 +166,7 @@ class _GalleryViewState extends State<GalleryView> {
                     enlargeCenterPage: true,
                     enlargeStrategy: CenterPageEnlargeStrategy.height,
                     pageSnapping: true),
-                items: viewModel.deneme.map((i) {
+                items: viewModel.gallery!.map((i) {
                   return Builder(
                     builder: (BuildContext context) {
                       return Container(
@@ -164,7 +174,7 @@ class _GalleryViewState extends State<GalleryView> {
                         width: context.sWidth,
                         child: NormalNetworkImage(
                           fit: BoxFit.contain,
-                          source: i,
+                          source: i.mediaItem.url,
                         ),
                       );
                     },
@@ -173,48 +183,41 @@ class _GalleryViewState extends State<GalleryView> {
               ),
             ),
           ),
-          isTablet() ? Gap(context.largeSpacerSize) : const SizedBox.shrink(),
-          isTablet()
-              ? Observer(builder: (context) {
-                  if (viewModel.selectedMediaIndex == -1) {
-                    return const SizedBox.shrink();
-                  }
-
-                  return SizedBox(
-                    height: 150,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.zero,
-                      itemCount: viewModel.deneme.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () => {
-                            viewModel.selectedMediaIndexChange(index),
-                            carouselController.jumpToPage(index)
-                          },
-                          child: Padding(
-                            padding: context.midSpacerOnlyLeft,
-                            child: mediaPart(
-                                ProjectGalleryMediaDto(
-                                        mediaItem: MediaDto(
-                                            url: viewModel.deneme[index]))
-                                    .toEntity(),
-                                viewModel.selectedMediaIndex == index,
-                                context),
-                          ),
-                        );
+          Gap(context.largeSpacerSize),
+          Observer(builder: (context) {
+            if (viewModel.selectedMediaIndex == -1) {
+              return const SizedBox.shrink();
+            }
+            return SizedBox(
+                height: 150,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.zero,
+                  itemCount: viewModel.gallery!.length,
+                  controller: c,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () => {
+                        viewModel.selectedMediaIndexChange(index),
+                        carouselController.jumpToPage(index)
                       },
-                    ),
-                  );
-                })
-              : const SizedBox.shrink()
+                      child: Padding(
+                        padding: context.midSpacerOnlyLeft,
+                        child: mediaPart(
+                            viewModel.gallery![index].mediaItem.url,
+                            viewModel.selectedMediaIndex == index,
+                            context),
+                      ),
+                    );
+                  },
+                ));
+          })
         ],
       ),
     );
   }
 
-  Widget mediaPart(ProjectGalleryMediaEntity mediaEntity, bool isSelected,
-      BuildContext context) {
+  Widget mediaPart(String imageUrl, bool isSelected, BuildContext context) {
     return Container(
       width: 266,
       height: 150,
@@ -227,7 +230,7 @@ class _GalleryViewState extends State<GalleryView> {
       ),
       child: Center(
         child: NormalNetworkImage(
-          source: mediaEntity.media.url,
+          source: imageUrl,
           fit: BoxFit.contain,
         ),
       ),

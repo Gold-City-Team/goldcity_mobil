@@ -5,8 +5,6 @@ import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_e
 import 'package:json_annotation/json_annotation.dart';
 part 'project_gallery_dto.g.dart';
 
-enum GALLERY_TYPE { INTERIOR_GALLERY, OUTDOOR_GALLERY }
-
 @JsonSerializable()
 class ProjectGalleryDto {
   int? id;
