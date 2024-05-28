@@ -8,8 +8,8 @@ import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/page_selector_widget.dart';
-import 'package:goldcity/view/presentation/project/template/feature_template/view/future_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/general_information_and_gallery_template/view/general_information_and_gallery_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/possibilty_template/view/possibilty_template_view.dart';
 
 class ProjectDetailView extends StatelessWidget {
   final int projectId;
@@ -40,7 +40,7 @@ class ProjectDetailView extends StatelessWidget {
               Observer(builder: (context) {
                 return switch (
                     value.entity!.detail.template[value.templateIndex].type) {
-                  TEMPLATE.TEMPLATE_ONE => const FutureTemplateView(),
+                  TEMPLATE.TEMPLATE_ONE => const PossibiltyTemplateView(),
                   TEMPLATE.TEMPLATE_TWO =>
                     const GeneralInformationAndGalleryTemplateView()
                 };

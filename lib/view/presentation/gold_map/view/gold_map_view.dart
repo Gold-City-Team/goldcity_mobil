@@ -6,7 +6,6 @@ import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/gold_map/view_model/gold_map_view_model.dart';
-import 'package:goldcity/view/presentation/gold_map/widget/facilities_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoldMapView extends StatefulWidget {
@@ -119,10 +118,10 @@ class _GoldMapViewState extends State<GoldMapView> {
                                       .id
                                       .toString())));
                             },
-                            child: FacilitiesWidget(
-                                possibilityEntity: value
-                                    .projectPossibilityEntity!
-                                    .possibilities[index]),
+                            // child: FacilitiesWidget(
+                            //     possibilityEntity: value
+                            //         .projectPossibilityEntity!
+                            //         .possibilities[index]),
                           );
                         }
                         return const SizedBox.shrink();
