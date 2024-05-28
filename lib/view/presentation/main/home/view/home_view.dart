@@ -49,16 +49,17 @@ class HomeView extends StatelessWidget {
             }
             return Expanded(
               child: ListView.builder(
-                  itemCount: value.projectList!.length,
-                  itemBuilder: ((context, index) {
-                    return Padding(
-                      padding: context.midSpacer,
-                      child: ProjectRowPhoneWidget(
-                          onTap: () => value.navigateProjectDetail(
-                              value.projectList![index].id),
-                          projectEntity: value.projectList![index]),
-                    );
-                  })),
+                itemCount: value.projectList!.length,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding: context.midSpacer,
+                    child: ProjectRowPhoneWidget(
+                        onTap: () => value.navigateProjectDetail(
+                            value.projectList![index].id),
+                        projectEntity: value.projectList![index]),
+                  );
+                }),
+              ),
             );
           }),
         ],
