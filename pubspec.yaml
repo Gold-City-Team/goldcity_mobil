@@ -51,6 +51,7 @@ flutter:
 
   assets:
     - assets/translations/    
+    - assets/image/logo.png    
 
   fonts:
     - family: Encode

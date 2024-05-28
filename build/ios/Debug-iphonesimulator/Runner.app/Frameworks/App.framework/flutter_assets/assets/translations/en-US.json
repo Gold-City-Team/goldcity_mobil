@@ -5,5 +5,9 @@
     "telephoneQuestion": "Telephone Number",
     "mailQuestion": "E-mail adress",
     "applicationFormTitle": "Application Form",
-    "send": "Send"
+    "send": "Send",
+    "projects": "Projects",
+    "explore": "Explore",
+    "educations": "Educations",
+    "settings": "Settings"
 }

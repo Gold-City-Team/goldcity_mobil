@@ -1,11 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
-import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/main/home/view_model/home_view_model.dart';
+import 'package:goldcity/view/presentation/main/home/widget/project_row_phone_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class HomeView extends StatelessWidget {
@@ -20,37 +24,44 @@ class HomeView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, HomeViewModel value) => Scaffold(
-          body: SafeArea(
-        top: true,
-        bottom: false,
-        left: true,
-        right: true,
-        minimum: context.largeSpacerOnlyTop,
-        child: Observer(builder: (context) {
-          if (value.projectList == null) {
-            return const SizedBox.shrink();
-          }
-          return Wrap(
-            children: value.projectList!
-                .map((e) => GestureDetector(
-                      onTap: () => value.navigateProjectDetail(e.id),
-                      child: Container(
-                        margin: context.midSpacer,
-                        color: context.toColor(
-                            APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-                        padding: context.largeSpacer,
-                        child: Column(
-                          children: [
-                            LabelText(text: e.detail.title),
-                            Gap(context.midSpacerSize),
-                            LabelText(text: e.detail.slogan),
-                          ],
-                        ),
-                      ),
-                    ))
-                .toList(),
-          );
-        }),
+          body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gap(context.smallSpacerSize),
+          Container(
+              margin: context.midSpacerOnlyHorizontal,
+              height: 75,
+              width: 75,
+              child: Image.asset(
+                GeneralConstant.LOGO_ASSET_PATH,
+                fit: BoxFit.cover,
+              )),
+          Padding(
+            padding: context.midSpacerOnlyHorizontal,
+            child: LabelText(
+                text: LocaleKeys.explore.tr(),
+                textColor: APPLICATION_COLOR.TITLE,
+                fontSize: FONT_SIZE.HEADLINE_LARGE),
+          ),
+          Observer(builder: (context) {
+            if (value.projectList == null) {
+              return const SizedBox.shrink();
+            }
+            return Expanded(
+              child: ListView.builder(
+                  itemCount: value.projectList!.length,
+                  itemBuilder: ((context, index) {
+                    return Padding(
+                      padding: context.midSpacer,
+                      child: ProjectRowPhoneWidget(
+                          onTap: () => value.navigateProjectDetail(
+                              value.projectList![index].id),
+                          projectEntity: value.projectList![index]),
+                    );
+                  })),
+            );
+          }),
+        ],
       )),
     );
   }

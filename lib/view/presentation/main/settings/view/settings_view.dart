@@ -18,41 +18,33 @@ class SettingsView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, SettingsViewModel value) =>
           Scaffold(
-        body: SafeArea(
-          top: true,
-          bottom: false,
-          left: true,
-          right: true,
-          minimum: context.largeSpacerOnlyTop,
-          child: ListView.builder(
-            padding: context.largeSpacerOnlyTop,
-            itemCount: value.menuItems.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Container(
-                    margin: context.largeSpacerOnlyHorizontal,
-                    child: Row(
-                      children: [
-                        LabelText(
-                          text: value.menuItems[index],
+        body: ListView.builder(
+          itemCount: value.menuItems.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Container(
+                  margin: context.largeSpacerOnlyHorizontal,
+                  child: Row(
+                    children: [
+                      LabelText(
+                        text: value.menuItems[index],
+                      ),
+                      const Spacer(),
+                      SizedBox(
+                        width: 100,
+                        child: NormalButton(
+                          onTap: () => value.doAction(index),
+                          text: "Değiştir",
                         ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 100,
-                          child: NormalButton(
-                            onTap: () => value.doAction(index),
-                            text: "Değiştir",
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
-                  Gap(context.midSpacerSize)
-                ],
-              );
-            },
-          ),
+                ),
+                Gap(context.midSpacerSize)
+              ],
+            );
+          },
         ),
       ),
     );

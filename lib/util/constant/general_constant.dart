@@ -3,6 +3,7 @@
 class GeneralConstant {
   static const FONT_FAMILY = "Encode";
   static const LANG_ASSET_PATH = "assets/translations";
+  static const LOGO_ASSET_PATH = "assets/image/logo.png";
 
   static const DARK_MAP_THEME = '''[
   {

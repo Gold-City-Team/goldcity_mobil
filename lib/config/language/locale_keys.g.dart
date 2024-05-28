@@ -8,5 +8,9 @@ abstract class  LocaleKeys {
   static const mailQuestion = 'mailQuestion';
   static const applicationFormTitle = 'applicationFormTitle';
   static const send = 'send';
+  static const projects = 'projects';
+  static const explore = 'explore';
+  static const educations = 'educations';
+  static const settings = 'settings';
 
 }
