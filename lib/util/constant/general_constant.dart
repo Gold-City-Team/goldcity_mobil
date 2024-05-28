@@ -4,9 +4,7 @@ class GeneralConstant {
   static const FONT_FAMILY = "Encode";
   static const LANG_ASSET_PATH = "assets/translations";
 
-  static const DARK_MAP_THEME = '''
-
-[
+  static const DARK_MAP_THEME = '''[
   {
     "elementType": "geometry",
     "stylers": [
@@ -45,9 +43,6 @@ class GeneralConstant {
     "stylers": [
       {
         "color": "#757575"
-      },
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -74,14 +69,6 @@ class GeneralConstant {
     "stylers": [
       {
         "color": "#bdbdbd"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -132,15 +119,6 @@ class GeneralConstant {
   },
   {
     "featureType": "road",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
     "elementType": "labels.text.fill",
     "stylers": [
       {
@@ -158,29 +136,11 @@ class GeneralConstant {
     ]
   },
   {
-    "featureType": "road.arterial",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
     "featureType": "road.highway",
     "elementType": "geometry",
     "stylers": [
       {
         "color": "#3c3c3c"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -195,26 +155,10 @@ class GeneralConstant {
   },
   {
     "featureType": "road.local",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
     "elementType": "labels.text.fill",
     "stylers": [
       {
         "color": "#616161"
-      }
-    ]
-  },
-  {
-    "featureType": "transit",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -246,12 +190,9 @@ class GeneralConstant {
     ]
   }
 ]
-
 ''';
 
-  static const LIGHT_MAP_THEME = '''
-
-[
+  static const LIGHT_MAP_THEME = '''[
   {
     "elementType": "geometry",
     "stylers": [
@@ -285,28 +226,11 @@ class GeneralConstant {
     ]
   },
   {
-    "featureType": "administrative",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
     "featureType": "administrative.land_parcel",
     "elementType": "labels.text.fill",
     "stylers": [
       {
         "color": "#bdbdbd"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -356,24 +280,6 @@ class GeneralConstant {
     ]
   },
   {
-    "featureType": "road",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road.arterial",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
     "featureType": "road.arterial",
     "elementType": "labels.text.fill",
     "stylers": [
@@ -393,15 +299,6 @@ class GeneralConstant {
   },
   {
     "featureType": "road.highway",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
     "elementType": "labels.text.fill",
     "stylers": [
       {
@@ -411,26 +308,10 @@ class GeneralConstant {
   },
   {
     "featureType": "road.local",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
     "elementType": "labels.text.fill",
     "stylers": [
       {
         "color": "#9e9e9e"
-      }
-    ]
-  },
-  {
-    "featureType": "transit",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
