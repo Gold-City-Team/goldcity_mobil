@@ -19,6 +19,8 @@ class PossibiltyTemplateView extends StatelessWidget {
       children: [
         const Expanded(
           child: GoogleMap(
+            compassEnabled: false,
+            myLocationButtonEnabled: false,
             initialCameraPosition: CameraPosition(
               target: LatLng(39.925533, 32.866287),
               zoom: 10,
