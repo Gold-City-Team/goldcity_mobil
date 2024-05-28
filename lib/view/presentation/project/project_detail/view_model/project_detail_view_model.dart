@@ -23,7 +23,10 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   int templateIndex = 0;
 
   @action
-  void changeIndex(newIndex) => templateIndex = newIndex;
+  void changeIndex(newIndex) {
+    templateIndex = newIndex;
+    isPageSelectorVisible = false;
+  }
 
   @observable
   ProjectEntity? entity;
@@ -32,6 +35,11 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     _projeclUseCase = locator<ProjectUseCase>();
     _getDetail();
   }
+
+  @observable
+  bool isPageSelectorVisible = false;
+  @action
+  void togglePageSelector() => isPageSelectorVisible = !isPageSelectorVisible;
 
   @action
   void _getDetail() {

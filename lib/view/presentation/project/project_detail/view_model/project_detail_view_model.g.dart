@@ -41,6 +41,24 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
     });
   }
 
+  late final _$isPageSelectorVisibleAtom = Atom(
+      name: '_ProjectDetailViewModelBase.isPageSelectorVisible',
+      context: context);
+
+  @override
+  bool get isPageSelectorVisible {
+    _$isPageSelectorVisibleAtom.reportRead();
+    return super.isPageSelectorVisible;
+  }
+
+  @override
+  set isPageSelectorVisible(bool value) {
+    _$isPageSelectorVisibleAtom.reportWrite(value, super.isPageSelectorVisible,
+        () {
+      super.isPageSelectorVisible = value;
+    });
+  }
+
   late final _$_ProjectDetailViewModelBaseActionController =
       ActionController(name: '_ProjectDetailViewModelBase', context: context);
 
@@ -50,6 +68,17 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
         .startAction(name: '_ProjectDetailViewModelBase.changeIndex');
     try {
       return super.changeIndex(newIndex);
+    } finally {
+      _$_ProjectDetailViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void togglePageSelector() {
+    final _$actionInfo = _$_ProjectDetailViewModelBaseActionController
+        .startAction(name: '_ProjectDetailViewModelBase.togglePageSelector');
+    try {
+      return super.togglePageSelector();
     } finally {
       _$_ProjectDetailViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -70,7 +99,8 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
   String toString() {
     return '''
 templateIndex: ${templateIndex},
-entity: ${entity}
+entity: ${entity},
+isPageSelectorVisible: ${isPageSelectorVisible}
     ''';
   }
 }
