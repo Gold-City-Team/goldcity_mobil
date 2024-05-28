@@ -24,31 +24,33 @@ class HomeView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, HomeViewModel value) => Scaffold(
-          body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Gap(context.smallSpacerSize),
-          Container(
-              margin: context.midSpacerOnlyHorizontal,
-              height: 75,
-              width: 75,
-              child: Image.asset(
-                GeneralConstant.LOGO_ASSET_PATH,
-                fit: BoxFit.cover,
-              )),
-          Padding(
-            padding: context.midSpacerOnlyHorizontal,
-            child: LabelText(
-                text: LocaleKeys.explore.tr(),
-                textColor: APPLICATION_COLOR.TITLE,
-                fontSize: FONT_SIZE.HEADLINE_LARGE),
-          ),
-          Observer(builder: (context) {
-            if (value.projectList == null) {
-              return const SizedBox.shrink();
-            }
-            return Expanded(
-              child: ListView.builder(
+          body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gap(context.smallSpacerSize),
+            Container(
+                margin: context.midSpacerOnlyHorizontal,
+                height: 75,
+                width: 75,
+                child: Image.asset(
+                  GeneralConstant.LOGO_ASSET_PATH,
+                  fit: BoxFit.cover,
+                )),
+            Padding(
+              padding: context.midSpacerOnlyHorizontal,
+              child: LabelText(
+                  text: LocaleKeys.explore.tr(),
+                  textColor: APPLICATION_COLOR.TITLE,
+                  fontSize: FONT_SIZE.HEADLINE_LARGE),
+            ),
+            Observer(builder: (context) {
+              if (value.projectList == null) {
+                return const SizedBox.shrink();
+              }
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: value.projectList!.length,
                 itemBuilder: ((context, index) {
                   return Padding(
@@ -59,10 +61,10 @@ class HomeView extends StatelessWidget {
                         projectEntity: value.projectList![index]),
                   );
                 }),
-              ),
-            );
-          }),
-        ],
+              );
+            }),
+          ],
+        ),
       )),
     );
   }
