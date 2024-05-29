@@ -30,11 +30,11 @@ class ProjectDetailView extends StatelessWidget {
           builder: (context) {
             if (value.isPageSelectorVisible) {
               return PageSelectorWidget(
-                  pages: value.entity!.detail.template
-                      .map((e) => e.title)
-                      .toList(),
-                  selectedIndex: value.templateIndex,
-                  newIndex: (newIndex) => value.changeIndex(newIndex));
+                pages:
+                    value.entity!.detail.template.map((e) => e.title).toList(),
+                selectedIndex: value.templateIndex,
+                newIndex: (newIndex) => value.changeIndex(newIndex),
+              );
             }
             return Stack(
               alignment: Alignment.bottomCenter,

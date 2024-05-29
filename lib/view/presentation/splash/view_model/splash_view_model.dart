@@ -21,7 +21,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   @override
   Future<void> init() async {
     var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
-    await Future.delayed(const Duration(milliseconds: 1), () {
+    await Future.delayed(const Duration(), () {
       if (theme == "LIGHT") {
         viewModelContext.read<ThemeNotifier>().setLightTheme();
       } else {
