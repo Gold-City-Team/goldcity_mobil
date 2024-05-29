@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/data/dto/receive/possibility/possibility_dto.dart';
@@ -9,6 +10,7 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
+import 'package:goldcity/view/presentation/project/template/possibilty_template/view_model/possibility_template_view_model.dart';
 import 'package:goldcity/view/presentation/project/template/possibilty_template/widget/facilities_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +20,16 @@ class PossibiltyTemplateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isTablet() ? tabletView(context) : phoneView(context);
+    return BaseView<PossibilityTemplateViewModel>(
+      viewModel: PossibilityTemplateViewModel(),
+      onModelReady: (model) {
+        model.setContext(context);
+        model.init();
+      },
+      onPageBuilder:
+          (BuildContext context, PossibilityTemplateViewModel value) =>
+              isTablet() ? tabletView(context) : phoneView(context),
+    );
   }
 
   Widget phoneView(BuildContext context) {
