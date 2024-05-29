@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
+import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/data/repository/lead/lead_repository_impl.dart';
 import 'package:goldcity/data/repository/project/project_repository_impl.dart';
 import 'package:goldcity/data/repository/project_detail/project_detail_repository_impl.dart';
@@ -24,6 +25,7 @@ void init() {
   locator.registerLazySingleton(() => ProjectUseCase());
   locator.registerLazySingleton(() => ProjectDetailUseCase());
   locator.registerLazySingleton(() => LocalManager());
+  locator.registerLazySingleton(() => SharedManager());
 
   locator.registerLazySingleton<LeadRepository>(() => LeadRepositoryImpl());
   locator.registerLazySingleton<LeadRemoteDataSource>(

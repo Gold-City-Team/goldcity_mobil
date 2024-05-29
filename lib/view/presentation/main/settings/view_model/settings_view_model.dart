@@ -3,7 +3,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
+import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +27,8 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
     switch (index) {
       case 0:
         viewModelContext.read<ThemeNotifier>().toggleTheme();
+        locator<SharedManager>().setStringValue(PreferenceKey.THEME,
+            viewModelContext.read<ThemeNotifier>().appTheme.name);
       case 1:
         if (viewModelContext.locale != const Locale("tr", "TR")) {
           viewModelContext.setLocale(const Locale("tr", "TR"));

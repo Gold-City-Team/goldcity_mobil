@@ -28,4 +28,20 @@ class ThemeNotifier extends ChangeNotifier {
           };
     notifyListeners();
   }
+
+  void setDarkTheme() {
+    _currentTheme = AppThemeDark.instance.theme;
+    colorScheme = ColorSchemeDark.instance;
+    appTheme = APP_THEME.DARK;
+
+    notifyListeners();
+  }
+
+  void setLightTheme() {
+    _currentTheme = AppThemeLight.instance.theme;
+    colorScheme = ColorSchemeLight.instance;
+    appTheme = APP_THEME.LIGHT;
+
+    notifyListeners();
+  }
 }

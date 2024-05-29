@@ -2,8 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/config/data/shared_manager.dart';
+import 'package:goldcity/config/notifier/theme_notifier.dart';
+import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
+import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:mobx/mobx.dart';
+import 'package:provider/provider.dart';
 
 part 'splash_view_model.g.dart';
 
@@ -14,7 +19,16 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
-  void init() {
+  Future<void> init() async {
+    var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
+    await Future.delayed(const Duration(milliseconds: 1), () {
+      if (theme == "LIGHT") {
+        viewModelContext.read<ThemeNotifier>().setLightTheme();
+      } else {
+        viewModelContext.read<ThemeNotifier>().setDarkTheme();
+      }
+    });
+
     Future.delayed(
       const Duration(seconds: 1),
       () => navigation.navigateToPage(path: NavigationConstant.MAIN),

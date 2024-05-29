@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/data/local_manager.dart';
+import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/language/language_manager.dart';
 import 'package:goldcity/config/navigation/navigation_route.dart';
 import 'package:goldcity/config/navigation/navigation_service.dart';
@@ -17,6 +18,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   di.init();
   await EasyLocalization.ensureInitialized();
+  locator<SharedManager>();
+
   await Hive.initFlutter();
   locator<LocalManager>().init();
   SystemChrome.setPreferredOrientations([
