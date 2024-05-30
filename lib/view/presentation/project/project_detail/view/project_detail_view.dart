@@ -47,17 +47,23 @@ class ProjectDetailView extends StatelessWidget {
                   return switch (
                       value.entity!.detail.template[value.templateIndex].type) {
                     TEMPLATE.TEMPLATE_ONE => FutureTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
                     TEMPLATE.TEMPLATE_TWO =>
                       GeneralInformationAndGalleryTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
                     TEMPLATE.TEMPLATE_THREE => PossibiltyTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
