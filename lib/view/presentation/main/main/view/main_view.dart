@@ -29,29 +29,31 @@ class MainView extends StatelessWidget {
                 return value.getView();
               }),
             ),
-            Observer(builder: (context) {
-              return SalomonBottomBar(
-                currentIndex: value.index,
-                onTap: (p0) => value.changeViewIndex(p0),
-                items: [
-                  SalomonBottomBarItem(
-                    icon: const Icon(Icons.home),
-                    title: Text(LocaleKeys.projects.tr()),
-                    selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
-                  ),
-                  SalomonBottomBarItem(
-                    icon: const Icon(Icons.menu_book_sharp),
-                    title: Text(LocaleKeys.educations.tr()),
-                    selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
-                  ),
-                  SalomonBottomBarItem(
-                    icon: const Icon(Icons.settings),
-                    title: Text(LocaleKeys.settings.tr()),
-                    selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
-                  ),
-                ],
-              );
-            }),
+            Observer(
+              builder: (context) {
+                return SalomonBottomBar(
+                  currentIndex: value.index,
+                  onTap: (p0) => value.changeViewIndex(p0),
+                  items: [
+                    SalomonBottomBarItem(
+                      icon: const Icon(Icons.home),
+                      title: Text(LocaleKeys.projects.tr()),
+                      selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
+                    ),
+                    SalomonBottomBarItem(
+                      icon: const Icon(Icons.menu_book_sharp),
+                      title: Text(LocaleKeys.educations.tr()),
+                      selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
+                    ),
+                    SalomonBottomBarItem(
+                      icon: const Icon(Icons.settings),
+                      title: Text(LocaleKeys.settings.tr()),
+                      selectedColor: context.toColor(APPLICATION_COLOR.GOLD),
+                    ),
+                  ],
+                );
+              },
+            ),
           ],
         ),
       ),
