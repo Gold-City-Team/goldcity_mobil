@@ -14,7 +14,12 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class FutureTemplateView extends StatelessWidget {
-  const FutureTemplateView({super.key});
+  final int projectDetailId;
+  final int projectSettingsId;
+  const FutureTemplateView(
+      {super.key,
+      required this.projectDetailId,
+      required this.projectSettingsId});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,8 @@ class FutureTemplateView extends StatelessWidget {
       viewModel: FutureTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.projectDetailId = projectDetailId;
+        model.projectSettingsId = projectSettingsId;
         model.init();
       },
       onPageBuilder: (BuildContext context, FutureTemplateViewModel value) =>

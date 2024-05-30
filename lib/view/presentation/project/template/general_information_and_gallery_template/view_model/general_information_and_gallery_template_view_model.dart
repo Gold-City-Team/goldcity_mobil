@@ -20,7 +20,8 @@ abstract class _GeneralInformationAndGalleryTemplateViewModelBase
   late ProjectDetailUseCase _projectDetailUseCase;
   @override
   void setContext(BuildContext context) => viewModelContext = context;
-
+  int projectDetailId = 0;
+  int projectSettingsId = 0;
   @override
   void init() {
     _projectDetailUseCase = locator<ProjectDetailUseCase>();
@@ -42,7 +43,10 @@ abstract class _GeneralInformationAndGalleryTemplateViewModelBase
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 6);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(
+      projectDetailId,
+      projectSettingsId,
+    );
     if (result.isRight) {
       templateTwo = (result.right.template as TemplateTwoEntity);
     }

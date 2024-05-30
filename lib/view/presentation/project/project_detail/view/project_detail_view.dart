@@ -46,10 +46,22 @@ class ProjectDetailView extends StatelessWidget {
                   }
                   return switch (
                       value.entity!.detail.template[value.templateIndex].type) {
-                    TEMPLATE.TEMPLATE_ONE => const FutureTemplateView(),
+                    TEMPLATE.TEMPLATE_ONE => FutureTemplateView(
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
+                      ),
                     TEMPLATE.TEMPLATE_TWO =>
-                      const GeneralInformationAndGalleryTemplateView(),
-                    TEMPLATE.TEMPLATE_THREE => PossibiltyTemplateView()
+                      GeneralInformationAndGalleryTemplateView(
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
+                      ),
+                    TEMPLATE.TEMPLATE_THREE => PossibiltyTemplateView(
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
+                      )
                   };
                 }),
                 SafeArea(

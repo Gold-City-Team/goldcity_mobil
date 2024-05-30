@@ -17,7 +17,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class PossibiltyTemplateView extends StatelessWidget {
-  const PossibiltyTemplateView({super.key});
+  final int projectDetailId;
+  final int projectSettingsId;
+  const PossibiltyTemplateView(
+      {required this.projectDetailId,
+      required this.projectSettingsId,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +30,8 @@ class PossibiltyTemplateView extends StatelessWidget {
       viewModel: PossibilityTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.projectDetailId = projectDetailId;
+        model.projectSettingsId = projectSettingsId;
         model.init();
       },
       onPageBuilder:

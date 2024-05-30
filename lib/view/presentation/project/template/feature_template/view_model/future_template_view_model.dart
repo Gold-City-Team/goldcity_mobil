@@ -37,10 +37,12 @@ abstract class _FutureTemplateViewModelBase with Store, BaseViewModel {
 
   @observable
   TemplateOneEntity? templateEntity;
-
+  int projectDetailId = 0;
+  int projectSettingsId = 0;
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 5);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(
+        projectDetailId, projectSettingsId);
     if (result.isRight) {
       templateEntity = (result.right.template as TemplateOneEntity);
     }

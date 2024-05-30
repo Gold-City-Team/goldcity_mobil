@@ -43,10 +43,12 @@ abstract class _PossibilityTemplateViewModelBase with Store, BaseViewModel {
 
   @observable
   TemplateThreeEntity? templateThree;
-
+  int projectDetailId = 0;
+  int projectSettingsId = 0;
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 8);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(
+        projectDetailId, projectSettingsId);
     if (result.isRight) {
       templateThree = (result.right.template as TemplateThreeEntity);
       templateThree!.possibilities.add(PossibilityDto(
