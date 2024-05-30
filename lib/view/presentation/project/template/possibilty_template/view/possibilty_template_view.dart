@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
