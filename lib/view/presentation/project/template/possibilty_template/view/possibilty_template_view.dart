@@ -35,43 +35,46 @@ class PossibiltyTemplateView extends StatelessWidget {
         model.init();
       },
       onPageBuilder:
-          (BuildContext context, PossibilityTemplateViewModel value) => Stack(
-        alignment: isTablet() ? Alignment.centerLeft : Alignment.topCenter,
-        children: [
-          Observer(builder: (context) {
-            if (value.templateThree == null) {
-              return const SizedBox.shrink();
-            }
-            return GoogleMap(
-              compassEnabled: false,
-              onMapCreated: (GoogleMapController controller) {
-                value.controller.complete(controller);
-              },
-              style: context.watch<ThemeNotifier>().appTheme == APP_THEME.DARK
-                  ? GeneralConstant.DARK_MAP_THEME
-                  : GeneralConstant.LIGHT_MAP_THEME,
-              myLocationButtonEnabled: false,
-              initialCameraPosition: CameraPosition(
-                target: LatLng(value.templateThree!.location.latitude,
-                    value.templateThree!.location.longitude),
-                zoom: 15,
-              ),
-              markers: value.templateThree!.possibilities
-                  .map(
-                    (e) => Marker(
-                      infoWindow:
-                          InfoWindow(title: e.title, snippet: e.description),
-                      icon: BitmapDescriptor.defaultMarkerWithHue(e.color),
-                      markerId: MarkerId("${e.id}"),
-                      position:
-                          LatLng(e.location.latitude, e.location.longitude),
-                    ),
-                  )
-                  .toSet(),
-            );
-          }),
-          isTablet() ? tabletView(context, value) : phoneView(context, value),
-        ],
+          (BuildContext context, PossibilityTemplateViewModel value) =>
+              Scaffold(
+        body: Stack(
+          alignment: isTablet() ? Alignment.centerLeft : Alignment.topCenter,
+          children: [
+            Observer(builder: (context) {
+              if (value.templateThree == null) {
+                return const SizedBox.shrink();
+              }
+              return GoogleMap(
+                compassEnabled: false,
+                onMapCreated: (GoogleMapController controller) {
+                  value.controller.complete(controller);
+                },
+                style: context.watch<ThemeNotifier>().appTheme == APP_THEME.DARK
+                    ? GeneralConstant.DARK_MAP_THEME
+                    : GeneralConstant.LIGHT_MAP_THEME,
+                myLocationButtonEnabled: false,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(value.templateThree!.location.latitude,
+                      value.templateThree!.location.longitude),
+                  zoom: 15,
+                ),
+                markers: value.templateThree!.possibilities
+                    .map(
+                      (e) => Marker(
+                        infoWindow:
+                            InfoWindow(title: e.title, snippet: e.description),
+                        icon: BitmapDescriptor.defaultMarkerWithHue(e.color),
+                        markerId: MarkerId("${e.id}"),
+                        position:
+                            LatLng(e.location.latitude, e.location.longitude),
+                      ),
+                    )
+                    .toSet(),
+              );
+            }),
+            isTablet() ? tabletView(context, value) : phoneView(context, value),
+          ],
+        ),
       ),
     );
   }
