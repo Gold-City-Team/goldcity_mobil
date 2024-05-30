@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
-import 'package:goldcity/view/presentation/gold_map/view/gold_map_view.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
 import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dart';
@@ -28,9 +27,7 @@ class NavigationRoute {
       /* STORY */
       NavigationConstant.STORY =>
         normalNavigate(const StoryView(), NavigationConstant.STORY),
-      /* MAP */
-      NavigationConstant.MAP =>
-        normalNavigate(const GoldMapView(), NavigationConstant.MAP),
+
       /* LEAD APPLY */
       NavigationConstant.LEAD_APPLY =>
         normalNavigate(const LeadApplyView(), NavigationConstant.LEAD_APPLY),

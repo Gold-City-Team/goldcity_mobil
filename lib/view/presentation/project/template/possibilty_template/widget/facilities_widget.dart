@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/domain/entity/possibility/possibility_entity.dart';
+import 'package:goldcity/domain/entity/project/template/template_three/template_three_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -11,7 +11,9 @@ import 'package:goldcity/view/widget/text/label_text.dart';
 
 class FacilitiesWidget extends StatelessWidget {
   final PossibilityEntity possibilityEntity;
-  const FacilitiesWidget({required this.possibilityEntity, super.key});
+  final bool isSelected;
+  const FacilitiesWidget(
+      {required this.possibilityEntity, required this.isSelected, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,9 @@ class FacilitiesWidget extends StatelessWidget {
       width: 300,
       decoration: BoxDecoration(
         borderRadius: context.largeRadius,
-        border: Border.all(color: context.toColor(APPLICATION_COLOR.GOLD)),
+        border: isSelected
+            ? Border.all(color: context.toColor(APPLICATION_COLOR.GOLD))
+            : null,
         color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
       ),
       margin: context.midSpacerOnlyHorizontal,

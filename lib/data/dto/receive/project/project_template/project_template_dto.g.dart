@@ -23,4 +23,5 @@ Map<String, dynamic> _$ProjectTemplateDtoToJson(ProjectTemplateDto instance) =>
 const _$TEMPLATEEnumMap = {
   TEMPLATE.TEMPLATE_ONE: 'TEMPLATE_ONE',
   TEMPLATE.TEMPLATE_TWO: 'TEMPLATE_TWO',
+  TEMPLATE.TEMPLATE_THREE: 'TEMPLATE_THREE',
 };
