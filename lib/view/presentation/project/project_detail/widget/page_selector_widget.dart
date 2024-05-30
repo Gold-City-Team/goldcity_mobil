@@ -35,7 +35,6 @@ class PageSelectorWidget extends StatelessWidget {
                 child: const Icon(Icons.close),
               ),
             ),
-            const Spacer(),
             Expanded(
               child: ListView.builder(
                   shrinkWrap: true,
@@ -60,7 +59,6 @@ class PageSelectorWidget extends StatelessWidget {
                     );
                   }),
             ),
-            const Spacer()
           ],
         ),
       ),
