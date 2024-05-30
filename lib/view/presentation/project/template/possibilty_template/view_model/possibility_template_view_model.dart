@@ -65,8 +65,9 @@ abstract class _PossibilityTemplateViewModelBase with Store, BaseViewModel {
 
   final Completer<GoogleMapController> controller =
       Completer<GoogleMapController>();
+
   @observable
-  int selectedPinIndex = 0;
+  int selectedPinIndex = -1;
 
   @action
   void changeSelectedPinIndex(int newIndex) {

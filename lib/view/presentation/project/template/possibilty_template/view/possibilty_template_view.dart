@@ -82,7 +82,7 @@ class PossibiltyTemplateView extends StatelessWidget {
   Widget phoneView(BuildContext context, PossibilityTemplateViewModel value) {
     return SafeArea(
       child: Observer(builder: (context) {
-        if (value.templateThree == null || value.selectedPinIndex == -1) {
+        if (value.templateThree == null || value.selectedPinIndex == -2) {
           return const SizedBox.shrink();
         }
         return Container(
@@ -131,7 +131,7 @@ class PossibiltyTemplateView extends StatelessWidget {
   Widget tabletView(BuildContext context, PossibilityTemplateViewModel value) {
     return SafeArea(
       child: Observer(builder: (context) {
-        if (value.templateThree == null || value.selectedPinIndex == -1) {
+        if (value.templateThree == null || value.selectedPinIndex == -2) {
           return const SizedBox.shrink();
         }
         return Container(
