@@ -33,9 +33,9 @@ class FutureTemplateView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, FutureTemplateViewModel value) =>
           Scaffold(
-              body: isTablet()
-                  ? tabletView(context, value)
-                  : phoneView(context, value)),
+        body:
+            isTablet() ? tabletView(context, value) : phoneView(context, value),
+      ),
     );
   }
 
