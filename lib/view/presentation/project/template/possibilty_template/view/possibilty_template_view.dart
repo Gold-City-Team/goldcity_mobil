@@ -71,37 +71,50 @@ class PossibiltyTemplateView extends StatelessWidget {
 
   Widget phoneView(BuildContext context, PossibilityTemplateViewModel value) {
     return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-            color: context
-                .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                .withAlpha(150),
-            borderRadius: context.largeRadius),
-        margin: context.midSpacerOnlyHorizontal,
-        padding: context.midLargeSpacerOnlyVertical,
-        height: 130,
-        child: ListView.builder(
-          itemCount: value.templateThree!.possibilities.length,
-          padding: EdgeInsets.zero,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: ((context, index) {
-            return Padding(
-              padding:
-                  index != 50 ? context.midSpacerOnlyRight : EdgeInsets.zero,
-              child: FacilitiesWidget(
-                isSelected: index == value.selectedPinIndex,
-                possibilityEntity: PossibilityDto(
-                  title: "Ankara",
-                  description: "Ankarayı arayın. Konuşulacak meseleler var.",
-                  mediaItem: MediaDto(
-                      url:
-                          "https://goldcitycondominium.com/images/projects/golfAqua/ic/ic1.webp"),
-                ).toEntity(),
-              ),
-            );
-          }),
-        ),
-      ),
+      child: Observer(builder: (context) {
+        if (value.templateThree == null || value.selectedPinIndex == -1) {
+          return const SizedBox.shrink();
+        }
+        return Container(
+          decoration: BoxDecoration(
+              color: context
+                  .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                  .withAlpha(150),
+              borderRadius: context.largeRadius),
+          margin: context.midSpacerOnlyHorizontal,
+          padding: context.midLargeSpacerOnlyVertical,
+          height: 130,
+          child: ListView.builder(
+            itemCount: value.templateThree!.possibilities.length,
+            padding: EdgeInsets.zero,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: ((context, index) {
+              if (value
+                  .templateThree!.possibilities[index].description.isEmpty) {
+                return const SizedBox.shrink();
+              }
+              return GestureDetector(
+                onTap: () => value.changeSelectedPinIndex(index),
+                child: Padding(
+                  padding: EdgeInsets.zero,
+                  child: FacilitiesWidget(
+                    isSelected: index == value.selectedPinIndex,
+                    possibilityEntity: PossibilityDto(
+                      title: value.templateThree!.possibilities[index].title,
+                      description:
+                          value.templateThree!.possibilities[index].description,
+                      mediaItem: MediaDto(
+                        url:
+                            value.templateThree!.possibilities[index].media.url,
+                      ),
+                    ).toEntity(),
+                  ),
+                ),
+              );
+            }),
+          ),
+        );
+      }),
     );
   }
 
