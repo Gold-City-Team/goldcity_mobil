@@ -30,16 +30,8 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     });
 
     Future.delayed(
-      const Duration(seconds: 1),
-      () => navigation.navigateToPage(path: NavigationConstant.MAIN),
+      const Duration(milliseconds: 500),
+      () => navigation.navigateToPageClear(path: NavigationConstant.MAIN),
     );
-  }
-
-  void navigateProjectDetail() {
-    navigation.navigateToPage(path: NavigationConstant.PROJECT_DETAIL);
-  }
-
-  void navigateStory() {
-    navigation.navigateToPage(path: NavigationConstant.STORY);
   }
 }
