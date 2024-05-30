@@ -63,7 +63,7 @@ class PossibiltyTemplateView extends StatelessWidget {
                   .toSet(),
             );
           }),
-          isTablet() ? tabletView(context, value) : phoneView(context, value)
+          isTablet() ? tabletView(context, value) : phoneView(context, value),
         ],
       ),
     );
