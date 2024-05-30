@@ -12,5 +12,8 @@ abstract class  LocaleKeys {
   static const explore = 'explore';
   static const educations = 'educations';
   static const settings = 'settings';
+  static const language = 'language';
+  static const darkTheme = 'darkTheme';
+  static const change = 'change';
 
 }
