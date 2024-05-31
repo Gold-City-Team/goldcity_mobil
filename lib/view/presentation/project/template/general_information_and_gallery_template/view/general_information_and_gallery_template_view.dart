@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -260,24 +261,45 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
               runSpacing: 10,
               children: value.templateTwo!.gallery
                   .map(
-                    (e) => GestureDetector(
-                      onTap: () => value.navigateGallery(value
-                          .templateTwo!.gallery
-                          .indexWhere((element) => element == e)),
-                      child: SizedBox(
-                        width: context.sWidth / 3 - 20,
-                        height: (context.sWidth / 3 - 20) / 1.7777,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Container(
-                            color: context.toColor(APPLICATION_COLOR.DARK),
-                            child: NormalNetworkImage(
-                              fit: BoxFit.cover,
-                              source: e.mediaItem.url,
-                            ),
-                          ),
+                    (e) => SizedBox(
+                      width: context.sWidth / 3 - 20,
+                      height: (context.sWidth / 3 - 20) / 1.7777,
+                      child: GestureDetector(
+                        onTap: () => value.navigateGallery(value
+                            .templateTwo!.gallery
+                            .indexWhere((element) => element == e)),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Container(
+                                width: context.sWidth / 3 - 20,
+                                height: (context.sWidth / 3 - 20) / 1.7777,
+                                color: context.toColor(APPLICATION_COLOR.DARK),
+                                child: NormalNetworkImage(
+                                  fit: BoxFit.cover,
+                                  source:
+                                      e.mediaItem.mediaType == MEDIA_TYPE.IMAGE
+                                          ? e.mediaItem.url
+                                          : e.mediaItem.mediaMetaData.thumbnail,
+                                ),
+                              ),
+                            ).animate().fade(),
+                            e.mediaItem.mediaType == MEDIA_TYPE.VIDEO
+                                ? Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                        borderRadius: context.xLargeRadius),
+                                    child: const Icon(Icons.play_arrow),
+                                  )
+                                : const SizedBox.shrink()
+                          ],
                         ),
-                      ).animate().fade(),
+                      ),
                     ),
                   )
                   .toList(),

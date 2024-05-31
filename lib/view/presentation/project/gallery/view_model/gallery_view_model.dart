@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
-import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
+import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
 import 'package:mobx/mobx.dart';
 
 part 'gallery_view_model.g.dart';
@@ -25,7 +25,7 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     getGallery();
   }
 
-  List<TemplateTwoGalleryEntity>? gallery;
+  List<TemplateGalleryEntity>? gallery;
 
   @observable
   ProjectGalleryEntity? projectGallery;

@@ -5,16 +5,17 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
+import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/project/gallery/view_model/gallery_view_model.dart';
+import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class GalleryView extends StatefulWidget {
-  final List<TemplateTwoGalleryEntity> gallery;
+  final List<TemplateGalleryEntity> gallery;
   final int selectedIndex;
 
   const GalleryView({
@@ -69,7 +70,7 @@ class _GalleryViewState extends State<GalleryView> {
     return isTablet()
         ? widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
             ? tabletImageView(viewModel, carouselController)
-            : const SizedBox.shrink()
+            : tabletVideoView(viewModel)
         : widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
             ? phoneImageView(viewModel, carouselController)
             : const SizedBox.shrink();
@@ -227,6 +228,13 @@ class _GalleryViewState extends State<GalleryView> {
         ],
       ),
     );
+  }
+
+  Widget tabletVideoView(GalleryViewModel viewModel) {
+    return VideoFrameView(
+        isFullScreen: true,
+        fullScreen: () => viewModel.navigation.pop(),
+        url: viewModel.gallery![0].mediaItem.url);
   }
 
   Widget mediaPart(String imageUrl, bool isSelected, BuildContext context) {

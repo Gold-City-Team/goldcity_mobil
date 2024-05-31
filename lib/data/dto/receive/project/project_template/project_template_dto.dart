@@ -11,7 +11,9 @@ enum TEMPLATE {
   @JsonValue("TEMPLATE_TWO")
   TEMPLATE_TWO,
   @JsonValue("TEMPLATE_THREE")
-  TEMPLATE_THREE
+  TEMPLATE_THREE,
+  @JsonValue("TEMPLATE_FOUR")
+  TEMPLATE_FOUR
 }
 
 @JsonSerializable()

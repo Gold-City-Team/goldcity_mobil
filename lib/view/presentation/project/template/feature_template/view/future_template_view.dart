@@ -7,9 +7,9 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/project/template/feature_template/widget/features_widget.dart';
 import 'package:goldcity/view/presentation/project/template/feature_template/view_model/future_template_view_model.dart';
 import 'package:goldcity/view/presentation/project/template/feature_template/widget/background_widget.dart';
+import 'package:goldcity/view/widget/features/features_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 

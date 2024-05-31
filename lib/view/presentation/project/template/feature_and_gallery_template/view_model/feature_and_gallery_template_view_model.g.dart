@@ -10,10 +10,36 @@ part of 'feature_and_gallery_template_view_model.dart';
 
 mixin _$FeatureAndGalleryTemplateViewModel
     on _FeatureAndGalleryTemplateViewModelBase, Store {
+  late final _$templateEntityAtom = Atom(
+      name: '_FeatureAndGalleryTemplateViewModelBase.templateEntity',
+      context: context);
+
+  @override
+  TemplateFourEntity? get templateEntity {
+    _$templateEntityAtom.reportRead();
+    return super.templateEntity;
+  }
+
+  @override
+  set templateEntity(TemplateFourEntity? value) {
+    _$templateEntityAtom.reportWrite(value, super.templateEntity, () {
+      super.templateEntity = value;
+    });
+  }
+
+  late final _$_getDetailAsyncAction = AsyncAction(
+      '_FeatureAndGalleryTemplateViewModelBase._getDetail',
+      context: context);
+
+  @override
+  Future<void> _getDetail() {
+    return _$_getDetailAsyncAction.run(() => super._getDetail());
+  }
+
   @override
   String toString() {
     return '''
-
+templateEntity: ${templateEntity}
     ''';
   }
 }

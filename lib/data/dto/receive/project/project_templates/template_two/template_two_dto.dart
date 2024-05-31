@@ -1,4 +1,5 @@
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
 import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'template_two_dto.g.dart';
@@ -39,7 +40,7 @@ class TemplateTwoGalleryDto {
   MediaDto? mediaItem;
   TemplateTwoGalleryDto({this.id, this.mediaItem});
 
-  TemplateTwoGalleryEntity toEntity() => TemplateTwoGalleryEntity(
+  TemplateGalleryEntity toEntity() => TemplateGalleryEntity(
       id: id ?? 0,
       mediaItem:
           mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity());

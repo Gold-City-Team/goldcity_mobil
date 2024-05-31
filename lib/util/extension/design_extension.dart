@@ -19,6 +19,8 @@ extension ScreenSizeExtension on BuildContext {
 }
 
 extension RadiusExtension on BuildContext {
+  BorderRadius get xLargeRadius => const BorderRadius.all(Radius.circular(25));
+
   BorderRadius get largeRadius => const BorderRadius.all(Radius.circular(20));
   BorderRadius get midRadius => const BorderRadius.all(Radius.circular(10));
 }
