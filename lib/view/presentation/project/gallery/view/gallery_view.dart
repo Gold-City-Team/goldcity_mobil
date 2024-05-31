@@ -68,14 +68,15 @@ class _GalleryViewState extends State<GalleryView> {
   Widget body(GalleryViewModel viewModel, BuildContext context) {
     return isTablet()
         ? widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
-            ? tabletView(viewModel, carouselController)
+            ? tabletImageView(viewModel, carouselController)
             : const SizedBox.shrink()
         : widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
-            ? phoneView(viewModel, carouselController)
+            ? phoneImageView(viewModel, carouselController)
             : const SizedBox.shrink();
   }
 
-  Widget phoneView(GalleryViewModel viewModel, CarouselController controller) {
+  Widget phoneImageView(
+      GalleryViewModel viewModel, CarouselController controller) {
     return Row(
       children: [
         SafeArea(
@@ -153,7 +154,8 @@ class _GalleryViewState extends State<GalleryView> {
     );
   }
 
-  Widget tabletView(GalleryViewModel viewModel, CarouselController controller) {
+  Widget tabletImageView(
+      GalleryViewModel viewModel, CarouselController controller) {
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -121,17 +121,19 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
             ).animate().fade();
           }),
           Gap(context.largeSpacerSize),
-          Observer(builder: (context) {
-            if (value.templateTwo == null) {
-              return const SizedBox.shrink();
-            }
-            return Center(
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 10,
-                runSpacing: 0,
-                children: value.templateTwo!.gallery
-                    .map((e) => GestureDetector(
+          Observer(
+            builder: (context) {
+              if (value.templateTwo == null) {
+                return const SizedBox.shrink();
+              }
+              return Center(
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 10,
+                  runSpacing: 0,
+                  children: value.templateTwo!.gallery
+                      .map(
+                        (e) => GestureDetector(
                           onTap: () => value.navigateGallery(
                             value.templateTwo!.gallery
                                 .indexWhere((element) => element == e),
@@ -154,11 +156,13 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                               ).animate().fade(),
                             ),
                           ),
-                        ))
-                    .toList(),
-              ),
-            );
-          })
+                        ),
+                      )
+                      .toList(),
+                ),
+              );
+            },
+          )
         ],
       ),
     );
@@ -246,38 +250,40 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
             ),
           ),
         ),
-        Observer(builder: (context) {
-          if (value.templateTwo == null) {
-            return const SizedBox.shrink();
-          }
-          return Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: value.templateTwo!.gallery
-                .map(
-                  (e) => GestureDetector(
-                    onTap: () => value.navigateGallery(value
-                        .templateTwo!.gallery
-                        .indexWhere((element) => element == e)),
-                    child: SizedBox(
-                      width: context.sWidth / 3 - 20,
-                      height: (context.sWidth / 3 - 20) / 1.7777,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Container(
-                          color: context.toColor(APPLICATION_COLOR.DARK),
-                          child: NormalNetworkImage(
-                            fit: BoxFit.cover,
-                            source: e.mediaItem.url,
+        Observer(
+          builder: (context) {
+            if (value.templateTwo == null) {
+              return const SizedBox.shrink();
+            }
+            return Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: value.templateTwo!.gallery
+                  .map(
+                    (e) => GestureDetector(
+                      onTap: () => value.navigateGallery(value
+                          .templateTwo!.gallery
+                          .indexWhere((element) => element == e)),
+                      child: SizedBox(
+                        width: context.sWidth / 3 - 20,
+                        height: (context.sWidth / 3 - 20) / 1.7777,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Container(
+                            color: context.toColor(APPLICATION_COLOR.DARK),
+                            child: NormalNetworkImage(
+                              fit: BoxFit.cover,
+                              source: e.mediaItem.url,
+                            ),
                           ),
                         ),
-                      ),
-                    ).animate().fade(),
-                  ),
-                )
-                .toList(),
-          );
-        })
+                      ).animate().fade(),
+                    ),
+                  )
+                  .toList(),
+            );
+          },
+        )
       ],
     );
   }
