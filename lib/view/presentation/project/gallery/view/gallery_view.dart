@@ -30,18 +30,18 @@ class GalleryView extends StatefulWidget {
 
 class _GalleryViewState extends State<GalleryView> {
   ScrollController c = ScrollController();
-
+  late GalleryViewModel v;
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE) {
+      if (v.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE) {
         if (isTablet()) {
-          c.jumpTo(widget.selectedIndex * (150 * 1.84));
+          c.jumpTo(v.selectedMediaIndex * (150 * 1.84));
         } else {
           c.animateTo(
-            widget.selectedIndex * 150,
+            v.selectedMediaIndex * 150,
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeIn,
           );
@@ -59,6 +59,7 @@ class _GalleryViewState extends State<GalleryView> {
         model.gallery = widget.gallery;
         model.selectedMediaIndex = widget.selectedIndex;
         model.init();
+        v = model;
       },
       onPageBuilder: (BuildContext context, GalleryViewModel value) =>
           Scaffold(body: body(value, context)),
@@ -68,12 +69,12 @@ class _GalleryViewState extends State<GalleryView> {
   CarouselController carouselController = CarouselController();
   Widget body(GalleryViewModel viewModel, BuildContext context) {
     return isTablet()
-        ? widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
+        ? viewModel.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
             ? tabletImageView(viewModel, carouselController)
             : tabletVideoView(viewModel)
-        : widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
+        : viewModel.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
             ? phoneImageView(viewModel, carouselController)
-            : const SizedBox.shrink();
+            : tabletVideoView(viewModel);
   }
 
   Widget phoneImageView(
@@ -94,7 +95,7 @@ class _GalleryViewState extends State<GalleryView> {
               child: ListView.builder(
                 padding: EdgeInsets.zero,
                 controller: c,
-                itemCount: viewModel.gallery!.length,
+                itemCount: viewModel.gallery.length,
                 itemBuilder: (context, index) {
                   return SizedBox(
                     height: 150,
@@ -106,10 +107,8 @@ class _GalleryViewState extends State<GalleryView> {
                       },
                       child: Padding(
                         padding: context.midSpacerOnlyBottom,
-                        child: mediaPart(
-                            viewModel.gallery![index].mediaItem.url,
-                            viewModel.selectedMediaIndex == index,
-                            context),
+                        child: mediaPart(viewModel.gallery[index].mediaItem.url,
+                            viewModel.selectedMediaIndex == index, context),
                       ),
                     ),
                   );
@@ -135,7 +134,7 @@ class _GalleryViewState extends State<GalleryView> {
                 enlargeCenterPage: true,
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
                 pageSnapping: true),
-            items: viewModel.gallery!.map((i) {
+            items: viewModel.gallery.map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -169,7 +168,7 @@ class _GalleryViewState extends State<GalleryView> {
                 options: CarouselOptions(
                     onPageChanged: (index, reason) {
                       viewModel.selectedMediaIndexChange(index);
-                      if (index + 4 <= viewModel.gallery!.length) {
+                      if (index + 4 <= viewModel.gallery.length) {
                         c.jumpTo(index * (150 * 1.84));
                       }
                     },
@@ -179,7 +178,7 @@ class _GalleryViewState extends State<GalleryView> {
                     enlargeCenterPage: true,
                     enlargeStrategy: CenterPageEnlargeStrategy.height,
                     pageSnapping: true),
-                items: viewModel.gallery!.map((i) {
+                items: viewModel.gallery.map((i) {
                   return Builder(
                     builder: (BuildContext context) {
                       return Container(
@@ -206,7 +205,7 @@ class _GalleryViewState extends State<GalleryView> {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.zero,
-                  itemCount: viewModel.gallery!.length,
+                  itemCount: viewModel.gallery.length,
                   controller: c,
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -216,10 +215,8 @@ class _GalleryViewState extends State<GalleryView> {
                       },
                       child: Padding(
                         padding: context.midSpacerOnlyLeft,
-                        child: mediaPart(
-                            viewModel.gallery![index].mediaItem.url,
-                            viewModel.selectedMediaIndex == index,
-                            context),
+                        child: mediaPart(viewModel.gallery[index].mediaItem.url,
+                            viewModel.selectedMediaIndex == index, context),
                       ),
                     );
                   },
@@ -234,7 +231,7 @@ class _GalleryViewState extends State<GalleryView> {
     return VideoFrameView(
         isFullScreen: true,
         fullScreen: () => viewModel.navigation.pop(),
-        url: viewModel.gallery![0].mediaItem.url);
+        url: viewModel.gallery[viewModel.selectedMediaIndex].mediaItem.url);
   }
 
   Widget mediaPart(String imageUrl, bool isSelected, BuildContext context) {

@@ -40,14 +40,11 @@ abstract class _FeatureAndGalleryTemplateViewModelBase
   }
 
   Future<void> navigateGallery(int selectedId) async {
-    await navigation.navigateToPage(path: NavigationConstant.GALLERY, data: [
-      templateEntity!.gallery
-          .where((e) =>
-              e.mediaItem.mediaType ==
-              templateEntity!.gallery[selectedId].mediaItem.mediaType)
-          .toList(),
-      selectedId
-    ]);
+    await navigation.navigateToPage(
+      path: NavigationConstant.GALLERY,
+      data: [templateEntity!.gallery, selectedId],
+    );
+
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,

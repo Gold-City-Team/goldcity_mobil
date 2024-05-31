@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/domain/entity/project/project_gallery/project_gallery_entity.dart';
 import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
 import 'package:mobx/mobx.dart';
 
@@ -22,34 +21,11 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
-    getGallery();
+
+    _configureGallery();
   }
 
-  List<TemplateGalleryEntity>? gallery;
-
-  @observable
-  ProjectGalleryEntity? projectGallery;
-
-  @action
-  void getGallery() {}
-
-  Set<String> categoryList() {
-    List<String> values = projectGallery!.projectGallery
-        .map((e) => e.media.mediaType.toHumanText())
-        .toList();
-    return values.toSet();
-  }
-
-  @observable
-  String? categoryIndex;
-
-  @action
-  void changeCategory(String value) {
-    if (value != categoryIndex) {
-      selectedMediaIndex = 0;
-      categoryIndex = value;
-    }
-  }
+  late List<TemplateGalleryEntity> gallery;
 
   @observable
   int selectedMediaIndex = 0;
@@ -59,33 +35,19 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     selectedMediaIndex = newIndex;
   }
 
-  @observable
-  bool bottomListVisible = false;
-
   @action
-  void toggleBottomListVisible() {
-    if (isFullScreen) {
-      bottomListVisible = !bottomListVisible;
+  void _configureGallery() {
+    MEDIA_TYPE type = gallery[selectedMediaIndex].mediaItem.mediaType;
+    var newIndex = selectedMediaIndex;
+    for (int i = 0; i < selectedMediaIndex; i++) {
+      if (gallery[i].mediaItem.mediaType != type) {
+        newIndex--;
+      }
     }
-  }
+    selectedMediaIndex = newIndex;
 
-  @observable
-  bool isFullScreen = false;
-
-  @action
-  void toggleFullScreen() {
-    isFullScreen = !isFullScreen;
-    bottomListVisible = false;
-    if (isFullScreen) {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
-      ]);
-    } else {
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-    }
+    gallery = gallery
+        .where((element) => element.mediaItem.mediaType == type)
+        .toList();
   }
 }
