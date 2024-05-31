@@ -33,12 +33,15 @@ abstract class _FeatureAndGalleryTemplateViewModelBase
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 11);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(
+        projectDetailId, projectSettingsId);
     if (result.isRight) {
       templateEntity = (result.right.template as TemplateFourEntity);
     }
   }
 
+  int projectDetailId = 0;
+  int projectSettingsId = 0;
   Future<void> navigateGallery(int selectedId) async {
     await navigation.navigateToPage(
       path: NavigationConstant.GALLERY,
