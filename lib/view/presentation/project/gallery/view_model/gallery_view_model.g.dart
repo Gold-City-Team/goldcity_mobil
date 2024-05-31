@@ -25,6 +25,22 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
     });
   }
 
+  late final _$isBottomVisibleAtom =
+      Atom(name: '_GalleryViewModelBase.isBottomVisible', context: context);
+
+  @override
+  bool get isBottomVisible {
+    _$isBottomVisibleAtom.reportRead();
+    return super.isBottomVisible;
+  }
+
+  @override
+  set isBottomVisible(bool value) {
+    _$isBottomVisibleAtom.reportWrite(value, super.isBottomVisible, () {
+      super.isBottomVisible = value;
+    });
+  }
+
   late final _$_GalleryViewModelBaseActionController =
       ActionController(name: '_GalleryViewModelBase', context: context);
 
@@ -34,6 +50,17 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
         name: '_GalleryViewModelBase.selectedMediaIndexChange');
     try {
       return super.selectedMediaIndexChange(newIndex);
+    } finally {
+      _$_GalleryViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void toggleBottomVisible() {
+    final _$actionInfo = _$_GalleryViewModelBaseActionController.startAction(
+        name: '_GalleryViewModelBase.toggleBottomVisible');
+    try {
+      return super.toggleBottomVisible();
     } finally {
       _$_GalleryViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -53,7 +80,8 @@ mixin _$GalleryViewModel on _GalleryViewModelBase, Store {
   @override
   String toString() {
     return '''
-selectedMediaIndex: ${selectedMediaIndex}
+selectedMediaIndex: ${selectedMediaIndex},
+isBottomVisible: ${isBottomVisible}
     ''';
   }
 }

@@ -32,8 +32,15 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
 
   @action
   void selectedMediaIndexChange(int newIndex) {
+    isBottomVisible = false;
     selectedMediaIndex = newIndex;
   }
+
+  @observable
+  bool isBottomVisible = false;
+
+  @action
+  void toggleBottomVisible() => isBottomVisible = !isBottomVisible;
 
   @action
   void _configureGallery() {

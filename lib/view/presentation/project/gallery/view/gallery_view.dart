@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -228,10 +230,81 @@ class _GalleryViewState extends State<GalleryView> {
   }
 
   Widget tabletVideoView(GalleryViewModel viewModel) {
-    return VideoFrameView(
-        isFullScreen: true,
-        fullScreen: () => viewModel.navigation.pop(),
-        url: viewModel.gallery[viewModel.selectedMediaIndex].mediaItem.url);
+    return Stack(
+      children: [
+        Observer(builder: (context) {
+          return VideoFrameView(
+              key: Key("${viewModel.gallery[viewModel.selectedMediaIndex].id}"),
+              isFullScreen: !viewModel.isBottomVisible,
+              fullScreen: () => viewModel.navigation.pop(),
+              url: viewModel
+                  .gallery[viewModel.selectedMediaIndex].mediaItem.url);
+        }),
+        Observer(builder: (context) {
+          return Padding(
+            padding: context.midSpacer,
+            child: SafeArea(
+              child: GestureDetector(
+                onTap: () => viewModel.toggleBottomVisible(),
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
+                  child: SizedBox(
+                    child: Icon(
+                      viewModel.isBottomVisible
+                          ? Icons.arrow_drop_up
+                          : Icons.arrow_drop_down,
+                      size: 28,
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }),
+        Observer(builder: (context) {
+          if (!viewModel.isBottomVisible ||
+              viewModel.selectedMediaIndex == -1) {
+            return const SizedBox.shrink();
+          }
+          return Padding(
+            padding: context.midSpacer,
+            child: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    height: 150,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: viewModel.gallery.length,
+                        itemBuilder: ((context, index) {
+                          return Padding(
+                            padding: context.midSpacerOnlyRight,
+                            child: GestureDetector(
+                              onTap: () =>
+                                  viewModel.selectedMediaIndexChange(index),
+                              child: mediaPart(
+                                  viewModel.gallery[index].mediaItem
+                                      .mediaMetaData.thumbnail,
+                                  index == viewModel.selectedMediaIndex,
+                                  context),
+                            ),
+                          );
+                        })),
+                  ),
+                ],
+              ),
+            ),
+          );
+        })
+      ],
+    );
   }
 
   Widget mediaPart(String imageUrl, bool isSelected, BuildContext context) {
