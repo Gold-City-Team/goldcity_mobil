@@ -341,7 +341,7 @@ class _GalleryViewState extends State<GalleryView> {
           height: 90,
           decoration: BoxDecoration(
             border: Border.all(
-              width: 1,
+              width: 2,
               color: context.toColor(isSelected
                   ? APPLICATION_COLOR.GOLD
                   : APPLICATION_COLOR.LIGHT),
