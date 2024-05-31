@@ -4,6 +4,7 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -32,12 +33,18 @@ class _GalleryViewState extends State<GalleryView> {
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (isTablet()) {
-        c.jumpTo(widget.selectedIndex * (150 * 1.84));
-      } else {
-        c.animateTo(widget.selectedIndex * 150,
-            duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+      if (widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE) {
+        if (isTablet()) {
+          c.jumpTo(widget.selectedIndex * (150 * 1.84));
+        } else {
+          c.animateTo(
+            widget.selectedIndex * 150,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeIn,
+          );
+        }
       }
     });
   }
@@ -60,8 +67,12 @@ class _GalleryViewState extends State<GalleryView> {
   CarouselController carouselController = CarouselController();
   Widget body(GalleryViewModel viewModel, BuildContext context) {
     return isTablet()
-        ? tabletView(viewModel, carouselController)
-        : phoneView(viewModel, carouselController);
+        ? widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
+            ? tabletView(viewModel, carouselController)
+            : const SizedBox.shrink()
+        : widget.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
+            ? phoneView(viewModel, carouselController)
+            : const SizedBox.shrink();
   }
 
   Widget phoneView(GalleryViewModel viewModel, CarouselController controller) {
