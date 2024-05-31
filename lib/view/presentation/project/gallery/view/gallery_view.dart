@@ -73,10 +73,10 @@ class _GalleryViewState extends State<GalleryView> {
     return isTablet()
         ? viewModel.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
             ? tabletImageView(viewModel, carouselController)
-            : tabletVideoView(viewModel)
+            : videoView(viewModel)
         : viewModel.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
             ? phoneImageView(viewModel, carouselController)
-            : tabletVideoView(viewModel);
+            : videoView(viewModel);
   }
 
   Widget phoneImageView(
@@ -229,7 +229,7 @@ class _GalleryViewState extends State<GalleryView> {
     );
   }
 
-  Widget tabletVideoView(GalleryViewModel viewModel) {
+  Widget videoView(GalleryViewModel viewModel) {
     return Stack(
       children: [
         Observer(builder: (context) {
@@ -279,7 +279,7 @@ class _GalleryViewState extends State<GalleryView> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SizedBox(
-                    height: 150,
+                    height: isTablet() ? 150 : 90,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: viewModel.gallery.length,
@@ -289,11 +289,17 @@ class _GalleryViewState extends State<GalleryView> {
                             child: GestureDetector(
                               onTap: () =>
                                   viewModel.selectedMediaIndexChange(index),
-                              child: mediaPart(
-                                  viewModel.gallery[index].mediaItem
-                                      .mediaMetaData.thumbnail,
-                                  index == viewModel.selectedMediaIndex,
-                                  context),
+                              child: isTablet()
+                                  ? mediaPart(
+                                      viewModel.gallery[index].mediaItem
+                                          .mediaMetaData.thumbnail,
+                                      index == viewModel.selectedMediaIndex,
+                                      context)
+                                  : littleMediaPart(
+                                      viewModel.gallery[index].mediaItem
+                                          .mediaMetaData.thumbnail,
+                                      index == viewModel.selectedMediaIndex,
+                                      context),
                             ),
                           );
                         })),
@@ -309,7 +315,7 @@ class _GalleryViewState extends State<GalleryView> {
 
   Widget mediaPart(String imageUrl, bool isSelected, BuildContext context) {
     return Container(
-      width: 266,
+      width: 150 * 1.77777,
       height: 150,
       decoration: BoxDecoration(
         border: Border.all(
@@ -324,6 +330,43 @@ class _GalleryViewState extends State<GalleryView> {
           fit: BoxFit.contain,
         ),
       ),
+    );
+  }
+
+  Widget littleMediaPart(
+      String imageUrl, bool isSelected, BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: 90 * 1.77777,
+          height: 90,
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color: context.toColor(isSelected
+                  ? APPLICATION_COLOR.GOLD
+                  : APPLICATION_COLOR.LIGHT),
+            ),
+          ),
+          child: SizedBox(
+            width: 90 * 1.77777,
+            height: 90,
+            child: NormalNetworkImage(
+              source: imageUrl,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Container(
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+              color: context.toColor(APPLICATION_COLOR.GOLD),
+              borderRadius: context.largeRadius),
+          child: const Icon(Icons.play_arrow),
+        )
+      ],
     );
   }
 }
