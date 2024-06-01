@@ -15,8 +15,7 @@ TemplateTwoDto _$TemplateTwoDtoFromJson(Map<String, dynamic> json) =>
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
       galleries: (json['galleries'] as List<dynamic>?)
-          ?.map(
-              (e) => TemplateTwoGalleryDto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => TemplateGalleryDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     )..subTitle = json['subTitle'] as String?;
 
@@ -28,20 +27,4 @@ Map<String, dynamic> _$TemplateTwoDtoToJson(TemplateTwoDto instance) =>
       'description': instance.description,
       'mediaItem': instance.mediaItem,
       'galleries': instance.galleries,
-    };
-
-TemplateTwoGalleryDto _$TemplateTwoGalleryDtoFromJson(
-        Map<String, dynamic> json) =>
-    TemplateTwoGalleryDto(
-      id: json['id'] as int?,
-      mediaItem: json['mediaItem'] == null
-          ? null
-          : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$TemplateTwoGalleryDtoToJson(
-        TemplateTwoGalleryDto instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'mediaItem': instance.mediaItem,
     };
