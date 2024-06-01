@@ -137,19 +137,39 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: context.midSpacerOnlyBottom,
-                          child: SizedBox(
-                            width: (context.sWidth / 2) - 20,
-                            height: ((context.sWidth / 2) - 20) / 1.7777,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Container(
-                                color: context.toColor(APPLICATION_COLOR.DARK),
-                                child: NormalNetworkImage(
-                                  fit: BoxFit.cover,
-                                  source: e.mediaItem.url,
-                                ),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              SizedBox(
+                                width: (context.sWidth / 2) - 20,
+                                height: ((context.sWidth / 2) - 20) / 1.7777,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Container(
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.DARK),
+                                    child: NormalNetworkImage(
+                                      fit: BoxFit.cover,
+                                      source: e.mediaItem.mediaType ==
+                                              MEDIA_TYPE.IMAGE
+                                          ? e.mediaItem.url
+                                          : e.mediaItem.mediaMetaData.thumbnail,
+                                    ),
+                                  ),
+                                ).animate().fade(),
                               ),
-                            ).animate().fade(),
+                              e.mediaItem.mediaType == MEDIA_TYPE.VIDEO
+                                  ? Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.GOLD),
+                                          borderRadius: context.largeRadius),
+                                      child: const Icon(Icons.play_arrow),
+                                    )
+                                  : const SizedBox.shrink()
+                            ],
                           ),
                         ),
                       ),
