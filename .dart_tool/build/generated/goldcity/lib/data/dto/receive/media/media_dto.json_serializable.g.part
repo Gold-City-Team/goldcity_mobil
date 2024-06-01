@@ -22,6 +22,7 @@ const _$MEDIA_TYPEEnumMap = {
   MEDIA_TYPE.IMAGE: 'IMAGE',
   MEDIA_TYPE.VIDEO: 'VIDEO',
   MEDIA_TYPE.SVG: 'SVG',
+  MEDIA_TYPE.PDF: 'PDF',
 };
 
 MediaMetaDataDto _$MediaMetaDataDtoFromJson(Map<String, dynamic> json) =>

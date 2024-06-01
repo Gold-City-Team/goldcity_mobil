@@ -7,25 +7,17 @@ part of 'template_five_dto.dart';
 // **************************************************************************
 
 TemplateFiveDto _$TemplateFiveDtoFromJson(Map<String, dynamic> json) =>
-    TemplateFiveDto()
-      ..id = json['id'] as int?
-      ..title = json['title'] as String?;
+    TemplateFiveDto(
+      id: json['id'] as int?,
+      title: json['title'] as String?,
+      medias: (json['medias'] as List<dynamic>?)
+          ?.map((e) => TemplateGalleryDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$TemplateFiveDtoToJson(TemplateFiveDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-    };
-
-TemplateFiveMediaDto _$TemplateFiveMediaDtoFromJson(
-        Map<String, dynamic> json) =>
-    TemplateFiveMediaDto()
-      ..id = json['id'] as int?
-      ..title = json['title'] as String?;
-
-Map<String, dynamic> _$TemplateFiveMediaDtoToJson(
-        TemplateFiveMediaDto instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
+      'medias': instance.medias,
     };

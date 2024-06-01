@@ -18,7 +18,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		zZU4NMWy2GKS+MavampgZGpFFvw=
+		XQHf2u1WaapfhsiR59PIYWQY9R4=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		s0hokN/hz+iqlQQ6Dh2Cev3P1Q8=
+		ydLiB1if7tr9YF5H1U9fIxfzV1k=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		LuVaVBsFwz6gETOYBsvGwIVVN30=
+		637Q6vEQqE2z9ODwJIYn9eC+N7s=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		wRWdjel2RM8mzbjiK7Fa8ft1/68=
+		sjDBt5ntzfzmPEmUB0UWMTQanac=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		ehQpDBhgtuxiDYCQKnt4Ifu2Bfg=
+		yjHUwEGW3P8A+ctiyjkHL0/taaA=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -273,6 +273,26 @@
 		jvYn2agfYDr3lXjuoOXm4PcIAKA=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		/LX0ZlwxwIAIhjZaDB8EiH5KpXA=
+		</data>
+		<key>Frameworks/share_plus.framework/Info.plist</key>
+		<data>
+		Pbc4evEdR1OEwd9sjbNooBE5Idg=
+		</data>
+		<key>Frameworks/share_plus.framework/_CodeSignature/CodeResources</key>
+		<data>
+		BozTsIJASMEW4xfxjZx0uq9dWgI=
+		</data>
+		<key>Frameworks/share_plus.framework/share_plus</key>
+		<data>
+		JVFEGNsHOah5lrIcqObGMPK7y9I=
+		</data>
+		<key>Frameworks/share_plus.framework/share_plus_privacy.bundle/Info.plist</key>
+		<data>
+		rizHKdl0X7YKfeEVpFcx8h/wAn4=
+		</data>
+		<key>Frameworks/share_plus.framework/share_plus_privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
 		/LX0ZlwxwIAIhjZaDB8EiH5KpXA=
 		</data>
@@ -1161,7 +1181,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XaBTFsXNTBxmy/4WnPcvMSTnFI0HuHwH76AWkIR3jZ0=
+			WdOCSjWEqS3IIcDtq0gDq9h+HtQhSjxyXS5g8bhfVrk=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
@@ -1210,7 +1230,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jxnYFW0HOkbLDmM38TwBTss2iF+kBmiyQhwE8T7JbLQ=
+			+P7foJP6j+kC4ZUT6v6X70VLDjA2ILvHhvABvoH3jdY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1224,7 +1244,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			L5kzA4/Jkj8rlF6tTPojeuNYJRgTqQdcMNAwZ9bEF4Y=
+			9I0ymivJ4caFE/Nnt4hj0zi/Sjicy2eC4VfEueWA6gQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -1252,7 +1272,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uP2GXbV4KCH9VEK8wv2JJPVE7OQmXBOPcppNg+JE/OQ=
+			m0dzQL9KnvFe/MtFRGpB7ibt+2YEnpgbVrwmnNIKE+g=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
@@ -1357,7 +1377,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FPJTiDECKwPffcq2SRn2R6AYFKU9nAnRYXgTHmu+V80=
+			cv3Vl+Q1+TmHs+gNwg9uhYfGJuTTNhVGhrbJPWl3xPQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -1606,6 +1626,41 @@
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bS2g2NkwIn1CjB2TY7CtbjoS4sm2jFzilxWKdBL8jDE=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			hEv1C6TFCNugJtJ6SMf1Hfh0S9lRh6dodOPfQwztreo=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NzuYwWvCEVhJLqRjLZKdL0lyjom8r6Qoowb3GAKCNdw=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/share_plus</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			eTH6lhTXfhVA54zC5ndLzrtbzNKPJcqxBui4AHVC0Ow=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/share_plus_privacy.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			96m/k10otQnVC926vtqWK1diUGDOwGcOOiPlxbOUTZA=
+			</data>
+		</dict>
+		<key>Frameworks/share_plus.framework/share_plus_privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
 			<key>hash2</key>
 			<data>

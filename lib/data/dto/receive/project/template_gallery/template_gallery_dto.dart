@@ -13,6 +13,7 @@ class TemplateGalleryDto {
 
   TemplateGalleryEntity toEntity() => TemplateGalleryEntity(
         id: id ?? 0,
+        title: title ?? "",
         mediaItem:
             mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
         galleryCategoryEntity: category != null
@@ -29,8 +30,8 @@ class TemplateGalleryDto {
 @JsonSerializable()
 class TemplateGalleryCategoryDto {
   int? id;
-  TemplateGalleryCategoryTranslationDto? translations;
-  TemplateGalleryCategoryDto({this.id, this.translations});
+  TemplateGalleryCategoryTranslationDto? translation;
+  TemplateGalleryCategoryDto({this.id, this.translation});
 
   factory TemplateGalleryCategoryDto.fromJson(Map<String, dynamic> json) =>
       _$TemplateGalleryCategoryDtoFromJson(json);
@@ -39,8 +40,8 @@ class TemplateGalleryCategoryDto {
 
   TemplateGalleryCategoryEntity toEntity() => TemplateGalleryCategoryEntity(
         id: id ?? 0,
-        translations: translations != null
-            ? translations!.toEntity()
+        translations: translation != null
+            ? translation!.toEntity()
             : TemplateGalleryCategoryTranslationDto().toEntity(),
       );
 }

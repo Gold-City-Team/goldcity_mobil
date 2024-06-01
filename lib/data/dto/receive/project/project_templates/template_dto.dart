@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:goldcity/data/dto/receive/project/project_template/project_template_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_templates/template_five/template_five_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_four/template_four_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_one/template_one_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_three/template_three_dto.dart';
@@ -21,6 +22,7 @@ class TemplateDto {
       "TEMPLATE_TWO" => TEMPLATE.TEMPLATE_TWO,
       "TEMPLATE_THREE" => TEMPLATE.TEMPLATE_THREE,
       "TEMPLATE_FOUR" => TEMPLATE.TEMPLATE_FOUR,
+      "TEMPLATE_FIVE" => TEMPLATE.TEMPLATE_FIVE,
       _ => TEMPLATE.TEMPLATE_ONE
     };
     switch (type) {
@@ -32,6 +34,8 @@ class TemplateDto {
         template = TemplateThreeDto.fromJson(data["template"]).toEntity();
       case TEMPLATE.TEMPLATE_FOUR:
         template = TemplateFourDto.fromJson(data["template"]).toEntity();
+      case TEMPLATE.TEMPLATE_FIVE:
+        template = TemplateFiveDto.fromJson(data["template"]).toEntity();
       case null:
     }
   }

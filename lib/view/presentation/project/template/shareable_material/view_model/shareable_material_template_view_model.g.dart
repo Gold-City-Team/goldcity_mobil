@@ -10,10 +10,36 @@ part of 'shareable_material_template_view_model.dart';
 
 mixin _$ShareableMaterialTemplateViewModel
     on _ShareableMaterialTemplateViewModelBase, Store {
+  late final _$templateAtom = Atom(
+      name: '_ShareableMaterialTemplateViewModelBase.template',
+      context: context);
+
+  @override
+  TemplateFiveEntity? get template {
+    _$templateAtom.reportRead();
+    return super.template;
+  }
+
+  @override
+  set template(TemplateFiveEntity? value) {
+    _$templateAtom.reportWrite(value, super.template, () {
+      super.template = value;
+    });
+  }
+
+  late final _$_getDetailAsyncAction = AsyncAction(
+      '_ShareableMaterialTemplateViewModelBase._getDetail',
+      context: context);
+
+  @override
+  Future<void> _getDetail() {
+    return _$_getDetailAsyncAction.run(() => super._getDetail());
+  }
+
   @override
   String toString() {
     return '''
-
+template: ${template}
     ''';
   }
 }

@@ -31,17 +31,17 @@ TemplateGalleryCategoryDto _$TemplateGalleryCategoryDtoFromJson(
         Map<String, dynamic> json) =>
     TemplateGalleryCategoryDto(
       id: json['id'] as int?,
-      translations: json['translations'] == null
+      translation: json['translation'] == null
           ? null
           : TemplateGalleryCategoryTranslationDto.fromJson(
-              json['translations'] as Map<String, dynamic>),
+              json['translation'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$TemplateGalleryCategoryDtoToJson(
         TemplateGalleryCategoryDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'translations': instance.translations,
+      'translation': instance.translation,
     };
 
 TemplateGalleryCategoryTranslationDto

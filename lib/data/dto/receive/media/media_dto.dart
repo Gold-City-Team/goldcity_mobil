@@ -10,7 +10,9 @@ enum MEDIA_TYPE {
   @JsonValue("VIDEO")
   VIDEO,
   @JsonValue("SVG")
-  SVG
+  SVG,
+  @JsonValue("PDF")
+  PDF
 }
 
 extension MediaType on MEDIA_TYPE {
@@ -22,6 +24,8 @@ extension MediaType on MEDIA_TYPE {
         return "Videolar";
       case MEDIA_TYPE.SVG:
         return "Svgler";
+      case MEDIA_TYPE.PDF:
+        return "Pdfler";
     }
   }
 }

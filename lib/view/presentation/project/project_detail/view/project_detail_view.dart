@@ -12,6 +12,7 @@ import 'package:goldcity/view/presentation/project/template/feature_and_gallery_
 import 'package:goldcity/view/presentation/project/template/feature_template/view/future_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/general_information_and_gallery_template/view/general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/possibilty_template/view/possibilty_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
 
 class ProjectDetailView extends StatelessWidget {
   final int projectId;
@@ -67,6 +68,10 @@ class ProjectDetailView extends StatelessWidget {
                         projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
+                      ),
+                    TEMPLATE.TEMPLATE_FIVE => ShareableMaterialTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
                       )
                   };
                 }),
