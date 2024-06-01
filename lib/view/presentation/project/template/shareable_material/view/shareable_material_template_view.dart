@@ -46,15 +46,17 @@ class ShareableMaterialTemplateView extends StatelessWidget {
           );
         }),
         Gap(context.largeSpacerSize),
-        Observer(builder: (context) {
-          if (value.template == null) {
-            return const SizedBox.shrink();
-          }
-          return Column(
-            children: value.template!.gallery
-                .map((e) => e.galleryCategoryEntity.translations.title)
-                .toSet()
-                .map((e) => Padding(
+        Observer(
+          builder: (context) {
+            if (value.template == null) {
+              return const SizedBox.shrink();
+            }
+            return Column(
+              children: value.template!.gallery
+                  .map((e) => e.galleryCategoryEntity.translations.title)
+                  .toSet()
+                  .map(
+                    (e) => Padding(
                       padding: context.midSpacerOnlyBottom,
                       child: GestureDetector(
                         onTap: () => value.share(
@@ -69,10 +71,12 @@ class ShareableMaterialTemplateView extends StatelessWidget {
                               .length,
                         ),
                       ),
-                    ))
-                .toList(),
-          );
-        }),
+                    ),
+                  )
+                  .toList(),
+            );
+          },
+        ),
         Gap(context.veryLargeSpacerSize)
       ],
     ));
