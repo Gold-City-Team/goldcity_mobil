@@ -30,14 +30,6 @@ class ProjectDetailView extends StatelessWidget {
           Scaffold(
         body: Observer(
           builder: (context) {
-            if (value.isPageSelectorVisible) {
-              return PageSelectorWidget(
-                pages:
-                    value.entity!.detail.template.map((e) => e.title).toList(),
-                selectedIndex: value.templateIndex,
-                newIndex: (newIndex) => value.changeIndex(newIndex),
-              );
-            }
             return Stack(
               alignment: Alignment.bottomCenter,
               children: [
@@ -144,7 +136,16 @@ class ProjectDetailView extends StatelessWidget {
                       },
                     ),
                   ),
-                )
+                ),
+                value.isPageSelectorVisible
+                    ? PageSelectorWidget(
+                        pages: value.entity!.detail.template
+                            .map((e) => e.title)
+                            .toList(),
+                        selectedIndex: value.templateIndex,
+                        newIndex: (newIndex) => value.changeIndex(newIndex),
+                      )
+                    : const SizedBox.shrink()
               ],
             );
           },
