@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:goldcity/util/enum/input_type.dart';
 
@@ -54,7 +56,8 @@ extension MarginPaddingExtension on BuildContext {
   EdgeInsets get largeSpacerOnlyTop => const EdgeInsets.only(top: 20);
   EdgeInsets get midSpacerOnlyTop => const EdgeInsets.only(top: 10);
 
-  EdgeInsets get veryLargeSpacerOnlyBottom => const EdgeInsets.only(bottom: 80);
+  EdgeInsets get veryLargeSpacerOnlyBottom =>
+      EdgeInsets.only(bottom: Platform.isAndroid ? 70 : 85);
   EdgeInsets get largeSpacerOnlyBottom => const EdgeInsets.only(bottom: 20);
   EdgeInsets get midSpacerOnlyBottom => const EdgeInsets.only(bottom: 10);
   EdgeInsets get smallSpacerOnlyBottom => const EdgeInsets.only(bottom: 5);
