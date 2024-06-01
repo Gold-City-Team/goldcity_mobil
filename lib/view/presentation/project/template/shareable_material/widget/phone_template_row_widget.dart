@@ -25,12 +25,15 @@ class PhoneTemplateRowWidget extends StatelessWidget {
           Expanded(child: LabelText(text: categoryName)),
           const Spacer(),
           CircleAvatar(
-              maxRadius: 14,
-              child: LabelText(
-                text: "$categoryItemCount",
-                textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
-                fontSize: FONT_SIZE.LABEL_SMALL,
-              )),
+            maxRadius: 14,
+            backgroundColor:
+                context.toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
+            child: LabelText(
+              text: "$categoryItemCount",
+              textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
+              fontSize: FONT_SIZE.LABEL_SMALL,
+            ),
+          ),
           Gap(context.smallSpacerSize),
           const Icon(Icons.link)
         ],
