@@ -40,87 +40,85 @@ class FutureTemplateView extends StatelessWidget {
   }
 
   Widget phoneView(BuildContext context, FutureTemplateViewModel value) {
-    return SafeArea(
-      top: false,
-      bottom: true,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                Observer(builder: (context) {
-                  if (value.templateEntity == null) {
-                    return const SizedBox.shrink();
-                  }
-                  return SizedBox(
-                    width: context.sWidth,
-                    height: context.sWidth / 1.7777,
-                    child: NormalNetworkImage(
-                        source: value.templateEntity!.mediaItem.url,
-                        fit: BoxFit.cover),
-                  );
-                }),
-                Container(
+    return SingleChildScrollView(
+      padding: EdgeInsets.zero,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              Observer(builder: (context) {
+                if (value.templateEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return SizedBox(
                   width: context.sWidth,
                   height: context.sWidth / 1.7777,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [
-                          context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                          Colors.transparent,
-                        ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        tileMode: TileMode.clamp),
-                  ),
+                  child: NormalNetworkImage(
+                      source: value.templateEntity!.mediaItem.url,
+                      fit: BoxFit.cover),
+                );
+              }),
+              Container(
+                width: context.sWidth,
+                height: context.sWidth / 1.7777,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                        Colors.transparent,
+                      ],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      tileMode: TileMode.clamp),
                 ),
-              ],
-            ).animate().fade(),
-            Gap(context.largeSpacerSize),
-            Observer(builder: (context) {
-              if (value.templateEntity == null) {
-                return const SizedBox.shrink();
-              }
-              return Padding(
-                padding: context.largeSpacerOnlyHorizontal,
-                child: LabelText(
-                  text: value.templateEntity!.title,
-                  fontSize: FONT_SIZE.HEADLINE_LARGE,
-                ),
-              ).animate().fade();
-            }),
-            Gap(context.midSpacerSize),
-            Observer(builder: (context) {
-              if (value.templateEntity == null) {
-                return const SizedBox.shrink();
-              }
-              return Padding(
-                padding: context.largeSpacerOnlyHorizontal,
-                child: LabelText(
-                  text: value.templateEntity!.description,
-                  fontSize: FONT_SIZE.LABEL_LARGE,
-                  textColor: APPLICATION_COLOR.SUBTITLE,
-                ),
-              ).animate().fade();
-            }),
-            Gap(context.midSpacerSize),
-            Observer(builder: (context) {
-              if (value.templateEntity == null) {
-                return const SizedBox.shrink();
-              }
-              return Padding(
-                padding: context.midSpacerOnlyHorizontal,
-                child: Wrap(
-                  children: value.templateEntity!.features
-                      .map((e) => FeaturesWidget(featuresEntity: e))
-                      .toSet()
-                      .toList(),
-                ),
-              );
-            })
-          ],
-        ),
+              ),
+            ],
+          ).animate().fade(),
+          Gap(context.largeSpacerSize),
+          Observer(builder: (context) {
+            if (value.templateEntity == null) {
+              return const SizedBox.shrink();
+            }
+            return Padding(
+              padding: context.largeSpacerOnlyHorizontal,
+              child: LabelText(
+                text: value.templateEntity!.title,
+                fontSize: FONT_SIZE.HEADLINE_LARGE,
+              ),
+            ).animate().fade();
+          }),
+          Gap(context.midSpacerSize),
+          Observer(builder: (context) {
+            if (value.templateEntity == null) {
+              return const SizedBox.shrink();
+            }
+            return Padding(
+              padding: context.largeSpacerOnlyHorizontal,
+              child: LabelText(
+                text: value.templateEntity!.description,
+                fontSize: FONT_SIZE.LABEL_LARGE,
+                textColor: APPLICATION_COLOR.SUBTITLE,
+              ),
+            ).animate().fade();
+          }),
+          Gap(context.midSpacerSize),
+          Observer(builder: (context) {
+            if (value.templateEntity == null) {
+              return const SizedBox.shrink();
+            }
+            return Padding(
+              padding: context.midSpacerOnlyHorizontal,
+              child: Wrap(
+                children: value.templateEntity!.features
+                    .map((e) => FeaturesWidget(featuresEntity: e))
+                    .toSet()
+                    .toList(),
+              ),
+            );
+          }),
+          Gap(context.veryLargeSpacerOnlyBottom.bottom)
+        ],
       ),
     );
   }
@@ -180,7 +178,8 @@ class FutureTemplateView extends StatelessWidget {
                           .toSet()
                           .toList(),
                     );
-                  })
+                  }),
+                  Gap(context.veryLargeSpacerOnlyBottom.bottom)
                 ],
               ),
             ),

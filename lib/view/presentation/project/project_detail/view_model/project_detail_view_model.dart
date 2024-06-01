@@ -24,7 +24,9 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   @action
   void changeIndex(newIndex) {
-    templateIndex = newIndex;
+    if (templateIndex != newIndex) {
+      templateIndex = newIndex;
+    }
     isPageSelectorVisible = false;
   }
 

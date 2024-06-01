@@ -43,6 +43,8 @@ class PossibiltyTemplateView extends StatelessWidget {
                 return const SizedBox.shrink();
               }
               return GoogleMap(
+                zoomControlsEnabled: false,
+                zoomGesturesEnabled: false,
                 compassEnabled: false,
                 onMapCreated: (GoogleMapController controller) {
                   value.controller.complete(controller);

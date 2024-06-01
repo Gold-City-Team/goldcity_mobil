@@ -79,8 +79,9 @@ class ProjectDetailView extends StatelessWidget {
                   };
                 }),
                 SafeArea(
-                  child: Padding(
+                  child: Container(
                     padding: context.midSpacerOnlyHorizontal,
+                    margin: context.smallSpacerOnlyBottom,
                     child: Observer(
                       builder: (context) {
                         if (value.entity == null) {

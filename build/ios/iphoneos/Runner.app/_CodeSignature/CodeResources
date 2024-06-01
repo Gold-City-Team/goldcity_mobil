@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		LPoChyutzDb5R4O/KK9Ab8qqm54=
+		QVHRpVu/jb2Om0GUMIzPRQ10H7w=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		iXMth/vRV0mOS1s0HhCuyg/346o=
+		maxPQIMxz3yewmJClG96vvm9lso=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -114,11 +114,11 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/translations/en-US.json</key>
 		<data>
-		3r+i9SnMDDJSAPV5UIivZQLh7iA=
+		3SXkNmWvAK+bpxylBNeM9q8tze0=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/translations/tr-TR.json</key>
 		<data>
-		NoX1WihXt3AiSWlMW5A8ST8YJQI=
+		iEksKwMPjbQ3IuZ5Ezli6tdoUxI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		bM3zcaYORPRjs6DPRCTRJbALHuo=
+		StcPVex1iF7cBrBfPmxCZ4i0drc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -242,7 +242,7 @@
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation</key>
 		<data>
-		CTGSUcTnnoQ3ynZFIiDo3zGdOzU=
+		kinPwdDZIXYcR5SoIlHtfDZLUtQ=
 		</data>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/Info.plist</key>
 		<data>
@@ -262,7 +262,7 @@
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
 		<data>
-		xJzdUhef3HJxVxDa/3/fZ/2exjI=
+		HnXXqtBMXzDXc9Uf8N2MvBJ3GoE=
 		</data>
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/Info.plist</key>
 		<data>
@@ -282,7 +282,7 @@
 		</data>
 		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation</key>
 		<data>
-		A2YjqxTEBAsoTDyaqNwcm8lCttY=
+		dyOXqMshCPo89OTnoTHGdXORQmY=
 		</data>
 		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/Info.plist</key>
 		<data>
@@ -1190,7 +1190,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Itq0bDgnC3V7fNVM7+T0O/w8owW9udJOuok5WLg5/E8=
+			fls3CdrrgTnIg339Aj1s2m/GeIbyg9k7mplP7S9j7kU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1204,7 +1204,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FBjen0pvD8hCAv6cuTEeh08q20lCACv5OY/E2QkP6BI=
+			BEkzapq+FtzZQ6ik1ly2wApBvBwjG2PWQnv8/Es9jjY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -1309,14 +1309,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EuXqYi/GeKXkaBLnfD9d9PE5i+JfXrQ2ByoJiu7nDdc=
+			muPez/e82+vhKPeSZdSxNCHmM77+UD1kQ9LBs4xKpik=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/translations/tr-TR.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dhCP3MZU2I1D5nadr3jJV/7lv2Q68P0p7kIWh//nZJA=
+			aPUovktf6B8a9lxt3Fk/ebMFdUytz9J/2seVnE5d9ao=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -1337,7 +1337,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			HoyZTw6eIKInoYVg4T+//Sv1i+zc6Ggmk8kKWmMh/8w=
+			Eg2qHkjrirdtCgBTY8EeDpkPIzxFqIJzgqqEA9Buf3k=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -1533,7 +1533,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fqwqo1TWIPynng6kyIrjWdkbzWCkhipfj0cccSDCeV8=
+			UB4tmyaEdDjD9nWMgsfKUE8tvu0cM7qOXNB6YzfbC3o=
 			</data>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework/path_provider_foundation_privacy.bundle/Info.plist</key>
@@ -1568,7 +1568,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eCgtXr/OMFtTWTgLs+mc3WlTwNdqfylEZvjbh4kjdJc=
+			CDvlVEuoAh5P0DwW/EVlI/JV8mv2REK5UimLAYlAgY4=
 			</data>
 		</dict>
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation_privacy.bundle/Info.plist</key>
@@ -1603,7 +1603,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4FwUrivCH0vlQdBu/1RSIprnaTkVQazlKPOgAxNTm88=
+			mZNPU6sTX1IrELkk+5SCcYRseS0R8uqMw+pRkfJm/E8=
 			</data>
 		</dict>
 		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/Info.plist</key>
