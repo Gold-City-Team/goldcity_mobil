@@ -6,7 +6,6 @@ import 'package:goldcity/domain/entity/project/template/template_five/template_f
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
-import 'package:share_plus/share_plus.dart';
 
 part 'shareable_material_template_view_model.g.dart';
 
@@ -29,6 +28,18 @@ abstract class _ShareableMaterialTemplateViewModelBase
   @observable
   TemplateFiveEntity? template;
 
+final fullViewItemIndex = ObservableList<String>.of([]);
+
+  @action
+  void toggleFullViewItemIndex(String item) {
+    if(fullViewItemIndex.any((element) => element==item)){
+fullViewItemIndex.removeWhere((element) => element==item);
+    }else{
+
+    fullViewItemIndex.add(item);
+    }
+  }
+
   @action
   Future<void> _getDetail() async {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 12);
@@ -37,17 +48,5 @@ abstract class _ShareableMaterialTemplateViewModelBase
     }
   }
 
-  void share(String categoryName, RenderBox? box) {
-    var result = template!.gallery
-        .where(
-            (e) => e.galleryCategoryEntity.translations.title == categoryName)
-        .map((e) => "${e.title}: ${e.mediaItem.url}")
-        .toString();
-    result = result.substring(0, result.length - 1);
-    result = result.substring(1);
-    result = result.replaceAll(",", "\n\n");
 
-    Share.share(result,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-  }
 }

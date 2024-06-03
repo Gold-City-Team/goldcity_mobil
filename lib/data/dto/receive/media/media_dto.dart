@@ -34,6 +34,7 @@ extension MediaType on MEDIA_TYPE {
 class MediaDto {
   int? id;
   String? url;
+  String? oldFileName;
   MEDIA_TYPE? mediaType;
   MediaMetaDataDto? metaData;
   MediaDto({this.id, this.url, this.mediaType, this.metaData});
@@ -45,6 +46,7 @@ class MediaDto {
   MediaEntity toEntity() => MediaEntity(
       id: id ?? 0,
       url: url ?? "",
+      oldFileName: oldFileName??"",
       mediaType: mediaType ?? MEDIA_TYPE.IMAGE,
       mediaMetaData: metaData != null
           ? metaData!.toEntity()

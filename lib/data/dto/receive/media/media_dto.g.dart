@@ -13,11 +13,12 @@ MediaDto _$MediaDtoFromJson(Map<String, dynamic> json) => MediaDto(
       metaData: json['metaData'] == null
           ? null
           : MediaMetaDataDto.fromJson(json['metaData'] as Map<String, dynamic>),
-    );
+    )..oldFileName = json['oldFileName'] as String?;
 
 Map<String, dynamic> _$MediaDtoToJson(MediaDto instance) => <String, dynamic>{
       'id': instance.id,
       'url': instance.url,
+      'oldFileName': instance.oldFileName,
       'mediaType': _$MEDIA_TYPEEnumMap[instance.mediaType],
       'metaData': instance.metaData,
     };

@@ -36,6 +36,24 @@ mixin _$ShareableMaterialTemplateViewModel
     return _$_getDetailAsyncAction.run(() => super._getDetail());
   }
 
+  late final _$_ShareableMaterialTemplateViewModelBaseActionController =
+      ActionController(
+          name: '_ShareableMaterialTemplateViewModelBase', context: context);
+
+  @override
+  void toggleFullViewItemIndex(String item) {
+    final _$actionInfo =
+        _$_ShareableMaterialTemplateViewModelBaseActionController.startAction(
+            name:
+                '_ShareableMaterialTemplateViewModelBase.toggleFullViewItemIndex');
+    try {
+      return super.toggleFullViewItemIndex(item);
+    } finally {
+      _$_ShareableMaterialTemplateViewModelBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

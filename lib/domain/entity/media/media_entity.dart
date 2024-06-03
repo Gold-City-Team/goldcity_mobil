@@ -8,13 +8,14 @@ final class MediaEntity {
   final int id;
   final String url;
   final MEDIA_TYPE mediaType;
+  final String oldFileName;
   final MediaMetaDataEntity mediaMetaData;
 
   const MediaEntity(
       {required this.id,
       required this.url,
       required this.mediaType,
-      required this.mediaMetaData});
+      required this.oldFileName,      required this.mediaMetaData});
 }
 
 @immutable
