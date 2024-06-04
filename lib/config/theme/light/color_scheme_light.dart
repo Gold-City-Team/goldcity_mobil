@@ -45,4 +45,10 @@ class ColorSchemeLight extends IColorScheme {
   @override
   Color get extraCloseBackgroundColor =>
       const Color.fromARGB(255, 218, 218, 218);
+  @override
+  Color get green => const Color.fromARGB(255, 84, 179, 181);
+  @override
+  Color get red => const Color.fromARGB(255, 113, 37, 22);
+  @override
+  Color get blue => const Color.fromARGB(255, 127, 163, 159);
 }

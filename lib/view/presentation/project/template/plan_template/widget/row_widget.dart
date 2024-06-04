@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
-import 'package:share_plus/share_plus.dart';
 
 class RowWidget extends StatelessWidget {
   final List<TemplateGalleryEntity> gallery;
@@ -48,49 +48,249 @@ class RowWidget extends StatelessWidget {
             ],
           ),
           isFullView
-              ? ListView.builder(
-                  padding: context.midSpacerOnlyHorizontal,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: gallery.length,
-                  itemBuilder: ((c, index) {
-                    return GestureDetector(
-                      onTap: () => share([gallery[index]],
-                          context.findRenderObject() as RenderBox?),
+              ? Column(
+                  children: [
+                    Gap(context.largeSpacerSize),
+                    Padding(
+                      padding: context.midSpacerOnlyHorizontal,
                       child: Column(
                         children: [
-                          index == 0
-                              ? Gap(context.largeSpacerSize)
-                              : const SizedBox.shrink(),
-                          Gap(context.largeSpacerSize),
-                          LabelText(text: gallery.first.mediaItem.oldFileName),
-                          Gap(context.largeSpacerSize),
                           Container(
                             height: .3,
                             color: context
                                 .toColor(
                                     APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR)
                                 .withAlpha(150),
-                          )
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: const Center(
+                                    child: LabelText(text: "Daire No"),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: const Center(
+                                    child: LabelText(text: "m²"),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: const Center(
+                                    child: LabelText(text: "Fiyat"),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: const Center(
+                                    child: LabelText(text: "Tür"),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: const Center(
+                                    child: LabelText(text: "Durum"),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: .3,
+                            color: context
+                                .toColor(
+                                    APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR)
+                                .withAlpha(150),
+                          ),
                         ],
                       ),
-                    );
-                  }),
+                    ),
+                    ListView.builder(
+                      padding: context.midSpacerOnlyHorizontal,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: gallery.length,
+                      itemBuilder: ((c, index) {
+                        return GestureDetector(
+                          onTap: () => null,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Container(
+                                    width: .5,
+                                    height: 50,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(150),
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: LabelText(
+                                          text: gallery[index]
+                                              .mediaItem
+                                              .oldFileName),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: .5,
+                                    height: 50,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(150),
+                                  ),
+                                  const Expanded(
+                                      child: Center(
+                                          child: LabelText(text: "120 m²"))),
+                                  Container(
+                                    width: .5,
+                                    height: 50,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(150),
+                                  ),
+                                  const Expanded(
+                                      child: Center(
+                                          child: LabelText(text: "100.000 €"))),
+                                  Container(
+                                    width: .5,
+                                    height: 50,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(150),
+                                  ),
+                                  const Expanded(
+                                      child: Center(
+                                          child:
+                                              LabelText(text: "Orta Daire"))),
+                                  Container(
+                                    width: .5,
+                                    height: 50,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(150),
+                                  ),
+                                  Expanded(
+                                      child: Container(
+                                    height: 50,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR.GREEN),
+                                    child: const Center(
+                                        child: LabelText(
+                                      text: "Satışta",
+                                      textColor: APPLICATION_COLOR.LIGHT,
+                                    )),
+                                  )),
+                                  Container(
+                                    width: .5,
+                                    height: 50,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(150),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                height: .3,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                  ],
                 )
               : const SizedBox.shrink(),
         ],
       ),
     );
-  }
-
-  void share(List<TemplateGalleryEntity> galeryEdit, RenderBox? box) {
-    var result =
-        galeryEdit.map((e) => "${e.title}: ${e.mediaItem.url}").toString();
-    result = result.substring(0, result.length - 1);
-    result = result.substring(1);
-    result = result.replaceAll(",", "\n\n");
-
-    Share.share(result,
-        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
 }

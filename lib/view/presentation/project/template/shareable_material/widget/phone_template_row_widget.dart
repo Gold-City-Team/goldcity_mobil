@@ -73,7 +73,7 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: LabelText(
-                                    text: gallery.first.mediaItem.oldFileName),
+                                    text: gallery[index].mediaItem.oldFileName),
                               ),
                               const Icon(Icons.link)
                             ],

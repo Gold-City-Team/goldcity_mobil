@@ -76,7 +76,11 @@ class ProjectDetailView extends StatelessWidget {
                     TEMPLATE.TEMPLATE_FIVE => ShareableMaterialTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
-                      )
+                      ),
+                    TEMPLATE.TEMPLATE_SIX => PlanTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                      ),
                   };
                 }),
                 SafeArea(

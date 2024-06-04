@@ -10,4 +10,7 @@ abstract class IColorScheme {
   Color get backgroundColor;
   Color get closeBackgroundColor;
   Color get extraCloseBackgroundColor;
+  Color get green;
+  Color get blue;
+  Color get red;
 }

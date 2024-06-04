@@ -22,6 +22,9 @@ extension applicationColorToThemeColor on BuildContext {
         watch<ThemeNotifier>().colorScheme.extraCloseBackgroundColor,
       APPLICATION_COLOR.DARK => Colors.black,
       APPLICATION_COLOR.LIGHT => Colors.white,
+      APPLICATION_COLOR.GREEN => watch<ThemeNotifier>().colorScheme.green,
+      APPLICATION_COLOR.RED => watch<ThemeNotifier>().colorScheme.red,
+      APPLICATION_COLOR.BLUE => watch<ThemeNotifier>().colorScheme.blue,
     };
   }
 

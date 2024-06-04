@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/data/dto/receive/project/template_gallery/template_gallery_dto.dart';
 import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
@@ -43,16 +44,19 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
 
   List<TemplateGalleryEntity> getGallery() => [
         TemplateGalleryDto(
+                mediaItem: MediaDto(oldFileName: "Daire 1"),
                 category: TemplateGalleryCategoryDto(
                     translation:
                         TemplateGalleryCategoryTranslationDto(title: "1. Kat")))
             .toEntity(),
         TemplateGalleryDto(
+                mediaItem: MediaDto(oldFileName: "Daire 2"),
                 category: TemplateGalleryCategoryDto(
                     translation:
                         TemplateGalleryCategoryTranslationDto(title: "1. Kat")))
             .toEntity(),
         TemplateGalleryDto(
+                mediaItem: MediaDto(oldFileName: "Daire 3"),
                 category: TemplateGalleryCategoryDto(
                     translation:
                         TemplateGalleryCategoryTranslationDto(title: "1. Kat")))

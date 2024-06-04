@@ -37,7 +37,8 @@ class MediaDto {
   String? oldFileName;
   MEDIA_TYPE? mediaType;
   MediaMetaDataDto? metaData;
-  MediaDto({this.id, this.url, this.mediaType, this.metaData});
+  MediaDto(
+      {this.id, this.url, this.oldFileName, this.mediaType, this.metaData});
   factory MediaDto.fromJson(Map<String, dynamic> json) =>
       _$MediaDtoFromJson(json);
 
@@ -46,7 +47,7 @@ class MediaDto {
   MediaEntity toEntity() => MediaEntity(
       id: id ?? 0,
       url: url ?? "",
-      oldFileName: oldFileName??"",
+      oldFileName: oldFileName ?? "",
       mediaType: mediaType ?? MEDIA_TYPE.IMAGE,
       mediaMetaData: metaData != null
           ? metaData!.toEntity()

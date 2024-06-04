@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -9,6 +10,7 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/template/plan_template/view_model/plan_template_view_model.dart';
 import 'package:goldcity/view/presentation/project/template/plan_template/widget/row_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
+import 'package:goldcity/view/widget/text/label_text.dart';
 
 class PlanTemplateView extends StatelessWidget {
   const PlanTemplateView({super.key});
@@ -32,6 +34,7 @@ class PlanTemplateView extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gap(context.midSpacerSize),
             SizedBox(
@@ -59,6 +62,15 @@ class PlanTemplateView extends StatelessWidget {
               ),
             ),
             Gap(context.largeSpacerSize),
+            Padding(
+              padding: context.midSpacerOnlyHorizontal,
+              child: const LabelText(
+                text: "A Blok",
+                fontSize: FONT_SIZE.HEADLINE_LARGE,
+                textColor: APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR,
+              ),
+            ),
+            Gap(context.midSpacerSize),
             Observer(builder: (context) {
               return Column(
                 children: value
