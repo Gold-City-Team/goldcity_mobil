@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
@@ -32,8 +30,7 @@ class PhoneTemplateRowWidget extends StatelessWidget {
               !isFullView
                   ? const Icon(Icons.arrow_drop_down)
                   : const Icon(Icons.arrow_drop_up),
-                        Gap(context.largeSpacerSize),
-
+              Gap(context.largeSpacerSize),
               Expanded(
                   child: LabelText(
                       text: gallery
@@ -50,7 +47,10 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                 ),
               ),
               Gap(context.smallSpacerSize),
-              GestureDetector(onTap: () => share(gallery,context.findRenderObject() as RenderBox?), child: const Icon(Icons.link))
+              GestureDetector(
+                  onTap: () =>
+                      share(gallery, context.findRenderObject() as RenderBox?),
+                  child: const Icon(Icons.link))
             ],
           ),
           isFullView
@@ -60,12 +60,14 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: gallery.length,
                   itemBuilder: ((c, index) {
-                    
                     return GestureDetector(
-onTap: () => share([gallery[index]] ,context.findRenderObject() as RenderBox?),
+                      onTap: () => share([gallery[index]],
+                          context.findRenderObject() as RenderBox?),
                       child: Column(
                         children: [
-                        index==0?Gap(context.largeSpacerSize):const SizedBox.shrink(),
+                          index == 0
+                              ? Gap(context.largeSpacerSize)
+                              : const SizedBox.shrink(),
                           Gap(context.largeSpacerSize),
                           Row(
                             children: [
@@ -79,8 +81,10 @@ onTap: () => share([gallery[index]] ,context.findRenderObject() as RenderBox?),
                           Gap(context.largeSpacerSize),
                           Container(
                             height: .3,
-                            color: context.toColor(
-                                APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR).withAlpha(150),
+                            color: context
+                                .toColor(
+                                    APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR)
+                                .withAlpha(150),
                           )
                         ],
                       ),
@@ -93,11 +97,9 @@ onTap: () => share([gallery[index]] ,context.findRenderObject() as RenderBox?),
     );
   }
 
-    void share(List<TemplateGalleryEntity> galeryEdit, RenderBox? box) {
-    var result = galeryEdit
-      
-        .map((e) => "${e.title}: ${e.mediaItem.url}")
-        .toString();
+  void share(List<TemplateGalleryEntity> galeryEdit, RenderBox? box) {
+    var result =
+        galeryEdit.map((e) => "${e.title}: ${e.mediaItem.url}").toString();
     result = result.substring(0, result.length - 1);
     result = result.substring(1);
     result = result.replaceAll(",", "\n\n");

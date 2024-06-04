@@ -9,8 +9,8 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/page_selector_widget.dart';
 import 'package:goldcity/view/presentation/project/template/feature_and_gallery_template/view/feature_and_gallery_template_view.dart';
-import 'package:goldcity/view/presentation/project/template/feature_template/view/future_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/general_information_and_gallery_template/view/general_information_and_gallery_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/plan_template/view/plan_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/possibilty_template/view/possibilty_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
 
@@ -40,13 +40,17 @@ class ProjectDetailView extends StatelessWidget {
                   }
                   return switch (
                       value.entity!.detail.template[value.templateIndex].type) {
-                    TEMPLATE.TEMPLATE_ONE => FutureTemplateView(
+                    TEMPLATE.TEMPLATE_ONE => PlanTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
-                        projectSettingsId: value
-                            .entity!.detail.template[value.templateIndex].id,
                       ),
+                    // TEMPLATE.TEMPLATE_ONE => FutureTemplateView(
+                    //     key: Key(
+                    //         "${value.entity!.detail.template[value.templateIndex].id}"),
+                    //     projectDetailId: value.entity!.detail.id,
+                    //     projectSettingsId: value
+                    //         .entity!.detail.template[value.templateIndex].id,
+                    //   ),
                     TEMPLATE.TEMPLATE_TWO =>
                       GeneralInformationAndGalleryTemplateView(
                         key: Key(

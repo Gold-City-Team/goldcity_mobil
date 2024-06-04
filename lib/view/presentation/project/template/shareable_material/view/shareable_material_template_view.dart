@@ -48,7 +48,7 @@ class ShareableMaterialTemplateView extends StatelessWidget {
         Gap(context.largeSpacerSize),
         Observer(
           builder: (context) {
-            if (value.template == null || value.fullViewItemIndex.length==double.maxFinite) {
+            if (value.template == null) {
               return const SizedBox.shrink();
             }
             return Column(
@@ -59,15 +59,16 @@ class ShareableMaterialTemplateView extends StatelessWidget {
                     (e) => Padding(
                       padding: context.midSpacerOnlyBottom,
                       child: GestureDetector(
-                        onTap: () =>value.toggleFullViewItemIndex(e),
+                        onTap: () => value.toggleFullViewItemIndex(e),
                         child: PhoneTemplateRowWidget(
-                            isFullView: value.fullViewItemIndex.any((element) => element==e),
+                          isFullView: value.fullViewItemIndex
+                              .any((element) => element == e),
                           gallery: value.template!.gallery
                               .where((element) =>
                                   element.galleryCategoryEntity.translations
                                       .title ==
-                                  e).toList()
-                              ,
+                                  e)
+                              .toList(),
                         ),
                       ),
                     ),
@@ -76,8 +77,7 @@ class ShareableMaterialTemplateView extends StatelessWidget {
             );
           },
         ),
-          Gap(context.veryLargeSpacerOnlyBottom.bottom)
-
+        Gap(context.veryLargeSpacerOnlyBottom.bottom)
       ],
     ));
   }

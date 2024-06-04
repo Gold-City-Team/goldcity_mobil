@@ -28,15 +28,14 @@ abstract class _ShareableMaterialTemplateViewModelBase
   @observable
   TemplateFiveEntity? template;
 
-final fullViewItemIndex = ObservableList<String>.of([]);
+  final fullViewItemIndex = ObservableList<String>.of([]);
 
   @action
   void toggleFullViewItemIndex(String item) {
-    if(fullViewItemIndex.any((element) => element==item)){
-fullViewItemIndex.removeWhere((element) => element==item);
-    }else{
-
-    fullViewItemIndex.add(item);
+    if (fullViewItemIndex.any((element) => element == item)) {
+      fullViewItemIndex.removeWhere((element) => element == item);
+    } else {
+      fullViewItemIndex.add(item);
     }
   }
 
@@ -47,6 +46,4 @@ fullViewItemIndex.removeWhere((element) => element==item);
       template = (result.right.template as TemplateFiveEntity);
     }
   }
-
-
 }
