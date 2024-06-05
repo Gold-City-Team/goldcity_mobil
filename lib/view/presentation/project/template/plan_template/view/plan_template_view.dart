@@ -131,15 +131,15 @@ class PlanTemplateView extends StatelessWidget {
           children: [
             Gap(context.midSpacerSize),
             SizedBox(
-              height: ((context.sWidth / 3) - 20) / 1.7777,
+              height: ((context.sWidth / 1.10) - 20) / 1.7777,
               child: ListView.builder(
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: ((context, index) {
                   return Container(
                     margin: context.midSpacerOnlyHorizontal,
-                    width: (context.sWidth / 3) - 20,
-                    height: ((context.sWidth / 3) - 20) / 1.7777,
+                    width: (context.sWidth / 1.10) - 20,
+                    height: ((context.sWidth / 1.10) - 20) / 1.7777,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Container(
@@ -155,7 +155,6 @@ class PlanTemplateView extends StatelessWidget {
               ),
             ),
             Gap(context.largeSpacerSize),
-            Gap(context.midSpacerSize),
             Padding(
               padding: context.midSpacerOnlyHorizontal,
               child: Observer(builder: (context) {
