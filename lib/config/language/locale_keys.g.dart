@@ -15,5 +15,14 @@ abstract class  LocaleKeys {
   static const language = 'language';
   static const darkTheme = 'darkTheme';
   static const change = 'change';
+  static const floor = 'floor';
+  static const apartmentNumber = 'apartmentNumber';
+  static const price = 'price';
+  static const type = 'type';
+  static const state = 'state';
+  static const onSale = 'onSale';
+  static const reserved = 'reserved';
+  static const selled = 'selled';
+  static const block = 'block';
 
 }

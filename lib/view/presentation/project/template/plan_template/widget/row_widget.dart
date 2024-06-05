@@ -1,23 +1,25 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/data/dto/receive/project/project_templates/template_six/template_six_dto.dart';
+import 'package:goldcity/domain/entity/project/template/template_six/template_six_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class RowWidget extends StatelessWidget {
-  final List<TemplateGalleryEntity> gallery;
+  final List<ProjectHomeEntity> home;
   final bool isFullView;
 
-  const RowWidget({required this.gallery, required this.isFullView, super.key});
+  const RowWidget({required this.home, required this.isFullView, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: context.largeSpacer,
-      margin: context.midSpacerOnlyHorizontal,
       decoration: BoxDecoration(
         color: context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
         borderRadius: context.midRadius,
@@ -32,15 +34,15 @@ class RowWidget extends StatelessWidget {
               Gap(context.largeSpacerSize),
               Expanded(
                   child: LabelText(
-                      text: gallery
-                          .first.galleryCategoryEntity.translations.title)),
+                      text: LocaleKeys.floor.tr(args: [home.first.floor]))),
               const Spacer(),
               CircleAvatar(
                 maxRadius: 14,
                 backgroundColor:
                     context.toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
                 child: LabelText(
-                  text: "${gallery.length}",
+                  text:
+                      "${home.where((element) => element.state == HOME_STATE.WAITING).length}",
                   textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
                   fontSize: FONT_SIZE.LABEL_SMALL,
                 ),
@@ -79,8 +81,9 @@ class RowWidget extends StatelessWidget {
                                   color: context
                                       .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
                                       .withAlpha(13),
-                                  child: const Center(
-                                    child: LabelText(text: "Daire No"),
+                                  child: Center(
+                                    child: LabelText(
+                                        text: LocaleKeys.apartmentNumber.tr()),
                                   ),
                                 ),
                               ),
@@ -117,8 +120,9 @@ class RowWidget extends StatelessWidget {
                                   color: context
                                       .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
                                       .withAlpha(13),
-                                  child: const Center(
-                                    child: LabelText(text: "Fiyat"),
+                                  child: Center(
+                                    child:
+                                        LabelText(text: LocaleKeys.price.tr()),
                                   ),
                                 ),
                               ),
@@ -136,8 +140,9 @@ class RowWidget extends StatelessWidget {
                                   color: context
                                       .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
                                       .withAlpha(13),
-                                  child: const Center(
-                                    child: LabelText(text: "Tür"),
+                                  child: Center(
+                                    child:
+                                        LabelText(text: LocaleKeys.type.tr()),
                                   ),
                                 ),
                               ),
@@ -155,8 +160,9 @@ class RowWidget extends StatelessWidget {
                                   color: context
                                       .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
                                       .withAlpha(13),
-                                  child: const Center(
-                                    child: LabelText(text: "Durum"),
+                                  child: Center(
+                                    child:
+                                        LabelText(text: LocaleKeys.state.tr()),
                                   ),
                                 ),
                               ),
@@ -184,105 +190,100 @@ class RowWidget extends StatelessWidget {
                       padding: context.midSpacerOnlyHorizontal,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: gallery.length,
+                      itemCount: home.length,
                       itemBuilder: ((c, index) {
-                        return GestureDetector(
-                          onTap: () => null,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(
-                                    width: .5,
-                                    height: 50,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(150),
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                  width: .5,
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(150),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: LabelText(text: home[index].no),
                                   ),
-                                  Expanded(
+                                ),
+                                Container(
+                                  width: .5,
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(150),
+                                ),
+                                Expanded(
                                     child: Center(
-                                      child: LabelText(
-                                          text: gallery[index]
-                                              .mediaItem
-                                              .oldFileName),
-                                    ),
-                                  ),
-                                  Container(
-                                    width: .5,
-                                    height: 50,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(150),
-                                  ),
-                                  const Expanded(
-                                      child: Center(
-                                          child: LabelText(text: "120 m²"))),
-                                  Container(
-                                    width: .5,
-                                    height: 50,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(150),
-                                  ),
-                                  const Expanded(
-                                      child: Center(
-                                          child: LabelText(text: "100.000 €"))),
-                                  Container(
-                                    width: .5,
-                                    height: 50,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(150),
-                                  ),
-                                  const Expanded(
-                                      child: Center(
-                                          child:
-                                              LabelText(text: "Orta Daire"))),
-                                  Container(
-                                    width: .5,
-                                    height: 50,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(150),
-                                  ),
-                                  Expanded(
-                                      child: Container(
-                                    height: 50,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR.GREEN),
-                                    child: const Center(
                                         child: LabelText(
-                                      text: "Satışta",
-                                      textColor: APPLICATION_COLOR.LIGHT,
-                                    )),
+                                            text: "${home[index].area} m²"))),
+                                Container(
+                                  width: .5,
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(150),
+                                ),
+                                Expanded(
+                                    child: Center(
+                                        child: LabelText(
+                                            text: "${home[index].price} €"))),
+                                Container(
+                                  width: .5,
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(150),
+                                ),
+                                const Expanded(
+                                    child: Center(
+                                        child: LabelText(text: "Orta Daire"))),
+                                Container(
+                                  width: .5,
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(150),
+                                ),
+                                Expanded(
+                                    child: Container(
+                                  height: 50,
+                                  color: getColorFromState(
+                                      context, home[index].state),
+                                  child: Center(
+                                      child: LabelText(
+                                    text: getTextFromState(
+                                        context, home[index].state),
+                                    textColor: APPLICATION_COLOR.LIGHT,
                                   )),
-                                  Container(
-                                    width: .5,
-                                    height: 50,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(150),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                height: .3,
-                                color: context
-                                    .toColor(APPLICATION_COLOR
-                                        .CLOSE_BACKGROUND_COLOR)
-                                    .withAlpha(150),
-                              ),
-                            ],
-                          ),
+                                )),
+                                Container(
+                                  width: .5,
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(150),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: .3,
+                              color: context
+                                  .toColor(
+                                      APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR)
+                                  .withAlpha(150),
+                            ),
+                          ],
                         );
                       }),
                     ),
@@ -292,5 +293,21 @@ class RowWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Color getColorFromState(BuildContext context, HOME_STATE state) {
+    return switch (state) {
+      HOME_STATE.RESERVED => context.toColor(APPLICATION_COLOR.BLUE),
+      HOME_STATE.WAITING => context.toColor(APPLICATION_COLOR.GREEN),
+      HOME_STATE.SELLED => context.toColor(APPLICATION_COLOR.RED)
+    };
+  }
+
+  String getTextFromState(BuildContext context, HOME_STATE state) {
+    return switch (state) {
+      HOME_STATE.RESERVED => LocaleKeys.reserved.tr(),
+      HOME_STATE.WAITING => LocaleKeys.onSale.tr(),
+      HOME_STATE.SELLED => LocaleKeys.selled.tr()
+    };
   }
 }

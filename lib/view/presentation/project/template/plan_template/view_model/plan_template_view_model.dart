@@ -3,9 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/data/dto/receive/project/template_gallery/template_gallery_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
+import 'package:goldcity/data/dto/receive/project/project_templates/template_six/template_six_dto.dart';
+import 'package:goldcity/domain/entity/project/template/template_six/template_six_entity.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:mobx/mobx.dart';
 
@@ -42,24 +41,72 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
-  List<TemplateGalleryEntity> getGallery() => [
-        TemplateGalleryDto(
-                mediaItem: MediaDto(oldFileName: "Daire 1"),
-                category: TemplateGalleryCategoryDto(
-                    translation:
-                        TemplateGalleryCategoryTranslationDto(title: "1. Kat")))
-            .toEntity(),
-        TemplateGalleryDto(
-                mediaItem: MediaDto(oldFileName: "Daire 2"),
-                category: TemplateGalleryCategoryDto(
-                    translation:
-                        TemplateGalleryCategoryTranslationDto(title: "1. Kat")))
-            .toEntity(),
-        TemplateGalleryDto(
-                mediaItem: MediaDto(oldFileName: "Daire 3"),
-                category: TemplateGalleryCategoryDto(
-                    translation:
-                        TemplateGalleryCategoryTranslationDto(title: "1. Kat")))
-            .toEntity(),
-      ];
+  TemplateSixEntity template = TemplateSixDto.fromJson({
+    "id": 0,
+    "title": "",
+    "homes": [
+      {
+        "id": 1,
+        "blok": "A",
+        "no": "1",
+        "floor": "1",
+        "area": "100",
+        "price": "100.000",
+        "type": "Orta",
+        "state": "WAITING"
+      },
+      {
+        "id": 2,
+        "blok": "A",
+        "no": "2",
+        "floor": "1",
+        "area": "120",
+        "price": "110.000",
+        "type": "Orta",
+        "state": "SELLED"
+      },
+      {
+        "id": 3,
+        "blok": "A",
+        "floor": "1",
+        "no": "3",
+        "area": "120",
+        "price": "110.000",
+        "type": "Orta",
+        "state": "RESERVED"
+      },
+      {
+        "id": 4,
+        "blok": "A",
+        "floor": "2",
+        "no": "1",
+        "area": "120",
+        "price": "110.000",
+        "type": "Orta",
+        "state": "WAITING"
+      },
+      {
+        "id": 5,
+        "blok": "B",
+        "floor": "1",
+        "no": "1",
+        "area": "120",
+        "price": "110.000",
+        "type": "Orta",
+        "state": "WAITING"
+      }
+    ]
+  }).toEntity();
+
+  List<String> getBlok() {
+    return template.homes.map((e) => e.blok).toSet().toList();
+  }
+
+  List<String> getFloorListWithBlok(String e) {
+    return template.homes
+        .where((el) => e == el.blok)
+        .map((e) => e.floor)
+        .toSet()
+        .toList();
+  }
 }

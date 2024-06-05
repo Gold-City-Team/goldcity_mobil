@@ -2,6 +2,15 @@ import 'package:goldcity/domain/entity/project/template/template_six/template_si
 import 'package:json_annotation/json_annotation.dart';
 part 'template_six_dto.g.dart';
 
+enum HOME_STATE {
+  @JsonValue("RESERVED")
+  RESERVED,
+  @JsonValue("SELLED")
+  SELLED,
+  @JsonValue("WAITING")
+  WAITING
+}
+
 @JsonSerializable()
 class TemplateSixDto {
   int? id;
@@ -26,14 +35,16 @@ class TemplateSixDto {
 
 @JsonSerializable()
 class ProjectHomeDto {
+  int? id;
   String? blok;
   String? no;
   String? floor;
   String? area;
   String? price;
   String? type;
-  String? state;
+  HOME_STATE? state;
   ProjectHomeDto({
+    this.id,
     this.blok,
     this.no,
     this.floor,
@@ -48,12 +59,13 @@ class ProjectHomeDto {
   Map<String, dynamic> toJson() => _$ProjectHomeDtoToJson(this);
 
   ProjectHomeEntity toEntity() => ProjectHomeEntity(
+        id: id ?? 0,
         blok: blok ?? "",
         no: no ?? "",
         floor: floor ?? "",
         area: area ?? "",
         price: price ?? "",
         type: type ?? "",
-        state: state ?? "",
+        state: state ?? HOME_STATE.WAITING,
       );
 }

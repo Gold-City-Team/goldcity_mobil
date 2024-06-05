@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -62,43 +63,56 @@ class PlanTemplateView extends StatelessWidget {
               ),
             ),
             Gap(context.largeSpacerSize),
+            Gap(context.midSpacerSize),
             Padding(
               padding: context.midSpacerOnlyHorizontal,
-              child: const LabelText(
-                text: "A Blok",
-                fontSize: FONT_SIZE.HEADLINE_LARGE,
-                textColor: APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR,
-              ),
-            ),
-            Gap(context.midSpacerSize),
-            Observer(builder: (context) {
-              return Column(
-                children: value
-                    .getGallery()
-                    .map((e) => e.galleryCategoryEntity.translations.title)
-                    .toSet()
-                    .map(
-                      (e) => Padding(
-                        padding: context.midSpacerOnlyBottom,
-                        child: GestureDetector(
-                          onTap: () => value.toggleFullViewItemIndex(e),
-                          child: RowWidget(
-                            isFullView: value.fullViewItemIndex
-                                .any((element) => element == e),
-                            gallery: value
-                                .getGallery()
-                                .where((element) =>
-                                    element.galleryCategoryEntity.translations
-                                        .title ==
-                                    e)
-                                .toList(),
+              child: Observer(builder: (context) {
+                if (value.fullViewItemIndex.isEmpty) {}
+                return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: value.getBlok().length,
+                    itemBuilder: (context, index) {
+                      final blok = value.getBlok()[index];
+                      final floorList = value.getFloorListWithBlok(blok);
+                      final homesByBlok = value.template.homes
+                          .where((home) => home.blok == blok)
+                          .toList();
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          LabelText(
+                            text: LocaleKeys.block.tr(args: [blok]),
+                            fontSize: FONT_SIZE.HEADLINE_LARGE,
                           ),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              );
-            })
+                          Gap(context.midSpacerSize),
+                          Column(
+                            children: floorList.map((floor) {
+                              final homesByFloor = homesByBlok
+                                  .where((home) => home.floor == floor)
+                                  .toList();
+
+                              return Container(
+                                margin: context.midSpacerOnlyBottom,
+                                child: GestureDetector(
+                                  onTap: () => value.toggleFullViewItemIndex(
+                                      "$floor${value.template.homes[index].id}"),
+                                  child: RowWidget(
+                                      home: homesByFloor,
+                                      isFullView: value.fullViewItemIndex.any(
+                                          (element) =>
+                                              element ==
+                                              "$floor${value.template.homes[index].id}")),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      );
+                    });
+              }),
+            )
           ],
         ),
       ),

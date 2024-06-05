@@ -12,5 +12,14 @@
     "settings": "Ayarlar",
     "language": "Dil",
     "darkTheme": "Karanlık Tema",
-    "change": "Değiştir"
+    "change": "Değiştir",
+    "floor": "{}. Kat",
+    "apartmentNumber": "Daire Numarası",
+    "price": "Fiyat",
+    "type": "Tür",
+    "state": "Durum",
+    "onSale": "Satılık",
+    "reserved": "Rezerve",
+    "selled": "Satıldı",
+    "block": "{} Blok"
 }

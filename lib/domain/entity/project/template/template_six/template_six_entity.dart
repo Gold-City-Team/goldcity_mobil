@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goldcity/data/dto/receive/project/project_templates/template_six/template_six_dto.dart';
 
 @immutable
 class TemplateSixEntity {
@@ -12,14 +13,16 @@ class TemplateSixEntity {
 
 @immutable
 class ProjectHomeEntity {
+  final int id;
   final String blok;
   final String no;
   final String floor;
   final String area;
   final String price;
   final String type;
-  final String state;
+  final HOME_STATE state;
   const ProjectHomeEntity({
+    required this.id,
     required this.blok,
     required this.no,
     required this.floor,
