@@ -55,7 +55,7 @@ abstract class _GeneralInformationAndGalleryTemplateViewModelBase
   Future<void> navigateGallery(int selectedId) async {
     await navigation.navigateToPage(
       path: NavigationConstant.GALLERY,
-      data: [templateTwo!.gallery, selectedId],
+      data: [templateTwo!.gallery, selectedId, false],
     );
 
     isTablet()

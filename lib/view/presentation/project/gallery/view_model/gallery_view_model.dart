@@ -17,10 +17,12 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
+    if (!isExperiance) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+      ]);
+    }
 
     _configureGallery();
   }
@@ -35,6 +37,8 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     isBottomVisible = false;
     selectedMediaIndex = newIndex;
   }
+
+  bool isExperiance = false;
 
   @observable
   bool isBottomVisible = false;

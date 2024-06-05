@@ -37,6 +37,7 @@ class NavigationRoute {
       /* GALLERY */
       NavigationConstant.GALLERY => normalNavigate(
           GalleryView(
+              isExperiance: (args.arguments as List)[2] as bool,
               selectedIndex: (args.arguments as List)[1] as int,
               gallery:
                   (args.arguments as List)[0]! as List<TemplateGalleryEntity>),

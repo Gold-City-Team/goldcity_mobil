@@ -6,6 +6,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/data/dto/receive/project/template_gallery/template_gallery_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -47,20 +49,31 @@ class PlanTemplateView extends StatelessWidget {
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: ((context, index) {
-                  return Container(
-                    margin: context.midSpacerOnlyHorizontal,
-                    width: (context.sWidth / 3) - 20,
-                    height: ((context.sWidth / 3) - 20) / 1.7777,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Container(
-                        color: context.toColor(APPLICATION_COLOR.DARK),
-                        child: const NormalNetworkImage(
-                            fit: BoxFit.cover,
-                            source:
-                                "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
-                      ),
-                    ).animate().fade(),
+                  return GestureDetector(
+                    onTap: () => value.navigateToGallery(
+                      [
+                        TemplateGalleryDto(
+                          mediaItem: MediaDto(
+                              url:
+                                  "https://i.pinimg.com/originals/6d/a3/00/6da3007ff3305f1e2bdacb9daaf19389.jpg"),
+                        ).toEntity()
+                      ],
+                    ),
+                    child: Container(
+                      margin: context.midSpacerOnlyHorizontal,
+                      width: (context.sWidth / 3) - 20,
+                      height: ((context.sWidth / 3) - 20) / 1.7777,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Container(
+                          color: context.toColor(APPLICATION_COLOR.DARK),
+                          child: const NormalNetworkImage(
+                              fit: BoxFit.cover,
+                              source:
+                                  "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                        ),
+                      ).animate().fade(),
+                    ),
                   );
                 }),
               ),
@@ -136,20 +149,46 @@ class PlanTemplateView extends StatelessWidget {
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: ((context, index) {
-                  return Container(
-                    margin: context.midSpacerOnlyHorizontal,
-                    width: (context.sWidth / 1.10) - 20,
-                    height: ((context.sWidth / 1.10) - 20) / 1.7777,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Container(
-                        color: context.toColor(APPLICATION_COLOR.DARK),
-                        child: const NormalNetworkImage(
-                            fit: BoxFit.cover,
-                            source:
-                                "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
-                      ),
-                    ).animate().fade(),
+                  return GestureDetector(
+                    onTap: () => value.navigateToGallery([
+                      TemplateGalleryDto(
+                        id: 1,
+                        mediaItem: MediaDto(
+                            id: 1,
+                            mediaType: MEDIA_TYPE.VIDEO,
+                            metaData: MediaMetaDataDto(
+                                ThumbnailUrl:
+                                    "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                            url:
+                                "https://videos.pexels.com/video-files/4678261/4678261-hd_1080_1920_25fps.mp4"),
+                      ).toEntity(),
+                      TemplateGalleryDto(
+                        id: 2,
+                        mediaItem: MediaDto(
+                            id: 2,
+                            mediaType: MEDIA_TYPE.VIDEO,
+                            metaData: MediaMetaDataDto(
+                                ThumbnailUrl:
+                                    "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                            url:
+                                "https://videos.pexels.com/video-files/4434242/4434242-hd_1080_1920_24fps.mp4"),
+                      ).toEntity(),
+                    ]),
+                    child: Container(
+                      margin: context.midSpacerOnlyHorizontal,
+                      width: (context.sWidth / 1.10) - 20,
+                      height: ((context.sWidth / 1.10) - 20) / 1.7777,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Container(
+                          color: context.toColor(APPLICATION_COLOR.DARK),
+                          child: const NormalNetworkImage(
+                              fit: BoxFit.cover,
+                              source:
+                                  "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                        ),
+                      ).animate().fade(),
+                    ),
                   );
                 }),
               ),

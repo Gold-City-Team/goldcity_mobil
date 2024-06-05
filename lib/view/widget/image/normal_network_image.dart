@@ -9,8 +9,6 @@ class NormalNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.network(
-      cacheHeight: 1080,
-      cacheWidth: 1920,
       source,
       fit: fit,
     );

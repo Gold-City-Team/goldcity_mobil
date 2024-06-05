@@ -17,10 +17,12 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 class GalleryView extends StatefulWidget {
   final List<TemplateGalleryEntity> gallery;
   final int selectedIndex;
+  final bool isExperiance;
 
   const GalleryView({
     required this.gallery,
     required this.selectedIndex,
+    this.isExperiance = false,
     super.key,
   });
 
@@ -36,15 +38,17 @@ class _GalleryViewState extends State<GalleryView> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (v.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE) {
-        if (isTablet()) {
-          c.jumpTo(v.selectedMediaIndex * (150 * 1.84));
-        } else {
-          c.animateTo(
-            v.selectedMediaIndex * 150,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeIn,
-          );
+      if (!widget.isExperiance) {
+        if (v.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE) {
+          if (isTablet()) {
+            c.jumpTo(v.selectedMediaIndex * (150 * 1.84));
+          } else {
+            c.animateTo(
+              v.selectedMediaIndex * 150,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeIn,
+            );
+          }
         }
       }
     });
@@ -58,6 +62,7 @@ class _GalleryViewState extends State<GalleryView> {
         model.setContext(context);
         model.gallery = widget.gallery;
         model.selectedMediaIndex = widget.selectedIndex;
+        model.isExperiance = widget.isExperiance;
         model.init();
         v = model;
       },
@@ -73,8 +78,41 @@ class _GalleryViewState extends State<GalleryView> {
             ? tabletImageView(viewModel, carouselController)
             : videoView(viewModel)
         : viewModel.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
-            ? phoneImageView(viewModel, carouselController)
+            ? widget.isExperiance
+                ? phoneImageViewExperiance(viewModel, carouselController)
+                : phoneImageView(viewModel, carouselController)
             : videoView(viewModel);
+  }
+
+  Widget phoneImageViewExperiance(
+      GalleryViewModel viewModel, CarouselController controller) {
+    return Center(
+      child: FlutterCarousel(
+        options: CarouselOptions(
+            controller: controller,
+            viewportFraction: 1,
+            showIndicator: true,
+            initialPage: viewModel.selectedMediaIndex,
+            enlargeCenterPage: true,
+            aspectRatio: 9 / 16,
+            enlargeStrategy: CenterPageEnlargeStrategy.scale,
+            pageSnapping: true),
+        items: viewModel.gallery.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return SizedBox(
+                width: context.sWidth,
+                height: context.sHeight,
+                child: NormalNetworkImage(
+                  fit: BoxFit.contain,
+                  source: i.mediaItem.url,
+                ),
+              );
+            },
+          );
+        }).toList(),
+      ),
+    );
   }
 
   Widget phoneImageView(
