@@ -22,7 +22,7 @@ abstract class  LocaleKeys {
   static const state = 'state';
   static const onSale = 'onSale';
   static const reserved = 'reserved';
-  static const selled = 'selled';
+  static const sold = 'sold';
   static const block = 'block';
 
 }

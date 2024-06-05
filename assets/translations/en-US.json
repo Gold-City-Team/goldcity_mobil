@@ -20,6 +20,6 @@
     "state": "State",
     "onSale": "On Sale",
     "reserved": "Reserved",
-    "selled": "Selled",
+    "sold": "Sold",
     "block": "{} Block"
 }

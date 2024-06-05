@@ -20,6 +20,6 @@
     "state": "Durum",
     "onSale": "Satılık",
     "reserved": "Rezerve",
-    "selled": "Satıldı",
+    "sold": "Satıldı",
     "block": "{} Blok"
 }

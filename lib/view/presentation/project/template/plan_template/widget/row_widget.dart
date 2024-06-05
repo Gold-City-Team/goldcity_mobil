@@ -307,7 +307,7 @@ class RowWidget extends StatelessWidget {
     return switch (state) {
       HOME_STATE.RESERVED => LocaleKeys.reserved.tr(),
       HOME_STATE.WAITING => LocaleKeys.onSale.tr(),
-      HOME_STATE.SELLED => LocaleKeys.selled.tr()
+      HOME_STATE.SELLED => LocaleKeys.sold.tr()
     };
   }
 }
