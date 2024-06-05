@@ -107,7 +107,7 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
   Future<void> navigateToGallery(List<TemplateGalleryEntity> gallery) async {
     await navigation.navigateToPage(
       path: NavigationConstant.GALLERY,
-      data: [gallery, 1, true],
+      data: [gallery, 1, isTablet() ? false : true],
     );
   }
 

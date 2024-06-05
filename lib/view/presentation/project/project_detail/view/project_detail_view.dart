@@ -112,6 +112,19 @@ class ProjectDetailView extends StatelessWidget {
                                 : const SizedBox.shrink(),
                             const Spacer(),
                             GestureDetector(
+                              onTap: () => value.navigation.pop(),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.GOLD),
+                                    borderRadius: context.midRadius),
+                                child: const Icon(Icons.home),
+                              ),
+                            ),
+                            Gap(context.midSpacerSize),
+                            GestureDetector(
                               onTap: () => value.togglePageSelector(),
                               child: Container(
                                 width: 50,
