@@ -112,7 +112,8 @@ class PlanTemplateView extends StatelessWidget {
                       );
                     });
               }),
-            )
+            ),
+            Gap(context.veryLargeSpacerOnlyBottom.bottom)
           ],
         ),
       ),
