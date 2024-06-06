@@ -14,6 +14,10 @@ TemplateTwoDto _$TemplateTwoDtoFromJson(Map<String, dynamic> json) =>
       mediaItem: json['mediaItem'] == null
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
+      metaData: json['metaData'] == null
+          ? null
+          : TemplateTwoMetaDataDto.fromJson(
+              json['metaData'] as Map<String, dynamic>),
       galleries: (json['galleries'] as List<dynamic>?)
           ?.map((e) => TemplateGalleryDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -27,4 +31,17 @@ Map<String, dynamic> _$TemplateTwoDtoToJson(TemplateTwoDto instance) =>
       'description': instance.description,
       'mediaItem': instance.mediaItem,
       'galleries': instance.galleries,
+      'metaData': instance.metaData,
+    };
+
+TemplateTwoMetaDataDto _$TemplateTwoMetaDataDtoFromJson(
+        Map<String, dynamic> json) =>
+    TemplateTwoMetaDataDto(
+      mainImagePosition: json['mainImagePosition'] as String?,
+    );
+
+Map<String, dynamic> _$TemplateTwoMetaDataDtoToJson(
+        TemplateTwoMetaDataDto instance) =>
+    <String, dynamic>{
+      'mainImagePosition': instance.mainImagePosition,
     };

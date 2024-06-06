@@ -12,9 +12,15 @@ class TemplateTwoDto {
   String? description;
   MediaDto? mediaItem;
   List<TemplateGalleryDto>? galleries;
+  TemplateTwoMetaDataDto? metaData;
 
   TemplateTwoDto(
-      {this.id, this.title, this.description, this.mediaItem, this.galleries});
+      {this.id,
+      this.title,
+      this.description,
+      this.mediaItem,
+      this.metaData,
+      this.galleries});
 
   factory TemplateTwoDto.fromJson(Map<String, dynamic> json) =>
       _$TemplateTwoDtoFromJson(json);
@@ -31,5 +37,23 @@ class TemplateTwoDto {
         title: title ?? "",
         mediaItem:
             mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
+        metaData: metaData != null
+            ? metaData!.toEntity()
+            : TemplateTwoMetaDataDto().toEntity(),
       );
+}
+
+@JsonSerializable()
+class TemplateTwoMetaDataDto {
+  String? mainImagePosition;
+
+  TemplateTwoMetaDataDto({this.mainImagePosition});
+
+  factory TemplateTwoMetaDataDto.fromJson(Map<String, dynamic> json) =>
+      _$TemplateTwoMetaDataDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TemplateTwoMetaDataDtoToJson(this);
+
+  TemplateTwoMetaDataEntity toEntity() => TemplateTwoMetaDataEntity(
+      mainImagePosition: mainImagePosition ?? "right");
 }

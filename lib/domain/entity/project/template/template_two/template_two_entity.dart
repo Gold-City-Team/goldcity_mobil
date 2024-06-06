@@ -10,6 +10,7 @@ class TemplateTwoEntity {
   final String description;
   final MediaEntity mediaItem;
   final List<TemplateGalleryEntity> gallery;
+  final TemplateTwoMetaDataEntity metaData;
   const TemplateTwoEntity({
     required this.id,
     required this.title,
@@ -17,5 +18,12 @@ class TemplateTwoEntity {
     required this.mediaItem,
     required this.gallery,
     required this.subTitle,
+    required this.metaData,
   });
+}
+
+@immutable
+class TemplateTwoMetaDataEntity {
+  final String mainImagePosition;
+  const TemplateTwoMetaDataEntity({required this.mainImagePosition});
 }

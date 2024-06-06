@@ -197,6 +197,30 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
             padding: context.largeSpacer,
             child: Row(
               children: [
+                Observer(builder: (context) {
+                  if (value.templateTwo == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return value.templateTwo!.metaData.mainImagePosition == "left"
+                      ? Expanded(
+                          child: Center(
+                            child: SizedBox(
+                              width: (context.sWidth / 2) - 100,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Observer(builder: (context) {
+                                  if (value.templateTwo == null) {
+                                    return const SizedBox.shrink();
+                                  }
+                                  return NormalNetworkImage(
+                                      source: value.templateTwo!.mediaItem.url);
+                                }),
+                              ),
+                            ),
+                          ),
+                        ).animate().fade()
+                      : const SizedBox.shrink();
+                }),
                 SizedBox(
                   width: context.sWidth / 2,
                   child: Column(
@@ -245,23 +269,31 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
-                  child: Center(
-                    child: SizedBox(
-                      width: (context.sWidth / 2) - 100,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Observer(builder: (context) {
-                          if (value.templateTwo == null) {
-                            return const SizedBox.shrink();
-                          }
-                          return NormalNetworkImage(
-                              source: value.templateTwo!.mediaItem.url);
-                        }),
-                      ),
-                    ),
-                  ),
-                ).animate().fade()
+                Observer(builder: (context) {
+                  if (value.templateTwo == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return value.templateTwo!.metaData.mainImagePosition ==
+                          "right"
+                      ? Expanded(
+                          child: Center(
+                            child: SizedBox(
+                              width: (context.sWidth / 2) - 100,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Observer(builder: (context) {
+                                  if (value.templateTwo == null) {
+                                    return const SizedBox.shrink();
+                                  }
+                                  return NormalNetworkImage(
+                                      source: value.templateTwo!.mediaItem.url);
+                                }),
+                              ),
+                            ),
+                          ),
+                        ).animate().fade()
+                      : const SizedBox.shrink();
+                })
               ],
             ),
           ),
