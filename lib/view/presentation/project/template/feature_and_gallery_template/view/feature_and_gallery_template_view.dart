@@ -179,67 +179,42 @@ class FeatureAndGalleryTemplateView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: context.sHeight - 350,
-            ),
-            child: Padding(
-              padding: context.largeSpacer,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: context.sWidth / 2,
-                    child: Column(
+          Padding(
+            padding: context.largeSpacer,
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Observer(builder: (context) {
-                              if (value.templateEntity == null) {
-                                return const SizedBox.shrink();
-                              }
-                              return LabelText(
-                                text: value.templateEntity!.title,
-                                fontSize: FONT_SIZE.HEADLINE_LARGE,
-                              ).animate().fade();
-                            }),
-                          ],
-                        ),
-                        Gap(context.largeSpacerSize),
                         Observer(builder: (context) {
                           if (value.templateEntity == null) {
                             return const SizedBox.shrink();
                           }
-                          return Wrap(
-                            children: value.templateEntity!.features
-                                .map((e) => FeaturesWidget(featuresEntity: e))
-                                .toSet()
-                                .toList(),
-                          );
+                          return LabelText(
+                            text: value.templateEntity!.title,
+                            fontSize: FONT_SIZE.HEADLINE_LARGE,
+                          ).animate().fade();
                         }),
                       ],
                     ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: SizedBox(
-                        width: (context.sWidth / 2) - 100,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Observer(builder: (context) {
-                            if (value.templateEntity == null) {
-                              return const SizedBox.shrink();
-                            }
-                            return NormalNetworkImage(
-                                source: value.templateEntity!.mediaItem.url);
-                          }),
-                        ),
-                      ),
-                    ),
-                  ).animate().fade()
-                ],
-              ),
+                    Gap(context.largeSpacerSize),
+                    Observer(builder: (context) {
+                      if (value.templateEntity == null) {
+                        return const SizedBox.shrink();
+                      }
+                      return Wrap(
+                        children: value.templateEntity!.features
+                            .map((e) => FeaturesWidget(featuresEntity: e))
+                            .toSet()
+                            .toList(),
+                      );
+                    }),
+                  ],
+                ),
+              ],
             ),
           ),
           Observer(
