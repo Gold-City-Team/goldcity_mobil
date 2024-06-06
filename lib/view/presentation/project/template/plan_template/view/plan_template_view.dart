@@ -53,10 +53,27 @@ class PlanTemplateView extends StatelessWidget {
                     onTap: () => value.navigateToGallery(
                       [
                         TemplateGalleryDto(
+                          id: 1,
                           mediaItem: MediaDto(
+                              id: 1,
+                              mediaType: MEDIA_TYPE.VIDEO,
+                              metaData: MediaMetaDataDto(
+                                  ThumbnailUrl:
+                                      "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
                               url:
-                                  "https://i.pinimg.com/originals/6d/a3/00/6da3007ff3305f1e2bdacb9daaf19389.jpg"),
-                        ).toEntity()
+                                  "https://videos.pexels.com/video-files/4678261/4678261-hd_1080_1920_25fps.mp4"),
+                        ).toEntity(),
+                        TemplateGalleryDto(
+                          id: 2,
+                          mediaItem: MediaDto(
+                              id: 2,
+                              mediaType: MEDIA_TYPE.VIDEO,
+                              metaData: MediaMetaDataDto(
+                                  ThumbnailUrl:
+                                      "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                              url:
+                                  "https://videos.pexels.com/video-files/4434242/4434242-hd_1080_1920_24fps.mp4"),
+                        ).toEntity(),
                       ],
                     ),
                     child: Container(
