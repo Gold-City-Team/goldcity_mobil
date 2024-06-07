@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -196,8 +197,22 @@ class _GalleryViewState extends State<GalleryView> {
       GalleryViewModel viewModel, CarouselController controller) {
     return SafeArea(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Gap(context.midSpacerSize),
+          GestureDetector(
+            onTap: () => viewModel.navigation.pop(),
+            child: Container(
+              width: 50,
+              margin: context.largeSpacerOnlyHorizontal,
+              height: 50,
+              decoration: BoxDecoration(
+                  color: context.toColor(APPLICATION_COLOR.GOLD),
+                  borderRadius: context.midRadius),
+              child: const Icon(Icons.keyboard_arrow_left),
+            ),
+          ),
+          Gap(context.midSpacerSize),
           Flexible(
             flex: 2,
             child: SizedBox(

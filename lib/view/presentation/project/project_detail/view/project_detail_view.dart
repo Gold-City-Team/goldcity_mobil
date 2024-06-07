@@ -82,7 +82,7 @@ class ProjectDetailView extends StatelessWidget {
                 }),
                 SafeArea(
                   child: Container(
-                    padding: context.midSpacerOnlyHorizontal,
+                    padding: context.largeSpacerOnlyHorizontal,
                     margin: context.smallSpacerOnlyBottom,
                     child: Observer(
                       builder: (context) {

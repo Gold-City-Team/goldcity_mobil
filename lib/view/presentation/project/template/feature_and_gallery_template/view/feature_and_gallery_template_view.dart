@@ -181,42 +181,31 @@ class FeatureAndGalleryTemplateView extends StatelessWidget {
         padding: context.midSpacerOnlyHorizontal,
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: context.sWidth,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Observer(builder: (context) {
-                          if (value.templateEntity == null) {
-                            return const SizedBox.shrink();
-                          }
-                          return LabelText(
-                            text: value.templateEntity!.title,
-                            fontSize: FONT_SIZE.HEADLINE_LARGE,
-                          ).animate().fade();
-                        }),
-                      ],
-                    ),
-                    Gap(context.largeSpacerSize),
-                    Observer(builder: (context) {
-                      if (value.templateEntity == null) {
-                        return const SizedBox.shrink();
-                      }
-                      return Wrap(
-                        children: value.templateEntity!.features
-                            .map((e) => FeaturesWidget(featuresEntity: e))
-                            .toSet()
-                            .toList(),
-                      );
-                    }),
-                  ],
-                ),
+              Observer(
+                builder: (context) {
+                  if (value.templateEntity == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return LabelText(
+                    text: value.templateEntity!.title,
+                    fontSize: FONT_SIZE.HEADLINE_LARGE,
+                  ).animate().fade();
+                },
               ),
+              Gap(context.largeSpacerSize),
+              Observer(builder: (context) {
+                if (value.templateEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return Wrap(
+                  children: value.templateEntity!.features
+                      .map((e) => FeaturesWidget(featuresEntity: e))
+                      .toSet()
+                      .toList(),
+                );
+              }),
               Observer(
                 builder: (context) {
                   if (value.templateEntity == null) {

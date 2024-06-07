@@ -1,9 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -35,33 +32,29 @@ class FeaturesWidget extends StatelessWidget {
             ),
           ),
           Gap(context.midSpacerSize),
-          SizedBox(
-            child: Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  LabelText(
-                    text: featuresEntity.value,
-                    textColor: APPLICATION_COLOR.GOLD,
-                    fontSize: isTablet()
-                        ? FONT_SIZE.HEADLINE_MEDIUM
-                        : FONT_SIZE.TITLE_LARGE,
-                  ),
-                  LabelText(
-                    text: featuresEntity.title,
-                    fontSize: isTablet()
-                        ? FONT_SIZE.HEADLINE_SMALL
-                        : FONT_SIZE.TITLE_MEDIUM,
-                  )
-                ],
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              LabelText(
+                text: featuresEntity.value,
+                textColor: APPLICATION_COLOR.GOLD,
+                fontSize: isTablet()
+                    ? FONT_SIZE.HEADLINE_MEDIUM
+                    : FONT_SIZE.TITLE_LARGE,
               ),
-            ),
+              LabelText(
+                text: featuresEntity.title,
+                fontSize: isTablet()
+                    ? FONT_SIZE.HEADLINE_SMALL
+                    : FONT_SIZE.TITLE_MEDIUM,
+              )
+            ],
           )
         ],
-      ),
-    ).animate().fade().slide(
-        begin: const Offset(0.5, 0),
-        end: const Offset(0, 0),
-        curve: Curves.easeIn);
+      ).animate().fade().slide(
+          begin: const Offset(0.5, 0),
+          end: const Offset(0, 0),
+          curve: Curves.easeIn),
+    );
   }
 }
