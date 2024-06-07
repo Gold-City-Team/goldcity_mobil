@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,24 +20,23 @@ class FeaturesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: isTablet() ? context.sWidth / 2 - 40 : context.sWidth,
-      child: Padding(
-        padding: context.midSpacer,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(
-              height: isTablet() ? 50 : 25,
-              width: isTablet() ? 50 : 25,
-              child: SvgPicture.network(
-                featuresEntity.media.url,
-                color: context.toColor(APPLICATION_COLOR.GOLD),
-              ),
+    return Padding(
+      padding: context.midSpacer,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: isTablet() ? 50 : 35,
+            width: isTablet() ? 50 : 35,
+            child: SvgPicture.network(
+              featuresEntity.media.url,
+              color: context.toColor(APPLICATION_COLOR.GOLD),
             ),
-            Gap(context.midSpacerSize),
-            Expanded(
+          ),
+          Gap(context.midSpacerSize),
+          SizedBox(
+            child: Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -45,19 +45,19 @@ class FeaturesWidget extends StatelessWidget {
                     textColor: APPLICATION_COLOR.GOLD,
                     fontSize: isTablet()
                         ? FONT_SIZE.HEADLINE_MEDIUM
-                        : FONT_SIZE.BODY_LARGE,
+                        : FONT_SIZE.TITLE_LARGE,
                   ),
                   LabelText(
                     text: featuresEntity.title,
                     fontSize: isTablet()
-                        ? FONT_SIZE.HEADLINE_MEDIUM
-                        : FONT_SIZE.BODY_LARGE,
+                        ? FONT_SIZE.HEADLINE_SMALL
+                        : FONT_SIZE.TITLE_MEDIUM,
                   )
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     ).animate().fade().slide(
         begin: const Offset(0.5, 0),

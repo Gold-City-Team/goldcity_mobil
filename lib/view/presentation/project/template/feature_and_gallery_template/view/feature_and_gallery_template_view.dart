@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -175,15 +176,16 @@ class FeatureAndGalleryTemplateView extends StatelessWidget {
 
   Widget tabletView(
       BuildContext context, FeatureAndGalleryTemplateViewModel value) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: context.largeSpacer,
-            child: Row(
-              children: [
-                Column(
+    return SafeArea(
+      child: Padding(
+        padding: context.midSpacerOnlyHorizontal,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: context.sWidth,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Column(
@@ -214,68 +216,71 @@ class FeatureAndGalleryTemplateView extends StatelessWidget {
                     }),
                   ],
                 ),
-              ],
-            ),
-          ),
-          Observer(
-            builder: (context) {
-              if (value.templateEntity == null) {
-                return const SizedBox.shrink();
-              }
-              return Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: value.templateEntity!.gallery
-                    .map(
-                      (e) => SizedBox(
-                        width: context.sWidth / 3 - 20,
-                        height: (context.sWidth / 3 - 20) / 1.7777,
-                        child: GestureDetector(
-                          onTap: () => value.navigateGallery(
-                            value.templateEntity!.gallery
-                                .indexWhere((element) => element == e),
+              ),
+              Observer(
+                builder: (context) {
+                  if (value.templateEntity == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: value.templateEntity!.gallery
+                        .map(
+                          (e) => SizedBox(
+                            width: context.sWidth / 3 - 20,
+                            height: (context.sWidth / 3 - 20) / 1.7777,
+                            child: GestureDetector(
+                              onTap: () => value.navigateGallery(
+                                value.templateEntity!.gallery
+                                    .indexWhere((element) => element == e),
+                              ),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Container(
+                                      width: context.sWidth / 3 - 20,
+                                      height:
+                                          (context.sWidth / 3 - 20) / 1.7777,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                      child: NormalNetworkImage(
+                                        fit: BoxFit.cover,
+                                        source: e.mediaItem.mediaType ==
+                                                MEDIA_TYPE.IMAGE
+                                            ? e.mediaItem.url
+                                            : e.mediaItem.mediaMetaData
+                                                .thumbnail,
+                                      ),
+                                    ),
+                                  ).animate().fade(),
+                                  e.mediaItem.mediaType == MEDIA_TYPE.VIDEO
+                                      ? Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.GOLD),
+                                              borderRadius:
+                                                  context.xLargeRadius),
+                                          child: const Icon(Icons.play_arrow),
+                                        )
+                                      : const SizedBox.shrink()
+                                ],
+                              ),
+                            ),
                           ),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Container(
-                                  width: context.sWidth / 3 - 20,
-                                  height: (context.sWidth / 3 - 20) / 1.7777,
-                                  color:
-                                      context.toColor(APPLICATION_COLOR.DARK),
-                                  child: NormalNetworkImage(
-                                    fit: BoxFit.cover,
-                                    source: e.mediaItem.mediaType ==
-                                            MEDIA_TYPE.IMAGE
-                                        ? e.mediaItem.url
-                                        : e.mediaItem.mediaMetaData.thumbnail,
-                                  ),
-                                ),
-                              ).animate().fade(),
-                              e.mediaItem.mediaType == MEDIA_TYPE.VIDEO
-                                  ? Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.GOLD),
-                                          borderRadius: context.xLargeRadius),
-                                      child: const Icon(Icons.play_arrow),
-                                    )
-                                  : const SizedBox.shrink()
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              );
-            },
+                        )
+                        .toList(),
+                  );
+                },
+              ),
+              Gap(context.veryLargeSpacerOnlyBottom.bottom)
+            ],
           ),
-          Gap(context.veryLargeSpacerOnlyBottom.bottom)
-        ],
+        ),
       ),
     );
   }
