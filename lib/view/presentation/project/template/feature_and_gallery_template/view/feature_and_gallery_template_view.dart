@@ -178,7 +178,7 @@ class FeatureAndGalleryTemplateView extends StatelessWidget {
       BuildContext context, FeatureAndGalleryTemplateViewModel value) {
     return SafeArea(
       child: Padding(
-        padding: context.midSpacerOnlyHorizontal,
+        padding: context.largeSpacerOnlyHorizontal,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
