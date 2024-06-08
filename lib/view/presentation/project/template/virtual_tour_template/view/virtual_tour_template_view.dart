@@ -38,7 +38,7 @@ class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
           }
 
           controller.loadRequest(Uri.parse(value.template!.url));
-          return WebViewWidget(controller: controller);
+          return SafeArea(child: WebViewWidget(controller: controller));
         }),
       ),
     );

@@ -94,72 +94,79 @@ class ProjectDetailView extends StatelessWidget {
                         if (value.entity == null) {
                           return const SizedBox.shrink();
                         }
-                        return Row(
-                          children: [
-                            value.templateIndex != 0
-                                ? GestureDetector(
-                                    onTap: () => value
-                                        .changeIndex(value.templateIndex - 1),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.GOLD),
-                                          borderRadius: context.midRadius),
-                                      child:
-                                          const Icon(Icons.keyboard_arrow_left),
-                                    ),
-                                  )
-                                : const SizedBox.shrink(),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: () => value.navigation.pop(),
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.GOLD),
-                                    borderRadius: context.midRadius),
-                                child: const Icon(Icons.home),
+                        return Padding(
+                          padding: value.entity!.detail
+                                      .template[value.templateIndex].type ==
+                                  TEMPLATE.TEMPLATE_SEVEN
+                              ? context.xLargeSpacerOnlyBottom
+                              : EdgeInsets.zero,
+                          child: Row(
+                            children: [
+                              value.templateIndex != 0
+                                  ? GestureDetector(
+                                      onTap: () => value
+                                          .changeIndex(value.templateIndex - 1),
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.GOLD),
+                                            borderRadius: context.midRadius),
+                                        child: const Icon(
+                                            Icons.keyboard_arrow_left),
+                                      ),
+                                    )
+                                  : const SizedBox.shrink(),
+                              const Spacer(),
+                              GestureDetector(
+                                onTap: () => value.navigation.pop(),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                      borderRadius: context.midRadius),
+                                  child: const Icon(Icons.home),
+                                ),
                               ),
-                            ),
-                            Gap(context.midSpacerSize),
-                            GestureDetector(
-                              onTap: () => value.togglePageSelector(),
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.GOLD),
-                                    borderRadius: context.midRadius),
-                                child: const Icon(Icons.menu),
+                              Gap(context.midSpacerSize),
+                              GestureDetector(
+                                onTap: () => value.togglePageSelector(),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                      borderRadius: context.midRadius),
+                                  child: const Icon(Icons.menu),
+                                ),
                               ),
-                            ),
-                            value.templateIndex !=
-                                    value.entity!.detail.template.length - 1
-                                ? Gap(context.midSpacerSize)
-                                : const SizedBox.shrink(),
-                            value.templateIndex !=
-                                    value.entity!.detail.template.length - 1
-                                ? GestureDetector(
-                                    onTap: () => value
-                                        .changeIndex(value.templateIndex + 1),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.GOLD),
-                                          borderRadius: context.midRadius),
-                                      child: const Icon(
-                                          Icons.keyboard_arrow_right),
-                                    ),
-                                  )
-                                : const SizedBox.shrink()
-                          ],
+                              value.templateIndex !=
+                                      value.entity!.detail.template.length - 1
+                                  ? Gap(context.midSpacerSize)
+                                  : const SizedBox.shrink(),
+                              value.templateIndex !=
+                                      value.entity!.detail.template.length - 1
+                                  ? GestureDetector(
+                                      onTap: () => value
+                                          .changeIndex(value.templateIndex + 1),
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.GOLD),
+                                            borderRadius: context.midRadius),
+                                        child: const Icon(
+                                            Icons.keyboard_arrow_right),
+                                      ),
+                                    )
+                                  : const SizedBox.shrink()
+                            ],
+                          ),
                         );
                       },
                     ),
