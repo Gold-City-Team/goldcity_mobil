@@ -218,7 +218,7 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ).animate().fade()
+                        ).animate().slide().fade()
                       : const SizedBox.shrink();
                 }),
                 SizedBox(
@@ -286,7 +286,11 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                                     return const SizedBox.shrink();
                                   }
                                   return NormalNetworkImage(
-                                      source: value.templateTwo!.mediaItem.url);
+                                          source:
+                                              value.templateTwo!.mediaItem.url)
+                                      .animate()
+                                      .slide()
+                                      .fade();
                                 }),
                               ),
                             ),
