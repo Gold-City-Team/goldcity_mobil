@@ -1,0 +1,37 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:flutter/material.dart';
+import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/domain/entity/project/template/template_seven/template_seven_entity.dart';
+import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
+import 'package:goldcity/injection_container.dart';
+import 'package:mobx/mobx.dart';
+
+part 'virtual_tour_template_view_model.g.dart';
+
+class VirtualTourTemplateViewModel = _VirtualTourTemplateViewModelBase
+    with _$VirtualTourTemplateViewModel;
+
+abstract class _VirtualTourTemplateViewModelBase with Store, BaseViewModel {
+  late ProjectDetailUseCase _projectDetailUseCase;
+
+  @override
+  void init() {
+    _projectDetailUseCase = locator<ProjectDetailUseCase>();
+    _getDetail();
+  }
+
+  @override
+  void setContext(BuildContext context) => viewModelContext = context;
+
+  @observable
+  TemplateSevenEntity? template;
+
+  @action
+  Future<void> _getDetail() async {
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 13);
+    if (result.isRight) {
+      template = (result.right.template as TemplateSevenEntity);
+    }
+  }
+}

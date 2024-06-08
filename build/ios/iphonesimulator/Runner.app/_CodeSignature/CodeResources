@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		dwm0NxD9c1O7apmvb8TPPoB5i6I=
+		nZnzyR5w1cG+Ymqg7H5/Ib3TC9g=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		Jaa3QfmKCTY+QLUxJ+/qaAwkplM=
+		gby9jf8sfTzicu9hWxfwJPkT7NU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		sjDBt5ntzfzmPEmUB0UWMTQanac=
+		xFbu09iDwfA4IP7UeFW0GZZUuXA=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		Wc64wouf/VE0kGMSPh5acP51jcY=
+		CwOOUERg2/RCyaH0ugF0ywkdyKc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -333,6 +333,26 @@
 		lj6uKdy94Cnxsg6DJpuFIfSVXTQ=
 		</data>
 		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		/LX0ZlwxwIAIhjZaDB8EiH5KpXA=
+		</data>
+		<key>Frameworks/webview_flutter_wkwebview.framework/Info.plist</key>
+		<data>
+		h9i4okpBLvEEcmdmfmxmEGSoek4=
+		</data>
+		<key>Frameworks/webview_flutter_wkwebview.framework/_CodeSignature/CodeResources</key>
+		<data>
+		KjvsDY5nB9wBpBIyKkUJ5CqADow=
+		</data>
+		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview</key>
+		<data>
+		McA7sNbuvoZaYJizKFoo0reCCJs=
+		</data>
+		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/Info.plist</key>
+		<data>
+		lqoZPZpm2CtGJEQnh8qlUMvRYYk=
+		</data>
+		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
 		/LX0ZlwxwIAIhjZaDB8EiH5KpXA=
 		</data>
@@ -1230,7 +1250,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hUbUIC0BtZZLsVH5aLDcII3pmEyjxFyE1PBbz68AHss=
+			zkE/XHqnLqnbji7hc1iaeUswwhHHcvYokHNjFAcKymk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1244,7 +1264,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			H+riolkvGVxKvpytaSWMhseVqff7uo3YkvtBnpj3TSY=
+			Bw1I20d4kq9X3pxJqRFDdsdDURpyMt0vn2B39qxj2gs=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -1272,7 +1292,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			m0dzQL9KnvFe/MtFRGpB7ibt+2YEnpgbVrwmnNIKE+g=
+			Douyq9nbSyvgU23vm3G8urdVgI5klsrJBUcjtZLRosM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/font/encode/encode-black.ttf</key>
@@ -1377,7 +1397,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			llXKPyQms7EQiy+ycz7dUTAQd1zIyxoL/yCii3ewFw0=
+			GO9UM+1BcR6p1vp3bO6qal6wUnqelFt5wrvaxPDldi0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -1731,6 +1751,41 @@
 			</data>
 		</dict>
 		<key>Frameworks/video_player_avfoundation.framework/video_player_avfoundation_privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bS2g2NkwIn1CjB2TY7CtbjoS4sm2jFzilxWKdBL8jDE=
+			</data>
+		</dict>
+		<key>Frameworks/webview_flutter_wkwebview.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			yJQS1Nkr1eAkNxzPl/wEpK4v+JazdbNp09QxrxNfFDU=
+			</data>
+		</dict>
+		<key>Frameworks/webview_flutter_wkwebview.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Ir18ba0JlvWDAN78LB5P2b7pT2b8IJwSs93yuYI+DzY=
+			</data>
+		</dict>
+		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gqiLHHiXCgJYHIuep2mSVJPvZ81fXQc0Hzc8MAMTzu4=
+			</data>
+		</dict>
+		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			zY3KDh1ey0OxK8LElqhHkmb7IaF8M/mg1o/d43+Wwyk=
+			</data>
+		</dict>
+		<key>Frameworks/webview_flutter_wkwebview.framework/webview_flutter_wkwebview_privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
 			<key>hash2</key>
 			<data>

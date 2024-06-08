@@ -14,6 +14,7 @@ import 'package:goldcity/view/presentation/project/template/general_information_
 import 'package:goldcity/view/presentation/project/template/plan_template/view/plan_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/possibilty_template/view/possibilty_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
 
 class ProjectDetailView extends StatelessWidget {
   final int projectId;
@@ -75,6 +76,10 @@ class ProjectDetailView extends StatelessWidget {
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                       ),
                     TEMPLATE.TEMPLATE_SIX => PlanTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                      ),
+                    TEMPLATE.TEMPLATE_SEVEN => VirtualTourTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                       ),

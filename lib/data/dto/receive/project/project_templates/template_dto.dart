@@ -4,6 +4,7 @@ import 'package:goldcity/data/dto/receive/project/project_template/project_templ
 import 'package:goldcity/data/dto/receive/project/project_templates/template_five/template_five_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_four/template_four_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_one/template_one_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_templates/template_seven/template_seven_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_six/template_six_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_three/template_three_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_two/template_two_dto.dart';
@@ -24,6 +25,8 @@ class TemplateDto {
       "TEMPLATE_THREE" => TEMPLATE.TEMPLATE_THREE,
       "TEMPLATE_FOUR" => TEMPLATE.TEMPLATE_FOUR,
       "TEMPLATE_FIVE" => TEMPLATE.TEMPLATE_FIVE,
+      "TEMPLATE_SIX" => TEMPLATE.TEMPLATE_SIX,
+      "TEMPLATE_SEVEN" => TEMPLATE.TEMPLATE_SEVEN,
       _ => TEMPLATE.TEMPLATE_ONE
     };
     switch (type) {
@@ -39,6 +42,8 @@ class TemplateDto {
         template = TemplateFiveDto.fromJson(data["template"]).toEntity();
       case TEMPLATE.TEMPLATE_SIX:
         template = TemplateSixDto.fromJson(data["template"]).toEntity();
+      case TEMPLATE.TEMPLATE_SEVEN:
+        template = TemplateSevenDto.fromJson(data["template"]).toEntity();
       case null:
     }
   }
