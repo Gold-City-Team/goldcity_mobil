@@ -1,22 +1,20 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
-import 'package:goldcity/domain/entity/project/project_templates/template_entity.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class TemplateDto {
+part 'complex_template_dto.g.dart';
+
+@JsonSerializable()
+class ComplexTemplateDto {
   int? id;
+  String? title;
   TEMPLATE? type;
-  dynamic template;
 
-  TemplateDto({this.id, this.type, this.template});
+  ComplexTemplateDto({this.title, this.type, this.id});
 
-  TemplateDto.fromJson(Map<String, dynamic> data) {
-    id = data["id"];
-  }
+  factory ComplexTemplateDto.fromJson(Map<String, dynamic> json) =>
+      _$ComplexTemplateDtoFromJson(json);
 
-  ProjectTemplateEntity toEntity() => ProjectTemplateEntity(
-        id: id ?? 0,
-        type: type ?? TEMPLATE.PROJECT_TEMPLATE_ONE,
-        template: template,
-      );
+  Map<String, dynamic> toJson() => _$ComplexTemplateDtoToJson(this);
 }

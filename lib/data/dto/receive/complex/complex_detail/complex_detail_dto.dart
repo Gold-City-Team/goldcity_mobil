@@ -1,4 +1,4 @@
-import 'package:goldcity/data/dto/receive/complex/complex_template/project_template_dto.dart';
+import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 

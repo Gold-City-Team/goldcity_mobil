@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main_template_dto.dart';
+part of 'complex_template_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-MainTemplateDto _$MainTemplateDtoFromJson(Map<String, dynamic> json) =>
-    MainTemplateDto(
+ComplexTemplateDto _$ComplexTemplateDtoFromJson(Map<String, dynamic> json) =>
+    ComplexTemplateDto(
       title: json['title'] as String?,
       type: $enumDecodeNullable(_$TEMPLATEEnumMap, json['type']),
       id: json['id'] as int?,
     );
 
-Map<String, dynamic> _$MainTemplateDtoToJson(MainTemplateDto instance) =>
+Map<String, dynamic> _$ComplexTemplateDtoToJson(ComplexTemplateDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

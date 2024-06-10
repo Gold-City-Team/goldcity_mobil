@@ -46,7 +46,8 @@ class ProjectTemplateDto {
       case TEMPLATE.PROJECT_TEMPLATE_SEVEN:
         template =
             ProjectTemplateSevenDto.fromJson(data["template"]).toEntity();
-      case null:
+      default:
+        template = ProjectTemplateOneDto.fromJson(data["template"]).toEntity();
     }
   }
 

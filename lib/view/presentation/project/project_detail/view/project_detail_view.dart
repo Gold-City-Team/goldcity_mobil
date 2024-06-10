@@ -85,6 +85,13 @@ class ProjectDetailView extends StatelessWidget {
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                       ),
+                    _ => FutureTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
+                      ),
                   };
                 }),
                 SafeArea(
