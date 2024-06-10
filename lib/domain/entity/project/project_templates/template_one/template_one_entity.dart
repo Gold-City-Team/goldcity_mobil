@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/domain/entity/media/media_entity.dart';
-import 'package:goldcity/domain/entity/features/project_features_entity.dart';
+import 'package:goldcity/domain/entity/features/features_entity.dart';
 
 @immutable
 class TemplateOneEntity {
@@ -8,7 +8,7 @@ class TemplateOneEntity {
   final String title;
   final String description;
   final MediaEntity mediaItem;
-  final List<ProjectFeaturesEntity> features;
+  final List<FeaturesEntity> features;
   const TemplateOneEntity({
     required this.id,
     required this.title,

@@ -17,7 +17,7 @@ TemplateFourDto _$TemplateFourDtoFromJson(Map<String, dynamic> json) =>
           ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       features: (json['features'] as List<dynamic>?)
-          ?.map((e) => ProjectFeaturesDto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => FeaturesDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

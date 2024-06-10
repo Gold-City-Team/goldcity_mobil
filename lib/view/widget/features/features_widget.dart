@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/domain/entity/features/project_features_entity.dart';
+import 'package:goldcity/domain/entity/features/features_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -12,7 +12,7 @@ import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class FeaturesWidget extends StatelessWidget {
-  final ProjectFeaturesEntity featuresEntity;
+  final FeaturesEntity featuresEntity;
   const FeaturesWidget({super.key, required this.featuresEntity});
 
   @override

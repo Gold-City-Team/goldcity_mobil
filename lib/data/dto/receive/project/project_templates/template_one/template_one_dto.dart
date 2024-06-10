@@ -1,5 +1,5 @@
+import 'package:goldcity/data/dto/receive/features/features_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/data/dto/receive/project/project_features/project_features_dto.dart';
 import 'package:goldcity/domain/entity/project/project_templates/template_one/template_one_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'template_one_dto.g.dart';
@@ -10,7 +10,7 @@ class TemplateOneDto {
   String? title;
   String? description;
   MediaDto? mediaItem;
-  List<ProjectFeaturesDto>? features;
+  List<FeaturesDto>? features;
 
   TemplateOneDto(
       {this.id, this.title, this.description, this.mediaItem, this.features});
@@ -26,7 +26,7 @@ class TemplateOneDto {
         description: description ?? "",
         features: features != null
             ? features!.map((e) => e.toEntity()).toList()
-            : [ProjectFeaturesDto().toEntity()],
+            : [FeaturesDto().toEntity()],
         mediaItem:
             mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
       );

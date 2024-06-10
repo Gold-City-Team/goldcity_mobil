@@ -15,7 +15,7 @@ TemplateOneDto _$TemplateOneDtoFromJson(Map<String, dynamic> json) =>
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
       features: (json['features'] as List<dynamic>?)
-          ?.map((e) => ProjectFeaturesDto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => FeaturesDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
