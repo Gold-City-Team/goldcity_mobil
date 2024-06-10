@@ -5,8 +5,8 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 class ProjectDetailUseCase {
-  Future<Either<BaseErrorModel, TemplateEntity>> getProjectTemplateDetail(
-      int projectDetailId, int settingsId) async {
+  Future<Either<BaseErrorModel, ProjectTemplateEntity>>
+      getProjectTemplateDetail(int projectDetailId, int settingsId) async {
     return locator<ProjectDetailRepository>()
         .getProjectTemplateDetail(projectDetailId, settingsId);
   }

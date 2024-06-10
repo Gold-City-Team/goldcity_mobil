@@ -12,7 +12,7 @@ ProjectDetailDto _$ProjectDetailDtoFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       slogan: json['slogan'] as String?,
       templates: (json['templates'] as List<dynamic>?)
-          ?.map((e) => ProjectTemplateDto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => MainTemplateDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

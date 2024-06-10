@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/data/dto/receive/project/project_templates/template_three/template_three_dto.dart';
-import 'package:goldcity/domain/entity/project/project_templates/template_three/template_three_entity.dart';
+import 'package:goldcity/data/dto/receive/project/project_templates/project_template_three/project_template_three_dto.dart';
+import 'package:goldcity/domain/entity/project/project_templates/project_template_three/project_template_three_entity.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
@@ -42,7 +42,7 @@ abstract class _PossibilityTemplateViewModelBase with Store, BaseViewModel {
   }
 
   @observable
-  TemplateThreeEntity? templateThree;
+  ProjectTemplateThreeEntity? templateThree;
   int projectDetailId = 0;
   int projectSettingsId = 0;
   @action
@@ -50,7 +50,7 @@ abstract class _PossibilityTemplateViewModelBase with Store, BaseViewModel {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(
         projectDetailId, projectSettingsId);
     if (result.isRight) {
-      templateThree = (result.right.template as TemplateThreeEntity);
+      templateThree = (result.right.template as ProjectTemplateThreeEntity);
       templateThree!.possibilities.add(PossibilityDto(
         title: templateThree!.location.title,
         location: LocationDto(

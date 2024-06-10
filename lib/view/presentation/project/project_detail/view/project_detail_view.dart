@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
-import 'package:goldcity/data/dto/receive/project/project_template/project_template_dto.dart';
+import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -42,14 +42,14 @@ class ProjectDetailView extends StatelessWidget {
                   }
                   return switch (
                       value.entity!.detail.template[value.templateIndex].type) {
-                    TEMPLATE.TEMPLATE_ONE => FutureTemplateView(
+                    TEMPLATE.PROJECT_TEMPLATE_ONE => FutureTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
-                    TEMPLATE.TEMPLATE_TWO =>
+                    TEMPLATE.PROJECT_TEMPLATE_TWO =>
                       GeneralInformationAndGalleryTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
@@ -57,29 +57,31 @@ class ProjectDetailView extends StatelessWidget {
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
-                    TEMPLATE.TEMPLATE_THREE => PossibiltyTemplateView(
+                    TEMPLATE.PROJECT_TEMPLATE_THREE => PossibiltyTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
-                    TEMPLATE.TEMPLATE_FOUR => FeatureAndGalleryTemplateView(
+                    TEMPLATE.PROJECT_TEMPLATE_FOUR =>
+                      FeatureAndGalleryTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
-                    TEMPLATE.TEMPLATE_FIVE => ShareableMaterialTemplateView(
+                    TEMPLATE.PROJECT_TEMPLATE_FIVE =>
+                      ShareableMaterialTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                       ),
-                    TEMPLATE.TEMPLATE_SIX => PlanTemplateView(
+                    TEMPLATE.PROJECT_TEMPLATE_SIX => PlanTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                       ),
-                    TEMPLATE.TEMPLATE_SEVEN => VirtualTourTemplateView(
+                    TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                       ),
@@ -97,7 +99,7 @@ class ProjectDetailView extends StatelessWidget {
                         return Padding(
                           padding: value.entity!.detail
                                       .template[value.templateIndex].type ==
-                                  TEMPLATE.TEMPLATE_SEVEN
+                                  TEMPLATE.PROJECT_TEMPLATE_SEVEN
                               ? context.xLargeSpacerOnlyBottom
                               : EdgeInsets.zero,
                           child: Row(

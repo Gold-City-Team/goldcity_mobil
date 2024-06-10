@@ -15,13 +15,13 @@ mixin _$GeneralInformationAndGalleryTemplateViewModel
       context: context);
 
   @override
-  TemplateTwoEntity? get templateTwo {
+  ProjectTemplateTwoEntity? get templateTwo {
     _$templateTwoAtom.reportRead();
     return super.templateTwo;
   }
 
   @override
-  set templateTwo(TemplateTwoEntity? value) {
+  set templateTwo(ProjectTemplateTwoEntity? value) {
     _$templateTwoAtom.reportWrite(value, super.templateTwo, () {
       super.templateTwo = value;
     });

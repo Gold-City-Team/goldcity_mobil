@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/project/project_templates/template_five/template_five_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/project_template_five/project_template_five_entity.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
@@ -26,7 +26,7 @@ abstract class _ShareableMaterialTemplateViewModelBase
   void setContext(BuildContext context) => viewModelContext = context;
 
   @observable
-  TemplateFiveEntity? template;
+  ProjectTemplateFiveEntity? template;
 
   final fullViewItemIndex = ObservableList<String>.of([]);
 
@@ -43,7 +43,7 @@ abstract class _ShareableMaterialTemplateViewModelBase
   Future<void> _getDetail() async {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 12);
     if (result.isRight) {
-      template = (result.right.template as TemplateFiveEntity);
+      template = (result.right.template as ProjectTemplateFiveEntity);
     }
   }
 }

@@ -14,13 +14,13 @@ mixin _$VirtualTourTemplateViewModel
       name: '_VirtualTourTemplateViewModelBase.template', context: context);
 
   @override
-  TemplateSevenEntity? get template {
+  ProjectTemplateSevenEntity? get template {
     _$templateAtom.reportRead();
     return super.template;
   }
 
   @override
-  set template(TemplateSevenEntity? value) {
+  set template(ProjectTemplateSevenEntity? value) {
     _$templateAtom.reportWrite(value, super.template, () {
       super.template = value;
     });

@@ -15,13 +15,13 @@ mixin _$FeatureAndGalleryTemplateViewModel
       context: context);
 
   @override
-  TemplateFourEntity? get templateEntity {
+  ProjectTemplateFourEntity? get templateEntity {
     _$templateEntityAtom.reportRead();
     return super.templateEntity;
   }
 
   @override
-  set templateEntity(TemplateFourEntity? value) {
+  set templateEntity(ProjectTemplateFourEntity? value) {
     _$templateEntityAtom.reportWrite(value, super.templateEntity, () {
       super.templateEntity = value;
     });

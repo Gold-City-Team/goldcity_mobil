@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/project/project_templates/template_four/template_four_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/project_template_four/project_template_four_entity.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
@@ -29,14 +29,14 @@ abstract class _FeatureAndGalleryTemplateViewModelBase
   }
 
   @observable
-  TemplateFourEntity? templateEntity;
+  ProjectTemplateFourEntity? templateEntity;
 
   @action
   Future<void> _getDetail() async {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(
         projectDetailId, projectSettingsId);
     if (result.isRight) {
-      templateEntity = (result.right.template as TemplateFourEntity);
+      templateEntity = (result.right.template as ProjectTemplateFourEntity);
     }
   }
 

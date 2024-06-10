@@ -1,4 +1,4 @@
-import 'package:goldcity/data/dto/receive/project/project_template/project_template_dto.dart';
+import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/domain/entity/project/project_detail/project_detail_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'project_detail_dto.g.dart';
@@ -8,7 +8,7 @@ class ProjectDetailDto {
   int? id;
   String? title;
   String? slogan;
-  List<ProjectTemplateDto>? templates;
+  List<MainTemplateDto>? templates;
   ProjectDetailDto({
     this.id,
     this.title,
@@ -25,5 +25,5 @@ class ProjectDetailDto {
       slogan: slogan ?? "",
       template: templates != null
           ? templates!.map((e) => e.toEntity()).toList()
-          : [ProjectTemplateDto().toEntity()]);
+          : [MainTemplateDto().toEntity()]);
 }

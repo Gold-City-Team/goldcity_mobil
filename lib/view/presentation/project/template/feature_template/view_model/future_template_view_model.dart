@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/project/project_templates/template_one/template_one_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/project_template_one/project_template_one_entity.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
@@ -36,7 +36,7 @@ abstract class _FutureTemplateViewModelBase with Store, BaseViewModel {
   }
 
   @observable
-  TemplateOneEntity? templateEntity;
+  ProjectTemplateOneEntity? templateEntity;
   int projectDetailId = 0;
   int projectSettingsId = 0;
   @action
@@ -44,7 +44,7 @@ abstract class _FutureTemplateViewModelBase with Store, BaseViewModel {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(
         projectDetailId, projectSettingsId);
     if (result.isRight) {
-      templateEntity = (result.right.template as TemplateOneEntity);
+      templateEntity = (result.right.template as ProjectTemplateOneEntity);
     }
   }
 }

@@ -15,13 +15,13 @@ mixin _$PossibilityTemplateViewModel
       context: context);
 
   @override
-  TemplateThreeEntity? get templateThree {
+  ProjectTemplateThreeEntity? get templateThree {
     _$templateThreeAtom.reportRead();
     return super.templateThree;
   }
 
   @override
-  set templateThree(TemplateThreeEntity? value) {
+  set templateThree(ProjectTemplateThreeEntity? value) {
     _$templateThreeAtom.reportWrite(value, super.templateThree, () {
       super.templateThree = value;
     });

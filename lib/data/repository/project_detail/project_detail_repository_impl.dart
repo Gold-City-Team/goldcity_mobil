@@ -7,8 +7,8 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 class ProjectDetailRepositoryImpl implements ProjectDetailRepository {
   @override
-  Future<Either<BaseErrorModel, TemplateEntity>> getProjectTemplateDetail(
-      int projectDetailId, int settingsId) async {
+  Future<Either<BaseErrorModel, ProjectTemplateEntity>>
+      getProjectTemplateDetail(int projectDetailId, int settingsId) async {
     var result = await locator<ProjectDetailRemoteDataSource>()
         .getProjectTemplateDetail(projectDetailId, settingsId);
     if (result.isRight) {

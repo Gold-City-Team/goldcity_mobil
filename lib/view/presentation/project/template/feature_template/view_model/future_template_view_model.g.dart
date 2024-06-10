@@ -13,13 +13,13 @@ mixin _$FutureTemplateViewModel on _FutureTemplateViewModelBase, Store {
       name: '_FutureTemplateViewModelBase.templateEntity', context: context);
 
   @override
-  TemplateOneEntity? get templateEntity {
+  ProjectTemplateOneEntity? get templateEntity {
     _$templateEntityAtom.reportRead();
     return super.templateEntity;
   }
 
   @override
-  set templateEntity(TemplateOneEntity? value) {
+  set templateEntity(ProjectTemplateOneEntity? value) {
     _$templateEntityAtom.reportWrite(value, super.templateEntity, () {
       super.templateEntity = value;
     });

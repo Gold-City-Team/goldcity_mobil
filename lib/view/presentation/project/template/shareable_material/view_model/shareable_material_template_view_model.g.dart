@@ -15,13 +15,13 @@ mixin _$ShareableMaterialTemplateViewModel
       context: context);
 
   @override
-  TemplateFiveEntity? get template {
+  ProjectTemplateFiveEntity? get template {
     _$templateAtom.reportRead();
     return super.template;
   }
 
   @override
-  set template(TemplateFiveEntity? value) {
+  set template(ProjectTemplateFiveEntity? value) {
     _$templateAtom.reportWrite(value, super.template, () {
       super.template = value;
     });

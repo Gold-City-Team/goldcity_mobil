@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/data/dto/receive/project/project_templates/template_three/template_three_dto.dart';
+import 'package:goldcity/data/dto/receive/project/project_templates/project_template_three/project_template_three_dto.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
