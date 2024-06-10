@@ -1,7 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
+import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
@@ -40,7 +40,7 @@ class NavigationRoute {
               isExperiance: (args.arguments as List)[2] as bool,
               selectedIndex: (args.arguments as List)[1] as int,
               gallery:
-                  (args.arguments as List)[0]! as List<TemplateGalleryEntity>),
+                  (args.arguments as List)[0]! as List<GalleryMediaEntity>),
           NavigationConstant.GALLERY),
       /* 404 PAGE */
       _ => MaterialPageRoute(builder: (context) => const SizedBox())

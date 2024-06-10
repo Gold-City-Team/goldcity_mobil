@@ -150,15 +150,15 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                                         context.toColor(APPLICATION_COLOR.DARK),
                                     child: NormalNetworkImage(
                                       fit: BoxFit.cover,
-                                      source: e.mediaItem.mediaType ==
-                                              MEDIA_TYPE.IMAGE
-                                          ? e.mediaItem.url
-                                          : e.mediaItem.mediaMetaData.thumbnail,
+                                      source:
+                                          e.media.mediaType == MEDIA_TYPE.IMAGE
+                                              ? e.media.url
+                                              : e.media.mediaMetaData.thumbnail,
                                     ),
                                   ),
                                 ).animate().fade(),
                               ),
-                              e.mediaItem.mediaType == MEDIA_TYPE.VIDEO
+                              e.media.mediaType == MEDIA_TYPE.VIDEO
                                   ? Container(
                                       width: 40,
                                       height: 40,
@@ -330,14 +330,13 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                                 color: context.toColor(APPLICATION_COLOR.DARK),
                                 child: NormalNetworkImage(
                                   fit: BoxFit.cover,
-                                  source:
-                                      e.mediaItem.mediaType == MEDIA_TYPE.IMAGE
-                                          ? e.mediaItem.url
-                                          : e.mediaItem.mediaMetaData.thumbnail,
+                                  source: e.media.mediaType == MEDIA_TYPE.IMAGE
+                                      ? e.media.url
+                                      : e.media.mediaMetaData.thumbnail,
                                 ),
                               ),
                             ).animate().fade(),
-                            e.mediaItem.mediaType == MEDIA_TYPE.VIDEO
+                            e.media.mediaType == MEDIA_TYPE.VIDEO
                                 ? Container(
                                     width: 50,
                                     height: 50,

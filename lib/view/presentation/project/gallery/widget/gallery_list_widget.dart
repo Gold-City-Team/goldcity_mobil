@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:goldcity/domain/entity/project/project_gallery_media/project_gallery_media_entity.dart';
+import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/view/presentation/project/gallery/widget/gallery_row_widget.dart';
 
 class GalleryListWidget extends StatelessWidget {
-  final List<ProjectGalleryMediaEntity> mediaList;
+  final List<GalleryMediaEntity> mediaList;
   final Function(int index) onIndexChanged;
   final int selectedIndex;
 

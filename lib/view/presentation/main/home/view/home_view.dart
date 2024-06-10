@@ -62,6 +62,32 @@ class HomeView extends StatelessWidget {
                 }),
               );
             }),
+            Padding(
+              padding: context.midSpacerOnlyHorizontal,
+              child: LabelText(
+                  text: LocaleKeys.projects.tr(),
+                  textColor: APPLICATION_COLOR.TITLE,
+                  fontSize: FONT_SIZE.HEADLINE_LARGE),
+            ),
+            Observer(builder: (context) {
+              if (value.projectList == null) {
+                return const SizedBox.shrink();
+              }
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: value.projectList!.length,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding: context.midSpacer,
+                    child: ProjectRowPhoneWidget(
+                        onTap: () => value.navigateProjectDetail(
+                            value.projectList![index].id),
+                        projectEntity: value.projectList![index]),
+                  );
+                }),
+              );
+            }),
           ],
         ),
       )),

@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/data/dto/receive/gallery_media/gallery_media_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/data/dto/receive/project/template_gallery/template_gallery_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -52,7 +51,7 @@ class PlanTemplateView extends StatelessWidget {
                   return GestureDetector(
                     onTap: () => value.navigateToGallery(
                       [
-                        TemplateGalleryDto(
+                        GalleryMediaDto(
                           id: 1,
                           mediaItem: MediaDto(
                               id: 1,
@@ -63,7 +62,7 @@ class PlanTemplateView extends StatelessWidget {
                               url:
                                   "https://videos.pexels.com/video-files/4678261/4678261-hd_1080_1920_25fps.mp4"),
                         ).toEntity(),
-                        TemplateGalleryDto(
+                        GalleryMediaDto(
                           id: 2,
                           mediaItem: MediaDto(
                               id: 2,
@@ -168,7 +167,7 @@ class PlanTemplateView extends StatelessWidget {
                 itemBuilder: ((context, index) {
                   return GestureDetector(
                     onTap: () => value.navigateToGallery([
-                      TemplateGalleryDto(
+                      GalleryMediaDto(
                         id: 1,
                         mediaItem: MediaDto(
                             id: 1,
@@ -179,7 +178,7 @@ class PlanTemplateView extends StatelessWidget {
                             url:
                                 "https://videos.pexels.com/video-files/4678261/4678261-hd_1080_1920_25fps.mp4"),
                       ).toEntity(),
-                      TemplateGalleryDto(
+                      GalleryMediaDto(
                         id: 2,
                         mediaItem: MediaDto(
                             id: 2,

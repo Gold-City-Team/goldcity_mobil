@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
+import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:mobx/mobx.dart';
 
 part 'gallery_view_model.g.dart';
@@ -27,7 +27,7 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
     _configureGallery();
   }
 
-  late List<TemplateGalleryEntity> gallery;
+  late List<GalleryMediaEntity> gallery;
 
   @observable
   int selectedMediaIndex = 0;
@@ -48,17 +48,16 @@ abstract class _GalleryViewModelBase with Store, BaseViewModel {
 
   @action
   void _configureGallery() {
-    MEDIA_TYPE type = gallery[selectedMediaIndex].mediaItem.mediaType;
+    MEDIA_TYPE type = gallery[selectedMediaIndex].media.mediaType;
     var newIndex = selectedMediaIndex;
     for (int i = 0; i < selectedMediaIndex; i++) {
-      if (gallery[i].mediaItem.mediaType != type) {
+      if (gallery[i].media.mediaType != type) {
         newIndex--;
       }
     }
     selectedMediaIndex = newIndex;
 
-    gallery = gallery
-        .where((element) => element.mediaItem.mediaType == type)
-        .toList();
+    gallery =
+        gallery.where((element) => element.media.mediaType == type).toList();
   }
 }

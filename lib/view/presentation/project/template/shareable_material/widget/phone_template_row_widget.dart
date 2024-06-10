@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
+import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -8,7 +8,7 @@ import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:share_plus/share_plus.dart';
 
 class PhoneTemplateRowWidget extends StatelessWidget {
-  final List<TemplateGalleryEntity> gallery;
+  final List<GalleryMediaEntity> gallery;
   final bool isFullView;
 
   const PhoneTemplateRowWidget(
@@ -33,8 +33,7 @@ class PhoneTemplateRowWidget extends StatelessWidget {
               Gap(context.largeSpacerSize),
               Expanded(
                   child: LabelText(
-                      text: gallery
-                          .first.galleryCategoryEntity.translations.title)),
+                      text: gallery.first.category.translation.title)),
               const Spacer(),
               CircleAvatar(
                 maxRadius: 14,
@@ -73,7 +72,7 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: LabelText(
-                                    text: gallery[index].mediaItem.oldFileName),
+                                    text: gallery[index].media.oldFileName),
                               ),
                               const Icon(Icons.link)
                             ],
@@ -97,9 +96,10 @@ class PhoneTemplateRowWidget extends StatelessWidget {
     );
   }
 
-  void share(List<TemplateGalleryEntity> galeryEdit, RenderBox? box) {
-    var result =
-        galeryEdit.map((e) => "${e.title}: ${e.mediaItem.url}").toString();
+  void share(List<GalleryMediaEntity> galeryEdit, RenderBox? box) {
+    var result = galeryEdit
+        .map((e) => "${e.category.translation.title}: ${e.media.url}")
+        .toString();
     result = result.substring(0, result.length - 1);
     result = result.substring(1);
     result = result.replaceAll(",", "\n\n");

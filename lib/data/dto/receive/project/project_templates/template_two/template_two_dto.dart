@@ -1,6 +1,6 @@
+import 'package:goldcity/data/dto/receive/gallery_media/gallery_media_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/data/dto/receive/project/template_gallery/template_gallery_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_two/template_two_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/template_two/template_two_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'template_two_dto.g.dart';
 
@@ -11,7 +11,7 @@ class TemplateTwoDto {
   String? subTitle;
   String? description;
   MediaDto? mediaItem;
-  List<TemplateGalleryDto>? galleries;
+  List<GalleryMediaDto>? galleries;
   TemplateTwoMetaDataDto? metaData;
 
   TemplateTwoDto(
@@ -32,7 +32,7 @@ class TemplateTwoDto {
         subTitle: subTitle ?? "",
         gallery: galleries != null
             ? galleries!.map((e) => e.toEntity()).toList()
-            : [TemplateGalleryDto().toEntity()],
+            : [GalleryMediaDto().toEntity()],
         id: id ?? 0,
         title: title ?? "",
         mediaItem:

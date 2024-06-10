@@ -1,5 +1,5 @@
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_three/template_three_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/template_three/template_three_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'template_three_dto.g.dart';

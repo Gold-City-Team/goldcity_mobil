@@ -1,12 +1,11 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_gallery/template_gallery_entity.dart';
+import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -16,7 +15,7 @@ import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dar
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class GalleryView extends StatefulWidget {
-  final List<TemplateGalleryEntity> gallery;
+  final List<GalleryMediaEntity> gallery;
   final int selectedIndex;
   final bool isExperiance;
 
@@ -40,7 +39,7 @@ class _GalleryViewState extends State<GalleryView> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!widget.isExperiance) {
-        if (v.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE) {
+        if (v.gallery.first.media.mediaType == MEDIA_TYPE.IMAGE) {
           if (isTablet()) {
             c.jumpTo(v.selectedMediaIndex * (150 * 1.84));
           } else {
@@ -75,10 +74,10 @@ class _GalleryViewState extends State<GalleryView> {
   CarouselController carouselController = CarouselController();
   Widget body(GalleryViewModel viewModel, BuildContext context) {
     return isTablet()
-        ? viewModel.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
+        ? viewModel.gallery.first.media.mediaType == MEDIA_TYPE.IMAGE
             ? tabletImageView(viewModel, carouselController)
             : videoView(viewModel)
-        : viewModel.gallery.first.mediaItem.mediaType == MEDIA_TYPE.IMAGE
+        : viewModel.gallery.first.media.mediaType == MEDIA_TYPE.IMAGE
             ? widget.isExperiance
                 ? phoneImageViewExperiance(viewModel, carouselController)
                 : phoneImageView(viewModel, carouselController)
@@ -106,7 +105,7 @@ class _GalleryViewState extends State<GalleryView> {
                 height: context.sHeight,
                 child: NormalNetworkImage(
                   fit: BoxFit.contain,
-                  source: i.mediaItem.url,
+                  source: i.media.url,
                 ),
               );
             },
@@ -146,7 +145,7 @@ class _GalleryViewState extends State<GalleryView> {
                       },
                       child: Padding(
                         padding: context.midSpacerOnlyBottom,
-                        child: mediaPart(viewModel.gallery[index].mediaItem.url,
+                        child: mediaPart(viewModel.gallery[index].media.url,
                             viewModel.selectedMediaIndex == index, context),
                       ),
                     ),
@@ -181,7 +180,7 @@ class _GalleryViewState extends State<GalleryView> {
                     width: context.sWidth,
                     child: NormalNetworkImage(
                       fit: BoxFit.contain,
-                      source: i.mediaItem.url,
+                      source: i.media.url,
                     ),
                   );
                 },
@@ -239,7 +238,7 @@ class _GalleryViewState extends State<GalleryView> {
                         width: context.sWidth,
                         child: NormalNetworkImage(
                           fit: BoxFit.contain,
-                          source: i.mediaItem.url,
+                          source: i.media.url,
                         ),
                       );
                     },
@@ -268,7 +267,7 @@ class _GalleryViewState extends State<GalleryView> {
                       },
                       child: Padding(
                         padding: context.midSpacerOnlyLeft,
-                        child: mediaPart(viewModel.gallery[index].mediaItem.url,
+                        child: mediaPart(viewModel.gallery[index].media.url,
                             viewModel.selectedMediaIndex == index, context),
                       ),
                     );
@@ -288,8 +287,7 @@ class _GalleryViewState extends State<GalleryView> {
               key: Key("${viewModel.gallery[viewModel.selectedMediaIndex].id}"),
               isFullScreen: !viewModel.isBottomVisible,
               fullScreen: () => viewModel.navigation.pop(),
-              url: viewModel
-                  .gallery[viewModel.selectedMediaIndex].mediaItem.url);
+              url: viewModel.gallery[viewModel.selectedMediaIndex].media.url);
         }),
         Observer(builder: (context) {
           return Padding(
@@ -342,12 +340,12 @@ class _GalleryViewState extends State<GalleryView> {
                                   viewModel.selectedMediaIndexChange(index),
                               child: isTablet()
                                   ? mediaPart(
-                                      viewModel.gallery[index].mediaItem
+                                      viewModel.gallery[index].media
                                           .mediaMetaData.thumbnail,
                                       index == viewModel.selectedMediaIndex,
                                       context)
                                   : littleMediaPart(
-                                      viewModel.gallery[index].mediaItem
+                                      viewModel.gallery[index].media
                                           .mediaMetaData.thumbnail,
                                       index == viewModel.selectedMediaIndex,
                                       context),

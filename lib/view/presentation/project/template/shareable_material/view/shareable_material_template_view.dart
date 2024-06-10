@@ -53,7 +53,7 @@ class ShareableMaterialTemplateView extends StatelessWidget {
             }
             return Column(
               children: value.template!.gallery
-                  .map((e) => e.galleryCategoryEntity.translations.title)
+                  .map((e) => e.category.translation.title)
                   .toSet()
                   .map(
                     (e) => Padding(
@@ -65,9 +65,7 @@ class ShareableMaterialTemplateView extends StatelessWidget {
                               .any((element) => element == e),
                           gallery: value.template!.gallery
                               .where((element) =>
-                                  element.galleryCategoryEntity.translations
-                                      .title ==
-                                  e)
+                                  element.category.translation.title == e)
                               .toList(),
                         ),
                       ),

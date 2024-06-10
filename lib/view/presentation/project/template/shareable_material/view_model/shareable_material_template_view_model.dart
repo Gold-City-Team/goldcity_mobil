@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/project/template/template_five/template_five_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/template_five/template_five_entity.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';

@@ -1,7 +1,7 @@
+import 'package:goldcity/data/dto/receive/gallery_media/gallery_media_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_features/project_features_dto.dart';
-import 'package:goldcity/data/dto/receive/project/template_gallery/template_gallery_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_four/template_four_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/template_four/template_four_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'template_four_dto.g.dart';
@@ -12,7 +12,7 @@ class TemplateFourDto {
   String? title;
   MediaDto? mediaItem;
   List<ProjectFeaturesDto>? features;
-  List<TemplateGalleryDto>? galleries;
+  List<GalleryMediaDto>? galleries;
 
   TemplateFourDto(
       {this.id, this.title, this.mediaItem, this.galleries, this.features});
@@ -31,6 +31,6 @@ class TemplateFourDto {
             mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
         gallery: galleries != null
             ? galleries!.map((e) => e.toEntity()).toList()
-            : [TemplateGalleryDto().toEntity()],
+            : [GalleryMediaDto().toEntity()],
       );
 }

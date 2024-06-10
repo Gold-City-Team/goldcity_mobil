@@ -1,4 +1,4 @@
-import 'package:goldcity/domain/entity/project/template/template_six/template_six_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/template_six/template_six_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'template_six_dto.g.dart';
 

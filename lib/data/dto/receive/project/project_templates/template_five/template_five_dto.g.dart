@@ -11,7 +11,7 @@ TemplateFiveDto _$TemplateFiveDtoFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int?,
       title: json['title'] as String?,
       medias: (json['medias'] as List<dynamic>?)
-          ?.map((e) => TemplateGalleryDto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

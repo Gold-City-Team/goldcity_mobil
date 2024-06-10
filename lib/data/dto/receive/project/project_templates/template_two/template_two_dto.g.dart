@@ -19,7 +19,7 @@ TemplateTwoDto _$TemplateTwoDtoFromJson(Map<String, dynamic> json) =>
           : TemplateTwoMetaDataDto.fromJson(
               json['metaData'] as Map<String, dynamic>),
       galleries: (json['galleries'] as List<dynamic>?)
-          ?.map((e) => TemplateGalleryDto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     )..subTitle = json['subTitle'] as String?;
 

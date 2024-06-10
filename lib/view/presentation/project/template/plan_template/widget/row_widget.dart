@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/template_six/template_six_dto.dart';
-import 'package:goldcity/domain/entity/project/template/template_six/template_six_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/template_six/template_six_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
