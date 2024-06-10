@@ -21,12 +21,24 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void init() {
     _projectUseCase = locator<ProjectUseCase>();
     _getProjectList();
+    _getComplexList();
   }
 
   @observable
   List<ProjectEntity>? projectList;
   @action
   void _getProjectList() {
+    _projectUseCase.getProjectList().listen((event) {
+      if (event.isRight) {
+        projectList = event.right;
+      }
+    });
+  }
+
+  @observable
+  List<ProjectEntity>? complexList;
+  @action
+  void _getComplexList() {
     _projectUseCase.getProjectList().listen((event) {
       if (event.isRight) {
         projectList = event.right;

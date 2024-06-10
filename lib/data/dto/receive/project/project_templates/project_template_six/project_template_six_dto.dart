@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, constant_identifier_names
+
 import 'package:goldcity/domain/entity/project/project_templates/project_template_six/project_template_six_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'project_template_six_dto.g.dart';
