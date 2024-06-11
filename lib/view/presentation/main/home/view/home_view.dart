@@ -8,6 +8,7 @@ import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/main/home/view_model/home_view_model.dart';
+import 'package:goldcity/view/presentation/main/home/widget/complex_row_phone_widget.dart';
 import 'package:goldcity/view/presentation/main/home/widget/project_row_phone_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
@@ -44,7 +45,7 @@ class HomeView extends StatelessWidget {
                   fontSize: FONT_SIZE.HEADLINE_LARGE),
             ),
             Observer(builder: (context) {
-              if (value.projectList == null) {
+              if (value.complexList == null) {
                 return const SizedBox.shrink();
               }
               return ListView.builder(
@@ -54,10 +55,10 @@ class HomeView extends StatelessWidget {
                 itemBuilder: ((context, index) {
                   return Padding(
                     padding: context.midSpacer,
-                    child: ProjectRowPhoneWidget(
+                    child: ComplexRowPhoneWidget(
                         onTap: () => value.navigateComplexDetail(
                             value.projectList![index].id),
-                        projectEntity: value.projectList![index]),
+                        complexEntity: value.complexList![index]),
                   );
                 }),
               );

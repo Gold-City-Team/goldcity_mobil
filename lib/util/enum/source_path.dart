@@ -3,6 +3,8 @@
 enum SourcePath {
   BASE_URL,
   LEAD,
+  COMPLEX,
+  COMPLEX_LIST,
   PROJECT,
   PROJECT_LIST,
   PROJECT_POSSIBILITY,
@@ -19,6 +21,8 @@ extension SourcePathExtension on SourcePath {
       SourcePath.MEDIA => "https://gold-city.denizegece.com.tr/media/",
       SourcePath.LEAD => '/lead',
       SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage',
+      SourcePath.COMPLEX => '/complex/${data?[0]}/selectedlanguage',
+      SourcePath.COMPLEX_LIST => '/complex/selectedlanguage',
       SourcePath.PROJECT_LIST => '/project/selectedlanguage',
       SourcePath.PROJECT_INTERIOR_GALLERY =>
         '/projectdetail/${data?[0]}/interiorgallery',

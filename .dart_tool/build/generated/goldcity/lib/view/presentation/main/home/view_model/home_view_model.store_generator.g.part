@@ -25,13 +25,13 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
       Atom(name: '_HomeViewModelBase.complexList', context: context);
 
   @override
-  List<ProjectEntity>? get complexList {
+  List<ComplexEntity>? get complexList {
     _$complexListAtom.reportRead();
     return super.complexList;
   }
 
   @override
-  set complexList(List<ProjectEntity>? value) {
+  set complexList(List<ComplexEntity>? value) {
     _$complexListAtom.reportWrite(value, super.complexList, () {
       super.complexList = value;
     });
