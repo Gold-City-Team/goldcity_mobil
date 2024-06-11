@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_one/complex_template_one_dto.dart';
+import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_two/complex_template_two_dto.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -19,11 +20,14 @@ class ComplexTemplateDto {
     id = data["id"];
     type = switch (data["template"]["type"]) {
       "COMPLEX_TEMPLATE_ONE" => TEMPLATE.COMPLEX_TEMPLATE_ONE,
+      "COMPLEX_TEMPLATE_TWO" => TEMPLATE.COMPLEX_TEMPLATE_TWO,
       _ => TEMPLATE.COMPLEX_TEMPLATE_ONE
     };
     switch (type) {
       case TEMPLATE.COMPLEX_TEMPLATE_ONE:
         template = ComplexTemplateOneDto.fromJson(data["template"]).toEntity();
+      case TEMPLATE.COMPLEX_TEMPLATE_TWO:
+        template = ComplexTemplateTwoDto.fromJson(data["template"]).toEntity();
 
       default:
         template = ComplexTemplateOneDto.fromJson(data["template"]).toEntity();

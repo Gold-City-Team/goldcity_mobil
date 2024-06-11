@@ -11,10 +11,10 @@ class ComplexDetailDto {
   String? title;
   MediaDto? mainImage;
   MediaDto? logo;
-  List<MainTemplateDto>? template;
+  List<MainTemplateDto>? templates;
 
   ComplexDetailDto(
-      {this.id, this.title, this.mainImage, this.logo, this.template});
+      {this.id, this.title, this.mainImage, this.logo, this.templates});
   factory ComplexDetailDto.fromJson(Map<String, dynamic> json) =>
       _$ComplexDetailDtoFromJson(json);
 
@@ -26,7 +26,7 @@ class ComplexDetailDto {
       mainImage:
           mainImage != null ? mainImage!.toEntity() : MediaDto().toEntity(),
       logo: logo != null ? logo!.toEntity() : MediaDto().toEntity(),
-      templates: template != null
-          ? template!.map((e) => e.toEntity()).toList()
+      templates: templates != null
+          ? templates!.map((e) => e.toEntity()).toList()
           : [MainTemplateDto().toEntity()]);
 }

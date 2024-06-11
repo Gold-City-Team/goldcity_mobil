@@ -1,5 +1,6 @@
 import 'package:goldcity/data/dto/receive/gallery_media/gallery_media_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_two/template_two_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'complex_template_two_dto.g.dart';
 
@@ -25,6 +26,20 @@ class ComplexTemplateTwoDto {
       _$ComplexTemplateTwoDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ComplexTemplateTwoDtoToJson(this);
+
+  ComplexTemplateTwoEntity toEntity() => ComplexTemplateTwoEntity(
+      id: id ?? 0,
+      title: title ?? "",
+      description: description ?? "",
+      mediaItem:
+          mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
+      gallery: galleries != null
+          ? galleries!.map((e) => e.toEntity()).toList()
+          : [GalleryMediaDto().toEntity()],
+      subTitle: subTitle ?? "",
+      metaData: metaData != null
+          ? metaData!.toEntity()
+          : ComplexTemplateTwoMetaDataDto().toEntity());
 }
 
 @JsonSerializable()
@@ -37,4 +52,7 @@ class ComplexTemplateTwoMetaDataDto {
       _$ComplexTemplateTwoMetaDataDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ComplexTemplateTwoMetaDataDtoToJson(this);
+  ComplexTemplateTwoMetaDataEntity toEntity() =>
+      ComplexTemplateTwoMetaDataEntity(
+          mainImagePosition: mainImagePosition ?? "left");
 }

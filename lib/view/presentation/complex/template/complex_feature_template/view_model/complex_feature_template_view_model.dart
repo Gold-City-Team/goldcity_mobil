@@ -1,0 +1,52 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_one/complex_template_one_entity.dart';
+import 'package:goldcity/domain/usecase/complex_detail_usecase.dart';
+import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
+import 'package:mobx/mobx.dart';
+
+part 'complex_feature_template_view_model.g.dart';
+
+class ComplexFeatureTemplateViewModel = _ComplexFeatureTemplateViewModelBase
+    with _$ComplexFeatureTemplateViewModel;
+
+abstract class _ComplexFeatureTemplateViewModelBase with Store, BaseViewModel {
+  late ComplexDetailUseCase _complexDetailUseCase;
+  @override
+  void setContext(BuildContext context) => viewModelContext = context;
+
+  @override
+  void init() {
+    _complexDetailUseCase = locator<ComplexDetailUseCase>();
+
+    isTablet()
+        ? SystemChrome.setPreferredOrientations([
+            DeviceOrientation.landscapeRight,
+            DeviceOrientation.landscapeLeft,
+          ])
+        : SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
+    _getDetail();
+  }
+
+  @observable
+  ComplexTemplateOneEntity? templateEntity;
+  int complexDetailId = 0;
+  int complexSettingsId = 0;
+  @action
+  Future<void> _getDetail() async {
+    var result = await _complexDetailUseCase.getComplexTemplateDetail(
+        complexDetailId, complexSettingsId);
+    if (result.isRight) {
+      templateEntity = (result.right.template as ComplexTemplateOneEntity);
+    } else {
+      debugPrint("test test ${result.left.detail}");
+    }
+  }
+}

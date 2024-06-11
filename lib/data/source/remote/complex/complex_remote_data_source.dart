@@ -2,14 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/receive/complex/complex/complex_dto.dart';
-import 'package:goldcity/data/dto/receive/complex/complex_detail/complex_detail_dto.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/enum/source_path.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ComplexRemoteDataSource {
   Future<Either<BaseErrorModel, List<ComplexDto>>> getComplexList();
-  Future<Either<BaseErrorModel, ComplexDetailDto>> getDetail(int id);
+  Future<Either<BaseErrorModel, ComplexDto>> getDetail(int id);
 }
 
 class ComplexRemoteDataSourceImpl extends ComplexRemoteDataSource {
@@ -28,13 +27,13 @@ class ComplexRemoteDataSourceImpl extends ComplexRemoteDataSource {
   }
 
   @override
-  Future<Either<BaseErrorModel, ComplexDetailDto>> getDetail(int id) async {
+  Future<Either<BaseErrorModel, ComplexDto>> getDetail(int id) async {
     try {
       var result = await locator<RemoteManager>()
           .networkManager
           .get(SourcePath.COMPLEX.rawValue(data: [id]));
 
-      return Right(ComplexDetailDto.fromJson(result.data ?? {}));
+      return Right(ComplexDto.fromJson(result.data ?? {}));
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }

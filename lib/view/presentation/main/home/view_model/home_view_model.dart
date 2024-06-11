@@ -46,11 +46,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void _getComplexList() {
     _complexUseCase.getComplexList().listen((event) {
       if (event.isRight) {
-        debugPrint("değil ${event.right.first.id}");
-
         complexList = event.right;
-      } else {
-        debugPrint("error ${event.left.title}");
       }
     });
   }

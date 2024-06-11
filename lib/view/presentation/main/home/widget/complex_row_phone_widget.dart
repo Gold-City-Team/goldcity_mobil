@@ -45,8 +45,6 @@ class ComplexRowPhoneWidget extends StatelessWidget {
               items: [1, 1].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
-                    debugPrint(
-                        "test ${complexEntity.complexDetail.mainImage.url}");
                     return ClipRRect(
                       borderRadius: context.midRadius,
                       child: NormalNetworkImage(

@@ -1,12 +1,11 @@
 import 'package:either_dart/either.dart';
 import 'package:goldcity/domain/entity/complex/complex/complex_entity.dart';
-import 'package:goldcity/domain/entity/complex/complex_detail/complex_detail_entity.dart';
 import 'package:goldcity/domain/repository/complex/complex_repository.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 class ComplexUseCase {
-  Stream<Either<BaseErrorModel, ComplexDetailEntity>> getDetail(int id) {
+  Stream<Either<BaseErrorModel, ComplexEntity>> getDetail(int id) {
     return locator<ComplexRepository>().getDetail(id);
   }
 

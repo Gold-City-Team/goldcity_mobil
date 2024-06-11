@@ -16,7 +16,7 @@ ComplexDetailDto _$ComplexDetailDtoFromJson(Map<String, dynamic> json) =>
       logo: json['logo'] == null
           ? null
           : MediaDto.fromJson(json['logo'] as Map<String, dynamic>),
-      template: (json['template'] as List<dynamic>?)
+      templates: (json['templates'] as List<dynamic>?)
           ?.map((e) => MainTemplateDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -27,5 +27,5 @@ Map<String, dynamic> _$ComplexDetailDtoToJson(ComplexDetailDto instance) =>
       'title': instance.title,
       'mainImage': instance.mainImage,
       'logo': instance.logo,
-      'template': instance.template,
+      'templates': instance.templates,
     };
