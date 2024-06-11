@@ -50,4 +50,9 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     navigation.navigateToPage(
         path: NavigationConstant.PROJECT_DETAIL, data: projectId);
   }
+
+  void navigateComplexDetail(int complexId) {
+    navigation.navigateToPage(
+        path: NavigationConstant.COMPLEX_DETAIL, data: complexId);
+  }
 }

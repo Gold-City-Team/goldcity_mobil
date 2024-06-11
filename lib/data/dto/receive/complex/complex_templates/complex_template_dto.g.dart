@@ -8,16 +8,16 @@ part of 'complex_template_dto.dart';
 
 ComplexTemplateDto _$ComplexTemplateDtoFromJson(Map<String, dynamic> json) =>
     ComplexTemplateDto(
-      title: json['title'] as String?,
-      type: $enumDecodeNullable(_$TEMPLATEEnumMap, json['type']),
       id: json['id'] as int?,
+      type: $enumDecodeNullable(_$TEMPLATEEnumMap, json['type']),
+      template: json['template'],
     );
 
 Map<String, dynamic> _$ComplexTemplateDtoToJson(ComplexTemplateDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
       'type': _$TEMPLATEEnumMap[instance.type],
+      'template': instance.template,
     };
 
 const _$TEMPLATEEnumMap = {

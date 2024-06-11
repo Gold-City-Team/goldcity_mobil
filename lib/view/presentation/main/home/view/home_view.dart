@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
                   return Padding(
                     padding: context.midSpacer,
                     child: ProjectRowPhoneWidget(
-                        onTap: () => value.navigateProjectDetail(
+                        onTap: () => value.navigateComplexDetail(
                             value.projectList![index].id),
                         projectEntity: value.projectList![index]),
                   );

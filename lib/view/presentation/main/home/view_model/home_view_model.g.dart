@@ -25,6 +25,22 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$complexListAtom =
+      Atom(name: '_HomeViewModelBase.complexList', context: context);
+
+  @override
+  List<ProjectEntity>? get complexList {
+    _$complexListAtom.reportRead();
+    return super.complexList;
+  }
+
+  @override
+  set complexList(List<ProjectEntity>? value) {
+    _$complexListAtom.reportWrite(value, super.complexList, () {
+      super.complexList = value;
+    });
+  }
+
   late final _$_HomeViewModelBaseActionController =
       ActionController(name: '_HomeViewModelBase', context: context);
 
@@ -40,9 +56,21 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   }
 
   @override
+  void _getComplexList() {
+    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
+        name: '_HomeViewModelBase._getComplexList');
+    try {
+      return super._getComplexList();
+    } finally {
+      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-projectList: ${projectList}
+projectList: ${projectList},
+complexList: ${complexList}
     ''';
   }
 }

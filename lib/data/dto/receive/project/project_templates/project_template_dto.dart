@@ -8,7 +8,7 @@ import 'package:goldcity/data/dto/receive/project/project_templates/project_temp
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_six/project_template_six_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_three/project_template_three_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_two/project_template_two_dto.dart';
-import 'package:goldcity/domain/entity/project/project_templates/template_entity.dart';
+import 'package:goldcity/domain/entity/project/project_templates/project_template_entity.dart';
 
 class ProjectTemplateDto {
   int? id;
