@@ -57,4 +57,7 @@ abstract class _ComplexDetailViewModelBase with Store, BaseViewModel {
       }
     });
   }
+
+  @action
+  void togglePageSelector() => isPageSelectorVisible = !isPageSelectorVisible;
 }

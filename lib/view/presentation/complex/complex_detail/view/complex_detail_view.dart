@@ -9,6 +9,7 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view_model/complex_detail_view_model.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_feature_template/view/complex_feature_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_general_information_and_gallery_template/view/complex_general_information_and_gallery_template_view.dart';
+import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 
 class ComplexDetailView extends StatelessWidget {
   const ComplexDetailView({super.key});
@@ -98,7 +99,7 @@ class ComplexDetailView extends StatelessWidget {
                           ),
                           Gap(context.midSpacerSize),
                           GestureDetector(
-                            onTap: () => null,
+                            onTap: () => value.togglePageSelector(),
                             child: Container(
                               width: 50,
                               height: 50,
@@ -139,6 +140,17 @@ class ComplexDetailView extends StatelessWidget {
                 ),
               ),
             ),
+            Observer(builder: (context) {
+              return value.isPageSelectorVisible
+                  ? PageSelectorWidget(
+                      pages: value.entity!.complexDetail.templates
+                          .map((e) => e.title)
+                          .toList(),
+                      selectedIndex: value.templateIndex,
+                      newIndex: (newIndex) => value.changeIndex(newIndex),
+                    )
+                  : const SizedBox.shrink();
+            })
           ],
         ),
       ),

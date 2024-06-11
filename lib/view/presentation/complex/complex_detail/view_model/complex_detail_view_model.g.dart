@@ -82,6 +82,17 @@ mixin _$ComplexDetailViewModel on _ComplexDetailViewModelBase, Store {
   }
 
   @override
+  void togglePageSelector() {
+    final _$actionInfo = _$_ComplexDetailViewModelBaseActionController
+        .startAction(name: '_ComplexDetailViewModelBase.togglePageSelector');
+    try {
+      return super.togglePageSelector();
+    } finally {
+      _$_ComplexDetailViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 templateIndex: ${templateIndex},
