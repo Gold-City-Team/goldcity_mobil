@@ -36,7 +36,7 @@ abstract class _ComplexDetailViewModelBase with Store, BaseViewModel {
   }
 
   @observable
-  int templateIndex = 1;
+  int templateIndex = 0;
   @observable
   ComplexEntity? entity;
   @action

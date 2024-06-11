@@ -64,57 +64,77 @@ class ComplexDetailView extends StatelessWidget {
                     if (value.entity == null) {
                       return const SizedBox.shrink();
                     }
-                    return Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => null,
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: context.toColor(APPLICATION_COLOR.GOLD),
-                                borderRadius: context.midRadius),
-                            child: const Icon(Icons.keyboard_arrow_left),
+                    return Observer(builder: (context) {
+                      return Row(
+                        children: [
+                          value.templateIndex != 0
+                              ? GestureDetector(
+                                  onTap: () => value
+                                      .changeIndex(value.templateIndex - 1),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                        borderRadius: context.midRadius),
+                                    child:
+                                        const Icon(Icons.keyboard_arrow_left),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () => value.navigation.pop(),
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.GOLD),
+                                  borderRadius: context.midRadius),
+                              child: const Icon(Icons.home),
+                            ),
                           ),
-                        ),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () => value.navigation.pop(),
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: context.toColor(APPLICATION_COLOR.GOLD),
-                                borderRadius: context.midRadius),
-                            child: const Icon(Icons.home),
+                          Gap(context.midSpacerSize),
+                          GestureDetector(
+                            onTap: () => null,
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.GOLD),
+                                  borderRadius: context.midRadius),
+                              child: const Icon(Icons.menu),
+                            ),
                           ),
-                        ),
-                        Gap(context.midSpacerSize),
-                        GestureDetector(
-                          onTap: () => null,
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: context.toColor(APPLICATION_COLOR.GOLD),
-                                borderRadius: context.midRadius),
-                            child: const Icon(Icons.menu),
-                          ),
-                        ),
-                        Gap(context.midSpacerSize),
-                        GestureDetector(
-                          onTap: () => null,
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: context.toColor(APPLICATION_COLOR.GOLD),
-                                borderRadius: context.midRadius),
-                            child: const Icon(Icons.keyboard_arrow_right),
-                          ),
-                        )
-                      ],
-                    );
+                          value.templateIndex !=
+                                  value.entity!.complexDetail.templates.length -
+                                      1
+                              ? Gap(context.midSpacerSize)
+                              : const SizedBox.shrink(),
+                          value.templateIndex !=
+                                  value.entity!.complexDetail.templates.length -
+                                      1
+                              ? GestureDetector(
+                                  onTap: () => value
+                                      .changeIndex(value.templateIndex + 1),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                        borderRadius: context.midRadius),
+                                    child:
+                                        const Icon(Icons.keyboard_arrow_right),
+                                  ),
+                                )
+                              : const SizedBox.shrink()
+                        ],
+                      );
+                    });
                   },
                 ),
               ),
