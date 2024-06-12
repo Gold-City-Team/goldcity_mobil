@@ -3,45 +3,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/project/project_templates/project_template_four/project_template_four_entity.dart';
-import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
+import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_four/complex_template_four_entity.dart';
+import 'package:goldcity/domain/usecase/complex_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:mobx/mobx.dart';
 
-part 'feature_and_gallery_template_view_model.g.dart';
+part 'complex_feature_and_gallery_template_view_model.g.dart';
 
-class FeatureAndGalleryTemplateViewModel = _FeatureAndGalleryTemplateViewModelBase
-    with _$FeatureAndGalleryTemplateViewModel;
+class ComplexFeatureAndGalleryTemplateViewModel = _ComplexFeatureAndGalleryTemplateViewModelBase
+    with _$ComplexFeatureAndGalleryTemplateViewModel;
 
-abstract class _FeatureAndGalleryTemplateViewModelBase
+abstract class _ComplexFeatureAndGalleryTemplateViewModelBase
     with Store, BaseViewModel {
-  late ProjectDetailUseCase _projectDetailUseCase;
+  late ComplexDetailUseCase _complexDetailUseCase;
 
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
   void init() {
-    _projectDetailUseCase = locator<ProjectDetailUseCase>();
+    _complexDetailUseCase = locator<ComplexDetailUseCase>();
     _getDetail();
   }
 
   @observable
-  ProjectTemplateFourEntity? templateEntity;
+  ComplexTemplateFourEntity? templateEntity;
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(
-        projectDetailId, projectSettingsId);
+    var result = await _complexDetailUseCase.getComplexTemplateDetail(
+        detailId, settingsId);
     if (result.isRight) {
-      templateEntity = (result.right.template as ProjectTemplateFourEntity);
+      templateEntity = (result.right.template as ComplexTemplateFourEntity);
     }
   }
 
-  int projectDetailId = 0;
-  int projectSettingsId = 0;
+  int detailId = 0;
+  int settingsId = 0;
   Future<void> navigateGallery(int selectedId) async {
     await navigation.navigateToPage(
       path: NavigationConstant.GALLERY,

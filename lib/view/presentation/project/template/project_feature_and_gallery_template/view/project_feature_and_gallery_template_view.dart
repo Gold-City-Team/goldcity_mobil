@@ -8,32 +8,32 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/project/template/feature_and_gallery_template/view_model/feature_and_gallery_template_view_model.dart';
+import 'package:goldcity/view/presentation/project/template/project_feature_and_gallery_template/view_model/project_feature_and_gallery_template_view_model.dart';
 import 'package:goldcity/view/widget/features/features_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
-class FeatureAndGalleryTemplateView extends StatelessWidget {
+class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
   final int projectDetailId;
   final int projectSettingsId;
-  const FeatureAndGalleryTemplateView(
+  const ProjectFeatureAndGalleryTemplateView(
       {required this.projectDetailId,
       required this.projectSettingsId,
       super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<FeatureAndGalleryTemplateViewModel>(
-      viewModel: FeatureAndGalleryTemplateViewModel(),
+    return BaseView<ProjectFeatureAndGalleryTemplateViewModel>(
+      viewModel: ProjectFeatureAndGalleryTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
         model.projectDetailId = projectDetailId;
         model.projectSettingsId = projectSettingsId;
         model.init();
       },
-      onPageBuilder:
-          (BuildContext context, FeatureAndGalleryTemplateViewModel value) =>
-              Scaffold(
+      onPageBuilder: (BuildContext context,
+              ProjectFeatureAndGalleryTemplateViewModel value) =>
+          Scaffold(
         body:
             isTablet() ? tabletView(context, value) : phoneView(context, value),
       ),
@@ -41,7 +41,7 @@ class FeatureAndGalleryTemplateView extends StatelessWidget {
   }
 
   Widget phoneView(
-      BuildContext context, FeatureAndGalleryTemplateViewModel value) {
+      BuildContext context, ProjectFeatureAndGalleryTemplateViewModel value) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +173,7 @@ class FeatureAndGalleryTemplateView extends StatelessWidget {
   }
 
   Widget tabletView(
-      BuildContext context, FeatureAndGalleryTemplateViewModel value) {
+      BuildContext context, ProjectFeatureAndGalleryTemplateViewModel value) {
     return SafeArea(
       child: Padding(
         padding: context.largeSpacerOnlyHorizontal,

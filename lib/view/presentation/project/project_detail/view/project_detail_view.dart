@@ -7,7 +7,7 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
-import 'package:goldcity/view/presentation/project/template/feature_and_gallery_template/view/feature_and_gallery_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/project_feature_and_gallery_template/view/project_feature_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_template/view/project_feature_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_general_information_and_gallery_template/view/project_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/plan_template/view/plan_template_view.dart';
@@ -66,7 +66,7 @@ class ProjectDetailView extends StatelessWidget {
                             .entity!.detail.template[value.templateIndex].id,
                       ),
                     TEMPLATE.PROJECT_TEMPLATE_FOUR =>
-                      FeatureAndGalleryTemplateView(
+                      ProjectFeatureAndGalleryTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,

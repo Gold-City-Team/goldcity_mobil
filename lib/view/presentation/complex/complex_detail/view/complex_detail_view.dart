@@ -7,6 +7,7 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view_model/complex_detail_view_model.dart';
+import 'package:goldcity/view/presentation/complex/template/complex_feature_and_gallery_template/view/complex_feature_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_feature_template/view/complex_feature_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_general_information_and_gallery_template/view/complex_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_possibilty_template/view/complex_possibilty_template_view.dart';
@@ -53,6 +54,13 @@ class ComplexDetailView extends StatelessWidget {
                     key: Key("${value.entity!.complexDetail.id}"),
                     projectDetailId: value.entity!.complexDetail.id,
                     projectSettingsId: value.entity!.complexDetail
+                        .templates[value.templateIndex].id,
+                  ),
+                TEMPLATE.COMPLEX_TEMPLATE_FOUR =>
+                  ComplexFeatureAndGalleryTemplateView(
+                    key: Key("${value.entity!.complexDetail.id}"),
+                    detailId: value.entity!.complexDetail.id,
+                    settingsId: value.entity!.complexDetail
                         .templates[value.templateIndex].id,
                   ),
                 _ => ComplexFeatureTemplateView(
