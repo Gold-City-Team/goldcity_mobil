@@ -11,7 +11,7 @@ import 'package:goldcity/view/presentation/project/template/feature_and_gallery_
 import 'package:goldcity/view/presentation/project/template/project_feature_template/view/project_feature_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_general_information_and_gallery_template/view/project_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/plan_template/view/plan_template_view.dart';
-import 'package:goldcity/view/presentation/project/template/possibilty_template/view/possibilty_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/project_possibilty_template/view/project_possibilty_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
@@ -57,7 +57,8 @@ class ProjectDetailView extends StatelessWidget {
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
-                    TEMPLATE.PROJECT_TEMPLATE_THREE => PossibiltyTemplateView(
+                    TEMPLATE.PROJECT_TEMPLATE_THREE =>
+                      ProjectPossibiltyTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                         projectDetailId: value.entity!.detail.id,
