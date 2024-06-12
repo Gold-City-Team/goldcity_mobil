@@ -32,23 +32,25 @@ class FeaturesWidget extends StatelessWidget {
             ),
           ),
           Gap(context.midSpacerSize),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LabelText(
-                text: featuresEntity.value,
-                textColor: APPLICATION_COLOR.GOLD,
-                fontSize: isTablet()
-                    ? FONT_SIZE.HEADLINE_MEDIUM
-                    : FONT_SIZE.TITLE_LARGE,
-              ),
-              LabelText(
-                text: featuresEntity.title,
-                fontSize: isTablet()
-                    ? FONT_SIZE.HEADLINE_SMALL
-                    : FONT_SIZE.TITLE_MEDIUM,
-              )
-            ],
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                LabelText(
+                  text: featuresEntity.value,
+                  textColor: APPLICATION_COLOR.GOLD,
+                  fontSize: isTablet()
+                      ? FONT_SIZE.HEADLINE_MEDIUM
+                      : FONT_SIZE.TITLE_LARGE,
+                ),
+                LabelText(
+                  text: featuresEntity.title,
+                  fontSize: isTablet()
+                      ? FONT_SIZE.HEADLINE_SMALL
+                      : FONT_SIZE.TITLE_MEDIUM,
+                )
+              ],
+            ),
           )
         ],
       ).animate().fade().slide(
