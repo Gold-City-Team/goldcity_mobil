@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/util/enum/input_type.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 
 extension SpacerSizeExtension on BuildContext {
   double get veryLargeSpacerSize => 40;
@@ -38,10 +40,11 @@ extension MarginPaddingExtension on BuildContext {
       const EdgeInsets.symmetric(vertical: 15);
   EdgeInsets get largeSpacerOnlyVertical =>
       const EdgeInsets.symmetric(vertical: 20);
+  EdgeInsets get xlargeSpacerOnlyLeft => const EdgeInsets.only(left: 40);
   EdgeInsets get xlargeSpacerOnlyHorizontal =>
       const EdgeInsets.symmetric(horizontal: 40);
   EdgeInsets get largeSpacerOnlyHorizontal =>
-      const EdgeInsets.symmetric(horizontal: 20);
+      EdgeInsets.symmetric(horizontal: isTablet() ? 20 : 15);
   EdgeInsets get midSpacerOnlyVertical =>
       const EdgeInsets.symmetric(vertical: 5);
   EdgeInsets get midSpacerOnlyHorizontal =>
@@ -58,8 +61,12 @@ extension MarginPaddingExtension on BuildContext {
   EdgeInsets get largeSpacerOnlyTop => const EdgeInsets.only(top: 20);
   EdgeInsets get midSpacerOnlyTop => const EdgeInsets.only(top: 10);
   EdgeInsets get xLargeSpacerOnlyBottom => const EdgeInsets.only(bottom: 60);
-  EdgeInsets get veryLargeSpacerOnlyBottom =>
-      EdgeInsets.only(bottom: Platform.isAndroid ? 70 : 85);
+  EdgeInsets get veryLargeSpacerOnlyBottom => EdgeInsets.only(
+      bottom: kIsWeb
+          ? 70
+          : Platform.isAndroid
+              ? 70
+              : 85);
   EdgeInsets get largeSpacerOnlyBottom => const EdgeInsets.only(bottom: 20);
   EdgeInsets get midSpacerOnlyBottom => const EdgeInsets.only(bottom: 10);
   EdgeInsets get smallSpacerOnlyBottom => const EdgeInsets.only(bottom: 5);

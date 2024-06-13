@@ -51,13 +51,13 @@ class HomeView extends StatelessWidget {
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: value.projectList!.length,
+                itemCount: value.complexList!.length,
                 itemBuilder: ((context, index) {
                   return Padding(
                     padding: context.midSpacer,
                     child: ComplexRowPhoneWidget(
                         onTap: () => value.navigateComplexDetail(
-                            value.projectList![index].id),
+                            value.complexList![index].id),
                         complexEntity: value.complexList![index]),
                   );
                 }),
