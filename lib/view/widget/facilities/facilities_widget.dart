@@ -18,7 +18,6 @@ class FacilitiesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 125,
       width: 300,
       decoration: BoxDecoration(
         borderRadius: context.largeRadius,
@@ -48,16 +47,19 @@ class FacilitiesWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Gap(context.midSpacerSize),
                   LabelText(
                     text: possibilityEntity.title,
                     fontSize: FONT_SIZE.TITLE_LARGE,
                     textColor: APPLICATION_COLOR.TITLE,
                   ),
+                  Gap(context.midSpacerSize),
                   LabelText(
                     text: possibilityEntity.description,
                     fontSize: FONT_SIZE.TITLE_SMALL,
                     textColor: APPLICATION_COLOR.SUBTITLE,
                   ),
+                  Gap(context.midSpacerSize)
                 ],
               ),
             )
