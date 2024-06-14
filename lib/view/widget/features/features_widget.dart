@@ -24,8 +24,8 @@ class FeaturesWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: isTablet() ? 50 : 35,
-            width: isTablet() ? 50 : 35,
+            height: isTablet() ? 35 : 25,
+            width: isTablet() ? 35 : 25,
             child: SvgPicture.network(
               featuresEntity.media.url,
               color: context.toColor(APPLICATION_COLOR.GOLD),
@@ -39,15 +39,14 @@ class FeaturesWidget extends StatelessWidget {
                 LabelText(
                   text: featuresEntity.value,
                   textColor: APPLICATION_COLOR.GOLD,
-                  fontSize: isTablet()
-                      ? FONT_SIZE.HEADLINE_MEDIUM
-                      : FONT_SIZE.TITLE_LARGE,
+                  fontSize:
+                      isTablet() ? FONT_SIZE.BODY_LARGE : FONT_SIZE.BODY_LARGE,
                 ),
                 LabelText(
                   text: featuresEntity.title,
                   fontSize: isTablet()
-                      ? FONT_SIZE.HEADLINE_SMALL
-                      : FONT_SIZE.TITLE_MEDIUM,
+                      ? FONT_SIZE.LABEL_LARGE
+                      : FONT_SIZE.LABEL_LARGE,
                 )
               ],
             ),

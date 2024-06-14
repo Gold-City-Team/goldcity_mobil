@@ -204,6 +204,7 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                       .toList(),
                 );
               }),
+              Gap(context.midSpacerSize),
               Observer(
                 builder: (context) {
                   if (value.templateEntity == null) {
