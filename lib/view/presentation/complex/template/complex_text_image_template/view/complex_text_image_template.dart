@@ -63,7 +63,7 @@ class ComplexTextImageTemplate extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          bottom: 0,
+                          bottom: 40,
                           right: 0,
                           child: SizedBox(
                             height: 150,
@@ -88,7 +88,7 @@ class ComplexTextImageTemplate extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          bottom: 0,
+                          bottom: 40,
                           left: context.sWidth / 2,
                           child: Container(
                             height: 150,

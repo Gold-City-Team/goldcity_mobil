@@ -22,14 +22,13 @@ ProjectTemplateTwoDto _$ProjectTemplateTwoDtoFromJson(
       galleries: (json['galleries'] as List<dynamic>?)
           ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-    )..subTitle = json['subTitle'] as String?;
+    );
 
 Map<String, dynamic> _$ProjectTemplateTwoDtoToJson(
         ProjectTemplateTwoDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'subTitle': instance.subTitle,
       'description': instance.description,
       'mediaItem': instance.mediaItem,
       'galleries': instance.galleries,

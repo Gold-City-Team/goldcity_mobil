@@ -89,20 +89,6 @@ class ComplexGeneralInformationAndGalleryTemplateView extends StatelessWidget {
             ),
           ).animate().fade();
         }),
-        Gap(context.midSpacerSize),
-        Observer(builder: (context) {
-          if (value.templateTwo == null) {
-            return const SizedBox.shrink();
-          }
-          return Padding(
-            padding: context.largeSpacerOnlyHorizontal,
-            child: LabelText(
-              text: value.templateTwo!.subTitle,
-              fontSize: FONT_SIZE.TITLE_LARGE,
-              textColor: APPLICATION_COLOR.TITLE,
-            ),
-          ).animate().fade();
-        }),
         Gap(context.largeSpacerSize),
         Observer(builder: (context) {
           if (value.templateTwo == null) {
@@ -235,20 +221,6 @@ class ComplexGeneralInformationAndGalleryTemplateView extends StatelessWidget {
                           child: LabelText(
                             text: value.templateTwo!.title,
                             fontSize: FONT_SIZE.HEADLINE_LARGE,
-                          ),
-                        ).animate().fade();
-                      }),
-                      Gap(context.midSpacerSize),
-                      Observer(builder: (context) {
-                        if (value.templateTwo == null) {
-                          return const SizedBox.shrink();
-                        }
-                        return Padding(
-                          padding: context.largeSpacerOnlyLeft,
-                          child: LabelText(
-                            text: value.templateTwo!.subTitle,
-                            fontSize: FONT_SIZE.TITLE_LARGE,
-                            textColor: APPLICATION_COLOR.TITLE,
                           ),
                         ).animate().fade();
                       }),

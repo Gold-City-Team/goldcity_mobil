@@ -8,7 +8,6 @@ part 'complex_template_two_dto.g.dart';
 class ComplexTemplateTwoDto {
   int? id;
   String? title;
-  String? subTitle;
   String? description;
   MediaDto? mediaItem;
   List<GalleryMediaDto>? galleries;
@@ -36,7 +35,6 @@ class ComplexTemplateTwoDto {
       gallery: galleries != null
           ? galleries!.map((e) => e.toEntity()).toList()
           : [GalleryMediaDto().toEntity()],
-      subTitle: subTitle ?? "",
       metaData: metaData != null
           ? metaData!.toEntity()
           : ComplexTemplateTwoMetaDataDto().toEntity());

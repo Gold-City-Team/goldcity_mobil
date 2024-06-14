@@ -6,7 +6,6 @@ import 'package:goldcity/domain/entity/media/media_entity.dart';
 class ComplexTemplateTwoEntity {
   final int id;
   final String title;
-  final String subTitle;
   final String description;
   final MediaEntity mediaItem;
   final List<GalleryMediaEntity> gallery;
@@ -17,7 +16,6 @@ class ComplexTemplateTwoEntity {
     required this.description,
     required this.mediaItem,
     required this.gallery,
-    required this.subTitle,
     required this.metaData,
   });
 }

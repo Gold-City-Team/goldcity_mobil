@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -88,20 +86,6 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
             child: LabelText(
               text: value.templateTwo!.title,
               fontSize: FONT_SIZE.HEADLINE_LARGE,
-            ),
-          ).animate().fade();
-        }),
-        Gap(context.midSpacerSize),
-        Observer(builder: (context) {
-          if (value.templateTwo == null) {
-            return const SizedBox.shrink();
-          }
-          return Padding(
-            padding: context.largeSpacerOnlyHorizontal,
-            child: LabelText(
-              text: value.templateTwo!.subTitle,
-              fontSize: FONT_SIZE.TITLE_LARGE,
-              textColor: APPLICATION_COLOR.TITLE,
             ),
           ).animate().fade();
         }),
@@ -334,20 +318,6 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
                         child: LabelText(
                           text: value.templateTwo!.title,
                           fontSize: FONT_SIZE.HEADLINE_LARGE,
-                        ),
-                      ).animate().fade();
-                    }),
-                    Gap(context.midSpacerSize),
-                    Observer(builder: (context) {
-                      if (value.templateTwo == null) {
-                        return const SizedBox.shrink();
-                      }
-                      return Padding(
-                        padding: context.largeSpacerOnlyLeft,
-                        child: LabelText(
-                          text: value.templateTwo!.subTitle,
-                          fontSize: FONT_SIZE.TITLE_LARGE,
-                          textColor: APPLICATION_COLOR.TITLE,
                         ),
                       ).animate().fade();
                     }),
