@@ -11,6 +11,10 @@ MainTemplateDto _$MainTemplateDtoFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       type: $enumDecodeNullable(_$TEMPLATEEnumMap, json['type']),
       id: json['id'] as int?,
+      metaData: json['metaData'] == null
+          ? null
+          : MainTemplateMetaDataDto.fromJson(
+              json['metaData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MainTemplateDtoToJson(MainTemplateDto instance) =>
@@ -18,6 +22,7 @@ Map<String, dynamic> _$MainTemplateDtoToJson(MainTemplateDto instance) =>
       'id': instance.id,
       'title': instance.title,
       'type': _$TEMPLATEEnumMap[instance.type],
+      'metaData': instance.metaData,
     };
 
 const _$TEMPLATEEnumMap = {
@@ -34,3 +39,15 @@ const _$TEMPLATEEnumMap = {
   TEMPLATE.COMPLEX_TEMPLATE_THREE: 'COMPLEX_TEMPLATE_THREE',
   TEMPLATE.COMPLEX_TEMPLATE_FOUR: 'COMPLEX_TEMPLATE_FOUR',
 };
+
+MainTemplateMetaDataDto _$MainTemplateMetaDataDtoFromJson(
+        Map<String, dynamic> json) =>
+    MainTemplateMetaDataDto(
+      viewType: json['viewType'] as String?,
+    );
+
+Map<String, dynamic> _$MainTemplateMetaDataDtoToJson(
+        MainTemplateMetaDataDto instance) =>
+    <String, dynamic>{
+      'viewType': instance.viewType,
+    };

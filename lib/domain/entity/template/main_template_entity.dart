@@ -6,7 +6,17 @@ class MainTemplateEntity {
   final int id;
   final String title;
   final TEMPLATE type;
+  final MainTemplateMetaDataEntity metaData;
+  const MainTemplateEntity({
+    required this.title,
+    required this.type,
+    required this.id,
+    required this.metaData,
+  });
+}
 
-  const MainTemplateEntity(
-      {required this.title, required this.type, required this.id});
+@immutable
+class MainTemplateMetaDataEntity {
+  final String viewType;
+  const MainTemplateMetaDataEntity({required this.viewType});
 }

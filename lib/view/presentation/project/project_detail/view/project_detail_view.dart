@@ -9,6 +9,7 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_and_gallery_template/view/project_feature_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_template/view/project_feature_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/project_gallery_and_info_template/view/project_gallery_and_info_template.dart';
 import 'package:goldcity/view/presentation/project/template/project_general_information_and_gallery_template/view/project_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/plan_template/view/plan_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_possibilty_template/view/project_possibilty_template_view.dart';
@@ -50,14 +51,27 @@ class ProjectDetailView extends StatelessWidget {
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
-                    TEMPLATE.PROJECT_TEMPLATE_TWO =>
-                      GeneralInformationAndGalleryTemplateView(
-                        key: Key(
-                            "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
-                        projectSettingsId: value
-                            .entity!.detail.template[value.templateIndex].id,
-                      ),
+                    TEMPLATE.PROJECT_TEMPLATE_TWO => value
+                                .entity!
+                                .detail
+                                .template[value.templateIndex]
+                                .metaData
+                                .viewType ==
+                            "ONE"
+                        ? GeneralInformationAndGalleryTemplateView(
+                            key: Key(
+                                "${value.entity!.detail.template[value.templateIndex].id}"),
+                            projectDetailId: value.entity!.detail.id,
+                            projectSettingsId: value.entity!.detail
+                                .template[value.templateIndex].id,
+                          )
+                        : ProjectGalleryAndInfoTemplate(
+                            key: Key(
+                                "${value.entity!.detail.template[value.templateIndex].id}"),
+                            projectDetailId: value.entity!.detail.id,
+                            projectSettingsId: value.entity!.detail
+                                .template[value.templateIndex].id,
+                          ),
                     TEMPLATE.PROJECT_TEMPLATE_THREE =>
                       ProjectPossibiltyTemplateView(
                         key: Key(
@@ -78,6 +92,9 @@ class ProjectDetailView extends StatelessWidget {
                       ShareableMaterialTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
                       ),
                     TEMPLATE.PROJECT_TEMPLATE_SIX => PlanTemplateView(
                         key: Key(
@@ -86,11 +103,17 @@ class ProjectDetailView extends StatelessWidget {
                     TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
                       ),
                     TEMPLATE.PROJECT_TEMPLATE_EIGHT =>
                       ProjectTextImageTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
                       ),
                     _ => ProjectFeatureTemplateView(
                         key: Key(

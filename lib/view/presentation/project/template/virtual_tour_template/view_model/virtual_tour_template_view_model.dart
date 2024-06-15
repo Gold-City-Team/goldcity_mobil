@@ -21,6 +21,9 @@ abstract class _VirtualTourTemplateViewModelBase with Store, BaseViewModel {
     _getDetail();
   }
 
+  int projectDetailId = 0;
+  int projectSettingsId = 0;
+
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
@@ -29,7 +32,8 @@ abstract class _VirtualTourTemplateViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 13);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(
+        projectDetailId, projectSettingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateSevenEntity);
     }

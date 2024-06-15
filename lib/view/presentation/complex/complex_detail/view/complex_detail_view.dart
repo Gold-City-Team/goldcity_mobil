@@ -9,9 +9,9 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view_model/complex_detail_view_model.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_feature_and_gallery_template/view/complex_feature_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_feature_template/view/complex_feature_template_view.dart';
+import 'package:goldcity/view/presentation/complex/template/complex_gallery_and_info_template/view/complex_gallery_and_info_template.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_general_information_and_gallery_template/view/complex_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_possibilty_template/view/complex_possibilty_template_view.dart';
-import 'package:goldcity/view/presentation/complex/template/complex_text_image_template/view/complex_text_image_template.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 
 class ComplexDetailView extends StatelessWidget {
@@ -35,7 +35,8 @@ class ComplexDetailView extends StatelessWidget {
               }
               return switch (value
                   .entity!.complexDetail.templates[value.templateIndex].type) {
-                TEMPLATE.COMPLEX_TEMPLATE_ONE => ComplexTextImageTemplate(),
+                TEMPLATE.COMPLEX_TEMPLATE_ONE =>
+                  const ComplexGalleryAndInfoTemplate(),
                 // TEMPLATE.COMPLEX_TEMPLATE_ONE => ComplexFeatureTemplateView(
                 //     key: Key(
                 //         "${value.entity!.complexDetail.templates[value.templateIndex].id}"),

@@ -28,6 +28,23 @@ mixin _$ProjectTextImageTemplateViewModel
     });
   }
 
+  late final _$templateAtom = Atom(
+      name: '_ProjectTextImageTemplateViewModelBase.template',
+      context: context);
+
+  @override
+  ProjectTemplateEightEntity? get template {
+    _$templateAtom.reportRead();
+    return super.template;
+  }
+
+  @override
+  set template(ProjectTemplateEightEntity? value) {
+    _$templateAtom.reportWrite(value, super.template, () {
+      super.template = value;
+    });
+  }
+
   late final _$titleAtom = Atom(
       name: '_ProjectTextImageTemplateViewModelBase.title', context: context);
 
@@ -97,6 +114,7 @@ mixin _$ProjectTextImageTemplateViewModel
   String toString() {
     return '''
 selectedImageGalleryId: ${selectedImageGalleryId},
+template: ${template},
 title: ${title},
 description: ${description}
     ''';

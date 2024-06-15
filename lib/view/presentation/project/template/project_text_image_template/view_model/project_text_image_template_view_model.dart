@@ -42,8 +42,10 @@ abstract class _ProjectTextImageTemplateViewModelBase
   @observable
   int selectedImageGalleryId = -1;
 
+  @observable
   ProjectTemplateEightEntity? template;
-  List<GalleryMediaEntity> images = [];
+
+  List<GalleryMediaEntity> images = ObservableList<GalleryMediaEntity>.of([]);
   Future<void> _getDetail() async {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 20);
     if (result.isRight) {
@@ -59,6 +61,8 @@ abstract class _ProjectTextImageTemplateViewModelBase
     }
   }
 
+  int projectDetailId = 0;
+  int projectSettingsId = 0;
   @observable
   String title = "";
   @observable

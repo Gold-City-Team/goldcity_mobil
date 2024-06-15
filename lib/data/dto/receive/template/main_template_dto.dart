@@ -37,8 +37,9 @@ class MainTemplateDto {
   int? id;
   String? title;
   TEMPLATE? type;
+  MainTemplateMetaDataDto? metaData;
 
-  MainTemplateDto({this.title, this.type, this.id});
+  MainTemplateDto({this.title, this.type, this.id, this.metaData});
 
   factory MainTemplateDto.fromJson(Map<String, dynamic> json) =>
       _$MainTemplateDtoFromJson(json);
@@ -48,5 +49,21 @@ class MainTemplateDto {
         id: id ?? 0,
         title: title ?? "",
         type: type ?? TEMPLATE.PROJECT_TEMPLATE_ONE,
+        metaData: metaData != null
+            ? metaData!.toEntity()
+            : MainTemplateMetaDataDto().toEntity(),
       );
+}
+
+@JsonSerializable()
+class MainTemplateMetaDataDto {
+  String? viewType;
+  MainTemplateMetaDataDto({this.viewType});
+  MainTemplateMetaDataEntity toEntity() =>
+      MainTemplateMetaDataEntity(viewType: viewType ?? "ONE");
+
+  factory MainTemplateMetaDataDto.fromJson(Map<String, dynamic> json) =>
+      _$MainTemplateMetaDataDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MainTemplateMetaDataDtoToJson(this);
 }

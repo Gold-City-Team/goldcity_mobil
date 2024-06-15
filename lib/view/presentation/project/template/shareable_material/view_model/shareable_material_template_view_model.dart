@@ -22,6 +22,9 @@ abstract class _ShareableMaterialTemplateViewModelBase
     _getDetail();
   }
 
+  int projectDetailId = 0;
+  int projectSettingsId = 0;
+
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
@@ -41,7 +44,8 @@ abstract class _ShareableMaterialTemplateViewModelBase
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 12);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(
+        projectDetailId, projectSettingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateFiveEntity);
     }
