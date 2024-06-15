@@ -84,4 +84,15 @@ abstract class _ProjectTextImageTemplateViewModelBase
       }
     }
   }
+
+  String getSelectedGallerySetTitle(int id) {
+    for (var e in template!.items) {
+      for (var y in e.galleries) {
+        if (y.id == id) {
+          return e.title;
+        }
+      }
+    }
+    return "";
+  }
 }

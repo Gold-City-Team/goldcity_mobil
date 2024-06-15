@@ -7,6 +7,7 @@ import 'package:goldcity/util/extension/util_extension.dart';
 
 extension SpacerSizeExtension on BuildContext {
   double get veryLargeSpacerSize => 40;
+  double get xlargeSpacerSize => 20;
 
   double get largeSpacerSize => 15;
   double get midSpacerSize => 10;
