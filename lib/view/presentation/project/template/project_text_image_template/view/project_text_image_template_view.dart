@@ -104,13 +104,15 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                               bottom: 40,
                               right: 0,
                               child: SizedBox(
-                                height: 150,
+                                height: 170,
                                 width: context.sWidth / 2,
                                 child: Container(
+                                  width: 150,
                                   color: context.toColor(
                                       APPLICATION_COLOR.BACKGROUND_COLOR),
                                   child: ListView.builder(
                                       itemCount: value.images.length,
+                                      padding: context.midSpacerOnlyLeft,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return GestureDetector(
@@ -125,6 +127,7 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                                                 ? context.largeSpacerOnlyRight
                                                 : EdgeInsets.zero,
                                             child: NormalNetworkImage(
+                                                fit: BoxFit.contain,
                                                 source: value
                                                     .images[index].media.url),
                                           ),
