@@ -350,52 +350,59 @@ class ComplexGalleryAndInfoTemplate extends StatelessWidget {
             ).animate().fade();
           }),
           Gap(context.largeSpacerSize),
-          Center(
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 10,
-              runSpacing: 0,
-              children: viewModel.templateTwo!.gallery
-                  .map(
-                    (e) => Padding(
-                      padding: context.midSpacerOnlyBottom,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          SizedBox(
-                            width: (context.sWidth / 2) - 20,
-                            height: ((context.sWidth / 2) - 20) / 1.7777,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Container(
-                                color: context.toColor(APPLICATION_COLOR.DARK),
-                                child: NormalNetworkImage(
-                                  fit: BoxFit.cover,
-                                  source: e.media.mediaType == MEDIA_TYPE.IMAGE
-                                      ? e.media.url
-                                      : e.media.mediaMetaData.thumbnail,
+          Observer(builder: (context) {
+            if (viewModel.templateTwo == null) {
+              return const SizedBox.shrink();
+            }
+            return Center(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 10,
+                runSpacing: 0,
+                children: viewModel.templateTwo!.gallery
+                    .map(
+                      (e) => Padding(
+                        padding: context.midSpacerOnlyBottom,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox(
+                              width: (context.sWidth / 2) - 20,
+                              height: ((context.sWidth / 2) - 20) / 1.7777,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Container(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.DARK),
+                                  child: NormalNetworkImage(
+                                    fit: BoxFit.cover,
+                                    source:
+                                        e.media.mediaType == MEDIA_TYPE.IMAGE
+                                            ? e.media.url
+                                            : e.media.mediaMetaData.thumbnail,
+                                  ),
                                 ),
-                              ),
-                            ).animate().fade(),
-                          ),
-                          e.media.mediaType == MEDIA_TYPE.VIDEO
-                              ? Container(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
-                                      borderRadius: context.largeRadius),
-                                  child: const Icon(Icons.play_arrow),
-                                )
-                              : const SizedBox.shrink()
-                        ],
+                              ).animate().fade(),
+                            ),
+                            e.media.mediaType == MEDIA_TYPE.VIDEO
+                                ? Container(
+                                    width: 40,
+                                    height: 40,
+                                    decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                        borderRadius: context.largeRadius),
+                                    child: const Icon(Icons.play_arrow),
+                                  )
+                                : const SizedBox.shrink()
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
+                    )
+                    .toList(),
+              ),
+            );
+          }),
           Gap(context.veryLargeSpacerOnlyBottom.bottom)
         ],
       ),

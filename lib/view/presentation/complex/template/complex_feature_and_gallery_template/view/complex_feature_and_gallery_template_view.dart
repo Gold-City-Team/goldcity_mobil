@@ -154,76 +154,79 @@ class ComplexFeatureAndGalleryTemplateView extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: context.largeSpacerOnlyHorizontal,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Observer(
-                builder: (context) {
-                  if (value.templateEntity == null) {
-                    return const SizedBox.shrink();
-                  }
-                  return LabelText(
-                    text: value.templateEntity!.title,
-                    fontSize: FONT_SIZE.HEADLINE_LARGE,
-                  ).animate().fade();
-                },
-              ),
-              Gap(context.largeSpacerSize),
-              Observer(builder: (context) {
+        child: Row(
+          children: [
+            Flexible(
+              flex: 60,
+              child: Observer(builder: (context) {
                 if (value.templateEntity == null) {
                   return const SizedBox.shrink();
                 }
-                return Wrap(
-                  children: value.templateEntity!.features
-                      .map((e) => ConstrainedBox(
-                          constraints:
-                              BoxConstraints(maxWidth: context.sWidth / 2 - 20),
-                          child: FeaturesWidget(featuresEntity: e)))
-                      .toSet()
-                      .toList(),
-                );
+                return ListView.builder(
+                    itemCount: value.templateEntity!.features.length,
+                    shrinkWrap: false,
+                    padding: context.largeSpacerOnlyTop,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FeaturesWidget(
+                              featuresEntity:
+                                  value.templateEntity!.features[index]),
+                          value.templateEntity!.features.length - 1 == index
+                              ? Gap(context.veryLargeSpacerOnlyBottom.bottom)
+                              : const SizedBox.shrink()
+                        ],
+                      );
+                    });
               }),
-              Gap(context.largeSpacerSize),
-              Observer(
-                builder: (context) {
+            ),
+            Flexible(
+                flex: 40,
+                child: Observer(builder: (context) {
                   if (value.templateEntity == null) {
                     return const SizedBox.shrink();
                   }
-                  return Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: value.templateEntity!.gallery
-                        .map(
-                          (e) => SizedBox(
-                            width: context.sWidth / 3 - 20,
-                            height: (context.sWidth / 3 - 20) / 1.7777,
-                            child: GestureDetector(
-                              onTap: () => value.navigateGallery(
-                                value.templateEntity!.gallery
-                                    .indexWhere((element) => element == e),
-                              ),
+                  return ListView.builder(
+                      itemCount: value.templateEntity!.gallery.length,
+                      itemBuilder: ((context, index) {
+                        return Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () => value.navigateGallery(index),
                               child: Stack(
                                 alignment: Alignment.center,
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Container(
-                                      width: context.sWidth / 3 - 20,
-                                      height:
-                                          (context.sWidth / 3 - 20) / 1.7777,
+                                      width: (context.sWidth / 100) * 40,
+                                      height: ((context.sWidth / 100) * 40) /
+                                          1.7777,
                                       color: context
                                           .toColor(APPLICATION_COLOR.DARK),
                                       child: NormalNetworkImage(
                                         fit: BoxFit.cover,
-                                        source: e.media.mediaType ==
+                                        source: value
+                                                    .templateEntity!
+                                                    .gallery[index]
+                                                    .media
+                                                    .mediaType ==
                                                 MEDIA_TYPE.IMAGE
-                                            ? e.media.url
-                                            : e.media.mediaMetaData.thumbnail,
+                                            ? value.templateEntity!
+                                                .gallery[index].media.url
+                                            : value
+                                                .templateEntity!
+                                                .gallery[index]
+                                                .media
+                                                .mediaMetaData
+                                                .thumbnail,
                                       ),
                                     ),
                                   ).animate().fade(),
-                                  e.media.mediaType == MEDIA_TYPE.VIDEO
+                                  value.templateEntity!.gallery[index].media
+                                              .mediaType ==
+                                          MEDIA_TYPE.VIDEO
                                       ? Container(
                                           width: 50,
                                           height: 50,
@@ -238,15 +241,17 @@ class ComplexFeatureAndGalleryTemplateView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
-                  );
-                },
-              ),
-              Gap(context.veryLargeSpacerOnlyBottom.bottom)
-            ],
-          ),
+                            value.templateEntity!.gallery.length - 1 == index
+                                ? const SizedBox.shrink()
+                                : Gap(context.midSpacerSize),
+                            value.templateEntity!.gallery.length - 1 == index
+                                ? Gap(context.veryLargeSpacerOnlyBottom.bottom)
+                                : const SizedBox.shrink()
+                          ],
+                        );
+                      }));
+                }))
+          ],
         ),
       ),
     );
