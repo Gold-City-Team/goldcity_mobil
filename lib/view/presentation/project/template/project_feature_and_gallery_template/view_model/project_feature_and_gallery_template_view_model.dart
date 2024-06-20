@@ -24,6 +24,8 @@ abstract class _ProjectFeatureAndGalleryTemplateViewModelBase
 
   @override
   void init() {
+    debugPrint("page: ProjectFeatureAndGalleryTemplateView");
+
     _projectDetailUseCase = locator<ProjectDetailUseCase>();
     _getDetail();
   }

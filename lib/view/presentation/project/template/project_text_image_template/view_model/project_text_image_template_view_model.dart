@@ -5,6 +5,7 @@ import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/domain/entity/project/project_templates/project_template_eight/project_template_eight_entity.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:mobx/mobx.dart';
 
@@ -27,6 +28,8 @@ abstract class _ProjectTextImageTemplateViewModelBase
 
   @override
   void init() {
+    debugPrint("page: ProjectTextImageTemplateView");
+
     _getDetail();
     isTablet()
         ? SystemChrome.setPreferredOrientations([
@@ -45,19 +48,28 @@ abstract class _ProjectTextImageTemplateViewModelBase
   @observable
   ProjectTemplateEightEntity? template;
 
-  List<GalleryMediaEntity> images = ObservableList<GalleryMediaEntity>.of([]);
+  List<GalleryMediaEntity> allImages =
+      ObservableList<GalleryMediaEntity>.of([]);
+  List<GalleryMediaEntity> miniImages =
+      ObservableList<GalleryMediaEntity>.of([]);
+  bool lockImage = false;
   Future<void> _getDetail() async {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 20);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateEightEntity);
       for (var e in template!.items) {
+        lockImage = false;
         for (var y in e.galleries) {
-          images.add(y);
+          allImages.add(y);
+          if (!lockImage) {
+            miniImages.add(y);
+            lockImage = true;
+          }
         }
       }
       title = template!.items.first.title;
       description = template!.items.first.description;
-      selectedImageGalleryId = images.first.id;
+      selectedImageGalleryId = allImages.first.id;
     }
   }
 
@@ -83,6 +95,23 @@ abstract class _ProjectTextImageTemplateViewModelBase
         }
       }
     }
+  }
+
+  Future<void> navigateGallery(int selectedId) async {
+    await navigation.navigateToPage(
+      path: NavigationConstant.GALLERY,
+      data: [allImages, selectedId, false],
+    );
+
+    isTablet()
+        ? SystemChrome.setPreferredOrientations([
+            DeviceOrientation.landscapeRight,
+            DeviceOrientation.landscapeLeft,
+          ])
+        : SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
   }
 
   String getSelectedGallerySetTitle(int id) {

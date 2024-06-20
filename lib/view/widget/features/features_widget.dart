@@ -21,6 +21,7 @@ class FeaturesWidget extends StatelessWidget {
       padding: context.midSpacer,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
@@ -37,16 +38,18 @@ class FeaturesWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 LabelText(
+                  textLineHeight: 1,
                   text: featuresEntity.value,
-                  textColor: APPLICATION_COLOR.GOLD,
-                  fontSize:
-                      isTablet() ? FONT_SIZE.BODY_LARGE : FONT_SIZE.BODY_LARGE,
+                  textColor: APPLICATION_COLOR.TITLE,
+                  fontSize: isTablet()
+                      ? FONT_SIZE.HEADLINE_LARGE
+                      : FONT_SIZE.BODY_LARGE,
                 ),
+                Gap(context.midSpacerSize),
                 LabelText(
                   text: featuresEntity.title,
-                  fontSize: isTablet()
-                      ? FONT_SIZE.LABEL_LARGE
-                      : FONT_SIZE.LABEL_LARGE,
+                  fontSize:
+                      isTablet() ? FONT_SIZE.BODY_LARGE : FONT_SIZE.LABEL_LARGE,
                 )
               ],
             ),

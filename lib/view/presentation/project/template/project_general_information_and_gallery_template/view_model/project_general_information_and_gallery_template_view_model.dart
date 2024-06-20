@@ -24,6 +24,8 @@ abstract class _ProjectGeneralInformationAndGalleryTemplateViewModelBase
   int projectSettingsId = 0;
   @override
   void init() {
+    debugPrint("page: ProjectGeneralInformationAndGalleryTemplateView");
+
     _projectDetailUseCase = locator<ProjectDetailUseCase>();
 
     isTablet()

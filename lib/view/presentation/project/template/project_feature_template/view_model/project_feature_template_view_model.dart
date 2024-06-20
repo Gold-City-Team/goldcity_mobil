@@ -22,6 +22,7 @@ abstract class _ProjectFeatureTemplateViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     _projectDetailUseCase = locator<ProjectDetailUseCase>();
+    debugPrint("page: ProjectFeatureTemplateView");
 
     isTablet()
         ? SystemChrome.setPreferredOrientations([

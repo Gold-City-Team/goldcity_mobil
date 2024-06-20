@@ -31,6 +31,8 @@ abstract class _ProjectPossibilityTemplateViewModelBase
   @override
   void init() {
     _getDetail();
+    debugPrint("page: ProjectPossibilityTemplateView");
+
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,

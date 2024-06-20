@@ -18,6 +18,8 @@ class PlanTemplateViewModel = _PlanTemplateViewModelBase
 abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
   @override
   void init() {
+    debugPrint("page: PlanTemplateView");
+
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,

@@ -17,6 +17,8 @@ abstract class _VirtualTourTemplateViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
+    debugPrint("page: VirtualTourTemplateView");
+
     _projectDetailUseCase = locator<ProjectDetailUseCase>();
     _getDetail();
   }

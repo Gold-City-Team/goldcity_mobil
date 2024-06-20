@@ -22,6 +22,8 @@ abstract class _ProjectGalleryAndInfoTemplateViewModelBase
   void setContext(BuildContext context) => viewModelContext = context;
   @override
   void init() {
+    debugPrint("page: ProjectGalleryAndInfoTemplateView");
+
     _projectDetailUseCase = locator<ProjectDetailUseCase>();
     _getDetail();
   }

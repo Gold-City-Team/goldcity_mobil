@@ -18,6 +18,8 @@ abstract class _ShareableMaterialTemplateViewModelBase
 
   @override
   void init() {
+    debugPrint("page: ShareableMaterialTemplateView");
+
     _projectDetailUseCase = locator<ProjectDetailUseCase>();
     _getDetail();
   }

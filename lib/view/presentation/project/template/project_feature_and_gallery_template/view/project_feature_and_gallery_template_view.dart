@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -42,132 +44,105 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
 
   Widget phoneView(
       BuildContext context, ProjectFeatureAndGalleryTemplateViewModel value) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Observer(builder: (context) {
-                if (value.templateEntity == null) {
-                  return const SizedBox.shrink();
-                }
-                return SizedBox(
-                  width: context.sWidth,
-                  height: context.sWidth / 1.7777,
-                  child: NormalNetworkImage(
-                      source: value.templateEntity!.mediaItem.url,
-                      fit: BoxFit.cover),
-                );
-              }),
-              Container(
-                width: context.sWidth,
-                height: context.sWidth / 1.7777,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                        Colors.transparent,
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      tileMode: TileMode.clamp),
-                ),
-              ),
-            ],
-          ).animate().fade(),
-          Gap(context.largeSpacerSize),
-          Observer(builder: (context) {
-            if (value.templateEntity == null) {
-              return const SizedBox.shrink();
-            }
-            return Padding(
-              padding: context.largeSpacerOnlyHorizontal,
-              child: LabelText(
-                text: value.templateEntity!.title,
-                fontSize: FONT_SIZE.HEADLINE_LARGE,
-              ),
-            ).animate().fade();
-          }),
-          Gap(context.midSpacerSize),
-          Observer(builder: (context) {
-            if (value.templateEntity == null) {
-              return const SizedBox.shrink();
-            }
-            return Padding(
-              padding: context.midSpacerOnlyHorizontal,
-              child: Wrap(
-                children: value.templateEntity!.features
-                    .map((e) => FeaturesWidget(featuresEntity: e))
-                    .toSet()
-                    .toList(),
-              ),
-            );
-          }),
-          Gap(context.midSpacerSize),
-          Observer(
-            builder: (context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Observer(builder: (context) {
               if (value.templateEntity == null) {
                 return const SizedBox.shrink();
               }
-              return Center(
+              return Padding(
+                padding: context.largeSpacerOnlyHorizontal,
+                child: LabelText(
+                  text: value.templateEntity!.title,
+                  fontSize: FONT_SIZE.HEADLINE_LARGE,
+                ),
+              ).animate().fade();
+            }),
+            Gap(context.midSpacerSize),
+            Observer(builder: (context) {
+              if (value.templateEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: context.midSpacerOnlyHorizontal,
                 child: Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 10,
-                  runSpacing: 0,
-                  children: value.templateEntity!.gallery
-                      .map(
-                        (e) => GestureDetector(
-                          onTap: () => value.navigateGallery(
-                            value.templateEntity!.gallery
-                                .indexWhere((element) => element == e),
-                          ),
-                          child: Padding(
-                            padding: context.midSpacerOnlyBottom,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                SizedBox(
-                                  width: (context.sWidth / 2) - 20,
-                                  height: ((context.sWidth / 2) - 20) / 1.7777,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Container(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.DARK),
-                                      child: NormalNetworkImage(
-                                        fit: BoxFit.cover,
-                                        source: e.media.mediaType ==
-                                                MEDIA_TYPE.IMAGE
-                                            ? e.media.url
-                                            : e.media.mediaMetaData.thumbnail,
-                                      ),
-                                    ),
-                                  ).animate().fade(),
-                                ),
-                                e.media.mediaType == MEDIA_TYPE.VIDEO
-                                    ? Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: context.toColor(
-                                                APPLICATION_COLOR.GOLD),
-                                            borderRadius: context.largeRadius),
-                                        child: const Icon(Icons.play_arrow),
-                                      )
-                                    : const SizedBox.shrink()
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
+                  children: value.templateEntity!.features
+                      .map((e) => FeaturesWidget(featuresEntity: e))
+                      .toSet()
                       .toList(),
                 ),
               );
-            },
-          ),
-          Gap(context.veryLargeSpacerOnlyBottom.bottom)
-        ],
+            }),
+            Gap(context.midSpacerSize),
+            Observer(
+              builder: (context) {
+                if (value.templateEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 10,
+                    runSpacing: 0,
+                    children: value.templateEntity!.gallery
+                        .map(
+                          (e) => GestureDetector(
+                            onTap: () => value.navigateGallery(
+                              value.templateEntity!.gallery
+                                  .indexWhere((element) => element == e),
+                            ),
+                            child: Padding(
+                              padding: context.midSpacerOnlyBottom,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: (context.sWidth / 2) - 20,
+                                    height:
+                                        ((context.sWidth / 2) - 20) / 1.7777,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Container(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                        child: NormalNetworkImage(
+                                          fit: BoxFit.cover,
+                                          source: e.media.mediaType ==
+                                                  MEDIA_TYPE.IMAGE
+                                              ? e.media.url
+                                              : e.media.mediaMetaData.thumbnail,
+                                        ),
+                                      ),
+                                    ).animate().fade(),
+                                  ),
+                                  e.media.mediaType == MEDIA_TYPE.VIDEO
+                                      ? Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.GOLD),
+                                              borderRadius:
+                                                  context.largeRadius),
+                                          child: const Icon(Icons.play_arrow),
+                                        )
+                                      : const SizedBox.shrink()
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                );
+              },
+            ),
+            Gap(context.veryLargeSpacerOnlyBottom.bottom)
+          ],
+        ),
       ),
     );
   }
@@ -177,73 +152,79 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: context.largeSpacerOnlyHorizontal,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Observer(
-                builder: (context) {
-                  if (value.templateEntity == null) {
-                    return const SizedBox.shrink();
-                  }
-                  return LabelText(
-                    text: value.templateEntity!.title,
-                    fontSize: FONT_SIZE.HEADLINE_LARGE,
-                  ).animate().fade();
-                },
-              ),
-              Gap(context.largeSpacerSize),
-              Observer(builder: (context) {
+        child: Row(
+          children: [
+            Flexible(
+              flex: 60,
+              child: Observer(builder: (context) {
                 if (value.templateEntity == null) {
                   return const SizedBox.shrink();
                 }
-                return Wrap(
-                  children: value.templateEntity!.features
-                      .map((e) => FeaturesWidget(featuresEntity: e))
-                      .toSet()
-                      .toList(),
-                );
+                return ListView.builder(
+                    itemCount: value.templateEntity!.features.length,
+                    shrinkWrap: false,
+                    padding: context.largeSpacerOnlyTop,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FeaturesWidget(
+                              featuresEntity:
+                                  value.templateEntity!.features[index]),
+                          value.templateEntity!.features.length - 1 == index
+                              ? Gap(context.veryLargeSpacerOnlyBottom.bottom)
+                              : const SizedBox.shrink()
+                        ],
+                      );
+                    });
               }),
-              Gap(context.midSpacerSize),
-              Observer(
-                builder: (context) {
+            ),
+            Flexible(
+                flex: 40,
+                child: Observer(builder: (context) {
                   if (value.templateEntity == null) {
                     return const SizedBox.shrink();
                   }
-                  return Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: value.templateEntity!.gallery
-                        .map(
-                          (e) => SizedBox(
-                            width: context.sWidth / 3 - 20,
-                            height: (context.sWidth / 3 - 20) / 1.7777,
-                            child: GestureDetector(
-                              onTap: () => value.navigateGallery(
-                                value.templateEntity!.gallery
-                                    .indexWhere((element) => element == e),
-                              ),
+                  return ListView.builder(
+                      itemCount: value.templateEntity!.gallery.length,
+                      itemBuilder: ((context, index) {
+                        return Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () => value.navigateGallery(index),
                               child: Stack(
                                 alignment: Alignment.center,
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Container(
-                                      width: context.sWidth / 3 - 20,
-                                      height:
-                                          (context.sWidth / 3 - 20) / 1.7777,
+                                      width: (context.sWidth / 100) * 40,
+                                      height: ((context.sWidth / 100) * 40) /
+                                          1.7777,
                                       color: context
                                           .toColor(APPLICATION_COLOR.DARK),
                                       child: NormalNetworkImage(
                                         fit: BoxFit.cover,
-                                        source: e.media.mediaType ==
+                                        source: value
+                                                    .templateEntity!
+                                                    .gallery[index]
+                                                    .media
+                                                    .mediaType ==
                                                 MEDIA_TYPE.IMAGE
-                                            ? e.media.url
-                                            : e.media.mediaMetaData.thumbnail,
+                                            ? value.templateEntity!
+                                                .gallery[index].media.url
+                                            : value
+                                                .templateEntity!
+                                                .gallery[index]
+                                                .media
+                                                .mediaMetaData
+                                                .thumbnail,
                                       ),
                                     ),
                                   ).animate().fade(),
-                                  e.media.mediaType == MEDIA_TYPE.VIDEO
+                                  value.templateEntity!.gallery[index].media
+                                              .mediaType ==
+                                          MEDIA_TYPE.VIDEO
                                       ? Container(
                                           width: 50,
                                           height: 50,
@@ -258,15 +239,17 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
-                  );
-                },
-              ),
-              Gap(context.veryLargeSpacerOnlyBottom.bottom)
-            ],
-          ),
+                            value.templateEntity!.gallery.length - 1 == index
+                                ? const SizedBox.shrink()
+                                : Gap(context.midSpacerSize),
+                            value.templateEntity!.gallery.length - 1 == index
+                                ? Gap(context.veryLargeSpacerOnlyBottom.bottom)
+                                : const SizedBox.shrink()
+                          ],
+                        );
+                      }));
+                }))
+          ],
         ),
       ),
     );

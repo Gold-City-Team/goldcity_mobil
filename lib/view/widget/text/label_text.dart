@@ -4,6 +4,7 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 
 class LabelText extends StatelessWidget {
   final String text;
+  final double? textLineHeight;
   final TextOverflow overflow;
   final FONT_SIZE fontSize;
   final APPLICATION_COLOR textColor;
@@ -14,15 +15,17 @@ class LabelText extends StatelessWidget {
       this.fontSize = FONT_SIZE.BODY_LARGE,
       this.textColor = APPLICATION_COLOR.TITLE,
       this.overflow = TextOverflow.visible,
+      this.textLineHeight,
       this.maxLines});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       overflow: overflow,
-      style: context
-          .toTextStyle(fontSize)
-          .copyWith(color: context.toColor(textColor)),
+      style: context.toTextStyle(fontSize).copyWith(
+            color: context.toColor(textColor),
+            height: textLineHeight,
+          ),
       text,
       maxLines: maxLines,
     );
