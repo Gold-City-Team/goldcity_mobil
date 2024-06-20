@@ -30,3 +30,16 @@ class GalleryMediaCategoryTranslationEntity {
     required this.title,
   });
 }
+
+@immutable
+class TitleDescriptionGalleriesEntity {
+  final int id;
+  final String title;
+  final String description;
+  final List<GalleryMediaEntity> galleries;
+  const TitleDescriptionGalleriesEntity(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.galleries});
+}

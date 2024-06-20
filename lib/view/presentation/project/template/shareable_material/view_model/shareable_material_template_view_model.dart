@@ -50,6 +50,7 @@ abstract class _ShareableMaterialTemplateViewModelBase
         projectDetailId, projectSettingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateFiveEntity);
+      fullViewItemIndex.add(template!.gallery.first.category.translation.title);
     }
   }
 }

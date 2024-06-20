@@ -20,26 +20,3 @@ class ProjectTemplateEightDto {
             : [TitleDescriptionGalleriesDto().toEntity()],
       );
 }
-
-@JsonSerializable()
-class TitleDescriptionGalleriesDto {
-  int? id;
-  String? title;
-  String? description;
-  List<GalleryMediaDto>? galleries;
-  TitleDescriptionGalleriesDto(
-      {this.id, this.title, this.description, this.galleries});
-  factory TitleDescriptionGalleriesDto.fromJson(Map<String, dynamic> json) =>
-      _$TitleDescriptionGalleriesDtoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TitleDescriptionGalleriesDtoToJson(this);
-
-  TitleDescriptionGalleriesEntity toEntity() => TitleDescriptionGalleriesEntity(
-        id: id ?? 0,
-        title: title ?? "",
-        description: description ?? "",
-        galleries: galleries != null
-            ? galleries!.map((e) => e.toEntity()).toList()
-            : [GalleryMediaDto().toEntity()],
-      );
-}

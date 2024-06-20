@@ -94,7 +94,7 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
               borderRadius: context.largeRadius),
           margin: context.midSpacerOnlyHorizontal,
           padding: context.midLargeSpacerOnlyVertical,
-          height: 130,
+          height: 160,
           child: ListView.builder(
             itemCount: value.templateThree!.possibilities.length,
             padding: EdgeInsets.zero,

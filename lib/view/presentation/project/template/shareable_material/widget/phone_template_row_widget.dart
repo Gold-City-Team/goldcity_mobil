@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
@@ -6,6 +7,7 @@ import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PhoneTemplateRowWidget extends StatelessWidget {
   final List<GalleryMediaEntity> gallery;
@@ -74,6 +76,11 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                                 child: LabelText(
                                     text: gallery[index].media.oldFileName),
                               ),
+                              GestureDetector(
+                                  onTap: () =>
+                                      openLink(gallery[index].media.url),
+                                  child: const Icon(Icons.remove_red_eye)),
+                              Gap(context.midSpacerSize),
                               const Icon(Icons.link)
                             ],
                           ),
@@ -106,5 +113,9 @@ class PhoneTemplateRowWidget extends StatelessWidget {
 
     Share.share(result,
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  }
+
+  Future<void> openLink(String url) async {
+    await launchUrl(Uri.parse(url));
   }
 }

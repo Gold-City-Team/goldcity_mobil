@@ -728,10 +728,34 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "url_launcher",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/url_launcher-6.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "url_launcher_android",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/url_launcher_android-6.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "url_launcher_ios",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/url_launcher_ios-6.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "url_launcher_linux",
       "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/url_launcher_linux-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "url_launcher_macos",
+      "rootUri": "file:///Users/zafercetin/.pub-cache/hosted/pub.dev/url_launcher_macos-3.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
     },
     {
       "name": "url_launcher_platform_interface",
@@ -890,7 +914,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-06-07T13:50:08.225441Z",
+  "generated": "2024-06-20T13:04:36.830699Z",
   "generator": "pub",
   "generatorVersion": "3.3.2"
 }

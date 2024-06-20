@@ -6,6 +6,7 @@ import 'package:goldcity/domain/entity/possibility/possibility_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
@@ -55,6 +56,7 @@ class FacilitiesWidget extends StatelessWidget {
                   ),
                   Gap(context.midSpacerSize),
                   LabelText(
+                    maxLines: isTablet() ? null : 3,
                     text: possibilityEntity.description,
                     fontSize: FONT_SIZE.TITLE_SMALL,
                     textColor: APPLICATION_COLOR.SUBTITLE,
