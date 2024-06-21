@@ -11,9 +11,9 @@ import 'package:goldcity/view/presentation/project/template/project_feature_and_
 import 'package:goldcity/view/presentation/project/template/project_feature_template/view/project_feature_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_gallery_and_info_template/view/project_gallery_and_info_template.dart';
 import 'package:goldcity/view/presentation/project/template/plan_template/view/plan_template_view.dart';
-import 'package:goldcity/view/presentation/project/template/project_general_information_and_gallery_template/view/project_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_possibilty_template/view/project_possibilty_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_text_image_template/view/project_text_image_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/project_two_main_image_template/view/project_two_main_image_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
@@ -59,7 +59,7 @@ class ProjectDetailView extends StatelessWidget {
                                 .metaData
                                 .viewType ==
                             "ONE"
-                        ? ProjectGeneralInformationAndGalleryTemplateView(
+                        ? ProjectTwoMainImageTemplateView(
                             key: Key(
                                 "${value.entity!.detail.template[value.templateIndex].id}"),
                             projectDetailId: value.entity!.detail.id,

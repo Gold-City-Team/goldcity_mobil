@@ -266,13 +266,15 @@ class ProjectGeneralInformationAndGalleryTemplateView extends StatelessWidget {
                     if (value.templateTwo == null) {
                       return const SizedBox.shrink();
                     }
-                    return Padding(
-                      padding: context.largeSpacerOnlyHorizontal,
-                      child: LabelText(
-                        text: value.templateTwo!.title,
-                        fontSize: FONT_SIZE.HEADLINE_LARGE,
-                      ),
-                    ).animate().fade();
+                    return SizedBox(
+                      child: Padding(
+                        padding: context.largeSpacerOnlyHorizontal,
+                        child: LabelText(
+                          text: value.templateTwo!.title,
+                          fontSize: FONT_SIZE.HEADLINE_LARGE,
+                        ),
+                      ).animate().fade(),
+                    );
                   }),
                   Gap(context.largeSpacerSize),
                   Observer(builder: (context) {
