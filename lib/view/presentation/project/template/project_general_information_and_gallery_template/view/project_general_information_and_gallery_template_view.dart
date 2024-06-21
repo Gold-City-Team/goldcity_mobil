@@ -12,10 +12,10 @@ import 'package:goldcity/view/presentation/project/template/project_general_info
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
-class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
+class ProjectGeneralInformationAndGalleryTemplateView extends StatelessWidget {
   final int projectDetailId;
   final int projectSettingsId;
-  const GeneralInformationAndGalleryTemplateView(
+  const ProjectGeneralInformationAndGalleryTemplateView(
       {required this.projectDetailId,
       required this.projectSettingsId,
       super.key});
