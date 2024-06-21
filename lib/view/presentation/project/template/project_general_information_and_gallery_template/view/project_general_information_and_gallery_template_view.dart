@@ -33,44 +33,11 @@ class GeneralInformationAndGalleryTemplateView extends StatelessWidget {
       onPageBuilder: (BuildContext context,
               ProjectGeneralInformationAndGalleryTemplateViewModel value) =>
           Scaffold(
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-                child: isTablet()
-                    ? SafeArea(
-                        top: false,
-                        bottom: true,
-                        child: tabletView(context, value))
-                    : phoneView(context, value)),
-            Positioned(
-              bottom: 0,
-              child: SizedBox(
-                width: context.sWidth,
-                height: 150,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [
-                          context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                          context
-                              .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(200),
-                          context
-                              .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(0),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+        body: SingleChildScrollView(
+            child: isTablet()
+                ? SafeArea(
+                    top: false, bottom: true, child: tabletView(context, value))
+                : phoneView(context, value)),
       ),
     );
   }

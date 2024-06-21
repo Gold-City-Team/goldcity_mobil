@@ -14,6 +14,9 @@ ProjectDetailDto _$ProjectDetailDtoFromJson(Map<String, dynamic> json) =>
       templates: (json['templates'] as List<dynamic>?)
           ?.map((e) => MainTemplateDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      logo: json['logo'] == null
+          ? null
+          : MediaDto.fromJson(json['logo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProjectDetailDtoToJson(ProjectDetailDto instance) =>
@@ -22,4 +25,5 @@ Map<String, dynamic> _$ProjectDetailDtoToJson(ProjectDetailDto instance) =>
       'title': instance.title,
       'slogan': instance.slogan,
       'templates': instance.templates,
+      'logo': instance.logo,
     };

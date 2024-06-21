@@ -16,6 +16,7 @@ import 'package:goldcity/view/presentation/project/template/project_possibilty_t
 import 'package:goldcity/view/presentation/project/template/project_text_image_template/view/project_text_image_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
+import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 
 class ProjectDetailView extends StatelessWidget {
@@ -124,6 +125,45 @@ class ProjectDetailView extends StatelessWidget {
                       ),
                   };
                 }),
+                Observer(builder: (context) {
+                  if (value.entity == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return value.entity!.detail.template[value.templateIndex]
+                              .type ==
+                          TEMPLATE.PROJECT_TEMPLATE_SEVEN
+                      ? const SizedBox.shrink()
+                      : Positioned(
+                          bottom: 0,
+                          child: SizedBox(
+                            width: context.sWidth,
+                            height: 150,
+                            child: Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [
+                                      context.toColor(
+                                          APPLICATION_COLOR.BACKGROUND_COLOR),
+                                      context
+                                          .toColor(APPLICATION_COLOR
+                                              .BACKGROUND_COLOR)
+                                          .withAlpha(200),
+                                      context
+                                          .toColor(APPLICATION_COLOR
+                                              .BACKGROUND_COLOR)
+                                          .withAlpha(0),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                }),
                 SafeArea(
                   child: Container(
                     padding: context.largeSpacerOnlyHorizontal,
@@ -158,6 +198,15 @@ class ProjectDetailView extends StatelessWidget {
                                     )
                                   : const SizedBox.shrink(),
                               const Spacer(),
+                              SizedBox(
+                                width: 100,
+                                height: 50,
+                                child: NormalNetworkImage(
+                                  fit: BoxFit.contain,
+                                  source: value.entity!.detail.logo.url,
+                                ),
+                              ),
+                              Gap(context.midSpacerSize),
                               GestureDetector(
                                 onTap: () => value.navigation.pop(),
                                 child: Container(

@@ -15,7 +15,8 @@ final class MediaEntity {
       {required this.id,
       required this.url,
       required this.mediaType,
-      required this.oldFileName,      required this.mediaMetaData});
+      required this.oldFileName,
+      required this.mediaMetaData});
 }
 
 @immutable
