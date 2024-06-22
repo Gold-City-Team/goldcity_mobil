@@ -31,7 +31,7 @@ abstract class _MainViewModelBase with Store, BaseViewModel {
   Widget getView() {
     switch (index) {
       case 0:
-        return const HomeView();
+        return HomeView();
       default:
         return const SettingsView();
     }
