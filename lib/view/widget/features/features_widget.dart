@@ -48,6 +48,7 @@ class FeaturesWidget extends StatelessWidget {
                 Gap(context.midSpacerSize),
                 LabelText(
                   text: featuresEntity.title,
+                  textColor: APPLICATION_COLOR.SUBTITLE,
                   fontSize:
                       isTablet() ? FONT_SIZE.BODY_LARGE : FONT_SIZE.LABEL_LARGE,
                 )

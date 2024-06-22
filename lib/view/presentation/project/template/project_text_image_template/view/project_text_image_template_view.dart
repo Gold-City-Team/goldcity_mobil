@@ -419,9 +419,7 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                             fontSize: FONT_SIZE.DISPLAY_LARGE,
                           ),
                           LabelText(
-                            text: value.description +
-                                value.description +
-                                value.description,
+                            text: value.description,
                             fontSize: FONT_SIZE.TITLE_LARGE,
                             maxLines: 5,
                           ),
