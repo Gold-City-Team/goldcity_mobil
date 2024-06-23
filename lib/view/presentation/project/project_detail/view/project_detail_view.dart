@@ -7,6 +7,7 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
+import 'package:goldcity/view/presentation/project/template/project_animated_wellcome_template/view/project_animated_wellcome_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_and_gallery_template/view/project_feature_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_template/view/project_feature_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_gallery_and_info_template/view/project_gallery_and_info_template.dart';
@@ -41,17 +42,24 @@ class ProjectDetailView extends StatelessWidget {
               children: [
                 Observer(builder: (context) {
                   if (value.entity == null) {
+                    debugPrint("page: açılmadı");
+
                     return const SizedBox.shrink();
                   }
+                  debugPrint("page: açılıd");
                   return switch (
                       value.entity!.detail.template[value.templateIndex].type) {
-                    TEMPLATE.PROJECT_TEMPLATE_ONE => ProjectFeatureTemplateView(
-                        key: Key(
-                            "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
-                        projectSettingsId: value
-                            .entity!.detail.template[value.templateIndex].id,
+                    TEMPLATE.PROJECT_TEMPLATE_ONE =>
+                      ProjectAnimatedWelcomeTemplateView(
+                        url: value.entity!.detail.mainImage.url,
                       ),
+                    // TEMPLATE.PROJECT_TEMPLATE_ONE => ProjectFeatureTemplateView(
+                    //     key: Key(
+                    //         "${value.entity!.detail.template[value.templateIndex].id}"),
+                    //     projectDetailId: value.entity!.detail.id,
+                    //     projectSettingsId: value
+                    //         .entity!.detail.template[value.templateIndex].id,
+                    //   ),
                     TEMPLATE.PROJECT_TEMPLATE_TWO => value
                                 .entity!
                                 .detail

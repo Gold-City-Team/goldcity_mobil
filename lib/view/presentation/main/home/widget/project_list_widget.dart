@@ -1,29 +1,89 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
-import 'package:goldcity/view/widget/text/label_text.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
-class ProjectListWidget extends StatelessWidget {
-  const ProjectListWidget({super.key});
+class ProjectListWidget extends StatefulWidget {
+  final Function(int) onTap;
+
+  final List<ProjectEntity> projectList;
+  const ProjectListWidget(
+      {required this.projectList, required this.onTap, super.key});
 
   @override
+  State<ProjectListWidget> createState() => _ProjectListWidgetState();
+}
+
+class _ProjectListWidgetState extends State<ProjectListWidget> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: context.largeSpacerOnlyHorizontal,
-      width: context.sWidth,
-      height: context.sHeight,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Gap(context.veryLargeSpacerSize),
-          const LabelText(
-            text: "Projeler",
-            fontSize: FONT_SIZE.DISPLAY_LARGE,
-            textLineHeight: 1,
-          )
-        ],
-      ),
-    );
+    return ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.projectList.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              var list = widget.projectList
+                  .where(
+                      (element) => element.id != widget.projectList[index].id)
+                  .toList();
+              for (var element in list) {
+                widget.projectList
+                    .removeWhere((elements) => element == elements);
+              }
+              setState(() {});
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: context.sWidth /
+                      (widget.projectList.length > 5
+                          ? 5
+                          : (widget.projectList.length).toDouble()),
+                  height: context.sHeight,
+                  child: NormalNetworkImage(
+                      fit: BoxFit.cover,
+                      alignment: Alignment.centerLeft,
+                      source: widget.projectList[index].detail.mainImage.url),
+                )
+                    .animate()
+                    .fade(duration: Duration(milliseconds: 600 * index))
+                    .slideX(
+                        begin: 2                                                 ,
+                        end: 0,
+                        duration: Duration(milliseconds: 600 * index),
+                        curve: Curves.ease),
+                Container(
+                  width: context.sWidth /
+                      (widget.projectList.length > 5
+                          ? 5
+                          : (widget.projectList.length).toDouble()),
+                  height: context.sHeight,
+                  color: context
+                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                      .withAlpha(200),
+                ),
+                Center(
+                  child: SizedBox(
+                      width: context.sWidth /
+                              (widget.projectList.length > 5
+                                  ? 5
+                                  : (widget.projectList.length).toDouble()) -
+                          40,
+                      child: NormalNetworkImage(
+                          fit: BoxFit.contain,
+                          alignment: Alignment.center,
+                          source: widget.projectList[index].detail.logo.url)),
+                )
+              ],
+            ),
+          );
+        });
   }
 }

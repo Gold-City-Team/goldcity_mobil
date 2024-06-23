@@ -51,10 +51,12 @@ class NavigationRoute {
     };
   }
 
-  MaterialPageRoute normalNavigate(Widget widget, String pageName) {
-    return MaterialPageRoute(
-      builder: (context) => widget,
+  PageRouteBuilder normalNavigate(Widget widget, String pageName) {
+    return PageRouteBuilder(
+      pageBuilder: (_, __, ___) => widget,
       settings: RouteSettings(name: pageName),
+      transitionDuration: Duration.zero,
+      reverseTransitionDuration: Duration.zero,
     );
   }
 }

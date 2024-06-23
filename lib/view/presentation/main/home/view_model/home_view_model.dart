@@ -67,7 +67,11 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         pageList.add(CondominiumTrailerWidget(
           complexEntity: complexList!.first,
         ));
-        pageList.add(const ProjectListWidget());
+        pageList.add(ProjectListWidget(
+          projectList: projectList!,
+          onTap: (int id) => navigation.navigateToPage(
+              path: NavigationConstant.PROJECT_DETAIL, data: id),
+        ));
         pageIndex = 0;
       }
     });

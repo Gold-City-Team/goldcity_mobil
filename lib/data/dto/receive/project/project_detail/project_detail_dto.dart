@@ -11,6 +11,7 @@ class ProjectDetailDto {
   String? slogan;
   List<MainTemplateDto>? templates;
   MediaDto? logo;
+  MediaDto? mainImage;
   ProjectDetailDto(
       {this.id, this.title, this.slogan, this.templates, this.logo});
   factory ProjectDetailDto.fromJson(Map<String, dynamic> json) =>
@@ -21,6 +22,8 @@ class ProjectDetailDto {
       id: id ?? 0,
       title: title ?? "",
       slogan: slogan ?? "",
+      mainImage:
+          mainImage != null ? mainImage!.toEntity() : MediaDto().toEntity(),
       logo: logo != null ? logo!.toEntity() : MediaDto().toEntity(),
       template: templates != null
           ? templates!.map((e) => e.toEntity()).toList()

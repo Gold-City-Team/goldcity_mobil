@@ -9,11 +9,13 @@ final class ProjectDetailEntity {
   final String slogan;
   final List<MainTemplateEntity> template;
   final MediaEntity logo;
+  final MediaEntity mainImage;
   const ProjectDetailEntity({
     required this.id,
     required this.title,
     required this.slogan,
     required this.template,
     required this.logo,
+    required this.mainImage,
   });
 }
