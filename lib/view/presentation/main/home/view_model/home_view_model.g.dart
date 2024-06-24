@@ -127,6 +127,17 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   }
 
   @override
+  void changeIndex(dynamic newIndex) {
+    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
+        name: '_HomeViewModelBase.changeIndex');
+    try {
+      return super.changeIndex(newIndex);
+    } finally {
+      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 pageList: ${pageList},

@@ -7,6 +7,7 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view_model/complex_detail_view_model.dart';
+import 'package:goldcity/view/presentation/complex/template/complex_double_gallery_template/view/complex_double_gallery_template_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_feature_and_gallery_template/view/complex_feature_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_feature_template/view/complex_feature_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_general_information_and_gallery_template/view/complex_general_information_and_gallery_template_view.dart';
@@ -34,13 +35,19 @@ class ComplexDetailView extends StatelessWidget {
               }
               return switch (value
                   .entity!.complexDetail.templates[value.templateIndex].type) {
-                TEMPLATE.COMPLEX_TEMPLATE_ONE => ComplexFeatureTemplateView(
-                    key: Key(
-                        "${value.entity!.complexDetail.templates[value.templateIndex].id}"),
-                    complexDetailId: value.entity!.complexDetail.id,
-                    complexSettingsId: value.entity!.complexDetail
-                        .templates[value.templateIndex].id,
+                TEMPLATE.COMPLEX_TEMPLATE_ONE =>
+                  ComplexDoubleGalleryTemplateView(
+                    key: Key("${value.entity!.complexDetail.id}"),
+                    detailId: 1,
+                    settingsId: 2,
                   ),
+                // TEMPLATE.COMPLEX_TEMPLATE_ONE => ComplexFeatureTemplateView(
+                //     key: Key(
+                //         "${value.entity!.complexDetail.templates[value.templateIndex].id}"),
+                //     complexDetailId: value.entity!.complexDetail.id,
+                //     complexSettingsId: value.entity!.complexDetail
+                //         .templates[value.templateIndex].id,
+                //   ),
                 TEMPLATE.COMPLEX_TEMPLATE_TWO =>
                   ComplexGeneralInformationAndGalleryTemplateView(
                     key: Key("${value.entity!.complexDetail.id}"),
