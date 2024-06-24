@@ -18,8 +18,8 @@ enum SourcePath {
 extension SourcePathExtension on SourcePath {
   String rawValue({List<dynamic>? data}) {
     return switch (this) {
-      SourcePath.BASE_URL => "https://gold-city.denizegece.com.tr",
-      SourcePath.MEDIA => "https://gold-city.denizegece.com.tr/media/",
+      SourcePath.BASE_URL => "https://gold-city-2.denizegece.com.tr",
+      SourcePath.MEDIA => "https://gold-city-2.denizegece.com.tr/media/",
       SourcePath.LEAD => '/lead',
       SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage',
       SourcePath.COMPLEX => '/complex/${data?[0]}/selectedlanguage',

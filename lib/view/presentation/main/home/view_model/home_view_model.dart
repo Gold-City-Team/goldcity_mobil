@@ -71,6 +71,9 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         complexList = event.right;
         pageList.add(CondominiumTrailerWidget(
           complexEntity: complexList!.first,
+          onExploreTap: () => navigation.navigateToPage(
+              path: NavigationConstant.COMPLEX_DETAIL,
+              data: complexList!.first.complexDetail.id),
         ));
         pageList.add(ProjectListWidget(
           projectList: projectList!,

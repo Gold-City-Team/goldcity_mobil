@@ -3,7 +3,6 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
-import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/main/home/view_model/home_view_model.dart';

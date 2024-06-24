@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/domain/entity/complex/complex/complex_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -12,7 +14,9 @@ import 'package:video_player/video_player.dart';
 
 class CondominiumTrailerWidget extends StatefulWidget {
   final ComplexEntity complexEntity;
-  const CondominiumTrailerWidget({required this.complexEntity, super.key});
+  final VoidCallback onExploreTap;
+  const CondominiumTrailerWidget(
+      {required this.complexEntity, required this.onExploreTap, super.key});
 
   @override
   State<CondominiumTrailerWidget> createState() =>
@@ -24,11 +28,9 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
-    _controller = VideoPlayerController.networkUrl(Uri.parse(
-        "https://gold-city.fra1.digitaloceanspaces.com/VIDEO/14f27613-0644-44a8-9e3d-0937c97c32cd.mp4"));
+    _controller = VideoPlayerController.networkUrl(
+        Uri.parse(widget.complexEntity.complexDetail.mainImage.url));
     _controller.setLooping(true);
     _controller.initialize().then((value) => {setState(() {})});
     _controller.play();
@@ -117,23 +119,26 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: Container(
-              width: context.sWidth / 4 - 10,
-              height: 60,
-              margin: context.xLargeSpacerOnlyBottom,
-              decoration: BoxDecoration(
-                color: context.toColor(APPLICATION_COLOR.DARK).withAlpha(200),
-              ),
-              padding: context.largeSpacerOnlyHorizontal,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  LabelText(
-                    text: "Keşfet",
-                    fontSize: FONT_SIZE.TITLE_LARGE,
-                  ),
-                  Icon(Icons.keyboard_arrow_right_outlined, size: 36)
-                ],
+            child: GestureDetector(
+              onTap: () => widget.onExploreTap(),
+              child: Container(
+                width: context.sWidth / 4 - 10,
+                height: 60,
+                margin: context.xLargeSpacerOnlyBottom,
+                decoration: BoxDecoration(
+                  color: context.toColor(APPLICATION_COLOR.DARK).withAlpha(200),
+                ),
+                padding: context.largeSpacerOnlyHorizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    LabelText(
+                      text: LocaleKeys.explore.tr(),
+                      fontSize: FONT_SIZE.TITLE_LARGE,
+                    ),
+                    const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
+                  ],
+                ),
               ),
             ),
           ),
