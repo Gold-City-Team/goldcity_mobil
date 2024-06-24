@@ -90,22 +90,6 @@ class ComplexDetailView extends StatelessWidget {
                     return Observer(builder: (context) {
                       return Row(
                         children: [
-                          value.templateIndex != 0
-                              ? GestureDetector(
-                                  onTap: () => value
-                                      .changeIndex(value.templateIndex - 1),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                        borderRadius: context.midRadius),
-                                    child:
-                                        const Icon(Icons.keyboard_arrow_left),
-                                  ),
-                                )
-                              : const SizedBox.shrink(),
                           const Spacer(),
                           GestureDetector(
                             onTap: () => value.navigation.pop(),
@@ -132,6 +116,25 @@ class ComplexDetailView extends StatelessWidget {
                               child: const Icon(Icons.menu),
                             ),
                           ),
+                          value.templateIndex != 0
+                              ? Gap(context.midSpacerSize)
+                              : const SizedBox.shrink(),
+                          value.templateIndex != 0
+                              ? GestureDetector(
+                                  onTap: () => value
+                                      .changeIndex(value.templateIndex - 1),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                        borderRadius: context.midRadius),
+                                    child:
+                                        const Icon(Icons.keyboard_arrow_left),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
                           value.templateIndex !=
                                   value.entity!.complexDetail.templates.length -
                                       1
