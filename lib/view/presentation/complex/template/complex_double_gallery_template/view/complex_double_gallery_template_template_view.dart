@@ -49,12 +49,18 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
             width: context.sWidth,
             child: Stack(
               children: [
-                SizedBox(
-                  width: context.sWidth,
-                  child: Observer(builder: (context) {
-                    return Container();
-                  }),
-                ),
+                Observer(builder: (context) {
+                  if (value.templateEntity == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return SizedBox(
+                    width: context.sWidth,
+                    child: Observer(builder: (context) {
+                      return NormalNetworkImage(
+                          source: value.templateEntity!.mediaItem.url);
+                    }),
+                  );
+                }),
                 Positioned(
                   bottom: 0,
                   child: Container(
@@ -81,63 +87,83 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
             ),
           ),
           Gap(context.midSpacerSize),
-          Container(
-            margin: context.largeSpacerOnlyHorizontal,
-            alignment: Alignment.center,
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LabelText(
-                  text: "title",
-                  fontSize: FONT_SIZE.HEADLINE_LARGE,
-                ),
-                LabelText(
-                  text: "description",
-                  fontSize: FONT_SIZE.TITLE_MEDIUM,
-                  textColor: APPLICATION_COLOR.SUBTITLE,
-                  maxLines: 5,
-                ),
-              ],
-            ),
-          ),
+          Observer(builder: (context) {
+            if (value.templateEntity == null) {
+              return const SizedBox.shrink();
+            }
+            return Container(
+              margin: context.largeSpacerOnlyHorizontal,
+              alignment: Alignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LabelText(
+                    text: value.templateEntity!.title,
+                    fontSize: FONT_SIZE.HEADLINE_LARGE,
+                  ),
+                  LabelText(
+                    text: value.templateEntity!.description,
+                    fontSize: FONT_SIZE.TITLE_MEDIUM,
+                    textColor: APPLICATION_COLOR.SUBTITLE,
+                    maxLines: 5,
+                  ),
+                ],
+              ),
+            );
+          }),
           Gap(context.largeSpacerSize),
           Observer(builder: (context) {
             if (value.templateEntity == null) {
               return const SizedBox.shrink();
             }
             return SizedBox(
-              height: (context.sWidth / 1.85) / 1.7777,
+              height: 150,
               child: Container(
                 color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                 child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: value.templateEntity!.gallery.length,
                     padding: context.largeSpacerOnlyHorizontal,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () => null,
+                        onTap: () => value.navigateGallery(index, false),
                         child: Container(
-                          width: 150 * 1.7777,
-                          height: 150,
-                          margin:
-                              value.templateEntity!.gallery.length - 1 != index
-                                  ? context.largeSpacerOnlyRight
-                                  : EdgeInsets.zero,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
+                            width: 150 * 1.7777,
+                            height: 150,
+                            margin: value.templateEntity!.gallery.length - 1 !=
+                                    index
+                                ? context.largeSpacerOnlyRight
+                                : EdgeInsets.zero,
+                            child:
+                                Stack(alignment: Alignment.center, children: [
                               SizedBox(
                                 width: 150 * 1.7777,
                                 height: 150,
                                 child: NormalNetworkImage(
                                     fit: BoxFit.cover,
                                     source: value.templateEntity!.gallery[index]
-                                        .media.url),
+                                                .media.mediaType ==
+                                            MEDIA_TYPE.VIDEO
+                                        ? value.templateEntity!.gallery[index]
+                                            .media.mediaMetaData.thumbnail
+                                        : value.templateEntity!.gallery[index]
+                                            .media.url),
                               ),
-                            ],
-                          ),
-                        ),
+                              value.templateEntity!.gallery[index].media
+                                          .mediaType ==
+                                      MEDIA_TYPE.VIDEO
+                                  ? Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.GOLD),
+                                          borderRadius: context.largeRadius),
+                                      child: const Icon(Icons.play_arrow),
+                                    )
+                                  : const SizedBox.shrink()
+                            ])),
                       );
                     }),
               ),
@@ -154,7 +180,59 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
             padding: context.largeSpacerOnlyHorizontal,
             child: Observer(
               builder: (context) {
-                return Container();
+                if (value.templateEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 10,
+                  runAlignment: WrapAlignment.center,
+                  runSpacing: 10,
+                  children: value.templateEntity!.gallery
+                      .map(
+                        (e) => GestureDetector(
+                          onTap: () => value.navigateGallery(
+                              value.templateEntity!.gallery
+                                  .indexWhere((element) => element == e),
+                              true),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              SizedBox(
+                                width: (context.sWidth / 2) - 20,
+                                height: ((context.sWidth / 2) * 1.7777) - 20,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Container(
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.DARK),
+                                    child: NormalNetworkImage(
+                                      fit: BoxFit.cover,
+                                      source:
+                                          e.media.mediaType == MEDIA_TYPE.IMAGE
+                                              ? e.media.url
+                                              : e.media.mediaMetaData.thumbnail,
+                                    ),
+                                  ),
+                                ).animate().fade(),
+                              ),
+                              e.media.mediaType == MEDIA_TYPE.VIDEO
+                                  ? Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.GOLD),
+                                          borderRadius: context.largeRadius),
+                                      child: const Icon(Icons.play_arrow),
+                                    )
+                                  : const SizedBox.shrink()
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+                );
               },
             ),
           ),
@@ -312,27 +390,32 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: context.xlargeSpacerOnlyLeft,
-                    width: context.sWidth / 2.5,
-                    alignment: Alignment.center,
-                    height: context.sHeight / 1.5,
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        LabelText(
-                          text: "GoldCity",
-                          fontSize: FONT_SIZE.DISPLAY_LARGE,
-                        ),
-                        LabelText(
-                          text: "Condominium",
-                          fontSize: FONT_SIZE.TITLE_LARGE,
-                          maxLines: 5,
-                        ),
-                      ],
-                    ),
-                  ),
+                  Observer(builder: (context) {
+                    if (value.templateEntity == null) {
+                      return const SizedBox.shrink();
+                    }
+                    return Container(
+                      margin: context.xlargeSpacerOnlyLeft,
+                      width: context.sWidth / 2.5,
+                      alignment: Alignment.center,
+                      height: context.sHeight / 1.5,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          LabelText(
+                            text: value.templateEntity!.title,
+                            fontSize: FONT_SIZE.DISPLAY_LARGE,
+                          ),
+                          LabelText(
+                            text: value.templateEntity!.description,
+                            fontSize: FONT_SIZE.TITLE_LARGE,
+                            maxLines: 5,
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
                 ],
               )),
           Padding(
