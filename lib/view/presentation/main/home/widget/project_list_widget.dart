@@ -27,17 +27,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
         itemCount: widget.projectList.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {
-              var list = widget.projectList
-                  .where(
-                      (element) => element.id != widget.projectList[index].id)
-                  .toList();
-              for (var element in list) {
-                widget.projectList
-                    .removeWhere((elements) => element == elements);
-              }
-              setState(() {});
-            },
+            onTap: () => widget.onTap(widget.projectList[index].id),
             child: Stack(
               alignment: Alignment.center,
               children: [
