@@ -57,6 +57,23 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$isPageSelectorVisibleAtom =
+      Atom(name: '_HomeViewModelBase.isPageSelectorVisible', context: context);
+
+  @override
+  bool get isPageSelectorVisible {
+    _$isPageSelectorVisibleAtom.reportRead();
+    return super.isPageSelectorVisible;
+  }
+
+  @override
+  set isPageSelectorVisible(bool value) {
+    _$isPageSelectorVisibleAtom.reportWrite(value, super.isPageSelectorVisible,
+        () {
+      super.isPageSelectorVisible = value;
+    });
+  }
+
   late final _$complexListAtom =
       Atom(name: '_HomeViewModelBase.complexList', context: context);
 
@@ -88,6 +105,17 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   }
 
   @override
+  void togglePageSelector() {
+    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
+        name: '_HomeViewModelBase.togglePageSelector');
+    try {
+      return super.togglePageSelector();
+    } finally {
+      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void _getComplexList() {
     final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
         name: '_HomeViewModelBase._getComplexList');
@@ -104,6 +132,7 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
 pageList: ${pageList},
 pageIndex: ${pageIndex},
 projectList: ${projectList},
+isPageSelectorVisible: ${isPageSelectorVisible},
 complexList: ${complexList}
     ''';
   }

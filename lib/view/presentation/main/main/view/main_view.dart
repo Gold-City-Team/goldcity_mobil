@@ -15,15 +15,9 @@ class MainView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, MainViewModel value) => Scaffold(
-        bottomNavigationBar: Column(
-          children: [
-            Expanded(
-              child: Observer(builder: (context) {
-                return value.getView();
-              }),
-            ),
-          ],
-        ),
+        body: Observer(builder: (context) {
+          return value.getView();
+        }),
       ),
     );
   }

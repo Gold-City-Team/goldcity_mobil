@@ -57,6 +57,11 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   }
 
   @observable
+  bool isPageSelectorVisible = false;
+  @action
+  void togglePageSelector() => isPageSelectorVisible = !isPageSelectorVisible;
+
+  @observable
   List<ComplexEntity>? complexList;
 
   @action
@@ -85,5 +90,19 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void navigateComplexDetail(int complexId) {
     navigation.navigateToPage(
         path: NavigationConstant.COMPLEX_DETAIL, data: complexId);
+  }
+
+  @action
+  void changeIndex(newIndex) {
+    isPageSelectorVisible = false;
+    switch (newIndex) {
+      case 0:
+        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+      case 1:
+        navigation.navigateToPage(
+            path: NavigationConstant.COMPLEX_DETAIL, data: 6);
+      default:
+        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+    }
   }
 }
