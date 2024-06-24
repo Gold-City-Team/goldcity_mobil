@@ -73,7 +73,7 @@ class HomeView extends StatelessWidget {
             Observer(builder: (context) {
               return value.isPageSelectorVisible
                   ? PageSelectorWidget(
-                      pages: ["Ana Sayfa", "Eğitimler"],
+                      pages: ["Ana Sayfa", "Eğitimler", "Ayarlar"],
                       selectedIndex: 0,
                       newIndex: (newIndex) => value.changeIndex(newIndex))
                   : const SizedBox.shrink();
