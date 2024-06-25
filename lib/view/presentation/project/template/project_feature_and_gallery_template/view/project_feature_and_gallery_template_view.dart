@@ -163,6 +163,7 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                 return ListView.builder(
                     itemCount: value.templateEntity!.features.length,
                     shrinkWrap: false,
+                    cacheExtent: 100000,
                     padding: context.largeSpacerOnlyTop,
                     itemBuilder: (context, index) {
                       return Column(
@@ -221,7 +222,16 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                                                 .thumbnail,
                                       ),
                                     ),
-                                  ).animate().fade(),
+                                  )
+                                      .animate()
+                                      .fade(
+                                          duration:
+                                              Duration(milliseconds: 1500))
+                                      .slideX(
+                                          begin: 1,
+                                          end: 0,
+                                          duration:
+                                              Duration(milliseconds: 500)),
                                   value.templateEntity!.gallery[index].media
                                               .mediaType ==
                                           MEDIA_TYPE.VIDEO

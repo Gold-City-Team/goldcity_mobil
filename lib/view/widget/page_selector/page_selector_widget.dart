@@ -50,7 +50,7 @@ class PageSelectorWidget extends StatelessWidget {
                           child: LabelText(
                             text: pages[index],
                             textColor: selectedIndex == index
-                                ? APPLICATION_COLOR.TITLE
+                                ? APPLICATION_COLOR.GOLD
                                 : APPLICATION_COLOR.SUBTITLE,
                             fontSize: selectedIndex == index
                                 ? FONT_SIZE.HEADLINE_LARGE

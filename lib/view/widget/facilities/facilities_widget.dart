@@ -21,7 +21,6 @@ class FacilitiesWidget extends StatelessWidget {
     return Container(
       width: 300,
       decoration: BoxDecoration(
-        borderRadius: context.largeRadius,
         border: isSelected
             ? Border.all(color: context.toColor(APPLICATION_COLOR.GOLD))
             : null,
@@ -34,13 +33,10 @@ class FacilitiesWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: context.midRadius,
-              child: SizedBox(
-                height: 72,
-                width: 72,
-                child: NormalNetworkImage(source: possibilityEntity.media.url),
-              ),
+            SizedBox(
+              height: 72,
+              width: 72,
+              child: NormalNetworkImage(source: possibilityEntity.media.url),
             ),
             Gap(context.midSpacerSize),
             Expanded(

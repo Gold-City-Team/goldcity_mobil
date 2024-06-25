@@ -31,7 +31,7 @@ class ColorSchemeLight extends IColorScheme {
   Color get backgroundColor => const Color.fromARGB(255, 201, 201, 201);
 
   @override
-  Color get goldColor => const Color.fromARGB(255, 175, 124, 3);
+  Color get goldColor => const Color.fromARGB(255, 176, 124, 4);
 
   @override
   Color get subTitleColor => const Color.fromARGB(255, 18, 18, 18);

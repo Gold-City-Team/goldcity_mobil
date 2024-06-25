@@ -265,19 +265,20 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Gap(context.largeSpacerSize),
+                                    const Spacer(),
                                     LabelText(
                                       text: value.templateTwo!.title,
-                                      maxLines: 2,
-                                      fontSize: FONT_SIZE.DISPLAY_LARGE,
-                                      textLineHeight: 1,
+                                      maxLines: 1,
+                                      fontSize: FONT_SIZE.DISPLAY_MEDIUM,
                                     ),
                                     Gap(context.largeSpacerSize),
                                     LabelText(
                                       text: value.templateTwo!.description,
                                       maxLines: 10,
+                                      textColor: APPLICATION_COLOR.SUBTITLE,
                                       fontSize: FONT_SIZE.TITLE_MEDIUM,
                                     ),
+                                    const Spacer(),
                                   ],
                                 ),
                               ),
@@ -348,16 +349,20 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    const Spacer(),
                                     LabelText(
                                       text: value.templateTwo!.title,
                                       maxLines: 1,
-                                      fontSize: FONT_SIZE.DISPLAY_LARGE,
+                                      fontSize: FONT_SIZE.DISPLAY_MEDIUM,
                                     ),
+                                    Gap(context.largeSpacerSize),
                                     LabelText(
                                       text: value.templateTwo!.description,
                                       maxLines: 10,
+                                      textColor: APPLICATION_COLOR.SUBTITLE,
                                       fontSize: FONT_SIZE.TITLE_MEDIUM,
                                     ),
+                                    const Spacer(),
                                   ],
                                 ),
                               )

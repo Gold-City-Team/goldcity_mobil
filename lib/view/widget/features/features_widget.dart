@@ -62,10 +62,7 @@ class FeaturesWidget extends StatelessWidget {
             ),
           )
         ],
-      ).animate().fade().slide(
-          begin: const Offset(0.5, 0),
-          end: const Offset(0, 0),
-          curve: Curves.easeIn),
+      ).animate().fade(duration: const Duration(milliseconds: 750)),
     );
   }
 }

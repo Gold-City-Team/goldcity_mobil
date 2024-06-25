@@ -88,10 +88,10 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
         }
         return Container(
           decoration: BoxDecoration(
-              color: context
-                  .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                  .withAlpha(150),
-              borderRadius: context.largeRadius),
+            color: context
+                .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                .withAlpha(150),
+          ),
           margin: context.midSpacerOnlyHorizontal,
           padding: context.midLargeSpacerOnlyVertical,
           height: 160,
@@ -138,13 +138,13 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
         }
         return Container(
           decoration: BoxDecoration(
-              color: context
-                  .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                  .withAlpha(150),
-              borderRadius: context.largeRadius),
+            color: context
+                .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                .withAlpha(150),
+          ),
           margin: context.midSpacer,
           padding: context.largeSpacerOnlyVertical,
-          width: context.sWidth / 4,
+          width: context.sWidth / 3,
           child: ListView.builder(
             itemCount: value.templateThree!.possibilities.length,
             itemBuilder: ((context, index) {

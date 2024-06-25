@@ -19,13 +19,13 @@ Future<void> main() async {
   di.init();
   await EasyLocalization.ensureInitialized();
   locator<SharedManager>();
-
   await Hive.initFlutter();
   locator<LocalManager>().init();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
   runApp(
     EasyLocalization(
       path: GeneralConstant.LANG_ASSET_PATH,

@@ -87,19 +87,32 @@ class ComplexDetailView extends StatelessWidget {
                     if (value.entity == null) {
                       return const SizedBox.shrink();
                     }
-                    return Observer(builder: (context) {
-                      return Row(
+                    return Padding(
+                      padding: value.entity!.complexDetail
+                                  .templates[value.templateIndex].type ==
+                              TEMPLATE.PROJECT_TEMPLATE_SEVEN
+                          ? context.xLargeSpacerOnlyBottom
+                          : EdgeInsets.zero,
+                      child: Row(
                         children: [
                           const Spacer(),
+                          // SizedBox(
+                          //   width: 100,
+                          //   height: 50,
+                          //   child: NormalNetworkImage(
+                          //     fit: BoxFit.contain,
+                          //     source: value.entity!.complexDetail.logo.url,
+                          //   ),
+                          // ),
+                          Gap(context.midSpacerSize),
                           GestureDetector(
                             onTap: () => value.navigation.pop(),
                             child: Container(
                               width: 50,
                               height: 50,
                               decoration: BoxDecoration(
-                                  color:
-                                      context.toColor(APPLICATION_COLOR.GOLD),
-                                  borderRadius: context.midRadius),
+                                color: context.toColor(APPLICATION_COLOR.GOLD),
+                              ),
                               child: const Icon(Icons.home),
                             ),
                           ),
@@ -110,57 +123,55 @@ class ComplexDetailView extends StatelessWidget {
                               width: 50,
                               height: 50,
                               decoration: BoxDecoration(
-                                  color:
-                                      context.toColor(APPLICATION_COLOR.GOLD),
-                                  borderRadius: context.midRadius),
+                                color: context.toColor(APPLICATION_COLOR.GOLD),
+                              ),
                               child: const Icon(Icons.menu),
                             ),
                           ),
-                          value.templateIndex != 0
-                              ? Gap(context.midSpacerSize)
-                              : const SizedBox.shrink(),
-                          value.templateIndex != 0
-                              ? GestureDetector(
-                                  onTap: () => value
-                                      .changeIndex(value.templateIndex - 1),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                        borderRadius: context.midRadius),
-                                    child:
-                                        const Icon(Icons.keyboard_arrow_left),
-                                  ),
-                                )
-                              : const SizedBox.shrink(),
-                          value.templateIndex !=
-                                  value.entity!.complexDetail.templates.length -
-                                      1
-                              ? Gap(context.midSpacerSize)
-                              : const SizedBox.shrink(),
-                          value.templateIndex !=
-                                  value.entity!.complexDetail.templates.length -
-                                      1
-                              ? GestureDetector(
-                                  onTap: () => value
-                                      .changeIndex(value.templateIndex + 1),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                        borderRadius: context.midRadius),
-                                    child:
-                                        const Icon(Icons.keyboard_arrow_right),
-                                  ),
-                                )
-                              : const SizedBox.shrink()
+                          Gap(context.midSpacerSize),
+                          GestureDetector(
+                            onTap: () => value.templateIndex != 0
+                                ? value.changeIndex(value.templateIndex - 1)
+                                : null,
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: context
+                                    .toColor(APPLICATION_COLOR.GOLD)
+                                    .withAlpha(
+                                        value.templateIndex != 0 ? 255 : 120),
+                              ),
+                              child: const Icon(Icons.keyboard_arrow_left),
+                            ),
+                          ),
+                          Gap(context.midSpacerSize),
+                          GestureDetector(
+                            onTap: () => value.templateIndex !=
+                                    value.entity!.complexDetail.templates
+                                            .length -
+                                        1
+                                ? value.changeIndex(value.templateIndex + 1)
+                                : null,
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: context
+                                    .toColor(APPLICATION_COLOR.GOLD)
+                                    .withAlpha(value.templateIndex !=
+                                            value.entity!.complexDetail
+                                                    .templates.length -
+                                                1
+                                        ? 255
+                                        : 120),
+                              ),
+                              child: const Icon(Icons.keyboard_arrow_right),
+                            ),
+                          )
                         ],
-                      );
-                    });
+                      ),
+                    );
                   },
                 ),
               ),

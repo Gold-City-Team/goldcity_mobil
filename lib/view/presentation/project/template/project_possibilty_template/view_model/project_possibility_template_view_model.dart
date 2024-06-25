@@ -79,7 +79,7 @@ abstract class _ProjectPossibilityTemplateViewModelBase
       (e) => e.animateCamera(
         CameraUpdate.newLatLng(
           LatLng(templateThree!.possibilities[newIndex].location.latitude,
-              templateThree!.possibilities[newIndex].location.longitude),
+              templateThree!.possibilities[newIndex].location.longitude - 0.01),
         ),
       ),
     );

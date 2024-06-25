@@ -23,7 +23,6 @@ class PhoneTemplateRowWidget extends StatelessWidget {
       margin: context.midSpacerOnlyHorizontal,
       decoration: BoxDecoration(
         color: context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-        borderRadius: context.midRadius,
       ),
       child: Column(
         children: [
@@ -35,6 +34,8 @@ class PhoneTemplateRowWidget extends StatelessWidget {
               Gap(context.largeSpacerSize),
               Expanded(
                   child: LabelText(
+                      textColor: APPLICATION_COLOR.TITLE,
+                      fontSize: FONT_SIZE.TITLE_LARGE,
                       text: gallery.first.category.translation.title)),
               const Spacer(),
               CircleAvatar(
@@ -74,6 +75,7 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: LabelText(
+                                    textColor: APPLICATION_COLOR.SUBTITLE,
                                     text: gallery[index].media.oldFileName),
                               ),
                               GestureDetector(

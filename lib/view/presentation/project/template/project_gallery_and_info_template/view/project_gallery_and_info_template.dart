@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -56,6 +58,18 @@ class ProjectGalleryAndInfoTemplate extends StatelessWidget {
             ),
           );
         }),
+        ClipRRect(
+          borderRadius: context.midRadius,
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            child: Container(
+              width: context.sWidth,
+              height: context.sHeight,
+              color: context.toColor(APPLICATION_COLOR.DARK).withOpacity(.4),
+              alignment: Alignment.center,
+            ),
+          ),
+        ),
         Row(
           children: [
             Container(
@@ -98,7 +112,7 @@ class ProjectGalleryAndInfoTemplate extends StatelessWidget {
                   width: context.sWidth / 2.1,
                   child: LabelText(
                     text: viewModel.templateTwo!.title,
-                    fontSize: FONT_SIZE.DISPLAY_LARGE,
+                    fontSize: FONT_SIZE.DISPLAY_MEDIUM,
                   )
                       .animate()
                       .fade(duration: const Duration(milliseconds: 1100))
