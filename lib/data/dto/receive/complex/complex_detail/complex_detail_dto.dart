@@ -9,12 +9,18 @@ part 'complex_detail_dto.g.dart';
 class ComplexDetailDto {
   int? id;
   String? title;
-  MediaDto? mainImage;
+  String? slogan;
+  MediaDto? mainVideo;
   MediaDto? logo;
   List<MainTemplateDto>? templates;
 
   ComplexDetailDto(
-      {this.id, this.title, this.mainImage, this.logo, this.templates});
+      {this.id,
+      this.title,
+      this.mainVideo,
+      this.logo,
+      this.templates,
+      this.slogan});
   factory ComplexDetailDto.fromJson(Map<String, dynamic> json) =>
       _$ComplexDetailDtoFromJson(json);
 
@@ -23,8 +29,9 @@ class ComplexDetailDto {
   ComplexDetailEntity toEntity() => ComplexDetailEntity(
       id: id ?? 0,
       title: title ?? "",
+      slogan: slogan ?? "",
       mainImage:
-          mainImage != null ? mainImage!.toEntity() : MediaDto().toEntity(),
+          mainVideo != null ? mainVideo!.toEntity() : MediaDto().toEntity(),
       logo: logo != null ? logo!.toEntity() : MediaDto().toEntity(),
       templates: templates != null
           ? templates!.map((e) => e.toEntity()).toList()

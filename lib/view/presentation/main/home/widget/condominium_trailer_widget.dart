@@ -30,10 +30,11 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(
-        Uri.parse(widget.complexEntity.complexDetail.mainImage.url));
+    _controller = VideoPlayerController.asset("assets/video/trailer.mp4");
     _controller.setLooping(true);
-    _controller.initialize().then((value) => {setState(() {})});
+    _controller.initialize().then((value) => {
+          if (mounted) {setState(() {})}
+        });
     _controller.play();
     _controller.setVolume(0);
   }

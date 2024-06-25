@@ -73,14 +73,10 @@ class PlanTemplateView extends StatelessWidget {
                       margin: context.midSpacerOnlyHorizontal,
                       width: (context.sWidth / 3) - 20,
                       height: ((context.sWidth / 3) - 20) / 1.7777,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Container(
-                          color: context.toColor(APPLICATION_COLOR.DARK),
-                          child: NormalNetworkImage(
-                              fit: BoxFit.cover,
-                              source: value.photoList[index]),
-                        ),
+                      child: Container(
+                        color: context.toColor(APPLICATION_COLOR.DARK),
+                        child: NormalNetworkImage(
+                            fit: BoxFit.cover, source: value.photoList[index]),
                       ).animate().fade(),
                     ),
                   );
@@ -181,14 +177,10 @@ class PlanTemplateView extends StatelessWidget {
                       margin: context.midSpacerOnlyHorizontal,
                       width: (context.sWidth / 1.10) - 20,
                       height: ((context.sWidth / 1.10) - 20) / 1.7777,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Container(
-                          color: context.toColor(APPLICATION_COLOR.DARK),
-                          child: NormalNetworkImage(
-                              fit: BoxFit.cover,
-                              source: value.photoList[index]),
-                        ),
+                      child: Container(
+                        color: context.toColor(APPLICATION_COLOR.DARK),
+                        child: NormalNetworkImage(
+                            fit: BoxFit.cover, source: value.photoList[index]),
                       ).animate().fade(),
                     ),
                   );

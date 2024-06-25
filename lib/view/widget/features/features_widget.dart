@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,12 +26,17 @@ class FeaturesWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: isTablet() ? 35 : 25,
-            width: isTablet() ? 35 : 25,
-            child: SvgPicture.network(
-              featuresEntity.media.url,
-              color: context.toColor(APPLICATION_COLOR.GOLD),
-            ),
+            height: isTablet() ? 30 : 25,
+            width: isTablet() ? 30 : 25,
+            child: kIsWeb
+                ? Image.network(
+                    featuresEntity.media.url,
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                  )
+                : SvgPicture.network(
+                    featuresEntity.media.url,
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                  ),
           ),
           Gap(context.midSpacerSize),
           Flexible(
@@ -42,7 +48,7 @@ class FeaturesWidget extends StatelessWidget {
                   text: featuresEntity.value,
                   textColor: APPLICATION_COLOR.TITLE,
                   fontSize: isTablet()
-                      ? FONT_SIZE.HEADLINE_LARGE
+                      ? FONT_SIZE.HEADLINE_SMALL
                       : FONT_SIZE.BODY_LARGE,
                 ),
                 Gap(context.midSpacerSize),

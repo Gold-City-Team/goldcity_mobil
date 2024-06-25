@@ -6,6 +6,7 @@ import 'package:goldcity/domain/entity/template/main_template_entity.dart';
 class ComplexDetailEntity {
   final int id;
   final String title;
+  final String slogan;
   final MediaEntity mainImage;
   final MediaEntity logo;
   final List<MainTemplateEntity> templates;
@@ -13,6 +14,7 @@ class ComplexDetailEntity {
   const ComplexDetailEntity({
     required this.id,
     required this.title,
+    required this.slogan,
     required this.mainImage,
     required this.logo,
     required this.templates,

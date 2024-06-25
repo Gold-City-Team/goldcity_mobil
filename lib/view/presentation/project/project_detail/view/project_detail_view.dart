@@ -205,9 +205,9 @@ class ProjectDetailView extends StatelessWidget {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
-                                      borderRadius: context.midRadius),
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.DARK),
+                                  ),
                                   child: const Icon(Icons.home),
                                 ),
                               ),
@@ -218,9 +218,9 @@ class ProjectDetailView extends StatelessWidget {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
-                                      borderRadius: context.midRadius),
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.DARK),
+                                  ),
                                   child: const Icon(Icons.menu),
                                 ),
                               ),
@@ -233,12 +233,12 @@ class ProjectDetailView extends StatelessWidget {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD)
-                                          .withAlpha(value.templateIndex != 0
-                                              ? 255
-                                              : 120),
-                                      borderRadius: context.midRadius),
+                                    color: context
+                                        .toColor(APPLICATION_COLOR.DARK)
+                                        .withAlpha(value.templateIndex != 0
+                                            ? 255
+                                            : 120),
+                                  ),
                                   child: const Icon(Icons.keyboard_arrow_left),
                                 ),
                               ),
@@ -252,15 +252,15 @@ class ProjectDetailView extends StatelessWidget {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD)
-                                          .withAlpha(value.templateIndex !=
-                                                  value.entity!.detail.template
-                                                          .length -
-                                                      1
-                                              ? 255
-                                              : 120),
-                                      borderRadius: context.midRadius),
+                                    color: context
+                                        .toColor(APPLICATION_COLOR.DARK)
+                                        .withAlpha(value.templateIndex !=
+                                                value.entity!.detail.template
+                                                        .length -
+                                                    1
+                                            ? 255
+                                            : 120),
+                                  ),
                                   child: const Icon(Icons.keyboard_arrow_right),
                                 ),
                               )

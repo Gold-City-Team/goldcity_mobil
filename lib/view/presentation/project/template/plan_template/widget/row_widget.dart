@@ -21,7 +21,6 @@ class RowWidget extends StatelessWidget {
       padding: context.largeSpacer,
       decoration: BoxDecoration(
         color: context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-        borderRadius: context.midRadius,
       ),
       child: Column(
         children: [
