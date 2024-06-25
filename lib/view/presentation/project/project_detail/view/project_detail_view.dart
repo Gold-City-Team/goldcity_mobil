@@ -189,22 +189,6 @@ class ProjectDetailView extends StatelessWidget {
                               : EdgeInsets.zero,
                           child: Row(
                             children: [
-                              value.templateIndex != 0
-                                  ? GestureDetector(
-                                      onTap: () => value
-                                          .changeIndex(value.templateIndex - 1),
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                            color: context.toColor(
-                                                APPLICATION_COLOR.GOLD),
-                                            borderRadius: context.midRadius),
-                                        child: const Icon(
-                                            Icons.keyboard_arrow_left),
-                                      ),
-                                    )
-                                  : const SizedBox.shrink(),
                               const Spacer(),
                               SizedBox(
                                 width: 100,
@@ -240,27 +224,43 @@ class ProjectDetailView extends StatelessWidget {
                                   child: const Icon(Icons.menu),
                                 ),
                               ),
-                              value.templateIndex !=
-                                      value.entity!.detail.template.length - 1
-                                  ? Gap(context.midSpacerSize)
-                                  : const SizedBox.shrink(),
-                              value.templateIndex !=
-                                      value.entity!.detail.template.length - 1
-                                  ? GestureDetector(
-                                      onTap: () => value
-                                          .changeIndex(value.templateIndex + 1),
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                            color: context.toColor(
-                                                APPLICATION_COLOR.GOLD),
-                                            borderRadius: context.midRadius),
-                                        child: const Icon(
-                                            Icons.keyboard_arrow_right),
-                                      ),
-                                    )
-                                  : const SizedBox.shrink()
+                              Gap(context.midSpacerSize),
+                              GestureDetector(
+                                onTap: () =>
+                                    value.changeIndex(value.templateIndex - 1),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD)
+                                          .withAlpha(value.templateIndex != 0
+                                              ? 255
+                                              : 120),
+                                      borderRadius: context.midRadius),
+                                  child: const Icon(Icons.keyboard_arrow_left),
+                                ),
+                              ),
+                              Gap(context.midSpacerSize),
+                              GestureDetector(
+                                onTap: () =>
+                                    value.changeIndex(value.templateIndex + 1),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD)
+                                          .withAlpha(value.templateIndex !=
+                                                  value.entity!.detail.template
+                                                          .length -
+                                                      1
+                                              ? 255
+                                              : 120),
+                                      borderRadius: context.midRadius),
+                                  child: const Icon(Icons.keyboard_arrow_right),
+                                ),
+                              )
                             ],
                           ),
                         );

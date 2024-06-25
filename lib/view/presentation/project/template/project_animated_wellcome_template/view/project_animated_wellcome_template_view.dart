@@ -5,7 +5,6 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
-import 'package:goldcity/view/widget/text/label_text.dart';
 
 class ProjectAnimatedWelcomeTemplateView extends StatelessWidget {
   final String url;
@@ -48,7 +47,10 @@ class ProjectAnimatedWelcomeTemplateView extends StatelessWidget {
                       context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                       context
                           .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(100),
+                          .withAlpha(170),
+                      context
+                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .withAlpha(120),
                       context
                           .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
                           .withAlpha(0),
