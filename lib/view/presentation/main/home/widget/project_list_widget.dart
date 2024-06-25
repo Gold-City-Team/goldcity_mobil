@@ -45,7 +45,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                     .animate()
                     .fade(duration: Duration(milliseconds: 600 * index))
                     .slideX(
-                        begin: 2                                                 ,
+                        begin: 2,
                         end: 0,
                         duration: Duration(milliseconds: 600 * index),
                         curve: Curves.ease),
