@@ -44,6 +44,13 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
 
   @override
   void setContext(BuildContext context) => viewModelContext = context;
+  List<String> photoList = [
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/be27b610-1f4e-4a82-8be0-d35659e3e0a0.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/f71f46fb-7f04-42c7-a866-26ec7f632954.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/d781001a-0f9a-40a7-bc13-7b6e318bc184.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/dcfcffde-acb7-4bb3-8324-7101e0cbd96e.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/5926f47e-cf46-47ab-b2b1-d2fbc450be1e.webp",
+  ];
 
   ProjectTemplateSixEntity template = ProjectTemplateSixDto.fromJson({
     "id": 0,

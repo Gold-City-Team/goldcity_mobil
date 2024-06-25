@@ -45,7 +45,7 @@ class PlanTemplateView extends StatelessWidget {
             SizedBox(
               height: ((context.sWidth / 3) - 20) / 1.7777,
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: value.photoList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: ((context, index) {
                   return GestureDetector(
@@ -55,23 +55,17 @@ class PlanTemplateView extends StatelessWidget {
                           id: 1,
                           mediaItem: MediaDto(
                               id: 1,
-                              mediaType: MEDIA_TYPE.VIDEO,
-                              metaData: MediaMetaDataDto(
-                                  ThumbnailUrl:
-                                      "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                              mediaType: MEDIA_TYPE.IMAGE,
                               url:
-                                  "https://videos.pexels.com/video-files/4678261/4678261-hd_1080_1920_25fps.mp4"),
+                                  "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/be27b610-1f4e-4a82-8be0-d35659e3e0a0.webp"),
                         ).toEntity(),
                         GalleryMediaDto(
                           id: 2,
                           mediaItem: MediaDto(
                               id: 2,
-                              mediaType: MEDIA_TYPE.VIDEO,
-                              metaData: MediaMetaDataDto(
-                                  ThumbnailUrl:
-                                      "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                              mediaType: MEDIA_TYPE.IMAGE,
                               url:
-                                  "https://videos.pexels.com/video-files/4434242/4434242-hd_1080_1920_24fps.mp4"),
+                                  "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/f71f46fb-7f04-42c7-a866-26ec7f632954.webp"),
                         ).toEntity(),
                       ],
                     ),
@@ -83,10 +77,9 @@ class PlanTemplateView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                         child: Container(
                           color: context.toColor(APPLICATION_COLOR.DARK),
-                          child: const NormalNetworkImage(
+                          child: NormalNetworkImage(
                               fit: BoxFit.cover,
-                              source:
-                                  "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                              source: value.photoList[index]),
                         ),
                       ).animate().fade(),
                     ),
@@ -171,23 +164,17 @@ class PlanTemplateView extends StatelessWidget {
                         id: 1,
                         mediaItem: MediaDto(
                             id: 1,
-                            mediaType: MEDIA_TYPE.VIDEO,
-                            metaData: MediaMetaDataDto(
-                                ThumbnailUrl:
-                                    "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                            mediaType: MEDIA_TYPE.IMAGE,
                             url:
-                                "https://videos.pexels.com/video-files/4678261/4678261-hd_1080_1920_25fps.mp4"),
+                                "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/be27b610-1f4e-4a82-8be0-d35659e3e0a0.webp"),
                       ).toEntity(),
                       GalleryMediaDto(
                         id: 2,
                         mediaItem: MediaDto(
                             id: 2,
-                            mediaType: MEDIA_TYPE.VIDEO,
-                            metaData: MediaMetaDataDto(
-                                ThumbnailUrl:
-                                    "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                            mediaType: MEDIA_TYPE.IMAGE,
                             url:
-                                "https://videos.pexels.com/video-files/4434242/4434242-hd_1080_1920_24fps.mp4"),
+                                "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/f71f46fb-7f04-42c7-a866-26ec7f632954.webp"),
                       ).toEntity(),
                     ]),
                     child: Container(
@@ -198,10 +185,9 @@ class PlanTemplateView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8.0),
                         child: Container(
                           color: context.toColor(APPLICATION_COLOR.DARK),
-                          child: const NormalNetworkImage(
+                          child: NormalNetworkImage(
                               fit: BoxFit.cover,
-                              source:
-                                  "https://wallpapers.com/images/hd/4k-architecture-yellow-glass-building-6d7nbmyltxlyxxv8.jpg"),
+                              source: value.photoList[index]),
                         ),
                       ).animate().fade(),
                     ),
