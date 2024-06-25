@@ -253,44 +253,47 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: context.largeSpacerOnlyLeft,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: context.sWidth / 2.5,
-                              height: (context.sHeight / 100) * 85,
-                              child: Center(
-                                child: LabelText(
-                                  text: value.templateTwo!.description,
-                                  maxLines: 10,
-                                  fontSize: FONT_SIZE.TITLE_MEDIUM,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              Container(
+                                padding: context.largeSpacer,
+                                width: context.sWidth / 2.5,
+                                height: (context.sHeight / 100) * 85,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Gap(context.largeSpacerSize),
+                                    LabelText(
+                                      text: value.templateTwo!.title,
+                                      maxLines: 2,
+                                      fontSize: FONT_SIZE.DISPLAY_LARGE,
+                                      textLineHeight: 1,
+                                    ),
+                                    Gap(context.largeSpacerSize),
+                                    LabelText(
+                                      text: value.templateTwo!.description,
+                                      maxLines: 10,
+                                      fontSize: FONT_SIZE.TITLE_MEDIUM,
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                            Gap(context.xlargeSpacerSize),
-                            ClipRRect(
-                              borderRadius: context.midRadius,
-                              child: SizedBox(
-                                width: (context.sWidth / 2.1),
-                                height: (context.sWidth / 2.1) / 1.7777,
-                                child: NormalNetworkImage(
-                                    source: value.templateTwo!.mediaItem.url),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SafeArea(
-                        child: Padding(
-                          padding: context.largeSpacer,
-                          child: LabelText(
-                            text: value.templateTwo!.title,
-                            maxLines: 1,
-                            fontSize: FONT_SIZE.DISPLAY_LARGE,
+                            ],
                           ),
-                        ),
+                          Gap(context.xlargeSpacerSize),
+                          ClipRRect(
+                            borderRadius: context.midRadius,
+                            child: SizedBox(
+                              width: (context.sWidth / 2.1),
+                              height: (context.sWidth / 2.1) / 1.7777,
+                              child: NormalNetworkImage(
+                                  source: value.templateTwo!.mediaItem.url),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   )
@@ -338,31 +341,27 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                                 ),
                               ),
                               Gap(context.xlargeSpacerSize),
-                              SizedBox(
+                              Container(
+                                padding: context.largeSpacer,
                                 width: context.sWidth / 2.5,
                                 height: (context.sHeight / 100) * 85,
-                                child: Center(
-                                  child: LabelText(
-                                    text: value.templateTwo!.description,
-                                    maxLines: 10,
-                                    fontSize: FONT_SIZE.TITLE_MEDIUM,
-                                  ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    LabelText(
+                                      text: value.templateTwo!.title,
+                                      maxLines: 1,
+                                      fontSize: FONT_SIZE.DISPLAY_LARGE,
+                                    ),
+                                    LabelText(
+                                      text: value.templateTwo!.description,
+                                      maxLines: 10,
+                                      fontSize: FONT_SIZE.TITLE_MEDIUM,
+                                    ),
+                                  ],
                                 ),
-                              ),
+                              )
                             ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: context.sWidth / 3.5,
-                        child: SafeArea(
-                          child: Padding(
-                            padding: context.largeSpacer,
-                            child: LabelText(
-                              text: value.templateTwo!.title,
-                              maxLines: 1,
-                              fontSize: FONT_SIZE.DISPLAY_LARGE,
-                            ),
                           ),
                         ),
                       ),

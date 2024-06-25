@@ -226,8 +226,9 @@ class ProjectDetailView extends StatelessWidget {
                               ),
                               Gap(context.midSpacerSize),
                               GestureDetector(
-                                onTap: () =>
-                                    value.changeIndex(value.templateIndex - 1),
+                                onTap: () => value.templateIndex != 0
+                                    ? value.changeIndex(value.templateIndex - 1)
+                                    : null,
                                 child: Container(
                                   width: 50,
                                   height: 50,
@@ -243,8 +244,10 @@ class ProjectDetailView extends StatelessWidget {
                               ),
                               Gap(context.midSpacerSize),
                               GestureDetector(
-                                onTap: () =>
-                                    value.changeIndex(value.templateIndex + 1),
+                                onTap: () => value.templateIndex !=
+                                        value.entity!.detail.template.length - 1
+                                    ? value.changeIndex(value.templateIndex + 1)
+                                    : null,
                                 child: Container(
                                   width: 50,
                                   height: 50,
