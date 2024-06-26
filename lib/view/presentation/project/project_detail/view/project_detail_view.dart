@@ -19,6 +19,7 @@ import 'package:goldcity/view/presentation/project/template/shareable_material/v
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProjectDetailView extends StatelessWidget {
   final int projectId;
@@ -138,8 +139,11 @@ class ProjectDetailView extends StatelessWidget {
                     return const SizedBox.shrink();
                   }
                   return value.entity!.detail.template[value.templateIndex]
-                              .type ==
-                          TEMPLATE.PROJECT_TEMPLATE_SEVEN
+                                  .type ==
+                              TEMPLATE.PROJECT_TEMPLATE_SEVEN ||
+                          value.entity!.detail.template[value.templateIndex]
+                                  .type ==
+                              TEMPLATE.PROJECT_TEMPLATE_THREE
                       ? const SizedBox.shrink()
                       : Positioned(
                           bottom: 0,
@@ -199,69 +203,82 @@ class ProjectDetailView extends StatelessWidget {
                                 ),
                               ),
                               Gap(context.midSpacerSize),
-                              GestureDetector(
-                                onTap: () => value.navigation.pop(),
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.DARK),
+                              WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () => value.navigation.pop(),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                    ),
+                                    child: const Icon(Icons.home),
                                   ),
-                                  child: const Icon(Icons.home),
                                 ),
                               ),
                               Gap(context.midSpacerSize),
-                              GestureDetector(
-                                onTap: () => value.togglePageSelector(),
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.DARK),
+                              WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () => value.togglePageSelector(),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                    ),
+                                    child: const Icon(Icons.menu),
                                   ),
-                                  child: const Icon(Icons.menu),
                                 ),
                               ),
                               Gap(context.midSpacerSize),
-                              GestureDetector(
-                                onTap: () => value.templateIndex != 0
-                                    ? value.changeIndex(value.templateIndex - 1)
-                                    : null,
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: context
-                                        .toColor(APPLICATION_COLOR.DARK)
-                                        .withAlpha(value.templateIndex != 0
-                                            ? 255
-                                            : 120),
+                              WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () => value.templateIndex != 0
+                                      ? value
+                                          .changeIndex(value.templateIndex - 1)
+                                      : null,
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD)
+                                          .withAlpha(value.templateIndex != 0
+                                              ? 255
+                                              : 120),
+                                    ),
+                                    child:
+                                        const Icon(Icons.keyboard_arrow_left),
                                   ),
-                                  child: const Icon(Icons.keyboard_arrow_left),
                                 ),
                               ),
                               Gap(context.midSpacerSize),
-                              GestureDetector(
-                                onTap: () => value.templateIndex !=
-                                        value.entity!.detail.template.length - 1
-                                    ? value.changeIndex(value.templateIndex + 1)
-                                    : null,
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: context
-                                        .toColor(APPLICATION_COLOR.DARK)
-                                        .withAlpha(value.templateIndex !=
-                                                value.entity!.detail.template
-                                                        .length -
-                                                    1
-                                            ? 255
-                                            : 120),
+                              WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () => value.templateIndex !=
+                                          value.entity!.detail.template.length -
+                                              1
+                                      ? value
+                                          .changeIndex(value.templateIndex + 1)
+                                      : null,
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD)
+                                          .withAlpha(value.templateIndex !=
+                                                  value.entity!.detail.template
+                                                          .length -
+                                                      1
+                                              ? 255
+                                              : 120),
+                                    ),
+                                    child:
+                                        const Icon(Icons.keyboard_arrow_right),
                                   ),
-                                  child: const Icon(Icons.keyboard_arrow_right),
                                 ),
                               )
                             ],

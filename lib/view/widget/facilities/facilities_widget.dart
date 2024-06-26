@@ -22,7 +22,8 @@ class FacilitiesWidget extends StatelessWidget {
       width: 300,
       decoration: BoxDecoration(
         border: isSelected
-            ? Border.all(color: context.toColor(APPLICATION_COLOR.GOLD))
+            ? Border.all(
+                color: context.toColor(APPLICATION_COLOR.GOLD), width: 1)
             : null,
         color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
       ),

@@ -225,13 +225,13 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                                   )
                                       .animate()
                                       .fade(
-                                          duration:
-                                              Duration(milliseconds: 1500))
+                                          duration: const Duration(
+                                              milliseconds: 1500))
                                       .slideX(
                                           begin: 1,
                                           end: 0,
-                                          duration:
-                                              Duration(milliseconds: 500)),
+                                          duration: const Duration(
+                                              milliseconds: 500)),
                                   value.templateEntity!.gallery[index].media
                                               .mediaType ==
                                           MEDIA_TYPE.VIDEO

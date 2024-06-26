@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view_model/virtual_tour_template_view_model.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class VirtualTourTemplateView extends StatefulWidget {
   final int projectDetailId;
@@ -18,12 +19,11 @@ class VirtualTourTemplateView extends StatefulWidget {
 }
 
 class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
-  late WebViewController controller;
+  late WebViewXController webviewController;
+
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted);
   }
 
   @override
@@ -44,8 +44,16 @@ class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
             return const SizedBox.shrink();
           }
 
-          controller.loadRequest(Uri.parse(value.template!.url));
-          return SafeArea(child: WebViewWidget(controller: controller));
+          return SafeArea(
+              child: WebViewX(
+            width: context.sWidth,
+            height: context.sHeight,
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (controller) {
+              webviewController = controller;
+              webviewController.loadContent(value.template!.url);
+            },
+          ));
         }),
       ),
     );

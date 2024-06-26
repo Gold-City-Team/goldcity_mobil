@@ -78,8 +78,10 @@ abstract class _ProjectPossibilityTemplateViewModelBase
     controller.future.then(
       (e) => e.animateCamera(
         CameraUpdate.newLatLng(
-          LatLng(templateThree!.possibilities[newIndex].location.latitude,
-              templateThree!.possibilities[newIndex].location.longitude - 0.01),
+          LatLng(
+              templateThree!.possibilities[newIndex].location.latitude,
+              templateThree!.possibilities[newIndex].location.longitude -
+                  0.001),
         ),
       ),
     );
