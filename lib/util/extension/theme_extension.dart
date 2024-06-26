@@ -9,6 +9,8 @@ extension applicationColorToThemeColor on BuildContext {
   Color toColor(APPLICATION_COLOR color) {
     return switch (color) {
       APPLICATION_COLOR.TITLE => watch<ThemeNotifier>().colorScheme.titleColor,
+      APPLICATION_COLOR.OVERLAY_COLOR =>
+        watch<ThemeNotifier>().colorScheme.overlayColor,
       APPLICATION_COLOR.SUBTITLE =>
         watch<ThemeNotifier>().colorScheme.subTitleColor,
       APPLICATION_COLOR.GOLD => watch<ThemeNotifier>().colorScheme.goldColor,

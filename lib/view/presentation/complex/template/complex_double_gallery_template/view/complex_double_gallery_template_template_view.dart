@@ -122,7 +122,7 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
               child: Container(
                 color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                 child: ListView.builder(
-                    itemCount: value.templateEntity!.gallery.length,
+                    itemCount: value.templateEntity!.galleries.length,
                     padding: context.largeSpacerOnlyHorizontal,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
@@ -131,10 +131,11 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                         child: Container(
                             width: 125 * 1.7777,
                             height: 125,
-                            margin: value.templateEntity!.gallery.length - 1 !=
-                                    index
-                                ? context.largeSpacerOnlyRight
-                                : EdgeInsets.zero,
+                            margin:
+                                value.templateEntity!.galleries.length - 1 !=
+                                        index
+                                    ? context.largeSpacerOnlyRight
+                                    : EdgeInsets.zero,
                             child:
                                 Stack(alignment: Alignment.center, children: [
                               SizedBox(
@@ -142,15 +143,18 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                                 height: 125,
                                 child: NormalNetworkImage(
                                     fit: BoxFit.cover,
-                                    source: value.templateEntity!.gallery[index]
-                                                .media.mediaType ==
+                                    source: value
+                                                .templateEntity!
+                                                .galleries[index]
+                                                .media
+                                                .mediaType ==
                                             MEDIA_TYPE.VIDEO
-                                        ? value.templateEntity!.gallery[index]
+                                        ? value.templateEntity!.galleries[index]
                                             .media.mediaMetaData.thumbnail
-                                        : value.templateEntity!.gallery[index]
+                                        : value.templateEntity!.galleries[index]
                                             .media.url),
                               ),
-                              value.templateEntity!.gallery[index].media
+                              value.templateEntity!.galleries[index].media
                                           .mediaType ==
                                       MEDIA_TYPE.VIDEO
                                   ? Container(
@@ -188,11 +192,11 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                   spacing: 10,
                   runAlignment: WrapAlignment.center,
                   runSpacing: 10,
-                  children: value.templateEntity!.gallery
+                  children: value.templateEntity!.verticalGalleries
                       .map(
                         (e) => GestureDetector(
                           onTap: () => value.navigateGallery(
-                              value.templateEntity!.gallery
+                              value.templateEntity!.verticalGalleries
                                   .indexWhere((element) => element == e),
                               true),
                           child: Stack(
@@ -319,17 +323,17 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                                   .toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                               child: ListView.builder(
                                   itemCount:
-                                      value.templateEntity!.gallery.length,
+                                      value.templateEntity!.galleries.length,
                                   padding: context.largeSpacerOnlyHorizontal,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                       onTap: () =>
-                                          value.navigateGallery(index, true),
+                                          value.navigateGallery(index, false),
                                       child: Container(
                                         width: 150 * 1.7777,
                                         height: 150,
-                                        margin: value.templateEntity!.gallery
+                                        margin: value.templateEntity!.galleries
                                                         .length -
                                                     1 !=
                                                 index
@@ -345,24 +349,27 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                                                   fit: BoxFit.cover,
                                                   source: value
                                                               .templateEntity!
-                                                              .gallery[index]
+                                                              .galleries[index]
                                                               .media
                                                               .mediaType ==
                                                           MEDIA_TYPE.VIDEO
                                                       ? value
                                                           .templateEntity!
-                                                          .gallery[index]
+                                                          .galleries[index]
                                                           .media
                                                           .mediaMetaData
                                                           .thumbnail
                                                       : value
                                                           .templateEntity!
-                                                          .gallery[index]
+                                                          .galleries[index]
                                                           .media
                                                           .url),
                                             ),
-                                            value.templateEntity!.gallery[index]
-                                                        .media.mediaType ==
+                                            value
+                                                        .templateEntity!
+                                                        .galleries[index]
+                                                        .media
+                                                        .mediaType ==
                                                     MEDIA_TYPE.VIDEO
                                                 ? Container(
                                                     width: 40,
@@ -417,9 +424,9 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                 ],
               )),
           Padding(
-            padding: context.xlargeSpacerOnlyLeft,
+            padding: context.largeSpacerOnlyLeft,
             child: const LabelText(
-                text: "Galeri", fontSize: FONT_SIZE.DISPLAY_LARGE),
+                text: "Deneyimler", fontSize: FONT_SIZE.DISPLAY_LARGE),
           ),
           Gap(context.midSpacerSize),
           Padding(
@@ -433,16 +440,17 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                   height: ((context.sWidth / 4.5) * 1.7777) - 20,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: value.templateEntity!.gallery.length,
+                      itemCount: value.templateEntity!.verticalGalleries.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: context.midSpacerOnlyRight,
                           child: GestureDetector(
                             onTap: () => value.navigateGallery(
-                                value.templateEntity!.gallery.indexWhere(
-                                    (element) =>
+                                value.templateEntity!.verticalGalleries
+                                    .indexWhere((element) =>
                                         element ==
-                                        value.templateEntity!.gallery[index]),
+                                        value.templateEntity!
+                                            .verticalGalleries[index]),
                                 true),
                             child: Stack(
                               alignment: Alignment.center,
@@ -458,19 +466,26 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                                       fit: BoxFit.cover,
                                       source: value
                                                   .templateEntity!
-                                                  .gallery[index]
+                                                  .verticalGalleries[index]
                                                   .media
                                                   .mediaType ==
                                               MEDIA_TYPE.IMAGE
-                                          ? value.templateEntity!.gallery[index]
-                                              .media.url
-                                          : value.templateEntity!.gallery[index]
-                                              .media.mediaMetaData.thumbnail,
+                                          ? value
+                                              .templateEntity!
+                                              .verticalGalleries[index]
+                                              .media
+                                              .url
+                                          : value
+                                              .templateEntity!
+                                              .verticalGalleries[index]
+                                              .media
+                                              .mediaMetaData
+                                              .thumbnail,
                                     ),
                                   ).animate().fade(),
                                 ),
-                                value.templateEntity!.gallery[index].media
-                                            .mediaType ==
+                                value.templateEntity!.verticalGalleries[index]
+                                            .media.mediaType ==
                                         MEDIA_TYPE.VIDEO
                                     ? Container(
                                         width: 40,

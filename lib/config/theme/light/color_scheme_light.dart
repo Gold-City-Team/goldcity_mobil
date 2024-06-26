@@ -51,4 +51,6 @@ class ColorSchemeLight extends IColorScheme {
   Color get red => const Color.fromARGB(255, 113, 37, 22);
   @override
   Color get blue => const Color.fromARGB(255, 127, 163, 159);
+  @override
+  Color get overlayColor => Color.fromARGB(255, 154, 165, 172);
 }

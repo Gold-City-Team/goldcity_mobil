@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -31,7 +32,12 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                SizedBox(
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color:
+                              context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                          width: 2)),
                   width: context.sWidth /
                       (widget.projectList.length > 5
                           ? 5
@@ -56,8 +62,10 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                           : (widget.projectList.length).toDouble()),
                   height: context.sHeight,
                   color: context
-                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                      .withAlpha(200),
+                      .toColor(
+                        APPLICATION_COLOR.OVERLAY_COLOR,
+                      )
+                      .withAlpha(180),
                 ),
                 Center(
                   child: SizedBox(

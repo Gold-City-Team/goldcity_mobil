@@ -15,13 +15,13 @@ mixin _$ComplexDoubleGalleryTemplateViewModel
       context: context);
 
   @override
-  ComplexTemplateTwoEntity? get templateEntity {
+  ComplexTemplateSevenEntity? get templateEntity {
     _$templateEntityAtom.reportRead();
     return super.templateEntity;
   }
 
   @override
-  set templateEntity(ComplexTemplateTwoEntity? value) {
+  set templateEntity(ComplexTemplateSevenEntity? value) {
     _$templateEntityAtom.reportWrite(value, super.templateEntity, () {
       super.templateEntity = value;
     });

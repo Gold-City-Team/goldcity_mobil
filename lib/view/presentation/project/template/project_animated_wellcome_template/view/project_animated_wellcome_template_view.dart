@@ -44,15 +44,17 @@ class ProjectAnimatedWelcomeTemplateView extends StatelessWidget {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: [
-                      context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      context.toColor(
+                        APPLICATION_COLOR.OVERLAY_COLOR,
+                      ),
                       context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .toColor(APPLICATION_COLOR.OVERLAY_COLOR)
                           .withAlpha(170),
                       context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .toColor(APPLICATION_COLOR.OVERLAY_COLOR)
                           .withAlpha(120),
                       context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .toColor(APPLICATION_COLOR.OVERLAY_COLOR)
                           .withAlpha(0),
                     ],
                   ),

@@ -35,43 +35,42 @@ class ComplexDetailView extends StatelessWidget {
               }
               return switch (value
                   .entity!.complexDetail.templates[value.templateIndex].type) {
-                TEMPLATE.COMPLEX_TEMPLATE_ONE =>
-                  ComplexDoubleGalleryTemplateView(
-                    key: Key("${value.entity!.complexDetail.id}"),
-                    detailId: 1,
-                    settingsId: 2,
+                TEMPLATE.COMPLEX_TEMPLATE_ONE => ComplexFeatureTemplateView(
+                    key: Key("${value.templateIndex}"),
+                    complexDetailId: value.entity!.complexDetail.id,
+                    complexSettingsId: value.entity!.complexDetail
+                        .templates[value.templateIndex].id,
                   ),
-                // TEMPLATE.COMPLEX_TEMPLATE_ONE => ComplexFeatureTemplateView(
-                //     key: Key(
-                //         "${value.entity!.complexDetail.templates[value.templateIndex].id}"),
-                //     complexDetailId: value.entity!.complexDetail.id,
-                //     complexSettingsId: value.entity!.complexDetail
-                //         .templates[value.templateIndex].id,
-                //   ),
                 TEMPLATE.COMPLEX_TEMPLATE_TWO =>
                   ComplexGeneralInformationAndGalleryTemplateView(
-                    key: Key("${value.entity!.complexDetail.id}"),
+                    key: Key("${value.templateIndex}"),
                     complexDetailId: value.entity!.complexDetail.id,
                     complexSettingsId: value.entity!.complexDetail
                         .templates[value.templateIndex].id,
                   ),
                 TEMPLATE.COMPLEX_TEMPLATE_THREE =>
                   ComplexPossibiltyTemplateView(
-                    key: Key("${value.entity!.complexDetail.id}"),
+                    key: Key("${value.templateIndex}"),
                     projectDetailId: value.entity!.complexDetail.id,
                     projectSettingsId: value.entity!.complexDetail
                         .templates[value.templateIndex].id,
                   ),
                 TEMPLATE.COMPLEX_TEMPLATE_FOUR =>
                   ComplexFeatureAndGalleryTemplateView(
-                    key: Key("${value.entity!.complexDetail.id}"),
+                    key: Key("${value.templateIndex}"),
+                    detailId: value.entity!.complexDetail.id,
+                    settingsId: value.entity!.complexDetail
+                        .templates[value.templateIndex].id,
+                  ),
+                TEMPLATE.COMPLEX_TEMPLATE_SEVEN =>
+                  ComplexDoubleGalleryTemplateView(
+                    key: Key("${value.templateIndex}"),
                     detailId: value.entity!.complexDetail.id,
                     settingsId: value.entity!.complexDetail
                         .templates[value.templateIndex].id,
                   ),
                 _ => ComplexFeatureTemplateView(
-                    key: Key(
-                        "${value.entity!.complexDetail.templates[value.templateIndex].id}"),
+                    key: Key("${value.templateIndex}"),
                     complexDetailId: value.entity!.complexDetail.id,
                     complexSettingsId: value.entity!.complexDetail
                         .templates[value.templateIndex].id,

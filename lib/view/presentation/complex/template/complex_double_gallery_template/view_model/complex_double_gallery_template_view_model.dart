@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_two/template_two_entity.dart';
+import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_seven/project_template_seven_entity.dart';
 import 'package:goldcity/domain/usecase/complex_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
@@ -27,7 +27,7 @@ abstract class _ComplexDoubleGalleryTemplateViewModelBase
   }
 
   @observable
-  ComplexTemplateTwoEntity? templateEntity;
+  ComplexTemplateSevenEntity? templateEntity;
   int detailId = 0;
   int settingsId = 0;
 
@@ -36,14 +36,20 @@ abstract class _ComplexDoubleGalleryTemplateViewModelBase
     var result = await _complexDetailUseCase.getComplexTemplateDetail(
         detailId, settingsId);
     if (result.isRight) {
-      templateEntity = (result.right.template as ComplexTemplateTwoEntity);
+      templateEntity = (result.right.template as ComplexTemplateSevenEntity);
     }
   }
 
   Future<void> navigateGallery(int selectedId, isExperience) async {
     await navigation.navigateToPage(
       path: NavigationConstant.GALLERY,
-      data: [templateEntity!.gallery, selectedId, isExperience],
+      data: [
+        isExperience == true
+            ? templateEntity!.verticalGalleries
+            : templateEntity!.galleries,
+        selectedId,
+        isExperience
+      ],
     );
 
     isTablet()

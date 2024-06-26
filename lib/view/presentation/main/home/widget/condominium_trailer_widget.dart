@@ -70,7 +70,7 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                   ),
                   Container(
                     height: context.sWidth,
-                    width: (context.sWidth / 5) * 3,
+                    width: (context.sWidth),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.centerLeft,
@@ -79,10 +79,13 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                           context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                           context
                               .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(200),
+                              .withAlpha(100),
                           context
                               .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(100),
+                              .withAlpha(0),
+                          context
+                              .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                              .withAlpha(0),
                           context
                               .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
                               .withAlpha(0),
@@ -97,26 +100,33 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
           Padding(
             padding: context.xlargeSpacerOnlyHorizontal,
             child: SizedBox(
-              width: context.sWidth / 2,
+              width: context.sWidth / 3,
               height: context.sHeight,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: context.sWidth / 4,
+                    width: context.sWidth / 3,
                     child: NormalNetworkImage(
                         source: widget.complexEntity.complexDetail.logo.url),
                   ),
                   Gap(context.midSpacerSize),
-                  LabelText(
-                    text: widget.complexEntity.complexDetail.title,
-                    fontSize: FONT_SIZE.DISPLAY_LARGE,
+                  const Center(
+                    child: LabelText(
+                      text: "HOŞ GELDİNİZ",
+                      align: TextAlign.center,
+                      fontWeight: FontWeight.w500,
+                      fontSize: FONT_SIZE.DISPLAY_SMALL,
+                    ),
                   ),
-                  Gap(context.midSpacerSize),
-                  const LabelText(
-                    text: "Lorem ipsum dolor sit amet.Lorem ipsum",
-                    fontSize: FONT_SIZE.TITLE_LARGE,
+                  const Center(
+                    child: LabelText(
+                      text: "Lorem ipsum dolor sit amet.Lorem ipsum",
+                      fontSize: FONT_SIZE.TITLE_MEDIUM,
+                      textColor: APPLICATION_COLOR.SUBTITLE,
+                      align: TextAlign.center,
+                    ),
                   ),
                   Gap(context.largeSpacerSize),
                 ],
@@ -132,7 +142,9 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                 height: 60,
                 margin: context.xLargeSpacerOnlyBottom,
                 decoration: BoxDecoration(
-                  color: context.toColor(APPLICATION_COLOR.DARK).withAlpha(200),
+                  color: context
+                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                      .withAlpha(200),
                 ),
                 padding: context.largeSpacerOnlyHorizontal,
                 child: Row(

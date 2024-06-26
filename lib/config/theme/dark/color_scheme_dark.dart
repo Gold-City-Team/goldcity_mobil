@@ -50,4 +50,7 @@ class ColorSchemeDark extends IColorScheme {
   Color get red => const Color.fromARGB(255, 113, 37, 22);
   @override
   Color get blue => const Color.fromARGB(255, 127, 163, 159);
+
+  @override
+  Color get overlayColor => const Color.fromRGBO(18, 18, 18, 1);
 }

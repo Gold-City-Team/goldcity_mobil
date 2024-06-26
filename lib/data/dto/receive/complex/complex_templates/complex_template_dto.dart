@@ -2,6 +2,7 @@
 
 import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_four/complex_template_four_dto.dart';
 import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_one/complex_template_one_dto.dart';
+import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_seven/complex_template_seven_dto.dart';
 import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_three/complex_template_three_dto.dart';
 import 'package:goldcity/data/dto/receive/complex/complex_templates/complex_template_two/complex_template_two_dto.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
@@ -25,6 +26,7 @@ class ComplexTemplateDto {
       "COMPLEX_TEMPLATE_TWO" => TEMPLATE.COMPLEX_TEMPLATE_TWO,
       "COMPLEX_TEMPLATE_THREE" => TEMPLATE.COMPLEX_TEMPLATE_THREE,
       "COMPLEX_TEMPLATE_FOUR" => TEMPLATE.COMPLEX_TEMPLATE_FOUR,
+      "COMPLEX_TEMPLATE_SEVEN" => TEMPLATE.COMPLEX_TEMPLATE_SEVEN,
       _ => TEMPLATE.COMPLEX_TEMPLATE_ONE
     };
     switch (type) {
@@ -37,6 +39,9 @@ class ComplexTemplateDto {
             ComplexTemplateThreeDto.fromJson(data["template"]).toEntity();
       case TEMPLATE.COMPLEX_TEMPLATE_FOUR:
         template = ComplexTemplateFourDto.fromJson(data["template"]).toEntity();
+      case TEMPLATE.COMPLEX_TEMPLATE_SEVEN:
+        template =
+            ComplexTemplateSevenDto.fromJson(data["template"]).toEntity();
       default:
         template = ComplexTemplateOneDto.fromJson(data["template"]).toEntity();
     }
