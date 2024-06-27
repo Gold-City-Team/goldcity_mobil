@@ -9,11 +9,17 @@ class ProjectTemplateOneDto {
   int? id;
   String? title;
   String? description;
-  MediaDto? mediaItem;
+  MediaDto? logo;
+  MediaDto? mainImage;
   List<FeaturesDto>? features;
 
   ProjectTemplateOneDto(
-      {this.id, this.title, this.description, this.mediaItem, this.features});
+      {this.id,
+      this.title,
+      this.description,
+      this.logo,
+      this.mainImage,
+      this.features});
 
   factory ProjectTemplateOneDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectTemplateOneDtoFromJson(json);
@@ -27,7 +33,8 @@ class ProjectTemplateOneDto {
         features: features != null
             ? features!.map((e) => e.toEntity()).toList()
             : [FeaturesDto().toEntity()],
-        mediaItem:
-            mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
+        mainImage:
+            mainImage != null ? mainImage!.toEntity() : MediaDto().toEntity(),
+        logo: logo != null ? logo!.toEntity() : MediaDto().toEntity(),
       );
 }

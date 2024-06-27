@@ -51,16 +51,13 @@ class ProjectDetailView extends StatelessWidget {
                   return switch (
                       value.entity!.detail.template[value.templateIndex].type) {
                     TEMPLATE.PROJECT_TEMPLATE_ONE =>
-                      ProjectAnimatedWelcomeTemplateView(
-                        url: value.entity!.detail.mainImage.url,
+                      ProjectAnimatedWellcomeTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
                       ),
-                    // TEMPLATE.PROJECT_TEMPLATE_ONE => ProjectFeatureTemplateView(
-                    //     key: Key(
-                    //         "${value.entity!.detail.template[value.templateIndex].id}"),
-                    //     projectDetailId: value.entity!.detail.id,
-                    //     projectSettingsId: value
-                    //         .entity!.detail.template[value.templateIndex].id,
-                    //   ),
                     TEMPLATE.PROJECT_TEMPLATE_TWO => value
                                 .entity!
                                 .detail
@@ -121,8 +118,8 @@ class ProjectDetailView extends StatelessWidget {
                       ProjectTextImageTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
-                        projectSettingsId: value
+                        detailId: value.entity!.detail.id,
+                        settingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
                     _ => ProjectFeatureTemplateView(

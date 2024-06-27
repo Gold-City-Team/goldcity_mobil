@@ -13,6 +13,7 @@ import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/project/gallery/view_model/gallery_view_model.dart';
 import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
+import 'package:goldcity/view/widget/text/label_text.dart';
 
 class GalleryView extends StatefulWidget {
   final List<GalleryMediaEntity> gallery;
@@ -295,22 +296,29 @@ class _GalleryViewState extends State<GalleryView> {
             child: SafeArea(
               child: GestureDetector(
                 onTap: () => viewModel.toggleBottomVisible(),
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  child: SizedBox(
-                    child: Icon(
-                      viewModel.isBottomVisible
-                          ? Icons.arrow_drop_up
-                          : Icons.arrow_drop_down,
-                      size: 28,
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                child: Row(
+                  children: [
+                    const LabelText(text: "Tüm Videolar"),
+                    Gap(context.midSpacerSize),
+                    Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                          color:
+                              context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20))),
+                      child: SizedBox(
+                        child: Icon(
+                          viewModel.isBottomVisible
+                              ? Icons.arrow_drop_up
+                              : Icons.arrow_drop_down,
+                          size: 28,
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),

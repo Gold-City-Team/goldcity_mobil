@@ -44,7 +44,8 @@ abstract class _ComplexTextImageTemplateViewModelBase
 
   @observable
   int selectedImageGalleryId = -1;
-
+  int detailId = 0;
+  int settingsId = 0;
   @observable
   ComplexTemplateEightEntity? template;
 
@@ -54,7 +55,8 @@ abstract class _ComplexTextImageTemplateViewModelBase
       ObservableList<GalleryMediaEntity>.of([]);
   bool lockImage = false;
   Future<void> _getDetail() async {
-    var result = await _complexDetailUseCase.getComplexTemplateDetail(6, 20);
+    var result = await _complexDetailUseCase.getComplexTemplateDetail(
+        detailId, settingsId);
     if (result.isRight) {
       template = (result.right.template as ComplexTemplateEightEntity);
       for (var e in template!.items) {

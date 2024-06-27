@@ -12,9 +12,12 @@ ProjectTemplateOneDto _$ProjectTemplateOneDtoFromJson(
       id: json['id'] as int?,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      mediaItem: json['mediaItem'] == null
+      logo: json['logo'] == null
           ? null
-          : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
+          : MediaDto.fromJson(json['logo'] as Map<String, dynamic>),
+      mainImage: json['mainImage'] == null
+          ? null
+          : MediaDto.fromJson(json['mainImage'] as Map<String, dynamic>),
       features: (json['features'] as List<dynamic>?)
           ?.map((e) => FeaturesDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -26,6 +29,7 @@ Map<String, dynamic> _$ProjectTemplateOneDtoToJson(
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
-      'mediaItem': instance.mediaItem,
+      'logo': instance.logo,
+      'mainImage': instance.mainImage,
       'features': instance.features,
     };

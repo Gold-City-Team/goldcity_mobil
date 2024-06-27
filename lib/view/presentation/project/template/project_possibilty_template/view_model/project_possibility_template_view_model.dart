@@ -85,7 +85,5 @@ abstract class _ProjectPossibilityTemplateViewModelBase
         ),
       ),
     );
-    controller.future.then((e) => e.showMarkerInfoWindow(
-        MarkerId(templateThree!.possibilities[newIndex].id.toString())));
   }
 }

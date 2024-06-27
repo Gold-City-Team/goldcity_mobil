@@ -53,8 +53,13 @@ abstract class _ProjectTextImageTemplateViewModelBase
   List<GalleryMediaEntity> miniImages =
       ObservableList<GalleryMediaEntity>.of([]);
   bool lockImage = false;
+
+  int detailId = 0;
+  int settingsId = 0;
+
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(6, 20);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(
+        detailId, settingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateEightEntity);
       for (var e in template!.items) {
@@ -73,8 +78,6 @@ abstract class _ProjectTextImageTemplateViewModelBase
     }
   }
 
-  int projectDetailId = 0;
-  int projectSettingsId = 0;
   @observable
   String title = "";
   @observable

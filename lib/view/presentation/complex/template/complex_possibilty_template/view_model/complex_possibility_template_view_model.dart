@@ -44,12 +44,12 @@ abstract class _ComplexPossibilityTemplateViewModelBase
 
   @observable
   ComplexTemplateThreeEntity? templateThree;
-  int projectDetailId = 0;
-  int projectSettingsId = 0;
+  int detailId = 0;
+  int settingsId = 0;
   @action
   Future<void> _getDetail() async {
     var result = await _projectDetailUseCase.getComplexTemplateDetail(
-        projectDetailId, projectSettingsId);
+        detailId, settingsId);
     if (result.isRight) {
       templateThree = (result.right.template as ComplexTemplateThreeEntity);
       templateThree!.possibilities.add(PossibilityDto(
@@ -81,7 +81,5 @@ abstract class _ComplexPossibilityTemplateViewModelBase
         ),
       ),
     );
-    controller.future.then((e) => e.showMarkerInfoWindow(
-        MarkerId(templateThree!.possibilities[newIndex].id.toString())));
   }
 }

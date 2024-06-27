@@ -13,7 +13,10 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class ComplexTextImageTemplate extends StatelessWidget {
-  const ComplexTextImageTemplate({super.key});
+  final int detailId;
+  final int settingsId;
+  const ComplexTextImageTemplate(
+      {required this.detailId, required this.settingsId, super.key});
 
   @override
   Widget build(BuildContext context) {

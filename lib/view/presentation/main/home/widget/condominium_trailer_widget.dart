@@ -191,7 +191,7 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                   ),
                   Container(
                     height: context.sHeight,
-                    width: (context.sWidth / 2),
+                    width: (context.sWidth),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.centerLeft,
@@ -215,32 +215,28 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
               ),
             ),
           ),
-          Padding(
-            padding: context.xlargeSpacerOnlyHorizontal,
-            child: SizedBox(
-              width: context.sWidth / 2,
-              height: context.sHeight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: context.sWidth / 4,
-                    child: NormalNetworkImage(
-                        source: widget.complexEntity.complexDetail.logo.url),
-                  ),
-                  Gap(context.midSpacerSize),
-                  LabelText(
-                    text: widget.complexEntity.complexDetail.title,
-                    fontSize: FONT_SIZE.DISPLAY_LARGE,
-                  ),
-                  Gap(context.midSpacerSize),
-                  const LabelText(
-                    text: "Lorem ipsum dolor sit amet.Lorem ipsum",
-                    fontSize: FONT_SIZE.TITLE_LARGE,
-                  ),
-                  Gap(context.largeSpacerSize),
-                ],
+          SafeArea(
+            child: Padding(
+              padding: context.xlargeSpacerOnlyHorizontal,
+              child: SizedBox(
+                width: context.sWidth,
+                height: context.sHeight,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LabelText(
+                      text: widget.complexEntity.complexDetail.title,
+                      fontSize: FONT_SIZE.DISPLAY_LARGE,
+                    ),
+                    Gap(context.midSpacerSize),
+                    const LabelText(
+                      text: "Lorem ipsum dolor sit amet.Lorem ipsum",
+                      fontSize: FONT_SIZE.TITLE_LARGE,
+                    ),
+                    Gap(context.largeSpacerSize),
+                  ],
+                ),
               ),
             ),
           ),

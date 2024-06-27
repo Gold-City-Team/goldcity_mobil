@@ -7,13 +7,15 @@ class ProjectTemplateOneEntity {
   final int id;
   final String title;
   final String description;
-  final MediaEntity mediaItem;
+  final MediaEntity mainImage;
+  final MediaEntity logo;
   final List<FeaturesEntity> features;
   const ProjectTemplateOneEntity({
     required this.id,
     required this.title,
     required this.description,
-    required this.mediaItem,
+    required this.mainImage,
+    required this.logo,
     required this.features,
   });
 }

@@ -14,12 +14,10 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class ProjectTextImageTemplateView extends StatelessWidget {
-  final int projectDetailId;
-  final int projectSettingsId;
+  final int detailId;
+  final int settingsId;
   const ProjectTextImageTemplateView(
-      {required this.projectDetailId,
-      required this.projectSettingsId,
-      super.key});
+      {required this.detailId, required this.settingsId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +25,8 @@ class ProjectTextImageTemplateView extends StatelessWidget {
       viewModel: ProjectTextImageTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
-        model.projectDetailId = projectDetailId;
-        model.projectSettingsId = projectSettingsId;
+        model.detailId = detailId;
+        model.settingsId = settingsId;
         model.init();
       },
       onPageBuilder:

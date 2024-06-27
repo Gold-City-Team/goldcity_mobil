@@ -19,7 +19,7 @@ class FacilitiesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: 350,
       decoration: BoxDecoration(
         border: isSelected
             ? Border.all(
@@ -48,6 +48,7 @@ class FacilitiesWidget extends StatelessWidget {
                   Gap(context.midSpacerSize),
                   LabelText(
                     text: possibilityEntity.title,
+                    maxLines: 1,
                     fontSize: FONT_SIZE.TITLE_LARGE,
                     textColor: APPLICATION_COLOR.TITLE,
                   ),

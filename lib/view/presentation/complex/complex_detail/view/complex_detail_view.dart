@@ -51,8 +51,8 @@ class ComplexDetailView extends StatelessWidget {
                 TEMPLATE.COMPLEX_TEMPLATE_THREE =>
                   ComplexPossibiltyTemplateView(
                     key: Key("${value.templateIndex}"),
-                    projectDetailId: value.entity!.complexDetail.id,
-                    projectSettingsId: value.entity!.complexDetail
+                    detailId: value.entity!.complexDetail.id,
+                    settingsId: value.entity!.complexDetail
                         .templates[value.templateIndex].id,
                   ),
                 TEMPLATE.COMPLEX_TEMPLATE_FOUR =>

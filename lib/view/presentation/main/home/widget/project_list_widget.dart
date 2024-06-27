@@ -7,6 +7,7 @@ import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class ProjectListWidget extends StatefulWidget {
@@ -25,6 +26,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
   Widget build(BuildContext context) {
     return ListView.builder(
         scrollDirection: Axis.horizontal,
+        cacheExtent: 100000,
         itemCount: widget.projectList.length,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -39,8 +41,8 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                               context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
                           width: 2)),
                   width: context.sWidth /
-                      (widget.projectList.length > 5
-                          ? 5
+                      (widget.projectList.length > getHalfOriantation
+                          ? getHalfOriantation
                           : (widget.projectList.length).toDouble()),
                   height: context.sHeight,
                   child: NormalNetworkImage(
@@ -57,8 +59,8 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                         curve: Curves.ease),
                 Container(
                   width: context.sWidth /
-                      (widget.projectList.length > 5
-                          ? 5
+                      (widget.projectList.length > getHalfOriantation
+                          ? getHalfOriantation
                           : (widget.projectList.length).toDouble()),
                   height: context.sHeight,
                   color: context
@@ -70,8 +72,8 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                 Center(
                   child: SizedBox(
                       width: context.sWidth /
-                              (widget.projectList.length > 5
-                                  ? 5
+                              (widget.projectList.length > getHalfOriantation
+                                  ? getHalfOriantation
                                   : (widget.projectList.length).toDouble()) -
                           40,
                       child: NormalNetworkImage(
@@ -83,5 +85,9 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
             ),
           );
         });
+  }
+
+  int get getHalfOriantation {
+    return isTablet() ? 5 : 2;
   }
 }

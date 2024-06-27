@@ -57,7 +57,7 @@ class ProjectFeatureTemplateView extends StatelessWidget {
                   width: context.sWidth,
                   height: context.sWidth / 1.7777,
                   child: NormalNetworkImage(
-                      source: value.templateEntity!.mediaItem.url,
+                      source: value.templateEntity!.mainImage.url,
                       fit: BoxFit.cover),
                 );
               }),
@@ -134,7 +134,7 @@ class ProjectFeatureTemplateView extends StatelessWidget {
             return const SizedBox.shrink();
           }
           return BackgroundWidget(
-              backgroundImage: value.templateEntity!.mediaItem.url);
+              backgroundImage: value.templateEntity!.mainImage.url);
         }),
         SingleChildScrollView(
           child: SafeArea(
