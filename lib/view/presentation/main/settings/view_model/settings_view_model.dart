@@ -4,6 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_language_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_theme_widget.dart';
 import 'package:mobx/mobx.dart';
@@ -55,5 +57,25 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
       },
     );
     updateList();
+  }
+
+  Widget getIcon(var e) {
+    var index = menuItems.indexWhere((element) => element == e);
+    return switch (index) {
+      0 => Icon(Icons.dark_mode,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      1 => Icon(Icons.language,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      2 => Icon(Icons.support,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      3 => Icon(Icons.description,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      4 => Icon(Icons.description,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      5 => Icon(Icons.delete,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      _ => Icon(Icons.description,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD))
+    };
   }
 }

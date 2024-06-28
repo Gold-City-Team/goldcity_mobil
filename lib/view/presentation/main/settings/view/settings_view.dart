@@ -22,7 +22,9 @@ class SettingsView extends StatelessWidget {
       onPageBuilder: (BuildContext context, SettingsViewModel value) =>
           Scaffold(
         body: SafeArea(
-            child: isTablet() ? tabletView(context, value) : isPhoneView()),
+            child: isTablet()
+                ? tabletView(context, value)
+                : isPhoneView(context, value)),
       ),
     );
   }
@@ -103,7 +105,75 @@ class SettingsView extends StatelessWidget {
     );
   }
 
-  Widget isPhoneView() {
-    return Container();
+  Widget isPhoneView(BuildContext context, SettingsViewModel value) {
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: context.sWidth,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gap(context.midSpacerSize),
+            GestureDetector(
+              onTap: () => value.navigation.pop(),
+              child: Container(
+                width: 50,
+                margin: context.largeSpacerOnlyHorizontal,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    borderRadius: context.midRadius),
+                child: const Icon(Icons.keyboard_arrow_left),
+              ),
+            ),
+            Gap(context.largeSpacerSize),
+            Observer(builder: (context) {
+              return Padding(
+                padding: context.largeSpacerOnlyHorizontal,
+                child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  alignment: WrapAlignment.center,
+                  spacing: 10,
+                  runSpacing: 10,
+                  children: value.menuItems
+                      .map(
+                        (e) => GestureDetector(
+                          onTap: () => value.showBox(e),
+                          child: Container(
+                            width: context.sWidth - 25,
+                            height: 100,
+                            color: context.toColor(
+                                APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
+                            child: Padding(
+                              padding: context.midSpacerOnlyHorizontal,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      value.getIcon(e),
+                                      Gap(context.midSpacerSize),
+                                      LabelText(text: e),
+                                    ],
+                                  ),
+                                  Gap(context.midSpacerSize),
+                                  LabelText(
+                                    text: e,
+                                    textColor: APPLICATION_COLOR.SUBTITLE,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              );
+            }),
+          ],
+        ),
+      ),
+    );
   }
 }

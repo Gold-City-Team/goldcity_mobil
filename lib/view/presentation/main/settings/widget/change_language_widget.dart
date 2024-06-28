@@ -23,7 +23,7 @@ class ChangeLanguageWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: size.width / 2,
+            width: isTablet() ? size.width / 2 : size.width - 30,
             color:
                 context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
             padding: context.largeSpacer,
@@ -41,7 +41,9 @@ class ChangeLanguageWidget extends StatelessWidget {
                               child: Container(
                                 color: context.toColor(
                                     APPLICATION_COLOR.BACKGROUND_COLOR),
-                                width: size.width / 2,
+                                width: isTablet()
+                                    ? size.width / 2
+                                    : size.width - 30,
                                 padding: context.midSpacer,
                                 child: Row(
                                   children: [
