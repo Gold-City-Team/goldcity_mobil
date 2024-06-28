@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/view/widget/button/normal_button.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
@@ -41,10 +42,15 @@ class EducationRowWidget extends StatelessWidget {
           ),
           const LabelText(
               maxLines: 2,
-              text: "Test Eğitimi",
+              text:
+                  "Test Eğitimi sdf asşkldfasd şsdf slş slşşlfsdşl aslş lşsd flşsdöf lşsa",
               textColor: APPLICATION_COLOR.TITLE,
               fontSize: FONT_SIZE.HEADLINE_LARGE),
           Gap(context.midSpacerSize),
+          NormalButton(
+            onTap: () => onTap(),
+            text: "İncele",
+          )
         ],
       ),
     );
