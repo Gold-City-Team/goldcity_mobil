@@ -36,5 +36,6 @@ abstract class  LocaleKeys {
   static const wellcome = 'wellcome';
   static const experiances = 'experiances';
   static const gallery = 'gallery';
+  static const allVideos = 'allVideos';
 
 }

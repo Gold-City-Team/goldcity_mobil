@@ -1,9 +1,11 @@
 // ignore_for_file: must_be_immutable
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
@@ -298,7 +300,7 @@ class _GalleryViewState extends State<GalleryView> {
                 onTap: () => viewModel.toggleBottomVisible(),
                 child: Row(
                   children: [
-                    const LabelText(text: "Tüm Videolar"),
+                    LabelText(text: LocaleKeys.allVideos.tr()),
                     Gap(context.midSpacerSize),
                     Container(
                       height: 40,
