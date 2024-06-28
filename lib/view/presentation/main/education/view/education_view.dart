@@ -25,7 +25,7 @@ class EducationView extends StatelessWidget {
             children: [1, 1, 1]
                 .map((e) => SizedBox(
                     width: context.sWidth / 3 - 10,
-                    child: EducationRowWidget(onTap: () => null)))
+                    child: EducationRowWidget(onTap: () {})))
                 .toList(),
           ),
         )),

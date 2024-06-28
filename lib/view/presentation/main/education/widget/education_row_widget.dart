@@ -17,19 +17,13 @@ class EducationRowWidget extends StatelessWidget {
       padding: context.midSpacer,
       decoration: BoxDecoration(
         color: context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-        borderRadius: context.midRadius,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            child: ClipRRect(
-              borderRadius: context.midRadius,
-              child: const NormalNetworkImage(
-                  source:
-                      "https://goldcitycondominium.com/images/projects/golfAqua/ic/ic1.webp"),
-            ),
-          ),
+          const NormalNetworkImage(
+              source:
+                  "https://goldcitycondominium.com/images/projects/golfAqua/ic/ic1.webp"),
           Gap(context.midSpacerSize),
           const Row(
             children: [
@@ -49,7 +43,7 @@ class EducationRowWidget extends StatelessWidget {
           Gap(context.midSpacerSize),
           NormalButton(
             onTap: () => onTap(),
-            text: "İncele",
+            text: "Detay",
           )
         ],
       ),

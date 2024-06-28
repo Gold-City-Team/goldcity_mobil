@@ -37,7 +37,7 @@ class AppThemeDark extends AppTheme with IDarkTheme {
           ),
         ),
         menuStyle: MenuStyle(
-          backgroundColor: MaterialStatePropertyAll(
+          backgroundColor: WidgetStatePropertyAll(
               ColorSchemeDark.instance.extraCloseBackgroundColor),
         ),
       ),

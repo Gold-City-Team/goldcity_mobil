@@ -13,13 +13,11 @@ class ColorSchemeLight extends IColorScheme {
     return ColorScheme(
         primary: oppositeColor,
         secondary: Colors.green,
-        surface: Colors.green,
-        background: backgroundColor,
+        surface: backgroundColor,
         error: Colors.green[900]!,
         onPrimary: Colors.green,
         onSecondary: Colors.green,
-        onSurface: Colors.green.shade300,
-        onBackground: Colors.green,
+        onSurface: Colors.green,
         onError: const Color(0xFFF9B916),
         brightness: Brightness.light);
   }
@@ -52,5 +50,5 @@ class ColorSchemeLight extends IColorScheme {
   @override
   Color get blue => const Color.fromARGB(255, 127, 163, 159);
   @override
-  Color get overlayColor => Color.fromARGB(255, 154, 165, 172);
+  Color get overlayColor => const Color.fromARGB(255, 154, 165, 172);
 }

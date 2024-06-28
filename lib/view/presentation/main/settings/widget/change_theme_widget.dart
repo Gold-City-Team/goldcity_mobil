@@ -42,7 +42,7 @@ class ChangeThemeWidget extends StatelessWidget {
                       children: [
                         context.watch<ThemeNotifier>().appTheme ==
                                 APP_THEME.DARK
-                            ? Icon(Icons.check)
+                            ? const Icon(Icons.check)
                             : const SizedBox.shrink(),
                         context.watch<ThemeNotifier>().appTheme ==
                                 APP_THEME.DARK
@@ -64,7 +64,7 @@ class ChangeThemeWidget extends StatelessWidget {
                       children: [
                         context.watch<ThemeNotifier>().appTheme ==
                                 APP_THEME.LIGHT
-                            ? Icon(Icons.check)
+                            ? const Icon(Icons.check)
                             : const SizedBox.shrink(),
                         context.watch<ThemeNotifier>().appTheme ==
                                 APP_THEME.LIGHT

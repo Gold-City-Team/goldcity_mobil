@@ -34,7 +34,7 @@ class AppThemeLight extends AppTheme with ILightTheme {
             ),
           ),
           menuStyle: MenuStyle(
-            backgroundColor: MaterialStatePropertyAll(
+            backgroundColor: WidgetStatePropertyAll(
                 ColorSchemeLight.instance.extraCloseBackgroundColor),
           )),
       textTheme: TextTheme(
