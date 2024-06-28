@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:goldcity/data/source/local/project/project_local_data_source.dart';
 import 'package:goldcity/data/source/remote/project/project_remote_data_source.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/repository/project/project_repository.dart';
@@ -9,11 +8,6 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 class ProjectRepositoryImpl implements ProjectRepository {
   @override
   Stream<Either<BaseErrorModel, ProjectEntity>> getDetail(int id) async* {
-    var localResult = locator<ProjectLocalDataSource>().getDetail(id);
-    if (localResult.isRight) {
-      yield Right(localResult.right.toEntity());
-    }
-
     var result = await locator<ProjectRemoteDataSource>().getDetail(id);
     if (result.isRight) {
       yield Right(result.right.toEntity());
@@ -24,10 +18,6 @@ class ProjectRepositoryImpl implements ProjectRepository {
 
   @override
   Stream<Either<BaseErrorModel, List<ProjectEntity>>> getProjectList() async* {
-    var localResult = locator<ProjectLocalDataSource>().getProjectList();
-    if (localResult.isRight) {
-      yield Right(localResult.right.map((e) => e.toEntity()).toList());
-    }
     var result = await locator<ProjectRemoteDataSource>().getProjectList();
     if (result.isRight) {
       yield Right(result.right.map((e) => e.toEntity()).toList());

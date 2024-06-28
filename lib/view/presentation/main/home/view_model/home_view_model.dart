@@ -29,7 +29,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _projectUseCase = locator<ProjectUseCase>();
     _complexUseCase = locator<ComplexUseCase>();
     _getComplexList();
-    _getProjectList();
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,
@@ -49,9 +48,16 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   List<ProjectEntity>? projectList;
   @action
   void _getProjectList() {
+    projectList?.clear();
+
     _projectUseCase.getProjectList().listen((event) {
       if (event.isRight) {
         projectList = event.right;
+        pageList.add(ProjectListWidget(
+          projectList: projectList!,
+          onTap: (int id) => navigation.navigateToPage(
+              path: NavigationConstant.PROJECT_DETAIL, data: id),
+        ));
       }
     });
   }
@@ -66,6 +72,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   @action
   void _getComplexList() {
+    complexList?.clear();
     _complexUseCase.getComplexList().listen((event) {
       if (event.isRight) {
         complexList = event.right;
@@ -75,11 +82,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
               path: NavigationConstant.COMPLEX_DETAIL,
               data: complexList!.first.complexDetail.id),
         ));
-        pageList.add(ProjectListWidget(
-          projectList: projectList!,
-          onTap: (int id) => navigation.navigateToPage(
-              path: NavigationConstant.PROJECT_DETAIL, data: id),
-        ));
+        _getProjectList();
+
         pageIndex = 0;
       }
     });
@@ -96,16 +100,20 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   }
 
   @action
-  void changeIndex(newIndex) {
+  Future<void> changeIndex(newIndex) async {
     isPageSelectorVisible = false;
     switch (newIndex) {
       case 0:
         navigation.navigateToPageClear(path: NavigationConstant.MAIN);
       case 1:
-        navigation.navigateToPage(
+        await navigation.navigateToPage(
             path: NavigationConstant.COMPLEX_DETAIL, data: 6);
+        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+
       case 2:
-        navigation.navigateToPage(path: NavigationConstant.SETTINGS);
+        await navigation.navigateToPage(path: NavigationConstant.SETTINGS);
+        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+
       default:
         navigation.navigateToPageClear(path: NavigationConstant.MAIN);
     }

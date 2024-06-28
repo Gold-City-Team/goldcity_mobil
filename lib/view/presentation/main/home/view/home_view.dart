@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -17,6 +18,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("test");
     return BaseView<HomeViewModel>(
       viewModel: HomeViewModel(),
       onModelReady: (model) {
@@ -58,7 +60,7 @@ class HomeView extends StatelessWidget {
               }
               return SafeArea(
                 child: Container(
-                  margin: context.largeSpacerOnlyHorizontal,
+                  margin: context.largeSpacer,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
@@ -83,7 +85,7 @@ class HomeView extends StatelessWidget {
                               color: context.toColor(APPLICATION_COLOR.GOLD),
                               borderRadius: context.midRadius),
                           child: Icon(
-                            Icons.more_horiz,
+                            Icons.menu_rounded,
                             color: context.toColor(APPLICATION_COLOR.LIGHT),
                           ),
                         ),
@@ -96,7 +98,11 @@ class HomeView extends StatelessWidget {
             Observer(builder: (context) {
               return value.isPageSelectorVisible
                   ? PageSelectorWidget(
-                      pages: ["Ana Sayfa", "Eğitimler", "Ayarlar"],
+                      pages: [
+                          context.tr("explore"),
+                          context.tr("educations"),
+                          context.tr("settings")
+                        ],
                       selectedIndex: 0,
                       newIndex: (newIndex) => value.changeIndex(newIndex))
                   : const SizedBox.shrink();

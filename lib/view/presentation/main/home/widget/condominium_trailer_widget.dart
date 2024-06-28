@@ -112,9 +112,9 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                         source: widget.complexEntity.complexDetail.logo.url),
                   ),
                   Gap(context.midSpacerSize),
-                  const Center(
+                  Center(
                     child: LabelText(
-                      text: "HOŞ GELDİNİZ",
+                      text: context.tr("wellcome"),
                       align: TextAlign.center,
                       fontWeight: FontWeight.w500,
                       fontSize: FONT_SIZE.DISPLAY_SMALL,
@@ -151,7 +151,7 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     LabelText(
-                      text: LocaleKeys.explore.tr(),
+                      text: context.tr("explore"),
                       fontSize: FONT_SIZE.TITLE_LARGE,
                     ),
                     const Icon(Icons.keyboard_arrow_right_outlined, size: 36)

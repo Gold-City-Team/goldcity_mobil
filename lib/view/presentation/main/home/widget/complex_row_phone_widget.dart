@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/domain/entity/complex/complex/complex_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -63,7 +62,7 @@ class ComplexRowPhoneWidget extends StatelessWidget {
           Gap(context.midSpacerSize),
           NormalButton(
             onTap: () => onTap(),
-            text: LocaleKeys.explore.tr(),
+            text: context.tr("explore"),
             textColor: APPLICATION_COLOR.LIGHT,
             backgroundColor: APPLICATION_COLOR.GOLD,
           )

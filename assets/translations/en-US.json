@@ -12,6 +12,7 @@
     "settings": "Settings",
     "language": "Language",
     "darkTheme": "Dark Theme",
+    "lightTheme": "Light Theme",
     "change": "Change",
     "floor": "Floor {}",
     "apartmentNumber": "Apartment Number",
@@ -21,5 +22,16 @@
     "onSale": "On Sale",
     "reserved": "Reserved",
     "sold": "Sold",
-    "block": "{} Block"
+    "block": "{} Block",
+    "changeLanguage": "Change Language",
+    "turkish": "Turkish",
+    "english": "English",
+    "changeTheme": "Change Theme",
+    "contactUs": "Contact Us",
+    "termsOfUse": "Terms of Use",
+    "clearCache": "Clear Cache",
+    "confidentialityAgreement": "Confidentiality Agreement",
+    "wellcome": "Wellcome",
+    "experiances": "Experiances",
+    "gallery": "Gallery"
 }

@@ -14,6 +14,7 @@ abstract class  LocaleKeys {
   static const settings = 'settings';
   static const language = 'language';
   static const darkTheme = 'darkTheme';
+  static const lightTheme = 'lightTheme';
   static const change = 'change';
   static const floor = 'floor';
   static const apartmentNumber = 'apartmentNumber';
@@ -24,5 +25,16 @@ abstract class  LocaleKeys {
   static const reserved = 'reserved';
   static const sold = 'sold';
   static const block = 'block';
+  static const changeLanguage = 'changeLanguage';
+  static const turkish = 'turkish';
+  static const english = 'english';
+  static const changeTheme = 'changeTheme';
+  static const contactUs = 'contactUs';
+  static const termsOfUse = 'termsOfUse';
+  static const clearCache = 'clearCache';
+  static const confidentialityAgreement = 'confidentialityAgreement';
+  static const wellcome = 'wellcome';
+  static const experiances = 'experiances';
+  static const gallery = 'gallery';
 
 }

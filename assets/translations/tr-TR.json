@@ -12,6 +12,7 @@
     "settings": "Ayarlar",
     "language": "Dil",
     "darkTheme": "Karanlık Tema",
+    "lightTheme": "Aydınlık Tema",
     "change": "Değiştir",
     "floor": "{}. Kat",
     "apartmentNumber": "Daire Numarası",
@@ -21,5 +22,16 @@
     "onSale": "Satılık",
     "reserved": "Rezerve",
     "sold": "Satıldı",
-    "block": "{} Blok"
+    "block": "{} Blok",
+    "changeLanguage": "Dil Değiştir",
+    "turkish": "Türkçe",
+    "english": "İngilizce",
+    "changeTheme": "Tema Değiştir",
+    "contactUs": "Bize Ulaş",
+    "termsOfUse": "Kullanım Koşulları",
+    "clearCache": "Önbellek Verilerini Temizle",
+    "confidentialityAgreement": "Gizlilik Sözleşmesi",
+    "wellcome": "Hoş Geldiniz",
+    "experiances": "Deneyimler",
+    "gallery": "Galeri"
 }

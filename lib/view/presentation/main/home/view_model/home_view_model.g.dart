@@ -90,6 +90,14 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$changeIndexAsyncAction =
+      AsyncAction('_HomeViewModelBase.changeIndex', context: context);
+
+  @override
+  Future<void> changeIndex(dynamic newIndex) {
+    return _$changeIndexAsyncAction.run(() => super.changeIndex(newIndex));
+  }
+
   late final _$_HomeViewModelBaseActionController =
       ActionController(name: '_HomeViewModelBase', context: context);
 
@@ -121,17 +129,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
         name: '_HomeViewModelBase._getComplexList');
     try {
       return super._getComplexList();
-    } finally {
-      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void changeIndex(dynamic newIndex) {
-    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
-        name: '_HomeViewModelBase.changeIndex');
-    try {
-      return super.changeIndex(newIndex);
     } finally {
       _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
     }
