@@ -106,8 +106,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
       case 0:
         navigation.navigateToPageClear(path: NavigationConstant.MAIN);
       case 1:
-        await navigation.navigateToPage(
-            path: NavigationConstant.COMPLEX_DETAIL, data: 6);
+        await navigation.navigateToPage(path: NavigationConstant.EDUCATIONS);
         navigation.navigateToPageClear(path: NavigationConstant.MAIN);
 
       case 2:

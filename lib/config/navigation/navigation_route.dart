@@ -5,6 +5,7 @@ import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view/complex_detail_view.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
+import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
 import 'package:goldcity/view/presentation/main/settings/view/settings_view.dart';
 import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dart';
@@ -36,10 +37,14 @@ class NavigationRoute {
       NavigationConstant.LEAD_APPLY =>
         normalNavigate(const LeadApplyView(), NavigationConstant.LEAD_APPLY),
       NavigationConstant.SETTINGS =>
-        normalNavigate(const SettingsView(), NavigationConstant.LEAD_APPLY),
+        normalNavigate(const SettingsView(), NavigationConstant.SETTINGS),
       /* MAIN */
       NavigationConstant.MAIN =>
         normalNavigate(const MainView(), NavigationConstant.MAIN),
+      /* EDUCATIONS */
+
+      NavigationConstant.EDUCATIONS =>
+        normalNavigate(const EducationView(), NavigationConstant.EDUCATIONS),
       /* GALLERY */
       NavigationConstant.GALLERY => normalNavigate(
           GalleryView(
