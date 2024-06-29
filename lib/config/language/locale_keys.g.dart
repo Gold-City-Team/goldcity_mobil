@@ -37,5 +37,7 @@ abstract class  LocaleKeys {
   static const experiances = 'experiances';
   static const gallery = 'gallery';
   static const allVideos = 'allVideos';
+  static const openWithZoom = 'openWithZoom';
+  static const join = 'join';
 
 }

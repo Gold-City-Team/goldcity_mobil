@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -90,8 +92,8 @@ class EducationDetailView extends StatelessWidget {
                     child: NormalButton(
                       onTap: () => value.apply(),
                       text: value.model!.isRegister
-                          ? "Zoom Uygulamasında Aç"
-                          : "Katıl",
+                          ? LocaleKeys.openWithZoom.tr()
+                          : LocaleKeys.join.tr(),
                     ),
                   ))
         ],
@@ -185,8 +187,8 @@ class EducationDetailView extends StatelessWidget {
                                       child: NormalButton(
                                         onTap: () => value.apply(),
                                         text: value.model!.isRegister
-                                            ? "Zoom Uygulamasında Aç"
-                                            : "Katıl",
+                                            ? LocaleKeys.openWithZoom.tr()
+                                            : LocaleKeys.join.tr(),
                                       ),
                                     ))
                           ],

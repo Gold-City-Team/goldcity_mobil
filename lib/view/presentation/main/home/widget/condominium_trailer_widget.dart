@@ -247,7 +247,9 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                 height: 60,
                 margin: context.xLargeSpacerOnlyBottom,
                 decoration: BoxDecoration(
-                  color: context.toColor(APPLICATION_COLOR.DARK).withAlpha(200),
+                  color: context
+                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                      .withAlpha(200),
                 ),
                 padding: context.largeSpacerOnlyHorizontal,
                 child: Row(
