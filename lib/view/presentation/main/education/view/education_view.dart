@@ -5,6 +5,7 @@ import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/main/education/view_model/education_view_model.dart';
 import 'package:goldcity/view/presentation/main/education/widget/education_row_widget.dart';
 
@@ -54,7 +55,9 @@ class EducationView extends StatelessWidget {
                           spacing: 10,
                           children: value.model!
                               .map((e) => SizedBox(
-                                  width: context.sWidth / 3 - 20,
+                                  width: isTablet()
+                                      ? context.sWidth / 3 - 20
+                                      : context.sWidth,
                                   child: GestureDetector(
                                       onTap: () => value.openDetailPage(e.id),
                                       child: EducationRowWidget(entity: e))))
@@ -63,6 +66,7 @@ class EducationView extends StatelessWidget {
                       );
                     },
                   ),
+                  Gap(context.midSpacerSize)
                 ],
               ),
             ),

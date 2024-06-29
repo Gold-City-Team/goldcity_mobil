@@ -26,110 +26,180 @@ class EducationDetailView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, EducationDetailViewModel value) =>
           Scaffold(
-        body: Stack(
-          children: [
-            Observer(builder: (context) {
-              if (value.model == null) {
-                return const SizedBox.shrink();
-              }
-              return SizedBox(
-                width: context.sWidth,
-                height: context.sHeight,
+              body: isTablet()
+                  ? tabletView(context, value)
+                  : phoneView(context, value)),
+    );
+  }
+
+  Widget phoneView(BuildContext context, EducationDetailViewModel value) {
+    return Observer(builder: (context) {
+      if (value.model == null) {
+        return const SizedBox.shrink();
+      }
+      return Column(
+        children: [
+          Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: 1.77777,
                 child: NormalNetworkImage(source: value.model!.mediaItem.url),
-              );
-            }),
-            Column(
-              children: [
-                Gap(context.midSpacerSize),
-                GestureDetector(
-                  onTap: () => value.navigation.pop(),
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    margin: context.largeSpacerOnlyHorizontal,
-                    decoration: BoxDecoration(
-                        color: context.toColor(APPLICATION_COLOR.GOLD),
-                        borderRadius: context.midRadius),
-                    child: const Icon(Icons.keyboard_arrow_left),
-                  ),
-                ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                height: context.sHeight,
-                margin: context.midSpacer,
-                width: context.sWidth / 2.5,
-                child: Stack(
-                  children: [
-                    Container(
-                      color: context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(220),
-                      height: context.sHeight,
-                      margin: context.midSpacer,
-                      width: context.sWidth / 2.5,
-                    ),
-                    Observer(builder: (context) {
-                      if (value.model == null) {
-                        return const SizedBox.shrink();
-                      }
-                      return Container(
-                        height: context.sHeight,
-                        margin: context.largeSpacer,
-                        width: context.sWidth / 2.5,
-                        child: Center(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                LabelText(
-                                  text: value.model!.title,
-                                  fontSize: FONT_SIZE.HEADLINE_MEDIUM,
-                                ),
-                                Gap(context.midSpacerSize),
-                                LabelText(
-                                  text: value.model!.description,
-                                  textColor: APPLICATION_COLOR.SUBTITLE,
-                                ),
-                                Gap(context.midSpacerSize),
-                                LabelText(
-                                  text: value
-                                      .model!.scheduledStartDate.formatTime,
-                                  textColor: APPLICATION_COLOR.SUBTITLE,
-                                ),
-                                Gap(context.midSpacerSize),
-                                value.isLoading
-                                    ? const SizedBox(
-                                        height: 35,
-                                        width: 35,
-                                        child: CircularProgressIndicator())
-                                    : Padding(
-                                        padding:
-                                            context.largeSpacerOnlyHorizontal,
-                                        child: SizedBox(
-                                          height: 35,
-                                          child: NormalButton(
-                                            onTap: () => value.apply(),
-                                            text: value.model!.isRegister
-                                                ? "Zoom Uygulamasında Aç"
-                                                : "Katıl",
-                                          ),
-                                        ))
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    })
-                  ],
-                ),
               ),
-            )
+              Column(
+                children: [
+                  Gap(context.midSpacerSize),
+                  GestureDetector(
+                    onTap: () => value.navigation.pop(),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      margin: context.largeSpacerOnlyHorizontal,
+                      decoration: BoxDecoration(
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                          borderRadius: context.midRadius),
+                      child: const Icon(Icons.keyboard_arrow_left),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Gap(context.midSpacerSize),
+          LabelText(
+            text: value.model!.title,
+            fontSize: FONT_SIZE.HEADLINE_MEDIUM,
+          ),
+          Gap(context.midSpacerSize),
+          LabelText(
+            text: value.model!.description,
+            textColor: APPLICATION_COLOR.SUBTITLE,
+          ),
+          Gap(context.midSpacerSize),
+          LabelText(
+            text: value.model!.scheduledStartDate.formatTime,
+            textColor: APPLICATION_COLOR.SUBTITLE,
+          ),
+          Gap(context.midSpacerSize),
+          value.isLoading
+              ? const SizedBox(
+                  height: 35, width: 35, child: CircularProgressIndicator())
+              : Padding(
+                  padding: context.largeSpacerOnlyHorizontal,
+                  child: SizedBox(
+                    height: 35,
+                    child: NormalButton(
+                      onTap: () => value.apply(),
+                      text: value.model!.isRegister
+                          ? "Zoom Uygulamasında Aç"
+                          : "Katıl",
+                    ),
+                  ))
+        ],
+      );
+    });
+  }
+
+  Widget tabletView(BuildContext context, EducationDetailViewModel value) {
+    return Stack(
+      children: [
+        Observer(builder: (context) {
+          if (value.model == null) {
+            return const SizedBox.shrink();
+          }
+          return SizedBox(
+            width: context.sWidth,
+            height: context.sHeight,
+            child: NormalNetworkImage(source: value.model!.mediaItem.url),
+          );
+        }),
+        Column(
+          children: [
+            Gap(context.midSpacerSize),
+            GestureDetector(
+              onTap: () => value.navigation.pop(),
+              child: Container(
+                width: 50,
+                height: 50,
+                margin: context.largeSpacerOnlyHorizontal,
+                decoration: BoxDecoration(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    borderRadius: context.midRadius),
+                child: const Icon(Icons.keyboard_arrow_left),
+              ),
+            ),
           ],
         ),
-      ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Container(
+            height: context.sHeight,
+            margin: context.midSpacer,
+            width: context.sWidth / 2.5,
+            child: Stack(
+              children: [
+                Container(
+                  color: context
+                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                      .withAlpha(220),
+                  height: context.sHeight,
+                  margin: context.midSpacer,
+                  width: context.sWidth / 2.5,
+                ),
+                Observer(builder: (context) {
+                  if (value.model == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return Container(
+                    height: context.sHeight,
+                    margin: context.largeSpacer,
+                    width: context.sWidth / 2.5,
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            LabelText(
+                              text: value.model!.title,
+                              fontSize: FONT_SIZE.HEADLINE_MEDIUM,
+                            ),
+                            Gap(context.midSpacerSize),
+                            LabelText(
+                              text: value.model!.description,
+                              textColor: APPLICATION_COLOR.SUBTITLE,
+                            ),
+                            Gap(context.midSpacerSize),
+                            LabelText(
+                              text: value.model!.scheduledStartDate.formatTime,
+                              textColor: APPLICATION_COLOR.SUBTITLE,
+                            ),
+                            Gap(context.midSpacerSize),
+                            value.isLoading
+                                ? const SizedBox(
+                                    height: 35,
+                                    width: 35,
+                                    child: CircularProgressIndicator())
+                                : Padding(
+                                    padding: context.largeSpacerOnlyHorizontal,
+                                    child: SizedBox(
+                                      height: 35,
+                                      child: NormalButton(
+                                        onTap: () => value.apply(),
+                                        text: value.model!.isRegister
+                                            ? "Zoom Uygulamasında Aç"
+                                            : "Katıl",
+                                      ),
+                                    ))
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                })
+              ],
+            ),
+          ),
+        )
+      ],
     );
   }
 }
