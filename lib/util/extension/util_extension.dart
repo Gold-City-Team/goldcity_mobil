@@ -17,3 +17,24 @@ extension LocaleToNativeLanguage on String {
     };
   }
 }
+
+const List monthsInYear = [
+  "Ocak",
+  "Şubat",
+  "Mart",
+  "Nisan",
+  "Mayıs",
+  "Haziran",
+  "Temmuz",
+  "Ağustos",
+  "Eylül",
+  "Ekim",
+  "Kasım",
+  "Aralık",
+];
+
+extension FormatTime on DateTime {
+  String get formatTime {
+    return "$day ${monthsInYear[month - 1]} $year / ${hour < 10 ? "0$hour" : "$hour"}:${minute < 10 ? "0$minute" : "$minute"}";
+  }
+}

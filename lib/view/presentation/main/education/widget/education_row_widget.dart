@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:goldcity/domain/entity/education/education_detail/education_detail_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/button/normal_button.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 
 class EducationRowWidget extends StatelessWidget {
+  final EducationDetailEntity entity;
   final VoidCallback onTap;
-  const EducationRowWidget({required this.onTap, super.key});
+  const EducationRowWidget(
+      {required this.onTap, required this.entity, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +25,29 @@ class EducationRowWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const NormalNetworkImage(
-              source:
-                  "https://goldcitycondominium.com/images/projects/golfAqua/ic/ic1.webp"),
+          AspectRatio(
+              aspectRatio: 1.7777,
+              child: NormalNetworkImage(source: entity.mediaItem.url)),
           Gap(context.midSpacerSize),
-          const Row(
+          Row(
             children: [
-              Spacer(),
+              const Spacer(),
               LabelText(
-                  text: "01/07/2024",
+                  text: entity.scheduledStartDate.formatTime,
                   textColor: APPLICATION_COLOR.SUBTITLE,
                   fontSize: FONT_SIZE.BODY_LARGE),
             ],
           ),
-          const LabelText(
+          LabelText(
               maxLines: 2,
-              text:
-                  "Test Eğitimi sdf asşkldfasd şsdf slş slşşlfsdşl aslş lşsd flşsdöf lşsa",
+              text: entity.title,
               textColor: APPLICATION_COLOR.TITLE,
-              fontSize: FONT_SIZE.HEADLINE_LARGE),
+              fontSize: FONT_SIZE.HEADLINE_MEDIUM),
+          Gap(context.midSpacerSize),
+          LabelText(
+              text: entity.description,
+              textColor: APPLICATION_COLOR.SUBTITLE,
+              fontSize: FONT_SIZE.BODY_LARGE),
           Gap(context.midSpacerSize),
           NormalButton(
             onTap: () => onTap(),

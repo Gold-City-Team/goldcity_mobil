@@ -45,11 +45,13 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   List<String> photoList = [
-    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/be27b610-1f4e-4a82-8be0-d35659e3e0a0.webp",
-    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/f71f46fb-7f04-42c7-a866-26ec7f632954.webp",
-    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/d781001a-0f9a-40a7-bc13-7b6e318bc184.webp",
-    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/dcfcffde-acb7-4bb3-8324-7101e0cbd96e.webp",
-    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/5926f47e-cf46-47ab-b2b1-d2fbc450be1e.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/a14c059a-5eb1-4fa7-8b04-101b91b84867.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/7e8f9193-fc20-4dfd-a50c-46e937ef16e2.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/da1f9986-7ab6-4937-bf6a-3befd8d8489f.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/77b8fb99-8a85-4b53-9f9a-cadb48d8f45c.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/db6b74dd-6c71-43be-aeba-b40cc6a3543a.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/92f73a1f-bffb-47c3-a9c8-aacca825dcb5.webp",
+    "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/9b46c275-e0a0-48a5-ba6a-5069b48d22fe.webp",
   ];
 
   ProjectTemplateSixEntity template = ProjectTemplateSixDto.fromJson({
