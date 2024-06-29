@@ -4,16 +4,13 @@ import 'package:goldcity/domain/entity/education/education_detail/education_deta
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
-import 'package:goldcity/view/widget/button/normal_button.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 
 class EducationRowWidget extends StatelessWidget {
   final EducationDetailEntity entity;
-  final VoidCallback onTap;
-  const EducationRowWidget(
-      {required this.onTap, required this.entity, super.key});
+  const EducationRowWidget({required this.entity, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +45,6 @@ class EducationRowWidget extends StatelessWidget {
               text: entity.description,
               textColor: APPLICATION_COLOR.SUBTITLE,
               fontSize: FONT_SIZE.BODY_LARGE),
-          Gap(context.midSpacerSize),
-          NormalButton(
-            onTap: () => onTap(),
-            text: "Detay",
-          )
         ],
       ),
     );

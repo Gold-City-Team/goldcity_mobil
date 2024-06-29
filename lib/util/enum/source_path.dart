@@ -13,7 +13,9 @@ enum SourcePath {
   PROJECT_INTERIOR_GALLERY,
   PROJECT_OUTDOOR_GALLERY,
   MEDIA,
-  EDUCATION
+  EDUCATION_LIST,
+  EDUCATION,
+  USER_EDUCATION
 }
 
 extension SourcePathExtension on SourcePath {
@@ -36,7 +38,9 @@ extension SourcePathExtension on SourcePath {
         '/projectdetail/${data?[0]}/templates/${data?[1]}',
       SourcePath.COMPLEX_TEMPLATE_DETAIL =>
         '/complexdetail/${data?[0]}/templates/${data?[1]}',
-      SourcePath.EDUCATION => '/meeting',
+      SourcePath.EDUCATION_LIST => '/meeting',
+      SourcePath.EDUCATION => '/meeting/${data?[0]}',
+      SourcePath.USER_EDUCATION => '/usermeeting/${data?[0]}',
     };
   }
 }

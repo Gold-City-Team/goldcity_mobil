@@ -8,15 +8,16 @@ part of 'education_detail_dto.dart';
 
 EducationDetailDto _$EducationDetailDtoFromJson(Map<String, dynamic> json) =>
     EducationDetailDto(
-      json['id'] as int?,
-      json['title'] as String?,
-      json['description'] as String?,
-      json['mediaItem'] == null
+      id: json['id'] as int?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      mediaItem: json['mediaItem'] == null
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
-      json['scheduledStartDate'] == null
+      scheduledStartDate: json['scheduledStartDate'] == null
           ? null
           : DateTime.parse(json['scheduledStartDate'] as String),
+      isRegister: json['isRegister'] as bool?,
     );
 
 Map<String, dynamic> _$EducationDetailDtoToJson(EducationDetailDto instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$EducationDetailDtoToJson(EducationDetailDto instance) =>
       'description': instance.description,
       'mediaItem': instance.mediaItem,
       'scheduledStartDate': instance.scheduledStartDate?.toIso8601String(),
+      'isRegister': instance.isRegister,
     };

@@ -22,47 +22,52 @@ class EducationView extends StatelessWidget {
       onPageBuilder: (BuildContext context, EducationViewModel value) =>
           Scaffold(
         body: SafeArea(
-            child: SingleChildScrollView(
-          child: Padding(
-            padding: context.largeSpacerOnlyHorizontal,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Gap(context.midSpacerSize),
-                GestureDetector(
-                  onTap: () => value.navigation.pop(),
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: context.toColor(APPLICATION_COLOR.GOLD),
-                        borderRadius: context.midRadius),
-                    child: const Icon(Icons.keyboard_arrow_left),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: context.largeSpacerOnlyHorizontal,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Gap(context.midSpacerSize),
+                  GestureDetector(
+                    onTap: () => value.navigation.pop(),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                          borderRadius: context.midRadius),
+                      child: const Icon(Icons.keyboard_arrow_left),
+                    ),
                   ),
-                ),
-                Gap(context.midSpacerSize),
-                Observer(builder: (context) {
-                  if (value.model == null) {
-                    return const SizedBox.shrink();
-                  }
-                  return Container(
-                      alignment: Alignment.topLeft,
-                      width: context.sWidth,
-                      child: Wrap(
-                        runSpacing: 10,
-                        spacing: 10,
-                        children: value.model!
-                            .map((e) => SizedBox(
-                                width: context.sWidth / 3 - 20,
-                                child: EducationRowWidget(
-                                    entity: e, onTap: () {})))
-                            .toList(),
-                      ));
-                }),
-              ],
+                  Gap(context.midSpacerSize),
+                  Observer(
+                    builder: (context) {
+                      if (value.model == null) {
+                        return const SizedBox.shrink();
+                      }
+                      return Container(
+                        alignment: Alignment.topLeft,
+                        width: context.sWidth,
+                        child: Wrap(
+                          runSpacing: 10,
+                          spacing: 10,
+                          children: value.model!
+                              .map((e) => SizedBox(
+                                  width: context.sWidth / 3 - 20,
+                                  child: GestureDetector(
+                                      onTap: () => value.openDetailPage(e.id),
+                                      child: EducationRowWidget(entity: e))))
+                              .toList(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
-        )),
+        ),
       ),
     );
   }

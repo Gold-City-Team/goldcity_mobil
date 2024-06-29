@@ -3,6 +3,7 @@ import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/education/education_detail/education_detail_entity.dart';
 import 'package:goldcity/domain/usecase/education_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:mobx/mobx.dart';
 
 part 'education_view_model.g.dart';
@@ -27,8 +28,12 @@ abstract class _EducationViewModelBase with Store, BaseViewModel {
   Future<void> _getEducationList() async {
     var result = await _educationUseCase.getEducationList();
     if (result.isRight) {
-      debugPrint("testo ${result.right.length}");
       model = result.right;
     }
+  }
+
+  openDetailPage(int id) {
+    navigation.navigateToPage(
+        path: NavigationConstant.EDUCATION_DETAIL, data: id);
   }
 }

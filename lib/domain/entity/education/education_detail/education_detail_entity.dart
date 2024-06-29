@@ -6,12 +6,13 @@ class EducationDetailEntity {
   String description;
   MediaEntity mediaItem;
   DateTime scheduledStartDate;
+  bool isRegister;
 
-  EducationDetailEntity({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.mediaItem,
-    required this.scheduledStartDate,
-  });
+  EducationDetailEntity(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.mediaItem,
+      required this.scheduledStartDate,
+      required this.isRegister});
 }

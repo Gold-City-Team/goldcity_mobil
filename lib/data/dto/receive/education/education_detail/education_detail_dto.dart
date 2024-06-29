@@ -12,24 +12,29 @@ class EducationDetailDto {
   String? description;
   MediaDto? mediaItem;
   DateTime? scheduledStartDate;
-
-  EducationDetailDto(this.id, this.title, this.description, this.mediaItem,
-      this.scheduledStartDate);
+  bool? isRegister;
+  EducationDetailDto(
+      {this.id,
+      this.title,
+      this.description,
+      this.mediaItem,
+      this.scheduledStartDate,
+      this.isRegister});
 
   factory EducationDetailDto.fromJson(Map<String, dynamic> json) =>
       _$EducationDetailDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$EducationDetailDtoToJson(this);
   EducationDetailEntity toEntity() => EducationDetailEntity(
-        id: id ?? 0,
-        title: title ?? "",
-        description: description ?? "",
-        mediaItem:
-            mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
-        scheduledStartDate: scheduledStartDate != null
-            ? DateFormat("yyyy-MM-dd HH:mm:ss")
-                .parse(scheduledStartDate.toString(), true)
-                .toLocal()
-            : DateTime.now(),
-      );
+      id: id ?? 0,
+      title: title ?? "",
+      description: description ?? "",
+      mediaItem:
+          mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
+      scheduledStartDate: scheduledStartDate != null
+          ? DateFormat("yyyy-MM-dd HH:mm:ss")
+              .parse(scheduledStartDate.toString(), true)
+              .toLocal()
+          : DateTime.now(),
+      isRegister: isRegister ?? false);
 }
