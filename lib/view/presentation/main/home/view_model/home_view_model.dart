@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/complex/complex/complex_entity.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
@@ -55,8 +56,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         projectList = event.right;
         pageList.add(ProjectListWidget(
           projectList: projectList!,
-          onTap: (int id) => navigation.navigateToPage(
-              path: NavigationConstant.PROJECT_DETAIL, data: id),
+          onTap: (int id) => navigateProjectDetail(id),
         ));
       }
     });
@@ -90,13 +90,12 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   }
 
   void navigateProjectDetail(int projectId) {
-    navigation.navigateToPage(
-        path: NavigationConstant.PROJECT_DETAIL, data: projectId);
+    viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
+        pathParameters: {"projectId": "$projectId"});
   }
 
   void navigateComplexDetail(int complexId) {
-    navigation.navigateToPage(
-        path: NavigationConstant.COMPLEX_DETAIL, data: complexId);
+    viewModelContext.goNamed(NavigationConstant.COMPLEX_DETAIL);
   }
 
   @action

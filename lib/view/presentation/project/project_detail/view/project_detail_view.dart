@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
@@ -202,7 +203,7 @@ class ProjectDetailView extends StatelessWidget {
                               Gap(context.midSpacerSize),
                               WebViewAware(
                                 child: GestureDetector(
-                                  onTap: () => value.navigation.pop(),
+                                  onTap: () => context.pop(),
                                   child: Container(
                                     width: 50,
                                     height: 50,
