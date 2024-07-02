@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -26,9 +25,6 @@ class ComplexDetailView extends StatefulWidget {
 
 class _ComplexDetailViewState extends State<ComplexDetailView> {
   final FocusNode _focusNode = FocusNode();
-// The message to display.
-
-// Focus nodes need to be disposed.
   @override
   void dispose() {
     _focusNode.dispose();
