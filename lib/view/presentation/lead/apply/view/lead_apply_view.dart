@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -32,7 +33,7 @@ class LeadApplyView extends StatelessWidget {
             child: Stack(
               children: [
                 NormalAppBar(
-                  backPressed: () => value.navigation.pop(),
+                  backPressed: () => context.pop(),
                   title: LocaleKeys.applicationFormTitle.tr(),
                 ),
                 Column(

@@ -1,6 +1,7 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/view/presentation/project/story/view_model/story_view_model.dart';
@@ -26,7 +27,7 @@ class StoryView extends StatelessWidget {
           backgroundColor:
               context.watch<ThemeNotifier>().colorScheme.backgroundColor,
           onDismissed: () {
-            value.navigation.pop();
+            context.pop();
           },
           child: Stack(
             children: [

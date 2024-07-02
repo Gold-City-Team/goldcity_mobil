@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_seven/project_template_seven_entity.dart';
 import 'package:goldcity/domain/usecase/complex_detail_usecase.dart';
@@ -41,16 +42,13 @@ abstract class _ComplexDoubleGalleryTemplateViewModelBase
   }
 
   Future<void> navigateGallery(int selectedId, isExperience) async {
-    await navigation.navigateToPage(
-      path: NavigationConstant.GALLERY,
-      data: [
-        isExperience == true
-            ? templateEntity!.verticalGalleries
-            : templateEntity!.galleries,
-        selectedId,
-        isExperience
-      ],
-    );
+    await viewModelContext.pushNamed(NavigationConstant.GALLERY, extra: {
+      "gallery": isExperience == true
+          ? templateEntity!.verticalGalleries
+          : templateEntity!.galleries,
+      "isExperiance": isExperience,
+      "selectedIndex": selectedId
+    });
 
     isTablet()
         ? SystemChrome.setPreferredOrientations([

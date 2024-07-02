@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
@@ -203,7 +204,7 @@ class _GalleryViewState extends State<GalleryView> {
         children: [
           Gap(context.midSpacerSize),
           GestureDetector(
-            onTap: () => viewModel.navigation.pop(),
+            onTap: () => context.pop(),
             child: Container(
               width: 50,
               margin: context.largeSpacerOnlyHorizontal,
@@ -289,7 +290,7 @@ class _GalleryViewState extends State<GalleryView> {
           return VideoFrameView(
               key: Key("${viewModel.gallery[viewModel.selectedMediaIndex].id}"),
               isFullScreen: !viewModel.isBottomVisible,
-              fullScreen: () => viewModel.navigation.pop(),
+              fullScreen: () => context.pop(),
               url: viewModel.gallery[viewModel.selectedMediaIndex].media.url);
         }),
         Observer(builder: (context) {

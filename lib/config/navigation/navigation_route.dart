@@ -2,32 +2,74 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view/complex_detail_view.dart';
+import 'package:goldcity/view/presentation/education_detail/view/education_detail_view.dart';
+import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
+import 'package:goldcity/view/presentation/main/settings/view/settings_view.dart';
+import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
+import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
 
 final router = GoRouter(
-    initialLocation: NavigationConstant.MAIN,
-    onException: (context, state, router) => GoRoute(
-          path: NavigationConstant.MAIN,
-          builder: (context, state) => const MainView(),
+  initialLocation: NavigationConstant.DEFAULT,
+  routes: [
+    GoRoute(
+      path: NavigationConstant.DEFAULT,
+      name: NavigationConstant.DEFAULT,
+      builder: (context, state) => const SplashView(),
+    ),
+    GoRoute(
+      name: NavigationConstant.MAIN,
+      path: NavigationConstant.MAIN,
+      builder: (context, state) => const MainView(),
+      routes: [
+        GoRoute(
+          name: NavigationConstant.PROJECT_DETAIL,
+          path: "${NavigationConstant.PROJECT_DETAIL}/:projectId",
+          builder: (context, state) => ProjectDetailView(
+              key: Key("${state.pathParameters['projectId']}"),
+              projectId: int.tryParse(state.pathParameters['projectId']!) ?? 0),
         ),
-    routes: [
-      GoRoute(
-        path: NavigationConstant.MAIN,
-        builder: (context, state) => const MainView(),
-      ),
-      GoRoute(
-        name: NavigationConstant.PROJECT_DETAIL,
-        path: "${NavigationConstant.PROJECT_DETAIL}/:projectId",
-        builder: (context, state) => ProjectDetailView(
-            key: Key("${state.pathParameters['projectId']}"),
-            projectId: int.tryParse(state.pathParameters['projectId']!) ?? 0),
-      ),
-      GoRoute(
-        name: NavigationConstant.COMPLEX_DETAIL,
-        path: NavigationConstant.COMPLEX_DETAIL,
-        builder: (context, state) => const ComplexDetailView(),
-      )
-    ]);
+        GoRoute(
+          name: NavigationConstant.COMPLEX_DETAIL,
+          path: NavigationConstant.COMPLEX_DETAIL,
+          builder: (context, state) => const ComplexDetailView(),
+        ),
+        GoRoute(
+            name: NavigationConstant.EDUCATIONS,
+            path: NavigationConstant.EDUCATIONS,
+            builder: (context, state) => const EducationView(),
+            routes: [
+              GoRoute(
+                name: NavigationConstant.EDUCATION_DETAIL,
+                path: ":meetingId",
+                builder: (context, state) => EducationDetailView(
+                  meetingId:
+                      int.tryParse(state.pathParameters['meetingId']!) ?? 0,
+                ),
+              ),
+            ]),
+        GoRoute(
+          name: NavigationConstant.SETTINGS,
+          path: NavigationConstant.SETTINGS,
+          builder: (context, state) => const SettingsView(),
+        ),
+        GoRoute(
+          name: NavigationConstant.GALLERY,
+          path: NavigationConstant.GALLERY,
+          builder: (context, state) => GalleryView(
+            gallery: (state.extra as Map<String, dynamic>)["gallery"]
+                as List<GalleryMediaEntity>,
+            selectedIndex:
+                (state.extra as Map<String, dynamic>)["selectedIndex"] as int,
+            isExperiance:
+                (state.extra as Map<String, dynamic>)["isExperiance"] as bool,
+          ),
+        )
+      ],
+    ),
+  ],
+);

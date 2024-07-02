@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_six/project_template_six_dto.dart';
 import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
@@ -116,10 +117,8 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
   }
 
   Future<void> navigateToGallery(List<GalleryMediaEntity> gallery) async {
-    await navigation.navigateToPage(
-      path: NavigationConstant.GALLERY,
-      data: [gallery, 1, isTablet() ? false : true],
-    );
+    viewModelContext.pushNamed(NavigationConstant.GALLERY,
+        extra: {"gallery": gallery, "isExperiance": false, "selectedIndex": 1});
   }
 
   List<String> getFloorListWithBlok(String e) {

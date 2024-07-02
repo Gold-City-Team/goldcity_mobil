@@ -76,12 +76,12 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _complexUseCase.getComplexList().listen((event) {
       if (event.isRight) {
         complexList = event.right;
-        pageList.add(CondominiumTrailerWidget(
-          complexEntity: complexList!.first,
-          onExploreTap: () => navigation.navigateToPage(
-              path: NavigationConstant.COMPLEX_DETAIL,
-              data: complexList!.first.complexDetail.id),
-        ));
+        pageList.add(
+          CondominiumTrailerWidget(
+            complexEntity: complexList!.first,
+            onExploreTap: () => navigateComplexDetail(0),
+          ),
+        );
         _getProjectList();
 
         pageIndex = 0;
@@ -103,17 +103,15 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     isPageSelectorVisible = false;
     switch (newIndex) {
       case 0:
-        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+        viewModelContext.pushReplacement(NavigationConstant.MAIN);
       case 1:
-        await navigation.navigateToPage(path: NavigationConstant.EDUCATIONS);
-        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+        viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
 
       case 2:
-        await navigation.navigateToPage(path: NavigationConstant.SETTINGS);
-        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+        viewModelContext.goNamed(NavigationConstant.SETTINGS);
 
       default:
-        navigation.navigateToPageClear(path: NavigationConstant.MAIN);
+        viewModelContext.pushReplacement(NavigationConstant.MAIN);
     }
   }
 }

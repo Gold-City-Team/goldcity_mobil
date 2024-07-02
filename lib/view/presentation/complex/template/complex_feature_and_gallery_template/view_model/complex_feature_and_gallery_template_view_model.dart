@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/complex/complex_templates/complex_template_four/complex_template_four_entity.dart';
 import 'package:goldcity/domain/usecase/complex_detail_usecase.dart';
@@ -43,11 +44,11 @@ abstract class _ComplexFeatureAndGalleryTemplateViewModelBase
   int detailId = 0;
   int settingsId = 0;
   Future<void> navigateGallery(int selectedId) async {
-    await navigation.navigateToPage(
-      path: NavigationConstant.GALLERY,
-      data: [templateEntity!.gallery, selectedId, false],
-    );
-
+    await viewModelContext.pushNamed(NavigationConstant.GALLERY, extra: {
+      "gallery": templateEntity!.gallery,
+      "isExperiance": false,
+      "selectedIndex": selectedId
+    });
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,

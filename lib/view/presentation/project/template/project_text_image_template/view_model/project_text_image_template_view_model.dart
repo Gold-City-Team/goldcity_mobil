@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 import 'package:goldcity/domain/entity/project/project_templates/project_template_eight/project_template_eight_entity.dart';
@@ -101,11 +102,11 @@ abstract class _ProjectTextImageTemplateViewModelBase
   }
 
   Future<void> navigateGallery(int selectedId) async {
-    await navigation.navigateToPage(
-      path: NavigationConstant.GALLERY,
-      data: [allImages, selectedId, false],
-    );
-
+    await viewModelContext.pushNamed(NavigationConstant.GALLERY, extra: {
+      "gallery": allImages,
+      "isExperiance": false,
+      "selectedIndex": selectedId
+    });
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,

@@ -12,11 +12,13 @@ import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:goldcity/injection_container.dart' as di;
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   di.init();
   await EasyLocalization.ensureInitialized();
+  setUrlStrategy(PathUrlStrategy());
   locator<SharedManager>();
   await Hive.initFlutter();
   locator<LocalManager>().init();

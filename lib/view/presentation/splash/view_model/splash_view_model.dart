@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
@@ -31,7 +32,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
 
     Future.delayed(
       const Duration(milliseconds: 500),
-      () => navigation.navigateToPageClear(path: NavigationConstant.MAIN),
+      () => viewModelContext.pushReplacement(NavigationConstant.MAIN),
     );
   }
 }

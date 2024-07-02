@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/education/education_detail/education_detail_entity.dart';
 import 'package:goldcity/domain/usecase/education_usecase.dart';
@@ -33,7 +34,7 @@ abstract class _EducationViewModelBase with Store, BaseViewModel {
   }
 
   openDetailPage(int id) {
-    navigation.navigateToPage(
-        path: NavigationConstant.EDUCATION_DETAIL, data: id);
+    viewModelContext.goNamed(NavigationConstant.EDUCATION_DETAIL,
+        pathParameters: {"meetingId": "$id"});
   }
 }

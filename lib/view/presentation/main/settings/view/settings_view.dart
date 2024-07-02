@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -38,7 +39,7 @@ class SettingsView extends StatelessWidget {
           children: [
             Gap(context.midSpacerSize),
             GestureDetector(
-              onTap: () => value.navigation.pop(),
+              onTap: () => context.pop(),
               child: Container(
                 width: 50,
                 margin: context.largeSpacerOnlyHorizontal,
@@ -114,7 +115,7 @@ class SettingsView extends StatelessWidget {
           children: [
             Gap(context.midSpacerSize),
             GestureDetector(
-              onTap: () => value.navigation.pop(),
+              onTap: () => context.pop(),
               child: Container(
                 width: 50,
                 margin: context.largeSpacerOnlyHorizontal,
