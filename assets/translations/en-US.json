@@ -36,5 +36,7 @@
     "gallery": "Gallery",
     "allVideos": "All Videos",
     "openWithZoom": "Open With Zoom",
-    "join": "Join"
+    "join": "Join",
+    "numberOfFloors": "Number of Floors",
+    "numberOfRooms": "Number of Rooms"
 }

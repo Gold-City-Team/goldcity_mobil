@@ -139,8 +139,31 @@ class RowWidget extends StatelessWidget {
                                       .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
                                       .withAlpha(13),
                                   child: Center(
-                                    child:
-                                        LabelText(text: LocaleKeys.type.tr()),
+                                    child: LabelText(
+                                      text: LocaleKeys.numberOfFloors.tr(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: Center(
+                                    child: LabelText(
+                                      maxLines: 1,
+                                      text: LocaleKeys.numberOfRooms.tr(),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -219,8 +242,8 @@ class RowWidget extends StatelessWidget {
                                 ),
                                 Expanded(
                                     child: Center(
-                                        child: LabelText(
-                                            text: "${home[index].area} m²"))),
+                                        child:
+                                            LabelText(text: home[index].area))),
                                 Container(
                                   width: .5,
                                   height: 50,
@@ -241,9 +264,22 @@ class RowWidget extends StatelessWidget {
                                           .CLOSE_BACKGROUND_COLOR)
                                       .withAlpha(150),
                                 ),
-                                const Expanded(
+                                Expanded(
                                     child: Center(
-                                        child: LabelText(text: "Orta Daire"))),
+                                        child: LabelText(
+                                            text: home[index].homeType))),
+                                Container(
+                                  width: .5,
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(150),
+                                ),
+                                Expanded(
+                                    child: Center(
+                                        child: LabelText(
+                                            text: home[index].roomSize))),
                                 Container(
                                   width: .5,
                                   height: 50,

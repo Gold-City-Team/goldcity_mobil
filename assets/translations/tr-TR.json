@@ -36,5 +36,7 @@
     "gallery": "Galeri",
     "allVideos": "Tüm Videolar",
     "openWithZoom": "Zoom Uygulamasında Aç",
-    "join": "Katıl"
+    "join": "Katıl",
+    "numberOfRooms": "Oda Sayısı",
+    "numberOfFloors": "Kat Sayısı"
 }

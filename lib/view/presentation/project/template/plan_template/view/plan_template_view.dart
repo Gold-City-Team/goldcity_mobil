@@ -206,11 +206,12 @@ class PlanTemplateView extends StatelessWidget {
                                       onTap: () => value.toggleFullViewItemIndex(
                                           "$floor${value.template!.homes[index].number}"),
                                       child: RowWidget(
-                                          home: homesByFloor,
-                                          isFullView: value.fullViewItemIndex
-                                              .any((element) =>
-                                                  element ==
-                                                  "$floor${value.template!.homes[index].number}")),
+                                        home: homesByFloor,
+                                        isFullView: value.fullViewItemIndex.any(
+                                            (element) =>
+                                                element ==
+                                                "$floor${value.template!.homes[index].number}"),
+                                      ),
                                     ),
                                   );
                                 }).toList(),
