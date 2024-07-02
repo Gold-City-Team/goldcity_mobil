@@ -76,11 +76,7 @@ class SettingsView extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
-                                        Icons.description,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                      ),
+                                      value.getIcon(e),
                                       Gap(context.midSpacerSize),
                                       LabelText(text: e),
                                     ],

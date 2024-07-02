@@ -59,7 +59,7 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
     updateList();
   }
 
-  Widget getIcon(var e) {
+  Widget getIcon(String e) {
     var index = menuItems.indexWhere((element) => element == e);
     return switch (index) {
       0 => Icon(Icons.dark_mode,
