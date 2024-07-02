@@ -5,8 +5,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
-import 'package:goldcity/data/dto/receive/gallery_media/gallery_media_dto.dart';
-import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -42,53 +40,44 @@ class PlanTemplateView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gap(context.midSpacerSize),
-            SizedBox(
-              height: ((context.sWidth / 3) - 20) / 1.7777,
-              child: ListView.builder(
-                itemCount: value.photoList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: ((context, index) {
-                  return GestureDetector(
-                    onTap: () => value.navigateToGallery(
-                      [
-                        GalleryMediaDto(
-                          id: 1,
-                          mediaItem: MediaDto(
-                              id: 1,
-                              mediaType: MEDIA_TYPE.IMAGE,
-                              url:
-                                  "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/be27b610-1f4e-4a82-8be0-d35659e3e0a0.webp"),
-                        ).toEntity(),
-                        GalleryMediaDto(
-                          id: 2,
-                          mediaItem: MediaDto(
-                              id: 2,
-                              mediaType: MEDIA_TYPE.IMAGE,
-                              url:
-                                  "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/f71f46fb-7f04-42c7-a866-26ec7f632954.webp"),
-                        ).toEntity(),
-                      ],
-                    ),
-                    child: Container(
-                      margin: context.midSpacerOnlyHorizontal,
-                      width: (context.sWidth / 3) - 20,
-                      height: ((context.sWidth / 3) - 20) / 1.7777,
+            Observer(builder: (context) {
+              if (value.template == null) {
+                return const SizedBox.shrink();
+              }
+              return SizedBox(
+                height: ((context.sWidth / 3) - 20) / 1.7777,
+                child: ListView.builder(
+                  itemCount: value.template!.gallery.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: ((context, index) {
+                    return GestureDetector(
+                      onTap: () => value.navigateToGallery(index),
                       child: Container(
-                        color: context.toColor(APPLICATION_COLOR.DARK),
-                        child: NormalNetworkImage(
-                            fit: BoxFit.cover, source: value.photoList[index]),
-                      ).animate().fade(),
-                    ),
-                  );
-                }),
-              ),
-            ),
+                        margin: context.midSpacerOnlyHorizontal,
+                        width: (context.sWidth / 3) - 20,
+                        height: ((context.sWidth / 3) - 20) / 1.7777,
+                        child: Container(
+                          color: context.toColor(APPLICATION_COLOR.DARK),
+                          child: NormalNetworkImage(
+                              fit: BoxFit.cover,
+                              source: value.template!.gallery[index].media.url),
+                        ).animate().fade(),
+                      ),
+                    );
+                  }),
+                ),
+              );
+            }),
             Gap(context.largeSpacerSize),
             Gap(context.midSpacerSize),
             Padding(
               padding: context.midSpacerOnlyHorizontal,
               child: Observer(builder: (context) {
                 if (value.fullViewItemIndex.isEmpty) {}
+
+                if (value.template == null) {
+                  return const SizedBox.shrink();
+                }
                 return ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -96,8 +85,8 @@ class PlanTemplateView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final blok = value.getBlok()[index];
                       final floorList = value.getFloorListWithBlok(blok);
-                      final homesByBlok = value.template.homes
-                          .where((home) => home.blok == blok)
+                      final homesByBlok = value.template!.homes
+                          .where((home) => home.block == blok)
                           .toList();
 
                       return Column(
@@ -118,13 +107,13 @@ class PlanTemplateView extends StatelessWidget {
                                 margin: context.midSpacerOnlyBottom,
                                 child: GestureDetector(
                                   onTap: () => value.toggleFullViewItemIndex(
-                                      "$floor${value.template.homes[index].id}"),
+                                      "$floor${value.template!.homes[index].number}"),
                                   child: RowWidget(
                                       home: homesByFloor,
                                       isFullView: value.fullViewItemIndex.any(
                                           (element) =>
                                               element ==
-                                              "$floor${value.template.homes[index].id}")),
+                                              "$floor${value.template!.homes[index].number}")),
                                 ),
                               );
                             }).toList(),
@@ -134,7 +123,8 @@ class PlanTemplateView extends StatelessWidget {
                     });
               }),
             ),
-            Gap(context.veryLargeSpacerOnlyBottom.bottom)
+            Gap(context.veryLargeSpacerOnlyBottom.bottom),
+            Gap(context.midSpacerSize)
           ],
         ),
       ),
@@ -148,45 +138,34 @@ class PlanTemplateView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gap(context.midSpacerSize),
-            SizedBox(
-              height: ((context.sWidth / 1.10) - 20) / 1.7777,
-              child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: ((context, index) {
-                  return GestureDetector(
-                    onTap: () => value.navigateToGallery([
-                      GalleryMediaDto(
-                        id: 1,
-                        mediaItem: MediaDto(
-                            id: 1,
-                            mediaType: MEDIA_TYPE.IMAGE,
-                            url:
-                                "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/be27b610-1f4e-4a82-8be0-d35659e3e0a0.webp"),
-                      ).toEntity(),
-                      GalleryMediaDto(
-                        id: 2,
-                        mediaItem: MediaDto(
-                            id: 2,
-                            mediaType: MEDIA_TYPE.IMAGE,
-                            url:
-                                "https://gold-city-2.fra1.digitaloceanspaces.com/IMAGE/f71f46fb-7f04-42c7-a866-26ec7f632954.webp"),
-                      ).toEntity(),
-                    ]),
-                    child: Container(
-                      margin: context.midSpacerOnlyHorizontal,
-                      width: (context.sWidth / 1.10) - 20,
-                      height: ((context.sWidth / 1.10) - 20) / 1.7777,
+            Observer(builder: (context) {
+              if (value.template == null) {
+                return const SizedBox.shrink();
+              }
+              return SizedBox(
+                height: ((context.sWidth / 1.10) - 20) / 1.7777,
+                child: ListView.builder(
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: ((context, index) {
+                    return GestureDetector(
+                      onTap: () => value.navigateToGallery(index),
                       child: Container(
-                        color: context.toColor(APPLICATION_COLOR.DARK),
-                        child: NormalNetworkImage(
-                            fit: BoxFit.cover, source: value.photoList[index]),
-                      ).animate().fade(),
-                    ),
-                  );
-                }),
-              ),
-            ),
+                        margin: context.midSpacerOnlyHorizontal,
+                        width: (context.sWidth / 1.10) - 20,
+                        height: ((context.sWidth / 1.10) - 20) / 1.7777,
+                        child: Container(
+                          color: context.toColor(APPLICATION_COLOR.DARK),
+                          child: NormalNetworkImage(
+                              fit: BoxFit.cover,
+                              source: value.template!.gallery[index].media.url),
+                        ).animate().fade(),
+                      ),
+                    );
+                  }),
+                ),
+              );
+            }),
             Gap(context.largeSpacerSize),
             Padding(
               padding: context.midSpacerOnlyHorizontal,
@@ -203,8 +182,8 @@ class PlanTemplateView extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final blok = value.getBlok()[index];
                           final floorList = value.getFloorListWithBlok(blok);
-                          final homesByBlok = value.template.homes
-                              .where((home) => home.blok == blok)
+                          final homesByBlok = value.template!.homes
+                              .where((home) => home.block == blok)
                               .toList();
 
                           return Column(
@@ -225,13 +204,13 @@ class PlanTemplateView extends StatelessWidget {
                                     margin: context.midSpacerOnlyBottom,
                                     child: GestureDetector(
                                       onTap: () => value.toggleFullViewItemIndex(
-                                          "$floor${value.template.homes[index].id}"),
+                                          "$floor${value.template!.homes[index].number}"),
                                       child: RowWidget(
                                           home: homesByFloor,
                                           isFullView: value.fullViewItemIndex
                                               .any((element) =>
                                                   element ==
-                                                  "$floor${value.template.homes[index].id}")),
+                                                  "$floor${value.template!.homes[index].number}")),
                                     ),
                                   );
                                 }).toList(),
@@ -243,7 +222,8 @@ class PlanTemplateView extends StatelessWidget {
                 );
               }),
             ),
-            Gap(context.veryLargeSpacerOnlyBottom.bottom)
+            Gap(context.veryLargeSpacerOnlyBottom.bottom),
+            Gap(context.midSpacerSize)
           ],
         ),
       ),

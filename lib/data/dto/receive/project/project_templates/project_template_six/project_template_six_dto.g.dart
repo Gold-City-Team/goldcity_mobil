@@ -10,7 +10,9 @@ ProjectTemplateSixDto _$ProjectTemplateSixDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateSixDto(
       id: json['id'] as int?,
-      title: json['title'] as String?,
+      galleries: (json['galleries'] as List<dynamic>?)
+          ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
       homes: (json['homes'] as List<dynamic>?)
           ?.map((e) => ProjectHomeDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -20,36 +22,38 @@ Map<String, dynamic> _$ProjectTemplateSixDtoToJson(
         ProjectTemplateSixDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
       'homes': instance.homes,
+      'galleries': instance.galleries,
     };
 
 ProjectHomeDto _$ProjectHomeDtoFromJson(Map<String, dynamic> json) =>
     ProjectHomeDto(
       id: json['id'] as int?,
-      blok: json['blok'] as String?,
-      no: json['no'] as String?,
+      block: json['block'] as String?,
+      number: json['number'] as String?,
       floor: json['floor'] as String?,
-      area: json['area'] as String?,
       price: json['price'] as String?,
-      type: json['type'] as String?,
-      state: $enumDecodeNullable(_$HOME_STATEEnumMap, json['state']),
+      area: json['area'] as String?,
+      roomSize: json['roomSize'] as String?,
+      homeType: json['homeType'] as String?,
+      saleState: $enumDecodeNullable(_$HOME_STATEEnumMap, json['saleState']),
     );
 
 Map<String, dynamic> _$ProjectHomeDtoToJson(ProjectHomeDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'blok': instance.blok,
-      'no': instance.no,
+      'block': instance.block,
+      'number': instance.number,
+      'roomSize': instance.roomSize,
       'floor': instance.floor,
       'area': instance.area,
       'price': instance.price,
-      'type': instance.type,
-      'state': _$HOME_STATEEnumMap[instance.state],
+      'homeType': instance.homeType,
+      'saleState': _$HOME_STATEEnumMap[instance.saleState],
     };
 
 const _$HOME_STATEEnumMap = {
   HOME_STATE.RESERVED: 'RESERVED',
-  HOME_STATE.SELLED: 'SELLED',
-  HOME_STATE.WAITING: 'WAITING',
+  HOME_STATE.SOLD: 'SOLD',
+  HOME_STATE.ON_SALE: 'ON_SALE',
 };

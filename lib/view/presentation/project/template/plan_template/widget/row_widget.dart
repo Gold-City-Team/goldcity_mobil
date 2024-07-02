@@ -40,7 +40,7 @@ class RowWidget extends StatelessWidget {
                     context.toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
                 child: LabelText(
                   text:
-                      "${home.where((element) => element.state == HOME_STATE.WAITING).length}",
+                      "${home.where((element) => element.saleState == HOME_STATE.ON_SALE).length}",
                   textColor: APPLICATION_COLOR.BACKGROUND_COLOR,
                   fontSize: FONT_SIZE.LABEL_SMALL,
                 ),
@@ -206,7 +206,7 @@ class RowWidget extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Center(
-                                    child: LabelText(text: home[index].no),
+                                    child: LabelText(text: home[index].number),
                                   ),
                                 ),
                                 Container(
@@ -256,11 +256,11 @@ class RowWidget extends StatelessWidget {
                                     child: Container(
                                   height: 50,
                                   color: getColorFromState(
-                                      context, home[index].state),
+                                      context, home[index].saleState),
                                   child: Center(
                                       child: LabelText(
                                     text: getTextFromState(
-                                        context, home[index].state),
+                                        context, home[index].saleState),
                                     textColor: APPLICATION_COLOR.LIGHT,
                                   )),
                                 )),
@@ -296,16 +296,16 @@ class RowWidget extends StatelessWidget {
   Color getColorFromState(BuildContext context, HOME_STATE state) {
     return switch (state) {
       HOME_STATE.RESERVED => context.toColor(APPLICATION_COLOR.BLUE),
-      HOME_STATE.WAITING => context.toColor(APPLICATION_COLOR.GREEN),
-      HOME_STATE.SELLED => context.toColor(APPLICATION_COLOR.RED)
+      HOME_STATE.ON_SALE => context.toColor(APPLICATION_COLOR.GREEN),
+      HOME_STATE.SOLD => context.toColor(APPLICATION_COLOR.RED)
     };
   }
 
   String getTextFromState(BuildContext context, HOME_STATE state) {
     return switch (state) {
       HOME_STATE.RESERVED => LocaleKeys.reserved.tr(),
-      HOME_STATE.WAITING => LocaleKeys.onSale.tr(),
-      HOME_STATE.SELLED => LocaleKeys.sold.tr()
+      HOME_STATE.ON_SALE => LocaleKeys.onSale.tr(),
+      HOME_STATE.SOLD => LocaleKeys.sold.tr()
     };
   }
 }

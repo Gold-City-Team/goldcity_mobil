@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, constant_identifier_names
 
+import 'package:goldcity/data/dto/receive/gallery_media/gallery_media_dto.dart';
 import 'package:goldcity/domain/entity/project/project_templates/project_template_six/project_template_six_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'project_template_six_dto.g.dart';
@@ -7,19 +8,19 @@ part 'project_template_six_dto.g.dart';
 enum HOME_STATE {
   @JsonValue("RESERVED")
   RESERVED,
-  @JsonValue("SELLED")
-  SELLED,
-  @JsonValue("WAITING")
-  WAITING
+  @JsonValue("SOLD")
+  SOLD,
+  @JsonValue("ON_SALE")
+  ON_SALE
 }
 
 @JsonSerializable()
 class ProjectTemplateSixDto {
   int? id;
-  String? title;
   List<ProjectHomeDto>? homes;
+  List<GalleryMediaDto>? galleries;
 
-  ProjectTemplateSixDto({this.id, this.title, this.homes});
+  ProjectTemplateSixDto({this.id, this.galleries, this.homes});
 
   factory ProjectTemplateSixDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectTemplateSixDtoFromJson(json);
@@ -28,7 +29,9 @@ class ProjectTemplateSixDto {
 
   ProjectTemplateSixEntity toEntity() => ProjectTemplateSixEntity(
         id: id ?? 0,
-        title: title ?? "",
+        gallery: galleries != null
+            ? galleries!.map((e) => e.toEntity()).toList()
+            : [GalleryMediaDto().toEntity()],
         homes: homes != null
             ? homes!.map((e) => e.toEntity()).toList()
             : [ProjectHomeDto().toEntity()],
@@ -38,22 +41,24 @@ class ProjectTemplateSixDto {
 @JsonSerializable()
 class ProjectHomeDto {
   int? id;
-  String? blok;
-  String? no;
+  String? block;
+  String? number;
+  String? roomSize;
   String? floor;
   String? area;
   String? price;
-  String? type;
-  HOME_STATE? state;
+  String? homeType;
+  HOME_STATE? saleState;
   ProjectHomeDto({
     this.id,
-    this.blok,
-    this.no,
+    this.block,
+    this.number,
     this.floor,
-    this.area,
     this.price,
-    this.type,
-    this.state,
+    this.area,
+    this.roomSize,
+    this.homeType,
+    this.saleState,
   });
   factory ProjectHomeDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectHomeDtoFromJson(json);
@@ -61,13 +66,13 @@ class ProjectHomeDto {
   Map<String, dynamic> toJson() => _$ProjectHomeDtoToJson(this);
 
   ProjectHomeEntity toEntity() => ProjectHomeEntity(
-        id: id ?? 0,
-        blok: blok ?? "",
-        no: no ?? "",
-        floor: floor ?? "",
-        area: area ?? "",
-        price: price ?? "",
-        type: type ?? "",
-        state: state ?? HOME_STATE.WAITING,
-      );
+      id: id ?? 0,
+      block: block ?? "",
+      number: number ?? "",
+      floor: floor ?? "",
+      area: area ?? "",
+      price: price ?? "",
+      homeType: homeType ?? "",
+      saleState: saleState ?? HOME_STATE.ON_SALE,
+      roomSize: roomSize ?? "1");
 }

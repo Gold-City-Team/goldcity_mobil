@@ -1,34 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_six/project_template_six_dto.dart';
+import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 
 @immutable
 class ProjectTemplateSixEntity {
   final int id;
-  final String title;
+  final List<GalleryMediaEntity> gallery;
   final List<ProjectHomeEntity> homes;
 
   const ProjectTemplateSixEntity(
-      {required this.id, required this.title, required this.homes});
+      {required this.id, required this.gallery, required this.homes});
 }
 
 @immutable
 class ProjectHomeEntity {
   final int id;
-  final String blok;
-  final String no;
+  final String block;
+  final String number;
   final String floor;
   final String area;
   final String price;
-  final String type;
-  final HOME_STATE state;
+  final String roomSize;
+  final String homeType;
+  final HOME_STATE saleState;
   const ProjectHomeEntity({
     required this.id,
-    required this.blok,
-    required this.no,
+    required this.block,
+    required this.number,
     required this.floor,
+    required this.roomSize,
     required this.area,
     required this.price,
-    required this.type,
-    required this.state,
+    required this.homeType,
+    required this.saleState,
   });
 }
