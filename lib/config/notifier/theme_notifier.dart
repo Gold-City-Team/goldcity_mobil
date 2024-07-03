@@ -16,7 +16,7 @@ class ThemeNotifier extends ChangeNotifier {
   ThemeData _currentTheme = AppThemeLight.instance.theme;
   IColorScheme colorScheme = ColorSchemeLight.instance;
   ThemeData get currentTheme => _currentTheme;
-  APP_THEME appTheme = APP_THEME.LIGHT;
+  APP_THEME appTheme = APP_THEME.DARK;
   void toggleTheme() {
     appTheme == APP_THEME.DARK
         ? {
