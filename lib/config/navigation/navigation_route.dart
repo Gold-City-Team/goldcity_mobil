@@ -25,6 +25,10 @@ final router = GoRouter(
   },
   redirect: (context, state) async {
     var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
+    if (state.fullPath!.contains(NavigationConstant.GALLERY) &&
+        state.extra == null) {
+      context.pop();
+    }
     await Future.delayed(const Duration(), () {
       if (theme == "LIGHT") {
         context.read<ThemeNotifier>().setLightTheme();
