@@ -171,6 +171,9 @@ class PlanTemplateView extends StatelessWidget {
               padding: context.midSpacerOnlyHorizontal,
               child: Observer(builder: (context) {
                 if (value.fullViewItemIndex.isEmpty) {}
+                if (value.template == null) {
+                  return const SizedBox.shrink();
+                }
                 return SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SizedBox(
