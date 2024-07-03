@@ -2,8 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:goldcity/config/data/shared_manager.dart';
+import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
+import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
+import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view/complex_detail_view.dart';
 import 'package:goldcity/view/presentation/education_detail/view/education_detail_view.dart';
 import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
@@ -12,9 +16,25 @@ import 'package:goldcity/view/presentation/main/settings/view/settings_view.dart
 import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
 import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
+import 'package:provider/provider.dart';
 
 final router = GoRouter(
   initialLocation: NavigationConstant.DEFAULT,
+  errorBuilder: (context, state) {
+    return const SplashView();
+  },
+  redirect: (context, state) async {
+    var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
+    await Future.delayed(const Duration(), () {
+      if (theme == "LIGHT") {
+        context.read<ThemeNotifier>().setLightTheme();
+      } else {
+        context.read<ThemeNotifier>().setDarkTheme();
+      }
+    });
+
+    return null;
+  },
   routes: [
     GoRoute(
       path: NavigationConstant.DEFAULT,
