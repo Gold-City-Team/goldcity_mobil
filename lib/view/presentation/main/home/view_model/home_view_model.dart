@@ -90,8 +90,10 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   }
 
   void navigateProjectDetail(int projectId) {
-    viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
-        pathParameters: {"projectId": "$projectId"});
+    viewModelContext.goNamed(
+      NavigationConstant.PROJECT_DETAIL,
+      pathParameters: {"projectId": "$projectId"},
+    );
   }
 
   void navigateComplexDetail(int complexId) {
