@@ -82,7 +82,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                 alignment: Alignment.bottomCenter,
                 children: [
                   Observer(builder: (context) {
-                    if (value.entity == null) {
+                    if (value.entity == null ||
+                        value.entity!.detail.template.isEmpty) {
                       debugPrint("page: açılmadı");
 
                       return const SizedBox.shrink();
@@ -173,7 +174,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                     };
                   }),
                   Observer(builder: (context) {
-                    if (value.entity == null) {
+                    if (value.entity == null ||
+                        value.entity!.detail.template.isEmpty) {
                       return const SizedBox.shrink();
                     }
                     return value.entity!.detail.template[value.templateIndex]
@@ -220,7 +222,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                       margin: context.smallSpacerOnlyBottom,
                       child: Observer(
                         builder: (context) {
-                          if (value.entity == null) {
+                          if (value.entity == null ||
+                              value.entity!.detail.template.isEmpty) {
                             return const SizedBox.shrink();
                           }
                           return Padding(
