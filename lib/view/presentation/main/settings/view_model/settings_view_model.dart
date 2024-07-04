@@ -2,8 +2,12 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/config/data/local_manager.dart';
+import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_language_widget.dart';
@@ -42,21 +46,27 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
 
   void showBox(var e) async {
     var index = menuItems.indexWhere((element) => element == e);
-    await showDialog(
-      context: viewModelContext,
-      builder: (context) {
-        return switch (index) {
-          0 => const ChangeThemeWidget(),
-          1 => const ChangeLanguageWidget(),
-          2 => const ChangeThemeWidget(),
-          3 => const ChangeThemeWidget(),
-          4 => const ChangeThemeWidget(),
-          5 => const ChangeThemeWidget(),
-          _ => const ChangeThemeWidget()
-        };
-      },
-    );
-    updateList();
+    if (index == 5) {
+      locator<SharedManager>().clearAll();
+      locator<LocalManager>().clearCache();
+      viewModelContext.pop();
+    } else {
+      await showDialog(
+        context: viewModelContext,
+        builder: (context) {
+          return switch (index) {
+            0 => const ChangeThemeWidget(),
+            1 => const ChangeLanguageWidget(),
+            2 => const ChangeThemeWidget(),
+            3 => const ChangeThemeWidget(),
+            4 => const ChangeThemeWidget(),
+            5 => const ChangeThemeWidget(),
+            _ => const ChangeThemeWidget()
+          };
+        },
+      );
+      updateList();
+    }
   }
 
   Widget getIcon(String e) {
