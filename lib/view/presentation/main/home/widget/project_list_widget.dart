@@ -34,12 +34,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color:
-                              context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                          width: 2)),
+                SizedBox(
                   width: context.sWidth /
                       (widget.projectList.length > getHalfOriantation
                           ? getHalfOriantation
