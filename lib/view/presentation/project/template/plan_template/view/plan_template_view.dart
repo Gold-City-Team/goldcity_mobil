@@ -124,7 +124,7 @@ class PlanTemplateView extends StatelessWidget {
               }),
             ),
             Gap(context.veryLargeSpacerOnlyBottom.bottom),
-            Gap(context.midSpacerSize)
+            Gap(context.veryLargeSpacerOnlyBottom.bottom),
           ],
         ),
       ),
