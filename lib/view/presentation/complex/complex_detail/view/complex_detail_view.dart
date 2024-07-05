@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -208,13 +209,32 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
                 ),
               ),
               Observer(builder: (context) {
-                return value.isPageSelectorVisible
-                    ? PageSelectorWidget(
-                        pages: value.entity!.complexDetail.templates
-                            .map((e) => e.title)
-                            .toList(),
-                        selectedIndex: value.templateIndex,
-                        newIndex: (newIndex) => value.changeIndex(newIndex),
+                if (value.entity == null) {
+                  return const SizedBox.shrink();
+                }
+                return !value.isPageSelectorLock
+                    ? Align(
+                        alignment: Alignment.centerRight,
+                        child: PageSelectorWidget(
+                          pages: value.entity!.complexDetail.templates
+                              .map((e) => e.title)
+                              .toList(),
+                          selectedIndex: value.templateIndex,
+                          newIndex: (newIndex) => value.changeIndex(newIndex),
+                        )
+                            .animate(
+                                onComplete: (controller) =>
+                                    value.isPageSelectorVisible == false
+                                        ? value.isPageSelectorLock = true
+                                        : null,
+                                key: Key(
+                                    "${DateTime.now().millisecondsSinceEpoch}"))
+                            .slideX(
+                              begin: value.isPageSelectorVisible ? 1 : 0,
+                              end: value.isPageSelectorVisible ? 0 : 1,
+                              curve: Curves.easeOutCubic,
+                              duration: Duration(milliseconds: 600),
+                            ),
                       )
                     : const SizedBox.shrink();
               })

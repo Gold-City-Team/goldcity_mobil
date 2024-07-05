@@ -40,8 +40,15 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   @observable
   bool isPageSelectorVisible = false;
+  @observable
+  bool isPageSelectorLock = true;
   @action
-  void togglePageSelector() => isPageSelectorVisible = !isPageSelectorVisible;
+  void togglePageSelector() {
+    isPageSelectorVisible = !isPageSelectorVisible;
+    if (isPageSelectorVisible != false) {
+      isPageSelectorLock = false;
+    }
+  }
 
   @action
   void _getDetail() {

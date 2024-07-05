@@ -74,6 +74,22 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$isPageSelectorLockAtom =
+      Atom(name: '_HomeViewModelBase.isPageSelectorLock', context: context);
+
+  @override
+  bool get isPageSelectorLock {
+    _$isPageSelectorLockAtom.reportRead();
+    return super.isPageSelectorLock;
+  }
+
+  @override
+  set isPageSelectorLock(bool value) {
+    _$isPageSelectorLockAtom.reportWrite(value, super.isPageSelectorLock, () {
+      super.isPageSelectorLock = value;
+    });
+  }
+
   late final _$complexListAtom =
       Atom(name: '_HomeViewModelBase.complexList', context: context);
 
@@ -141,6 +157,7 @@ pageList: ${pageList},
 pageIndex: ${pageIndex},
 projectList: ${projectList},
 isPageSelectorVisible: ${isPageSelectorVisible},
+isPageSelectorLock: ${isPageSelectorLock},
 complexList: ${complexList}
     ''';
   }

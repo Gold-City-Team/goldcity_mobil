@@ -59,6 +59,22 @@ mixin _$ComplexDetailViewModel on _ComplexDetailViewModelBase, Store {
     });
   }
 
+  late final _$isPageSelectorLockAtom = Atom(
+      name: '_ComplexDetailViewModelBase.isPageSelectorLock', context: context);
+
+  @override
+  bool get isPageSelectorLock {
+    _$isPageSelectorLockAtom.reportRead();
+    return super.isPageSelectorLock;
+  }
+
+  @override
+  set isPageSelectorLock(bool value) {
+    _$isPageSelectorLockAtom.reportWrite(value, super.isPageSelectorLock, () {
+      super.isPageSelectorLock = value;
+    });
+  }
+
   late final _$_getDetailAsyncAction =
       AsyncAction('_ComplexDetailViewModelBase._getDetail', context: context);
 
@@ -97,7 +113,8 @@ mixin _$ComplexDetailViewModel on _ComplexDetailViewModelBase, Store {
     return '''
 templateIndex: ${templateIndex},
 entity: ${entity},
-isPageSelectorVisible: ${isPageSelectorVisible}
+isPageSelectorVisible: ${isPageSelectorVisible},
+isPageSelectorLock: ${isPageSelectorLock}
     ''';
   }
 }

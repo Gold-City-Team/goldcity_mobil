@@ -59,6 +59,7 @@ class EducationView extends StatelessWidget {
                                   width: isTablet()
                                       ? context.sWidth / 3 - 20
                                       : context.sWidth,
+                                  height: isTablet() ? 550 : 450,
                                   child: GestureDetector(
                                       onTap: () => value.openDetailPage(e.id),
                                       child: EducationRowWidget(entity: e))))

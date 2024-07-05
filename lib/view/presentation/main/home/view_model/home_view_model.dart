@@ -64,8 +64,15 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   @observable
   bool isPageSelectorVisible = false;
+  @observable
+  bool isPageSelectorLock = true;
   @action
-  void togglePageSelector() => isPageSelectorVisible = !isPageSelectorVisible;
+  void togglePageSelector() {
+    isPageSelectorVisible = !isPageSelectorVisible;
+    if (isPageSelectorVisible != false) {
+      isPageSelectorLock = false;
+    }
+  }
 
   @observable
   List<ComplexEntity>? complexList;
@@ -102,21 +109,23 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> changeIndex(newIndex) async {
-    isPageSelectorVisible = false;
-    switch (newIndex) {
-      case 0:
-        viewModelContext.pushReplacement(NavigationConstant.MAIN);
-      case 1:
-        viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
-
-      case 2:
-        await viewModelContext.pushNamed(NavigationConstant.SETTINGS);
-        if (viewModelContext.mounted) {
+    togglePageSelector();
+    if (newIndex != pageIndex) {
+      switch (newIndex) {
+        case 0:
           viewModelContext.pushReplacement(NavigationConstant.MAIN);
-        }
+        case 1:
+          viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
 
-      default:
-        viewModelContext.pushReplacement(NavigationConstant.MAIN);
+        case 2:
+          await viewModelContext.pushNamed(NavigationConstant.SETTINGS);
+          if (viewModelContext.mounted) {
+            viewModelContext.pushReplacement(NavigationConstant.MAIN);
+          }
+
+        default:
+          viewModelContext.pushReplacement(NavigationConstant.MAIN);
+      }
     }
   }
 }

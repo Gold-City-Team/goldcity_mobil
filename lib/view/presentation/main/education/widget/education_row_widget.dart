@@ -43,6 +43,7 @@ class EducationRowWidget extends StatelessWidget {
           Gap(context.midSpacerSize),
           LabelText(
               text: entity.description,
+              maxLines: 3,
               textColor: APPLICATION_COLOR.SUBTITLE,
               fontSize: FONT_SIZE.BODY_LARGE),
         ],

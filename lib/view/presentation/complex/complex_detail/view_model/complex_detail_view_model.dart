@@ -58,6 +58,13 @@ abstract class _ComplexDetailViewModelBase with Store, BaseViewModel {
     });
   }
 
+  @observable
+  bool isPageSelectorLock = true;
   @action
-  void togglePageSelector() => isPageSelectorVisible = !isPageSelectorVisible;
+  void togglePageSelector() {
+    isPageSelectorVisible = !isPageSelectorVisible;
+    if (isPageSelectorVisible != false) {
+      isPageSelectorLock = false;
+    }
+  }
 }

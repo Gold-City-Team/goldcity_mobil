@@ -20,49 +20,61 @@ class PageSelectorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WebViewAware(
-      child: Scaffold(
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              GestureDetector(
-                onTap: () => newIndex(selectedIndex),
-                child: Container(
-                  width: 50,
-                  margin: context.largeSpacer,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                      borderRadius: context.midRadius),
-                  child: const Icon(Icons.close),
-                ),
+      child: Container(
+        color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+        width: context.sWidth / 3,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            GestureDetector(
+              onTap: () => newIndex(selectedIndex),
+              child: Container(
+                width: 50,
+                margin: context.largeSpacer,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    borderRadius: context.midRadius),
+                child: const Icon(Icons.close),
               ),
-              Expanded(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: pages.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => newIndex(index),
-                        child: Container(
-                            width: context.sWidth,
-                            alignment: Alignment.center,
-                            height: 50,
-                            margin: context.midSpacerOnlyBottom,
-                            child: LabelText(
-                              text: pages[index],
-                              textColor: selectedIndex == index
-                                  ? APPLICATION_COLOR.GOLD
-                                  : APPLICATION_COLOR.SUBTITLE,
-                              fontSize: selectedIndex == index
-                                  ? FONT_SIZE.HEADLINE_LARGE
-                                  : FONT_SIZE.HEADLINE_MEDIUM,
-                            )),
-                      );
-                    }),
-              ),
-            ],
-          ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: pages.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () => newIndex(index),
+                      child: Container(
+                          decoration: BoxDecoration(
+                            border: selectedIndex == index
+                                ? Border(
+                                    left: BorderSide(
+                                        width: 3,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD)),
+                                  )
+                                : null,
+                          ),
+                          width: context.sWidth,
+                          padding: EdgeInsets.only(left: 40),
+                          alignment: Alignment.centerLeft,
+                          height: 50,
+                          margin: context.midSpacerOnlyBottom,
+                          child: LabelText(
+                            align: TextAlign.center,
+                            text: "• ${pages[index]}",
+                            textColor: selectedIndex == index
+                                ? APPLICATION_COLOR.GOLD
+                                : APPLICATION_COLOR.SUBTITLE,
+                            fontSize: selectedIndex == index
+                                ? FONT_SIZE.HEADLINE_LARGE
+                                : FONT_SIZE.HEADLINE_SMALL,
+                          )),
+                    );
+                  }),
+            ),
+          ],
         ),
       ),
     );

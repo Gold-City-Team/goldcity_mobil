@@ -45,8 +45,6 @@ abstract class _ComplexFeatureTemplateViewModelBase with Store, BaseViewModel {
         complexDetailId, complexSettingsId);
     if (result.isRight) {
       templateEntity = (result.right.template as ComplexTemplateOneEntity);
-    } else {
-      debugPrint("test test ${result.left.detail}");
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -76,272 +77,282 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
         body: Focus(
           focusNode: _focusNode,
           onKeyEvent: _handleKeyEvent,
-          child: Observer(
-            builder: (context) {
-              return Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Observer(builder: (context) {
-                    if (value.entity == null ||
-                        value.entity!.detail.template.isEmpty) {
-                      debugPrint("page: açılmadı");
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Observer(builder: (context) {
+                if (value.entity == null ||
+                    value.entity!.detail.template.isEmpty) {
+                  debugPrint("page: açılmadı");
 
-                      return const SizedBox.shrink();
-                    }
-                    debugPrint("page: açılıd");
-                    return switch (value
-                        .entity!.detail.template[value.templateIndex].type) {
-                      TEMPLATE.PROJECT_TEMPLATE_ONE =>
-                        ProjectAnimatedWellcomeTemplateView(
+                  return const SizedBox.shrink();
+                }
+                debugPrint("page: açılıd");
+                return switch (
+                    value.entity!.detail.template[value.templateIndex].type) {
+                  TEMPLATE.PROJECT_TEMPLATE_ONE =>
+                    ProjectAnimatedWellcomeTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                      projectDetailId: value.entity!.detail.id,
+                      projectSettingsId:
+                          value.entity!.detail.template[value.templateIndex].id,
+                    ),
+                  TEMPLATE.PROJECT_TEMPLATE_TWO => value
+                              .entity!
+                              .detail
+                              .template[value.templateIndex]
+                              .metaData
+                              .viewType ==
+                          "ONE"
+                      ? ProjectTwoMainImageTemplateView(
+                          key: Key(
+                              "${value.entity!.detail.template[value.templateIndex].id}"),
+                          projectDetailId: value.entity!.detail.id,
+                          projectSettingsId: value
+                              .entity!.detail.template[value.templateIndex].id,
+                        )
+                      : ProjectGalleryAndInfoTemplate(
                           key: Key(
                               "${value.entity!.detail.template[value.templateIndex].id}"),
                           projectDetailId: value.entity!.detail.id,
                           projectSettingsId: value
                               .entity!.detail.template[value.templateIndex].id,
                         ),
-                      TEMPLATE.PROJECT_TEMPLATE_TWO => value
-                                  .entity!
-                                  .detail
-                                  .template[value.templateIndex]
-                                  .metaData
-                                  .viewType ==
-                              "ONE"
-                          ? ProjectTwoMainImageTemplateView(
-                              key: Key(
-                                  "${value.entity!.detail.template[value.templateIndex].id}"),
-                              projectDetailId: value.entity!.detail.id,
-                              projectSettingsId: value.entity!.detail
-                                  .template[value.templateIndex].id,
-                            )
-                          : ProjectGalleryAndInfoTemplate(
-                              key: Key(
-                                  "${value.entity!.detail.template[value.templateIndex].id}"),
-                              projectDetailId: value.entity!.detail.id,
-                              projectSettingsId: value.entity!.detail
-                                  .template[value.templateIndex].id,
-                            ),
-                      TEMPLATE.PROJECT_TEMPLATE_THREE =>
-                        ProjectPossibiltyTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectDetailId: value.entity!.detail.id,
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                      TEMPLATE.PROJECT_TEMPLATE_FOUR =>
-                        ProjectFeatureAndGalleryTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectDetailId: value.entity!.detail.id,
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                      TEMPLATE.PROJECT_TEMPLATE_FIVE =>
-                        ShareableMaterialTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectDetailId: value.entity!.detail.id,
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                      TEMPLATE.PROJECT_TEMPLATE_SIX => PlanTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                        ),
-                      TEMPLATE.PROJECT_TEMPLATE_SEVEN =>
-                        VirtualTourTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectDetailId: value.entity!.detail.id,
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                      TEMPLATE.PROJECT_TEMPLATE_EIGHT =>
-                        ProjectTextImageTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          detailId: value.entity!.detail.id,
-                          settingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                      _ => ProjectFeatureTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectDetailId: value.entity!.detail.id,
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                    };
-                  }),
-                  Observer(builder: (context) {
-                    if (value.entity == null ||
-                        value.entity!.detail.template.isEmpty) {
-                      return const SizedBox.shrink();
-                    }
-                    return value.entity!.detail.template[value.templateIndex]
-                                    .type ==
-                                TEMPLATE.PROJECT_TEMPLATE_SEVEN ||
-                            value.entity!.detail.template[value.templateIndex]
-                                    .type ==
-                                TEMPLATE.PROJECT_TEMPLATE_THREE
-                        ? const SizedBox.shrink()
-                        : Positioned(
-                            bottom: 0,
-                            child: SizedBox(
-                              width: context.sWidth,
-                              height: 150,
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                      colors: [
-                                        context.toColor(
-                                            APPLICATION_COLOR.BACKGROUND_COLOR),
-                                        context
-                                            .toColor(APPLICATION_COLOR
-                                                .BACKGROUND_COLOR)
-                                            .withAlpha(200),
-                                        context
-                                            .toColor(APPLICATION_COLOR
-                                                .BACKGROUND_COLOR)
-                                            .withAlpha(0),
-                                      ],
-                                    ),
-                                  ),
+                  TEMPLATE.PROJECT_TEMPLATE_THREE =>
+                    ProjectPossibiltyTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                      projectDetailId: value.entity!.detail.id,
+                      projectSettingsId:
+                          value.entity!.detail.template[value.templateIndex].id,
+                    ),
+                  TEMPLATE.PROJECT_TEMPLATE_FOUR =>
+                    ProjectFeatureAndGalleryTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                      projectDetailId: value.entity!.detail.id,
+                      projectSettingsId:
+                          value.entity!.detail.template[value.templateIndex].id,
+                    ),
+                  TEMPLATE.PROJECT_TEMPLATE_FIVE =>
+                    ShareableMaterialTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                      projectDetailId: value.entity!.detail.id,
+                      projectSettingsId:
+                          value.entity!.detail.template[value.templateIndex].id,
+                    ),
+                  TEMPLATE.PROJECT_TEMPLATE_SIX => PlanTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                    ),
+                  TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                      projectDetailId: value.entity!.detail.id,
+                      projectSettingsId:
+                          value.entity!.detail.template[value.templateIndex].id,
+                    ),
+                  TEMPLATE.PROJECT_TEMPLATE_EIGHT =>
+                    ProjectTextImageTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                      detailId: value.entity!.detail.id,
+                      settingsId:
+                          value.entity!.detail.template[value.templateIndex].id,
+                    ),
+                  _ => ProjectFeatureTemplateView(
+                      key: Key(
+                          "${value.entity!.detail.template[value.templateIndex].id}"),
+                      projectDetailId: value.entity!.detail.id,
+                      projectSettingsId:
+                          value.entity!.detail.template[value.templateIndex].id,
+                    ),
+                };
+              }),
+              Observer(builder: (context) {
+                if (value.entity == null ||
+                    value.entity!.detail.template.isEmpty) {
+                  return const SizedBox.shrink();
+                }
+                return value.entity!.detail.template[value.templateIndex]
+                                .type ==
+                            TEMPLATE.PROJECT_TEMPLATE_SEVEN ||
+                        value.entity!.detail.template[value.templateIndex]
+                                .type ==
+                            TEMPLATE.PROJECT_TEMPLATE_THREE
+                    ? const SizedBox.shrink()
+                    : Positioned(
+                        bottom: 0,
+                        child: SizedBox(
+                          width: context.sWidth,
+                          height: 150,
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    context.toColor(
+                                        APPLICATION_COLOR.BACKGROUND_COLOR),
+                                    context
+                                        .toColor(
+                                            APPLICATION_COLOR.BACKGROUND_COLOR)
+                                        .withAlpha(200),
+                                    context
+                                        .toColor(
+                                            APPLICATION_COLOR.BACKGROUND_COLOR)
+                                        .withAlpha(0),
+                                  ],
                                 ),
                               ),
                             ),
-                          );
-                  }),
-                  SafeArea(
-                    child: Container(
-                      padding: context.largeSpacerOnlyHorizontal,
-                      margin: context.smallSpacerOnlyBottom,
-                      child: Observer(
-                        builder: (context) {
-                          if (value.entity == null ||
-                              value.entity!.detail.template.isEmpty) {
-                            return const SizedBox.shrink();
-                          }
-                          return Padding(
-                            padding: value.entity!.detail
-                                        .template[value.templateIndex].type ==
-                                    TEMPLATE.PROJECT_TEMPLATE_SEVEN
-                                ? context.xLargeSpacerOnlyBottom
-                                : EdgeInsets.zero,
-                            child: Row(
-                              children: [
-                                const Spacer(),
-                                SizedBox(
-                                  width: 100,
-                                  height: 50,
-                                  child: NormalNetworkImage(
-                                    fit: BoxFit.contain,
-                                    source: value.entity!.detail.logo.url,
-                                  ),
-                                ),
-                                Gap(context.midSpacerSize),
-                                WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () => context.pop(),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                      ),
-                                      child: const Icon(Icons.home),
-                                    ),
-                                  ),
-                                ),
-                                Gap(context.midSpacerSize),
-                                WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () => value.togglePageSelector(),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                      ),
-                                      child: const Icon(Icons.menu),
-                                    ),
-                                  ),
-                                ),
-                                Gap(context.midSpacerSize),
-                                WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () => value.templateIndex != 0
-                                        ? value.changeIndex(
-                                            value.templateIndex - 1)
-                                        : null,
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD)
-                                            .withAlpha(value.templateIndex != 0
-                                                ? 255
-                                                : 120),
-                                      ),
-                                      child:
-                                          const Icon(Icons.keyboard_arrow_left),
-                                    ),
-                                  ),
-                                ),
-                                Gap(context.midSpacerSize),
-                                WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () => value.templateIndex !=
-                                            value.entity!.detail.template
-                                                    .length -
-                                                1
-                                        ? value.changeIndex(
-                                            value.templateIndex + 1)
-                                        : null,
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD)
-                                            .withAlpha(value.templateIndex !=
-                                                    value.entity!.detail
-                                                            .template.length -
-                                                        1
-                                                ? 255
-                                                : 120),
-                                      ),
-                                      child: const Icon(
-                                          Icons.keyboard_arrow_right),
-                                    ),
-                                  ),
-                                )
-                              ],
+                          ),
+                        ),
+                      );
+              }),
+              SafeArea(
+                child: Container(
+                  padding: context.largeSpacerOnlyHorizontal,
+                  margin: context.smallSpacerOnlyBottom,
+                  child: Observer(
+                    builder: (context) {
+                      if (value.entity == null ||
+                          value.entity!.detail.template.isEmpty) {
+                        return const SizedBox.shrink();
+                      }
+                      return Padding(
+                        padding: value.entity!.detail
+                                    .template[value.templateIndex].type ==
+                                TEMPLATE.PROJECT_TEMPLATE_SEVEN
+                            ? context.xLargeSpacerOnlyBottom
+                            : EdgeInsets.zero,
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            SizedBox(
+                              width: 100,
+                              height: 50,
+                              child: NormalNetworkImage(
+                                fit: BoxFit.contain,
+                                source: value.entity!.detail.logo.url,
+                              ),
                             ),
-                          );
-                        },
-                      ),
-                    ),
+                            Gap(context.midSpacerSize),
+                            WebViewAware(
+                              child: GestureDetector(
+                                onTap: () => context.pop(),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.GOLD),
+                                  ),
+                                  child: const Icon(Icons.home),
+                                ),
+                              ),
+                            ),
+                            Gap(context.midSpacerSize),
+                            WebViewAware(
+                              child: GestureDetector(
+                                onTap: () => value.togglePageSelector(),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.GOLD),
+                                  ),
+                                  child: const Icon(Icons.menu),
+                                ),
+                              ),
+                            ),
+                            Gap(context.midSpacerSize),
+                            WebViewAware(
+                              child: GestureDetector(
+                                onTap: () => value.templateIndex != 0
+                                    ? value.changeIndex(value.templateIndex - 1)
+                                    : null,
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: context
+                                        .toColor(APPLICATION_COLOR.GOLD)
+                                        .withAlpha(value.templateIndex != 0
+                                            ? 255
+                                            : 120),
+                                  ),
+                                  child: const Icon(Icons.keyboard_arrow_left),
+                                ),
+                              ),
+                            ),
+                            Gap(context.midSpacerSize),
+                            WebViewAware(
+                              child: GestureDetector(
+                                onTap: () => value.templateIndex !=
+                                        value.entity!.detail.template.length - 1
+                                    ? value.changeIndex(value.templateIndex + 1)
+                                    : null,
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: context
+                                        .toColor(APPLICATION_COLOR.GOLD)
+                                        .withAlpha(value.templateIndex !=
+                                                value.entity!.detail.template
+                                                        .length -
+                                                    1
+                                            ? 255
+                                            : 120),
+                                  ),
+                                  child: const Icon(Icons.keyboard_arrow_right),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                  value.isPageSelectorVisible
-                      ? PageSelectorWidget(
+                ),
+              ),
+              Observer(builder: (context) {
+                if (value.entity == null) {
+                  return const SizedBox.shrink();
+                }
+                return !value.isPageSelectorLock
+                    ? Align(
+                        alignment: Alignment.centerRight,
+                        child: PageSelectorWidget(
                           pages: value.entity!.detail.template
                               .map((e) => e.title)
                               .toList(),
                           selectedIndex: value.templateIndex,
                           newIndex: (newIndex) => value.changeIndex(newIndex),
                         )
-                      : const SizedBox.shrink()
-                ],
-              );
-            },
+                            .animate(
+                                onComplete: (controller) =>
+                                    value.isPageSelectorVisible == false
+                                        ? value.isPageSelectorLock = true
+                                        : null,
+                                key: Key(
+                                    "${DateTime.now().millisecondsSinceEpoch}"))
+                            .slideX(
+                              begin: value.isPageSelectorVisible ? 1 : 0,
+                              end: value.isPageSelectorVisible ? 0 : 1,
+                              curve: Curves.easeOutCubic,
+                              duration: Duration(milliseconds: 600),
+                            ),
+                      )
+                    : const SizedBox.shrink();
+              })
+            ],
           ),
         ),
       ),

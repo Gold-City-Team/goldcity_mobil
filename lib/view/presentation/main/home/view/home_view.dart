@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
@@ -18,7 +19,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("test");
     return BaseView<HomeViewModel>(
       viewModel: HomeViewModel(),
       onModelReady: (model) {
@@ -40,7 +40,6 @@ class HomeView extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     padEnds: false,
                     height: context.sHeight,
-                    onPageChanged: (index, reason) => value.pageIndex = index,
                     aspectRatio: 1,
                     enlargeStrategy: CenterPageEnlargeStrategy.scale,
                     keepPage: true,
@@ -95,18 +94,38 @@ class HomeView extends StatelessWidget {
                 ),
               );
             }),
-            Observer(builder: (context) {
-              return value.isPageSelectorVisible
-                  ? PageSelectorWidget(
+            Align(
+                alignment: Alignment.centerRight,
+                child: Observer(builder: (context) {
+                  if (value.isPageSelectorLock) {
+                    return const SizedBox.shrink();
+                  }
+                  return Align(
+                    alignment: Alignment.centerRight,
+                    child: PageSelectorWidget(
                       pages: [
-                          context.tr("explore"),
-                          context.tr("educations"),
-                          context.tr("settings")
-                        ],
+                        context.tr("explore"),
+                        context.tr("webinar"),
+                        context.tr("settings")
+                      ],
                       selectedIndex: 0,
-                      newIndex: (newIndex) => value.changeIndex(newIndex))
-                  : const SizedBox.shrink();
-            })
+                      newIndex: (newIndex) => value.changeIndex(newIndex),
+                    )
+                        .animate(
+                            onComplete: (controller) =>
+                                value.isPageSelectorVisible == false
+                                    ? value.isPageSelectorLock = true
+                                    : null,
+                            key:
+                                Key("${DateTime.now().millisecondsSinceEpoch}"))
+                        .slideX(
+                          begin: value.isPageSelectorVisible ? 1 : 0,
+                          end: value.isPageSelectorVisible ? 0 : 1,
+                          curve: Curves.easeOutCubic,
+                          duration: Duration(milliseconds: 600),
+                        ),
+                  );
+                }))
           ],
         ),
       ),

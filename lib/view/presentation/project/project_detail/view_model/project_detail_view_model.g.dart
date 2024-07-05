@@ -59,6 +59,22 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
     });
   }
 
+  late final _$isPageSelectorLockAtom = Atom(
+      name: '_ProjectDetailViewModelBase.isPageSelectorLock', context: context);
+
+  @override
+  bool get isPageSelectorLock {
+    _$isPageSelectorLockAtom.reportRead();
+    return super.isPageSelectorLock;
+  }
+
+  @override
+  set isPageSelectorLock(bool value) {
+    _$isPageSelectorLockAtom.reportWrite(value, super.isPageSelectorLock, () {
+      super.isPageSelectorLock = value;
+    });
+  }
+
   late final _$_ProjectDetailViewModelBaseActionController =
       ActionController(name: '_ProjectDetailViewModelBase', context: context);
 
@@ -100,7 +116,8 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
     return '''
 templateIndex: ${templateIndex},
 entity: ${entity},
-isPageSelectorVisible: ${isPageSelectorVisible}
+isPageSelectorVisible: ${isPageSelectorVisible},
+isPageSelectorLock: ${isPageSelectorLock}
     ''';
   }
 }

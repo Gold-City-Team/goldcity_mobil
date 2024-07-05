@@ -80,6 +80,7 @@ class PlanTemplateView extends StatelessWidget {
                 }
                 return ListView.builder(
                     shrinkWrap: true,
+                    padding: context.largeSpacerOnlyHorizontal,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: value.getBlok().length,
                     itemBuilder: (context, index) {
