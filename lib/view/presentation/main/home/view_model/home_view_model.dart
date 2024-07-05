@@ -29,6 +29,9 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void init() {
     _projectUseCase = locator<ProjectUseCase>();
     _complexUseCase = locator<ComplexUseCase>();
+    pageList.clear();
+    projectList?.clear();
+    complexList?.clear();
     _getComplexList();
     isTablet()
         ? SystemChrome.setPreferredOrientations([
@@ -119,9 +122,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
         case 2:
           await viewModelContext.pushNamed(NavigationConstant.SETTINGS);
-          if (viewModelContext.mounted) {
-            viewModelContext.pushReplacement(NavigationConstant.MAIN);
-          }
+          init();
 
         default:
           viewModelContext.pushReplacement(NavigationConstant.MAIN);
