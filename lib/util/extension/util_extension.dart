@@ -38,3 +38,16 @@ extension FormatTime on DateTime {
     return "$day ${monthsInYear[month - 1]} $year / ${hour < 10 ? "0$hour" : "$hour"}:${minute < 10 ? "0$minute" : "$minute"}";
   }
 }
+
+enum NOTIFICATION_TYPE { MEETING_REMINDER, PROJECT_DETAIL_REMOVE_DRAFT, CUSTOM }
+
+extension HumanTextToNotificationEnum on String {
+  NOTIFICATION_TYPE get humanToNotification {
+    return switch (this) {
+      "PROJECT_DETAIL_REMOVE_DRAFT" =>
+        NOTIFICATION_TYPE.PROJECT_DETAIL_REMOVE_DRAFT,
+      "MEETING_REMINDER" => NOTIFICATION_TYPE.MEETING_REMINDER,
+      _ => NOTIFICATION_TYPE.CUSTOM,
+    };
+  }
+}

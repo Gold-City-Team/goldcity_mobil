@@ -15,7 +15,8 @@ enum SourcePath {
   MEDIA,
   EDUCATION_LIST,
   EDUCATION,
-  USER_EDUCATION
+  USER_EDUCATION,
+  SEND_NOTIFICATION,
 }
 
 extension SourcePathExtension on SourcePath {
@@ -41,6 +42,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.EDUCATION_LIST => '/meeting',
       SourcePath.EDUCATION => '/meeting/${data?[0]}',
       SourcePath.USER_EDUCATION => '/usermeeting/${data?[0]}',
+      SourcePath.SEND_NOTIFICATION => '/notification/addtoken',
     };
   }
 }

@@ -2,10 +2,12 @@ import 'package:get_it/get_it.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
+import 'package:goldcity/config/firebase/fcm_manager.dart';
 import 'package:goldcity/data/repository/complex/complex_repository_impl.dart';
 import 'package:goldcity/data/repository/complex_detail/complex_detail_repository_impl.dart';
 import 'package:goldcity/data/repository/education/education_repository_impl.dart';
 import 'package:goldcity/data/repository/lead/lead_repository_impl.dart';
+import 'package:goldcity/data/repository/notification/notification_repository_impl.dart';
 import 'package:goldcity/data/repository/project/project_repository_impl.dart';
 import 'package:goldcity/data/repository/project_detail/project_detail_repository_impl.dart';
 import 'package:goldcity/data/source/local/project/project_local_data_source.dart';
@@ -13,18 +15,21 @@ import 'package:goldcity/data/source/remote/complex/complex_remote_data_source.d
 import 'package:goldcity/data/source/remote/complex_detail/complex_detail_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/education/education_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/lead/lead_remote_data_source.dart';
+import 'package:goldcity/data/source/remote/notification/notification_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/project/project_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/project_detail/project_detail_remote_data_source.dart';
 import 'package:goldcity/domain/repository/complex/complex_repository.dart';
 import 'package:goldcity/domain/repository/complex_detail/complex_detail_repository.dart';
 import 'package:goldcity/domain/repository/education/education_repository.dart';
 import 'package:goldcity/domain/repository/lead/lead_repository.dart';
+import 'package:goldcity/domain/repository/notification/notification_repository.dart';
 import 'package:goldcity/domain/repository/project/project_repository.dart';
 import 'package:goldcity/domain/repository/project_detail/project_detail_repository.dart';
 import 'package:goldcity/domain/usecase/complex_detail_usecase.dart';
 import 'package:goldcity/domain/usecase/complex_usecase.dart';
 import 'package:goldcity/domain/usecase/education_usecase.dart';
 import 'package:goldcity/domain/usecase/lead_usecase.dart';
+import 'package:goldcity/domain/usecase/notification_usecase.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 
@@ -32,9 +37,10 @@ final locator = GetIt.instance;
 
 void init() {
   locator.registerLazySingleton(() => RemoteManager());
-
+  locator.registerSingleton(FcmManager());
   locator.registerLazySingleton(() => LeadUseCase());
   locator.registerLazySingleton(() => ComplexUseCase());
+  locator.registerLazySingleton(() => NotificationUseCase());
   locator.registerLazySingleton(() => EducationUseCase());
   locator.registerLazySingleton(() => ComplexDetailUseCase());
   locator.registerLazySingleton(() => ProjectUseCase());
@@ -75,4 +81,9 @@ void init() {
       () => EducationRepositoryImpl());
   locator.registerLazySingleton<EducationRemoteDataSource>(
       () => EducationRemoteDataSourceImpl());
+
+  locator.registerLazySingleton<NotificationRepository>(
+      () => NotificationRepositoryImpl());
+  locator.registerLazySingleton<NotificationRemoteDataSource>(
+      () => NotificationRemoteDataSourceImpl());
 }

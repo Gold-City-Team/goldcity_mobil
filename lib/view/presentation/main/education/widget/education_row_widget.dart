@@ -31,14 +31,14 @@ class EducationRowWidget extends StatelessWidget {
               const Spacer(),
               LabelText(
                   text: entity.scheduledStartDate.formatTime,
-                  textColor: APPLICATION_COLOR.SUBTITLE,
+                  textColor: APPLICATION_COLOR.GOLD,
                   fontSize: FONT_SIZE.BODY_LARGE),
             ],
           ),
           LabelText(
               maxLines: 2,
               text: entity.title,
-              textColor: APPLICATION_COLOR.TITLE,
+              textColor: APPLICATION_COLOR.LIGHT,
               fontSize: FONT_SIZE.HEADLINE_MEDIUM),
           Gap(context.midSpacerSize),
           LabelText(

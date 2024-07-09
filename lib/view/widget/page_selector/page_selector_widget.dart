@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
@@ -22,7 +23,7 @@ class PageSelectorWidget extends StatelessWidget {
     return WebViewAware(
       child: Container(
         color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-        width: context.sWidth / 3,
+        width: context.sWidth / (isTablet() ? 3 : 1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [

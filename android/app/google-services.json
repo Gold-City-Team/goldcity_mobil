@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "941064344872",
+    "project_id": "gold-city-9d670",
+    "storage_bucket": "gold-city-9d670.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941064344872:android:6b3d6a37cd120548d36c1d",
+        "android_client_info": {
+          "package_name": "com.goldcity.goldcity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqfwhizPjWnv4mbM2y-pwE2FF9iC_ScLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

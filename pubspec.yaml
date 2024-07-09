@@ -49,6 +49,9 @@ dependencies:
   transparent_image: ^2.0.1
   webviewx_plus: ^0.5.0
   giffy_dialog: ^2.1.0
+  firebase_core: ^3.1.1
+  firebase_messaging: ^15.0.2
+  flutter_notification_channel: ^2.0.0
 
 dev_dependencies:
   flutter_test:

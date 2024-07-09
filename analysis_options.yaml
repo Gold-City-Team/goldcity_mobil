@@ -9,7 +9,6 @@
 # packages, and plugins designed to encourage good coding practices.
 analyzer:
   errors:
-    constant_identifier_names: ignore
     library_private_types_in_public_api: ignore
     prefer_const_constructors: ignore
     unused_element: ignore

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA0qjKVPdwToPrciT0Y3Ek1xsPX70DRCc8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>941064344872</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.goldcity.goldcityMobil</string>
+	<key>PROJECT_ID</key>
+	<string>gold-city-9d670</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gold-city-9d670.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:941064344872:ios:1ae7f6541b8a7ddcd36c1d</string>
+</dict>
+</plist>
