@@ -13,55 +13,59 @@ class EducationDetailRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            flex: 3,
-            child: Stack(
-              alignment: Alignment.center,
+    return Container(
+      color: context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
+      padding: context.midSpacerOnlyRight,
+      child: Row(
+        children: [
+          Expanded(
+              flex: 3,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  AspectRatio(
+                    aspectRatio: 1.777,
+                    child: NormalNetworkImage(
+                        source: entity.media.mediaMetaData.thumbnail),
+                  ),
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: context.toColor(APPLICATION_COLOR.GOLD),
+                        borderRadius: context.xLargeRadius),
+                    child: Icon(Icons.play_arrow),
+                  ),
+                ],
+              )),
+          Gap(context.largeSpacerSize),
+          Expanded(
+            flex: 7,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AspectRatio(
-                  aspectRatio: 1.777,
-                  child: NormalNetworkImage(
-                      source: entity.media.mediaMetaData.thumbnail),
+                LabelText(
+                  text: entity.title,
+                  fontSize: FONT_SIZE.HEADLINE_SMALL,
                 ),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                      borderRadius: context.xLargeRadius),
-                  child: Icon(Icons.play_arrow),
+                Gap(context.midSpacerSize),
+                LabelText(
+                  text: entity.description,
+                  textColor: APPLICATION_COLOR.SUBTITLE,
                 ),
               ],
-            )),
-        Gap(context.midSpacerSize),
-        Expanded(
-          flex: 7,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LabelText(
-                text: entity.title,
-                fontSize: FONT_SIZE.HEADLINE_SMALL,
-              ),
-              Gap(context.midSpacerSize),
-              LabelText(
-                text: entity.description,
-                textColor: APPLICATION_COLOR.SUBTITLE,
-              ),
-            ],
+            ),
           ),
-        ),
-        Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-              color: context.toColor(APPLICATION_COLOR.GOLD),
-              borderRadius: context.xLargeRadius),
-          child: Icon(Icons.play_arrow),
-        ),
-      ],
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+                color: context.toColor(APPLICATION_COLOR.GOLD),
+                borderRadius: context.xLargeRadius),
+            child: Icon(Icons.play_arrow),
+          ),
+        ],
+      ),
     );
   }
 }
