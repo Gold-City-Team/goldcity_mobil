@@ -1,6 +1,6 @@
 import 'package:goldcity/domain/entity/media/media_entity.dart';
 
-class EducationDetailEntity {
+class WebinarDetailEntity {
   int id;
   String title;
   String description;
@@ -8,7 +8,7 @@ class EducationDetailEntity {
   DateTime scheduledStartDate;
   bool isRegister;
 
-  EducationDetailEntity(
+  WebinarDetailEntity(
       {required this.id,
       required this.title,
       required this.description,

@@ -9,25 +9,25 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/education_detail/view_model/education_detail_view_model.dart';
+import 'package:goldcity/view/presentation/webinar_detail/view_model/webinar_detail_view_model.dart';
 import 'package:goldcity/view/widget/button/normal_button.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
-class EducationDetailView extends StatelessWidget {
+class WebinarDetailView extends StatelessWidget {
   final int meetingId;
-  const EducationDetailView({required this.meetingId, super.key});
+  const WebinarDetailView({required this.meetingId, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<EducationDetailViewModel>(
-      viewModel: EducationDetailViewModel(),
+    return BaseView<WebinarDetailViewModel>(
+      viewModel: WebinarDetailViewModel(),
       onModelReady: (model) {
         model.setContext(context);
         model.meetingId = meetingId;
         model.init();
       },
-      onPageBuilder: (BuildContext context, EducationDetailViewModel value) =>
+      onPageBuilder: (BuildContext context, WebinarDetailViewModel value) =>
           Scaffold(
               body: isTablet()
                   ? tabletView(context, value)
@@ -35,7 +35,7 @@ class EducationDetailView extends StatelessWidget {
     );
   }
 
-  Widget phoneView(BuildContext context, EducationDetailViewModel value) {
+  Widget phoneView(BuildContext context, WebinarDetailViewModel value) {
     return Observer(builder: (context) {
       if (value.model == null) {
         return const SizedBox.shrink();
@@ -102,7 +102,7 @@ class EducationDetailView extends StatelessWidget {
     });
   }
 
-  Widget tabletView(BuildContext context, EducationDetailViewModel value) {
+  Widget tabletView(BuildContext context, WebinarDetailViewModel value) {
     return Stack(
       children: [
         Observer(builder: (context) {

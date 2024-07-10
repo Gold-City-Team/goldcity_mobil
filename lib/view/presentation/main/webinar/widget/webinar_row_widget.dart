@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/domain/entity/education/education_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/education/webinar_detail/education_detail_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -8,9 +8,9 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 
-class EducationRowWidget extends StatelessWidget {
-  final EducationDetailEntity entity;
-  const EducationRowWidget({required this.entity, super.key});
+class WebinarRowWidget extends StatelessWidget {
+  final WebinarDetailEntity entity;
+  const WebinarRowWidget({required this.entity, super.key});
 
   @override
   Widget build(BuildContext context) {

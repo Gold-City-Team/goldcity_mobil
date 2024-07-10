@@ -105,7 +105,8 @@ class HomeView extends StatelessWidget {
                     child: PageSelectorWidget(
                       pages: [
                         context.tr("explore"),
-                        context.tr("webinar"),
+                        context.tr("webinars"),
+                        context.tr("educations"),
                         context.tr("settings")
                       ],
                       selectedIndex: 0,

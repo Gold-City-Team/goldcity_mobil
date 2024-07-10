@@ -7,22 +7,21 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/main/education/view_model/education_view_model.dart';
-import 'package:goldcity/view/presentation/main/education/widget/education_row_widget.dart';
+import 'package:goldcity/view/presentation/main/webinar/view_model/webinar_view_model.dart';
+import 'package:goldcity/view/presentation/main/webinar/widget/webinar_row_widget.dart';
 
-class EducationView extends StatelessWidget {
-  const EducationView({super.key});
+class WebinarView extends StatelessWidget {
+  const WebinarView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<EducationViewModel>(
-      viewModel: EducationViewModel(),
+    return BaseView<WebinarViewModel>(
+      viewModel: WebinarViewModel(),
       onModelReady: (model) {
         model.setContext(context);
         model.init();
       },
-      onPageBuilder: (BuildContext context, EducationViewModel value) =>
-          Scaffold(
+      onPageBuilder: (BuildContext context, WebinarViewModel value) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -62,7 +61,7 @@ class EducationView extends StatelessWidget {
                                   height: isTablet() ? 550 : 450,
                                   child: GestureDetector(
                                       onTap: () => value.openDetailPage(e.id),
-                                      child: EducationRowWidget(entity: e))))
+                                      child: WebinarRowWidget(entity: e))))
                               .toList(),
                         ),
                       );

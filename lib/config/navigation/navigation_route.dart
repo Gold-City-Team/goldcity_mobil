@@ -9,8 +9,8 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view/complex_detail_view.dart';
-import 'package:goldcity/view/presentation/education_detail/view/education_detail_view.dart';
-import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
+import 'package:goldcity/view/presentation/webinar_detail/view/webinar_detail_view.dart';
+import 'package:goldcity/view/presentation/main/webinar/view/webinar_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
 import 'package:goldcity/view/presentation/main/settings/view/settings_view.dart';
 import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dart';
@@ -63,14 +63,14 @@ final router = GoRouter(
           builder: (context, state) => const ComplexDetailView(),
         ),
         GoRoute(
-            name: NavigationConstant.EDUCATIONS,
-            path: NavigationConstant.EDUCATIONS,
-            builder: (context, state) => const EducationView(),
+            name: NavigationConstant.WEBINARS,
+            path: NavigationConstant.WEBINARS,
+            builder: (context, state) => const WebinarView(),
             routes: [
               GoRoute(
-                name: NavigationConstant.EDUCATION_DETAIL,
+                name: NavigationConstant.WEBINAR_DETAIL,
                 path: ":meetingId",
-                builder: (context, state) => EducationDetailView(
+                builder: (context, state) => WebinarDetailView(
                   meetingId:
                       int.tryParse(state.pathParameters['meetingId']!) ?? 0,
                 ),

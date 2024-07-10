@@ -1,19 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/domain/entity/education/education_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/education/webinar_detail/education_detail_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'education_detail_dto.g.dart';
+part 'webinar_detail_dto.g.dart';
 
 @JsonSerializable()
-class EducationDetailDto {
+class WebinarDetailDto {
   int? id;
   String? title;
   String? description;
   MediaDto? mediaItem;
   DateTime? scheduledStartDate;
   bool? isRegister;
-  EducationDetailDto(
+  WebinarDetailDto(
       {this.id,
       this.title,
       this.description,
@@ -21,11 +21,11 @@ class EducationDetailDto {
       this.scheduledStartDate,
       this.isRegister});
 
-  factory EducationDetailDto.fromJson(Map<String, dynamic> json) =>
-      _$EducationDetailDtoFromJson(json);
+  factory WebinarDetailDto.fromJson(Map<String, dynamic> json) =>
+      _$WebinarDetailDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$EducationDetailDtoToJson(this);
-  EducationDetailEntity toEntity() => EducationDetailEntity(
+  Map<String, dynamic> toJson() => _$WebinarDetailDtoToJson(this);
+  WebinarDetailEntity toEntity() => WebinarDetailEntity(
       id: id ?? 0,
       title: title ?? "",
       description: description ?? "",

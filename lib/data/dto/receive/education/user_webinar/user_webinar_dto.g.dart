@@ -1,22 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_education_dto.dart';
+part of 'user_webinar_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserEducationDto _$UserEducationDtoFromJson(Map<String, dynamic> json) =>
-    UserEducationDto(
+UserWebinarDto _$UserWebinarDtoFromJson(Map<String, dynamic> json) =>
+    UserWebinarDto(
       json['id'] as int?,
       json['meeting'] == null
           ? null
-          : EducationDetailDto.fromJson(
-              json['meeting'] as Map<String, dynamic>),
+          : WebinarDetailDto.fromJson(json['meeting'] as Map<String, dynamic>),
       json['joinUrl'] as String?,
     );
 
-Map<String, dynamic> _$UserEducationDtoToJson(UserEducationDto instance) =>
+Map<String, dynamic> _$UserWebinarDtoToJson(UserWebinarDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'meeting': instance.meeting,

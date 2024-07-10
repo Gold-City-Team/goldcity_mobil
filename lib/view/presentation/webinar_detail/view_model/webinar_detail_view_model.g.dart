@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'education_detail_view_model.dart';
+part of 'webinar_detail_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,42 +8,41 @@ part of 'education_detail_view_model.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$EducationDetailViewModel on _EducationDetailViewModelBase, Store {
+mixin _$WebinarDetailViewModel on _WebinarDetailViewModelBase, Store {
   late final _$modelAtom =
-      Atom(name: '_EducationDetailViewModelBase.model', context: context);
+      Atom(name: '_WebinarDetailViewModelBase.model', context: context);
 
   @override
-  EducationDetailEntity? get model {
+  WebinarDetailEntity? get model {
     _$modelAtom.reportRead();
     return super.model;
   }
 
   @override
-  set model(EducationDetailEntity? value) {
+  set model(WebinarDetailEntity? value) {
     _$modelAtom.reportWrite(value, super.model, () {
       super.model = value;
     });
   }
 
   late final _$modelUserEducationAtom = Atom(
-      name: '_EducationDetailViewModelBase.modelUserEducation',
-      context: context);
+      name: '_WebinarDetailViewModelBase.modelUserEducation', context: context);
 
   @override
-  UserEducationEntity? get modelUserEducation {
+  UserWebinarEntity? get modelUserEducation {
     _$modelUserEducationAtom.reportRead();
     return super.modelUserEducation;
   }
 
   @override
-  set modelUserEducation(UserEducationEntity? value) {
+  set modelUserEducation(UserWebinarEntity? value) {
     _$modelUserEducationAtom.reportWrite(value, super.modelUserEducation, () {
       super.modelUserEducation = value;
     });
   }
 
   late final _$isLoadingAtom =
-      Atom(name: '_EducationDetailViewModelBase.isLoading', context: context);
+      Atom(name: '_WebinarDetailViewModelBase.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -59,7 +58,7 @@ mixin _$EducationDetailViewModel on _EducationDetailViewModelBase, Store {
   }
 
   late final _$_getDetailAsyncAction =
-      AsyncAction('_EducationDetailViewModelBase._getDetail', context: context);
+      AsyncAction('_WebinarDetailViewModelBase._getDetail', context: context);
 
   @override
   Future<void> _getDetail() {

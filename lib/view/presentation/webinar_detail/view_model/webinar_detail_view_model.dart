@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/education/education_detail/education_detail_entity.dart';
-import 'package:goldcity/domain/entity/education/user_education/user_education_entity.dart';
-import 'package:goldcity/domain/usecase/education_usecase.dart';
+import 'package:goldcity/domain/entity/education/webinar_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/education/user_webinar/user_webinar_entity.dart';
+import 'package:goldcity/domain/usecase/webinar_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-part 'education_detail_view_model.g.dart';
+part 'webinar_detail_view_model.g.dart';
 
-class EducationDetailViewModel = _EducationDetailViewModelBase
-    with _$EducationDetailViewModel;
+class WebinarDetailViewModel = _WebinarDetailViewModelBase
+    with _$WebinarDetailViewModel;
 
-abstract class _EducationDetailViewModelBase with Store, BaseViewModel {
-  late EducationUseCase _educationUseCase;
+abstract class _WebinarDetailViewModelBase with Store, BaseViewModel {
+  late WebinarUseCase _educationUseCase;
 
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   int meetingId = 0;
   @override
   void init() {
-    _educationUseCase = locator<EducationUseCase>();
+    _educationUseCase = locator<WebinarUseCase>();
     _getDetail();
   }
 
   @observable
-  EducationDetailEntity? model;
+  WebinarDetailEntity? model;
   @observable
-  UserEducationEntity? modelUserEducation;
+  UserWebinarEntity? modelUserEducation;
 
   @observable
   bool isLoading = true;
@@ -36,11 +36,11 @@ abstract class _EducationDetailViewModelBase with Store, BaseViewModel {
   Future<void> _getDetail() async {
     isLoading = true;
 
-    var result = await _educationUseCase.getEducation(meetingId);
+    var result = await _educationUseCase.getWebinar(meetingId);
     if (result.isRight) {
       model = result.right;
       if (model!.isRegister) {
-        var resultTwo = await _educationUseCase.getUserEducation(meetingId);
+        var resultTwo = await _educationUseCase.getUserWebinar(meetingId);
         if (resultTwo.isRight) {
           modelUserEducation = resultTwo.right;
         }
@@ -53,7 +53,7 @@ abstract class _EducationDetailViewModelBase with Store, BaseViewModel {
     if (model!.isRegister) {
       launchUrl(Uri.parse(modelUserEducation!.joinUrl));
     } else {
-      await _educationUseCase.applyEducation(meetingId);
+      await _educationUseCase.applyWebinar(meetingId);
       _getDetail();
     }
   }

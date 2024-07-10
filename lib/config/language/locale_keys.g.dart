@@ -10,7 +10,8 @@ abstract class  LocaleKeys {
   static const send = 'send';
   static const projects = 'projects';
   static const explore = 'explore';
-  static const webinar = 'webinar';
+  static const webinars = 'webinars';
+  static const education = 'education';
   static const settings = 'settings';
   static const language = 'language';
   static const darkTheme = 'darkTheme';

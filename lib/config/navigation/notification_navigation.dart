@@ -14,7 +14,7 @@ class NotificationNavigation {
         );
       case NOTIFICATION_TYPE.MEETING_REMINDER:
         context.goNamed(
-          NavigationConstant.EDUCATION_DETAIL,
+          NavigationConstant.WEBINAR_DETAIL,
           pathParameters: {"meetingId": "${data['MeetingId']}"},
         );
       case NOTIFICATION_TYPE.CUSTOM:
