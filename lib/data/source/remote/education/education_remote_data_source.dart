@@ -8,6 +8,7 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class EducationRemoteDataSource {
   Future<Either<BaseErrorModel, List<EducationDto>>> getEducationList();
+  Future<Either<BaseErrorModel, EducationDto>> getEducation(int id);
 }
 
 class EducationRemoteDataSourceImpl extends EducationRemoteDataSource {
@@ -20,6 +21,19 @@ class EducationRemoteDataSourceImpl extends EducationRemoteDataSource {
 
       return Right(
           (result.data as List).map((e) => EducationDto.fromJson(e)).toList());
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, EducationDto>> getEducation(int id) async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.EDUCATION.rawValue(data: [id]));
+
+      return Right(EducationDto.fromJson(result.data));
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }

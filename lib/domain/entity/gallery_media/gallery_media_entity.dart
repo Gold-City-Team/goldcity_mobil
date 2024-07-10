@@ -6,9 +6,15 @@ final class GalleryMediaEntity {
   final int id;
   final MediaEntity media;
   final GalleryMediaCategoryEntity category;
+  final String title;
+  final String description;
 
   const GalleryMediaEntity(
-      {required this.id, required this.media, required this.category});
+      {required this.id,
+      required this.media,
+      required this.category,
+      required this.title,
+      required this.description});
 }
 
 class GalleryMediaCategoryEntity {

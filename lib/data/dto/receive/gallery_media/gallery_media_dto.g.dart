@@ -12,16 +12,21 @@ GalleryMediaDto _$GalleryMediaDtoFromJson(Map<String, dynamic> json) =>
       mediaItem: json['mediaItem'] == null
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
-    )..category = json['category'] == null
-        ? null
-        : GalleryMediaCategoryDto.fromJson(
-            json['category'] as Map<String, dynamic>);
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      category: json['category'] == null
+          ? null
+          : GalleryMediaCategoryDto.fromJson(
+              json['category'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$GalleryMediaDtoToJson(GalleryMediaDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'mediaItem': instance.mediaItem,
       'category': instance.category,
+      'title': instance.title,
+      'description': instance.description,
     };
 
 GalleryMediaCategoryDto _$GalleryMediaCategoryDtoFromJson(

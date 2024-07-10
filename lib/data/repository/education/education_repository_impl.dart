@@ -15,4 +15,13 @@ class EducationRepositoryImpl implements EducationRepository {
     }
     return Left(result.left);
   }
+
+  @override
+  Future<Either<BaseErrorModel, EducationEntity>> getEducation(int id) async {
+    var result = await locator<EducationRemoteDataSource>().getEducation(id);
+    if (result.isRight) {
+      return Right(result.right.toEntity());
+    }
+    return Left(result.left);
+  }
 }

@@ -14,6 +14,9 @@ EducationDetailDto _$EducationDetailDtoFromJson(Map<String, dynamic> json) =>
       mainImage: json['mainImage'] == null
           ? null
           : MediaDto.fromJson(json['mainImage'] as Map<String, dynamic>),
+      educationGalleries: (json['educationGalleries'] as List<dynamic>?)
+          ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$EducationDetailDtoToJson(EducationDetailDto instance) =>
@@ -22,4 +25,5 @@ Map<String, dynamic> _$EducationDetailDtoToJson(EducationDetailDto instance) =>
       'title': instance.title,
       'description': instance.description,
       'mainImage': instance.mainImage,
+      'educationGalleries': instance.educationGalleries,
     };

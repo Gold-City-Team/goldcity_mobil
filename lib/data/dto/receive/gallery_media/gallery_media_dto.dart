@@ -8,8 +8,10 @@ class GalleryMediaDto {
   int? id;
   MediaDto? mediaItem;
   GalleryMediaCategoryDto? category;
-
-  GalleryMediaDto({this.id, this.mediaItem});
+  String? title;
+  String? description;
+  GalleryMediaDto(
+      {this.id, this.mediaItem, this.title, this.description, this.category});
   factory GalleryMediaDto.fromJson(Map<String, dynamic> json) =>
       _$GalleryMediaDtoFromJson(json);
 
@@ -21,6 +23,8 @@ class GalleryMediaDto {
         category: category != null
             ? category!.toEntity()
             : GalleryMediaCategoryDto().toEntity(),
+        description: description ?? "",
+        title: title ?? "",
       );
 }
 

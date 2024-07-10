@@ -4,4 +4,5 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class EducationRepository {
   Future<Either<BaseErrorModel, List<EducationEntity>>> getEducationList();
+  Future<Either<BaseErrorModel, EducationEntity>> getEducation(int id);
 }

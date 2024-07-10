@@ -9,4 +9,8 @@ class EducationUseCase {
       getEducationList() async {
     return locator<EducationRepository>().getEducationList();
   }
+
+  Future<Either<BaseErrorModel, EducationEntity>> getEducation(int id) async {
+    return locator<EducationRepository>().getEducation(id);
+  }
 }
