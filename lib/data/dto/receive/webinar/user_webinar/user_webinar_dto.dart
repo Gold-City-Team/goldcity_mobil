@@ -1,5 +1,5 @@
-import 'package:goldcity/data/dto/receive/education/webinar_detail/webinar_detail_dto.dart';
-import 'package:goldcity/domain/entity/education/user_webinar/user_webinar_entity.dart';
+import 'package:goldcity/data/dto/receive/webinar/webinar_detail/webinar_detail_dto.dart';
+import 'package:goldcity/domain/entity/webinar/user_webinar/user_webinar_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_webinar_dto.g.dart';

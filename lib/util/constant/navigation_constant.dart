@@ -8,7 +8,7 @@ class NavigationConstant {
   static const STORY = 'story';
   static const SETTINGS = 'settings';
   static const WEBINARS = 'webinar';
-  static const EDUCATION = 'education';
+  static const EDUCATIONS = 'education';
   static const WEBINAR_DETAIL = 'webinar_detail';
   static const LEAD_APPLY = 'lead_apply';
   static const GALLERY = 'gallery';

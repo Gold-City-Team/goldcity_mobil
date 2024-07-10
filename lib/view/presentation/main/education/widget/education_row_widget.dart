@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/domain/entity/webinar/webinar_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/education/education/education_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
-import 'package:goldcity/util/extension/util_extension.dart';
 
-class WebinarRowWidget extends StatelessWidget {
-  final WebinarDetailEntity entity;
-  const WebinarRowWidget({required this.entity, super.key});
+class EducationRowWidget extends StatelessWidget {
+  final EducationEntity entity;
+  const EducationRowWidget({required this.entity, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,25 +23,17 @@ class WebinarRowWidget extends StatelessWidget {
         children: [
           AspectRatio(
               aspectRatio: 1.7777,
-              child: NormalNetworkImage(source: entity.mediaItem.url)),
+              child: NormalNetworkImage(
+                  source: entity.detailEntity.mainImage.url)),
           Gap(context.midSpacerSize),
-          Row(
-            children: [
-              const Spacer(),
-              LabelText(
-                  text: entity.scheduledStartDate.formatTime,
-                  textColor: APPLICATION_COLOR.GOLD,
-                  fontSize: FONT_SIZE.BODY_LARGE),
-            ],
-          ),
           LabelText(
               maxLines: 2,
-              text: entity.title,
+              text: entity.detailEntity.title,
               textColor: APPLICATION_COLOR.LIGHT,
               fontSize: FONT_SIZE.HEADLINE_MEDIUM),
           Gap(context.midSpacerSize),
           LabelText(
-              text: entity.description,
+              text: entity.detailEntity.description,
               maxLines: 3,
               textColor: APPLICATION_COLOR.SUBTITLE,
               fontSize: FONT_SIZE.BODY_LARGE),

@@ -1,4 +1,4 @@
-import 'package:goldcity/domain/entity/education/webinar_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/webinar/webinar_detail/education_detail_entity.dart';
 
 class UserWebinarEntity {
   int id;

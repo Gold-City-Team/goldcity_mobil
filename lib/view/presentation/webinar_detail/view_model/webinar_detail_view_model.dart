@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/domain/entity/education/webinar_detail/education_detail_entity.dart';
-import 'package:goldcity/domain/entity/education/user_webinar/user_webinar_entity.dart';
+import 'package:goldcity/domain/entity/webinar/webinar_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/webinar/user_webinar/user_webinar_entity.dart';
 import 'package:goldcity/domain/usecase/webinar_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';

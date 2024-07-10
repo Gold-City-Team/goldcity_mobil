@@ -9,6 +9,7 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view/complex_detail_view.dart';
+import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
 import 'package:goldcity/view/presentation/webinar_detail/view/webinar_detail_view.dart';
 import 'package:goldcity/view/presentation/main/webinar/view/webinar_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
@@ -80,6 +81,11 @@ final router = GoRouter(
           name: NavigationConstant.SETTINGS,
           path: NavigationConstant.SETTINGS,
           builder: (context, state) => const SettingsView(),
+        ),
+        GoRoute(
+          name: NavigationConstant.EDUCATIONS,
+          path: NavigationConstant.EDUCATIONS,
+          builder: (context, state) => const EducationView(),
         ),
         GoRoute(
           name: NavigationConstant.GALLERY,

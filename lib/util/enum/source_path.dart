@@ -13,8 +13,10 @@ enum SourcePath {
   PROJECT_INTERIOR_GALLERY,
   PROJECT_OUTDOOR_GALLERY,
   MEDIA,
-  EDUCATION_LIST,
+  WEBINAR_LIST,
   WEBINAR,
+  EDUCATION,
+  EDUCATION_LIST,
   USER_WEBINAR,
   SEND_NOTIFICATION,
 }
@@ -39,10 +41,12 @@ extension SourcePathExtension on SourcePath {
         '/projectdetail/${data?[0]}/templates/${data?[1]}',
       SourcePath.COMPLEX_TEMPLATE_DETAIL =>
         '/complexdetail/${data?[0]}/templates/${data?[1]}',
-      SourcePath.EDUCATION_LIST => '/meeting',
+      SourcePath.WEBINAR_LIST => '/meeting',
       SourcePath.WEBINAR => '/meeting/${data?[0]}',
       SourcePath.USER_WEBINAR => '/usermeeting/${data?[0]}',
       SourcePath.SEND_NOTIFICATION => '/notification/addtoken',
+      SourcePath.EDUCATION_LIST => '/education/selectedlanguage',
+      SourcePath.EDUCATION => '/education/${data?[0]}/selectedlanguage',
     };
   }
 }

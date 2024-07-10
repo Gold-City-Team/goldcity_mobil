@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
-import 'package:goldcity/domain/entity/education/webinar_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/webinar/webinar_detail/education_detail_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'webinar_detail_dto.g.dart';

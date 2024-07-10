@@ -1,0 +1,7 @@
+import 'package:either_dart/either.dart';
+import 'package:goldcity/domain/entity/education/education/education_entity.dart';
+import 'package:goldcity/util/resources/base_error_model.dart';
+
+abstract class EducationRepository {
+  Future<Either<BaseErrorModel, List<EducationEntity>>> getEducationList();
+}

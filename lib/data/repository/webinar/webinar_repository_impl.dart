@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:goldcity/data/source/remote/webinar/webinar_remote_data_source.dart';
-import 'package:goldcity/domain/entity/education/webinar_detail/education_detail_entity.dart';
-import 'package:goldcity/domain/entity/education/user_webinar/user_webinar_entity.dart';
+import 'package:goldcity/domain/entity/webinar/webinar_detail/education_detail_entity.dart';
+import 'package:goldcity/domain/entity/webinar/user_webinar/user_webinar_entity.dart';
 import 'package:goldcity/domain/repository/webinar/webinar_repository.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';

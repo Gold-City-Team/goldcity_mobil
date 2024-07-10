@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
-import 'package:goldcity/data/dto/receive/education/webinar_detail/webinar_detail_dto.dart';
-import 'package:goldcity/data/dto/receive/education/user_webinar/user_webinar_dto.dart';
+import 'package:goldcity/data/dto/receive/webinar/webinar_detail/webinar_detail_dto.dart';
+import 'package:goldcity/data/dto/receive/webinar/user_webinar/user_webinar_dto.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/enum/source_path.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
@@ -21,7 +21,7 @@ class WebinarRemoteDataSourceImpl extends WebinarRemoteDataSource {
     try {
       var result = await locator<RemoteManager>()
           .networkManager
-          .get(SourcePath.EDUCATION_LIST.rawValue());
+          .get(SourcePath.WEBINAR_LIST.rawValue());
 
       return Right((result.data as List)
           .map((e) => WebinarDetailDto.fromJson(e))

@@ -120,7 +120,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         case 1:
           viewModelContext.goNamed(NavigationConstant.WEBINARS);
         case 2:
-          viewModelContext.goNamed(NavigationConstant.WEBINARS);
+          viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
         case 3:
           await viewModelContext.pushNamed(NavigationConstant.SETTINGS);
           init();
