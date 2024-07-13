@@ -9,6 +9,7 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view/complex_detail_view.dart';
+import 'package:goldcity/view/presentation/education_detail/video_player/view/education_detail_video_player_view.dart';
 import 'package:goldcity/view/presentation/education_detail/view/education_detail_view.dart';
 import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
 import 'package:goldcity/view/presentation/webinar_detail/view/webinar_detail_view.dart';
@@ -91,6 +92,16 @@ final router = GoRouter(
               GoRoute(
                 name: NavigationConstant.EDUCATION_DETAIL,
                 path: ":educationId",
+                routes: [
+                  GoRoute(
+                    name: NavigationConstant.EDUCATION_DETAIL_VIDEO_PLAYER,
+                    path: ":videoId",
+                    builder: (context, state) => EducationDetailVideoPlayerView(
+                      videoId:
+                          int.tryParse(state.pathParameters['videoId']!) ?? 0,
+                    ),
+                  ),
+                ],
                 builder: (context, state) => EducationDetailView(
                   educationId:
                       int.tryParse(state.pathParameters['educationId']!) ?? 0,

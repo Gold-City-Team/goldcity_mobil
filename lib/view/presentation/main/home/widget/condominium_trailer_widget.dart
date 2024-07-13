@@ -7,7 +7,6 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:video_player/video_player.dart';
 
@@ -104,11 +103,6 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: context.sWidth / 3,
-                    child: NormalNetworkImage(
-                        source: widget.complexEntity.complexDetail.logo.url),
-                  ),
                   Gap(context.midSpacerSize),
                   Center(
                     child: LabelText(
@@ -118,9 +112,9 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                       fontSize: FONT_SIZE.DISPLAY_SMALL,
                     ),
                   ),
-                  const Center(
+                  Center(
                     child: LabelText(
-                      text: "Lorem ipsum dolor sit amet.Lorem ipsum",
+                      text: widget.complexEntity.complexDetail.slogan,
                       fontSize: FONT_SIZE.TITLE_MEDIUM,
                       textColor: APPLICATION_COLOR.SUBTITLE,
                       align: TextAlign.center,

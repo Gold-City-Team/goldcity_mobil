@@ -42,7 +42,7 @@ class HomeView extends StatelessWidget {
                     height: context.sHeight,
                     aspectRatio: 1,
                     enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                    keepPage: true,
+                    keepPage: false,
                     pageSnapping: true),
                 items: value.pageList.map((i) {
                   return Builder(
@@ -95,8 +95,9 @@ class HomeView extends StatelessWidget {
               );
             }),
             Align(
-                alignment: Alignment.centerRight,
-                child: Observer(builder: (context) {
+              alignment: Alignment.centerRight,
+              child: Observer(
+                builder: (context) {
                   if (value.isPageSelectorLock) {
                     return const SizedBox.shrink();
                   }
@@ -126,7 +127,9 @@ class HomeView extends StatelessWidget {
                           duration: Duration(milliseconds: 600),
                         ),
                   );
-                }))
+                },
+              ),
+            )
           ],
         ),
       ),

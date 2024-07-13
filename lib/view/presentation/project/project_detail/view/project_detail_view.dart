@@ -83,11 +83,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
               Observer(builder: (context) {
                 if (value.entity == null ||
                     value.entity!.detail.template.isEmpty) {
-                  debugPrint("page: açılmadı");
-
                   return const SizedBox.shrink();
                 }
-                debugPrint("page: açılıd");
                 return switch (
                     value.entity!.detail.template[value.templateIndex].type) {
                   TEMPLATE.PROJECT_TEMPLATE_ONE =>

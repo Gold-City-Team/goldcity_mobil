@@ -17,6 +17,7 @@ enum SourcePath {
   WEBINAR,
   EDUCATION,
   EDUCATION_LIST,
+  EDUCATION_GALLERY,
   USER_WEBINAR,
   SEND_NOTIFICATION,
 }
@@ -47,6 +48,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.SEND_NOTIFICATION => '/notification/addtoken',
       SourcePath.EDUCATION_LIST => '/education/selectedlanguage',
       SourcePath.EDUCATION => '/education/${data?[0]}/selectedlanguage',
+      SourcePath.EDUCATION_GALLERY => '/educationgallery/${data?[0]}',
     };
   }
 }

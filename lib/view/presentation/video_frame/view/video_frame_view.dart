@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -13,10 +14,12 @@ import 'package:video_player/video_player.dart';
 class VideoFrameView extends StatefulWidget {
   final VoidCallback fullScreen;
   final bool isFullScreen;
+  final bool isBackVisible;
   final String url;
   const VideoFrameView(
       {required this.fullScreen,
       required this.url,
+      this.isBackVisible = false,
       this.isFullScreen = false,
       super.key});
 
@@ -130,7 +133,7 @@ class _VideoFrameViewState extends State<VideoFrameView>
                     ],
                   )
                 : const SizedBox.shrink(),
-            widget.isFullScreen
+            widget.isFullScreen && !widget.isBackVisible
                 ? Observer(builder: (context) {
                     return value.isOpacityFull
                         ? Positioned(
@@ -150,6 +153,38 @@ class _VideoFrameViewState extends State<VideoFrameView>
                                   child: SizedBox(
                                     child: Icon(
                                       Icons.fullscreen,
+                                      size: 28,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox.shrink();
+                  })
+                : const SizedBox.shrink(),
+            widget.isBackVisible
+                ? Observer(builder: (context) {
+                    return value.isOpacityFull
+                        ? Positioned(
+                            left: 10,
+                            top: 10,
+                            child: SafeArea(
+                              child: GestureDetector(
+                                onTap: () => context.pop(),
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      color: context.toColor(
+                                          APPLICATION_COLOR.OPPOSITE_COLOR),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: SizedBox(
+                                    child: Icon(
+                                      Icons.arrow_back,
                                       size: 28,
                                       color: context
                                           .toColor(APPLICATION_COLOR.GOLD),

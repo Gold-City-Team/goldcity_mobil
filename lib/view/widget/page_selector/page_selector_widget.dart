@@ -10,11 +10,13 @@ class PageSelectorWidget extends StatelessWidget {
   final List<String> pages;
   final int selectedIndex;
   final Function(int) newIndex;
+  final bool showPop;
 
   const PageSelectorWidget({
     required this.pages,
     required this.selectedIndex,
     required this.newIndex,
+    this.showPop = true,
     super.key,
   });
 
@@ -28,18 +30,24 @@ class PageSelectorWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              GestureDetector(
-                onTap: () => newIndex(selectedIndex),
-                child: Container(
-                  width: 50,
-                  margin: context.largeSpacer,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                      borderRadius: context.midRadius),
-                  child: const Icon(Icons.close),
-                ),
-              ),
+              showPop
+                  ? GestureDetector(
+                      onTap: () => newIndex(selectedIndex),
+                      child: Container(
+                        width: 50,
+                        margin: context.largeSpacer,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: context.toColor(APPLICATION_COLOR.GOLD),
+                            borderRadius: context.midRadius),
+                        child: const Icon(Icons.close),
+                      ),
+                    )
+                  : Container(
+                      margin: context.largeSpacer,
+                      width: 50,
+                      height: 50,
+                    ),
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,

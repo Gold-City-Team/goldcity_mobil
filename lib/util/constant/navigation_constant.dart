@@ -10,6 +10,7 @@ class NavigationConstant {
   static const WEBINARS = 'webinar';
   static const EDUCATIONS = 'education';
   static const EDUCATION_DETAIL = 'education_detail';
+  static const EDUCATION_DETAIL_VIDEO_PLAYER = 'education_detail_video_player';
   static const WEBINAR_DETAIL = 'webinar_detail';
   static const LEAD_APPLY = 'lead_apply';
   static const GALLERY = 'gallery';
