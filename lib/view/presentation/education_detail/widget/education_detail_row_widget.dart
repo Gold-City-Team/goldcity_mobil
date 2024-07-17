@@ -36,7 +36,8 @@ class EducationDetailRowWidget extends StatelessWidget {
               text: entity.description,
               textColor: APPLICATION_COLOR.SUBTITLE,
               fontSize: FONT_SIZE.LABEL_MEDIUM,
-            )
+            ),
+            Gap(context.midSpacerSize),
           ],
         ));
   }

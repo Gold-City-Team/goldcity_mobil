@@ -11,15 +11,17 @@ class EducationRowWidget extends StatelessWidget {
   final VoidCallback onTap;
   final EducationEntity entity;
   final bool isReverse;
+  final bool isPhone;
   const EducationRowWidget(
       {required this.entity,
+      this.isPhone = false,
       required this.isReverse,
       required this.onTap,
       super.key});
 
   @override
   Widget build(BuildContext context) {
-    var size = (context.sHeight) -
+    var size = (isPhone ? context.sHeight * .95 : context.sHeight) -
         (MediaQuery.of(context).padding.top +
             MediaQuery.of(context).padding.bottom);
     debugPrint(
@@ -28,7 +30,7 @@ class EducationRowWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onTap(),
         child: Container(
-          height: context.sHeight,
+          height: isPhone ? context.sHeight * .95 : context.sHeight,
           decoration: BoxDecoration(
             color: isReverse
                 ? context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
@@ -48,7 +50,7 @@ class EducationRowWidget extends StatelessWidget {
               Container(
                 height: (size / 2),
                 padding: context.largeSpacerOnlyHorizontal,
-                width: context.sWidth / 3,
+                width: isPhone ? context.sWidth : context.sWidth / 3,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,

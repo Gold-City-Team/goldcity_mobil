@@ -18,7 +18,10 @@ class EducationView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, EducationViewModel value) =>
-          Scaffold(body: isTablet() ? tabletView(context, value) : Container()),
+          Scaffold(
+              body: isTablet()
+                  ? tabletView(context, value)
+                  : phoneView(context, value)),
     );
   }
 
@@ -42,6 +45,35 @@ class EducationView extends StatelessWidget {
                           .navigateEducationDetail(value.entity![index].id),
                       entity: value.entity![index],
                       isReverse: index % 2 == 0,
+                    ));
+              });
+        },
+      ),
+    );
+  }
+
+  Widget phoneView(BuildContext context, EducationViewModel value) {
+    return SizedBox(
+      height: context.sHeight,
+      width: context.sWidth,
+      child: Observer(
+        builder: (context) {
+          if (value.entity == null) {
+            return const SizedBox.shrink();
+          }
+          return ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: value.entity!.length,
+              itemBuilder: (context, index) {
+                return SizedBox(
+                    width: context.sWidth,
+                    height: context.sHeight * .95,
+                    child: EducationRowWidget(
+                      onTap: () => value
+                          .navigateEducationDetail(value.entity![index].id),
+                      entity: value.entity![index],
+                      isPhone: true,
+                      isReverse: false,
                     ));
               });
         },

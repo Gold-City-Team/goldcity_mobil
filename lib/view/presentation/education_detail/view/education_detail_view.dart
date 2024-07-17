@@ -23,7 +23,10 @@ class EducationDetailView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, EducationDetailViewModel value) =>
-          Scaffold(body: isTablet() ? tabletView(context, value) : Container()),
+          Scaffold(
+              body: isTablet()
+                  ? tabletView(context, value)
+                  : phoneView(context, value)),
     );
   }
 
@@ -87,6 +90,75 @@ class EducationDetailView extends StatelessWidget {
               );
             }),
             Gap(context.sHeight / 10),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget phoneView(BuildContext context, EducationDetailViewModel value) {
+    return SafeArea(
+      child: Container(
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Observer(builder: (context) {
+              if (value.educationEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return LabelText(
+                text: value.educationEntity!.detailEntity.title,
+                align: TextAlign.center,
+                fontSize: FONT_SIZE.DISPLAY_MEDIUM,
+              );
+            }),
+            Gap(context.midSpacerSize),
+            Observer(builder: (context) {
+              if (value.educationEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: context.largeSpacerOnlyHorizontal,
+                child: LabelText(
+                  text: value.educationEntity!.detailEntity.description,
+                  fontSize: FONT_SIZE.TITLE_LARGE,
+                  textColor: APPLICATION_COLOR.SUBTITLE,
+                  align: TextAlign.center,
+                ),
+              );
+            }),
+            Gap(context.xlargeSpacerSize),
+            Observer(builder: (context) {
+              if (value.educationEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return Expanded(
+                child: Padding(
+                  padding: context.largeSpacerOnlyHorizontal,
+                  child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: value.educationEntity!.detailEntity
+                          .educationGalleries.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => value.openVideoPlayer(value
+                              .educationEntity!
+                              .detailEntity
+                              .educationGalleries[index]
+                              .id),
+                          child: Padding(
+                            padding: context.midSpacerOnlyBottom,
+                            child: EducationDetailRowWidget(
+                                entity: value.educationEntity!.detailEntity
+                                    .educationGalleries[index]),
+                          ),
+                        );
+                      }),
+                ),
+              );
+            }),
           ],
         ),
       ),
