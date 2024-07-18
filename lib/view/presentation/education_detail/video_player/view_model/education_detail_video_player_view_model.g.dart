@@ -32,7 +32,7 @@ mixin _$EducationDetailVideoPlayerViewModel
       context: context);
 
   @override
-  Future _getVideoLink() {
+  Future<void> _getVideoLink() {
     return _$_getVideoLinkAsyncAction.run(() => super._getVideoLink());
   }
 

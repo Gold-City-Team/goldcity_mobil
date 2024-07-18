@@ -41,6 +41,22 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
     });
   }
 
+  late final _$languageIdAtom =
+      Atom(name: '_ProjectDetailViewModelBase.languageId', context: context);
+
+  @override
+  int get languageId {
+    _$languageIdAtom.reportRead();
+    return super.languageId;
+  }
+
+  @override
+  set languageId(int value) {
+    _$languageIdAtom.reportWrite(value, super.languageId, () {
+      super.languageId = value;
+    });
+  }
+
   late final _$isPageSelectorVisibleAtom = Atom(
       name: '_ProjectDetailViewModelBase.isPageSelectorVisible',
       context: context);
@@ -75,6 +91,30 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
     });
   }
 
+  late final _$languageAtom =
+      Atom(name: '_ProjectDetailViewModelBase.language', context: context);
+
+  @override
+  List<ProjectLanguageDetailEntity> get language {
+    _$languageAtom.reportRead();
+    return super.language;
+  }
+
+  @override
+  set language(List<ProjectLanguageDetailEntity> value) {
+    _$languageAtom.reportWrite(value, super.language, () {
+      super.language = value;
+    });
+  }
+
+  late final _$_getDetailAsyncAction =
+      AsyncAction('_ProjectDetailViewModelBase._getDetail', context: context);
+
+  @override
+  Future<void> _getDetail() {
+    return _$_getDetailAsyncAction.run(() => super._getDetail());
+  }
+
   late final _$_ProjectDetailViewModelBaseActionController =
       ActionController(name: '_ProjectDetailViewModelBase', context: context);
 
@@ -101,23 +141,14 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
   }
 
   @override
-  void _getDetail() {
-    final _$actionInfo = _$_ProjectDetailViewModelBaseActionController
-        .startAction(name: '_ProjectDetailViewModelBase._getDetail');
-    try {
-      return super._getDetail();
-    } finally {
-      _$_ProjectDetailViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 templateIndex: ${templateIndex},
 entity: ${entity},
+languageId: ${languageId},
 isPageSelectorVisible: ${isPageSelectorVisible},
-isPageSelectorLock: ${isPageSelectorLock}
+isPageSelectorLock: ${isPageSelectorLock},
+language: ${language}
     ''';
   }
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
+import 'package:goldcity/domain/entity/project/project_language/project_language_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
@@ -39,6 +40,9 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   }
 
   @observable
+  int languageId = 0;
+
+  @observable
   bool isPageSelectorVisible = false;
   @observable
   bool isPageSelectorLock = true;
@@ -50,12 +54,20 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     }
   }
 
+  @observable
+  List<ProjectLanguageDetailEntity> language = [];
+
   @action
-  void _getDetail() {
-    _projeclUseCase.getDetail(projectId).listen((event) {
-      if (event.isRight) {
-        entity = event.right;
-      }
-    });
+  Future<void> _getDetail() async {
+    var result = await _projeclUseCase.getProjectLanguageList(projectId);
+    if (result.isRight) {
+      language = result.right;
+    }
+
+    // _projeclUseCase.getDetail(projectId).listen((event) {
+    //   if (event.isRight) {
+    //     entity = event.right;
+    //   }
+    // });
   }
 }

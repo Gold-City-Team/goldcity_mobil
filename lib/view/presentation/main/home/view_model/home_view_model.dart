@@ -61,6 +61,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
           projectList: projectList!,
           onTap: (int id) => navigateProjectDetail(id),
         ));
+      } else {
+        debugPrint("test: ${event.left.status}");
       }
     });
   }
@@ -124,7 +126,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         case 3:
           await viewModelContext.pushNamed(NavigationConstant.SETTINGS);
           init();
-
         default:
           viewModelContext.pushReplacement(NavigationConstant.MAIN);
       }

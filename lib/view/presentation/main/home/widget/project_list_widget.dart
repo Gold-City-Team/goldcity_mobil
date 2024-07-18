@@ -43,7 +43,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                   child: NormalNetworkImage(
                       fit: BoxFit.cover,
                       alignment: Alignment.centerLeft,
-                      source: widget.projectList[index].detail.mainImage.url),
+                      source: widget.projectList[index].mainImage.url),
                 )
                     .animate()
                     .fade(duration: Duration(milliseconds: 600 * index))
@@ -74,7 +74,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                       child: NormalNetworkImage(
                           fit: BoxFit.contain,
                           alignment: Alignment.center,
-                          source: widget.projectList[index].detail.logo.url)),
+                          source: widget.projectList[index].logo.url)),
                 )
               ],
             ),

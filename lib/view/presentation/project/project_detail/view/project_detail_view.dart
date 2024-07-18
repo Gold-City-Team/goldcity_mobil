@@ -22,6 +22,7 @@ import 'package:goldcity/view/presentation/project/template/shareable_material/v
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
+import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProjectDetailView extends StatefulWidget {
@@ -73,8 +74,33 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
         modelGlobal = model;
       },
       onPageBuilder: (BuildContext context, ProjectDetailViewModel value) =>
-          Scaffold(
-        body: Focus(
+          Scaffold(body: Observer(builder: (context) {
+        if (value.languageId == 0) {
+          return Container(
+            alignment: Alignment.center,
+            width: context.sWidth,
+            height: context.sHeight,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: value.language.length,
+              itemBuilder: (context, index) {
+                return Center(
+                    child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                      maxWidth: context.sWidth / 10, minWidth: 150),
+                  child: Container(
+                      padding: context.largeSpacerOnlyVertical,
+                      alignment: Alignment.center,
+                      margin: context.midSpacer,
+                      color: context.toColor(
+                          APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
+                      child: LabelText(text: value.language[index].name)),
+                ));
+              },
+            ),
+          );
+        }
+        return Focus(
           focusNode: _focusNode,
           onKeyEvent: _handleKeyEvent,
           child: Stack(
@@ -235,7 +261,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                               height: 50,
                               child: NormalNetworkImage(
                                 fit: BoxFit.contain,
-                                source: value.entity!.detail.logo.url,
+                                source: value.entity!.logo.url,
                               ),
                             ),
                             Gap(context.midSpacerSize),
@@ -351,8 +377,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
               })
             ],
           ),
-        ),
-      ),
+        );
+      })),
     );
   }
 }

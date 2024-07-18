@@ -15,7 +15,7 @@ class EducationDetailRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         color: context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-        width: context.sWidth / 4,
+        width: context.sWidth / 4.5,
         child: Column(
           children: [
             AspectRatio(
