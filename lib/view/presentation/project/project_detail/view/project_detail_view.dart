@@ -35,9 +35,7 @@ class ProjectDetailView extends StatefulWidget {
 
 class _ProjectDetailViewState extends State<ProjectDetailView> {
   final FocusNode _focusNode = FocusNode();
-// The message to display.
 
-// Focus nodes need to be disposed.
   @override
   void dispose() {
     _focusNode.dispose();
