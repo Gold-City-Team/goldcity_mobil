@@ -1,6 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/entity/project/project_language/project_language_entity.dart';
@@ -18,7 +21,10 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   late ProjectUseCase _projeclUseCase;
 
   @override
-  void setContext(BuildContext context) => viewModelContext = context;
+  void setContext(BuildContext context) {
+    viewModelContext = context;
+    setLanguageList();
+  }
 
   @observable
   int templateIndex = 0;
@@ -57,6 +63,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   @observable
   List<ProjectLanguageDetailEntity> language = [];
 
+  List<String> languageList = ObservableList<String>.of([]);
   @action
   Future<void> _getDetail() async {
     var result = await _projeclUseCase.getProjectLanguageList(projectId);
@@ -69,5 +76,18 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     //     entity = event.right;
     //   }
     // });
+  }
+
+  Future<void> setLanguageList() async {
+    var tr = await rootBundle
+        .loadString('assets/translations/tr-TR.json')
+        .then((jsonStr) => json.decode(jsonStr));
+    var en = await rootBundle
+        .loadString('assets/translations/en-US.json')
+        .then((jsonStr) => json.decode(jsonStr));
+    for (var x = 0; x < 200; x++) {
+      languageList.add(tr["selectLanguage"]);
+      languageList.add(en["selectLanguage"]);
+    }
   }
 }
