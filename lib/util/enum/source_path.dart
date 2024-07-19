@@ -29,7 +29,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.BASE_URL => "https://gold-city-2.denizegece.com.tr",
       SourcePath.MEDIA => "https://gold-city-2.denizegece.com.tr/media/",
       SourcePath.LEAD => '/lead',
-      SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage',
+      SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage/${data?[1]}',
       SourcePath.PROJECT_LANGUAGE_LIST =>
         '/project/${data?[0]}/supportedlanguage',
       SourcePath.COMPLEX => '/complex/${data?[0]}/selectedlanguage',

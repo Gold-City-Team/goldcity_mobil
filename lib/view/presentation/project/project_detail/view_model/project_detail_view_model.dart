@@ -78,6 +78,15 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     // });
   }
 
+  @action
+  Future<void> getProjectDetail() async {
+    _projeclUseCase.getDetail(projectId, languageId).listen((event) {
+      if (event.isRight) {
+        entity = event.right;
+      }
+    });
+  }
+
   Future<void> setLanguageList() async {
     var tr = await rootBundle
         .loadString('assets/translations/tr-TR.json')

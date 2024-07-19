@@ -115,6 +115,15 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
     return _$_getDetailAsyncAction.run(() => super._getDetail());
   }
 
+  late final _$getProjectDetailAsyncAction = AsyncAction(
+      '_ProjectDetailViewModelBase.getProjectDetail',
+      context: context);
+
+  @override
+  Future<void> getProjectDetail() {
+    return _$getProjectDetailAsyncAction.run(() => super.getProjectDetail());
+  }
+
   late final _$_ProjectDetailViewModelBaseActionController =
       ActionController(name: '_ProjectDetailViewModelBase', context: context);
 

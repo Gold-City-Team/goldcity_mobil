@@ -8,8 +8,10 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 class ProjectRepositoryImpl implements ProjectRepository {
   @override
-  Stream<Either<BaseErrorModel, ProjectEntity>> getDetail(int id) async* {
-    var result = await locator<ProjectRemoteDataSource>().getDetail(id);
+  Stream<Either<BaseErrorModel, ProjectEntity>> getDetail(
+      int projectId, int languageId) async* {
+    var result = await locator<ProjectRemoteDataSource>()
+        .getDetail(projectId, languageId);
     if (result.isRight) {
       yield Right(result.right.toEntity());
     } else {

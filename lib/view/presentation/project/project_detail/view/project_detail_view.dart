@@ -124,8 +124,13 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                       itemCount: value.language.length,
                       itemBuilder: (context, index) {
                         return Center(
-                          child:
-                              LanguageItemWidget(value: value.language[index]),
+                          child: GestureDetector(
+                              onTap: () {
+                                value.languageId = value.language[index].id;
+                                value.getProjectDetail();
+                              },
+                              child: LanguageItemWidget(
+                                  value: value.language[index])),
                         );
                       },
                     ),

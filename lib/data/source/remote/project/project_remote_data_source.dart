@@ -9,7 +9,8 @@ import 'package:goldcity/util/enum/source_path.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ProjectRemoteDataSource {
-  Future<Either<BaseErrorModel, ProjectDto>> getDetail(int id);
+  Future<Either<BaseErrorModel, ProjectDto>> getDetail(
+      int projectId, languageId);
   Future<Either<BaseErrorModel, List<ProjectLanguageDetailDto>>>
       getProjectLanguageList(int id);
 
@@ -18,13 +19,15 @@ abstract class ProjectRemoteDataSource {
 
 class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
   @override
-  Future<Either<BaseErrorModel, ProjectDto>> getDetail(int id) async {
+  Future<Either<BaseErrorModel, ProjectDto>> getDetail(
+      int projectId, languageId) async {
     try {
       var result = await locator<RemoteManager>()
           .networkManager
-          .get(SourcePath.PROJECT.rawValue(data: [id]));
+          .get(SourcePath.PROJECT.rawValue(data: [projectId, languageId]));
 
-      locator<LocalManager>().cacheData(SourcePath.PROJECT.rawValue(data: [id]),
+      locator<LocalManager>().cacheData(
+          SourcePath.PROJECT.rawValue(data: [projectId, languageId]),
           [ProjectDto.fromJson(result.data ?? {})]);
 
       return Right(ProjectDto.fromJson(result.data ?? {}));
