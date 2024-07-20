@@ -29,7 +29,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
   @override
   Future<void> init() async {
     _notificationUseCase = locator<NotificationUseCase>();
-    locator<FcmManager>();
+    // locator<FcmManager>();
 
     var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
     await Future.delayed(const Duration(), () {
@@ -39,32 +39,33 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
         viewModelContext.read<ThemeNotifier>().setDarkTheme();
       }
     });
-    locator<FcmManager>().getMessages(viewModelContext);
+    viewModelContext.pushReplacement(NavigationConstant.MAIN);
+    // locator<FcmManager>().getMessages(viewModelContext);
 
-    locator<FcmManager>().messaging.getInitialMessage().then((value) {
-      if (value == null) {
-        viewModelContext.pushReplacement(NavigationConstant.MAIN);
-      } else {
-        viewModelContext.pushReplacement(NavigationConstant.MAIN);
-        NotificationNavigation()
-            .navigateAccordingToNotification(value.data, viewModelContext);
-      }
-    });
+    // locator<FcmManager>().messaging.getInitialMessage().then((value) {
+    //   if (value == null) {
+    //     viewModelContext.pushReplacement(NavigationConstant.MAIN);
+    //   } else {
+    //     viewModelContext.pushReplacement(NavigationConstant.MAIN);
+    //     NotificationNavigation()
+    //         .navigateAccordingToNotification(value.data, viewModelContext);
+    //   }
+    // });
     tokenProccess();
   }
 
   Future<void> tokenProccess() async {
-    var data = locator<FcmManager>();
-    var token = await data.getToken();
-    var oldToken = locator<SharedManager>()
-        .getStringValue(PreferenceKey.NOTIFICATION_TOKEN);
-    if (token != oldToken) {
-      locator<SharedManager>()
-          .setStringValue(PreferenceKey.NOTIFICATION_TOKEN, token);
-      _notificationUseCase.sendNotificationToken(SendNotificationTokenDto(
-          deviceToken: token,
-          deviceType: kIsWeb ? "WEB" : defaultTargetPlatform.name,
-          deviceLanguage: LanguageManager.instance.getLanguage()));
-    }
+    // var data = locator<FcmManager>();
+    // var token = await data.getToken();
+    // var oldToken = locator<SharedManager>()
+    //     .getStringValue(PreferenceKey.NOTIFICATION_TOKEN);
+    // if (token != oldToken) {
+    //   locator<SharedManager>()
+    //       .setStringValue(PreferenceKey.NOTIFICATION_TOKEN, token);
+    //   _notificationUseCase.sendNotificationToken(SendNotificationTokenDto(
+    //       deviceToken: token,
+    //       deviceType: kIsWeb ? "WEB" : defaultTargetPlatform.name,
+    //       deviceLanguage: LanguageManager.instance.getLanguage()));
+    // }
   }
 }

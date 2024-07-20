@@ -41,7 +41,7 @@ final locator = GetIt.instance;
 
 void init() {
   locator.registerLazySingleton(() => RemoteManager());
-  locator.registerSingleton(FcmManager());
+  // locator.registerSingleton(FcmManager());
   locator.registerLazySingleton(() => LeadUseCase());
   locator.registerLazySingleton(() => ComplexUseCase());
   locator.registerLazySingleton(() => NotificationUseCase());

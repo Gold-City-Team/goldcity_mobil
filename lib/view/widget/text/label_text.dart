@@ -24,16 +24,74 @@ class LabelText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    var formattedText = parseMarkdown(text);
+    final boldPattern = RegExp(r'<strong>(.*?)</strong>');
+    final italicPattern = RegExp(r'<em>(.*?)</em>');
+    final spans = <TextSpan>[];
+
+    int currentIndex = 0;
+
+    void addSpan(String text, [TextStyle? style]) {
+      if (text.isNotEmpty) {
+        spans.add(TextSpan(text: text, style: style));
+      }
+    }
+
+    final matches = [
+      ...boldPattern.allMatches(formattedText),
+      ...italicPattern.allMatches(formattedText),
+    ];
+    matches.sort((a, b) => a.start.compareTo(b.start));
+
+    for (final match in matches) {
+      if (match.start > currentIndex) {
+        addSpan(formattedText.substring(currentIndex, match.start));
+      }
+
+      if (boldPattern.hasMatch(match.group(0)!)) {
+        addSpan(
+            match.group(1)!,
+            TextStyle(
+                fontWeight: FontWeight.w900,
+                color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR)));
+      } else if (italicPattern.hasMatch(match.group(0)!)) {
+        addSpan(match.group(1)!, TextStyle(fontStyle: FontStyle.italic));
+      }
+
+      currentIndex = match.end;
+    }
+
+    if (currentIndex < formattedText.length) {
+      addSpan(formattedText.substring(currentIndex));
+    }
+
+    return RichText(
       overflow: overflow,
       textAlign: align,
-      style: context.toTextStyle(fontSize).copyWith(
-            color: context.toColor(textColor),
-            fontWeight: fontWeight,
-            height: textLineHeight,
-          ),
-      text,
+      text: TextSpan(
+          children: spans,
+          style: context.toTextStyle(fontSize).copyWith(
+                color: context.toColor(textColor),
+                fontWeight: fontWeight,
+                height: textLineHeight,
+              )),
       maxLines: maxLines,
     );
+  }
+
+  String parseMarkdown(String input) {
+    var processedLine = input;
+
+    // Kalın metin
+    final boldPattern = RegExp(r'\*(.*?)\*');
+    processedLine = processedLine.replaceAllMapped(boldPattern, (match) {
+      return '<strong>${match.group(1)}</strong>';
+    });
+    final italicPattern = RegExp(r'(\*|_)(.*?)\1');
+    processedLine = processedLine.replaceAllMapped(italicPattern, (match) {
+      return '<em>${match.group(2)}</em>';
+    });
+
+    return processedLine;
   }
 }

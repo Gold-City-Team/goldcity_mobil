@@ -13,6 +13,7 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/language_item_widget.dart';
 import 'package:goldcity/view/presentation/project/template/project_animated_wellcome_template/view/project_animated_wellcome_template_view.dart';
+import 'package:goldcity/view/presentation/project/template/project_campany_template/view/project_campany_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_and_gallery_template/view/project_feature_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_template/view/project_feature_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_gallery_and_info_template/view/project_gallery_and_info_template.dart';
@@ -223,6 +224,14 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             "${value.entity!.detail.template[value.templateIndex].id}"),
                         detailId: value.entity!.detail.id,
                         settingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
+                      ),
+                    TEMPLATE.PROJECT_TEMPLATE_NINE =>
+                      ProjectCampanyTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectDetailId: value.entity!.detail.id,
+                        projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
                     _ => ProjectFeatureTemplateView(
