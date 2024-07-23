@@ -1,7 +1,13 @@
 // ignore_for_file: implementation_imports, depend_on_referenced_packages
 
 import 'package:dio/dio.dart';
+import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/language/language_manager.dart';
+import 'package:goldcity/data/dto/receive/auth/token_model.dart';
+import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/enum/preference_key_enum.dart';
+import 'package:goldcity/util/enum/source_path.dart';
+import 'package:goldcity/util/resources/authentication_source.dart';
 
 class AuthenticationInterceptor implements Interceptor {
   @override
@@ -23,6 +29,15 @@ class AuthenticationInterceptor implements Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (response.realUri.path.startsWith("/auth")) {
+      if (response.realUri.path == SourcePath.LEAD_LOGIN.rawValue()) {
+        var result = TokenModel.fromJson(response.data);
+        locator<AuthenticationSource>()
+            .setAccessToken(result.accessTokenModel!);
+        locator<SharedManager>().setStringValue(
+            PreferenceKey.REFRESH_TOKEN, result.refreshToken ?? "");
+      }
+    }
     handler.next(response);
   }
 }

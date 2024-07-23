@@ -47,7 +47,6 @@ abstract class _ProjectTwoMainImageTemplateViewModelBase
   @action
   Future<void> _getDetail() async {
     var result = await _projectDetailUseCase.getProjectTemplateDetail(
-      projectDetailId,
       projectSettingsId,
     );
     if (result.isRight) {

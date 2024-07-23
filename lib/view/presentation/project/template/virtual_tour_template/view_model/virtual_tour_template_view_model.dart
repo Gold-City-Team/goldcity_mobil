@@ -34,8 +34,8 @@ abstract class _VirtualTourTemplateViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(
-        projectDetailId, projectSettingsId);
+    var result =
+        await _projectDetailUseCase.getProjectTemplateDetail(projectSettingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateSevenEntity);
     }

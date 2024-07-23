@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/data/local_manager.dart';
@@ -10,7 +9,6 @@ import 'package:goldcity/config/language/language_manager.dart';
 import 'package:goldcity/config/navigation/navigation_route.dart';
 import 'package:goldcity/config/notifier/provider_list.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
-import 'package:goldcity/firebase_options.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:hive_flutter/hive_flutter.dart';

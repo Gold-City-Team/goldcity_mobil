@@ -46,8 +46,8 @@ abstract class _ShareableMaterialTemplateViewModelBase
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(
-        projectDetailId, projectSettingsId);
+    var result =
+        await _projectDetailUseCase.getProjectTemplateDetail(projectSettingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateFiveEntity);
       fullViewItemIndex.add(template!.gallery.first.category.translation.title);

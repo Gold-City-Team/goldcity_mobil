@@ -70,12 +70,6 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     if (result.isRight) {
       language = result.right;
     }
-
-    // _projeclUseCase.getDetail(projectId).listen((event) {
-    //   if (event.isRight) {
-    //     entity = event.right;
-    //   }
-    // });
   }
 
   @action

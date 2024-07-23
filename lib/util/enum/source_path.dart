@@ -3,6 +3,8 @@
 enum SourcePath {
   BASE_URL,
   LEAD,
+  LEAD_LOGIN,
+  LEAD_LOGIN_GOOGLE,
   COMPLEX,
   COMPLEX_LIST,
   PROJECT,
@@ -28,6 +30,8 @@ extension SourcePathExtension on SourcePath {
     return switch (this) {
       SourcePath.BASE_URL => "https://gold-city-2.denizegece.com.tr",
       SourcePath.MEDIA => "https://gold-city-2.denizegece.com.tr/media/",
+      SourcePath.LEAD_LOGIN => '/auth/login',
+      SourcePath.LEAD_LOGIN_GOOGLE => '/auth/logingoogle',
       SourcePath.LEAD => '/lead',
       SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage/${data?[1]}',
       SourcePath.PROJECT_LANGUAGE_LIST =>
@@ -42,7 +46,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.PROJECT_POSSIBILITY =>
         '/projectdetail/${data?[0]}/possibilities',
       SourcePath.PROJECT_TEMPLATE_DETAIL =>
-        '/projectdetail/${data?[0]}/templates/${data?[1]}',
+        '/projectdetail/templates/${data?[0]}',
       SourcePath.COMPLEX_TEMPLATE_DETAIL =>
         '/complexdetail/${data?[0]}/templates/${data?[1]}',
       SourcePath.WEBINAR_LIST => '/meeting',

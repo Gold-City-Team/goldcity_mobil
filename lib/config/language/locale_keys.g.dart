@@ -43,5 +43,8 @@ abstract class  LocaleKeys {
   static const numberOfRooms = 'numberOfRooms';
   static const numberOfFloors = 'numberOfFloors';
   static const selectLanguage = 'selectLanguage';
+  static const beingPartner = 'beingPartner';
+  static const login = 'login';
+  static const passwordQuestion = 'passwordQuestion';
 
 }

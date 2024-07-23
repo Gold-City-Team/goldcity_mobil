@@ -2,7 +2,6 @@ import 'package:get_it/get_it.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
-import 'package:goldcity/config/firebase/fcm_manager.dart';
 import 'package:goldcity/data/repository/complex/complex_repository_impl.dart';
 import 'package:goldcity/data/repository/complex_detail/complex_detail_repository_impl.dart';
 import 'package:goldcity/data/repository/education/education_repository_impl.dart';

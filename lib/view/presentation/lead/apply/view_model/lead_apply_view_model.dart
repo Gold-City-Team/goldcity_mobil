@@ -1,10 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
 import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lead_apply_view_model.g.dart';
@@ -38,5 +40,9 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
       ),
     );
     // navigation.pop();
+  }
+
+  Future<void> login() async {
+    viewModelContext.goNamed(NavigationConstant.LEAD_LOGIN);
   }
 }

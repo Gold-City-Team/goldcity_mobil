@@ -40,5 +40,8 @@
     "join": "Join",
     "numberOfFloors": "Number of Floors",
     "numberOfRooms": "Number of Rooms",
-    "selectLanguage": "Select Language"
+    "selectLanguage": "Select Language",
+    "beingPartner": "Be Partner",
+    "login": "Login",
+    "passwordQuestion": "Password"
 }

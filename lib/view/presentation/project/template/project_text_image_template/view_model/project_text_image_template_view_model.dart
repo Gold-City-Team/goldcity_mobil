@@ -59,8 +59,8 @@ abstract class _ProjectTextImageTemplateViewModelBase
   int settingsId = 0;
 
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(
-        detailId, settingsId);
+    var result =
+        await _projectDetailUseCase.getProjectTemplateDetail(settingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateEightEntity);
       for (var e in template!.items) {

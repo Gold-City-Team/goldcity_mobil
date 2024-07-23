@@ -43,7 +43,7 @@ class MainTemplateDto {
   TEMPLATE? type;
   MainTemplateMetaDataDto? metaData;
 
-  MainTemplateDto({this.title, this.type, this.id, this.metaData});
+  MainTemplateDto({this.title, this.type, this.id});
 
   factory MainTemplateDto.fromJson(Map<String, dynamic> json) =>
       _$MainTemplateDtoFromJson(json);
@@ -53,9 +53,7 @@ class MainTemplateDto {
         id: id ?? 0,
         title: title ?? "",
         type: type ?? TEMPLATE.PROJECT_TEMPLATE_ONE,
-        metaData: metaData != null
-            ? metaData!.toEntity()
-            : MainTemplateMetaDataDto().toEntity(),
+        metaData: MainTemplateMetaDataDto().toEntity(),
       );
 }
 

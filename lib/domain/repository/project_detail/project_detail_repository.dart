@@ -4,5 +4,5 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ProjectDetailRepository {
   Future<Either<BaseErrorModel, ProjectTemplateEntity>>
-      getProjectTemplateDetail(int projectDetailId, int settingsId);
+      getProjectTemplateDetail(int settingsId);
 }

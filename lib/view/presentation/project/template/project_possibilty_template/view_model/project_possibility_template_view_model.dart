@@ -50,8 +50,8 @@ abstract class _ProjectPossibilityTemplateViewModelBase
   int projectSettingsId = 0;
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(
-        projectDetailId, projectSettingsId);
+    var result =
+        await _projectDetailUseCase.getProjectTemplateDetail(projectSettingsId);
     if (result.isRight) {
       templateThree = (result.right.template as ProjectTemplateThreeEntity);
       templateThree!.possibilities.add(PossibilityDto(

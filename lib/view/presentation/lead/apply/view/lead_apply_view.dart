@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/view/presentation/lead/apply/view_model/lead_apply_view_model.dart';
 import 'package:goldcity/view/widget/app_bar/normal_app_bar.dart';
@@ -24,9 +25,6 @@ class LeadApplyView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, LeadApplyViewModel value) =>
           Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => context.setLocale(const Locale("tr", "TR")),
-        ),
         body: SafeArea(
           child: Padding(
             padding: context.midSpacerOnlyHorizontal,
@@ -65,6 +63,20 @@ class LeadApplyView extends StatelessWidget {
                         text: LocaleKeys.send.tr(),
                       ),
                     ),
+                    Gap(context.largeSpacerSize),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LabelText(text: "Zaten partner misin?"),
+                        GestureDetector(
+                          onTap: () => value.login(),
+                          child: LabelText(
+                            text: " Giriş Yap",
+                            textColor: APPLICATION_COLOR.BLUE,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ],

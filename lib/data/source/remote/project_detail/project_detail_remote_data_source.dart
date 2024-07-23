@@ -8,17 +8,17 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ProjectDetailRemoteDataSource {
   Future<Either<BaseErrorModel, ProjectTemplateDto>> getProjectTemplateDetail(
-      int projectDetailId, int settingsId);
+      int settingsId);
 }
 
 class ProjectDetailRemoteDataSourceImpl extends ProjectDetailRemoteDataSource {
   @override
   Future<Either<BaseErrorModel, ProjectTemplateDto>> getProjectTemplateDetail(
-      int projectDetailId, int settingsId) async {
+      int settingsId) async {
     try {
-      var result = await locator<RemoteManager>().networkManager.get(SourcePath
-          .PROJECT_TEMPLATE_DETAIL
-          .rawValue(data: [projectDetailId, settingsId]));
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.PROJECT_TEMPLATE_DETAIL.rawValue(data: [settingsId]));
 
       return Right(ProjectTemplateDto.fromJson(result.data ?? {}));
     } on DioException catch (e) {

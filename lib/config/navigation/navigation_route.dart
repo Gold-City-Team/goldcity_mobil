@@ -11,6 +11,8 @@ import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view/complex_detail_view.dart';
 import 'package:goldcity/view/presentation/education_detail/video_player/view/education_detail_video_player_view.dart';
 import 'package:goldcity/view/presentation/education_detail/view/education_detail_view.dart';
+import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
+import 'package:goldcity/view/presentation/lead/login/view/lead_login_view.dart';
 import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
 import 'package:goldcity/view/presentation/webinar_detail/view/webinar_detail_view.dart';
 import 'package:goldcity/view/presentation/main/webinar/view/webinar_view.dart';
@@ -119,6 +121,16 @@ final router = GoRouter(
             isExperiance:
                 (state.extra as Map<String, dynamic>)["isExperiance"] as bool,
           ),
+        ),
+        GoRoute(
+          name: NavigationConstant.LEAD_APPLY,
+          path: NavigationConstant.LEAD_APPLY,
+          builder: (context, state) => LeadApplyView(),
+        ),
+        GoRoute(
+          name: NavigationConstant.LEAD_LOGIN,
+          path: NavigationConstant.LEAD_LOGIN,
+          builder: (context, state) => LeadLoginView(),
         )
       ],
     ),

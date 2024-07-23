@@ -36,8 +36,8 @@ abstract class _ProjectFeatureAndGalleryTemplateViewModelBase
 
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(
-        projectDetailId, projectSettingsId);
+    var result =
+        await _projectDetailUseCase.getProjectTemplateDetail(projectSettingsId);
     if (result.isRight) {
       templateEntity = (result.right.template as ProjectTemplateFourEntity);
     }

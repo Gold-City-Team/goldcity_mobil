@@ -53,7 +53,7 @@ dependencies:
   firebase_messaging: ^15.0.2
   flutter_notification_channel: ^2.0.0
   animated_text_kit: ^4.2.2
-
+  google_sign_in: ^6.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

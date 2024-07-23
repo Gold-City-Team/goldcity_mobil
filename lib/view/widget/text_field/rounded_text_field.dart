@@ -47,7 +47,6 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: context.midRadius,
         color: context.toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
       ),
       alignment: Alignment.centerLeft,

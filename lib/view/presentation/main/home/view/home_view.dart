@@ -108,7 +108,8 @@ class HomeView extends StatelessWidget {
                         context.tr("explore"),
                         context.tr("webinars"),
                         context.tr("educations"),
-                        context.tr("settings")
+                        context.tr("settings"),
+                        context.tr("beingPartner")
                       ],
                       selectedIndex: 0,
                       newIndex: (newIndex) => value.changeIndex(newIndex),

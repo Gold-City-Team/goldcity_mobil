@@ -13,5 +13,6 @@ class NavigationConstant {
   static const EDUCATION_DETAIL_VIDEO_PLAYER = 'education_detail_video_player';
   static const WEBINAR_DETAIL = 'webinar_detail';
   static const LEAD_APPLY = 'lead_apply';
+  static const LEAD_LOGIN = 'lead_login';
   static const GALLERY = 'gallery';
 }

@@ -40,5 +40,8 @@
     "join": "Katıl",
     "numberOfRooms": "Oda Sayısı",
     "numberOfFloors": "Kat Sayısı",
-    "selectLanguage": "Dilinizi Seçin"
+    "selectLanguage": "Dilinizi Seçin",
+    "beingPartner": "Partner Ol",
+    "login": "Giriş Yap",
+    "passwordQuestion": "Şifre"
 }

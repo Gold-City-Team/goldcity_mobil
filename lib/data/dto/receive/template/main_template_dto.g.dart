@@ -11,11 +11,10 @@ MainTemplateDto _$MainTemplateDtoFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       type: $enumDecodeNullable(_$TEMPLATEEnumMap, json['type']),
       id: json['id'] as int?,
-      metaData: json['metaData'] == null
-          ? null
-          : MainTemplateMetaDataDto.fromJson(
-              json['metaData'] as Map<String, dynamic>),
-    );
+    )..metaData = json['metaData'] == null
+        ? null
+        : MainTemplateMetaDataDto.fromJson(
+            json['metaData'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$MainTemplateDtoToJson(MainTemplateDto instance) =>
     <String, dynamic>{

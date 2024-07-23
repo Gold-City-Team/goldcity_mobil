@@ -25,7 +25,6 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
       var result = await locator<RemoteManager>()
           .networkManager
           .get(SourcePath.PROJECT.rawValue(data: [projectId, languageId]));
-
       locator<LocalManager>().cacheData(
           SourcePath.PROJECT.rawValue(data: [projectId, languageId]),
           [ProjectDto.fromJson(result.data ?? {})]);

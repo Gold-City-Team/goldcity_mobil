@@ -1,6 +1,10 @@
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
+import 'package:goldcity/data/dto/send/lead/send_lead_login_dto.dart';
+import 'package:goldcity/data/dto/send/lead/send_lead_login_google_dto.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class LeadRepository {
   Future<BaseErrorModel?> apply(SendLeadApplyDto dto);
+  Future<BaseErrorModel?> login(SendLeadLoginDto dto);
+  Future<BaseErrorModel?> loginGoogle(SendLeadLoginGoogleDto dto);
 }

@@ -4,31 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
-import 'package:goldcity/config/firebase/fcm_manager.dart';
-import 'package:goldcity/config/language/language_manager.dart';
-import 'package:goldcity/config/navigation/notification_navigation.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
-import 'package:goldcity/data/dto/send/notification/send_notification_token_dto.dart';
-import 'package:goldcity/domain/usecase/notification_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/enum/preference_key_enum.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 part 'splash_view_model.g.dart';
 
 class SplashViewModel = _SplashViewModelBase with _$SplashViewModel;
 
 abstract class _SplashViewModelBase with Store, BaseViewModel {
-  late NotificationUseCase _notificationUseCase;
+  // late NotificationUseCase _notificationUseCase;
 
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
   @override
   Future<void> init() async {
-    _notificationUseCase = locator<NotificationUseCase>();
+    // _notificationUseCase = locator<NotificationUseCase>();
     // locator<FcmManager>();
 
     var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
