@@ -7,6 +7,7 @@ import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mobx/mobx.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 part 'lead_login_view_model.g.dart';
 
@@ -49,5 +50,15 @@ abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
     } catch (error) {
       debugPrint("error $error");
     }
+  }
+
+  Future<void> handleSignInApple() async {
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
+    debugPrint("test $credential");
   }
 }
