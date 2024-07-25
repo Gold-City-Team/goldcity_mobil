@@ -10,8 +10,10 @@ import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/resources/authentication_source.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_language_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_theme_widget.dart';
+import 'package:goldcity/view/presentation/main/settings/widget/loguot_widget.dart';
 import 'package:mobx/mobx.dart';
 
 part 'settings_view_model.g.dart';
@@ -28,7 +30,10 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
     LocaleKeys.contactUs.tr(),
     LocaleKeys.confidentialityAgreement.tr(),
     LocaleKeys.termsOfUse.tr(),
-    LocaleKeys.clearCache.tr()
+    LocaleKeys.clearCache.tr(),
+    locator<AuthenticationSource>().isUserStillValid()
+        ? LocaleKeys.logOut.tr()
+        : ""
   ]);
 
   updateList() {
@@ -39,6 +44,9 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
     menuItems.add(LocaleKeys.confidentialityAgreement.tr());
     menuItems.add(LocaleKeys.termsOfUse.tr());
     menuItems.add(LocaleKeys.clearCache.tr());
+    locator<AuthenticationSource>().isUserStillValid()
+        ? menuItems.add(LocaleKeys.logOut.tr())
+        : null;
   }
 
   @override
@@ -61,6 +69,7 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
             3 => const ChangeThemeWidget(),
             4 => const ChangeThemeWidget(),
             5 => const ChangeThemeWidget(),
+            6 => const LogoutWidget(),
             _ => const ChangeThemeWidget()
           };
         },
@@ -83,6 +92,8 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
       4 => Icon(Icons.description,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
       5 => Icon(Icons.delete,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      6 => Icon(Icons.logout,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
       _ => Icon(Icons.description,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD))

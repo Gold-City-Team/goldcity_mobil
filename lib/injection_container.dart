@@ -35,6 +35,7 @@ import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/domain/usecase/notification_usecase.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
+import 'package:goldcity/util/resources/authentication_source.dart';
 
 final locator = GetIt.instance;
 
@@ -42,6 +43,7 @@ void init() {
   locator.registerLazySingleton(() => RemoteManager());
   // locator.registerSingleton(FcmManager());
   locator.registerLazySingleton(() => LeadUseCase());
+  locator.registerLazySingleton(() => AuthenticationSource());
   locator.registerLazySingleton(() => ComplexUseCase());
   locator.registerLazySingleton(() => NotificationUseCase());
   locator.registerLazySingleton(() => WebinarUseCase());

@@ -46,5 +46,7 @@ abstract class  LocaleKeys {
   static const beingPartner = 'beingPartner';
   static const login = 'login';
   static const passwordQuestion = 'passwordQuestion';
+  static const logOut = 'logOut';
+  static const areYouSureToLogout = 'areYouSureToLogout';
 
 }

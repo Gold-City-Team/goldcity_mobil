@@ -4,10 +4,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
+import 'package:goldcity/util/resources/authentication_source.dart';
 import 'package:goldcity/view/presentation/main/home/view_model/home_view_model.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
@@ -109,7 +111,9 @@ class HomeView extends StatelessWidget {
                         context.tr("webinars"),
                         context.tr("educations"),
                         context.tr("settings"),
-                        context.tr("beingPartner")
+                        !locator<AuthenticationSource>().isUserStillValid()
+                            ? context.tr("beingPartner")
+                            : ""
                       ],
                       selectedIndex: 0,
                       newIndex: (newIndex) => value.changeIndex(newIndex),

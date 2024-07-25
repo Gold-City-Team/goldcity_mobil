@@ -43,5 +43,7 @@
     "selectLanguage": "Select Language",
     "beingPartner": "Be Partner",
     "login": "Login",
-    "passwordQuestion": "Password"
+    "passwordQuestion": "Password",
+    "logOut": "Logout",
+    "areYouSureToLogout": "Are you sure you want to log out?"
 }

@@ -18,6 +18,10 @@ class SharedManager {
     await _preferences.setString(key.name, value);
   }
 
+  void removeKey(PreferenceKey key) {
+    _preferences.remove(key.name);
+  }
+
   Future<void> setIntegerValue(PreferenceKey key, int value) async {
     await _preferences.setInt(key.name, value);
   }

@@ -8,6 +8,7 @@ import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/enum/preference_key_enum.dart';
+import 'package:goldcity/util/resources/authentication_source.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 part 'splash_view_model.g.dart';
@@ -33,6 +34,9 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
         viewModelContext.read<ThemeNotifier>().setDarkTheme();
       }
     });
+    locator<AuthenticationSource>().initUserDto();
+
+    locator<AuthenticationSource>().isUserStillValid();
     viewModelContext.pushReplacement(NavigationConstant.MAIN);
     // locator<FcmManager>().getMessages(viewModelContext);
 

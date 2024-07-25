@@ -53,6 +53,9 @@ class PageSelectorWidget extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: pages.length,
                     itemBuilder: (context, index) {
+                      if (pages[index].isEmpty) {
+                        return const SizedBox.shrink();
+                      }
                       return GestureDetector(
                         onTap: () => newIndex(index),
                         child: Container(

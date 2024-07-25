@@ -1,28 +1,32 @@
-import 'package:goldcity/data/dto/receive/auth/token_model.dart';
+import 'dart:convert';
+
+import 'package:goldcity/config/data/shared_manager.dart';
+import 'package:goldcity/data/dto/receive/auth/user_dto.dart';
+import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/enum/preference_key_enum.dart';
 
 final class AuthenticationSource {
-  AccessTokenModel? _accessTokenModel;
+  UserDto? _userDto;
 
-  AccessTokenModel? getAccessToken() => _accessTokenModel;
+  UserDto? getUserDto() => _userDto;
 
-  setAccessToken(AccessTokenModel value) {
-    _accessTokenModel = value;
+  initUserDto() {
+    var rawData =
+        locator<SharedManager>().getStringValue(PreferenceKey.USER_DTO);
+    if (rawData.isNotEmpty) {
+      var data = UserDto.fromJson(jsonDecode(rawData));
+
+      _userDto = data;
+    }
   }
 
-  String resetPasswordToken = "";
+  setUserDto(UserDto value) {
+    _userDto = value;
+  }
 
-  clearAccessToken() => _accessTokenModel = null;
+  clearUserDto() => _userDto = null;
 
-  bool isTokenStillValid() {
-    if (_accessTokenModel != null) {
-      if (_accessTokenModel!.expires!
-          .toLocal()
-          .add(const Duration(minutes: -2))
-          .isAfter(DateTime.now())) {
-        return true;
-      }
-      return false;
-    }
-    return false;
+  bool isUserStillValid() {
+    return _userDto != null;
   }
 }

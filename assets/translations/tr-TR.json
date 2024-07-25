@@ -43,5 +43,7 @@
     "selectLanguage": "Dilinizi Seçin",
     "beingPartner": "Partner Ol",
     "login": "Giriş Yap",
-    "passwordQuestion": "Şifre"
+    "passwordQuestion": "Şifre",
+    "logOut": "Çıkış Yap",
+    "areYouSureToLogout": "Çıkış Yapmak İstediğinizden Emin Misiniz?"
 }
