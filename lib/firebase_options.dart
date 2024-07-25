@@ -15,15 +15,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -36,31 +30,52 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+      apiKey: "AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs",
+      authDomain: "gold-city-9d670.firebaseapp.com",
+      projectId: "gold-city-9d670",
+      storageBucket: "gold-city-9d670.appspot.com",
+      messagingSenderId: "941064344872",
+      appId: "1:941064344872:web:0e20f65f93fd8254d36c1d",
+      measurementId: "G-B9ZDD9T1LL");
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: "AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs",
+    apiKey: 'AIzaSyCqfwhizPjWnv4mbM2y-pwE2FF9iC_ScLI',
     appId: '1:941064344872:android:6b3d6a37cd120548d36c1d',
     messagingSenderId: '941064344872',
-    projectId: "gold-city-9d670",
-    storageBucket: "gold-city-9d670.appspot.com",
+    projectId: 'gold-city-9d670',
+    storageBucket: 'gold-city-9d670.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: "AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs",
+    apiKey: 'AIzaSyA0qjKVPdwToPrciT0Y3Ek1xsPX70DRCc8',
     appId: '1:941064344872:ios:1ae7f6541b8a7ddcd36c1d',
     messagingSenderId: '941064344872',
-    projectId: "gold-city-9d670",
-    storageBucket: "gold-city-9d670.appspot.com",
+    projectId: 'gold-city-9d670',
+    storageBucket: 'gold-city-9d670.appspot.com',
     iosClientId:
-        '706961598879-cu18pfgmiq07um4bnub182fr52kghb9q.apps.googleusercontent.com',
+        '941064344872-53qss7697pbjhm0lhcs1paha8nuk4qnj.apps.googleusercontent.com',
     iosBundleId: 'com.goldcity.goldcityMobil',
   );
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: "AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs",
-    authDomain: "gold-city-9d670.firebaseapp.com",
-    projectId: "gold-city-9d670",
-    storageBucket: "gold-city-9d670.appspot.com",
-    messagingSenderId: "941064344872",
-    appId: "1:941064344872:web:0e20f65f93fd8254d36c1d",
-    measurementId: "G-B9ZDD9T1LL",
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyA0qjKVPdwToPrciT0Y3Ek1xsPX70DRCc8',
+    appId: '1:941064344872:ios:8b4c07d7a9b77ea2d36c1d',
+    messagingSenderId: '941064344872',
+    projectId: 'gold-city-9d670',
+    storageBucket: 'gold-city-9d670.appspot.com',
+    iosClientId:
+        '941064344872-tik6gumst6sbaps050j5t1hh8jfeatlp.apps.googleusercontent.com',
+    iosBundleId: 'com.goldcity.goldcity',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs',
+    appId: '1:941064344872:web:bacd536ad6db510fd36c1d',
+    messagingSenderId: '941064344872',
+    projectId: 'gold-city-9d670',
+    authDomain: 'gold-city-9d670.firebaseapp.com',
+    storageBucket: 'gold-city-9d670.appspot.com',
+    measurementId: 'G-N94SW76JQQ',
   );
 }

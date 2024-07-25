@@ -12,7 +12,12 @@
           "package_name": "com.goldcity.goldcity"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "941064344872-ei79t7akiaq978jeul8mc8cotdaf11gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCqfwhizPjWnv4mbM2y-pwE2FF9iC_ScLI"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941064344872-4j4melcpbb8mch633j83cf1u95n54i0u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "941064344872-53qss7697pbjhm0lhcs1paha8nuk4qnj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.goldcity.goldcityMobil"
+              }
+            }
+          ]
         }
       }
     }
