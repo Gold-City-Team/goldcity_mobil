@@ -45,5 +45,6 @@
     "login": "Login",
     "passwordQuestion": "Password",
     "logOut": "Logout",
-    "areYouSureToLogout": "Are you sure you want to log out?"
+    "areYouSureToLogout": "Are you sure you want to log out?",
+    "announcements": "Announcements"
 }

@@ -7,6 +7,7 @@ class NavigationConstant {
   static const COMPLEX_DETAIL = 'complex_detail';
   static const STORY = 'story';
   static const SETTINGS = 'settings';
+  static const ANNOUNCEMENT = 'announcement';
   static const WEBINARS = 'webinar';
   static const EDUCATIONS = 'education';
   static const EDUCATION_DETAIL = 'education_detail';

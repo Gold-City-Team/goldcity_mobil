@@ -49,7 +49,7 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(21);
+    var result = await _projectDetailUseCase.getProjectTemplateDetail(12);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateSixEntity);
     }

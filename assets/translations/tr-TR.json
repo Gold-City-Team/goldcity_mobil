@@ -45,5 +45,6 @@
     "login": "Giriş Yap",
     "passwordQuestion": "Şifre",
     "logOut": "Çıkış Yap",
-    "areYouSureToLogout": "Çıkış Yapmak İstediğinizden Emin Misiniz?"
+    "areYouSureToLogout": "Çıkış Yapmak İstediğinizden Emin Misiniz?",
+    "announcements": "Duyurular"
 }

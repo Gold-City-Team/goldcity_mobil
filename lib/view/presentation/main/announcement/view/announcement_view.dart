@@ -1,0 +1,161 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:goldcity/config/base/view/base_view.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/extension/design_extension.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/view/presentation/main/announcement/view_model/announcement_view_model.dart';
+import 'package:goldcity/view/widget/text/label_text.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class AnnouncementView extends StatelessWidget {
+  const AnnouncementView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BaseView<AnnouncementViewModel>(
+      viewModel: AnnouncementViewModel(),
+      onModelReady: (model) {
+        model.setContext(context);
+        model.init();
+      },
+      onPageBuilder: (BuildContext context, AnnouncementViewModel value) =>
+          Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gap(context.largeSpacerSize),
+            GestureDetector(
+              onTap: () => context.pop(),
+              child: Container(
+                width: 50,
+                margin: context.largeSpacerOnlyHorizontal,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    borderRadius: context.midRadius),
+                child: const Icon(Icons.keyboard_arrow_left),
+              ),
+            ),
+            Gap(context.midSpacerSize),
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Observer(builder: (context) {
+                      if (value.entity == null || value.selectedIndex == -1) {
+                        return const SizedBox.shrink();
+                      }
+                      return ListView.builder(
+                        itemCount: value.entity!.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () => value
+                                .changeSelectedIndex(value.entity![index].id),
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: context.midSpacer,
+                                  margin: context.midSpacerOnlyHorizontal,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR
+                                          .EXTRA_CLOSE_BACKGROUND_COLOR)
+                                      .withAlpha(value.selectedIndex ==
+                                              value.entity![index].id
+                                          ? 255
+                                          : 50),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      LabelText(
+                                        text: value.entity![index].title,
+                                        fontSize: FONT_SIZE.TITLE_LARGE,
+                                        fontWeight: FontWeight.bold,
+                                        textColor:
+                                            APPLICATION_COLOR.OPPOSITE_COLOR,
+                                      ),
+                                      Gap(context.largeSpacerSize),
+                                      LabelText(
+                                        text: value.entity![index].description,
+                                        maxLines: 2,
+                                        textColor: APPLICATION_COLOR.SUBTITLE,
+                                        fontSize: FONT_SIZE.LABEL_MEDIUM,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Gap(context.largeSpacerSize),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }),
+                  ),
+                  Observer(builder: (context) {
+                    if (value.detail == null || value.selectedIndex == -1) {
+                      return const SizedBox.shrink();
+                    }
+                    return Expanded(
+                      flex: 6,
+                      child: Container(
+                        color: context.toColor(
+                            APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
+                        child: SingleChildScrollView(
+                          child: Container(
+                            height: context.sHeight,
+                            padding: context.largeSpacer,
+                            child: Column(
+                              children: [
+                                LabelText(
+                                  text: value.detail!.title,
+                                  fontSize: FONT_SIZE.TITLE_LARGE,
+                                  fontWeight: FontWeight.bold,
+                                  textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                                ),
+                                Gap(context.largeSpacerSize),
+                                LabelText(
+                                  text: value.detail!.description,
+                                  textColor: APPLICATION_COLOR.SUBTITLE,
+                                  fontSize: FONT_SIZE.LABEL_MEDIUM,
+                                ),
+                                SizedBox(
+                                  height: 150,
+                                  child: ListView.builder(
+                                      itemCount:
+                                          value.detail!.attachments.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return GestureDetector(
+                                          onTap: () => launchUrl(Uri.parse(value
+                                              .detail!
+                                              .attachments[index]
+                                              .file
+                                              .url)),
+                                          child: LabelText(
+                                              text: value.detail!
+                                                  .attachments[index].title),
+                                        );
+                                      }),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  })
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

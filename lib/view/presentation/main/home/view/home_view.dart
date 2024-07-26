@@ -110,6 +110,7 @@ class HomeView extends StatelessWidget {
                         context.tr("explore"),
                         context.tr("webinars"),
                         context.tr("educations"),
+                        context.tr("announcements"),
                         context.tr("settings"),
                         !locator<AuthenticationSource>().isUserStillValid()
                             ? context.tr("beingPartner")

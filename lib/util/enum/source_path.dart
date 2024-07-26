@@ -7,6 +7,8 @@ enum SourcePath {
   LEAD_LOGIN_GOOGLE,
   COMPLEX,
   COMPLEX_LIST,
+  ANNOUNCEMENT_LIST,
+  ANNOUNCEMENT,
   PROJECT,
   PROJECT_LANGUAGE_LIST,
   PROJECT_LIST,
@@ -38,6 +40,8 @@ extension SourcePathExtension on SourcePath {
         '/project/${data?[0]}/supportedlanguage',
       SourcePath.COMPLEX => '/complex/${data?[0]}/selectedlanguage',
       SourcePath.COMPLEX_LIST => '/complex/selectedlanguage',
+      SourcePath.ANNOUNCEMENT_LIST => '/announcement/myannouncement',
+      SourcePath.ANNOUNCEMENT => '/announcement/myannouncement/${data?[0]}',
       SourcePath.PROJECT_LIST => '/project',
       SourcePath.PROJECT_INTERIOR_GALLERY =>
         '/projectdetail/${data?[0]}/interiorgallery',
