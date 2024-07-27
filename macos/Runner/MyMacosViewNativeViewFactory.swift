@@ -45,4 +45,3 @@ class MyMacosViewNativeViewFactory:NSObject,FlutterPlatformViewFactory {
         
     }
 }
-    

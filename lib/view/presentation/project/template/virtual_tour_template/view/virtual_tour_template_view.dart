@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -27,8 +25,6 @@ class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
     super.initState();
   }
 
-  Map<String, dynamic> params = <String, dynamic>{};
-
   @override
   Widget build(BuildContext context) {
     return BaseView<VirtualTourTemplateViewModel>(
@@ -46,25 +42,17 @@ class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
           if (value.template == null) {
             return const SizedBox.shrink();
           }
-          params["url"] = value.template!.url;
 
           return SafeArea(
-            child: defaultTargetPlatform == TargetPlatform.macOS
-                ? AppKitView(
-                    viewType: "macos",
-                    creationParams: params,
-                    creationParamsCodec: const StandardMessageCodec(),
-                    key: UniqueKey(),
-                  )
-                : WebViewX(
-                    width: context.sWidth,
-                    height: context.sHeight,
-                    javascriptMode: JavascriptMode.unrestricted,
-                    onWebViewCreated: (controller) {
-                      webviewController = controller;
-                      webviewController.loadContent(value.template!.url);
-                    },
-                  ),
+            child: WebViewX(
+              width: context.sWidth,
+              height: context.sHeight,
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (controller) {
+                webviewController = controller;
+                webviewController.loadContent(value.template!.url);
+              },
+            ),
           );
         }),
       ),

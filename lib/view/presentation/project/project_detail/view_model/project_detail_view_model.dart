@@ -1,10 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/entity/project/project_language/project_language_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
@@ -76,6 +78,12 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   Future<void> getProjectDetail() async {
     _projeclUseCase.getDetail(projectId, languageId).listen((event) {
       if (event.isRight) {
+        if (Platform.isMacOS) {
+          event.right.detail.template.removeWhere((e) =>
+              e.type == TEMPLATE.PROJECT_TEMPLATE_THREE ||
+              e.type == TEMPLATE.PROJECT_TEMPLATE_SEVEN);
+        }
+
         entity = event.right;
       }
     });
