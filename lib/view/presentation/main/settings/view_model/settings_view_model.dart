@@ -57,6 +57,8 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
     if (index == 5) {
       locator<SharedManager>().clearAll();
       locator<LocalManager>().clearCache();
+      locator<AuthenticationSource>().clearUserDto();
+
       viewModelContext.pop();
     } else {
       await showDialog(

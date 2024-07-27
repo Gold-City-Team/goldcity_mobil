@@ -27,7 +27,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    debugPrint("gird,");
     _projectUseCase = locator<ProjectUseCase>();
     _complexUseCase = locator<ComplexUseCase>();
     pageList.clear();

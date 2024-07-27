@@ -5,13 +5,12 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
 
 class AnnouncementUseCase {
-  Future<Either<BaseErrorModel, List<AnnouncementEntity>>>
-      getAnnouncementList() async {
+  Stream<Either<BaseErrorModel, List<AnnouncementEntity>>>
+      getAnnouncementList() {
     return locator<AnnouncementRepository>().getAnnouncementList();
   }
 
-  Future<Either<BaseErrorModel, AnnouncementEntity>> getAnnouncement(
-      int id) async {
+  Stream<Either<BaseErrorModel, AnnouncementEntity>> getAnnouncement(int id) {
     return locator<AnnouncementRepository>().getAnnouncement(id);
   }
 }

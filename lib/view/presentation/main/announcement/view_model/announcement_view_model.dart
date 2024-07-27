@@ -40,21 +40,20 @@ abstract class _AnnouncementViewModelBase with Store, BaseViewModel {
 
   @action
   Future<void> _getDataDetail() async {
-    var result = await _announcementUseCase.getAnnouncement(selectedIndex);
-    if (result.isRight) {
-      detail = result.right;
-    } else {
-      debugPrint("test ${result.left.status}---$selectedIndex");
-    }
+    _announcementUseCase.getAnnouncement(selectedIndex).listen((result) {
+      if (result.isRight) {
+        detail = result.right;
+      }
+    });
   }
 
   @action
   Future<void> _getData() async {
-    var result = await _announcementUseCase.getAnnouncementList();
-    if (result.isRight) {
-      entity = result.right;
-      changeSelectedIndex(result.right.first.id);
-      debugPrint("test ${result.right[1].attachments.length}");
-    }
+    _announcementUseCase.getAnnouncementList().listen((result) {
+      if (result.isRight) {
+        entity = result.right;
+        changeSelectedIndex(result.right.first.id);
+      }
+    });
   }
 }

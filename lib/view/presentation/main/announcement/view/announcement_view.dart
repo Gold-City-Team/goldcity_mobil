@@ -7,6 +7,7 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/presentation/main/announcement/view_model/announcement_view_model.dart';
+import 'package:goldcity/view/presentation/main/announcement/widget/file_icon_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -104,6 +105,7 @@ class AnnouncementView extends StatelessWidget {
                     return Expanded(
                       flex: 6,
                       child: Container(
+                        margin: EdgeInsets.only(right: 10, bottom: 10),
                         color: context.toColor(
                             APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
                         child: SingleChildScrollView(
@@ -124,8 +126,9 @@ class AnnouncementView extends StatelessWidget {
                                   textColor: APPLICATION_COLOR.SUBTITLE,
                                   fontSize: FONT_SIZE.LABEL_MEDIUM,
                                 ),
+                                Gap(context.largeSpacerSize),
                                 SizedBox(
-                                  height: 150,
+                                  height: 250,
                                   child: ListView.builder(
                                       itemCount:
                                           value.detail!.attachments.length,
@@ -137,9 +140,12 @@ class AnnouncementView extends StatelessWidget {
                                               .attachments[index]
                                               .file
                                               .url)),
-                                          child: LabelText(
-                                              text: value.detail!
-                                                  .attachments[index].title),
+                                          child: Container(
+                                            margin: context.midSpacerOnlyRight,
+                                            child: FileIconWidget(
+                                                file: value.detail!
+                                                    .attachments[index]),
+                                          ),
                                         );
                                       }),
                                 )

@@ -12,6 +12,7 @@ import 'package:goldcity/data/repository/lead/lead_repository_impl.dart';
 import 'package:goldcity/data/repository/notification/notification_repository_impl.dart';
 import 'package:goldcity/data/repository/project/project_repository_impl.dart';
 import 'package:goldcity/data/repository/project_detail/project_detail_repository_impl.dart';
+import 'package:goldcity/data/source/local/announcement/announcement_local_data_source.dart';
 import 'package:goldcity/data/source/local/project/project_local_data_source.dart';
 import 'package:goldcity/data/source/remote/announcement/announcement_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/complex/complex_remote_data_source.dart';
@@ -108,4 +109,6 @@ void init() {
       () => AnnouncementRepositoryImpl());
   locator.registerLazySingleton<AnnouncementRemoteDataSource>(
       () => AnnouncementRemoteDataSourceImpl());
+  locator.registerLazySingleton<AnnouncementLocalDataSource>(
+      () => AnnouncementLocalDataSourceImpl());
 }
