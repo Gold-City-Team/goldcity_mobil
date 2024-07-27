@@ -128,7 +128,7 @@ class AnnouncementView extends StatelessWidget {
                                 ),
                                 Gap(context.largeSpacerSize),
                                 SizedBox(
-                                  height: 250,
+                                  height: 220,
                                   child: ListView.builder(
                                       itemCount:
                                           value.detail!.attachments.length,
