@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
@@ -20,11 +22,12 @@ class VirtualTourTemplateView extends StatefulWidget {
 
 class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
   late WebViewXController webviewController;
-
   @override
   void initState() {
     super.initState();
   }
+
+  Map<String, dynamic> params = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -43,17 +46,26 @@ class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
           if (value.template == null) {
             return const SizedBox.shrink();
           }
+          params["url"] = value.template!.url;
 
           return SafeArea(
-              child: WebViewX(
-            width: context.sWidth,
-            height: context.sHeight,
-            javascriptMode: JavascriptMode.unrestricted,
-            onWebViewCreated: (controller) {
-              webviewController = controller;
-              webviewController.loadContent(value.template!.url);
-            },
-          ));
+            child: defaultTargetPlatform == TargetPlatform.macOS
+                ? AppKitView(
+                    viewType: "macos",
+                    creationParams: params,
+                    creationParamsCodec: const StandardMessageCodec(),
+                    key: UniqueKey(),
+                  )
+                : WebViewX(
+                    width: context.sWidth,
+                    height: context.sHeight,
+                    javascriptMode: JavascriptMode.unrestricted,
+                    onWebViewCreated: (controller) {
+                      webviewController = controller;
+                      webviewController.loadContent(value.template!.url);
+                    },
+                  ),
+          );
         }),
       ),
     );

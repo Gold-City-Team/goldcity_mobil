@@ -10,6 +10,10 @@ class MainFlutterWindow: NSWindow {
 
     RegisterGeneratedPlugins(registry: flutterViewController)
 
+    weak var registrar=flutterViewController.registrar(forPlugin: "my-views")
+    let myMacos = MyMacosViewNativeViewFactory(messenger:registrar!.messenger)
+    let viewRegistrar = flutterViewController.registrar(forPlugin: "<my-views>")
+      viewRegistrar.register(myMacos,withId:"macos")
     super.awakeFromNib()
   }
 }
