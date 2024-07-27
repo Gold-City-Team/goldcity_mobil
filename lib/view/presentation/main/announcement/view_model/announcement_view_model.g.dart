@@ -57,6 +57,22 @@ mixin _$AnnouncementViewModel on _AnnouncementViewModelBase, Store {
     });
   }
 
+  late final _$showDetailAtom =
+      Atom(name: '_AnnouncementViewModelBase.showDetail', context: context);
+
+  @override
+  bool get showDetail {
+    _$showDetailAtom.reportRead();
+    return super.showDetail;
+  }
+
+  @override
+  set showDetail(bool value) {
+    _$showDetailAtom.reportWrite(value, super.showDetail, () {
+      super.showDetail = value;
+    });
+  }
+
   late final _$_getDataDetailAsyncAction = AsyncAction(
       '_AnnouncementViewModelBase._getDataDetail',
       context: context);
@@ -89,11 +105,23 @@ mixin _$AnnouncementViewModel on _AnnouncementViewModelBase, Store {
   }
 
   @override
+  void toggleShowDetail() {
+    final _$actionInfo = _$_AnnouncementViewModelBaseActionController
+        .startAction(name: '_AnnouncementViewModelBase.toggleShowDetail');
+    try {
+      return super.toggleShowDetail();
+    } finally {
+      _$_AnnouncementViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 entity: ${entity},
 detail: ${detail},
-selectedIndex: ${selectedIndex}
+selectedIndex: ${selectedIndex},
+showDetail: ${showDetail}
     ''';
   }
 }

@@ -6,6 +6,7 @@ import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/main/announcement/view_model/announcement_view_model.dart';
 import 'package:goldcity/view/presentation/main/announcement/widget/file_icon_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
@@ -24,16 +25,26 @@ class AnnouncementView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, AnnouncementViewModel value) =>
           Scaffold(
-        body: Column(
+              body: isTablet()
+                  ? tabletView(context, value)
+                  : phoneView(context, value)),
+    );
+  }
+
+  Widget phoneView(BuildContext context, AnnouncementViewModel value) {
+    return SafeArea(
+      child: Observer(builder: (context) {
+        return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Gap(context.largeSpacerSize),
+            Gap(context.midSpacerSize),
             GestureDetector(
-              onTap: () => context.pop(),
+              onTap: () =>
+                  value.showDetail ? value.toggleShowDetail() : context.pop(),
               child: Container(
                 width: 50,
-                margin: context.largeSpacerOnlyHorizontal,
                 height: 50,
+                margin: context.midSpacerOnlyLeft,
                 decoration: BoxDecoration(
                     color: context.toColor(APPLICATION_COLOR.GOLD),
                     borderRadius: context.midRadius),
@@ -41,126 +52,249 @@ class AnnouncementView extends StatelessWidget {
               ),
             ),
             Gap(context.midSpacerSize),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: Observer(builder: (context) {
-                      if (value.entity == null || value.selectedIndex == -1) {
-                        return const SizedBox.shrink();
-                      }
-                      return ListView.builder(
-                        itemCount: value.entity!.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () => value
-                                .changeSelectedIndex(value.entity![index].id),
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: context.midSpacer,
-                                  margin: context.midSpacerOnlyHorizontal,
-                                  color: context
-                                      .toColor(APPLICATION_COLOR
-                                          .EXTRA_CLOSE_BACKGROUND_COLOR)
-                                      .withAlpha(value.selectedIndex ==
-                                              value.entity![index].id
-                                          ? 255
-                                          : 50),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      LabelText(
-                                        text: value.entity![index].title,
-                                        fontSize: FONT_SIZE.TITLE_LARGE,
-                                        fontWeight: FontWeight.bold,
-                                        textColor:
-                                            APPLICATION_COLOR.OPPOSITE_COLOR,
-                                      ),
-                                      Gap(context.largeSpacerSize),
-                                      LabelText(
-                                        text: value.entity![index].description,
-                                        maxLines: 2,
-                                        textColor: APPLICATION_COLOR.SUBTITLE,
-                                        fontSize: FONT_SIZE.LABEL_MEDIUM,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Gap(context.largeSpacerSize),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    }),
-                  ),
-                  Observer(builder: (context) {
-                    if (value.detail == null || value.selectedIndex == -1) {
+            value.showDetail
+                ? Expanded(
+                    child: Container(
+                      padding: context.midSpacer,
+                      child: ListView(
+                        children: [
+                          Column(
+                            children: [
+                              LabelText(
+                                text: value.detail!.title,
+                                fontSize: FONT_SIZE.HEADLINE_LARGE,
+                                fontWeight: FontWeight.bold,
+                                textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                              ),
+                              Gap(context.largeSpacerSize),
+                              LabelText(
+                                text: value.detail!.description,
+                                textColor: APPLICATION_COLOR.SUBTITLE,
+                                fontSize: FONT_SIZE.BODY_LARGE,
+                              ),
+                              Gap(context.largeSpacerSize),
+                              SizedBox(
+                                height: 250,
+                                child: ListView.builder(
+                                    itemCount: value.detail!.attachments.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () => launchUrl(Uri.parse(value
+                                            .detail!
+                                            .attachments[index]
+                                            .file
+                                            .url)),
+                                        child: Container(
+                                          margin: context.midSpacerOnlyRight,
+                                          child: FileIconWidget(
+                                              file: value
+                                                  .detail!.attachments[index]),
+                                        ),
+                                      );
+                                    }),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : Observer(builder: (context) {
+                    if (value.entity == null) {
                       return const SizedBox.shrink();
                     }
                     return Expanded(
-                      flex: 6,
-                      child: Container(
-                        margin: EdgeInsets.only(right: 10, bottom: 10),
-                        color: context.toColor(
-                            APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-                        child: SingleChildScrollView(
-                          child: Container(
-                            height: context.sHeight,
-                            padding: context.largeSpacer,
-                            child: Column(
-                              children: [
-                                LabelText(
-                                  text: value.detail!.title,
-                                  fontSize: FONT_SIZE.TITLE_LARGE,
-                                  fontWeight: FontWeight.bold,
-                                  textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
-                                ),
-                                Gap(context.largeSpacerSize),
-                                LabelText(
-                                  text: value.detail!.description,
-                                  textColor: APPLICATION_COLOR.SUBTITLE,
-                                  fontSize: FONT_SIZE.LABEL_MEDIUM,
-                                ),
-                                Gap(context.largeSpacerSize),
-                                SizedBox(
-                                  height: 220,
-                                  child: ListView.builder(
-                                      itemCount:
-                                          value.detail!.attachments.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () => launchUrl(Uri.parse(value
-                                              .detail!
-                                              .attachments[index]
-                                              .file
-                                              .url)),
-                                          child: Container(
-                                            margin: context.midSpacerOnlyRight,
-                                            child: FileIconWidget(
-                                                file: value.detail!
-                                                    .attachments[index]),
-                                          ),
-                                        );
-                                      }),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      child: ListView.builder(
+                          padding: context.midSpacerOnlyHorizontal,
+                          itemCount: value.entity!.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () => {
+                                value.toggleShowDetail(),
+                                value.changeSelectedIndex(
+                                    value.entity![index].id)
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: context.midSpacer,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .EXTRA_CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(50),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        LabelText(
+                                          text: value.entity![index].title,
+                                          fontSize: FONT_SIZE.TITLE_LARGE,
+                                          fontWeight: FontWeight.bold,
+                                          textColor:
+                                              APPLICATION_COLOR.OPPOSITE_COLOR,
+                                        ),
+                                        Gap(context.largeSpacerSize),
+                                        LabelText(
+                                          text:
+                                              value.entity![index].description,
+                                          maxLines: 2,
+                                          textColor: APPLICATION_COLOR.SUBTITLE,
+                                          fontSize: FONT_SIZE.LABEL_MEDIUM,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Gap(context.midSpacerSize),
+                                ],
+                              ),
+                            );
+                          }),
                     );
-                  })
-                ],
-              ),
-            ),
+                  }),
           ],
-        ),
+        );
+      }),
+    );
+  }
+
+  Widget tabletView(BuildContext context, AnnouncementViewModel value) {
+    return Container(
+      margin: context.largeSpacerOnlyHorizontal,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Gap(context.largeSpacerSize),
+          GestureDetector(
+            onTap: () => context.pop(),
+            child: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                  color: context.toColor(APPLICATION_COLOR.GOLD),
+                  borderRadius: context.midRadius),
+              child: const Icon(Icons.keyboard_arrow_left),
+            ),
+          ),
+          Gap(context.midSpacerSize),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: Observer(builder: (context) {
+                    if (value.entity == null || value.selectedIndex == -1) {
+                      return const SizedBox.shrink();
+                    }
+                    return ListView.builder(
+                      itemCount: value.entity!.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => value
+                              .changeSelectedIndex(value.entity![index].id),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: context.midSpacer,
+                                margin: context.midSpacerOnlyRight,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .EXTRA_CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(value.selectedIndex ==
+                                            value.entity![index].id
+                                        ? 255
+                                        : 50),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    LabelText(
+                                      text: value.entity![index].title,
+                                      fontSize: FONT_SIZE.TITLE_LARGE,
+                                      fontWeight: FontWeight.bold,
+                                      textColor:
+                                          APPLICATION_COLOR.OPPOSITE_COLOR,
+                                    ),
+                                    Gap(context.largeSpacerSize),
+                                    LabelText(
+                                      text: value.entity![index].description,
+                                      maxLines: 2,
+                                      textColor: APPLICATION_COLOR.SUBTITLE,
+                                      fontSize: FONT_SIZE.LABEL_MEDIUM,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Gap(context.largeSpacerSize),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  }),
+                ),
+                Observer(builder: (context) {
+                  if (value.detail == null || value.selectedIndex == -1) {
+                    return const SizedBox.shrink();
+                  }
+                  return Expanded(
+                    flex: 6,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10, bottom: 10),
+                      padding: context.midSpacer,
+                      color: context.toColor(
+                          APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
+                      child: ListView(
+                        children: [
+                          Column(
+                            children: [
+                              LabelText(
+                                text: value.detail!.title,
+                                fontSize: FONT_SIZE.HEADLINE_LARGE,
+                                fontWeight: FontWeight.bold,
+                                textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                              ),
+                              Gap(context.largeSpacerSize),
+                              LabelText(
+                                text: value.detail!.description,
+                                textColor: APPLICATION_COLOR.SUBTITLE,
+                                fontSize: FONT_SIZE.BODY_LARGE,
+                              ),
+                              Gap(context.largeSpacerSize),
+                              SizedBox(
+                                height: 250,
+                                child: ListView.builder(
+                                    itemCount: value.detail!.attachments.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () => launchUrl(Uri.parse(value
+                                            .detail!
+                                            .attachments[index]
+                                            .file
+                                            .url)),
+                                        child: Container(
+                                          margin: context.midSpacerOnlyRight,
+                                          child: FileIconWidget(
+                                              file: value
+                                                  .detail!.attachments[index]),
+                                        ),
+                                      );
+                                    }),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                })
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

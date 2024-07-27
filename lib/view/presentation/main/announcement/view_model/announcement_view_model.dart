@@ -47,6 +47,12 @@ abstract class _AnnouncementViewModelBase with Store, BaseViewModel {
     });
   }
 
+  @observable
+  bool showDetail = false;
+
+  @action
+  void toggleShowDetail() => showDetail = !showDetail;
+
   @action
   Future<void> _getData() async {
     _announcementUseCase.getAnnouncementList().listen((result) {
