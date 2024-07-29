@@ -54,8 +54,6 @@ class FcmManager {
   }
 
   void getMessages(BuildContext context) {
-    /// aşağıdaki kod uygulama açıkken bir bildirim gelirse çalışıyor.
-    // FirebaseMessaging.onMessage.listen((event) => _handleMessage(event, "onMessage"));
     FirebaseMessaging.onMessageOpenedApp
         .listen((event) => _handleMessage(event, context));
   }
