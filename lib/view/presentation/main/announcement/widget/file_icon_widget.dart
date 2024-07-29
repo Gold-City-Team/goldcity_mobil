@@ -14,7 +14,7 @@ class FileIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (file.file.mediaType == MEDIA_TYPE.VIDEO) {
+    if (file.file.mediaType == MEDIA_TYPE.VIDEO) { 
       return Container(
         color:
             context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR).withAlpha(100),
