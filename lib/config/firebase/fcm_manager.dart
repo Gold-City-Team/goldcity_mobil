@@ -29,7 +29,7 @@ class FcmManager {
     );
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       await FlutterNotificationChannel.registerNotificationChannel(
-        description: 'Your channel description',
+        description: 'GoldCity channel description',
         id: 'goldcity_notification_channel',
         importance: NotificationImportance.IMPORTANCE_HIGH,
         name: 'Goldcity notification channel',
