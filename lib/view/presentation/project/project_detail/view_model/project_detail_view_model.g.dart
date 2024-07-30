@@ -9,6 +9,22 @@ part of 'project_detail_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
+  late final _$isSharedAtom =
+      Atom(name: '_ProjectDetailViewModelBase.isShared', context: context);
+
+  @override
+  bool get isShared {
+    _$isSharedAtom.reportRead();
+    return super.isShared;
+  }
+
+  @override
+  set isShared(bool value) {
+    _$isSharedAtom.reportWrite(value, super.isShared, () {
+      super.isShared = value;
+    });
+  }
+
   late final _$templateIndexAtom =
       Atom(name: '_ProjectDetailViewModelBase.templateIndex', context: context);
 
@@ -152,6 +168,7 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
   @override
   String toString() {
     return '''
+isShared: ${isShared},
 templateIndex: ${templateIndex},
 entity: ${entity},
 languageId: ${languageId},

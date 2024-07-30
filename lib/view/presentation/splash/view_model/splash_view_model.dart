@@ -7,7 +7,6 @@ import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/firebase/fcm_manager.dart';
 import 'package:goldcity/config/language/language_manager.dart';
-import 'package:goldcity/config/navigation/notification_navigation.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/data/dto/send/notification/send_notification_token_dto.dart';
 import 'package:goldcity/domain/usecase/notification_usecase.dart';
@@ -41,20 +40,21 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
       }
     });
     locator<AuthenticationSource>().initUserDto();
-
     locator<AuthenticationSource>().isUserStillValid();
     viewModelContext.pushReplacement(NavigationConstant.MAIN);
     locator<FcmManager>().getMessages(viewModelContext);
 
-    locator<FcmManager>().messaging.getInitialMessage().then((value) {
-      if (value == null) {
-        viewModelContext.pushReplacement(NavigationConstant.MAIN);
-      } else {
-        viewModelContext.pushReplacement(NavigationConstant.MAIN);
-        NotificationNavigation()
-            .navigateAccordingToNotification(value.data, viewModelContext);
-      }
-    });
+    // locator<FcmManager>().messaging.getInitialMessage().then((value) {
+    //   if (value == null) {
+    //     viewModelContext.pushReplacement(NavigationConstant.MAIN);
+    //   } else {
+    //     viewModelContext.pushReplacement(NavigationConstant.MAIN);
+    //     NotificationNavigation()
+    //         .navigateAccordingToNotification(value.data, viewModelContext);
+    //   }
+    // });
+    viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
+        pathParameters: {"projectId": "qVH5LbECan"});
     tokenProccess();
   }
 

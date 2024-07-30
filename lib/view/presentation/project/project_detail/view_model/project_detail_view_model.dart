@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
+import 'package:goldcity/data/dto/send/shareable_page/create_shareable_link_dto.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/entity/project/project_language/project_language_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
+import 'package:goldcity/domain/usecase/shareable_page_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:mobx/mobx.dart';
 
@@ -20,8 +22,13 @@ class ProjectDetailViewModel = _ProjectDetailViewModelBase
     with _$ProjectDetailViewModel;
 
 abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
-  int projectId = 0;
+  dynamic projectId = 0;
+
+  @observable
+  bool isShared = false;
+
   late ProjectUseCase _projeclUseCase;
+  late ShareablePageUseCase _shareablePageUseCase;
 
   @override
   void setContext(BuildContext context) {
@@ -45,7 +52,17 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     _projeclUseCase = locator<ProjectUseCase>();
-    _getDetail();
+    _shareablePageUseCase = locator<ShareablePageUseCase>();
+    var result = int.tryParse(projectId);
+    if (result == null) {
+      isShared = true;
+      _getSharedDetail();
+    } else {
+      projectId = result;
+      isShared = false;
+
+      _getDetail();
+    }
   }
 
   @observable
@@ -104,4 +121,12 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
       languageList.add(en["selectLanguage"]);
     }
   }
+
+  Future<void> createLink() async {
+    var result = await _shareablePageUseCase.createLink(
+        CreateShareableLinkDto(pageType: "PROJECT", pageId: projectId));
+    if (result.isRight) {}
+  }
+
+  void _getSharedDetail() {}
 }

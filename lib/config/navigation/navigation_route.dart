@@ -61,7 +61,7 @@ final router = GoRouter(
           path: "${NavigationConstant.PROJECT_DETAIL}/:projectId",
           builder: (context, state) => ProjectDetailView(
               key: Key("${state.pathParameters['projectId']}"),
-              projectId: int.tryParse(state.pathParameters['projectId']!) ?? 0),
+              projectId: state.pathParameters['projectId']),
         ),
         GoRoute(
           name: NavigationConstant.COMPLEX_DETAIL,

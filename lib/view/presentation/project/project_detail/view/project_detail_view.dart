@@ -28,7 +28,7 @@ import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProjectDetailView extends StatefulWidget {
-  final int projectId;
+  final dynamic projectId;
   const ProjectDetailView({required this.projectId, super.key});
 
   @override
@@ -68,7 +68,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
     return BaseView<ProjectDetailViewModel>(
       viewModel: ProjectDetailViewModel(),
       onModelReady: (model) {
-        model.projectId = widget.projectId;
+        model.projectId = widget.projectId ?? 0;
         model.setContext(context);
         model.init();
         modelGlobal = model;
@@ -243,6 +243,23 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                       ),
                   };
                 }),
+                Positioned(
+                  top: 15,
+                  right: 15,
+                  child: WebViewAware(
+                    child: GestureDetector(
+                      onTap: () => value.createLink(),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                        ),
+                        child: const Icon(Icons.link),
+                      ),
+                    ),
+                  ),
+                ),
                 Observer(builder: (context) {
                   if (value.entity == null ||
                       value.entity!.detail.template.isEmpty) {
