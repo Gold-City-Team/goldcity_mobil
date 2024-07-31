@@ -265,100 +265,111 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                   };
                 }),
                 Align(
-                  alignment: Alignment.topCenter,
+                  alignment: Alignment.topRight,
                   child: Container(
                     height: 50,
                     margin: context.midSpacerOnlyTop,
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Spacer(),
-                        isTablet() ? Spacer() : const SizedBox.shrink(),
-                        isTablet() ? Spacer() : const SizedBox.shrink(),
-                        Flexible(
-                          flex: isTablet() ? 1 : 2,
-                          fit: FlexFit.loose,
-                          child: Container(
-                            height: 50,
-                            alignment: Alignment.centerLeft,
-                            padding: context.largeSpacerOnlyLeft,
-                            color: context.toColor(APPLICATION_COLOR.LIGHT),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                LabelText(
-                                  text: value.shareData!.creatorUser.name,
-                                  textColor: APPLICATION_COLOR.DARK,
-                                  maxLines: 1,
-                                  fontSize: FONT_SIZE.TITLE_LARGE,
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: LabelText(
-                                    text: value.shareData!.creatorUser.name,
-                                    textColor: APPLICATION_COLOR.DARK,
-                                    fontSize: FONT_SIZE.LABEL_SMALL,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
                         Observer(builder: (context) {
-                          if (value.isShared) {
-                            return Row(
-                              children: [
-                                WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () => value.createLink(),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.mail,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
+                          if (value.isShared && value.shareData != null) {
+                            return Container(
+                              height: 50,
+                              alignment: Alignment.centerLeft,
+                              padding: context.largeSpacerOnlyHorizontal,
+                              color: context.toColor(APPLICATION_COLOR.LIGHT),
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                    maxWidth: isTablet()
+                                        ? context.sWidth / 2
+                                        : context.sWidth - 140),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    LabelText(
+                                      text: value.shareData!.creatorUser.name,
+                                      textColor: APPLICATION_COLOR.DARK,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: FONT_SIZE.TITLE_LARGE,
                                     ),
-                                  ),
-                                ),
-                                WebViewAware(
-                                  child: GestureDetector(
-                                    onTap: () => value.createLink(),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.call,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
+                                    LabelText(
+                                      text: value.shareData!.creatorUser.name,
+                                      textColor: APPLICATION_COLOR.DARK,
+                                      fontSize: FONT_SIZE.LABEL_SMALL,
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             );
                           }
-                          return WebViewAware(
-                            child: GestureDetector(
-                              onTap: () => value.createLink(),
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color:
-                                      context.toColor(APPLICATION_COLOR.GOLD),
+                          return const SizedBox();
+                        }),
+                        Observer(builder: (context) {
+                          if (value.isShared) {
+                            return SizedBox(
+                              height: 50,
+                              child: Row(
+                                children: [
+                                  Gap(context.smallSpacerSize),
+                                  WebViewAware(
+                                    child: GestureDetector(
+                                      onTap: () => value.createLink(),
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.LIGHT),
+                                        ),
+                                        child: Icon(
+                                          Icons.mail,
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.DARK),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Gap(context.smallSpacerSize),
+                                  WebViewAware(
+                                    child: GestureDetector(
+                                      onTap: () => value.createLink(),
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.LIGHT),
+                                        ),
+                                        child: Icon(
+                                          Icons.call,
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.DARK),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                          return Padding(
+                            padding: EdgeInsets.only(right: 15),
+                            child: WebViewAware(
+                              child: GestureDetector(
+                                onTap: () => value.createLink(),
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.GOLD),
+                                  ),
+                                  child: const Icon(Icons.link),
                                 ),
-                                child: const Icon(Icons.link),
                               ),
                             ),
                           );
