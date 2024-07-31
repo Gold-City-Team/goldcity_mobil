@@ -11,6 +11,7 @@ import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/data/dto/send/shareable_page/create_shareable_link_dto.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/entity/project/project_language/project_language_entity.dart';
+import 'package:goldcity/domain/entity/shareable_page/shareable_page_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/domain/usecase/shareable_page_usecase.dart';
 import 'package:goldcity/injection_container.dart';
@@ -128,5 +129,13 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     if (result.isRight) {}
   }
 
-  void _getSharedDetail() {}
+  ShareablePageEntity? shareData;
+  Future<void> _getSharedDetail() async {
+    var result = await _shareablePageUseCase.getLinkDetail("$projectId");
+    if (result.isRight) {
+      projectId = result.right.pageId;
+      shareData = result.right;
+      _getDetail();
+    }
+  }
 }

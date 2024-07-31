@@ -1,6 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -10,6 +12,7 @@ import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/language_item_widget.dart';
 import 'package:goldcity/view/presentation/project/template/project_animated_wellcome_template/view/project_animated_wellcome_template_view.dart';
@@ -25,6 +28,7 @@ import 'package:goldcity/view/presentation/project/template/shareable_material/v
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
+import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProjectDetailView extends StatefulWidget {
@@ -169,19 +173,29 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                 .metaData
                                 .viewType ==
                             "ONE"
-                        ? ProjectTwoMainImageTemplateView(
-                            key: Key(
-                                "${value.entity!.detail.template[value.templateIndex].id}"),
-                            projectDetailId: value.entity!.detail.id,
-                            projectSettingsId: value.entity!.detail
-                                .template[value.templateIndex].id,
+                        ? Padding(
+                            padding: isTablet()
+                                ? EdgeInsets.zero
+                                : EdgeInsets.only(top: 75),
+                            child: ProjectTwoMainImageTemplateView(
+                              key: Key(
+                                  "${value.entity!.detail.template[value.templateIndex].id}"),
+                              projectDetailId: value.entity!.detail.id,
+                              projectSettingsId: value.entity!.detail
+                                  .template[value.templateIndex].id,
+                            ),
                           )
-                        : ProjectGalleryAndInfoTemplate(
-                            key: Key(
-                                "${value.entity!.detail.template[value.templateIndex].id}"),
-                            projectDetailId: value.entity!.detail.id,
-                            projectSettingsId: value.entity!.detail
-                                .template[value.templateIndex].id,
+                        : Padding(
+                            padding: isTablet()
+                                ? EdgeInsets.zero
+                                : EdgeInsets.only(top: 75),
+                            child: ProjectGalleryAndInfoTemplate(
+                              key: Key(
+                                  "${value.entity!.detail.template[value.templateIndex].id}"),
+                              projectDetailId: value.entity!.detail.id,
+                              projectSettingsId: value.entity!.detail
+                                  .template[value.templateIndex].id,
+                            ),
                           ),
                     TEMPLATE.PROJECT_TEMPLATE_THREE =>
                       ProjectPossibiltyTemplateView(
@@ -191,25 +205,32 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
-                    TEMPLATE.PROJECT_TEMPLATE_FOUR =>
-                      ProjectFeatureAndGalleryTemplateView(
-                        key: Key(
-                            "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
-                        projectSettingsId: value
-                            .entity!.detail.template[value.templateIndex].id,
+                    TEMPLATE.PROJECT_TEMPLATE_FOUR => Padding(
+                        padding: EdgeInsets.only(top: 75),
+                        child: ProjectFeatureAndGalleryTemplateView(
+                          key: Key(
+                              "${value.entity!.detail.template[value.templateIndex].id}"),
+                          projectDetailId: value.entity!.detail.id,
+                          projectSettingsId: value
+                              .entity!.detail.template[value.templateIndex].id,
+                        ),
                       ),
-                    TEMPLATE.PROJECT_TEMPLATE_FIVE =>
-                      ShareableMaterialTemplateView(
-                        key: Key(
-                            "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
-                        projectSettingsId: value
-                            .entity!.detail.template[value.templateIndex].id,
+                    TEMPLATE.PROJECT_TEMPLATE_FIVE => Padding(
+                        padding: EdgeInsets.only(top: 75),
+                        child: ShareableMaterialTemplateView(
+                          key: Key(
+                              "${value.entity!.detail.template[value.templateIndex].id}"),
+                          projectDetailId: value.entity!.detail.id,
+                          projectSettingsId: value
+                              .entity!.detail.template[value.templateIndex].id,
+                        ),
                       ),
-                    TEMPLATE.PROJECT_TEMPLATE_SIX => PlanTemplateView(
-                        key: Key(
-                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                    TEMPLATE.PROJECT_TEMPLATE_SIX => Padding(
+                        padding: EdgeInsets.only(top: 75),
+                        child: PlanTemplateView(
+                          key: Key(
+                              "${value.entity!.detail.template[value.templateIndex].id}"),
+                        ),
                       ),
                     TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
                         key: Key(
@@ -243,20 +264,106 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                       ),
                   };
                 }),
-                Positioned(
-                  top: 15,
-                  right: 15,
-                  child: WebViewAware(
-                    child: GestureDetector(
-                      onTap: () => value.createLink(),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: 50,
+                    margin: context.midSpacerOnlyTop,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Spacer(),
+                        isTablet() ? Spacer() : const SizedBox.shrink(),
+                        isTablet() ? Spacer() : const SizedBox.shrink(),
+                        Flexible(
+                          flex: isTablet() ? 1 : 2,
+                          fit: FlexFit.loose,
+                          child: Container(
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: context.largeSpacerOnlyLeft,
+                            color: context.toColor(APPLICATION_COLOR.LIGHT),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                LabelText(
+                                  text: value.shareData!.creatorUser.name,
+                                  textColor: APPLICATION_COLOR.DARK,
+                                  maxLines: 1,
+                                  fontSize: FONT_SIZE.TITLE_LARGE,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: LabelText(
+                                    text: value.shareData!.creatorUser.name,
+                                    textColor: APPLICATION_COLOR.DARK,
+                                    fontSize: FONT_SIZE.LABEL_SMALL,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        child: const Icon(Icons.link),
-                      ),
+                        Observer(builder: (context) {
+                          if (value.isShared) {
+                            return Row(
+                              children: [
+                                WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => value.createLink(),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.LIGHT),
+                                      ),
+                                      child: Icon(
+                                        Icons.mail,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => value.createLink(),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.LIGHT),
+                                      ),
+                                      child: Icon(
+                                        Icons.call,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                          return WebViewAware(
+                            child: GestureDetector(
+                              onTap: () => value.createLink(),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.GOLD),
+                                ),
+                                child: const Icon(Icons.link),
+                              ),
+                            ),
+                          );
+                        }),
+                      ],
                     ),
                   ),
                 ),

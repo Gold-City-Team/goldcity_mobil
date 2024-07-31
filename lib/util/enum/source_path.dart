@@ -26,6 +26,7 @@ enum SourcePath {
   USER_WEBINAR,
   SEND_NOTIFICATION,
   SHARE_PAGE,
+  SHARE_PAGE_DETAIL,
 }
 
 extension SourcePathExtension on SourcePath {
@@ -62,6 +63,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.EDUCATION => '/education/${data?[0]}/selectedlanguage',
       SourcePath.EDUCATION_GALLERY => '/educationgallery/${data?[0]}',
       SourcePath.SHARE_PAGE => '/shareablepage',
+      SourcePath.SHARE_PAGE_DETAIL => '/shareablepage/${data?[0]}',
     };
   }
 }

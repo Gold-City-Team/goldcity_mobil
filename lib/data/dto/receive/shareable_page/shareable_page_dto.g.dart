@@ -8,7 +8,7 @@ part of 'shareable_page_dto.dart';
 
 ShareablePageDto _$ShareablePageDtoFromJson(Map<String, dynamic> json) =>
     ShareablePageDto(
-      id: json['id'] as int?,
+      id: json['id'] as String?,
       pageType: json['pageType'] as String?,
       creatorUser: json['creatorUser'] == null
           ? null
@@ -30,9 +30,9 @@ Map<String, dynamic> _$ShareablePageDtoToJson(ShareablePageDto instance) =>
 ShareablePageCreatorUserDto _$ShareablePageCreatorUserDtoFromJson(
         Map<String, dynamic> json) =>
     ShareablePageCreatorUserDto(
-      id: json['id'] as int,
-      companyId: json['companyId'] as int,
-      name: json['name'] as String,
+      id: json['id'] as int?,
+      companyId: json['companyId'] as int?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$ShareablePageCreatorUserDtoToJson(
