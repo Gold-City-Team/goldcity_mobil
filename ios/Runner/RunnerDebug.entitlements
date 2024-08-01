@@ -9,6 +9,9 @@
 		<string>Default</string>
 	</array>
 	<key>com.apple.developer.associated-domains</key>
-	<array/>
+	<array>
+		<string>applink:goldcitycondominium.com</string>
+		<string>applink:www.goldcitycondominium.com</string>
+	</array>
 </dict>
 </plist>

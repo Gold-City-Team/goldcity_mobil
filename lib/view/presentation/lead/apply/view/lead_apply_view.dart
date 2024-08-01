@@ -6,8 +6,9 @@ import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/lead/apply/view_model/lead_apply_view_model.dart';
-import 'package:goldcity/view/widget/app_bar/normal_app_bar.dart';
 import 'package:goldcity/view/widget/button/normal_button.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:goldcity/view/widget/text_field/rounded_text_field.dart';
@@ -30,54 +31,76 @@ class LeadApplyView extends StatelessWidget {
             padding: context.midSpacerOnlyHorizontal,
             child: Stack(
               children: [
-                NormalAppBar(
-                  backPressed: () => context.pop(),
-                  title: LocaleKeys.applicationFormTitle.tr(),
+                GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Container(
+                    width: 50,
+                    margin: context.midSpacerOnlyTop,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: context.toColor(APPLICATION_COLOR.GOLD),
+                        borderRadius: context.midRadius),
+                    child: const Icon(Icons.keyboard_arrow_left),
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LabelText(text: LocaleKeys.nameSurnameQuestion.tr()),
-                    Gap(context.midSpacerSize),
-                    RoundedTextField(
-                        key: const Key("fullName"),
-                        newText: (newText) => value.fullName = newText),
-                    Gap(context.midSpacerSize),
-                    LabelText(text: LocaleKeys.telephoneQuestion.tr()),
-                    Gap(context.midSpacerSize),
-                    RoundedTextField(
-                        key: const Key("telephone"),
-                        newText: (newText) => value.telephone = newText),
-                    Gap(context.midSpacerSize),
-                    LabelText(text: LocaleKeys.mailQuestion.tr()),
-                    Gap(context.midSpacerSize),
-                    RoundedTextField(
-                        key: const Key("mailAdress"),
-                        newText: (newText) => value.mailAdress = newText),
-                    Gap(context.largeSpacerSize),
-                    SizedBox(
-                      height: 50,
-                      child: NormalButton(
-                        onTap: () => value.apply(),
-                        text: LocaleKeys.send.tr(),
-                      ),
-                    ),
-                    Gap(context.largeSpacerSize),
-                    Row(
+                Center(
+                  child: SizedBox(
+                    width: isTablet() ? context.sWidth / 2 : context.sWidth,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        LabelText(text: "Zaten partner misin?"),
-                        GestureDetector(
-                          onTap: () => value.login(),
-                          child: LabelText(
-                            text: " Giriş Yap",
-                            textColor: APPLICATION_COLOR.BLUE,
+                        LabelText(text: LocaleKeys.nameSurnameQuestion.tr()),
+                        Gap(context.midSpacerSize),
+                        SizedBox(
+                          height: 45,
+                          child: RoundedTextField(
+                              key: const Key("fullName"),
+                              newText: (newText) => value.fullName = newText),
+                        ),
+                        Gap(context.midSpacerSize),
+                        LabelText(text: LocaleKeys.telephoneQuestion.tr()),
+                        Gap(context.midSpacerSize),
+                        SizedBox(
+                          height: 45,
+                          child: RoundedTextField(
+                              key: const Key("telephone"),
+                              newText: (newText) => value.telephone = newText),
+                        ),
+                        Gap(context.midSpacerSize),
+                        LabelText(text: LocaleKeys.mailQuestion.tr()),
+                        Gap(context.midSpacerSize),
+                        SizedBox(
+                          height: 45,
+                          child: RoundedTextField(
+                              key: const Key("mailAdress"),
+                              newText: (newText) => value.mailAdress = newText),
+                        ),
+                        Gap(context.largeSpacerSize),
+                        SizedBox(
+                          height: 45,
+                          child: NormalButton(
+                            onTap: () => value.apply(),
+                            text: LocaleKeys.send.tr(),
                           ),
                         ),
+                        Gap(context.largeSpacerSize),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            LabelText(text: "Zaten partner misin?"),
+                            GestureDetector(
+                              onTap: () => value.login(),
+                              child: LabelText(
+                                text: " Giriş Yap",
+                                textColor: APPLICATION_COLOR.BLUE,
+                              ),
+                            ),
+                          ],
+                        )
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
               ],
             ),

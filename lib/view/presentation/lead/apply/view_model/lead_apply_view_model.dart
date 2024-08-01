@@ -39,10 +39,9 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
         tel: telephone,
       ),
     );
-    // navigation.pop();
   }
 
   Future<void> login() async {
-    viewModelContext.goNamed(NavigationConstant.LEAD_LOGIN);
+    viewModelContext.pushNamed(NavigationConstant.LEAD_LOGIN);
   }
 }

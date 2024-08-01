@@ -268,7 +268,7 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                   Positioned(
                     right: 0,
                     child: SizedBox(
-                      width: context.sWidth / 1.3,
+                      width: context.sWidth / 1.2,
                       child: Stack(
                         alignment: Alignment.centerRight,
                         children: [
@@ -296,8 +296,8 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                           Align(
                             alignment: Alignment.topLeft,
                             child: Container(
-                              width: context.sWidth / 1.3,
-                              height: context.sHeight / 1.5,
+                              width: context.sWidth / 1,
+                              height: context.sHeight / 1.2,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.centerLeft,
@@ -305,6 +305,10 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                                   colors: [
                                     context.toColor(
                                         APPLICATION_COLOR.BACKGROUND_COLOR),
+                                    context
+                                        .toColor(
+                                            APPLICATION_COLOR.BACKGROUND_COLOR)
+                                        .withAlpha(250),
                                     context
                                         .toColor(
                                             APPLICATION_COLOR.BACKGROUND_COLOR)

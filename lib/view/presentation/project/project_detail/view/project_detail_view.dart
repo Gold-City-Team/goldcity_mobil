@@ -286,6 +286,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                         : context.sWidth - 140),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     LabelText(
                                       text: value.shareData!.creatorUser.name,
@@ -315,7 +316,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   Gap(context.smallSpacerSize),
                                   WebViewAware(
                                     child: GestureDetector(
-                                      onTap: () => value.createLink(),
+                                      onTap: () => {},
                                       child: Container(
                                         width: 50,
                                         height: 50,
@@ -334,7 +335,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   Gap(context.smallSpacerSize),
                                   WebViewAware(
                                     child: GestureDetector(
-                                      onTap: () => value.createLink(),
+                                      onTap: () => {},
                                       child: Container(
                                         width: 50,
                                         height: 50,
@@ -358,7 +359,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             padding: EdgeInsets.only(right: 15),
                             child: WebViewAware(
                               child: GestureDetector(
-                                onTap: () => value.createLink(),
+                                onTap: () => value.sharePageDialog(
+                                    context.findRenderObject() as RenderBox?),
                                 child: Container(
                                   width: 50,
                                   height: 50,

@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -15,7 +16,10 @@ import 'package:goldcity/domain/entity/shareable_page/shareable_page_entity.dart
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/domain/usecase/shareable_page_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
+import 'package:goldcity/view/presentation/project/project_detail/widget/create_link_widget.dart';
 import 'package:mobx/mobx.dart';
+import 'package:share_plus/share_plus.dart';
 
 part 'project_detail_view_model.g.dart';
 
@@ -123,10 +127,31 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     }
   }
 
-  Future<void> createLink() async {
+  Future<String?> _createLink() async {
     var result = await _shareablePageUseCase.createLink(
         CreateShareableLinkDto(pageType: "PROJECT", pageId: projectId));
-    if (result.isRight) {}
+    if (result.isRight) {
+      return result.right;
+    }
+    return await null;
+  }
+
+  Future<void> sharePageDialog(RenderBox? box) async {
+    var result = await _createLink();
+    if (result != null) {
+      if (kIsWeb || isTablet()) {
+        await showDialog(
+          context: viewModelContext,
+          builder: (context) {
+            return CreateLinkWidget(
+                link: "https://www.goldcitycondominium.com/project/$result");
+          },
+        );
+      } else {
+        Share.share("https://www.goldcitycondominium.com/project/$result",
+            sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+      }
+    }
   }
 
   ShareablePageEntity? shareData;
