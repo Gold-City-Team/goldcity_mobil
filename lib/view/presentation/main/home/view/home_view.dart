@@ -77,17 +77,20 @@ class HomeView extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      GestureDetector(
-                        onTap: () => value.togglePageSelector(),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: context.toColor(APPLICATION_COLOR.GOLD),
-                              borderRadius: context.midRadius),
-                          child: Icon(
-                            Icons.menu_rounded,
-                            color: context.toColor(APPLICATION_COLOR.LIGHT),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => value.togglePageSelector(),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: context.toColor(APPLICATION_COLOR.GOLD),
+                                borderRadius: context.midRadius),
+                            child: Icon(
+                              Icons.menu_rounded,
+                              color: context.toColor(APPLICATION_COLOR.LIGHT),
+                            ),
                           ),
                         ),
                       ),

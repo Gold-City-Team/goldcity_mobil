@@ -31,16 +31,19 @@ class PageSelectorWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               showPop
-                  ? GestureDetector(
-                      onTap: () => newIndex(selectedIndex),
-                      child: Container(
-                        width: 50,
-                        margin: context.largeSpacer,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: context.toColor(APPLICATION_COLOR.GOLD),
-                            borderRadius: context.midRadius),
-                        child: const Icon(Icons.close),
+                  ? MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => newIndex(selectedIndex),
+                        child: Container(
+                          width: 50,
+                          margin: context.largeSpacer,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: context.toColor(APPLICATION_COLOR.GOLD),
+                              borderRadius: context.midRadius),
+                          child: const Icon(Icons.close),
+                        ),
                       ),
                     )
                   : Container(
@@ -56,34 +59,37 @@ class PageSelectorWidget extends StatelessWidget {
                       if (pages[index].isEmpty) {
                         return const SizedBox.shrink();
                       }
-                      return GestureDetector(
-                        onTap: () => newIndex(index),
-                        child: Container(
-                            decoration: BoxDecoration(
-                              border: selectedIndex == index
-                                  ? Border(
-                                      left: BorderSide(
-                                          width: 3,
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.GOLD)),
-                                    )
-                                  : null,
-                            ),
-                            width: context.sWidth,
-                            padding: EdgeInsets.only(left: 40),
-                            alignment: Alignment.centerLeft,
-                            height: 50,
-                            margin: context.midSpacerOnlyBottom,
-                            child: LabelText(
-                              align: TextAlign.center,
-                              text: "• ${pages[index]}",
-                              textColor: selectedIndex == index
-                                  ? APPLICATION_COLOR.GOLD
-                                  : APPLICATION_COLOR.SUBTITLE,
-                              fontSize: selectedIndex == index
-                                  ? FONT_SIZE.HEADLINE_LARGE
-                                  : FONT_SIZE.HEADLINE_SMALL,
-                            )),
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => newIndex(index),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                border: selectedIndex == index
+                                    ? Border(
+                                        left: BorderSide(
+                                            width: 3,
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.GOLD)),
+                                      )
+                                    : null,
+                              ),
+                              width: context.sWidth,
+                              padding: EdgeInsets.only(left: 40),
+                              alignment: Alignment.centerLeft,
+                              height: 50,
+                              margin: context.midSpacerOnlyBottom,
+                              child: LabelText(
+                                align: TextAlign.center,
+                                text: "• ${pages[index]}",
+                                textColor: selectedIndex == index
+                                    ? APPLICATION_COLOR.GOLD
+                                    : APPLICATION_COLOR.SUBTITLE,
+                                fontSize: selectedIndex == index
+                                    ? FONT_SIZE.HEADLINE_LARGE
+                                    : FONT_SIZE.HEADLINE_SMALL,
+                              )),
+                        ),
                       );
                     }),
               ),

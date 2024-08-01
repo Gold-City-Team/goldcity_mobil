@@ -132,6 +132,8 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
         CreateShareableLinkDto(pageType: "PROJECT", pageId: projectId));
     if (result.isRight) {
       return result.right;
+    } else {
+      debugPrint("something wrong ${result.left!.detail} --- ${result.left}");
     }
     return await null;
   }

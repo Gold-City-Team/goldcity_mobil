@@ -71,7 +71,9 @@ class LeadLoginView extends StatelessWidget {
                         SizedBox(
                           height: 45,
                           child: NormalButton(
+                            backgroundColor: APPLICATION_COLOR.GOLD,
                             onTap: () => value.login(),
+                            textColor: APPLICATION_COLOR.LIGHT,
                             text: LocaleKeys.login.tr(),
                           ),
                         ),

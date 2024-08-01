@@ -29,54 +29,57 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
         cacheExtent: 100000,
         itemCount: widget.projectList.length,
         itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => widget.onTap(widget.projectList[index].id),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: context.sWidth /
-                      (widget.projectList.length > getHalfOriantation
-                          ? getHalfOriantation
-                          : (widget.projectList.length).toDouble()),
-                  height: context.sHeight,
-                  child: NormalNetworkImage(
-                      fit: BoxFit.cover,
-                      alignment: Alignment.centerLeft,
-                      source: widget.projectList[index].mainImage.url),
-                )
-                    .animate()
-                    .fade(duration: Duration(milliseconds: 600 * index))
-                    .slideX(
-                        begin: 2,
-                        end: 0,
-                        duration: Duration(milliseconds: 600 * index),
-                        curve: Curves.ease),
-                Container(
-                  width: context.sWidth /
-                      (widget.projectList.length > getHalfOriantation
-                          ? getHalfOriantation
-                          : (widget.projectList.length).toDouble()),
-                  height: context.sHeight,
-                  color: context
-                      .toColor(
-                        APPLICATION_COLOR.OVERLAY_COLOR,
-                      )
-                      .withAlpha(180),
-                ),
-                Center(
-                  child: SizedBox(
-                      width: context.sWidth /
-                              (widget.projectList.length > getHalfOriantation
-                                  ? getHalfOriantation
-                                  : (widget.projectList.length).toDouble()) -
-                          40,
-                      child: NormalNetworkImage(
-                          fit: BoxFit.contain,
-                          alignment: Alignment.center,
-                          source: widget.projectList[index].logo.url)),
-                )
-              ],
+          return MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => widget.onTap(widget.projectList[index].id),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  SizedBox(
+                    width: context.sWidth /
+                        (widget.projectList.length > getHalfOriantation
+                            ? getHalfOriantation
+                            : (widget.projectList.length).toDouble()),
+                    height: context.sHeight,
+                    child: NormalNetworkImage(
+                        fit: BoxFit.cover,
+                        alignment: Alignment.centerLeft,
+                        source: widget.projectList[index].mainImage.url),
+                  )
+                      .animate()
+                      .fade(duration: Duration(milliseconds: 600 * index))
+                      .slideX(
+                          begin: 2,
+                          end: 0,
+                          duration: Duration(milliseconds: 600 * index),
+                          curve: Curves.ease),
+                  Container(
+                    width: context.sWidth /
+                        (widget.projectList.length > getHalfOriantation
+                            ? getHalfOriantation
+                            : (widget.projectList.length).toDouble()),
+                    height: context.sHeight,
+                    color: context
+                        .toColor(
+                          APPLICATION_COLOR.OVERLAY_COLOR,
+                        )
+                        .withAlpha(180),
+                  ),
+                  Center(
+                    child: SizedBox(
+                        width: context.sWidth /
+                                (widget.projectList.length > getHalfOriantation
+                                    ? getHalfOriantation
+                                    : (widget.projectList.length).toDouble()) -
+                            40,
+                        child: NormalNetworkImage(
+                            fit: BoxFit.contain,
+                            alignment: Alignment.center,
+                            source: widget.projectList[index].logo.url)),
+                  )
+                ],
+              ),
             ),
           );
         });

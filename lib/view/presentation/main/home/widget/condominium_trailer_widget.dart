@@ -127,27 +127,30 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: GestureDetector(
-              onTap: () => widget.onExploreTap(),
-              child: Container(
-                width: context.sWidth / 4 - 10,
-                height: 60,
-                margin: context.xLargeSpacerOnlyBottom,
-                decoration: BoxDecoration(
-                  color: context
-                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                      .withAlpha(200),
-                ),
-                padding: context.largeSpacerOnlyHorizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    LabelText(
-                      text: context.tr("explore"),
-                      fontSize: FONT_SIZE.TITLE_LARGE,
-                    ),
-                    const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
-                  ],
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => widget.onExploreTap(),
+                child: Container(
+                  width: context.sWidth / 4 - 10,
+                  height: 60,
+                  margin: context.xLargeSpacerOnlyBottom,
+                  decoration: BoxDecoration(
+                    color: context
+                        .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                        .withAlpha(200),
+                  ),
+                  padding: context.largeSpacerOnlyHorizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      LabelText(
+                        text: context.tr("explore"),
+                        fontSize: FONT_SIZE.TITLE_LARGE,
+                      ),
+                      const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
+                    ],
+                  ),
                 ),
               ),
             ),

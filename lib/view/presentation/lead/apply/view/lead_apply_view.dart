@@ -31,16 +31,19 @@ class LeadApplyView extends StatelessWidget {
             padding: context.midSpacerOnlyHorizontal,
             child: Stack(
               children: [
-                GestureDetector(
-                  onTap: () => context.pop(),
-                  child: Container(
-                    width: 50,
-                    margin: context.midSpacerOnlyTop,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: context.toColor(APPLICATION_COLOR.GOLD),
-                        borderRadius: context.midRadius),
-                    child: const Icon(Icons.keyboard_arrow_left),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => context.pop(),
+                    child: Container(
+                      width: 50,
+                      margin: context.midSpacerOnlyTop,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                          borderRadius: context.midRadius),
+                      child: const Icon(Icons.keyboard_arrow_left),
+                    ),
                   ),
                 ),
                 Center(
@@ -80,7 +83,9 @@ class LeadApplyView extends StatelessWidget {
                         SizedBox(
                           height: 45,
                           child: NormalButton(
+                            backgroundColor: APPLICATION_COLOR.GOLD,
                             onTap: () => value.apply(),
+                            textColor: APPLICATION_COLOR.LIGHT,
                             text: LocaleKeys.send.tr(),
                           ),
                         ),
@@ -89,11 +94,14 @@ class LeadApplyView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             LabelText(text: "Zaten partner misin?"),
-                            GestureDetector(
-                              onTap: () => value.login(),
-                              child: LabelText(
-                                text: " Giriş Yap",
-                                textColor: APPLICATION_COLOR.BLUE,
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () => value.login(),
+                                child: LabelText(
+                                  text: " Giriş Yap",
+                                  textColor: APPLICATION_COLOR.BLUE,
+                                ),
                               ),
                             ),
                           ],

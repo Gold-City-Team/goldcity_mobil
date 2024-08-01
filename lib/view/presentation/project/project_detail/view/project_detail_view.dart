@@ -87,16 +87,19 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                 children: [
                   Align(
                     alignment: Alignment.topLeft,
-                    child: GestureDetector(
-                      onTap: () => context.pop(),
-                      child: Container(
-                        width: 50,
-                        margin: context.largeSpacer,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: context.toColor(APPLICATION_COLOR.GOLD),
-                            borderRadius: context.midRadius),
-                        child: const Icon(Icons.close),
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => context.pop(),
+                        child: Container(
+                          width: 50,
+                          margin: context.largeSpacer,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: context.toColor(APPLICATION_COLOR.GOLD),
+                              borderRadius: context.midRadius),
+                          child: const Icon(Icons.close),
+                        ),
                       ),
                     ),
                   ),
@@ -127,13 +130,16 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                       itemCount: value.language.length,
                       itemBuilder: (context, index) {
                         return Center(
-                          child: GestureDetector(
-                              onTap: () {
-                                value.languageId = value.language[index].id;
-                                value.getProjectDetail();
-                              },
-                              child: LanguageItemWidget(
-                                  value: value.language[index])),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                                onTap: () {
+                                  value.languageId = value.language[index].id;
+                                  value.getProjectDetail();
+                                },
+                                child: LanguageItemWidget(
+                                    value: value.language[index])),
+                          ),
                         );
                       },
                     ),
@@ -358,17 +364,20 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                           return Padding(
                             padding: EdgeInsets.only(right: 15),
                             child: WebViewAware(
-                              child: GestureDetector(
-                                onTap: () => value.sharePageDialog(
-                                    context.findRenderObject() as RenderBox?),
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.GOLD),
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => value.sharePageDialog(
+                                      context.findRenderObject() as RenderBox?),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                    ),
+                                    child: const Icon(Icons.link),
                                   ),
-                                  child: const Icon(Icons.link),
                                 ),
                               ),
                             ),
@@ -450,80 +459,93 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                               ),
                               Gap(context.midSpacerSize),
                               WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () => context.pop(),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => context.pop(),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                      ),
+                                      child: const Icon(Icons.home),
                                     ),
-                                    child: const Icon(Icons.home),
                                   ),
                                 ),
                               ),
                               Gap(context.midSpacerSize),
                               WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () => value.togglePageSelector(),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => value.togglePageSelector(),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                      ),
+                                      child: const Icon(Icons.menu),
                                     ),
-                                    child: const Icon(Icons.menu),
                                   ),
                                 ),
                               ),
                               Gap(context.midSpacerSize),
                               WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () => value.templateIndex != 0
-                                      ? value
-                                          .changeIndex(value.templateIndex - 1)
-                                      : null,
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD)
-                                          .withAlpha(value.templateIndex != 0
-                                              ? 255
-                                              : 120),
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => value.templateIndex != 0
+                                        ? value.changeIndex(
+                                            value.templateIndex - 1)
+                                        : null,
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD)
+                                            .withAlpha(value.templateIndex != 0
+                                                ? 255
+                                                : 120),
+                                      ),
+                                      child:
+                                          const Icon(Icons.keyboard_arrow_left),
                                     ),
-                                    child:
-                                        const Icon(Icons.keyboard_arrow_left),
                                   ),
                                 ),
                               ),
                               Gap(context.midSpacerSize),
                               WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () => value.templateIndex !=
-                                          value.entity!.detail.template.length -
-                                              1
-                                      ? value
-                                          .changeIndex(value.templateIndex + 1)
-                                      : null,
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD)
-                                          .withAlpha(value.templateIndex !=
-                                                  value.entity!.detail.template
-                                                          .length -
-                                                      1
-                                              ? 255
-                                              : 120),
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => value.templateIndex !=
+                                            value.entity!.detail.template
+                                                    .length -
+                                                1
+                                        ? value.changeIndex(
+                                            value.templateIndex + 1)
+                                        : null,
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD)
+                                            .withAlpha(value.templateIndex !=
+                                                    value.entity!.detail
+                                                            .template.length -
+                                                        1
+                                                ? 255
+                                                : 120),
+                                      ),
+                                      child: const Icon(
+                                          Icons.keyboard_arrow_right),
                                     ),
-                                    child:
-                                        const Icon(Icons.keyboard_arrow_right),
                                   ),
                                 ),
                               )
