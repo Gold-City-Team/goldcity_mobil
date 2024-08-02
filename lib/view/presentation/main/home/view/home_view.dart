@@ -1,8 +1,11 @@
+import 'package:cool_dropdown/cool_dropdown.dart';
+import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
@@ -18,7 +21,7 @@ class HomeView extends StatelessWidget {
   HomeView({super.key});
 
   final CarouselController controller = CarouselController();
-
+  final DropdownController dropdownController = DropdownController();
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(
@@ -76,6 +79,54 @@ class HomeView extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
+                      //burada
+                      SizedBox(
+                        height: 50,
+                        width: 100,
+                        child: CoolDropdown(
+                          controller: dropdownController,
+                          dropdownList: context.supportedLocales
+                              .map(
+                                (element) => CoolDropdownItem(
+                                    label: element
+                                        .toLanguageTag()
+                                        .localeToNativeLanguage,
+                                    value: element.toLanguageTag()),
+                              )
+                              .toList(),
+                          onChange: (p0) {
+                            context.setLocale(
+                                Locale(p0.split("-")[0], p0.split("-")[1]));
+                            Future.delayed(Duration(milliseconds: 50), () {
+                              value.init();
+                            });
+                            dropdownController.close();
+                          },
+                          dropdownItemOptions: DropdownItemOptions(
+                            selectedTextStyle: TextStyle(
+                              color: context.toColor(
+                                APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
+                              ),
+                            ),
+                            textStyle: TextStyle(
+                              color: context.toColor(
+                                APPLICATION_COLOR.OPPOSITE_COLOR,
+                              ),
+                            ),
+                          ),
+                          dropdownOptions: DropdownOptions(
+                            color: context.toColor(
+                              APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
+                            ),
+                          ),
+                          defaultItem: CoolDropdownItem(
+                              label: context.locale
+                                  .toLanguageTag()
+                                  .localeToNativeLanguage,
+                              value: context.locale.toLanguageTag()),
+                        ),
+                      ),
+                      Gap(context.largeSpacerSize),
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(

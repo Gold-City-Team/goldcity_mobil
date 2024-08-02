@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
+import 'package:flutter/material.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/receive/project/project/project_dto.dart';
@@ -44,7 +45,7 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
 
       locator<LocalManager>().cacheData(SourcePath.PROJECT_LIST.rawValue(),
           (result.data as List).map((e) => ProjectDto.fromJson(e)).toList());
-
+      debugPrint("test ${result.headers}");
       return Right(
           (result.data as List).map((e) => ProjectDto.fromJson(e)).toList());
     } on DioException catch (e) {
