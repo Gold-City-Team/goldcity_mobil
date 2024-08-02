@@ -161,8 +161,12 @@ class HomeView extends StatelessWidget {
                     child: PageSelectorWidget(
                       pages: [
                         context.tr("explore"),
-                        context.tr("webinars"),
-                        context.tr("educations"),
+                        locator<AuthenticationSource>().isUserStillValid()
+                            ? context.tr("webinars")
+                            : "",
+                        locator<AuthenticationSource>().isUserStillValid()
+                            ? context.tr("educations")
+                            : "",
                         locator<AuthenticationSource>().isUserStillValid()
                             ? context.tr("announcements")
                             : "",

@@ -30,6 +30,8 @@ abstract class _EducationDetailVideoPlayerViewModelBase
     var result = await _educationUseCase.getEducationVideo(videoId);
     if (result.isRight) {
       videoLink = result.right.media.url;
+    } else {
+      debugPrint("test ${result.left.status} --- ${videoId}");
     }
   }
 }
