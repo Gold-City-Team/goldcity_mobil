@@ -15,12 +15,12 @@ class LanguageItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: context.sHeight / 1.8,
+      height: context.sHeight / 2.1,
       margin: context.midSpacer,
       decoration: BoxDecoration(
           color:
               context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-          borderRadius: BorderRadius.all(Radius.circular(100))),
+          borderRadius: BorderRadius.all(Radius.circular(75))),
       child: Column(
         children: [
           Container(
@@ -29,15 +29,15 @@ class LanguageItemWidget extends StatelessWidget {
                     BoxShadow(
                         color: context
                             .toColor(APPLICATION_COLOR.DARK)
-                            .withOpacity(0.5), // Gölge rengi (şeffaflık ayarlı)
-                        spreadRadius: 1, // Gölgenin yayılma çapı
-                        blurRadius: 7, // Gölgenin bulanıklık çapı
+                            .withOpacity(0.5),
+                        spreadRadius: 1,
+                        blurRadius: 5,
                         offset: Offset(0, 7)),
                   ],
                   color: context
                       .toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
                   borderRadius: BorderRadius.all(Radius.circular(100))),
-              height: 200,
+              height: 150,
               child: NormalNetworkImage(source: value.mediaItem.url)),
           Gap(context.veryLargeSpacerSize),
           LabelText(
