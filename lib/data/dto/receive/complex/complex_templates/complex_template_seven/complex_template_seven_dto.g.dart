@@ -9,7 +9,7 @@ part of 'complex_template_seven_dto.dart';
 ComplexTemplateSevenDto _$ComplexTemplateSevenDtoFromJson(
         Map<String, dynamic> json) =>
     ComplexTemplateSevenDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       galleries: (json['galleries'] as List<dynamic>?)

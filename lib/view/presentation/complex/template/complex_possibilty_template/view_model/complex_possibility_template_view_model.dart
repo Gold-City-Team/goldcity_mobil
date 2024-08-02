@@ -48,8 +48,7 @@ abstract class _ComplexPossibilityTemplateViewModelBase
   int settingsId = 0;
   @action
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getComplexTemplateDetail(
-        detailId, settingsId);
+    var result = await _projectDetailUseCase.getComplexTemplateDetail(detailId);
     if (result.isRight) {
       templateThree = (result.right.template as ComplexTemplateThreeEntity);
       templateThree!.possibilities.add(PossibilityDto(

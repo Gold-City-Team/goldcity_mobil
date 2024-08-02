@@ -38,7 +38,6 @@ abstract class _ProjectFeatureTemplateViewModelBase with Store, BaseViewModel {
 
   @observable
   ProjectTemplateOneEntity? templateEntity;
-  int projectDetailId = 0;
   int projectSettingsId = 0;
   @action
   Future<void> _getDetail() async {

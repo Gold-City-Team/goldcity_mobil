@@ -15,7 +15,8 @@ import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class PlanTemplateView extends StatelessWidget {
-  const PlanTemplateView({super.key});
+  final int settingsId;
+  const PlanTemplateView({required this.settingsId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class PlanTemplateView extends StatelessWidget {
       viewModel: PlanTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
+        model.settingsId = settingsId;
         model.init();
       },
       onPageBuilder: (BuildContext context, PlanTemplateViewModel value) =>

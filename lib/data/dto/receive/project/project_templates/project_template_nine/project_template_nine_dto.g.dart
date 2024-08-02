@@ -9,7 +9,7 @@ part of 'project_template_nine_dto.dart';
 ProjectTemplateNineDto _$ProjectTemplateNineDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateNineDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       campaigns: (json['campaigns'] as List<dynamic>?)
           ?.map((e) => ProjectTemplateNineCampaignsDto.fromJson(
               e as Map<String, dynamic>))
@@ -26,7 +26,7 @@ Map<String, dynamic> _$ProjectTemplateNineDtoToJson(
 ProjectTemplateNineCampaignsDto _$ProjectTemplateNineCampaignsDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateNineCampaignsDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       mainImage: json['mainImage'] == null

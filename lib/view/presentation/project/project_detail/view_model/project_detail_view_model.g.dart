@@ -111,13 +111,13 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
       Atom(name: '_ProjectDetailViewModelBase.language', context: context);
 
   @override
-  List<ProjectLanguageDetailEntity> get language {
+  List<LanguageDetailEntity> get language {
     _$languageAtom.reportRead();
     return super.language;
   }
 
   @override
-  set language(List<ProjectLanguageDetailEntity> value) {
+  set language(List<LanguageDetailEntity> value) {
     _$languageAtom.reportWrite(value, super.language, () {
       super.language = value;
     });

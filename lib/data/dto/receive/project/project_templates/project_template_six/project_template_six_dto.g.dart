@@ -9,7 +9,7 @@ part of 'project_template_six_dto.dart';
 ProjectTemplateSixDto _$ProjectTemplateSixDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateSixDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       galleries: (json['galleries'] as List<dynamic>?)
           ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -28,7 +28,7 @@ Map<String, dynamic> _$ProjectTemplateSixDtoToJson(
 
 ProjectHomeDto _$ProjectHomeDtoFromJson(Map<String, dynamic> json) =>
     ProjectHomeDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       block: json['block'] as String?,
       number: json['number'] as String?,
       floor: json['floor'] as String?,

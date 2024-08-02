@@ -17,7 +17,6 @@ class ProjectGalleryAndInfoTemplateViewModel = _ProjectGalleryAndInfoTemplateVie
 abstract class _ProjectGalleryAndInfoTemplateViewModelBase
     with Store, BaseViewModel {
   late ProjectDetailUseCase _projectDetailUseCase;
-  int projectDetailId = 0;
   int projectSettingsId = 0;
   @override
   void setContext(BuildContext context) => viewModelContext = context;

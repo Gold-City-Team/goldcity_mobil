@@ -8,19 +8,19 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 abstract class ComplexDetailRemoteDataSource {
   Future<Either<BaseErrorModel, ComplexTemplateDto>> getComplexTemplateDetail(
-      int complexDetailId, int settingsId);
+    int complexDetailId,
+  );
 }
 
 class ComplexDetailRemoteDataSourceImpl extends ComplexDetailRemoteDataSource {
   @override
   Future<Either<BaseErrorModel, ComplexTemplateDto>> getComplexTemplateDetail(
-      int complexDetailId, int settingsId) async {
+      int complexDetailId) async {
     try {
       var result = await locator<RemoteManager>()
           .networkManager
           .get(SourcePath.COMPLEX_TEMPLATE_DETAIL.rawValue(data: [
             complexDetailId,
-            settingsId,
           ]));
 
       return Right(ComplexTemplateDto.fromJson(result.data ?? {}));

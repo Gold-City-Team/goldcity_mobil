@@ -91,7 +91,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         pageList.add(
           CondominiumTrailerWidget(
             complexEntity: complexList!.first,
-            onExploreTap: () => navigateComplexDetail(0),
+            onExploreTap: () => navigateComplexDetail(complexList!.first.id),
           ),
         );
         _getProjectList();
@@ -109,7 +109,10 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   }
 
   void navigateComplexDetail(int complexId) {
-    viewModelContext.goNamed(NavigationConstant.COMPLEX_DETAIL);
+    viewModelContext.goNamed(
+      NavigationConstant.COMPLEX_DETAIL,
+      pathParameters: {"complexId": "$complexId"},
+    );
   }
 
   @action

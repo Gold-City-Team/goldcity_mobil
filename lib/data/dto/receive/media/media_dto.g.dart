@@ -7,7 +7,7 @@ part of 'media_dto.dart';
 // **************************************************************************
 
 MediaDto _$MediaDtoFromJson(Map<String, dynamic> json) => MediaDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       url: json['url'] as String?,
       oldFileName: json['oldFileName'] as String?,
       mediaType: $enumDecodeNullable(_$MEDIA_TYPEEnumMap, json['mediaType']),

@@ -8,7 +8,7 @@ part of 'complex_template_dto.dart';
 
 ComplexTemplateDto _$ComplexTemplateDtoFromJson(Map<String, dynamic> json) =>
     ComplexTemplateDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       type: $enumDecodeNullable(_$TEMPLATEEnumMap, json['type']),
       template: json['template'],
     );

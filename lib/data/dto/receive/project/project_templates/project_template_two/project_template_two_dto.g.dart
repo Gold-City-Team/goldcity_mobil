@@ -9,7 +9,7 @@ part of 'project_template_two_dto.dart';
 ProjectTemplateTwoDto _$ProjectTemplateTwoDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateTwoDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       mediaItem: json['mediaItem'] == null

@@ -10,10 +10,8 @@ import 'package:goldcity/view/presentation/project/template/shareable_material/w
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class ShareableMaterialTemplateView extends StatelessWidget {
-  final int projectDetailId;
   final int projectSettingsId;
   const ShareableMaterialTemplateView({
-    required this.projectDetailId,
     required this.projectSettingsId,
     super.key,
   });
@@ -24,7 +22,6 @@ class ShareableMaterialTemplateView extends StatelessWidget {
       viewModel: ShareableMaterialTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
-        model.projectDetailId = projectDetailId;
         model.projectSettingsId = projectSettingsId;
         model.init();
       },

@@ -24,7 +24,6 @@ abstract class _ShareableMaterialTemplateViewModelBase
     _getDetail();
   }
 
-  int projectDetailId = 0;
   int projectSettingsId = 0;
 
   @override

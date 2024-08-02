@@ -65,8 +65,12 @@ final router = GoRouter(
         ),
         GoRoute(
           name: NavigationConstant.COMPLEX_DETAIL,
-          path: NavigationConstant.COMPLEX_DETAIL,
-          builder: (context, state) => const ComplexDetailView(),
+          path: "${NavigationConstant.COMPLEX_DETAIL}/:complexId",
+          builder: (context, state) => ComplexDetailView(
+            key: Key("${state.pathParameters['complexId']}"),
+            complexId:
+                int.tryParse(state.pathParameters['complexId'] ?? "0") ?? 0,
+          ),
         ),
         GoRoute(
             name: NavigationConstant.WEBINARS,

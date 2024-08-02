@@ -25,7 +25,6 @@ abstract class _ProjectAnimatedWellcomeTemplateViewModelBase
 
   @observable
   ProjectTemplateOneEntity? templateEntity;
-  int projectDetailId = 0;
   int projectSettingsId = 0;
   @action
   Future<void> _getDetail() async {

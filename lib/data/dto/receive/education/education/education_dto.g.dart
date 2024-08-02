@@ -7,7 +7,7 @@ part of 'education_dto.dart';
 // **************************************************************************
 
 EducationDto _$EducationDtoFromJson(Map<String, dynamic> json) => EducationDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       educationDetail: json['educationDetail'] == null
           ? null
           : EducationDetailDto.fromJson(

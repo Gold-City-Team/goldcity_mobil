@@ -18,7 +18,6 @@ abstract class _ProjectCampanyTemplateViewModelBase with Store, BaseViewModel {
   late ProjectDetailUseCase _projectDetailUseCase;
   @override
   void setContext(BuildContext context) => viewModelContext = context;
-  int projectDetailId = 0;
   int projectSettingsId = 0;
   @override
   void init() {

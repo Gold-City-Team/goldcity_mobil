@@ -72,8 +72,7 @@ class HomeView extends StatelessWidget {
                         child: SizedBox(
                           height: 50,
                           child: NormalNetworkImage(
-                              source: value
-                                  .complexList!.first.complexDetail.logo.url),
+                              source: value.complexList!.first.logo.url),
                         ),
                       ),
                       const Spacer(),

@@ -8,7 +8,7 @@ part of 'project_detail_dto.dart';
 
 ProjectDetailDto _$ProjectDetailDtoFromJson(Map<String, dynamic> json) =>
     ProjectDetailDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       slogan: json['slogan'] as String?,
       templates: (json['templates'] as List<dynamic>?)

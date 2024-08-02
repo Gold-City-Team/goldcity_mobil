@@ -56,8 +56,7 @@ abstract class _ComplexTextImageTemplateViewModelBase
       ObservableList<GalleryMediaEntity>.of([]);
   bool lockImage = false;
   Future<void> _getDetail() async {
-    var result = await _complexDetailUseCase.getComplexTemplateDetail(
-        detailId, settingsId);
+    var result = await _complexDetailUseCase.getComplexTemplateDetail(detailId);
     if (result.isRight) {
       template = (result.right.template as ComplexTemplateEightEntity);
       for (var e in template!.items) {

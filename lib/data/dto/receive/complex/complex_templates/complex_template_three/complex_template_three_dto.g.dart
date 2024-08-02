@@ -9,7 +9,7 @@ part of 'complex_template_three_dto.dart';
 ComplexTemplateThreeDto _$ComplexTemplateThreeDtoFromJson(
         Map<String, dynamic> json) =>
     ComplexTemplateThreeDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       location: json['location'] == null
           ? null
           : LocationDto.fromJson(json['location'] as Map<String, dynamic>),

@@ -1,9 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/complex/complex/complex_entity.dart';
+import 'package:goldcity/domain/entity/project/language/project_language_entity.dart';
 import 'package:goldcity/domain/usecase/complex_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
@@ -23,6 +26,7 @@ abstract class _ComplexDetailViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     _complexUseCase = locator<ComplexUseCase>();
+    setLanguageList();
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,
@@ -50,8 +54,8 @@ abstract class _ComplexDetailViewModelBase with Store, BaseViewModel {
   @observable
   bool isPageSelectorVisible = false;
   @action
-  Future<void> _getDetail() async {
-    _complexUseCase.getDetail(1).listen((event) {
+  Future<void> getComplexDetail() async {
+    _complexUseCase.getDetail(complexId, languageId).listen((event) {
       if (event.isRight) {
         entity = event.right;
       }
@@ -65,6 +69,34 @@ abstract class _ComplexDetailViewModelBase with Store, BaseViewModel {
     isPageSelectorVisible = !isPageSelectorVisible;
     if (isPageSelectorVisible != false) {
       isPageSelectorLock = false;
+    }
+  }
+
+  dynamic complexId = 0;
+  @observable
+  int languageId = 0;
+  @observable
+  List<LanguageDetailEntity> language = [];
+
+  List<String> languageList = ObservableList<String>.of([]);
+  @action
+  Future<void> _getDetail() async {
+    var result = await _complexUseCase.getComplexLanguageList(complexId);
+    if (result.isRight) {
+      language = result.right;
+    }
+  }
+
+  Future<void> setLanguageList() async {
+    var tr = await rootBundle
+        .loadString('assets/translations/tr-TR.json')
+        .then((jsonStr) => json.decode(jsonStr));
+    var en = await rootBundle
+        .loadString('assets/translations/en-US.json')
+        .then((jsonStr) => json.decode(jsonStr));
+    for (var x = 0; x < 200; x++) {
+      languageList.add(tr["selectLanguage"]);
+      languageList.add(en["selectLanguage"]);
     }
   }
 }

@@ -12,13 +12,10 @@ import 'package:goldcity/view/widget/features/features_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
-  final int projectDetailId;
   final int projectSettingsId;
 
   const ProjectAnimatedWellcomeTemplateView(
-      {required this.projectDetailId,
-      required this.projectSettingsId,
-      super.key});
+      {required this.projectSettingsId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,6 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
       viewModel: ProjectAnimatedWellcomeTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
-        model.projectDetailId = projectDetailId;
         model.projectSettingsId = projectSettingsId;
         model.init();
       },

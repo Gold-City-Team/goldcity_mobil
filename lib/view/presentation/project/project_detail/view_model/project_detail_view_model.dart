@@ -11,7 +11,7 @@ import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/data/dto/send/shareable_page/create_shareable_link_dto.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
-import 'package:goldcity/domain/entity/project/project_language/project_language_entity.dart';
+import 'package:goldcity/domain/entity/project/language/project_language_entity.dart';
 import 'package:goldcity/domain/entity/shareable_page/shareable_page_entity.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/domain/usecase/shareable_page_usecase.dart';
@@ -38,7 +38,6 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) {
     viewModelContext = context;
-    setLanguageList();
   }
 
   @observable
@@ -58,6 +57,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   void init() {
     _projeclUseCase = locator<ProjectUseCase>();
     _shareablePageUseCase = locator<ShareablePageUseCase>();
+    setLanguageList();
     var result = int.tryParse(projectId);
     if (result == null) {
       isShared = true;
@@ -86,7 +86,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   }
 
   @observable
-  List<ProjectLanguageDetailEntity> language = [];
+  List<LanguageDetailEntity> language = [];
 
   List<String> languageList = ObservableList<String>.of([]);
   @action

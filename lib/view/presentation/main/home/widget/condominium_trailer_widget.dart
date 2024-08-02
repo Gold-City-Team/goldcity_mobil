@@ -114,7 +114,7 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                   ),
                   Center(
                     child: LabelText(
-                      text: widget.complexEntity.complexDetail.slogan,
+                      text: widget.complexEntity.slogan,
                       fontSize: FONT_SIZE.TITLE_MEDIUM,
                       textColor: APPLICATION_COLOR.SUBTITLE,
                       align: TextAlign.center,
@@ -221,12 +221,12 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     LabelText(
-                      text: widget.complexEntity.complexDetail.title,
+                      text: widget.complexEntity.title,
                       fontSize: FONT_SIZE.DISPLAY_LARGE,
                     ),
                     Gap(context.midSpacerSize),
-                    const LabelText(
-                      text: "Lorem ipsum dolor sit amet.Lorem ipsum",
+                    LabelText(
+                      text: widget.complexEntity.slogan,
                       fontSize: FONT_SIZE.TITLE_LARGE,
                     ),
                     Gap(context.largeSpacerSize),

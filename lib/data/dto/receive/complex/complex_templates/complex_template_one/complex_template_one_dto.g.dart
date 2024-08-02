@@ -9,7 +9,7 @@ part of 'complex_template_one_dto.dart';
 ComplexTemplateOneDto _$ComplexTemplateOneDtoFromJson(
         Map<String, dynamic> json) =>
     ComplexTemplateOneDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       mediaItem: json['mediaItem'] == null

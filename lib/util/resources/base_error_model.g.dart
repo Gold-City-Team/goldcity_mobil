@@ -11,7 +11,7 @@ BaseErrorModel _$BaseErrorModelFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String?,
       title: json['title'] as String? ?? "Bilinmeyen bir hata oluştu",
       detail: json['detail'] as String? ?? "Bilinmeyen bir hata oluştu",
-      status: json['status'] as int?,
+      status: (json['status'] as num?)?.toInt(),
       traceId: json['traceId'] as String?,
     )..errors = (json['errors'] as Map<String, dynamic>?)?.map(
         (k, e) =>

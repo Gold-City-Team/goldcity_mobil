@@ -8,7 +8,7 @@ part of 'complex_detail_dto.dart';
 
 ComplexDetailDto _$ComplexDetailDtoFromJson(Map<String, dynamic> json) =>
     ComplexDetailDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       mainVideo: json['mainVideo'] == null
           ? null

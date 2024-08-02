@@ -9,7 +9,7 @@ part of 'project_template_eight_dto.dart';
 ProjectTemplateEightDto _$ProjectTemplateEightDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateEightDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       titleDescriptionGalleries: (json['titleDescriptionGalleries']
               as List<dynamic>?)
           ?.map((e) =>

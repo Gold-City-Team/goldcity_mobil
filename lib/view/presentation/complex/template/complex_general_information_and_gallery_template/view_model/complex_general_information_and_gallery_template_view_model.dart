@@ -46,7 +46,6 @@ abstract class _ComplexGeneralInformationAndGalleryTemplateViewModelBase
   Future<void> _getDetail() async {
     var result = await _complexDetailUseCase.getComplexTemplateDetail(
       complexDetailId,
-      complexSettingsId,
     );
     if (result.isRight) {
       templateTwo = (result.right.template as ComplexTemplateTwoEntity);

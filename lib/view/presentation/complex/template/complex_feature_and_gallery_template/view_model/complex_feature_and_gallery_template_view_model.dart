@@ -34,8 +34,7 @@ abstract class _ComplexFeatureAndGalleryTemplateViewModelBase
 
   @action
   Future<void> _getDetail() async {
-    var result = await _complexDetailUseCase.getComplexTemplateDetail(
-        detailId, settingsId);
+    var result = await _complexDetailUseCase.getComplexTemplateDetail(detailId);
     if (result.isRight) {
       templateEntity = (result.right.template as ComplexTemplateFourEntity);
     }

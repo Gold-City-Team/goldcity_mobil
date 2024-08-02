@@ -7,7 +7,7 @@ part of 'features_dto.dart';
 // **************************************************************************
 
 FeaturesDto _$FeaturesDtoFromJson(Map<String, dynamic> json) => FeaturesDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       value: json['value'] as String?,
       mediaItem: json['mediaItem'] == null

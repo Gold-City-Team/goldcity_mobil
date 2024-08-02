@@ -7,12 +7,13 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
+import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
+import 'package:goldcity/util/resources/authentication_source.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view_model/project_detail_view_model.dart';
-import 'package:goldcity/view/presentation/project/project_detail/widget/language_item_widget.dart';
 import 'package:goldcity/view/presentation/project/template/project_animated_wellcome_template/view/project_animated_wellcome_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_campany_template/view/project_campany_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/project_feature_and_gallery_template/view/project_feature_and_gallery_template_view.dart';
@@ -24,6 +25,7 @@ import 'package:goldcity/view/presentation/project/template/project_text_image_t
 import 'package:goldcity/view/presentation/project/template/project_two_main_image_template/view/project_two_main_image_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
+import 'package:goldcity/view/presentation/webinar_detail/language_item/language_item_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
@@ -166,7 +168,6 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                       ProjectAnimatedWellcomeTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
@@ -184,7 +185,6 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             child: ProjectTwoMainImageTemplateView(
                               key: Key(
                                   "${value.entity!.detail.template[value.templateIndex].id}"),
-                              projectDetailId: value.entity!.detail.id,
                               projectSettingsId: value.entity!.detail
                                   .template[value.templateIndex].id,
                             ),
@@ -196,7 +196,6 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             child: ProjectGalleryAndInfoTemplate(
                               key: Key(
                                   "${value.entity!.detail.template[value.templateIndex].id}"),
-                              projectDetailId: value.entity!.detail.id,
                               projectSettingsId: value.entity!.detail
                                   .template[value.templateIndex].id,
                             ),
@@ -214,7 +213,6 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                         child: ProjectFeatureAndGalleryTemplateView(
                           key: Key(
                               "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectDetailId: value.entity!.detail.id,
                           projectSettingsId: value
                               .entity!.detail.template[value.templateIndex].id,
                         ),
@@ -224,7 +222,6 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                         child: ShareableMaterialTemplateView(
                           key: Key(
                               "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectDetailId: value.entity!.detail.id,
                           projectSettingsId: value
                               .entity!.detail.template[value.templateIndex].id,
                         ),
@@ -232,6 +229,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                     TEMPLATE.PROJECT_TEMPLATE_SIX => Padding(
                         padding: EdgeInsets.only(top: 75),
                         child: PlanTemplateView(
+                          settingsId: value
+                              .entity!.detail.template[value.templateIndex].id,
                           key: Key(
                               "${value.entity!.detail.template[value.templateIndex].id}"),
                         ),
@@ -239,7 +238,6 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                     TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
@@ -255,14 +253,12 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                       ProjectCampanyTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
                     _ => ProjectFeatureTemplateView(
                         key: Key(
                             "${value.entity!.detail.template[value.templateIndex].id}"),
-                        projectDetailId: value.entity!.detail.id,
                         projectSettingsId: value
                             .entity!.detail.template[value.templateIndex].id,
                       ),
@@ -361,27 +357,31 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                               ),
                             );
                           }
-                          return Padding(
-                            padding: EdgeInsets.only(right: 15),
-                            child: WebViewAware(
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => value.sharePageDialog(
-                                      context.findRenderObject() as RenderBox?),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
+                          return locator<AuthenticationSource>()
+                                  .isUserStillValid()
+                              ? Padding(
+                                  padding: EdgeInsets.only(right: 15),
+                                  child: WebViewAware(
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => value.sharePageDialog(
+                                            context.findRenderObject()
+                                                as RenderBox?),
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.GOLD),
+                                          ),
+                                          child: const Icon(Icons.link),
+                                        ),
+                                      ),
                                     ),
-                                    child: const Icon(Icons.link),
                                   ),
-                                ),
-                              ),
-                            ),
-                          );
+                                )
+                              : const SizedBox.shrink();
                         }),
                       ],
                     ),

@@ -27,6 +27,7 @@ enum SourcePath {
   SEND_NOTIFICATION,
   SHARE_PAGE,
   SHARE_PAGE_DETAIL,
+  COMPLEX_LANGUAGE_LIST
 }
 
 extension SourcePathExtension on SourcePath {
@@ -40,8 +41,10 @@ extension SourcePathExtension on SourcePath {
       SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage/${data?[1]}',
       SourcePath.PROJECT_LANGUAGE_LIST =>
         '/project/${data?[0]}/supportedlanguage',
-      SourcePath.COMPLEX => '/complex/${data?[0]}/selectedlanguage',
-      SourcePath.COMPLEX_LIST => '/complex/selectedlanguage',
+      SourcePath.COMPLEX => '/complex/${data?[0]}/selectedlanguage/${data?[1]}',
+      SourcePath.COMPLEX_LANGUAGE_LIST =>
+        '/complex/${data?[0]}/supportedlanguage',
+      SourcePath.COMPLEX_LIST => '/complex',
       SourcePath.ANNOUNCEMENT_LIST => '/announcement/myannouncement',
       SourcePath.ANNOUNCEMENT => '/announcement/myannouncement/${data?[0]}',
       SourcePath.PROJECT_LIST => '/project',
@@ -54,7 +57,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.PROJECT_TEMPLATE_DETAIL =>
         '/projectdetail/templates/${data?[0]}',
       SourcePath.COMPLEX_TEMPLATE_DETAIL =>
-        '/complexdetail/${data?[0]}/templates/${data?[1]}',
+        '/complexdetail/templates/${data?[0]}',
       SourcePath.WEBINAR_LIST => '/meeting',
       SourcePath.WEBINAR => '/meeting/${data?[0]}',
       SourcePath.USER_WEBINAR => '/usermeeting/${data?[0]}',

@@ -8,7 +8,7 @@ part of 'education_detail_dto.dart';
 
 EducationDetailDto _$EducationDetailDtoFromJson(Map<String, dynamic> json) =>
     EducationDetailDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       mainImage: json['mainImage'] == null

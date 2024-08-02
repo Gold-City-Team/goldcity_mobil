@@ -8,7 +8,7 @@ part of 'announcement_dto.dart';
 
 AnnouncementDto _$AnnouncementDtoFromJson(Map<String, dynamic> json) =>
     AnnouncementDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       attachments: (json['attachments'] as List<dynamic>?)
@@ -26,7 +26,7 @@ Map<String, dynamic> _$AnnouncementDtoToJson(AnnouncementDto instance) =>
 
 AnnouncementFileDto _$AnnouncementFileDtoFromJson(Map<String, dynamic> json) =>
     AnnouncementFileDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       file: json['file'] == null
           ? null

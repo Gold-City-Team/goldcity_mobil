@@ -8,7 +8,7 @@ part of 'gallery_media_dto.dart';
 
 GalleryMediaDto _$GalleryMediaDtoFromJson(Map<String, dynamic> json) =>
     GalleryMediaDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       mediaItem: json['mediaItem'] == null
           ? null
           : MediaDto.fromJson(json['mediaItem'] as Map<String, dynamic>),
@@ -32,7 +32,7 @@ Map<String, dynamic> _$GalleryMediaDtoToJson(GalleryMediaDto instance) =>
 GalleryMediaCategoryDto _$GalleryMediaCategoryDtoFromJson(
         Map<String, dynamic> json) =>
     GalleryMediaCategoryDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       translation: json['translation'] == null
           ? null
           : GalleryMediaCategoryTranslationDto.fromJson(
@@ -49,7 +49,7 @@ Map<String, dynamic> _$GalleryMediaCategoryDtoToJson(
 GalleryMediaCategoryTranslationDto _$GalleryMediaCategoryTranslationDtoFromJson(
         Map<String, dynamic> json) =>
     GalleryMediaCategoryTranslationDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
     );
 
@@ -63,7 +63,7 @@ Map<String, dynamic> _$GalleryMediaCategoryTranslationDtoToJson(
 TitleDescriptionGalleriesDto _$TitleDescriptionGalleriesDtoFromJson(
         Map<String, dynamic> json) =>
     TitleDescriptionGalleriesDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       galleries: (json['galleries'] as List<dynamic>?)

@@ -1,6 +1,5 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +22,6 @@ class SplashViewModel = _SplashViewModelBase with _$SplashViewModel;
 
 abstract class _SplashViewModelBase with Store, BaseViewModel {
   late NotificationUseCase _notificationUseCase;
-  final _appLinks = AppLinks();
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
@@ -43,9 +41,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     // AppLinks is singleton
 
 // Subscribe to all events (initial link and further)
-    _appLinks.uriLinkStream.listen((uri) {
-      debugPrint("test $uri");
-    });
+
     locator<AuthenticationSource>().initUserDto();
     locator<AuthenticationSource>().isUserStillValid();
     viewModelContext.pushReplacement(NavigationConstant.MAIN);
@@ -61,8 +57,8 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     //   }
     // });
 
-    viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
-        pathParameters: {"projectId": "e8GjWCvtbS"});
+    // viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
+    //     pathParameters: {"projectId": "5"});
 
     tokenProccess();
   }

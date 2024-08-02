@@ -6,8 +6,8 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 
 class ComplexDetailUseCase {
   Future<Either<BaseErrorModel, ComplexTemplateEntity>>
-      getComplexTemplateDetail(int complexDetailId, int settingsId) async {
+      getComplexTemplateDetail(int complexDetailId) async {
     return locator<ComplexDetailRepository>()
-        .getComplexTemplateDetail(complexDetailId, settingsId);
+        .getComplexTemplateDetail(complexDetailId);
   }
 }

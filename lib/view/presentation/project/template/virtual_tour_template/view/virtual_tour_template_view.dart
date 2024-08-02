@@ -6,12 +6,8 @@ import 'package:goldcity/view/presentation/project/template/virtual_tour_templat
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class VirtualTourTemplateView extends StatefulWidget {
-  final int projectDetailId;
   final int projectSettingsId;
-  const VirtualTourTemplateView(
-      {required this.projectDetailId,
-      required this.projectSettingsId,
-      super.key});
+  const VirtualTourTemplateView({required this.projectSettingsId, super.key});
 
   @override
   State<VirtualTourTemplateView> createState() =>
@@ -31,7 +27,6 @@ class _VirtualTourTemplateViewState extends State<VirtualTourTemplateView> {
       viewModel: VirtualTourTemplateViewModel(),
       onModelReady: (model) {
         model.setContext(context);
-        model.projectDetailId = widget.projectDetailId;
         model.projectSettingsId = widget.projectSettingsId;
         model.init();
       },

@@ -9,7 +9,7 @@ part of 'complex_template_five_dto.dart';
 ComplexTemplateFiveDto _$ComplexTemplateFiveDtoFromJson(
         Map<String, dynamic> json) =>
     ComplexTemplateFiveDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       medias: (json['medias'] as List<dynamic>?)
           ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))

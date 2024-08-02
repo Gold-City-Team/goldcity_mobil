@@ -14,7 +14,7 @@ ShareablePageDto _$ShareablePageDtoFromJson(Map<String, dynamic> json) =>
           ? null
           : ShareablePageCreatorUserDto.fromJson(
               json['creatorUser'] as Map<String, dynamic>),
-      pageId: json['pageId'] as int?,
+      pageId: (json['pageId'] as num?)?.toInt(),
       userType: json['userType'] as String?,
     );
 
@@ -30,8 +30,8 @@ Map<String, dynamic> _$ShareablePageDtoToJson(ShareablePageDto instance) =>
 ShareablePageCreatorUserDto _$ShareablePageCreatorUserDtoFromJson(
         Map<String, dynamic> json) =>
     ShareablePageCreatorUserDto(
-      id: json['id'] as int?,
-      companyId: json['companyId'] as int?,
+      id: (json['id'] as num?)?.toInt(),
+      companyId: (json['companyId'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 

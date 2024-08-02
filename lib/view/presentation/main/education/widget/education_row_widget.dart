@@ -24,8 +24,6 @@ class EducationRowWidget extends StatelessWidget {
     var size = (isPhone ? context.sHeight * .95 : context.sHeight) -
         (MediaQuery.of(context).padding.top +
             MediaQuery.of(context).padding.bottom);
-    debugPrint(
-        "test ${context.sHeight} ----- ${MediaQuery.of(context).padding.top}");
     return SafeArea(
       child: GestureDetector(
         onTap: () => onTap(),

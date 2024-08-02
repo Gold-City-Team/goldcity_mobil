@@ -43,7 +43,6 @@ abstract class _ProjectFeatureAndGalleryTemplateViewModelBase
     }
   }
 
-  int projectDetailId = 0;
   int projectSettingsId = 0;
   Future<void> navigateGallery(int selectedId) async {
     await viewModelContext.pushNamed(NavigationConstant.GALLERY, extra: {

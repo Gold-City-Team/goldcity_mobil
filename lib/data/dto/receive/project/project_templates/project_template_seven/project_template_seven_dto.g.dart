@@ -9,7 +9,7 @@ part of 'project_template_seven_dto.dart';
 ProjectTemplateSevenDto _$ProjectTemplateSevenDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateSevenDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       virtualTour: json['virtualTour'] == null
           ? null
           : ProjectTemplateSevenVirtualTourDto.fromJson(
@@ -26,7 +26,7 @@ Map<String, dynamic> _$ProjectTemplateSevenDtoToJson(
 ProjectTemplateSevenVirtualTourDto _$ProjectTemplateSevenVirtualTourDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateSevenVirtualTourDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       url: json['url'] as String?,
     );
 

@@ -49,12 +49,14 @@ abstract class _PlanTemplateViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   Future<void> _getDetail() async {
-    var result = await _projectDetailUseCase.getProjectTemplateDetail(12);
+    var result =
+        await _projectDetailUseCase.getProjectTemplateDetail(settingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateSixEntity);
     }
   }
 
+  int settingsId = 0;
   @observable
   ProjectTemplateSixEntity? template;
   List<String> getBlok() {

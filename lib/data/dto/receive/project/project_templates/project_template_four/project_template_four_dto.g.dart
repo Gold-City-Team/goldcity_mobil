@@ -9,7 +9,7 @@ part of 'project_template_four_dto.dart';
 ProjectTemplateFourDto _$ProjectTemplateFourDtoFromJson(
         Map<String, dynamic> json) =>
     ProjectTemplateFourDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       mediaItem: json['mediaItem'] == null
           ? null

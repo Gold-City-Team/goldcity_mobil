@@ -23,7 +23,6 @@ abstract class _VirtualTourTemplateViewModelBase with Store, BaseViewModel {
     _getDetail();
   }
 
-  int projectDetailId = 0;
   int projectSettingsId = 0;
 
   @override

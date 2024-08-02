@@ -75,6 +75,47 @@ mixin _$ComplexDetailViewModel on _ComplexDetailViewModelBase, Store {
     });
   }
 
+  late final _$languageIdAtom =
+      Atom(name: '_ComplexDetailViewModelBase.languageId', context: context);
+
+  @override
+  int get languageId {
+    _$languageIdAtom.reportRead();
+    return super.languageId;
+  }
+
+  @override
+  set languageId(int value) {
+    _$languageIdAtom.reportWrite(value, super.languageId, () {
+      super.languageId = value;
+    });
+  }
+
+  late final _$languageAtom =
+      Atom(name: '_ComplexDetailViewModelBase.language', context: context);
+
+  @override
+  List<LanguageDetailEntity> get language {
+    _$languageAtom.reportRead();
+    return super.language;
+  }
+
+  @override
+  set language(List<LanguageDetailEntity> value) {
+    _$languageAtom.reportWrite(value, super.language, () {
+      super.language = value;
+    });
+  }
+
+  late final _$getComplexDetailAsyncAction = AsyncAction(
+      '_ComplexDetailViewModelBase.getComplexDetail',
+      context: context);
+
+  @override
+  Future<void> getComplexDetail() {
+    return _$getComplexDetailAsyncAction.run(() => super.getComplexDetail());
+  }
+
   late final _$_getDetailAsyncAction =
       AsyncAction('_ComplexDetailViewModelBase._getDetail', context: context);
 
@@ -114,7 +155,9 @@ mixin _$ComplexDetailViewModel on _ComplexDetailViewModelBase, Store {
 templateIndex: ${templateIndex},
 entity: ${entity},
 isPageSelectorVisible: ${isPageSelectorVisible},
-isPageSelectorLock: ${isPageSelectorLock}
+isPageSelectorLock: ${isPageSelectorLock},
+languageId: ${languageId},
+language: ${language}
     ''';
   }
 }

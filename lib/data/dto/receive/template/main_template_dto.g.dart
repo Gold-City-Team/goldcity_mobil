@@ -10,7 +10,7 @@ MainTemplateDto _$MainTemplateDtoFromJson(Map<String, dynamic> json) =>
     MainTemplateDto(
       title: json['title'] as String?,
       type: $enumDecodeNullable(_$TEMPLATEEnumMap, json['type']),
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
     )..metaData = json['metaData'] == null
         ? null
         : MainTemplateMetaDataDto.fromJson(

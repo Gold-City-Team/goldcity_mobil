@@ -8,9 +8,9 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 class ComplexDetailRepositoryImpl implements ComplexDetailRepository {
   @override
   Future<Either<BaseErrorModel, ComplexTemplateEntity>>
-      getComplexTemplateDetail(int complexDetailId, int settingsId) async {
+      getComplexTemplateDetail(int complexDetailId) async {
     var result = await locator<ComplexDetailRemoteDataSource>()
-        .getComplexTemplateDetail(complexDetailId, settingsId);
+        .getComplexTemplateDetail(complexDetailId);
     if (result.isRight) {
       return Right(result.right.toEntity());
     }

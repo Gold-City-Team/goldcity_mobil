@@ -41,8 +41,8 @@ abstract class _ComplexFeatureTemplateViewModelBase with Store, BaseViewModel {
   int complexSettingsId = 0;
   @action
   Future<void> _getDetail() async {
-    var result = await _complexDetailUseCase.getComplexTemplateDetail(
-        complexDetailId, complexSettingsId);
+    var result =
+        await _complexDetailUseCase.getComplexTemplateDetail(complexDetailId);
     if (result.isRight) {
       templateEntity = (result.right.template as ComplexTemplateOneEntity);
     }

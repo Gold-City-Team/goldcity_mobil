@@ -8,7 +8,7 @@ part of 'possibility_dto.dart';
 
 PossibilityDto _$PossibilityDtoFromJson(Map<String, dynamic> json) =>
     PossibilityDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       description: json['description'] as String?,
       color: (json['color'] as num?)?.toDouble(),
@@ -35,7 +35,7 @@ Map<String, dynamic> _$PossibilityDtoToJson(PossibilityDto instance) =>
     };
 
 LocationDto _$LocationDtoFromJson(Map<String, dynamic> json) => LocationDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
@@ -50,7 +50,7 @@ Map<String, dynamic> _$LocationDtoToJson(LocationDto instance) =>
     };
 
 CategoryDto _$CategoryDtoFromJson(Map<String, dynamic> json) => CategoryDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       translation: json['translation'] == null
           ? null
           : TranslationDto.fromJson(
@@ -65,7 +65,7 @@ Map<String, dynamic> _$CategoryDtoToJson(CategoryDto instance) =>
 
 TranslationDto _$TranslationDtoFromJson(Map<String, dynamic> json) =>
     TranslationDto(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String?,
     );
 
