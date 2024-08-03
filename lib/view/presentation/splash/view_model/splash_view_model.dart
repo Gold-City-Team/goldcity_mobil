@@ -57,8 +57,8 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     //   }
     // });
 
-    // viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
-    //     pathParameters: {"projectId": "5"});
+    viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
+        pathParameters: {"projectId": "5w8kOr66Is"});
 
     tokenProccess();
   }

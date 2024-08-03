@@ -31,14 +31,37 @@ ShareablePageCreatorUserDto _$ShareablePageCreatorUserDtoFromJson(
         Map<String, dynamic> json) =>
     ShareablePageCreatorUserDto(
       id: (json['id'] as num?)?.toInt(),
-      companyId: (json['companyId'] as num?)?.toInt(),
+      company: json['company'] == null
+          ? null
+          : ShareablePageCreatorUserCompanyDto.fromJson(
+              json['company'] as Map<String, dynamic>),
       name: json['name'] as String?,
-    );
+    )
+      ..email = json['email'] as String?
+      ..tel = json['tel'] as String?;
 
 Map<String, dynamic> _$ShareablePageCreatorUserDtoToJson(
         ShareablePageCreatorUserDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'companyId': instance.companyId,
+      'company': instance.company,
       'name': instance.name,
+      'email': instance.email,
+      'tel': instance.tel,
+    };
+
+ShareablePageCreatorUserCompanyDto _$ShareablePageCreatorUserCompanyDtoFromJson(
+        Map<String, dynamic> json) =>
+    ShareablePageCreatorUserCompanyDto(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      tel: json['tel'] as String?,
+    );
+
+Map<String, dynamic> _$ShareablePageCreatorUserCompanyDtoToJson(
+        ShareablePageCreatorUserCompanyDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'tel': instance.tel,
     };

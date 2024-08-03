@@ -67,6 +67,9 @@ flutter:
   assets:
     - assets/translations/    
     - assets/image/logo.png    
+    - assets/image/englishflag.webp
+    - assets/image/turkflag.webp
+    - assets/image/logo.png    
     - assets/video/trailer.mp4    
   fonts:
     - family: Encode

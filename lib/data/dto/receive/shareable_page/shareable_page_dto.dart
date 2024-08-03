@@ -40,9 +40,11 @@ class ShareablePageDto {
 @JsonSerializable()
 class ShareablePageCreatorUserDto {
   int? id;
-  int? companyId;
+  ShareablePageCreatorUserCompanyDto? company;
   String? name;
-  ShareablePageCreatorUserDto({this.id, this.companyId, this.name});
+  String? email;
+  String? tel;
+  ShareablePageCreatorUserDto({this.id, this.company, this.name});
   factory ShareablePageCreatorUserDto.fromJson(Map<String, dynamic> json) =>
       _$ShareablePageCreatorUserDtoFromJson(json);
 
@@ -52,8 +54,40 @@ class ShareablePageCreatorUserDto {
       _$ShareablePageCreatorUserDtoFromJson(json);
 
   ShareablePageCreatorUserEntity toEntity() => ShareablePageCreatorUserEntity(
-        companyId: companyId ?? 0,
+      company: company != null
+          ? company!.toEntity()
+          : ShareablePageCreatorUserCompanyDto().toEntity(),
+      id: id ?? 0,
+      name: name ?? "",
+      email: email ?? "",
+      tel: tel ?? "");
+}
+
+@JsonSerializable()
+class ShareablePageCreatorUserCompanyDto {
+  int? id;
+  String? name;
+  String? tel;
+  ShareablePageCreatorUserCompanyDto({
+    this.id,
+    this.name,
+    this.tel,
+  });
+
+  factory ShareablePageCreatorUserCompanyDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$ShareablePageCreatorUserCompanyDtoFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$ShareablePageCreatorUserCompanyDtoToJson(this);
+
+  ShareablePageCreatorUserCompanyDto fromJson(Map<String, dynamic> json) =>
+      _$ShareablePageCreatorUserCompanyDtoFromJson(json);
+
+  ShareablePageCreatorUserCompanyEntity toEntity() =>
+      ShareablePageCreatorUserCompanyEntity(
         id: id ?? 0,
         name: name ?? "",
+        tel: tel ?? "",
       );
 }

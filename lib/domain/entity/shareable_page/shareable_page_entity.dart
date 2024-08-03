@@ -18,11 +18,27 @@ class ShareablePageEntity {
 @JsonSerializable()
 class ShareablePageCreatorUserEntity {
   int id;
-  int companyId;
+  ShareablePageCreatorUserCompanyEntity company;
   String name;
+  String tel;
+  String email;
   ShareablePageCreatorUserEntity({
     required this.id,
-    required this.companyId,
+    required this.company,
     required this.name,
+    required this.tel,
+    required this.email,
+  });
+}
+
+@JsonSerializable()
+class ShareablePageCreatorUserCompanyEntity {
+  int id;
+  String name;
+  String tel;
+  ShareablePageCreatorUserCompanyEntity({
+    required this.id,
+    required this.name,
+    required this.tel,
   });
 }

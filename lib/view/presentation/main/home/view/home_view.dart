@@ -82,12 +82,26 @@ class HomeView extends StatelessWidget {
                       //burada
                       SizedBox(
                         height: 50,
-                        width: 100,
+                        width: 150,
                         child: CoolDropdown(
+                          resultOptions: ResultOptions(
+                              render: ResultRender.all,
+                              openBoxDecoration: BoxDecoration(
+                                  borderRadius: context.midRadius,
+                                  border: null,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.LIGHT))),
                           controller: dropdownController,
                           dropdownList: context.supportedLocales
                               .map(
                                 (element) => CoolDropdownItem(
+                                    icon: SizedBox(
+                                      height: 25,
+                                      width: 25,
+                                      child: Image.asset(
+                                          value.getFlagFromLanguage(
+                                              element.languageCode)),
+                                    ),
                                     label: element
                                         .toLanguageTag()
                                         .localeToNativeLanguage,
@@ -103,6 +117,7 @@ class HomeView extends StatelessWidget {
                             dropdownController.close();
                           },
                           dropdownItemOptions: DropdownItemOptions(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             selectedTextStyle: TextStyle(
                               color: context.toColor(
                                 APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
@@ -115,11 +130,19 @@ class HomeView extends StatelessWidget {
                             ),
                           ),
                           dropdownOptions: DropdownOptions(
+                            borderSide:
+                                BorderSide(width: 1, color: Colors.black),
                             color: context.toColor(
                               APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
                             ),
                           ),
                           defaultItem: CoolDropdownItem(
+                              icon: SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: Image.asset(value.getFlagFromLanguage(
+                                    context.locale.languageCode)),
+                              ),
                               label: context.locale
                                   .toLanguageTag()
                                   .localeToNativeLanguage,

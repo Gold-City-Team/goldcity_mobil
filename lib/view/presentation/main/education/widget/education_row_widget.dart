@@ -41,6 +41,7 @@ class EducationRowWidget extends StatelessWidget {
             children: [
               SizedBox(
                 height: (size / 2),
+                width: context.sWidth,
                 child: NormalNetworkImage(
                     source: entity.detailEntity.mainImage.url,
                     fit: BoxFit.cover),

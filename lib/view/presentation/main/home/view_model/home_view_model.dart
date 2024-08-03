@@ -9,6 +9,7 @@ import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/usecase/complex_usecase.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/main/home/widget/condominium_trailer_widget.dart';
@@ -99,6 +100,15 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         pageIndex = 0;
       }
     });
+  }
+
+  String getFlagFromLanguage(String language) {
+    debugPrint("test $language");
+    return switch (language) {
+      "tr" => GeneralConstant.TURKISH_FLAG_PATH,
+      "en" => GeneralConstant.ENGLISH_FLAG_PATH,
+      _ => GeneralConstant.ENGLISH_FLAG_PATH
+    };
   }
 
   void navigateProjectDetail(int projectId) {

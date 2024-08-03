@@ -29,6 +29,7 @@ import 'package:goldcity/view/presentation/webinar_detail/language_item/language
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProjectDetailView extends StatefulWidget {
@@ -294,14 +295,20 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                       text: value.shareData!.creatorUser.name,
                                       textColor: APPLICATION_COLOR.DARK,
                                       maxLines: 1,
+                                      textLineHeight: 1,
                                       overflow: TextOverflow.ellipsis,
                                       fontSize: FONT_SIZE.TITLE_LARGE,
                                     ),
-                                    LabelText(
-                                      text: value.shareData!.creatorUser.name,
-                                      textColor: APPLICATION_COLOR.DARK,
-                                      fontSize: FONT_SIZE.LABEL_SMALL,
-                                    ),
+                                    value.shareData!.creatorUser.company.name !=
+                                            ""
+                                        ? LabelText(
+                                            text: value.shareData!.creatorUser
+                                                .company.name,
+                                            textColor: APPLICATION_COLOR.DARK,
+                                            fontSize: FONT_SIZE.LABEL_SMALL,
+                                            textLineHeight: 1.2,
+                                          )
+                                        : const SizedBox.shrink(),
                                   ],
                                 ),
                               ),
@@ -318,7 +325,10 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   Gap(context.smallSpacerSize),
                                   WebViewAware(
                                     child: GestureDetector(
-                                      onTap: () => {},
+                                      onTap: () => {
+                                        launchUrl(Uri.parse(
+                                            "mailto:${value.shareData!.creatorUser.email}"))
+                                      },
                                       child: Container(
                                         width: 50,
                                         height: 50,
@@ -337,7 +347,10 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   Gap(context.smallSpacerSize),
                                   WebViewAware(
                                     child: GestureDetector(
-                                      onTap: () => {},
+                                      onTap: () => {
+                                        launchUrl(Uri.parse(
+                                            "tel:${value.shareData!.creatorUser.tel}"))
+                                      },
                                       child: Container(
                                         width: 50,
                                         height: 50,
