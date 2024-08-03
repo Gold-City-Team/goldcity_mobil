@@ -12,7 +12,6 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/main/home/widget/condominium_trailer_widget.dart';
 import 'package:goldcity/view/presentation/main/home/widget/project_list_widget.dart';
 import 'package:mobx/mobx.dart';
 
@@ -34,6 +33,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     projectList?.clear();
     complexList?.clear();
     _getComplexList();
+    _getProjectList();
     isTablet()
         ? SystemChrome.setPreferredOrientations([
             DeviceOrientation.landscapeRight,
@@ -58,10 +58,6 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _projectUseCase.getProjectList().listen((event) {
       if (event.isRight) {
         projectList = event.right;
-        pageList.add(ProjectListWidget(
-          projectList: projectList!,
-          onTap: (int id) => navigateProjectDetail(id),
-        ));
       } else {
         debugPrint("test: ${event.left.status}");
       }
@@ -89,21 +85,11 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     _complexUseCase.getComplexList().listen((event) {
       if (event.isRight) {
         complexList = event.right;
-        pageList.add(
-          CondominiumTrailerWidget(
-            complexEntity: complexList!.first,
-            onExploreTap: () => navigateComplexDetail(complexList!.first.id),
-          ),
-        );
-        _getProjectList();
-
-        pageIndex = 0;
       }
     });
   }
 
   String getFlagFromLanguage(String language) {
-    debugPrint("test $language");
     return switch (language) {
       "tr" => GeneralConstant.TURKISH_FLAG_PATH,
       "en" => GeneralConstant.ENGLISH_FLAG_PATH,
@@ -131,7 +117,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     if (newIndex != pageIndex) {
       switch (newIndex) {
         case 0:
-          viewModelContext.pushReplacement(NavigationConstant.MAIN);
+          debugPrint("");
         case 1:
           viewModelContext.goNamed(NavigationConstant.WEBINARS);
         case 2:

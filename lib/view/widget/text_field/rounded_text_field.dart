@@ -47,14 +47,15 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.toColor(APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR),
+        border: Border(
+            bottom: BorderSide(
+                width: 1,
+                color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR))),
+        color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
       ),
       alignment: Alignment.centerLeft,
       height: context.largeHeight,
-      child: Padding(
-        padding: context.midSpacerOnlyHorizontal,
-        child: textFieldWidget(context, widget.inputType),
-      ),
+      child: textFieldWidget(context, widget.inputType),
     );
   }
 
@@ -64,9 +65,9 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
       keyboardType: inputType.getInputType(),
       autocorrect: false,
       maxLength: widget.maxLength,
-      cursorColor: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+      cursorColor: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
       style: TextStyle(
-        color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+        color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
       ),
       obscureText: inputType == InputType.PASSWORD,
       decoration: InputDecoration.collapsed(

@@ -42,121 +42,114 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
   }
 
   Widget tabletView() {
-    return SizedBox(
-      width: context.sWidth,
-      height: context.sHeight,
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: SizedBox(
-              width: context.sWidth,
-              height: context.sHeight,
-              child: Stack(
-                alignment: Alignment.bottomLeft,
-                children: [
-                  SizedBox.expand(
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: SizedBox(
-                          width:
-                              context.sHeight * _controller.value.aspectRatio,
-                          height: context.sHeight * 1,
-                          child: VideoPlayer(_controller)),
-                    ),
-                  ),
-                  Container(
-                    height: context.sWidth,
-                    width: (context.sWidth),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                          context
-                              .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(100),
-                          context
-                              .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(0),
-                          context
-                              .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(0),
-                          context
-                              .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                              .withAlpha(0),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.topRight,
+          child: Stack(
+            alignment: Alignment.bottomLeft,
+            children: [
+              SizedBox.expand(
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: SizedBox(
+                      width: (context.sHeight) * _controller.value.aspectRatio,
+                      height: context.sHeight,
+                      child: VideoPlayer(_controller)),
+                ),
               ),
-            ),
-          ),
-          Padding(
-            padding: context.xlargeSpacerOnlyHorizontal,
-            child: SizedBox(
-              width: context.sWidth / 3,
-              height: context.sHeight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Gap(context.midSpacerSize),
-                  Center(
-                    child: LabelText(
-                      text: context.tr("wellcome"),
-                      align: TextAlign.center,
-                      fontWeight: FontWeight.w500,
-                      fontSize: FONT_SIZE.DISPLAY_SMALL,
-                    ),
-                  ),
-                  Center(
-                    child: LabelText(
-                      text: widget.complexEntity.slogan,
-                      fontSize: FONT_SIZE.TITLE_MEDIUM,
-                      textColor: APPLICATION_COLOR.SUBTITLE,
-                      align: TextAlign.center,
-                    ),
-                  ),
-                  Gap(context.largeSpacerSize),
-                ],
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => widget.onExploreTap(),
-                child: Container(
-                  width: context.sWidth / 4 - 10,
-                  height: 60,
-                  margin: context.xLargeSpacerOnlyBottom,
-                  decoration: BoxDecoration(
-                    color: context
-                        .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                        .withAlpha(200),
-                  ),
-                  padding: context.largeSpacerOnlyHorizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      LabelText(
-                        text: context.tr("explore"),
-                        fontSize: FONT_SIZE.TITLE_LARGE,
-                      ),
-                      const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
+              Container(
+                height: context.sWidth,
+                margin: EdgeInsets.only(left: ((context.sWidth / 10) * 3)),
+                width: (context.sWidth),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      context
+                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .withAlpha(100),
+                      context
+                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .withAlpha(0),
+                      context
+                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .withAlpha(0),
+                      context
+                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .withAlpha(0),
                     ],
                   ),
                 ),
               ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: context.xlargeSpacerOnlyHorizontal,
+          child: Container(
+            margin: EdgeInsets.only(left: (context.sWidth / 10) * 3),
+            width: context.sWidth / 3,
+            height: context.sHeight,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Gap(context.midSpacerSize),
+                Center(
+                  child: LabelText(
+                    text: context.tr("wellcome"),
+                    align: TextAlign.center,
+                    fontWeight: FontWeight.w500,
+                    fontSize: FONT_SIZE.DISPLAY_SMALL,
+                  ),
+                ),
+                Center(
+                  child: LabelText(
+                    text: widget.complexEntity.slogan,
+                    fontSize: FONT_SIZE.TITLE_MEDIUM,
+                    textColor: APPLICATION_COLOR.SUBTITLE,
+                    align: TextAlign.center,
+                  ),
+                ),
+                Gap(context.largeSpacerSize),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => widget.onExploreTap(),
+              child: Container(
+                width: context.sWidth / 4 - 10,
+                height: 60,
+                margin: context.xLargeSpacerOnlyBottom,
+                decoration: BoxDecoration(
+                  color: context
+                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                      .withAlpha(200),
+                ),
+                padding: context.largeSpacerOnlyHorizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    LabelText(
+                      text: context.tr("explore"),
+                      fontSize: FONT_SIZE.TITLE_LARGE,
+                    ),
+                    const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
