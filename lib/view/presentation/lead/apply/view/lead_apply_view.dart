@@ -28,114 +28,249 @@ class LeadApplyView extends StatelessWidget {
       onPageBuilder: (BuildContext context, LeadApplyViewModel value) =>
           Scaffold(
         body: SafeArea(
-            child: Row(
+            child: Stack(
           children: [
-            Expanded(
-              flex: 6,
-              child: SizedBox(
-                height: context.sHeight,
-                child: NormalNetworkImage(
-                    fit: BoxFit.cover,
-                    source:
-                        "https://goldcitycondominium.com/_next/image?url=%2Fimages%2Fprojects%2FleJardin%2Flejardin.webp&w=1080&q=75"),
+            isTablet() ? tabletView(context, value) : phoneView(context, value),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => context.pop(),
+                child: Container(
+                  width: 50,
+                  margin: context.largeSpacer,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                      borderRadius: context.midRadius),
+                  child: const Icon(Icons.keyboard_arrow_left),
+                ),
               ),
             ),
-            Expanded(
-                flex: 4,
-                child: Container(
-                  padding: context.xlargeSpacerOnlyHorizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                          padding: context.midSpacerOnlyBottom,
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 1.5,
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD)))),
-                          child: LabelText(
-                            text: "Başvuru Yap",
-                            fontSize: FONT_SIZE.HEADLINE_LARGE,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Gap(context.midSpacerSize),
-                      LabelText(
-                        text:
-                            "Merak ettiğiniz her konu hakkında lütfen bize yazın. Temsilcimiz en kısa sürede size geri dönüş sağlayacaktır.",
-                        fontSize: FONT_SIZE.LABEL_LARGE,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      Gap(context.veryLargeSpacerSize),
-                      LabelText(
-                        text: LocaleKeys.nameSurnameQuestion.tr(),
-                        textColor: APPLICATION_COLOR.GOLD,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      SizedBox(
-                        height: 40,
-                        child: RoundedTextField(
-                            key: const Key("fullName"),
-                            newText: (newText) => value.fullName = newText),
-                      ),
-                      Gap(context.largeSpacerSize),
-                      LabelText(
-                        text: LocaleKeys.telephoneQuestion.tr(),
-                        fontWeight: FontWeight.w400,
-                        textColor: APPLICATION_COLOR.GOLD,
-                      ),
-                      SizedBox(
-                        height: 40,
-                        child: RoundedTextField(
-                            key: const Key("telephone"),
-                            newText: (newText) => value.telephone = newText),
-                      ),
-                      Gap(context.largeSpacerSize),
-                      LabelText(
-                        text: LocaleKeys.mailQuestion.tr(),
-                        fontWeight: FontWeight.w400,
-                        textColor: APPLICATION_COLOR.GOLD,
-                      ),
-                      SizedBox(
-                        height: 40,
-                        child: RoundedTextField(
-                            key: const Key("mailAdress"),
-                            newText: (newText) => value.mailAdress = newText),
-                      ),
-                      Gap(context.largeSpacerSize),
-                      SizedBox(
-                        height: 40,
-                        child: NormalButton(
-                          backgroundColor: APPLICATION_COLOR.GOLD,
-                          onTap: () => value.apply(),
-                          textColor: APPLICATION_COLOR.LIGHT,
-                          text: LocaleKeys.send.tr(),
-                        ),
-                      ),
-                      Gap(context.largeSpacerSize),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          LabelText(text: "Zaten partner misin?"),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () => value.login(),
-                              child: LabelText(
-                                text: " Giriş Yap",
-                                textColor: APPLICATION_COLOR.GOLD,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ))
           ],
         )),
+      ),
+    );
+  }
+
+  Widget tabletView(BuildContext context, LeadApplyViewModel value) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 6,
+          child: SizedBox(
+            height: context.sHeight,
+            child: NormalNetworkImage(
+                fit: BoxFit.cover,
+                source:
+                    "https://parametric-architecture.com/wp-content/uploads/2023/05/Tim-Fu-AI-3.jpg"),
+          ),
+        ),
+        Expanded(
+            flex: 4,
+            child: Container(
+              padding: context.xlargeSpacerOnlyHorizontal,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      padding: context.midSpacerOnlyBottom,
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(
+                                  width: 1.5,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.GOLD)))),
+                      child: LabelText(
+                        text: "Başvuru Yap",
+                        fontSize: FONT_SIZE.HEADLINE_LARGE,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  Gap(context.midSpacerSize),
+                  LabelText(
+                    text:
+                        "Merak ettiğiniz her konu hakkında lütfen bize yazın. Temsilcimiz en kısa sürede size geri dönüş sağlayacaktır.",
+                    fontSize: FONT_SIZE.LABEL_LARGE,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  Gap(context.veryLargeSpacerSize),
+                  LabelText(
+                    text: LocaleKeys.nameSurnameQuestion.tr(),
+                    textColor: APPLICATION_COLOR.GOLD,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  SizedBox(
+                    height: 40,
+                    child: RoundedTextField(
+                        key: const Key("fullName"),
+                        newText: (newText) => value.fullName = newText),
+                  ),
+                  Gap(context.largeSpacerSize),
+                  LabelText(
+                    text: LocaleKeys.telephoneQuestion.tr(),
+                    fontWeight: FontWeight.w400,
+                    textColor: APPLICATION_COLOR.GOLD,
+                  ),
+                  SizedBox(
+                    height: 40,
+                    child: RoundedTextField(
+                        key: const Key("telephone"),
+                        newText: (newText) => value.telephone = newText),
+                  ),
+                  Gap(context.largeSpacerSize),
+                  LabelText(
+                    text: LocaleKeys.mailQuestion.tr(),
+                    fontWeight: FontWeight.w400,
+                    textColor: APPLICATION_COLOR.GOLD,
+                  ),
+                  SizedBox(
+                    height: 40,
+                    child: RoundedTextField(
+                        key: const Key("mailAdress"),
+                        newText: (newText) => value.mailAdress = newText),
+                  ),
+                  Gap(context.largeSpacerSize),
+                  SizedBox(
+                    height: 40,
+                    child: NormalButton(
+                      backgroundColor: APPLICATION_COLOR.GOLD,
+                      onTap: () => value.apply(),
+                      textColor: APPLICATION_COLOR.LIGHT,
+                      text: LocaleKeys.send.tr(),
+                    ),
+                  ),
+                  Gap(context.largeSpacerSize),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LabelText(text: "Zaten partner misin?"),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => value.login(),
+                          child: LabelText(
+                            text: " Giriş Yap",
+                            textColor: APPLICATION_COLOR.GOLD,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ))
+      ],
+    );
+  }
+
+  Widget phoneView(BuildContext context, LeadApplyViewModel value) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
+            child: SizedBox(
+              height: context.sHeight,
+              child: NormalNetworkImage(
+                  fit: BoxFit.cover,
+                  source:
+                      "https://parametric-architecture.com/wp-content/uploads/2023/05/Tim-Fu-AI-3.jpg"),
+            ),
+          ),
+          Container(
+            padding: context.xlargeSpacerOnlyHorizontal,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    padding: context.midSpacerOnlyBottom,
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                width: 1.5,
+                                color:
+                                    context.toColor(APPLICATION_COLOR.GOLD)))),
+                    child: LabelText(
+                      text: "Başvuru Yap",
+                      fontSize: FONT_SIZE.HEADLINE_LARGE,
+                      fontWeight: FontWeight.bold,
+                    )),
+                Gap(context.midSpacerSize),
+                LabelText(
+                  text:
+                      "Merak ettiğiniz her konu hakkında lütfen bize yazın. Temsilcimiz en kısa sürede size geri dönüş sağlayacaktır.",
+                  fontSize: FONT_SIZE.LABEL_LARGE,
+                  fontWeight: FontWeight.w400,
+                ),
+                Gap(context.veryLargeSpacerSize),
+                LabelText(
+                  text: LocaleKeys.nameSurnameQuestion.tr(),
+                  textColor: APPLICATION_COLOR.GOLD,
+                  fontWeight: FontWeight.w400,
+                ),
+                SizedBox(
+                  height: 40,
+                  child: RoundedTextField(
+                      key: const Key("fullName"),
+                      newText: (newText) => value.fullName = newText),
+                ),
+                Gap(context.largeSpacerSize),
+                LabelText(
+                  text: LocaleKeys.telephoneQuestion.tr(),
+                  fontWeight: FontWeight.w400,
+                  textColor: APPLICATION_COLOR.GOLD,
+                ),
+                SizedBox(
+                  height: 40,
+                  child: RoundedTextField(
+                      key: const Key("telephone"),
+                      newText: (newText) => value.telephone = newText),
+                ),
+                Gap(context.largeSpacerSize),
+                LabelText(
+                  text: LocaleKeys.mailQuestion.tr(),
+                  fontWeight: FontWeight.w400,
+                  textColor: APPLICATION_COLOR.GOLD,
+                ),
+                SizedBox(
+                  height: 40,
+                  child: RoundedTextField(
+                      key: const Key("mailAdress"),
+                      newText: (newText) => value.mailAdress = newText),
+                ),
+                Gap(context.largeSpacerSize),
+                SizedBox(
+                  height: 40,
+                  child: NormalButton(
+                    backgroundColor: APPLICATION_COLOR.GOLD,
+                    onTap: () => value.apply(),
+                    textColor: APPLICATION_COLOR.LIGHT,
+                    text: LocaleKeys.send.tr(),
+                  ),
+                ),
+                Gap(context.largeSpacerSize),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LabelText(text: "Zaten partner misin?"),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => value.login(),
+                        child: LabelText(
+                          text: " Giriş Yap",
+                          textColor: APPLICATION_COLOR.GOLD,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Gap(context.largeSpacerSize),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 
 class ProjectListWidget extends StatefulWidget {
@@ -25,7 +26,8 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
         alignment: Alignment.center,
         children: [
           SizedBox(
-            width: (context.sWidth / 10) * 3,
+            width: isTablet() ? context.sHeight * .25 * 1.77 : context.sWidth,
+            height: isTablet() ? context.sHeight * .25 : context.sWidth / 1.777,
             child: NormalNetworkImage(
                 fit: BoxFit.cover,
                 alignment: Alignment.centerLeft,

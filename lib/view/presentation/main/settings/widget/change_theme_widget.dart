@@ -32,46 +32,54 @@ class ChangeThemeWidget extends StatelessWidget {
               children: [
                 LabelText(text: context.tr("changeTheme")),
                 Gap(context.largeSpacerSize),
-                GestureDetector(
-                  onTap: () => context.read<ThemeNotifier>().setDarkTheme(),
-                  child: Container(
-                    color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                    width: isTablet() ? size.width / 2 : size.width - 30,
-                    padding: context.midSpacer,
-                    child: Row(
-                      children: [
-                        context.watch<ThemeNotifier>().appTheme ==
-                                APP_THEME.DARK
-                            ? const Icon(Icons.check)
-                            : const SizedBox.shrink(),
-                        context.watch<ThemeNotifier>().appTheme ==
-                                APP_THEME.DARK
-                            ? Gap(context.midSpacerSize)
-                            : const SizedBox.shrink(),
-                        LabelText(text: context.tr("darkTheme")),
-                      ],
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => context.read<ThemeNotifier>().setDarkTheme(),
+                    child: Container(
+                      color:
+                          context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      width: isTablet() ? size.width / 2 : size.width - 30,
+                      padding: context.midSpacer,
+                      child: Row(
+                        children: [
+                          context.watch<ThemeNotifier>().appTheme ==
+                                  APP_THEME.DARK
+                              ? const Icon(Icons.check)
+                              : const SizedBox.shrink(),
+                          context.watch<ThemeNotifier>().appTheme ==
+                                  APP_THEME.DARK
+                              ? Gap(context.midSpacerSize)
+                              : const SizedBox.shrink(),
+                          LabelText(text: context.tr("darkTheme")),
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 Gap(context.midSpacerSize),
-                GestureDetector(
-                  onTap: () => context.read<ThemeNotifier>().setLightTheme(),
-                  child: Container(
-                    color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                    width: isTablet() ? size.width / 2 : size.width - 30,
-                    padding: context.midSpacer,
-                    child: Row(
-                      children: [
-                        context.watch<ThemeNotifier>().appTheme ==
-                                APP_THEME.LIGHT
-                            ? const Icon(Icons.check)
-                            : const SizedBox.shrink(),
-                        context.watch<ThemeNotifier>().appTheme ==
-                                APP_THEME.LIGHT
-                            ? Gap(context.midSpacerSize)
-                            : const SizedBox.shrink(),
-                        LabelText(text: context.tr("lightTheme")),
-                      ],
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => context.read<ThemeNotifier>().setLightTheme(),
+                    child: Container(
+                      color:
+                          context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      width: isTablet() ? size.width / 2 : size.width - 30,
+                      padding: context.midSpacer,
+                      child: Row(
+                        children: [
+                          context.watch<ThemeNotifier>().appTheme ==
+                                  APP_THEME.LIGHT
+                              ? const Icon(Icons.check)
+                              : const SizedBox.shrink(),
+                          context.watch<ThemeNotifier>().appTheme ==
+                                  APP_THEME.LIGHT
+                              ? Gap(context.midSpacerSize)
+                              : const SizedBox.shrink(),
+                          LabelText(text: context.tr("lightTheme")),
+                        ],
+                      ),
                     ),
                   ),
                 ),

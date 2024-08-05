@@ -60,7 +60,6 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
               ),
               Container(
                 height: context.sWidth,
-                margin: EdgeInsets.only(left: ((context.sWidth / 10) * 3)),
                 width: (context.sWidth),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -90,7 +89,6 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
         Padding(
           padding: context.xlargeSpacerOnlyHorizontal,
           child: Container(
-            margin: EdgeInsets.only(left: (context.sWidth / 10) * 3),
             width: context.sWidth / 3,
             height: context.sHeight,
             child: Column(
@@ -230,27 +228,30 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: GestureDetector(
-              onTap: () => widget.onExploreTap(),
-              child: Container(
-                width: context.sWidth / 2,
-                height: 60,
-                margin: context.xLargeSpacerOnlyBottom,
-                decoration: BoxDecoration(
-                  color: context
-                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                      .withAlpha(200),
-                ),
-                padding: context.largeSpacerOnlyHorizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    LabelText(
-                      text: LocaleKeys.explore.tr(),
-                      fontSize: FONT_SIZE.TITLE_LARGE,
-                    ),
-                    const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
-                  ],
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => widget.onExploreTap(),
+                child: Container(
+                  width: context.sWidth / 2,
+                  height: 60,
+                  margin: context.xLargeSpacerOnlyBottom,
+                  decoration: BoxDecoration(
+                    color: context
+                        .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                        .withAlpha(200),
+                  ),
+                  padding: context.largeSpacerOnlyHorizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      LabelText(
+                        text: LocaleKeys.explore.tr(),
+                        fontSize: FONT_SIZE.TITLE_LARGE,
+                      ),
+                      const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
+                    ],
+                  ),
                 ),
               ),
             ),

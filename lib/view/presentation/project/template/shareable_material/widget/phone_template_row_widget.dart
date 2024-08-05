@@ -48,10 +48,13 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                 ),
               ),
               Gap(context.smallSpacerSize),
-              GestureDetector(
-                  onTap: () =>
-                      share(gallery, context.findRenderObject() as RenderBox?),
-                  child: const Icon(Icons.link))
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                    onTap: () => share(
+                        gallery, context.findRenderObject() as RenderBox?),
+                    child: const Icon(Icons.link)),
+              )
             ],
           ),
           isFullView
@@ -61,39 +64,45 @@ class PhoneTemplateRowWidget extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: gallery.length,
                   itemBuilder: ((c, index) {
-                    return GestureDetector(
-                      onTap: () => share([gallery[index]],
-                          context.findRenderObject() as RenderBox?),
-                      child: Column(
-                        children: [
-                          index == 0
-                              ? Gap(context.largeSpacerSize)
-                              : const SizedBox.shrink(),
-                          Gap(context.largeSpacerSize),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: LabelText(
-                                    textColor: APPLICATION_COLOR.SUBTITLE,
-                                    text: gallery[index].media.oldFileName),
-                              ),
-                              GestureDetector(
-                                  onTap: () =>
-                                      openLink(gallery[index].media.url),
-                                  child: const Icon(Icons.remove_red_eye)),
-                              Gap(context.midSpacerSize),
-                              const Icon(Icons.link)
-                            ],
-                          ),
-                          Gap(context.largeSpacerSize),
-                          Container(
-                            height: .3,
-                            color: context
-                                .toColor(
-                                    APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR)
-                                .withAlpha(150),
-                          )
-                        ],
+                    return MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => share([gallery[index]],
+                            context.findRenderObject() as RenderBox?),
+                        child: Column(
+                          children: [
+                            index == 0
+                                ? Gap(context.largeSpacerSize)
+                                : const SizedBox.shrink(),
+                            Gap(context.largeSpacerSize),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: LabelText(
+                                      textColor: APPLICATION_COLOR.SUBTITLE,
+                                      text: gallery[index].media.oldFileName),
+                                ),
+                                MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                      onTap: () =>
+                                          openLink(gallery[index].media.url),
+                                      child: const Icon(Icons.remove_red_eye)),
+                                ),
+                                Gap(context.midSpacerSize),
+                                const Icon(Icons.link)
+                              ],
+                            ),
+                            Gap(context.largeSpacerSize),
+                            Container(
+                              height: .3,
+                              color: context
+                                  .toColor(
+                                      APPLICATION_COLOR.CLOSE_BACKGROUND_COLOR)
+                                  .withAlpha(150),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }),

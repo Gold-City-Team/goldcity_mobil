@@ -15,12 +15,15 @@ class NormalAppBar extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          GestureDetector(
-              onTap: backPressed,
-              child: const Icon(
-                Icons.arrow_back_ios_new_sharp,
-                size: 28,
-              )),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+                onTap: backPressed,
+                child: const Icon(
+                  Icons.arrow_back_ios_new_sharp,
+                  size: 28,
+                )),
+          ),
           Gap(context.largeSpacerSize),
           title.isNotEmpty
               ? LabelText(

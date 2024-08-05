@@ -12,20 +12,23 @@ class VideoPlayerSelfController extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 60,
-      child: GestureDetector(
-        onTap: () => onTap(),
-        child: CircleAvatar(
-          backgroundColor: context.toColor(APPLICATION_COLOR.LIGHT),
-          maxRadius: 28,
-          child: isPlaying
-              ? Icon(
-                  color: context.toColor(APPLICATION_COLOR.GOLD),
-                  Icons.pause,
-                )
-              : Icon(
-                  color: context.toColor(APPLICATION_COLOR.GOLD),
-                  Icons.play_arrow,
-                ),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => onTap(),
+          child: CircleAvatar(
+            backgroundColor: context.toColor(APPLICATION_COLOR.LIGHT),
+            maxRadius: 28,
+            child: isPlaying
+                ? Icon(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    Icons.pause,
+                  )
+                : Icon(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    Icons.play_arrow,
+                  ),
+          ),
         ),
       ),
     );

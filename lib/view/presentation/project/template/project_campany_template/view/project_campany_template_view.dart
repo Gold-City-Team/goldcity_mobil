@@ -135,21 +135,24 @@ class ProjectCampanyTemplateView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                            GestureDetector(
-                              onTap: () => value.changeSelectedIndex(index),
-                              child: Container(
-                                height: 150,
-                                width: 199.95,
-                                decoration: BoxDecoration(
-                                    border: value.selectedIndex == index
-                                        ? Border.all(
-                                            color: context.toColor(
-                                                APPLICATION_COLOR.GOLD))
-                                        : null),
-                                child: NormalNetworkImage(
-                                    fit: BoxFit.contain,
-                                    source: value.templateNine!.campaigns[index]
-                                        .mainImage.url),
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () => value.changeSelectedIndex(index),
+                                child: Container(
+                                  height: 150,
+                                  width: 199.95,
+                                  decoration: BoxDecoration(
+                                      border: value.selectedIndex == index
+                                          ? Border.all(
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.GOLD))
+                                          : null),
+                                  child: NormalNetworkImage(
+                                      fit: BoxFit.contain,
+                                      source: value.templateNine!
+                                          .campaigns[index].mainImage.url),
+                                ),
                               ),
                             ),
                             Gap(context.largeSpacerSize)
@@ -300,27 +303,30 @@ class ProjectCampanyTemplateView extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     return Row(
                                       children: [
-                                        GestureDetector(
-                                          onTap: () =>
-                                              value.changeSelectedIndex(index),
-                                          child: Container(
-                                            height: 150,
-                                            width: 199.95,
-                                            decoration: BoxDecoration(
-                                                border: value.selectedIndex ==
-                                                        index
-                                                    ? Border.all(
-                                                        color: context.toColor(
-                                                            APPLICATION_COLOR
-                                                                .GOLD))
-                                                    : null),
-                                            child: NormalNetworkImage(
-                                                fit: BoxFit.contain,
-                                                source: value
-                                                    .templateNine!
-                                                    .campaigns[index]
-                                                    .mainImage
-                                                    .url),
+                                        MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                            onTap: () => value
+                                                .changeSelectedIndex(index),
+                                            child: Container(
+                                              height: 150,
+                                              width: 199.95,
+                                              decoration: BoxDecoration(
+                                                  border: value.selectedIndex ==
+                                                          index
+                                                      ? Border.all(
+                                                          color: context.toColor(
+                                                              APPLICATION_COLOR
+                                                                  .GOLD))
+                                                      : null),
+                                              child: NormalNetworkImage(
+                                                  fit: BoxFit.contain,
+                                                  source: value
+                                                      .templateNine!
+                                                      .campaigns[index]
+                                                      .mainImage
+                                                      .url),
+                                            ),
                                           ),
                                         ),
                                         Gap(context.largeSpacerSize)

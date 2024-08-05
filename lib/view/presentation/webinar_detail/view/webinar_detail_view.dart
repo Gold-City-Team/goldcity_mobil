@@ -51,16 +51,19 @@ class WebinarDetailView extends StatelessWidget {
               Column(
                 children: [
                   Gap(context.midSpacerSize),
-                  GestureDetector(
-                    onTap: () => context.pop(),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      margin: context.largeSpacerOnlyHorizontal,
-                      decoration: BoxDecoration(
-                          color: context.toColor(APPLICATION_COLOR.GOLD),
-                          borderRadius: context.midRadius),
-                      child: const Icon(Icons.keyboard_arrow_left),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => context.pop(),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        margin: context.largeSpacerOnlyHorizontal,
+                        decoration: BoxDecoration(
+                            color: context.toColor(APPLICATION_COLOR.GOLD),
+                            borderRadius: context.midRadius),
+                        child: const Icon(Icons.keyboard_arrow_left),
+                      ),
                     ),
                   ),
                 ],
@@ -118,16 +121,19 @@ class WebinarDetailView extends StatelessWidget {
         Column(
           children: [
             Gap(context.midSpacerSize),
-            GestureDetector(
-              onTap: () => context.pop(),
-              child: Container(
-                width: 50,
-                height: 50,
-                margin: context.largeSpacerOnlyHorizontal,
-                decoration: BoxDecoration(
-                    color: context.toColor(APPLICATION_COLOR.GOLD),
-                    borderRadius: context.midRadius),
-                child: const Icon(Icons.keyboard_arrow_left),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => context.pop(),
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  margin: context.largeSpacerOnlyHorizontal,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                      borderRadius: context.midRadius),
+                  child: const Icon(Icons.keyboard_arrow_left),
+                ),
               ),
             ),
           ],

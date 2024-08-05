@@ -38,17 +38,20 @@ class AnnouncementView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gap(context.midSpacerSize),
-            GestureDetector(
-              onTap: () =>
-                  value.showDetail ? value.toggleShowDetail() : context.pop(),
-              child: Container(
-                width: 50,
-                height: 50,
-                margin: context.midSpacerOnlyLeft,
-                decoration: BoxDecoration(
-                    color: context.toColor(APPLICATION_COLOR.GOLD),
-                    borderRadius: context.midRadius),
-                child: const Icon(Icons.keyboard_arrow_left),
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () =>
+                    value.showDetail ? value.toggleShowDetail() : context.pop(),
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  margin: context.midSpacerOnlyLeft,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                      borderRadius: context.midRadius),
+                  child: const Icon(Icons.keyboard_arrow_left),
+                ),
               ),
             ),
             Gap(context.midSpacerSize),
@@ -79,17 +82,20 @@ class AnnouncementView extends StatelessWidget {
                                     itemCount: value.detail!.attachments.length,
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () => launchUrl(Uri.parse(value
-                                            .detail!
-                                            .attachments[index]
-                                            .file
-                                            .url)),
-                                        child: Container(
-                                          margin: context.midSpacerOnlyRight,
-                                          child: FileIconWidget(
-                                              file: value
-                                                  .detail!.attachments[index]),
+                                      return MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () => launchUrl(Uri.parse(value
+                                              .detail!
+                                              .attachments[index]
+                                              .file
+                                              .url)),
+                                          child: Container(
+                                            margin: context.midSpacerOnlyRight,
+                                            child: FileIconWidget(
+                                                file: value.detail!
+                                                    .attachments[index]),
+                                          ),
                                         ),
                                       );
                                     }),
@@ -109,46 +115,50 @@ class AnnouncementView extends StatelessWidget {
                           padding: context.midSpacerOnlyHorizontal,
                           itemCount: value.entity!.length,
                           itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () => {
-                                value.toggleShowDetail(),
-                                value.changeSelectedIndex(
-                                    value.entity![index].id)
-                              },
-                              child: Column(
-                                children: [
-                                  Container(
-                                    padding: context.midSpacer,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .EXTRA_CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(50),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        LabelText(
-                                          text: value.entity![index].title,
-                                          fontSize: FONT_SIZE.TITLE_LARGE,
-                                          fontWeight: FontWeight.bold,
-                                          textColor:
-                                              APPLICATION_COLOR.OPPOSITE_COLOR,
-                                        ),
-                                        Gap(context.largeSpacerSize),
-                                        LabelText(
-                                          text:
-                                              value.entity![index].description,
-                                          maxLines: 2,
-                                          textColor: APPLICATION_COLOR.SUBTITLE,
-                                          fontSize: FONT_SIZE.LABEL_MEDIUM,
-                                        ),
-                                      ],
+                            return MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () => {
+                                  value.toggleShowDetail(),
+                                  value.changeSelectedIndex(
+                                      value.entity![index].id)
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: context.midSpacer,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR
+                                              .EXTRA_CLOSE_BACKGROUND_COLOR)
+                                          .withAlpha(50),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          LabelText(
+                                            text: value.entity![index].title,
+                                            fontSize: FONT_SIZE.TITLE_LARGE,
+                                            fontWeight: FontWeight.bold,
+                                            textColor: APPLICATION_COLOR
+                                                .OPPOSITE_COLOR,
+                                          ),
+                                          Gap(context.largeSpacerSize),
+                                          LabelText(
+                                            text: value
+                                                .entity![index].description,
+                                            maxLines: 2,
+                                            textColor:
+                                                APPLICATION_COLOR.SUBTITLE,
+                                            fontSize: FONT_SIZE.LABEL_MEDIUM,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Gap(context.midSpacerSize),
-                                ],
+                                    Gap(context.midSpacerSize),
+                                  ],
+                                ),
                               ),
                             );
                           }),
@@ -167,15 +177,18 @@ class AnnouncementView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gap(context.largeSpacerSize),
-          GestureDetector(
-            onTap: () => context.pop(),
-            child: Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                  color: context.toColor(APPLICATION_COLOR.GOLD),
-                  borderRadius: context.midRadius),
-              child: const Icon(Icons.keyboard_arrow_left),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => context.pop(),
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    borderRadius: context.midRadius),
+                child: const Icon(Icons.keyboard_arrow_left),
+              ),
             ),
           ),
           Gap(context.midSpacerSize),
@@ -192,45 +205,50 @@ class AnnouncementView extends StatelessWidget {
                       return ListView.builder(
                         itemCount: value.entity!.length,
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () => value
-                                .changeSelectedIndex(value.entity![index].id),
-                            child: Column(
-                              children: [
-                                Container(
-                                  padding: context.midSpacer,
-                                  margin: context.midSpacerOnlyRight,
-                                  color: context
-                                      .toColor(APPLICATION_COLOR
-                                          .EXTRA_CLOSE_BACKGROUND_COLOR)
-                                      .withAlpha(value.selectedIndex ==
-                                              value.entity![index].id
-                                          ? 255
-                                          : 50),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      LabelText(
-                                        text: value.entity![index].title,
-                                        fontSize: FONT_SIZE.TITLE_MEDIUM,
-                                        fontWeight: FontWeight.bold,
-                                        textColor:
-                                            APPLICATION_COLOR.OPPOSITE_COLOR,
-                                      ),
-                                      Gap(context.largeSpacerSize),
-                                      LabelText(
-                                        text: value.entity![index].description,
-                                        maxLines: 2,
-                                        textColor: APPLICATION_COLOR.SUBTITLE,
-                                        fontSize: FONT_SIZE.LABEL_MEDIUM,
-                                      ),
-                                    ],
+                          return MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value
+                                  .changeSelectedIndex(value.entity![index].id),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: context.midSpacer,
+                                    margin: context.midSpacerOnlyRight,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR
+                                            .EXTRA_CLOSE_BACKGROUND_COLOR)
+                                        .withAlpha(value.selectedIndex ==
+                                                value.entity![index].id
+                                            ? 255
+                                            : 50),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        LabelText(
+                                          text: value.entity![index].title,
+                                          fontSize: FONT_SIZE.TITLE_MEDIUM,
+                                          fontWeight: FontWeight.bold,
+                                          textColor:
+                                              APPLICATION_COLOR.OPPOSITE_COLOR,
+                                        ),
+                                        Gap(context.largeSpacerSize),
+                                        LabelText(
+                                          text:
+                                              value.entity![index].description,
+                                          maxLines: 2,
+                                          textColor: APPLICATION_COLOR.SUBTITLE,
+                                          fontSize: FONT_SIZE.LABEL_MEDIUM,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Gap(context.largeSpacerSize),
-                              ],
+                                  Gap(context.largeSpacerSize),
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -274,17 +292,19 @@ class AnnouncementView extends StatelessWidget {
                                           value.detail!.attachments.length,
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () => launchUrl(Uri.parse(value
-                                              .detail!
-                                              .attachments[index]
-                                              .file
-                                              .url)),
-                                          child: Container(
-                                            margin: context.midSpacerOnlyRight,
-                                            child: FileIconWidget(
-                                                file: value.detail!
-                                                    .attachments[index]),
+                                        return MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                            onTap: () => launchUrl(Uri.parse(
+                                                value.detail!.attachments[index]
+                                                    .file.url)),
+                                            child: Container(
+                                              margin:
+                                                  context.midSpacerOnlyRight,
+                                              child: FileIconWidget(
+                                                  file: value.detail!
+                                                      .attachments[index]),
+                                            ),
                                           ),
                                         );
                                       }),

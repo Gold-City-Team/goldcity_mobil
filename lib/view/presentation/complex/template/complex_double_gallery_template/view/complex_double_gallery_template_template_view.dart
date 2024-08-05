@@ -127,48 +127,55 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                     padding: context.largeSpacerOnlyHorizontal,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => value.navigateGallery(index, false),
-                        child: Container(
-                            width: 125 * 1.7777,
-                            height: 125,
-                            margin:
-                                value.templateEntity!.galleries.length - 1 !=
-                                        index
-                                    ? context.largeSpacerOnlyRight
-                                    : EdgeInsets.zero,
-                            child:
-                                Stack(alignment: Alignment.center, children: [
-                              SizedBox(
-                                width: 125 * 1.7777,
-                                height: 125,
-                                child: NormalNetworkImage(
-                                    fit: BoxFit.cover,
-                                    source: value
-                                                .templateEntity!
-                                                .galleries[index]
-                                                .media
-                                                .mediaType ==
-                                            MEDIA_TYPE.VIDEO
-                                        ? value.templateEntity!.galleries[index]
-                                            .media.mediaMetaData.thumbnail
-                                        : value.templateEntity!.galleries[index]
-                                            .media.url),
-                              ),
-                              value.templateEntity!.galleries[index].media
-                                          .mediaType ==
-                                      MEDIA_TYPE.VIDEO
-                                  ? Container(
-                                      width: 40,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.GOLD),
-                                          borderRadius: context.largeRadius),
-                                      child: const Icon(Icons.play_arrow),
-                                    )
-                                  : const SizedBox.shrink()
-                            ])),
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => value.navigateGallery(index, false),
+                          child: Container(
+                              width: 125 * 1.7777,
+                              height: 125,
+                              margin:
+                                  value.templateEntity!.galleries.length - 1 !=
+                                          index
+                                      ? context.largeSpacerOnlyRight
+                                      : EdgeInsets.zero,
+                              child:
+                                  Stack(alignment: Alignment.center, children: [
+                                SizedBox(
+                                  width: 125 * 1.7777,
+                                  height: 125,
+                                  child: NormalNetworkImage(
+                                      fit: BoxFit.cover,
+                                      source: value
+                                                  .templateEntity!
+                                                  .galleries[index]
+                                                  .media
+                                                  .mediaType ==
+                                              MEDIA_TYPE.VIDEO
+                                          ? value
+                                              .templateEntity!
+                                              .galleries[index]
+                                              .media
+                                              .mediaMetaData
+                                              .thumbnail
+                                          : value.templateEntity!
+                                              .galleries[index].media.url),
+                                ),
+                                value.templateEntity!.galleries[index].media
+                                            .mediaType ==
+                                        MEDIA_TYPE.VIDEO
+                                    ? Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.GOLD),
+                                            borderRadius: context.largeRadius),
+                                        child: const Icon(Icons.play_arrow),
+                                      )
+                                    : const SizedBox.shrink()
+                              ])),
+                        ),
                       );
                     }),
               ),
@@ -196,41 +203,44 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                   runSpacing: 10,
                   children: value.templateEntity!.verticalGalleries
                       .map(
-                        (e) => GestureDetector(
-                          onTap: () => value.navigateGallery(
-                              value.templateEntity!.verticalGalleries
-                                  .indexWhere((element) => element == e),
-                              true),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              SizedBox(
-                                width: (context.sWidth / 3) - 20,
-                                height: ((context.sWidth / 3) * 1.7777) - 20,
-                                child: Container(
-                                  color:
-                                      context.toColor(APPLICATION_COLOR.DARK),
-                                  child: NormalNetworkImage(
-                                    fit: BoxFit.cover,
-                                    source:
-                                        e.media.mediaType == MEDIA_TYPE.IMAGE
-                                            ? e.media.url
-                                            : e.media.mediaMetaData.thumbnail,
-                                  ),
-                                ).animate().fade(),
-                              ),
-                              e.media.mediaType == MEDIA_TYPE.VIDEO
-                                  ? Container(
-                                      width: 40,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.GOLD),
-                                          borderRadius: context.largeRadius),
-                                      child: const Icon(Icons.play_arrow),
-                                    )
-                                  : const SizedBox.shrink()
-                            ],
+                        (e) => MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => value.navigateGallery(
+                                value.templateEntity!.verticalGalleries
+                                    .indexWhere((element) => element == e),
+                                true),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                SizedBox(
+                                  width: (context.sWidth / 3) - 20,
+                                  height: ((context.sWidth / 3) * 1.7777) - 20,
+                                  child: Container(
+                                    color:
+                                        context.toColor(APPLICATION_COLOR.DARK),
+                                    child: NormalNetworkImage(
+                                      fit: BoxFit.cover,
+                                      source:
+                                          e.media.mediaType == MEDIA_TYPE.IMAGE
+                                              ? e.media.url
+                                              : e.media.mediaMetaData.thumbnail,
+                                    ),
+                                  ).animate().fade(),
+                                ),
+                                e.media.mediaType == MEDIA_TYPE.VIDEO
+                                    ? Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.GOLD),
+                                            borderRadius: context.largeRadius),
+                                        child: const Icon(Icons.play_arrow),
+                                      )
+                                    : const SizedBox.shrink()
+                              ],
+                            ),
                           ),
                         ),
                       )
@@ -329,64 +339,68 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                                   padding: context.largeSpacerOnlyHorizontal,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () =>
-                                          value.navigateGallery(index, false),
-                                      child: Container(
-                                        width: 150 * 1.7777,
-                                        height: 150,
-                                        margin: value.templateEntity!.galleries
-                                                        .length -
-                                                    1 !=
-                                                index
-                                            ? context.largeSpacerOnlyRight
-                                            : EdgeInsets.zero,
-                                        child: Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width: 150 * 1.7777,
-                                              height: 150,
-                                              child: NormalNetworkImage(
-                                                  fit: BoxFit.cover,
-                                                  source: value
-                                                              .templateEntity!
-                                                              .galleries[index]
-                                                              .media
-                                                              .mediaType ==
-                                                          MEDIA_TYPE.VIDEO
-                                                      ? value
+                                    return MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () =>
+                                            value.navigateGallery(index, false),
+                                        child: Container(
+                                          width: 150 * 1.7777,
+                                          height: 150,
+                                          margin: value.templateEntity!
+                                                          .galleries.length -
+                                                      1 !=
+                                                  index
+                                              ? context.largeSpacerOnlyRight
+                                              : EdgeInsets.zero,
+                                          child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: 150 * 1.7777,
+                                                height: 150,
+                                                child: NormalNetworkImage(
+                                                    fit: BoxFit.cover,
+                                                    source: value
+                                                                .templateEntity!
+                                                                .galleries[
+                                                                    index]
+                                                                .media
+                                                                .mediaType ==
+                                                            MEDIA_TYPE.VIDEO
+                                                        ? value
+                                                            .templateEntity!
+                                                            .galleries[index]
+                                                            .media
+                                                            .mediaMetaData
+                                                            .thumbnail
+                                                        : value
+                                                            .templateEntity!
+                                                            .galleries[index]
+                                                            .media
+                                                            .url),
+                                              ),
+                                              value
                                                           .templateEntity!
                                                           .galleries[index]
                                                           .media
-                                                          .mediaMetaData
-                                                          .thumbnail
-                                                      : value
-                                                          .templateEntity!
-                                                          .galleries[index]
-                                                          .media
-                                                          .url),
-                                            ),
-                                            value
-                                                        .templateEntity!
-                                                        .galleries[index]
-                                                        .media
-                                                        .mediaType ==
-                                                    MEDIA_TYPE.VIDEO
-                                                ? Container(
-                                                    width: 40,
-                                                    height: 40,
-                                                    decoration: BoxDecoration(
-                                                        color: context.toColor(
-                                                            APPLICATION_COLOR
-                                                                .GOLD),
-                                                        borderRadius: context
-                                                            .largeRadius),
-                                                    child: const Icon(
-                                                        Icons.play_arrow),
-                                                  )
-                                                : const SizedBox.shrink()
-                                          ],
+                                                          .mediaType ==
+                                                      MEDIA_TYPE.VIDEO
+                                                  ? Container(
+                                                      width: 40,
+                                                      height: 40,
+                                                      decoration: BoxDecoration(
+                                                          color: context.toColor(
+                                                              APPLICATION_COLOR
+                                                                  .GOLD),
+                                                          borderRadius: context
+                                                              .largeRadius),
+                                                      child: const Icon(
+                                                          Icons.play_arrow),
+                                                    )
+                                                  : const SizedBox.shrink()
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     );
@@ -447,60 +461,64 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: context.midSpacerOnlyRight,
-                          child: GestureDetector(
-                            onTap: () => value.navigateGallery(
-                                value.templateEntity!.verticalGalleries
-                                    .indexWhere((element) =>
-                                        element ==
-                                        value.templateEntity!
-                                            .verticalGalleries[index]),
-                                true),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                SizedBox(
-                                  width: (context.sWidth / 4.5) - 20,
-                                  height:
-                                      ((context.sWidth / 4.5) * 1.7777) - 20,
-                                  child: Container(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.DARK),
-                                    child: NormalNetworkImage(
-                                      fit: BoxFit.cover,
-                                      source: value
-                                                  .templateEntity!
-                                                  .verticalGalleries[index]
-                                                  .media
-                                                  .mediaType ==
-                                              MEDIA_TYPE.IMAGE
-                                          ? value
-                                              .templateEntity!
-                                              .verticalGalleries[index]
-                                              .media
-                                              .url
-                                          : value
-                                              .templateEntity!
-                                              .verticalGalleries[index]
-                                              .media
-                                              .mediaMetaData
-                                              .thumbnail,
-                                    ),
-                                  ).animate().fade(),
-                                ),
-                                value.templateEntity!.verticalGalleries[index]
-                                            .media.mediaType ==
-                                        MEDIA_TYPE.VIDEO
-                                    ? Container(
-                                        width: 40,
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: context.toColor(
-                                                APPLICATION_COLOR.GOLD),
-                                            borderRadius: context.largeRadius),
-                                        child: const Icon(Icons.play_arrow),
-                                      )
-                                    : const SizedBox.shrink()
-                              ],
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.navigateGallery(
+                                  value.templateEntity!.verticalGalleries
+                                      .indexWhere((element) =>
+                                          element ==
+                                          value.templateEntity!
+                                              .verticalGalleries[index]),
+                                  true),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: (context.sWidth / 4.5) - 20,
+                                    height:
+                                        ((context.sWidth / 4.5) * 1.7777) - 20,
+                                    child: Container(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                      child: NormalNetworkImage(
+                                        fit: BoxFit.cover,
+                                        source: value
+                                                    .templateEntity!
+                                                    .verticalGalleries[index]
+                                                    .media
+                                                    .mediaType ==
+                                                MEDIA_TYPE.IMAGE
+                                            ? value
+                                                .templateEntity!
+                                                .verticalGalleries[index]
+                                                .media
+                                                .url
+                                            : value
+                                                .templateEntity!
+                                                .verticalGalleries[index]
+                                                .media
+                                                .mediaMetaData
+                                                .thumbnail,
+                                      ),
+                                    ).animate().fade(),
+                                  ),
+                                  value.templateEntity!.verticalGalleries[index]
+                                              .media.mediaType ==
+                                          MEDIA_TYPE.VIDEO
+                                      ? Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.GOLD),
+                                              borderRadius:
+                                                  context.largeRadius),
+                                          child: const Icon(Icons.play_arrow),
+                                        )
+                                      : const SizedBox.shrink()
+                                ],
+                              ),
                             ),
                           ),
                         );

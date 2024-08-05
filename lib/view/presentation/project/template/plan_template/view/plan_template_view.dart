@@ -52,18 +52,22 @@ class PlanTemplateView extends StatelessWidget {
                   itemCount: value.template!.gallery.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: ((context, index) {
-                    return GestureDetector(
-                      onTap: () => value.navigateToGallery(index),
-                      child: Container(
-                        margin: context.midSpacerOnlyHorizontal,
-                        width: (context.sWidth / 3) - 20,
-                        height: ((context.sWidth / 3) - 20) / 1.7777,
+                    return MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => value.navigateToGallery(index),
                         child: Container(
-                          color: context.toColor(APPLICATION_COLOR.DARK),
-                          child: NormalNetworkImage(
-                              fit: BoxFit.cover,
-                              source: value.template!.gallery[index].media.url),
-                        ).animate().fade(),
+                          margin: context.midSpacerOnlyHorizontal,
+                          width: (context.sWidth / 3) - 20,
+                          height: ((context.sWidth / 3) - 20) / 1.7777,
+                          child: Container(
+                            color: context.toColor(APPLICATION_COLOR.DARK),
+                            child: NormalNetworkImage(
+                                fit: BoxFit.cover,
+                                source:
+                                    value.template!.gallery[index].media.url),
+                          ).animate().fade(),
+                        ),
                       ),
                     );
                   }),
@@ -108,15 +112,18 @@ class PlanTemplateView extends StatelessWidget {
 
                               return Container(
                                 margin: context.midSpacerOnlyBottom,
-                                child: GestureDetector(
-                                  onTap: () => value.toggleFullViewItemIndex(
-                                      "$floor${value.template!.homes[index].number}"),
-                                  child: RowWidget(
-                                      home: homesByFloor,
-                                      isFullView: value.fullViewItemIndex.any(
-                                          (element) =>
-                                              element ==
-                                              "$floor${value.template!.homes[index].number}")),
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => value.toggleFullViewItemIndex(
+                                        "$floor${value.template!.homes[index].number}"),
+                                    child: RowWidget(
+                                        home: homesByFloor,
+                                        isFullView: value.fullViewItemIndex.any(
+                                            (element) =>
+                                                element ==
+                                                "$floor${value.template!.homes[index].number}")),
+                                  ),
                                 ),
                               );
                             }).toList(),
@@ -151,18 +158,22 @@ class PlanTemplateView extends StatelessWidget {
                   itemCount: 10,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: ((context, index) {
-                    return GestureDetector(
-                      onTap: () => value.navigateToGallery(index),
-                      child: Container(
-                        margin: context.midSpacerOnlyHorizontal,
-                        width: (context.sWidth / 1.10) - 20,
-                        height: ((context.sWidth / 1.10) - 20) / 1.7777,
+                    return MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => value.navigateToGallery(index),
                         child: Container(
-                          color: context.toColor(APPLICATION_COLOR.DARK),
-                          child: NormalNetworkImage(
-                              fit: BoxFit.cover,
-                              source: value.template!.gallery[index].media.url),
-                        ).animate().fade(),
+                          margin: context.midSpacerOnlyHorizontal,
+                          width: (context.sWidth / 1.10) - 20,
+                          height: ((context.sWidth / 1.10) - 20) / 1.7777,
+                          child: Container(
+                            color: context.toColor(APPLICATION_COLOR.DARK),
+                            child: NormalNetworkImage(
+                                fit: BoxFit.cover,
+                                source:
+                                    value.template!.gallery[index].media.url),
+                          ).animate().fade(),
+                        ),
                       ),
                     );
                   }),
@@ -208,15 +219,18 @@ class PlanTemplateView extends StatelessWidget {
 
                                   return Container(
                                     margin: context.midSpacerOnlyBottom,
-                                    child: GestureDetector(
-                                      onTap: () => value.toggleFullViewItemIndex(
-                                          "$floor${value.template!.homes[index].number}"),
-                                      child: RowWidget(
-                                        home: homesByFloor,
-                                        isFullView: value.fullViewItemIndex.any(
-                                            (element) =>
-                                                element ==
-                                                "$floor${value.template!.homes[index].number}"),
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => value.toggleFullViewItemIndex(
+                                            "$floor${value.template!.homes[index].number}"),
+                                        child: RowWidget(
+                                          home: homesByFloor,
+                                          isFullView: value.fullViewItemIndex
+                                              .any((element) =>
+                                                  element ==
+                                                  "$floor${value.template!.homes[index].number}"),
+                                        ),
                                       ),
                                     ),
                                   );

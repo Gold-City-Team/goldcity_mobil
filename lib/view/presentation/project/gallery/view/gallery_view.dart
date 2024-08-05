@@ -142,15 +142,18 @@ class _GalleryViewState extends State<GalleryView> {
                   return SizedBox(
                     height: 150,
                     width: 100,
-                    child: GestureDetector(
-                      onTap: () => {
-                        viewModel.selectedMediaIndexChange(index),
-                        controller.jumpToPage(index)
-                      },
-                      child: Padding(
-                        padding: context.midSpacerOnlyBottom,
-                        child: mediaPart(viewModel.gallery[index].media.url,
-                            viewModel.selectedMediaIndex == index, context),
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => {
+                          viewModel.selectedMediaIndexChange(index),
+                          controller.jumpToPage(index)
+                        },
+                        child: Padding(
+                          padding: context.midSpacerOnlyBottom,
+                          child: mediaPart(viewModel.gallery[index].media.url,
+                              viewModel.selectedMediaIndex == index, context),
+                        ),
                       ),
                     ),
                   );
@@ -203,16 +206,19 @@ class _GalleryViewState extends State<GalleryView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Gap(context.midSpacerSize),
-          GestureDetector(
-            onTap: () => context.pop(),
-            child: Container(
-              width: 50,
-              margin: context.largeSpacerOnlyHorizontal,
-              height: 50,
-              decoration: BoxDecoration(
-                  color: context.toColor(APPLICATION_COLOR.GOLD),
-                  borderRadius: context.midRadius),
-              child: const Icon(Icons.keyboard_arrow_left),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => context.pop(),
+              child: Container(
+                width: 50,
+                margin: context.largeSpacerOnlyHorizontal,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    borderRadius: context.midRadius),
+                child: const Icon(Icons.keyboard_arrow_left),
+              ),
             ),
           ),
           Gap(context.midSpacerSize),
@@ -264,15 +270,18 @@ class _GalleryViewState extends State<GalleryView> {
                   itemCount: viewModel.gallery.length,
                   controller: c,
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () => {
-                        viewModel.selectedMediaIndexChange(index),
-                        carouselController.jumpToPage(index)
-                      },
-                      child: Padding(
-                        padding: context.midSpacerOnlyLeft,
-                        child: mediaPart(viewModel.gallery[index].media.url,
-                            viewModel.selectedMediaIndex == index, context),
+                    return MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => {
+                          viewModel.selectedMediaIndexChange(index),
+                          carouselController.jumpToPage(index)
+                        },
+                        child: Padding(
+                          padding: context.midSpacerOnlyLeft,
+                          child: mediaPart(viewModel.gallery[index].media.url,
+                              viewModel.selectedMediaIndex == index, context),
+                        ),
                       ),
                     );
                   },
@@ -297,31 +306,34 @@ class _GalleryViewState extends State<GalleryView> {
           return Padding(
             padding: context.midSpacer,
             child: SafeArea(
-              child: GestureDetector(
-                onTap: () => viewModel.toggleBottomVisible(),
-                child: Row(
-                  children: [
-                    LabelText(text: LocaleKeys.allVideos.tr()),
-                    Gap(context.midSpacerSize),
-                    Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          color:
-                              context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20))),
-                      child: SizedBox(
-                        child: Icon(
-                          viewModel.isBottomVisible
-                              ? Icons.arrow_drop_up
-                              : Icons.arrow_drop_down,
-                          size: 28,
-                          color: context.toColor(APPLICATION_COLOR.GOLD),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => viewModel.toggleBottomVisible(),
+                  child: Row(
+                    children: [
+                      LabelText(text: LocaleKeys.allVideos.tr()),
+                      Gap(context.midSpacerSize),
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            color: context
+                                .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20))),
+                        child: SizedBox(
+                          child: Icon(
+                            viewModel.isBottomVisible
+                                ? Icons.arrow_drop_up
+                                : Icons.arrow_drop_down,
+                            size: 28,
+                            color: context.toColor(APPLICATION_COLOR.GOLD),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -346,20 +358,22 @@ class _GalleryViewState extends State<GalleryView> {
                         itemBuilder: ((context, index) {
                           return Padding(
                             padding: context.midSpacerOnlyRight,
-                            child: GestureDetector(
-                              onTap: () =>
-                                  viewModel.selectedMediaIndexChange(index),
-                              child: isTablet()
-                                  ? mediaPart(
-                                      viewModel.gallery[index].media
-                                          .mediaMetaData.thumbnail,
-                                      index == viewModel.selectedMediaIndex,
-                                      context)
-                                  : littleMediaPart(
-                                      viewModel.gallery[index].media
-                                          .mediaMetaData.thumbnail,
-                                      index == viewModel.selectedMediaIndex,
-                                      context),
+                            child: MouseRegion(
+                              child: GestureDetector(
+                                onTap: () =>
+                                    viewModel.selectedMediaIndexChange(index),
+                                child: isTablet()
+                                    ? mediaPart(
+                                        viewModel.gallery[index].media
+                                            .mediaMetaData.thumbnail,
+                                        index == viewModel.selectedMediaIndex,
+                                        context)
+                                    : littleMediaPart(
+                                        viewModel.gallery[index].media
+                                            .mediaMetaData.thumbnail,
+                                        index == viewModel.selectedMediaIndex,
+                                        context),
+                              ),
                             ),
                           );
                         })),

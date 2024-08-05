@@ -324,44 +324,50 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                 children: [
                                   Gap(context.smallSpacerSize),
                                   WebViewAware(
-                                    child: GestureDetector(
-                                      onTap: () => {
-                                        launchUrl(Uri.parse(
-                                            "mailto:${value.shareData!.creatorUser.email}"))
-                                      },
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.LIGHT),
-                                        ),
-                                        child: Icon(
-                                          Icons.mail,
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.DARK),
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => {
+                                          launchUrl(Uri.parse(
+                                              "mailto:${value.shareData!.creatorUser.email}"))
+                                        },
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.LIGHT),
+                                          ),
+                                          child: Icon(
+                                            Icons.mail,
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.DARK),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Gap(context.smallSpacerSize),
                                   WebViewAware(
-                                    child: GestureDetector(
-                                      onTap: () => {
-                                        launchUrl(Uri.parse(
-                                            "tel:${value.shareData!.creatorUser.tel}"))
-                                      },
-                                      child: Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.LIGHT),
-                                        ),
-                                        child: Icon(
-                                          Icons.call,
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.DARK),
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => {
+                                          launchUrl(Uri.parse(
+                                              "tel:${value.shareData!.creatorUser.tel}"))
+                                        },
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.LIGHT),
+                                          ),
+                                          child: Icon(
+                                            Icons.call,
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.DARK),
+                                          ),
                                         ),
                                       ),
                                     ),

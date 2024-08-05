@@ -30,15 +30,18 @@ class WebinarView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gap(context.midSpacerSize),
-                  GestureDetector(
-                    onTap: () => context.pop(),
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: context.toColor(APPLICATION_COLOR.GOLD),
-                          borderRadius: context.midRadius),
-                      child: const Icon(Icons.keyboard_arrow_left),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => context.pop(),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: context.toColor(APPLICATION_COLOR.GOLD),
+                            borderRadius: context.midRadius),
+                        child: const Icon(Icons.keyboard_arrow_left),
+                      ),
                     ),
                   ),
                   Gap(context.midSpacerSize),
@@ -59,9 +62,12 @@ class WebinarView extends StatelessWidget {
                                       ? context.sWidth / 3 - 20
                                       : context.sWidth,
                                   height: isTablet() ? 550 : 450,
-                                  child: GestureDetector(
-                                      onTap: () => value.openDetailPage(e.id),
-                                      child: WebinarRowWidget(entity: e))))
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                        onTap: () => value.openDetailPage(e.id),
+                                        child: WebinarRowWidget(entity: e)),
+                                  )))
                               .toList(),
                         ),
                       );

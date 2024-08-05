@@ -26,10 +26,13 @@ class PageSelectorWidget extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              child: GestureDetector(
-            onTap: () => newIndex(selectedIndex),
-            child: Container(
-              color: Colors.red.withOpacity(0),
+              child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => newIndex(selectedIndex),
+              child: Container(
+                color: Colors.red.withOpacity(0),
+              ),
             ),
           )),
           Container(

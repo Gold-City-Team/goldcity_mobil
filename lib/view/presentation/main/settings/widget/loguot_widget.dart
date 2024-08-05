@@ -38,18 +38,24 @@ class LogoutWidget extends StatelessWidget {
                 LabelText(text: LocaleKeys.areYouSureToLogout.tr()),
                 Gap(context.largeSpacerSize),
                 Gap(context.largeSpacerSize),
-                GestureDetector(
-                  onTap: () {
-                    locator<AuthenticationSource>().clearUserDto();
-                    locator<SharedManager>().removeKey(PreferenceKey.USER_DTO);
-                    context.pushReplacement(NavigationConstant.DEFAULT);
-                  },
-                  child: Container(
-                    color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                    width: isTablet() ? size.width / 2 : size.width - 30,
-                    padding: context.midSpacer,
-                    child: LabelText(
-                        text: LocaleKeys.logOut.tr(), align: TextAlign.center),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      locator<AuthenticationSource>().clearUserDto();
+                      locator<SharedManager>()
+                          .removeKey(PreferenceKey.USER_DTO);
+                      context.pushReplacement(NavigationConstant.DEFAULT);
+                    },
+                    child: Container(
+                      color:
+                          context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      width: isTablet() ? size.width / 2 : size.width - 30,
+                      padding: context.midSpacer,
+                      child: LabelText(
+                          text: LocaleKeys.logOut.tr(),
+                          align: TextAlign.center),
+                    ),
                   ),
                 ),
               ],

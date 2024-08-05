@@ -63,15 +63,18 @@ class ShareableMaterialTemplateView extends StatelessWidget {
                   .map(
                     (e) => Padding(
                       padding: context.midSpacerOnlyBottom,
-                      child: GestureDetector(
-                        onTap: () => value.toggleFullViewItemIndex(e),
-                        child: PhoneTemplateRowWidget(
-                          isFullView: value.fullViewItemIndex
-                              .any((element) => element == e),
-                          gallery: value.template!.gallery
-                              .where((element) =>
-                                  element.category.translation.title == e)
-                              .toList(),
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => value.toggleFullViewItemIndex(e),
+                          child: PhoneTemplateRowWidget(
+                            isFullView: value.fullViewItemIndex
+                                .any((element) => element == e),
+                            gallery: value.template!.gallery
+                                .where((element) =>
+                                    element.category.translation.title == e)
+                                .toList(),
+                          ),
                         ),
                       ),
                     ),

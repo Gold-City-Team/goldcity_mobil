@@ -20,13 +20,16 @@ class GalleryListWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       itemCount: mediaList.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () => onIndexChanged(index),
-          child: SizedBox(
-            width: 300,
-            child: GalleryRowWidget(
-                mediaEntity: mediaList[index],
-                isSelected: index == selectedIndex),
+        return MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () => onIndexChanged(index),
+            child: SizedBox(
+              width: 300,
+              child: GalleryRowWidget(
+                  mediaEntity: mediaList[index],
+                  isSelected: index == selectedIndex),
+            ),
           ),
         );
       },

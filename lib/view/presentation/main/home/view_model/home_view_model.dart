@@ -12,7 +12,6 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/main/home/widget/project_list_widget.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_view_model.g.dart';

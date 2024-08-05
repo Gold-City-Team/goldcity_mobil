@@ -152,74 +152,80 @@ class ComplexGalleryAndInfoTemplate extends StatelessWidget {
                                       viewModel.templateTwo!.gallery.length,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () => viewModel.navigateGallery(
-                                          viewModel.templateTwo!.gallery
-                                              .indexWhere((element) =>
-                                                  element ==
-                                                  viewModel.templateTwo!
-                                                      .gallery[index])),
-                                      child: Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          Container(
-                                            margin: index !=
+                                    return MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => viewModel.navigateGallery(
+                                            viewModel.templateTwo!.gallery
+                                                .indexWhere((element) =>
+                                                    element ==
                                                     viewModel.templateTwo!
-                                                            .gallery.length -
-                                                        1
-                                                ? context.midSpacerOnlyRight
-                                                : EdgeInsets.zero,
-                                            width: 175 * 1.777,
-                                            height: 175,
-                                            child: ClipRRect(
-                                              borderRadius: context.midRadius,
-                                              child: NormalNetworkImage(
-                                                fit: BoxFit.cover,
-                                                source: viewModel
-                                                            .templateTwo!
-                                                            .gallery[index]
-                                                            .media
-                                                            .mediaType ==
-                                                        MEDIA_TYPE.IMAGE
-                                                    ? viewModel
-                                                        .templateTwo!
-                                                        .gallery[index]
-                                                        .media
-                                                        .url
-                                                    : viewModel
-                                                        .templateTwo!
-                                                        .gallery[index]
-                                                        .media
-                                                        .mediaMetaData
-                                                        .thumbnail,
+                                                        .gallery[index])),
+                                        child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Container(
+                                              margin: index !=
+                                                      viewModel.templateTwo!
+                                                              .gallery.length -
+                                                          1
+                                                  ? context.midSpacerOnlyRight
+                                                  : EdgeInsets.zero,
+                                              width: 175 * 1.777,
+                                              height: 175,
+                                              child: ClipRRect(
+                                                borderRadius: context.midRadius,
+                                                child: NormalNetworkImage(
+                                                  fit: BoxFit.cover,
+                                                  source: viewModel
+                                                              .templateTwo!
+                                                              .gallery[index]
+                                                              .media
+                                                              .mediaType ==
+                                                          MEDIA_TYPE.IMAGE
+                                                      ? viewModel
+                                                          .templateTwo!
+                                                          .gallery[index]
+                                                          .media
+                                                          .url
+                                                      : viewModel
+                                                          .templateTwo!
+                                                          .gallery[index]
+                                                          .media
+                                                          .mediaMetaData
+                                                          .thumbnail,
+                                                ),
                                               ),
-                                            ),
-                                          )
-                                              .animate()
-                                              .fade(
-                                                  duration: const Duration(
-                                                      milliseconds: 1100))
-                                              .slideX(
-                                                  begin: 1,
-                                                  duration: const Duration(
-                                                      milliseconds: 500)),
-                                          viewModel.templateTwo!.gallery[index]
-                                                      .media.mediaType ==
-                                                  MEDIA_TYPE.VIDEO
-                                              ? Container(
-                                                  width: 40,
-                                                  height: 40,
-                                                  decoration: BoxDecoration(
-                                                      color: context.toColor(
-                                                          APPLICATION_COLOR
-                                                              .GOLD),
-                                                      borderRadius:
-                                                          context.largeRadius),
-                                                  child: const Icon(
-                                                      Icons.play_arrow),
-                                                )
-                                              : const SizedBox.shrink()
-                                        ],
+                                            )
+                                                .animate()
+                                                .fade(
+                                                    duration: const Duration(
+                                                        milliseconds: 1100))
+                                                .slideX(
+                                                    begin: 1,
+                                                    duration: const Duration(
+                                                        milliseconds: 500)),
+                                            viewModel
+                                                        .templateTwo!
+                                                        .gallery[index]
+                                                        .media
+                                                        .mediaType ==
+                                                    MEDIA_TYPE.VIDEO
+                                                ? Container(
+                                                    width: 40,
+                                                    height: 40,
+                                                    decoration: BoxDecoration(
+                                                        color: context.toColor(
+                                                            APPLICATION_COLOR
+                                                                .GOLD),
+                                                        borderRadius: context
+                                                            .largeRadius),
+                                                    child: const Icon(
+                                                        Icons.play_arrow),
+                                                  )
+                                                : const SizedBox.shrink()
+                                          ],
+                                        ),
                                       ),
                                     );
                                   });

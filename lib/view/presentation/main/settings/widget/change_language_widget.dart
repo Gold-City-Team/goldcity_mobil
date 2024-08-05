@@ -36,28 +36,31 @@ class ChangeLanguageWidget extends StatelessWidget {
                       .map(
                         (element) => Column(
                           children: [
-                            GestureDetector(
-                              onTap: () => context.setLocale(element),
-                              child: Container(
-                                color: context.toColor(
-                                    APPLICATION_COLOR.BACKGROUND_COLOR),
-                                width: isTablet()
-                                    ? size.width / 2
-                                    : size.width - 30,
-                                padding: context.midSpacer,
-                                child: Row(
-                                  children: [
-                                    context.locale == element
-                                        ? const Icon(Icons.check)
-                                        : const SizedBox.shrink(),
-                                    context.locale == element
-                                        ? Gap(context.midSpacerSize)
-                                        : const SizedBox.shrink(),
-                                    LabelText(
-                                        text: element
-                                            .toLanguageTag()
-                                            .localeToNativeLanguage),
-                                  ],
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () => context.setLocale(element),
+                                child: Container(
+                                  color: context.toColor(
+                                      APPLICATION_COLOR.BACKGROUND_COLOR),
+                                  width: isTablet()
+                                      ? size.width / 2
+                                      : size.width - 30,
+                                  padding: context.midSpacer,
+                                  child: Row(
+                                    children: [
+                                      context.locale == element
+                                          ? const Icon(Icons.check)
+                                          : const SizedBox.shrink(),
+                                      context.locale == element
+                                          ? Gap(context.midSpacerSize)
+                                          : const SizedBox.shrink(),
+                                      LabelText(
+                                          text: element
+                                              .toLanguageTag()
+                                              .localeToNativeLanguage),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

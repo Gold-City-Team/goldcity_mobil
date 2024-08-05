@@ -102,22 +102,25 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
                       .isEmpty) {
                     return const SizedBox.shrink();
                   }
-                  return GestureDetector(
-                    onTap: () => value.changeSelectedPinIndex(index),
-                    child: Padding(
-                      padding: EdgeInsets.zero,
-                      child: FacilitiesWidget(
-                        isSelected: index == value.selectedPinIndex,
-                        possibilityEntity: PossibilityDto(
-                          title:
-                              value.templateThree!.possibilities[index].title,
-                          description: value
-                              .templateThree!.possibilities[index].description,
-                          mediaItem: MediaDto(
-                            url: value
-                                .templateThree!.possibilities[index].media.url,
-                          ),
-                        ).toEntity(),
+                  return MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => value.changeSelectedPinIndex(index),
+                      child: Padding(
+                        padding: EdgeInsets.zero,
+                        child: FacilitiesWidget(
+                          isSelected: index == value.selectedPinIndex,
+                          possibilityEntity: PossibilityDto(
+                            title:
+                                value.templateThree!.possibilities[index].title,
+                            description: value.templateThree!
+                                .possibilities[index].description,
+                            mediaItem: MediaDto(
+                              url: value.templateThree!.possibilities[index]
+                                  .media.url,
+                            ),
+                          ).toEntity(),
+                        ),
                       ),
                     ),
                   );
@@ -155,25 +158,28 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
                       .isEmpty) {
                     return const SizedBox.shrink();
                   }
-                  return GestureDetector(
-                    onTap: () => value.changeSelectedPinIndex(index),
-                    child: Padding(
-                      padding:
-                          index != value.templateThree!.possibilities.length - 1
-                              ? context.midSpacerOnlyBottom
-                              : EdgeInsets.zero,
-                      child: FacilitiesWidget(
-                        isSelected: index == value.selectedPinIndex,
-                        possibilityEntity: PossibilityDto(
-                          title:
-                              value.templateThree!.possibilities[index].title,
-                          description: value
-                              .templateThree!.possibilities[index].description,
-                          mediaItem: MediaDto(
-                            url: value
-                                .templateThree!.possibilities[index].media.url,
-                          ),
-                        ).toEntity(),
+                  return MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => value.changeSelectedPinIndex(index),
+                      child: Padding(
+                        padding: index !=
+                                value.templateThree!.possibilities.length - 1
+                            ? context.midSpacerOnlyBottom
+                            : EdgeInsets.zero,
+                        child: FacilitiesWidget(
+                          isSelected: index == value.selectedPinIndex,
+                          possibilityEntity: PossibilityDto(
+                            title:
+                                value.templateThree!.possibilities[index].title,
+                            description: value.templateThree!
+                                .possibilities[index].description,
+                            mediaItem: MediaDto(
+                              url: value.templateThree!.possibilities[index]
+                                  .media.url,
+                            ),
+                          ).toEntity(),
+                        ),
                       ),
                     ),
                   );

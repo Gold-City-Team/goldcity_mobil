@@ -1,10 +1,6 @@
 PODS:
   - app_links (0.0.1):
     - Flutter
-  - bs_flutter_selectbox (0.0.1):
-    - Flutter
-  - bs_flutter_utils (0.0.1):
-    - Flutter
   - Firebase/CoreOnly (10.29.0):
     - FirebaseCore (= 10.29.0)
   - Firebase/Messaging (10.29.0):
@@ -105,8 +101,6 @@ PODS:
 
 DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
-  - bs_flutter_selectbox (from `.symlinks/plugins/bs_flutter_selectbox/ios`)
-  - bs_flutter_utils (from `.symlinks/plugins/bs_flutter_utils/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -137,10 +131,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
-  bs_flutter_selectbox:
-    :path: ".symlinks/plugins/bs_flutter_selectbox/ios"
-  bs_flutter_utils:
-    :path: ".symlinks/plugins/bs_flutter_utils/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -170,8 +160,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   app_links: e70ca16b4b0f88253b3b3660200d4a10b4ea9795
-  bs_flutter_selectbox: 6f8f2635cb0e3f10096fcd774af6d90272bb089b
-  bs_flutter_utils: 8f7e9550c45adfa0d9b77d5ac395bc33b6d18eb3
   Firebase: cec914dab6fd7b1bd8ab56ea07ce4e03dd251c2d
   firebase_core: 57aeb91680e5d5e6df6b888064be7c785f146efb
   firebase_messaging: c862b3d2b973ecc769194dc8de09bd22c77ae757

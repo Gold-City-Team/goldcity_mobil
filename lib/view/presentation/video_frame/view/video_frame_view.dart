@@ -91,7 +91,9 @@ class _VideoFrameViewState extends State<VideoFrameView>
                   )
                 : const SizedBox.shrink(),
             widget.isFullScreen
-                ? GestureDetector(onTap: () => value.toggleOpacity())
+                ? MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(onTap: () => value.toggleOpacity()))
                 : const SizedBox.shrink(),
             widget.isFullScreen
                 ? Observer(builder: (context) {
@@ -140,22 +142,25 @@ class _VideoFrameViewState extends State<VideoFrameView>
                             right: 10,
                             top: 10,
                             child: SafeArea(
-                              child: GestureDetector(
-                                onTap: () => widget.fullScreen(),
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      color: context.toColor(
-                                          APPLICATION_COLOR.OPPOSITE_COLOR),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: SizedBox(
-                                    child: Icon(
-                                      Icons.fullscreen,
-                                      size: 28,
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => widget.fullScreen(),
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                        color: context.toColor(
+                                            APPLICATION_COLOR.OPPOSITE_COLOR),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: SizedBox(
+                                      child: Icon(
+                                        Icons.fullscreen,
+                                        size: 28,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -172,22 +177,25 @@ class _VideoFrameViewState extends State<VideoFrameView>
                             left: 10,
                             top: 10,
                             child: SafeArea(
-                              child: GestureDetector(
-                                onTap: () => context.pop(),
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      color: context.toColor(
-                                          APPLICATION_COLOR.OPPOSITE_COLOR),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: SizedBox(
-                                    child: Icon(
-                                      Icons.arrow_back,
-                                      size: 28,
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => context.pop(),
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                        color: context.toColor(
+                                            APPLICATION_COLOR.OPPOSITE_COLOR),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: SizedBox(
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        size: 28,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.GOLD),
+                                      ),
                                     ),
                                   ),
                                 ),

@@ -43,16 +43,19 @@ class EducationDetailView extends StatelessWidget {
             Gap(context.largeSpacerSize),
             Align(
               alignment: Alignment.topLeft,
-              child: GestureDetector(
-                onTap: () => context.pop(),
-                child: Container(
-                  width: 50,
-                  margin: context.largeSpacerOnlyHorizontal,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                      borderRadius: context.midRadius),
-                  child: const Icon(Icons.keyboard_arrow_left),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Container(
+                    width: 50,
+                    margin: context.largeSpacerOnlyHorizontal,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: context.toColor(APPLICATION_COLOR.GOLD),
+                        borderRadius: context.midRadius),
+                    child: const Icon(Icons.keyboard_arrow_left),
+                  ),
                 ),
               ),
             ),
@@ -90,17 +93,20 @@ class EducationDetailView extends StatelessWidget {
                       itemCount: value.educationEntity!.detailEntity
                           .educationGalleries.length,
                       itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () => value.openVideoPlayer(value
-                              .educationEntity!
-                              .detailEntity
-                              .educationGalleries[index]
-                              .id),
-                          child: Padding(
-                            padding: context.largeSpacerOnlyRight,
-                            child: EducationDetailRowWidget(
-                                entity: value.educationEntity!.detailEntity
-                                    .educationGalleries[index]),
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => value.openVideoPlayer(value
+                                .educationEntity!
+                                .detailEntity
+                                .educationGalleries[index]
+                                .id),
+                            child: Padding(
+                              padding: context.largeSpacerOnlyRight,
+                              child: EducationDetailRowWidget(
+                                  entity: value.educationEntity!.detailEntity
+                                      .educationGalleries[index]),
+                            ),
                           ),
                         );
                       }),
@@ -124,16 +130,19 @@ class EducationDetailView extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: GestureDetector(
-                onTap: () => context.pop(),
-                child: Container(
-                  width: 50,
-                  margin: context.largeSpacerOnlyHorizontal,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                      borderRadius: context.midRadius),
-                  child: const Icon(Icons.keyboard_arrow_left),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Container(
+                    width: 50,
+                    margin: context.largeSpacerOnlyHorizontal,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: context.toColor(APPLICATION_COLOR.GOLD),
+                        borderRadius: context.midRadius),
+                    child: const Icon(Icons.keyboard_arrow_left),
+                  ),
                 ),
               ),
             ),
@@ -175,17 +184,20 @@ class EducationDetailView extends StatelessWidget {
                       itemCount: value.educationEntity!.detailEntity
                           .educationGalleries.length,
                       itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () => value.openVideoPlayer(value
-                              .educationEntity!
-                              .detailEntity
-                              .educationGalleries[index]
-                              .id),
-                          child: Padding(
-                            padding: context.midSpacerOnlyBottom,
-                            child: EducationDetailRowWidget(
-                                entity: value.educationEntity!.detailEntity
-                                    .educationGalleries[index]),
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => value.openVideoPlayer(value
+                                .educationEntity!
+                                .detailEntity
+                                .educationGalleries[index]
+                                .id),
+                            child: Padding(
+                              padding: context.midSpacerOnlyBottom,
+                              child: EducationDetailRowWidget(
+                                  entity: value.educationEntity!.detailEntity
+                                      .educationGalleries[index]),
+                            ),
                           ),
                         );
                       }),

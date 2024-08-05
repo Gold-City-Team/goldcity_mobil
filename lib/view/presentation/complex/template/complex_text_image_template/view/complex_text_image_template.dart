@@ -136,45 +136,49 @@ class ComplexTextImageTemplate extends StatelessWidget {
                     padding: context.largeSpacerOnlyHorizontal,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => value.changeSelectedImageGalleryId(
-                            value.miniImages[index].id),
-                        child: Container(
-                          width: (context.sWidth / 1.85),
-                          height: (context.sWidth / 1.85) / 1.7777,
-                          margin: value.miniImages.length - 1 != index
-                              ? context.midSpacerOnlyRight
-                              : EdgeInsets.zero,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              SizedBox(
-                                width: (context.sWidth / 1.85),
-                                height: (context.sWidth / 1.85) / 1.7777,
-                                child: NormalNetworkImage(
-                                    fit: BoxFit.cover,
-                                    source: value.miniImages[index].media.url),
-                              ),
-                              value.title !=
-                                      value.getSelectedGallerySetTitle(
-                                          value.miniImages[index].id)
-                                  ? Container(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR
-                                              .BACKGROUND_COLOR)
-                                          .withAlpha(200),
-                                    )
-                                  : const SizedBox.shrink(),
-                              value.title !=
-                                      value.getSelectedGallerySetTitle(
-                                          value.miniImages[index].id)
-                                  ? LabelText(
-                                      fontSize: FONT_SIZE.HEADLINE_SMALL,
-                                      text: value.getSelectedGallerySetTitle(
-                                          value.miniImages[index].id),
-                                    )
-                                  : const SizedBox.shrink()
-                            ],
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => value.changeSelectedImageGalleryId(
+                              value.miniImages[index].id),
+                          child: Container(
+                            width: (context.sWidth / 1.85),
+                            height: (context.sWidth / 1.85) / 1.7777,
+                            margin: value.miniImages.length - 1 != index
+                                ? context.midSpacerOnlyRight
+                                : EdgeInsets.zero,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                SizedBox(
+                                  width: (context.sWidth / 1.85),
+                                  height: (context.sWidth / 1.85) / 1.7777,
+                                  child: NormalNetworkImage(
+                                      fit: BoxFit.cover,
+                                      source:
+                                          value.miniImages[index].media.url),
+                                ),
+                                value.title !=
+                                        value.getSelectedGallerySetTitle(
+                                            value.miniImages[index].id)
+                                    ? Container(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR
+                                                .BACKGROUND_COLOR)
+                                            .withAlpha(200),
+                                      )
+                                    : const SizedBox.shrink(),
+                                value.title !=
+                                        value.getSelectedGallerySetTitle(
+                                            value.miniImages[index].id)
+                                    ? LabelText(
+                                        fontSize: FONT_SIZE.HEADLINE_SMALL,
+                                        text: value.getSelectedGallerySetTitle(
+                                            value.miniImages[index].id),
+                                      )
+                                    : const SizedBox.shrink()
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -205,39 +209,42 @@ class ComplexTextImageTemplate extends StatelessWidget {
                       return SizedBox(
                         width: context.sWidth - 20,
                         height: (context.sWidth - 20) / 1.7777,
-                        child: GestureDetector(
-                          onTap: () => value.navigateGallery(
-                            value.allImages.indexWhere(
-                                (element) => element == value.allImages[index]),
-                          ),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: NormalNetworkImage(
-                                  fit: BoxFit.cover,
-                                  source:
-                                      value.allImages[index].media.mediaType ==
-                                              MEDIA_TYPE.IMAGE
-                                          ? value.allImages[index].media.url
-                                          : value.allImages[index].media
-                                              .mediaMetaData.thumbnail,
-                                ),
-                              ).animate().fade(),
-                              value.allImages[index].media.mediaType ==
-                                      MEDIA_TYPE.VIDEO
-                                  ? Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.GOLD),
-                                          borderRadius: context.xLargeRadius),
-                                      child: const Icon(Icons.play_arrow),
-                                    )
-                                  : const SizedBox.shrink()
-                            ],
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => value.navigateGallery(
+                              value.allImages.indexWhere((element) =>
+                                  element == value.allImages[index]),
+                            ),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: NormalNetworkImage(
+                                    fit: BoxFit.cover,
+                                    source: value.allImages[index].media
+                                                .mediaType ==
+                                            MEDIA_TYPE.IMAGE
+                                        ? value.allImages[index].media.url
+                                        : value.allImages[index].media
+                                            .mediaMetaData.thumbnail,
+                                  ),
+                                ).animate().fade(),
+                                value.allImages[index].media.mediaType ==
+                                        MEDIA_TYPE.VIDEO
+                                    ? Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.GOLD),
+                                            borderRadius: context.xLargeRadius),
+                                        child: const Icon(Icons.play_arrow),
+                                      )
+                                    : const SizedBox.shrink()
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -340,54 +347,61 @@ class ComplexTextImageTemplate extends StatelessWidget {
                               padding: context.midSpacerOnlyLeft,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      value.changeSelectedImageGalleryId(
-                                          value.miniImages[index].id),
-                                  child: Container(
-                                    width: 150 * 1.7777,
-                                    height: 150,
-                                    margin: value.miniImages.length - 1 != index
-                                        ? context.largeSpacerOnlyRight
-                                        : EdgeInsets.zero,
-                                    child: Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        SizedBox(
-                                          width: 150 * 1.7777,
-                                          height: 150,
-                                          child: NormalNetworkImage(
-                                              fit: BoxFit.cover,
-                                              source: value
-                                                  .miniImages[index].media.url),
-                                        ),
-                                        value.title !=
-                                                value
-                                                    .getSelectedGallerySetTitle(
-                                                        value.miniImages[index]
-                                                            .id)
-                                            ? Container(
-                                                color: context
-                                                    .toColor(APPLICATION_COLOR
-                                                        .BACKGROUND_COLOR)
-                                                    .withAlpha(200),
-                                              )
-                                            : const SizedBox.shrink(),
-                                        value.title !=
-                                                value
-                                                    .getSelectedGallerySetTitle(
-                                                        value.miniImages[index]
-                                                            .id)
-                                            ? LabelText(
-                                                fontSize:
-                                                    FONT_SIZE.HEADLINE_SMALL,
-                                                text: value
-                                                    .getSelectedGallerySetTitle(
-                                                        value.miniImages[index]
-                                                            .id),
-                                              )
-                                            : const SizedBox.shrink()
-                                      ],
+                                return MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () =>
+                                        value.changeSelectedImageGalleryId(
+                                            value.miniImages[index].id),
+                                    child: Container(
+                                      width: 150 * 1.7777,
+                                      height: 150,
+                                      margin:
+                                          value.miniImages.length - 1 != index
+                                              ? context.largeSpacerOnlyRight
+                                              : EdgeInsets.zero,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          SizedBox(
+                                            width: 150 * 1.7777,
+                                            height: 150,
+                                            child: NormalNetworkImage(
+                                                fit: BoxFit.cover,
+                                                source: value.miniImages[index]
+                                                    .media.url),
+                                          ),
+                                          value.title !=
+                                                  value
+                                                      .getSelectedGallerySetTitle(
+                                                          value
+                                                              .miniImages[index]
+                                                              .id)
+                                              ? Container(
+                                                  color: context
+                                                      .toColor(APPLICATION_COLOR
+                                                          .BACKGROUND_COLOR)
+                                                      .withAlpha(200),
+                                                )
+                                              : const SizedBox.shrink(),
+                                          value.title !=
+                                                  value
+                                                      .getSelectedGallerySetTitle(
+                                                          value
+                                                              .miniImages[index]
+                                                              .id)
+                                              ? LabelText(
+                                                  fontSize:
+                                                      FONT_SIZE.HEADLINE_SMALL,
+                                                  text: value
+                                                      .getSelectedGallerySetTitle(
+                                                          value
+                                                              .miniImages[index]
+                                                              .id),
+                                                )
+                                              : const SizedBox.shrink()
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );
@@ -448,42 +462,47 @@ class ComplexTextImageTemplate extends StatelessWidget {
                         (e) => SizedBox(
                           width: context.sWidth / 3 - 20,
                           height: (context.sWidth / 3 - 20) / 1.7777,
-                          child: GestureDetector(
-                            onTap: () => value.navigateGallery(
-                              value.allImages
-                                  .indexWhere((element) => element == e),
-                            ),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Container(
-                                    width: context.sWidth / 3 - 20,
-                                    height: (context.sWidth / 3 - 20) / 1.7777,
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.DARK),
-                                    child: NormalNetworkImage(
-                                      fit: BoxFit.cover,
-                                      source:
-                                          e.media.mediaType == MEDIA_TYPE.IMAGE
-                                              ? e.media.url
-                                              : e.media.mediaMetaData.thumbnail,
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.navigateGallery(
+                                value.allImages
+                                    .indexWhere((element) => element == e),
+                              ),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Container(
+                                      width: context.sWidth / 3 - 20,
+                                      height:
+                                          (context.sWidth / 3 - 20) / 1.7777,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                      child: NormalNetworkImage(
+                                        fit: BoxFit.cover,
+                                        source: e.media.mediaType ==
+                                                MEDIA_TYPE.IMAGE
+                                            ? e.media.url
+                                            : e.media.mediaMetaData.thumbnail,
+                                      ),
                                     ),
-                                  ),
-                                ).animate().fade(),
-                                e.media.mediaType == MEDIA_TYPE.VIDEO
-                                    ? Container(
-                                        width: 50,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                            color: context.toColor(
-                                                APPLICATION_COLOR.GOLD),
-                                            borderRadius: context.xLargeRadius),
-                                        child: const Icon(Icons.play_arrow),
-                                      )
-                                    : const SizedBox.shrink()
-                              ],
+                                  ).animate().fade(),
+                                  e.media.mediaType == MEDIA_TYPE.VIDEO
+                                      ? Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.GOLD),
+                                              borderRadius:
+                                                  context.xLargeRadius),
+                                          child: const Icon(Icons.play_arrow),
+                                        )
+                                      : const SizedBox.shrink()
+                                ],
+                              ),
                             ),
                           ),
                         ),

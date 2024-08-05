@@ -20,7 +20,6 @@ class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
       await locator<RemoteManager>()
           .networkManager
           .post(SourcePath.LEAD.rawValue(), data: dto.toJson());
-
       return null;
     } on DioException catch (e) {
       return BaseErrorModel.fromJson(e.response?.data ?? {});

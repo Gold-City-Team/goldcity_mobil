@@ -61,16 +61,19 @@ class EducationView extends StatelessWidget {
                 ? 10
                 : MediaQuery.of(context).padding.top,
             left: 10,
-            child: GestureDetector(
-              onTap: () => context.pop(),
-              child: Container(
-                width: 50,
-                margin: context.largeSpacerOnlyHorizontal,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: context.toColor(APPLICATION_COLOR.GOLD),
-                    borderRadius: context.midRadius),
-                child: const Icon(Icons.keyboard_arrow_left),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => context.pop(),
+                child: Container(
+                  width: 50,
+                  margin: context.largeSpacerOnlyHorizontal,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                      borderRadius: context.midRadius),
+                  child: const Icon(Icons.keyboard_arrow_left),
+                ),
               ),
             ),
           ),
@@ -88,16 +91,19 @@ class EducationView extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topLeft,
-              child: GestureDetector(
-                onTap: () => context.pop(),
-                child: Container(
-                  width: 50,
-                  margin: context.largeSpacerOnlyHorizontal,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                      borderRadius: context.midRadius),
-                  child: const Icon(Icons.keyboard_arrow_left),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Container(
+                    width: 50,
+                    margin: context.largeSpacerOnlyHorizontal,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: context.toColor(APPLICATION_COLOR.GOLD),
+                        borderRadius: context.midRadius),
+                    child: const Icon(Icons.keyboard_arrow_left),
+                  ),
                 ),
               ),
             ),
