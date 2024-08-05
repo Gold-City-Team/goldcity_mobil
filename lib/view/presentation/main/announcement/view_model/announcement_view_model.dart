@@ -59,7 +59,21 @@ abstract class _AnnouncementViewModelBase with Store, BaseViewModel {
       if (result.isRight) {
         entity = result.right;
         changeSelectedIndex(result.right.first.id);
+        search("");
       }
     });
+  }
+
+  @observable
+  List<AnnouncementEntity>? entitySearch;
+
+  @action
+  Future<void> search(String search) async {
+    entitySearch = entity;
+
+    var result = entitySearch!
+        .where((element) => element.title.toLowerCase().contains(search))
+        .toList();
+    entitySearch = result;
   }
 }

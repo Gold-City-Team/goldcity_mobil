@@ -15,8 +15,6 @@ class LanguageItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: context.sHeight / 2.1,
-      margin: context.midSpacer,
       decoration: BoxDecoration(
           color:
               context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),

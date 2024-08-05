@@ -10,6 +10,7 @@ import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/main/announcement/view_model/announcement_view_model.dart';
 import 'package:goldcity/view/presentation/main/announcement/widget/file_icon_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
+import 'package:goldcity/view/widget/text_field/rounded_text_field.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AnnouncementView extends StatelessWidget {
@@ -110,58 +111,77 @@ class AnnouncementView extends StatelessWidget {
                     if (value.entity == null) {
                       return const SizedBox.shrink();
                     }
-                    return Expanded(
-                      child: ListView.builder(
-                          padding: context.midSpacerOnlyHorizontal,
-                          itemCount: value.entity!.length,
-                          itemBuilder: (context, index) {
-                            return MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => {
-                                  value.toggleShowDetail(),
-                                  value.changeSelectedIndex(
-                                      value.entity![index].id)
-                                },
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      padding: context.midSpacer,
-                                      color: context
-                                          .toColor(APPLICATION_COLOR
-                                              .EXTRA_CLOSE_BACKGROUND_COLOR)
-                                          .withAlpha(50),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          LabelText(
-                                            text: value.entity![index].title,
-                                            fontSize: FONT_SIZE.TITLE_LARGE,
-                                            fontWeight: FontWeight.bold,
-                                            textColor: APPLICATION_COLOR
-                                                .OPPOSITE_COLOR,
+                    return Column(
+                      children: [
+                        Container(
+                          margin: context.midSpacerOnlyHorizontal,
+                          height: 50,
+                          width: context.sWidth,
+                          child: RoundedTextField(
+                            newText: (e) {
+                              value.search(e);
+                            },
+                            hintText: "Ara...",
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        SizedBox(
+                          height: context.sHeight - 130,
+                          child: ListView.builder(
+                              padding: context.midSpacerOnlyHorizontal,
+                              itemCount: value.entitySearch!.length,
+                              itemBuilder: (context, index) {
+                                return MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => {
+                                      value.toggleShowDetail(),
+                                      value.changeSelectedIndex(
+                                          value.entitySearch![index].id)
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          padding: context.midSpacer,
+                                          color: context
+                                              .toColor(APPLICATION_COLOR
+                                                  .EXTRA_CLOSE_BACKGROUND_COLOR)
+                                              .withAlpha(50),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              LabelText(
+                                                text: value
+                                                    .entitySearch![index].title,
+                                                fontSize: FONT_SIZE.TITLE_LARGE,
+                                                fontWeight: FontWeight.bold,
+                                                textColor: APPLICATION_COLOR
+                                                    .OPPOSITE_COLOR,
+                                              ),
+                                              Gap(context.largeSpacerSize),
+                                              LabelText(
+                                                text: value.entitySearch![index]
+                                                    .description,
+                                                maxLines: 2,
+                                                textColor:
+                                                    APPLICATION_COLOR.SUBTITLE,
+                                                fontSize:
+                                                    FONT_SIZE.LABEL_MEDIUM,
+                                              ),
+                                            ],
                                           ),
-                                          Gap(context.largeSpacerSize),
-                                          LabelText(
-                                            text: value
-                                                .entity![index].description,
-                                            maxLines: 2,
-                                            textColor:
-                                                APPLICATION_COLOR.SUBTITLE,
-                                            fontSize: FONT_SIZE.LABEL_MEDIUM,
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                        Gap(context.midSpacerSize),
+                                      ],
                                     ),
-                                    Gap(context.midSpacerSize),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ],
                     );
                   }),
           ],
@@ -192,6 +212,7 @@ class AnnouncementView extends StatelessWidget {
             ),
           ),
           Gap(context.midSpacerSize),
+          Gap(context.midSpacerSize),
           Expanded(
             child: SizedBox(
               child: Row(
@@ -199,59 +220,82 @@ class AnnouncementView extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Observer(builder: (context) {
-                      if (value.entity == null || value.selectedIndex == -1) {
+                      if (value.entitySearch == null ||
+                          value.selectedIndex == -1) {
                         return const SizedBox.shrink();
                       }
-                      return ListView.builder(
-                        itemCount: value.entity!.length,
-                        itemBuilder: (context, index) {
-                          return MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () => value
-                                  .changeSelectedIndex(value.entity![index].id),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    padding: context.midSpacer,
-                                    margin: context.midSpacerOnlyRight,
-                                    color: context
-                                        .toColor(APPLICATION_COLOR
-                                            .EXTRA_CLOSE_BACKGROUND_COLOR)
-                                        .withAlpha(value.selectedIndex ==
-                                                value.entity![index].id
-                                            ? 255
-                                            : 50),
+                      return Column(
+                        children: [
+                          Container(
+                            margin: context.midSpacerOnlyRight,
+                            height: 50,
+                            child: RoundedTextField(
+                              newText: (e) {
+                                value.search(e);
+                              },
+                              hintText: "Ara...",
+                            ),
+                          ),
+                          Gap(context.midSpacerSize),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: value.entitySearch!.length,
+                              itemBuilder: (context, index) {
+                                return MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => value.changeSelectedIndex(
+                                        value.entitySearch![index].id),
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
                                       children: [
-                                        LabelText(
-                                          text: value.entity![index].title,
-                                          fontSize: FONT_SIZE.TITLE_MEDIUM,
-                                          fontWeight: FontWeight.bold,
-                                          textColor:
-                                              APPLICATION_COLOR.OPPOSITE_COLOR,
+                                        Container(
+                                          padding: context.midSpacer,
+                                          margin: context.midSpacerOnlyRight,
+                                          color: context
+                                              .toColor(APPLICATION_COLOR
+                                                  .EXTRA_CLOSE_BACKGROUND_COLOR)
+                                              .withAlpha(value.selectedIndex ==
+                                                      value.entitySearch![index]
+                                                          .id
+                                                  ? 255
+                                                  : 50),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              LabelText(
+                                                text: value
+                                                    .entitySearch![index].title,
+                                                fontSize:
+                                                    FONT_SIZE.TITLE_MEDIUM,
+                                                fontWeight: FontWeight.bold,
+                                                textColor: APPLICATION_COLOR
+                                                    .OPPOSITE_COLOR,
+                                              ),
+                                              Gap(context.largeSpacerSize),
+                                              LabelText(
+                                                text: value.entitySearch![index]
+                                                    .description,
+                                                maxLines: 2,
+                                                textColor:
+                                                    APPLICATION_COLOR.SUBTITLE,
+                                                fontSize:
+                                                    FONT_SIZE.LABEL_MEDIUM,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         Gap(context.largeSpacerSize),
-                                        LabelText(
-                                          text:
-                                              value.entity![index].description,
-                                          maxLines: 2,
-                                          textColor: APPLICATION_COLOR.SUBTITLE,
-                                          fontSize: FONT_SIZE.LABEL_MEDIUM,
-                                        ),
                                       ],
                                     ),
                                   ),
-                                  Gap(context.largeSpacerSize),
-                                ],
-                              ),
+                                );
+                              },
                             ),
-                          );
-                        },
+                          ),
+                        ],
                       );
                     }),
                   ),

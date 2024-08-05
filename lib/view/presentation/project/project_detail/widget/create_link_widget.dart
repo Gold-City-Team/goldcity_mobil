@@ -31,48 +31,45 @@ class CreateLinkWidget extends StatelessWidget {
               children: [
                 LabelText(text: "Projeyi Paylaş"),
                 Gap(context.largeSpacerSize),
-                Gap(context.largeSpacerSize),
-                Container(
-                  padding: context.largeSpacer,
-                  color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                  child: Row(
-                    children: [
-                      Spacer(),
-                      Material(
+                Row(
+                  children: [
+                    Material(
+                      child: Container(
+                        height: 50,
+                        width: (context.sWidth / 2) - 90,
+                        alignment: Alignment.center,
+                        padding: context.largeSpacerOnlyHorizontal,
+                        color:
+                            context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                        child: SelectableText(
+                          enableInteractiveSelection: true,
+                          link,
+                          maxLines: 1,
+                          selectionControls: MaterialTextSelectionControls(),
+                        ),
+                      ),
+                    ),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => {
+                          Clipboard.setData(ClipboardData(text: link))
+                              .then((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: LabelText(text: "Link Kopyalandı!")));
+                          })
+                        },
                         child: Container(
-                          color: context.toColor(APPLICATION_COLOR.GOLD),
-                          child: SelectableText(
-                            enableInteractiveSelection: true,
-                            link,
-                            selectionControls: MaterialTextSelectionControls(),
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: context.toColor(APPLICATION_COLOR.GOLD),
                           ),
+                          child: const Icon(Icons.ios_share),
                         ),
                       ),
-                      Spacer(),
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () => {
-                            Clipboard.setData(ClipboardData(text: link))
-                                .then((_) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content:
-                                          LabelText(text: "Link Kopyalandı!")));
-                            })
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: context.toColor(APPLICATION_COLOR.GOLD),
-                            ),
-                            child: const Icon(Icons.link),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 )
               ],
             ),

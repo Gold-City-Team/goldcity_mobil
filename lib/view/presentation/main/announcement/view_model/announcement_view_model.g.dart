@@ -73,6 +73,22 @@ mixin _$AnnouncementViewModel on _AnnouncementViewModelBase, Store {
     });
   }
 
+  late final _$entitySearchAtom =
+      Atom(name: '_AnnouncementViewModelBase.entitySearch', context: context);
+
+  @override
+  List<AnnouncementEntity>? get entitySearch {
+    _$entitySearchAtom.reportRead();
+    return super.entitySearch;
+  }
+
+  @override
+  set entitySearch(List<AnnouncementEntity>? value) {
+    _$entitySearchAtom.reportWrite(value, super.entitySearch, () {
+      super.entitySearch = value;
+    });
+  }
+
   late final _$_getDataDetailAsyncAction = AsyncAction(
       '_AnnouncementViewModelBase._getDataDetail',
       context: context);
@@ -88,6 +104,14 @@ mixin _$AnnouncementViewModel on _AnnouncementViewModelBase, Store {
   @override
   Future<void> _getData() {
     return _$_getDataAsyncAction.run(() => super._getData());
+  }
+
+  late final _$searchAsyncAction =
+      AsyncAction('_AnnouncementViewModelBase.search', context: context);
+
+  @override
+  Future<void> search(String search) {
+    return _$searchAsyncAction.run(() => super.search(search));
   }
 
   late final _$_AnnouncementViewModelBaseActionController =
@@ -121,7 +145,8 @@ mixin _$AnnouncementViewModel on _AnnouncementViewModelBase, Store {
 entity: ${entity},
 detail: ${detail},
 selectedIndex: ${selectedIndex},
-showDetail: ${showDetail}
+showDetail: ${showDetail},
+entitySearch: ${entitySearch}
     ''';
   }
 }

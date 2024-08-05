@@ -44,17 +44,124 @@ class HomeView extends StatelessWidget {
   Widget phoneView(BuildContext context, HomeViewModel value) {
     return ListView(
       children: [
-        SizedBox(
-          height: context.sHeight * .90,
-          child: Observer(builder: (context) {
-            if (value.complexList == null) {
-              return const SizedBox.shrink();
-            }
-            return CondominiumTrailerWidget(
-                complexEntity: value.complexList!.last,
-                onExploreTap: () =>
-                    value.navigateComplexDetail(value.complexList!.last.id));
-          }),
+        Stack(
+          children: [
+            SizedBox(
+              height: context.sHeight * .90,
+              child: Observer(builder: (context) {
+                if (value.complexList == null) {
+                  return const SizedBox.shrink();
+                }
+                return CondominiumTrailerWidget(
+                    complexEntity: value.complexList!.last,
+                    onExploreTap: () => value
+                        .navigateComplexDetail(value.complexList!.last.id));
+              }),
+            ),
+            Padding(
+              padding: context.largeSpacer,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: SizedBox(
+                      height: 50,
+                      width: 150,
+                      child: CoolDropdown(
+                        resultOptions: ResultOptions(
+                            render: ResultRender.all,
+                            openBoxDecoration: BoxDecoration(
+                                borderRadius: context.midRadius,
+                                border: null,
+                                color:
+                                    context.toColor(APPLICATION_COLOR.LIGHT))),
+                        controller: dropdownController,
+                        dropdownList: context.supportedLocales
+                            .map(
+                              (element) => CoolDropdownItem(
+                                  icon: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: SizedBox(
+                                      height: 25,
+                                      width: 25,
+                                      child: Image.asset(
+                                          value.getFlagFromLanguage(
+                                              element.languageCode)),
+                                    ),
+                                  ),
+                                  label: element
+                                      .toLanguageTag()
+                                      .localeToNativeLanguage,
+                                  value: element.toLanguageTag()),
+                            )
+                            .toList(),
+                        onChange: (p0) {
+                          context.setLocale(
+                              Locale(p0.split("-")[0], p0.split("-")[1]));
+                          Future.delayed(Duration(milliseconds: 50), () {
+                            value.init();
+                          });
+                          dropdownController.close();
+                        },
+                        dropdownItemOptions: DropdownItemOptions(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          selectedTextStyle: TextStyle(
+                            color: context.toColor(
+                              APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
+                            ),
+                          ),
+                          textStyle: TextStyle(
+                            color: context.toColor(
+                              APPLICATION_COLOR.OPPOSITE_COLOR,
+                            ),
+                          ),
+                        ),
+                        dropdownOptions: DropdownOptions(
+                          borderSide: BorderSide(width: 1, color: Colors.black),
+                          color: context.toColor(
+                            APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
+                          ),
+                        ),
+                        defaultItem: CoolDropdownItem(
+                            icon: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: Image.asset(value.getFlagFromLanguage(
+                                    context.locale.languageCode)),
+                              ),
+                            ),
+                            label: context.locale
+                                .toLanguageTag()
+                                .localeToNativeLanguage,
+                            value: context.locale.toLanguageTag()),
+                      ),
+                    ),
+                  ),
+                  Gap(context.largeSpacerSize),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () => value.togglePageSelector(),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: context.toColor(APPLICATION_COLOR.GOLD),
+                            borderRadius: context.midRadius),
+                        child: Icon(
+                          Icons.menu_rounded,
+                          color: context.toColor(APPLICATION_COLOR.LIGHT),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
         Gap(context.midSpacerSize),
         Container(
