@@ -42,160 +42,212 @@ class HomeView extends StatelessWidget {
   }
 
   Widget phoneView(BuildContext context, HomeViewModel value) {
-    return ListView(
+    return Stack(
       children: [
-        Stack(
+        ListView(
           children: [
-            SizedBox(
-              height: context.sHeight * .90,
-              child: Observer(builder: (context) {
-                if (value.complexList == null) {
-                  return const SizedBox.shrink();
-                }
-                return CondominiumTrailerWidget(
-                    complexEntity: value.complexList!.last,
-                    onExploreTap: () => value
-                        .navigateComplexDetail(value.complexList!.last.id));
-              }),
-            ),
-            Padding(
-              padding: context.largeSpacer,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: SizedBox(
-                      height: 50,
-                      width: 150,
-                      child: CoolDropdown(
-                        resultOptions: ResultOptions(
-                            render: ResultRender.all,
-                            openBoxDecoration: BoxDecoration(
-                                borderRadius: context.midRadius,
-                                border: null,
-                                color:
-                                    context.toColor(APPLICATION_COLOR.LIGHT))),
-                        controller: dropdownController,
-                        dropdownList: context.supportedLocales
-                            .map(
-                              (element) => CoolDropdownItem(
-                                  icon: MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: SizedBox(
-                                      height: 25,
-                                      width: 25,
-                                      child: Image.asset(
-                                          value.getFlagFromLanguage(
-                                              element.languageCode)),
-                                    ),
-                                  ),
-                                  label: element
-                                      .toLanguageTag()
-                                      .localeToNativeLanguage,
-                                  value: element.toLanguageTag()),
-                            )
-                            .toList(),
-                        onChange: (p0) {
-                          context.setLocale(
-                              Locale(p0.split("-")[0], p0.split("-")[1]));
-                          Future.delayed(Duration(milliseconds: 50), () {
-                            value.init();
-                          });
-                          dropdownController.close();
-                        },
-                        dropdownItemOptions: DropdownItemOptions(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          selectedTextStyle: TextStyle(
-                            color: context.toColor(
-                              APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
-                            ),
-                          ),
-                          textStyle: TextStyle(
-                            color: context.toColor(
-                              APPLICATION_COLOR.OPPOSITE_COLOR,
-                            ),
-                          ),
-                        ),
-                        dropdownOptions: DropdownOptions(
-                          borderSide: BorderSide(width: 1, color: Colors.black),
-                          color: context.toColor(
-                            APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
-                          ),
-                        ),
-                        defaultItem: CoolDropdownItem(
-                            icon: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: SizedBox(
-                                height: 25,
-                                width: 25,
-                                child: Image.asset(value.getFlagFromLanguage(
-                                    context.locale.languageCode)),
+            Stack(
+              children: [
+                SizedBox(
+                  height: context.sHeight * .90,
+                  child: Observer(builder: (context) {
+                    if (value.complexList == null) {
+                      return const SizedBox.shrink();
+                    }
+                    return CondominiumTrailerWidget(
+                        complexEntity: value.complexList!.last,
+                        onExploreTap: () => value
+                            .navigateComplexDetail(value.complexList!.last.id));
+                  }),
+                ),
+                Padding(
+                  padding: context.largeSpacer,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: SizedBox(
+                          height: 50,
+                          width: 150,
+                          child: CoolDropdown(
+                            resultOptions: ResultOptions(
+                                render: ResultRender.all,
+                                openBoxDecoration: BoxDecoration(
+                                    borderRadius: context.midRadius,
+                                    border: null,
+                                    color: context
+                                        .toColor(APPLICATION_COLOR.LIGHT))),
+                            controller: dropdownController,
+                            dropdownList: context.supportedLocales
+                                .map(
+                                  (element) => CoolDropdownItem(
+                                      icon: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: SizedBox(
+                                          height: 25,
+                                          width: 25,
+                                          child: Image.asset(
+                                              value.getFlagFromLanguage(
+                                                  element.languageCode)),
+                                        ),
+                                      ),
+                                      label: element
+                                          .toLanguageTag()
+                                          .localeToNativeLanguage,
+                                      value: element.toLanguageTag()),
+                                )
+                                .toList(),
+                            onChange: (p0) {
+                              context.setLocale(
+                                  Locale(p0.split("-")[0], p0.split("-")[1]));
+                              Future.delayed(Duration(milliseconds: 50), () {
+                                value.init();
+                              });
+                              dropdownController.close();
+                            },
+                            dropdownItemOptions: DropdownItemOptions(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              selectedTextStyle: TextStyle(
+                                color: context.toColor(
+                                  APPLICATION_COLOR
+                                      .EXTRA_CLOSE_BACKGROUND_COLOR,
+                                ),
+                              ),
+                              textStyle: TextStyle(
+                                color: context.toColor(
+                                  APPLICATION_COLOR.OPPOSITE_COLOR,
+                                ),
                               ),
                             ),
-                            label: context.locale
-                                .toLanguageTag()
-                                .localeToNativeLanguage,
-                            value: context.locale.toLanguageTag()),
-                      ),
-                    ),
-                  ),
-                  Gap(context.largeSpacerSize),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () => value.togglePageSelector(),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: context.toColor(APPLICATION_COLOR.GOLD),
-                            borderRadius: context.midRadius),
-                        child: Icon(
-                          Icons.menu_rounded,
-                          color: context.toColor(APPLICATION_COLOR.LIGHT),
+                            dropdownOptions: DropdownOptions(
+                              borderSide:
+                                  BorderSide(width: 1, color: Colors.black),
+                              color: context.toColor(
+                                APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
+                              ),
+                            ),
+                            defaultItem: CoolDropdownItem(
+                                icon: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: Image.asset(
+                                        value.getFlagFromLanguage(
+                                            context.locale.languageCode)),
+                                  ),
+                                ),
+                                label: context.locale
+                                    .toLanguageTag()
+                                    .localeToNativeLanguage,
+                                value: context.locale.toLanguageTag()),
+                          ),
                         ),
                       ),
-                    ),
+                      Gap(context.largeSpacerSize),
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => value.togglePageSelector(),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: context.toColor(APPLICATION_COLOR.GOLD),
+                                borderRadius: context.midRadius),
+                            child: Icon(
+                              Icons.menu_rounded,
+                              color: context.toColor(APPLICATION_COLOR.LIGHT),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
+              ],
+            ),
+            Gap(context.midSpacerSize),
+            Container(
+              margin: context.largeSpacerOnlyLeft,
+              child: LabelText(
+                text: context.tr("projects"),
+                fontSize: FONT_SIZE.HEADLINE_LARGE,
+                textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
               ),
             ),
+            Gap(context.largeSpacerSize),
+            Observer(builder: (context) {
+              if (value.complexList == null) {
+                return const SizedBox.shrink();
+              }
+              return ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: value.projectList!.length,
+                  itemBuilder: (context, index) {
+                    return MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => value.navigateProjectDetail(
+                            value.projectList![index].id),
+                        child: Container(
+                          margin: context.midSpacerOnlyBottom,
+                          child: ProjectListWidget(
+                              project: value.projectList![index]),
+                        ),
+                      ),
+                    );
+                  });
+            }),
           ],
         ),
-        Gap(context.midSpacerSize),
-        Container(
-          margin: context.largeSpacerOnlyLeft,
-          child: LabelText(
-            text: context.tr("projects"),
-            fontSize: FONT_SIZE.HEADLINE_LARGE,
-            textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
-          ),
-        ),
-        Gap(context.largeSpacerSize),
-        Observer(builder: (context) {
-          if (value.complexList == null) {
-            return const SizedBox.shrink();
-          }
-          return ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: value.projectList!.length,
-              itemBuilder: (context, index) {
-                return MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () => value
-                        .navigateProjectDetail(value.projectList![index].id),
-                    child: Container(
-                      margin: context.midSpacerOnlyBottom,
-                      child:
-                          ProjectListWidget(project: value.projectList![index]),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Observer(
+            builder: (context) {
+              if (value.isPageSelectorLock) {
+                return const SizedBox.shrink();
+              }
+              return Align(
+                alignment: Alignment.centerRight,
+                child: PageSelectorWidget(
+                  pages: [
+                    context.tr("explore"),
+                    locator<AuthenticationSource>().isUserStillValid()
+                        ? context.tr("webinars")
+                        : "",
+                    locator<AuthenticationSource>().isUserStillValid()
+                        ? context.tr("educations")
+                        : "",
+                    locator<AuthenticationSource>().isUserStillValid()
+                        ? context.tr("announcements")
+                        : "",
+                    context.tr("settings"),
+                    !locator<AuthenticationSource>().isUserStillValid()
+                        ? context.tr("beingPartner")
+                        : ""
+                  ],
+                  selectedIndex: 0,
+                  newIndex: (newIndex) => value.changeIndex(newIndex),
+                )
+                    .animate(
+                        onComplete: (controller) =>
+                            value.isPageSelectorVisible == false
+                                ? value.isPageSelectorLock = true
+                                : null,
+                        key: Key("${DateTime.now().millisecondsSinceEpoch}"))
+                    .slideX(
+                      begin: value.isPageSelectorVisible ? 1 : 0,
+                      end: value.isPageSelectorVisible ? 0 : 1,
+                      curve: Curves.easeOutCubic,
+                      duration: Duration(milliseconds: 600),
                     ),
-                  ),
-                );
-              });
-        }),
+              );
+            },
+          ),
+        )
       ],
     );
   }

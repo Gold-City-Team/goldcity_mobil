@@ -313,6 +313,40 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             ),
                           ),
                         );
+                      } else if (!value.isShared &&
+                          locator<AuthenticationSource>().isUserStillValid()) {
+                        return Container(
+                          height: 50,
+                          alignment: Alignment.centerLeft,
+                          padding: context.largeSpacerOnlyHorizontal,
+                          color: context.toColor(APPLICATION_COLOR.LIGHT),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                                maxWidth: isTablet()
+                                    ? context.sWidth / 2
+                                    : context.sWidth - 140),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                LabelText(
+                                  text: "Zafer Çetin",
+                                  textColor: APPLICATION_COLOR.DARK,
+                                  maxLines: 1,
+                                  textLineHeight: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: FONT_SIZE.TITLE_LARGE,
+                                ),
+                                LabelText(
+                                  text: "Goldcity Condominium",
+                                  textColor: APPLICATION_COLOR.DARK,
+                                  fontSize: FONT_SIZE.LABEL_SMALL,
+                                  textLineHeight: 1.2,
+                                )
+                              ],
+                            ),
+                          ),
+                        );
                       }
                       return const SizedBox();
                     }),
@@ -355,6 +389,64 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                     onTap: () => {
                                       launchUrl(Uri.parse(
                                           "tel:${value.shareData!.creatorUser.tel}"))
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.LIGHT),
+                                      ),
+                                      child: Icon(
+                                        Icons.call,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else if (!locator<AuthenticationSource>()
+                          .isUserStillValid()) {
+                        return SizedBox(
+                          height: 50,
+                          child: Row(
+                            children: [
+                              Gap(context.smallSpacerSize),
+                              WebViewAware(
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => {
+                                      launchUrl(Uri.parse(
+                                          "mailto:zaferkurumsal@gmail.com"))
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.LIGHT),
+                                      ),
+                                      child: Icon(
+                                        Icons.mail,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Gap(context.smallSpacerSize),
+                              WebViewAware(
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => {
+                                      launchUrl(Uri.parse("tel:+905350755376"))
                                     },
                                     child: Container(
                                       width: 50,
@@ -870,6 +962,40 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             ),
                           ),
                         );
+                      } else if (!value.isShared &&
+                          !locator<AuthenticationSource>().isUserStillValid()) {
+                        return Container(
+                          height: 50,
+                          alignment: Alignment.centerLeft,
+                          padding: context.largeSpacerOnlyHorizontal,
+                          color: context.toColor(APPLICATION_COLOR.LIGHT),
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                                maxWidth: isTablet()
+                                    ? context.sWidth / 2
+                                    : context.sWidth - 140),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                LabelText(
+                                  text: "Zafer Çetin",
+                                  textColor: APPLICATION_COLOR.DARK,
+                                  maxLines: 1,
+                                  textLineHeight: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  fontSize: FONT_SIZE.TITLE_LARGE,
+                                ),
+                                LabelText(
+                                  text: "Goldcity Condominium",
+                                  textColor: APPLICATION_COLOR.DARK,
+                                  fontSize: FONT_SIZE.LABEL_SMALL,
+                                  textLineHeight: 1.2,
+                                )
+                              ],
+                            ),
+                          ),
+                        );
                       }
                       return const SizedBox();
                     }),
@@ -912,6 +1038,64 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                     onTap: () => {
                                       launchUrl(Uri.parse(
                                           "tel:${value.shareData!.creatorUser.tel}"))
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.LIGHT),
+                                      ),
+                                      child: Icon(
+                                        Icons.call,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else if (!locator<AuthenticationSource>()
+                          .isUserStillValid()) {
+                        return SizedBox(
+                          height: 50,
+                          child: Row(
+                            children: [
+                              Gap(context.smallSpacerSize),
+                              WebViewAware(
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => {
+                                      launchUrl(Uri.parse(
+                                          "mailto:zaferkurumsal@gmail.com"))
+                                    },
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.LIGHT),
+                                      ),
+                                      child: Icon(
+                                        Icons.mail,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Gap(context.smallSpacerSize),
+                              WebViewAware(
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => {
+                                      launchUrl(Uri.parse("tel:+905350755376"))
                                     },
                                     child: Container(
                                       width: 50,
