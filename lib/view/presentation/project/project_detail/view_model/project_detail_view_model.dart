@@ -10,9 +10,11 @@ import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/data/dto/send/shareable_page/create_shareable_link_dto.dart';
+import 'package:goldcity/domain/entity/contact/contact_entity.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/entity/project/language/project_language_entity.dart';
 import 'package:goldcity/domain/entity/shareable_page/shareable_page_entity.dart';
+import 'package:goldcity/domain/usecase/contact_usecase.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/domain/usecase/shareable_page_usecase.dart';
 import 'package:goldcity/injection_container.dart';
@@ -34,6 +36,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
 
   late ProjectUseCase _projeclUseCase;
   late ShareablePageUseCase _shareablePageUseCase;
+  late ContactUseCase _contactUseCase;
 
   @override
   void setContext(BuildContext context) {
@@ -57,6 +60,8 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   void init() {
     _projeclUseCase = locator<ProjectUseCase>();
     _shareablePageUseCase = locator<ShareablePageUseCase>();
+    _contactUseCase = locator<ContactUseCase>();
+    _getContact();
     setLanguageList();
     var result = int.tryParse(projectId);
     if (result == null) {
@@ -163,6 +168,14 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
       projectId = result.right.pageId;
       shareData = result.right;
       _getDetail();
+    }
+  }
+
+  ContactEntity? contactEntity;
+  Future<void> _getContact() async {
+    var result = await _contactUseCase.getContact();
+    if (result.isRight) {
+      contactEntity = result.right;
     }
   }
 }

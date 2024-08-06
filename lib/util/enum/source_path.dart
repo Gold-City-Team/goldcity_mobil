@@ -21,6 +21,7 @@ enum SourcePath {
   WEBINAR_LIST,
   WEBINAR,
   EDUCATION,
+  CONTACT,
   EDUCATION_LIST,
   EDUCATION_GALLERY,
   USER_WEBINAR,
@@ -38,6 +39,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.LEAD_LOGIN => '/auth/mobilelogin',
       SourcePath.LEAD_LOGIN_GOOGLE => '/auth/logingoogle',
       SourcePath.LEAD => '/lead',
+      SourcePath.CONTACT => '/contact',
       SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage/${data?[1]}',
       SourcePath.PROJECT_LANGUAGE_LIST =>
         '/project/${data?[0]}/supportedlanguage',

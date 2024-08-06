@@ -314,7 +314,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                           ),
                         );
                       } else if (!value.isShared &&
-                          locator<AuthenticationSource>().isUserStillValid()) {
+                          !locator<AuthenticationSource>().isUserStillValid() &&
+                          value.contactEntity != null) {
                         return Container(
                           height: 50,
                           alignment: Alignment.centerLeft,
@@ -328,9 +329,9 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 LabelText(
-                                  text: "Zafer Çetin",
+                                  text: value.contactEntity!.fullName,
                                   textColor: APPLICATION_COLOR.DARK,
                                   maxLines: 1,
                                   textLineHeight: 1,
@@ -338,7 +339,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   fontSize: FONT_SIZE.TITLE_LARGE,
                                 ),
                                 LabelText(
-                                  text: "Goldcity Condominium",
+                                  text: value.contactEntity!.companyName,
                                   textColor: APPLICATION_COLOR.DARK,
                                   fontSize: FONT_SIZE.LABEL_SMALL,
                                   textLineHeight: 1.2,
@@ -410,7 +411,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                           ),
                         );
                       } else if (!locator<AuthenticationSource>()
-                          .isUserStillValid()) {
+                              .isUserStillValid() &&
+                          value.contactEntity != null) {
                         return SizedBox(
                           height: 50,
                           child: Row(
@@ -422,7 +424,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   child: GestureDetector(
                                     onTap: () => {
                                       launchUrl(Uri.parse(
-                                          "mailto:zaferkurumsal@gmail.com"))
+                                          "mailto:${value.contactEntity!.email}"))
                                     },
                                     child: Container(
                                       width: 50,
@@ -446,7 +448,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   cursor: SystemMouseCursors.click,
                                   child: GestureDetector(
                                     onTap: () => {
-                                      launchUrl(Uri.parse("tel:+905350755376"))
+                                      launchUrl(Uri.parse(
+                                          "tel:${value.contactEntity!.phoneNumber}"))
                                     },
                                     child: Container(
                                       width: 50,
@@ -963,7 +966,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                           ),
                         );
                       } else if (!value.isShared &&
-                          !locator<AuthenticationSource>().isUserStillValid()) {
+                          !locator<AuthenticationSource>().isUserStillValid() &&
+                          value.contactEntity != null) {
                         return Container(
                           height: 50,
                           alignment: Alignment.centerLeft,
@@ -977,9 +981,9 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 LabelText(
-                                  text: "Zafer Çetin",
+                                  text: value.contactEntity!.fullName,
                                   textColor: APPLICATION_COLOR.DARK,
                                   maxLines: 1,
                                   textLineHeight: 1,
@@ -987,7 +991,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   fontSize: FONT_SIZE.TITLE_LARGE,
                                 ),
                                 LabelText(
-                                  text: "Goldcity Condominium",
+                                  text: value.contactEntity!.companyName,
                                   textColor: APPLICATION_COLOR.DARK,
                                   fontSize: FONT_SIZE.LABEL_SMALL,
                                   textLineHeight: 1.2,
@@ -1059,7 +1063,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                           ),
                         );
                       } else if (!locator<AuthenticationSource>()
-                          .isUserStillValid()) {
+                              .isUserStillValid() &&
+                          value.contactEntity != null) {
                         return SizedBox(
                           height: 50,
                           child: Row(
@@ -1071,7 +1076,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   child: GestureDetector(
                                     onTap: () => {
                                       launchUrl(Uri.parse(
-                                          "mailto:zaferkurumsal@gmail.com"))
+                                          "mailto:${value.contactEntity!.email}"))
                                     },
                                     child: Container(
                                       width: 50,
@@ -1095,7 +1100,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                   cursor: SystemMouseCursors.click,
                                   child: GestureDetector(
                                     onTap: () => {
-                                      launchUrl(Uri.parse("tel:+905350755376"))
+                                      launchUrl(Uri.parse(
+                                          "tel:${value.contactEntity!.phoneNumber}"))
                                     },
                                     child: Container(
                                       width: 50,
