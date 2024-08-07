@@ -86,14 +86,13 @@ class LeadLoginView extends StatelessWidget {
                                   color: context
                                       .toColor(APPLICATION_COLOR.GOLD)))),
                       child: LabelText(
-                        text: "Giriş Yap",
+                        text: context.tr("login"),
                         fontSize: FONT_SIZE.HEADLINE_LARGE,
                         fontWeight: FontWeight.bold,
                       )),
                   Gap(context.midSpacerSize),
                   LabelText(
-                    text:
-                        "Hesap bilgilerinizi girerek partner hesabınıza giriş yapabilirsiniz.",
+                    text: context.tr("partnerLoginDetail"),
                     fontSize: FONT_SIZE.LABEL_LARGE,
                     fontWeight: FontWeight.w400,
                   ),
@@ -169,14 +168,13 @@ class LeadLoginView extends StatelessWidget {
                                   color: context
                                       .toColor(APPLICATION_COLOR.GOLD)))),
                       child: LabelText(
-                        text: "Giriş Yap",
+                        text: context.tr("login"),
                         fontSize: FONT_SIZE.HEADLINE_LARGE,
                         fontWeight: FontWeight.bold,
                       )),
                   Gap(context.midSpacerSize),
                   LabelText(
-                    text:
-                        "Hesap bilgilerinizi girerek partner hesabınıza giriş yapabilirsiniz.",
+                    text: context.tr("partnerLoginDetail"),
                     fontSize: FONT_SIZE.LABEL_LARGE,
                     fontWeight: FontWeight.w400,
                   ),

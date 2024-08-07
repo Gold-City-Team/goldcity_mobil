@@ -3,7 +3,9 @@
     "slogan": "We build life, not houses.",
     "nameSurnameQuestion": "Full Name",
     "telephoneQuestion": "Telephone Number",
+    "telephone": "Telephone",
     "mailQuestion": "E-mail adress",
+    "mail": "E-mail",
     "applicationFormTitle": "Application Form",
     "send": "Send",
     "projects": "Projects",
@@ -46,5 +48,12 @@
     "passwordQuestion": "Password",
     "logOut": "Logout",
     "areYouSureToLogout": "Are you sure you want to log out?",
-    "announcements": "Announcements"
+    "announcements": "Announcements",
+    "partner": "Partner",
+    "partnerDetail": "Fill out the form to bring Goldcity Condominium projects with high investment value together with their new owners and become a part of our sales network, let us call you.",
+    "alreadyPartner": "Are you already a partner?",
+    "partnerLoginDetail": "You can log in to your partner account by entering your account information.",
+    "searchHint": "Search...",
+    "shareProject": "Share the Project",
+    "linkCopied": "Link Copied!"
 }

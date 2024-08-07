@@ -7,12 +7,15 @@ import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/domain/entity/contact/contact_entity.dart';
+import 'package:goldcity/domain/usecase/contact_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/resources/authentication_source.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_language_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_theme_widget.dart';
+import 'package:goldcity/view/presentation/main/settings/widget/contact_us_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/loguot_widget.dart';
 import 'package:mobx/mobx.dart';
 
@@ -49,8 +52,13 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
         : null;
   }
 
+  late ContactUseCase _contactUseCase;
+  ContactEntity? entity;
   @override
-  void init() {}
+  void init() {
+    _contactUseCase = locator<ContactUseCase>();
+    _getContact();
+  }
 
   void showBox(var e) async {
     var index = menuItems.indexWhere((element) => element == e);
@@ -67,7 +75,7 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
           return switch (index) {
             0 => const ChangeThemeWidget(),
             1 => const ChangeLanguageWidget(),
-            2 => const ChangeThemeWidget(),
+            2 => ContactUsWidget(contactEntity: entity!),
             3 => const ChangeThemeWidget(),
             4 => const ChangeThemeWidget(),
             5 => const ChangeThemeWidget(),
@@ -100,5 +108,13 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
       _ => Icon(Icons.description,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD))
     };
+  }
+
+  @action
+  Future<void> _getContact() async {
+    var result = await _contactUseCase.getContact();
+    if (result.isRight) {
+      entity = result.right;
+    }
   }
 }

@@ -5,7 +5,9 @@ abstract class  LocaleKeys {
   static const slogan = 'slogan';
   static const nameSurnameQuestion = 'nameSurnameQuestion';
   static const telephoneQuestion = 'telephoneQuestion';
+  static const telephone = 'telephone';
   static const mailQuestion = 'mailQuestion';
+  static const mail = 'mail';
   static const applicationFormTitle = 'applicationFormTitle';
   static const send = 'send';
   static const projects = 'projects';
@@ -49,5 +51,12 @@ abstract class  LocaleKeys {
   static const logOut = 'logOut';
   static const areYouSureToLogout = 'areYouSureToLogout';
   static const announcements = 'announcements';
+  static const partner = 'partner';
+  static const partnerDetail = 'partnerDetail';
+  static const alreadyPartner = 'alreadyPartner';
+  static const partnerLoginDetail = 'partnerLoginDetail';
+  static const searchHint = 'searchHint';
+  static const shareProject = 'shareProject';
+  static const linkCopied = 'linkCopied';
 
 }

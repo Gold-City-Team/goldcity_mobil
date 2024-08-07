@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
@@ -29,7 +30,7 @@ class CreateLinkWidget extends StatelessWidget {
             padding: context.largeSpacer,
             child: Column(
               children: [
-                LabelText(text: "Projeyi Paylaş"),
+                LabelText(text: context.tr("shareProject")),
                 Gap(context.largeSpacerSize),
                 Row(
                   children: [
@@ -56,7 +57,8 @@ class CreateLinkWidget extends StatelessWidget {
                           Clipboard.setData(ClipboardData(text: link))
                               .then((_) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: LabelText(text: "Link Kopyalandı!")));
+                                content:
+                                    LabelText(text: context.tr("linkCopied"))));
                           })
                         },
                         child: Container(

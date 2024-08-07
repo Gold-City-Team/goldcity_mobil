@@ -3,7 +3,9 @@
     "slogan": "Ev değil, yaşam inşa ediyoruz.",
     "nameSurnameQuestion": "Ad Soyad",
     "telephoneQuestion": "Telefon Numarası",
+    "telephone": "Telefon",
     "mailQuestion": "E-posta adresi",
+    "mail": "E-posta",
     "applicationFormTitle": "Başvuru Formu",
     "send": "Gönder",
     "projects": "Projeler",
@@ -46,5 +48,12 @@
     "passwordQuestion": "Şifre",
     "logOut": "Çıkış Yap",
     "areYouSureToLogout": "Çıkış Yapmak İstediğinizden Emin Misiniz?",
-    "announcements": "Duyurular"
+    "announcements": "Duyurular",
+    "partner": "Partner",
+    "partnerDetail": "Yatırım değeri yüksek Goldcity Condominium projelerini yeni sahipleri ile buluşturmak ve satış ağımızın bir parçası olmak için formu doldurun, sizi arayalım.",
+    "alreadyPartner": "Zaten Partner misin?",
+    "partnerLoginDetail": "Hesap bilgilerinizi girerek partner hesabınıza giriş yapabilirsiniz.",
+    "searchHint": "Ara...",
+    "shareProject": "Projeyi Paylaş",
+    "linkCopied": "Link Kopyalandı!"
 }

@@ -82,14 +82,13 @@ class LeadApplyView extends StatelessWidget {
                                   color: context
                                       .toColor(APPLICATION_COLOR.GOLD)))),
                       child: LabelText(
-                        text: "Başvuru Yap",
+                        text: context.tr("partner"),
                         fontSize: FONT_SIZE.HEADLINE_LARGE,
                         fontWeight: FontWeight.bold,
                       )),
                   Gap(context.midSpacerSize),
                   LabelText(
-                    text:
-                        "Merak ettiğiniz her konu hakkında lütfen bize yazın. Temsilcimiz en kısa sürede size geri dönüş sağlayacaktır.",
+                    text: context.tr("partnerDetail"),
                     fontSize: FONT_SIZE.LABEL_LARGE,
                     fontWeight: FontWeight.w400,
                   ),
@@ -143,13 +142,13 @@ class LeadApplyView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LabelText(text: "Zaten partner misin?"),
+                      LabelText(text: context.tr("alreadyPartner")),
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
                           onTap: () => value.login(),
                           child: LabelText(
-                            text: " Giriş Yap",
+                            text: " ${context.tr("login")}",
                             textColor: APPLICATION_COLOR.GOLD,
                           ),
                         ),
@@ -192,14 +191,13 @@ class LeadApplyView extends StatelessWidget {
                                 color:
                                     context.toColor(APPLICATION_COLOR.GOLD)))),
                     child: LabelText(
-                      text: "Başvuru Yap",
+                      text: context.tr("partner"),
                       fontSize: FONT_SIZE.HEADLINE_LARGE,
                       fontWeight: FontWeight.bold,
                     )),
                 Gap(context.midSpacerSize),
                 LabelText(
-                  text:
-                      "Merak ettiğiniz her konu hakkında lütfen bize yazın. Temsilcimiz en kısa sürede size geri dönüş sağlayacaktır.",
+                  text: context.tr("partnerDetail"),
                   fontSize: FONT_SIZE.LABEL_LARGE,
                   fontWeight: FontWeight.w400,
                 ),
@@ -253,13 +251,13 @@ class LeadApplyView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LabelText(text: "Zaten partner misin?"),
+                    LabelText(text: context.tr("alreadyPartner")),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () => value.login(),
                         child: LabelText(
-                          text: " Giriş Yap",
+                          text: " ${context.tr("login")}",
                           textColor: APPLICATION_COLOR.GOLD,
                         ),
                       ),
