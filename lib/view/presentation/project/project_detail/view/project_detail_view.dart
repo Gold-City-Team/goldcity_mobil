@@ -773,13 +773,13 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                     child: GestureDetector(
                                         onTap: () {
                                           value.languageId =
-                                              value.language[0].id;
+                                              value.language[index].id;
                                           value.getProjectDetail();
                                         },
                                         child: Container(
                                           margin: context.largeSpacerOnlyRight,
                                           child: LanguageItemWidget(
-                                              value: value.language[0]),
+                                              value: value.language[index]),
                                         )),
                                   ),
                                 );

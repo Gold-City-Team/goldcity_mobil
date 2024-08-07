@@ -38,27 +38,11 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
         viewModelContext.read<ThemeNotifier>().setDarkTheme();
       }
     });
-    // AppLinks is singleton
-
-// Subscribe to all events (initial link and further)
 
     locator<AuthenticationSource>().initUserDto();
     locator<AuthenticationSource>().isUserStillValid();
     viewModelContext.pushReplacement(NavigationConstant.MAIN);
     locator<FcmManager>().getMessages(viewModelContext);
-
-    // locator<FcmManager>().messaging.getInitialMessage().then((value) {
-    //   if (value == null) {
-    //     viewModelContext.pushReplacement(NavigationConstant.MAIN);
-    //   } else {
-    //     viewModelContext.pushReplacement(NavigationConstant.MAIN);
-    //     NotificationNavigation()
-    //         .navigateAccordingToNotification(value.data, viewModelContext);
-    //   }
-    // });
-
-    viewModelContext.goNamed(NavigationConstant.PROJECT_DETAIL,
-        pathParameters: {"projectId": "5w8kOr66Is"});
 
     tokenProccess();
   }
