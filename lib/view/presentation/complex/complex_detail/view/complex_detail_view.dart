@@ -10,6 +10,7 @@ import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/complex/complex_detail/view_model/complex_detail_view_model.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_double_gallery_template/view/complex_double_gallery_template_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_feature_and_gallery_template/view/complex_feature_and_gallery_template_view.dart';
@@ -17,6 +18,7 @@ import 'package:goldcity/view/presentation/complex/template/complex_feature_temp
 import 'package:goldcity/view/presentation/complex/template/complex_general_information_and_gallery_template/view/complex_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_possibilty_template/view/complex_possibilty_template_view.dart';
 import 'package:goldcity/view/presentation/webinar_detail/language_item/language_item_widget.dart';
+import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 
 class ComplexDetailView extends StatefulWidget {
@@ -69,75 +71,9 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
           Scaffold(
         body: Observer(builder: (context) {
           if (value.languageId == 0) {
-            return Container(
-              alignment: Alignment.center,
-              width: context.sWidth,
-              height: context.sHeight,
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () => context.pop(),
-                        child: Container(
-                          width: 50,
-                          margin: context.largeSpacer,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: context.toColor(APPLICATION_COLOR.GOLD),
-                              borderRadius: context.midRadius),
-                          child: const Icon(Icons.close),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Gap(context.veryLargeSpacerSize),
-                  Observer(builder: (context) {
-                    if (value.languageList.isEmpty) {
-                      return const SizedBox.shrink();
-                    }
-                    return DefaultTextStyle(
-                      style:
-                          context.toTextStyle(FONT_SIZE.DISPLAY_SMALL).copyWith(
-                                color: context
-                                    .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                              ),
-                      child: AnimatedTextKit(
-                        animatedTexts: value.languageList
-                            .map((e) => TyperAnimatedText(e,
-                                speed: Duration(milliseconds: 125)))
-                            .toList(),
-                      ),
-                    );
-                  }),
-                  Gap(context.veryLargeSpacerSize),
-                  Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: value.language.length,
-                      itemBuilder: (context, index) {
-                        return Center(
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                                onTap: () {
-                                  value.languageId = value.language[index].id;
-                                  value.getComplexDetail();
-                                },
-                                child: LanguageItemWidget(
-                                    value: value.language[index])),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Gap(context.veryLargeSpacerSize),
-                ],
-              ),
-            );
+            return isTablet()
+                ? tabletLanguageSelector(context, value)
+                : phoneLanguageSelector(context, value);
           }
           return Focus(
             focusNode: _focusNode,
@@ -336,6 +272,200 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
             ),
           );
         }),
+      ),
+    );
+  }
+
+  Widget phoneLanguageSelector(
+      BuildContext context, ComplexDetailViewModel value) {
+    return Container(
+      alignment: Alignment.center,
+      width: context.sWidth,
+      height: context.sHeight,
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => context.pop(),
+                child: Container(
+                  width: 50,
+                  margin: context.largeSpacer,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                      borderRadius: context.midRadius),
+                  child: const Icon(Icons.close),
+                ),
+              ),
+            ),
+          ),
+          Gap(context.veryLargeSpacerSize),
+          Observer(builder: (context) {
+            if (value.languageList.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return DefaultTextStyle(
+              style: context.toTextStyle(FONT_SIZE.DISPLAY_SMALL).copyWith(
+                    color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                  ),
+              child: AnimatedTextKit(
+                animatedTexts: value.languageList
+                    .map((e) => TyperAnimatedText(e,
+                        speed: Duration(milliseconds: 125)))
+                    .toList(),
+              ),
+            );
+          }),
+          Gap(context.veryLargeSpacerSize),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: value.language.length,
+              itemBuilder: (context, index) {
+                return Center(
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                        onTap: () {
+                          value.languageId = value.language[index].id;
+                          value.getComplexDetail();
+                        },
+                        child: Container(
+                          margin: context.largeSpacerOnlyRight,
+                          height: context.sHeight * .4,
+                          child:
+                              LanguageItemWidget(value: value.language[index]),
+                        )),
+                  ),
+                );
+              },
+            ),
+          ),
+          Gap(context.veryLargeSpacerSize),
+        ],
+      ),
+    );
+  }
+
+  Widget tabletLanguageSelector(
+      BuildContext context, ComplexDetailViewModel value) {
+    return Container(
+      alignment: Alignment.center,
+      width: context.sWidth,
+      height: context.sHeight,
+      child: Stack(
+        children: [
+          SizedBox(
+            height: context.sHeight,
+            width: context.sWidth,
+            child: Row(
+              children: [
+                Expanded(
+                    flex: 1,
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          height: context.sHeight,
+                          width: context.sWidth / 2,
+                          child: NormalNetworkImage(
+                              fit: BoxFit.cover,
+                              source:
+                                  "https://parametric-architecture.com/wp-content/uploads/2023/05/Tim-Fu-AI-3.jpg"),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: context.xlargeSpacerOnlyHorizontal,
+                            child: NormalNetworkImage(
+                                fit: BoxFit.cover,
+                                source:
+                                    "https://parametric-architecture.com/wp-content/uploads/2023/05/Tim-Fu-AI-3.jpg"),
+                          ),
+                        ),
+                      ],
+                    )),
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: context.xlargeSpacerOnlyLeft,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Observer(builder: (context) {
+                          if (value.languageList.isEmpty) {
+                            return const SizedBox.shrink();
+                          }
+                          return DefaultTextStyle(
+                            style: context
+                                .toTextStyle(FONT_SIZE.DISPLAY_SMALL)
+                                .copyWith(
+                                  color: context.toColor(
+                                      APPLICATION_COLOR.OPPOSITE_COLOR),
+                                ),
+                            child: AnimatedTextKit(
+                              animatedTexts: value.languageList
+                                  .map((e) => TyperAnimatedText(e,
+                                      speed: Duration(milliseconds: 125)))
+                                  .toList(),
+                            ),
+                          );
+                        }),
+                        Gap(context.veryLargeSpacerSize),
+                        SizedBox(
+                          height: context.sHeight * .6,
+                          width: (context.sWidth / 3) * 2,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: value.language.length,
+                            itemBuilder: (context, index) {
+                              return MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: SizedBox(
+                                  height: context.sHeight,
+                                  width: 170,
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        value.languageId =
+                                            value.language[index].id;
+                                        value.getComplexDetail();
+                                      },
+                                      child: Container(
+                                        margin: context.largeSpacerOnlyRight,
+                                        child: LanguageItemWidget(
+                                            value: value.language[index]),
+                                      )),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: () => context.pop(),
+              child: Container(
+                width: 50,
+                margin: context.largeSpacer,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: context.toColor(APPLICATION_COLOR.GOLD),
+                    borderRadius: context.midRadius),
+                child: const Icon(Icons.close),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

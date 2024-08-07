@@ -147,8 +147,12 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                               value.languageId = value.language[index].id;
                               value.getProjectDetail();
                             },
-                            child: LanguageItemWidget(
-                                value: value.language[index])),
+                            child: Container(
+                              margin: context.largeSpacerOnlyRight,
+                              height: context.sHeight * .4,
+                              child: LanguageItemWidget(
+                                  value: value.language[index]),
+                            )),
                       ),
                     );
                   },
@@ -734,59 +738,64 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                           ],
                         )),
                     Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Observer(builder: (context) {
-                            if (value.languageList.isEmpty) {
-                              return const SizedBox.shrink();
-                            }
-                            return DefaultTextStyle(
-                              style: context
-                                  .toTextStyle(FONT_SIZE.DISPLAY_SMALL)
-                                  .copyWith(
-                                    color: context.toColor(
-                                        APPLICATION_COLOR.OPPOSITE_COLOR),
-                                  ),
-                              child: AnimatedTextKit(
-                                animatedTexts: value.languageList
-                                    .map((e) => TyperAnimatedText(e,
-                                        speed: Duration(milliseconds: 125)))
-                                    .toList(),
+                      flex: 2,
+                      child: Padding(
+                        padding: context.xlargeSpacerOnlyLeft,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Observer(builder: (context) {
+                              if (value.languageList.isEmpty) {
+                                return const SizedBox.shrink();
+                              }
+                              return DefaultTextStyle(
+                                style: context
+                                    .toTextStyle(FONT_SIZE.DISPLAY_SMALL)
+                                    .copyWith(
+                                      color: context.toColor(
+                                          APPLICATION_COLOR.OPPOSITE_COLOR),
+                                    ),
+                                child: AnimatedTextKit(
+                                  animatedTexts: value.languageList
+                                      .map((e) => TyperAnimatedText(e,
+                                          speed: Duration(milliseconds: 125)))
+                                      .toList(),
+                                ),
+                              );
+                            }),
+                            Gap(context.veryLargeSpacerSize),
+                            SizedBox(
+                              height: context.sHeight * .6,
+                              width: (context.sWidth / 3) * 2,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: value.language.length,
+                                itemBuilder: (context, index) {
+                                  return MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: SizedBox(
+                                      height: context.sHeight,
+                                      width: 170,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            value.languageId =
+                                                value.language[index].id;
+                                            value.getProjectDetail();
+                                          },
+                                          child: Container(
+                                            margin:
+                                                context.largeSpacerOnlyRight,
+                                            child: LanguageItemWidget(
+                                                value: value.language[index]),
+                                          )),
+                                    ),
+                                  );
+                                },
                               ),
-                            );
-                          }),
-                          Gap(context.veryLargeSpacerSize),
-                          SizedBox(
-                            height: context.sHeight * .6,
-                            width: (context.sWidth / 3) * 2,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: value.language.length,
-                              itemBuilder: (context, index) {
-                                return MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: SizedBox(
-                                    height: context.sHeight,
-                                    width: 170,
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          value.languageId =
-                                              value.language[index].id;
-                                          value.getProjectDetail();
-                                        },
-                                        child: Container(
-                                          margin: context.largeSpacerOnlyRight,
-                                          child: LanguageItemWidget(
-                                              value: value.language[index]),
-                                        )),
-                                  ),
-                                );
-                              },
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     )
                   ],

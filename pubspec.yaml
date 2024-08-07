@@ -91,6 +91,7 @@ flutter:
     - assets/image/turkflag.webp
     - assets/image/logo.png    
     - assets/applogo/logo.jpg    
+    - assets/applogo/app_logo.webp    
     - assets/video/trailer.mp4    
   fonts:
     - family: Encode

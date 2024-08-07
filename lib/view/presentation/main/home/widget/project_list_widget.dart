@@ -26,8 +26,10 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
         alignment: Alignment.center,
         children: [
           SizedBox(
-            width: isTablet() ? context.sHeight * .25 * 1.77 : context.sWidth,
-            height: isTablet() ? context.sHeight * .25 : context.sWidth / 1.777,
+            width: isTablet()
+                ? context.sHeight * .18 * 1.77
+                : context.sHeight * .18 * 1.77,
+            height: isTablet() ? context.sHeight * .18 : context.sHeight * .18,
             child: NormalNetworkImage(
                 fit: BoxFit.cover,
                 alignment: Alignment.centerLeft,
@@ -40,9 +42,16 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                 )
                 .withAlpha(180),
           ),
+          Container(
+              width: isTablet()
+                  ? context.sHeight * .18 * 1.77
+                  : context.sHeight * .18 * 1.77,
+              height:
+                  isTablet() ? context.sHeight * .18 : context.sHeight * .18,
+              color: context.toColor(APPLICATION_COLOR.DARK).withAlpha(150)),
           Center(
             child: SizedBox(
-              height: 75,
+              height: 50,
               child: NormalNetworkImage(
                   fit: BoxFit.contain,
                   alignment: Alignment.center,

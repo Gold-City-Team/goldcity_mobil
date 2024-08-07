@@ -41,6 +41,7 @@ extension MarginPaddingExtension on BuildContext {
       const EdgeInsets.symmetric(vertical: 15);
   EdgeInsets get largeSpacerOnlyVertical =>
       const EdgeInsets.symmetric(vertical: 20);
+  EdgeInsets get xxlargeSpacerOnlyLeft => const EdgeInsets.only(left: 60);
   EdgeInsets get xlargeSpacerOnlyLeft => const EdgeInsets.only(left: 40);
   EdgeInsets get xlargeSpacerOnlyHorizontal =>
       const EdgeInsets.symmetric(horizontal: 40);

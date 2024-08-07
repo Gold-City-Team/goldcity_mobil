@@ -86,35 +86,28 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
             ],
           ),
         ),
-        Padding(
-          padding: context.xlargeSpacerOnlyHorizontal,
-          child: Container(
-            width: context.sWidth / 3,
-            height: context.sHeight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Gap(context.midSpacerSize),
-                Center(
-                  child: LabelText(
-                    text: context.tr("wellcome"),
-                    align: TextAlign.center,
-                    fontWeight: FontWeight.w500,
-                    fontSize: FONT_SIZE.DISPLAY_SMALL,
-                  ),
-                ),
-                Center(
-                  child: LabelText(
-                    text: widget.complexEntity.slogan,
-                    fontSize: FONT_SIZE.TITLE_MEDIUM,
-                    textColor: APPLICATION_COLOR.SUBTITLE,
-                    align: TextAlign.center,
-                  ),
-                ),
-                Gap(context.largeSpacerSize),
-              ],
-            ),
+        Container(
+          width: context.sWidth / 3,
+          margin: context.xxlargeSpacerOnlyLeft,
+          height: context.sHeight,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              LabelText(
+                text: context.tr("wellcome"),
+                align: TextAlign.center,
+                fontWeight: FontWeight.w500,
+                fontSize: FONT_SIZE.DISPLAY_SMALL,
+              ),
+              LabelText(
+                text: widget.complexEntity.slogan,
+                fontSize: FONT_SIZE.TITLE_MEDIUM,
+                textColor: APPLICATION_COLOR.SUBTITLE,
+                align: TextAlign.center,
+              ),
+              Gap(context.largeSpacerSize),
+            ],
           ),
         ),
         Align(
@@ -130,7 +123,7 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                 decoration: BoxDecoration(
                   color: context
                       .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                      .withAlpha(200),
+                      .withAlpha(235),
                 ),
                 padding: context.largeSpacerOnlyHorizontal,
                 child: Row(
@@ -203,7 +196,7 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
           ),
           SafeArea(
             child: Padding(
-              padding: context.xlargeSpacerOnlyHorizontal,
+              padding: context.largeSpacerOnlyLeft,
               child: SizedBox(
                 width: context.sWidth,
                 height: context.sHeight,
@@ -211,16 +204,21 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Spacer(),
                     LabelText(
                       text: widget.complexEntity.title,
-                      fontSize: FONT_SIZE.DISPLAY_LARGE,
+                      fontSize: FONT_SIZE.HEADLINE_LARGE,
+                      textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
                     ),
                     Gap(context.midSpacerSize),
                     LabelText(
                       text: widget.complexEntity.slogan,
-                      fontSize: FONT_SIZE.TITLE_LARGE,
+                      textColor: APPLICATION_COLOR.SUBTITLE,
+                      fontSize: FONT_SIZE.TITLE_SMALL,
                     ),
                     Gap(context.largeSpacerSize),
+                    Spacer(),
+                    Spacer(),
                   ],
                 ),
               ),
