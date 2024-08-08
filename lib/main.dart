@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/language/language_manager.dart';
@@ -19,8 +20,8 @@ import 'package:goldcity/injection_container.dart' as di;
 import 'package:flutter_web_plugins/url_strategy.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   di.init();
 
@@ -67,6 +68,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return MaterialApp.router(
       title: 'GoldCity',
       localizationsDelegates: context.localizationDelegates,

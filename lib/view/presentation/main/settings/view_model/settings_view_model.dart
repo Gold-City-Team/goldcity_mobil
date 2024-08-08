@@ -13,7 +13,6 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/resources/authentication_source.dart';
-import 'package:goldcity/view/presentation/main/settings/widget/change_language_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/change_theme_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/contact_us_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/loguot_widget.dart';
@@ -29,7 +28,6 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
 
   ObservableList<String> menuItems = ObservableList<String>.of([
     LocaleKeys.changeTheme.tr(),
-    LocaleKeys.changeLanguage.tr(),
     LocaleKeys.contactUs.tr(),
     LocaleKeys.confidentialityAgreement.tr(),
     LocaleKeys.termsOfUse.tr(),
@@ -42,7 +40,6 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
   updateList() {
     menuItems.clear();
     menuItems.add(LocaleKeys.changeTheme.tr());
-    menuItems.add(LocaleKeys.changeLanguage.tr());
     menuItems.add(LocaleKeys.contactUs.tr());
     menuItems.add(LocaleKeys.confidentialityAgreement.tr());
     menuItems.add(LocaleKeys.termsOfUse.tr());
@@ -62,7 +59,7 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
 
   void showBox(var e) async {
     var index = menuItems.indexWhere((element) => element == e);
-    if (index == 5) {
+    if (index == 4) {
       locator<SharedManager>().clearAll();
       locator<LocalManager>().clearCache();
       locator<AuthenticationSource>().clearUserDto();
@@ -74,12 +71,11 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
         builder: (context) {
           return switch (index) {
             0 => const ChangeThemeWidget(),
-            1 => const ChangeLanguageWidget(),
-            2 => ContactUsWidget(contactEntity: entity!),
+            1 => ContactUsWidget(contactEntity: entity!),
+            2 => const ChangeThemeWidget(),
             3 => const ChangeThemeWidget(),
             4 => const ChangeThemeWidget(),
-            5 => const ChangeThemeWidget(),
-            6 => const LogoutWidget(),
+            5 => const LogoutWidget(),
             _ => const ChangeThemeWidget()
           };
         },
@@ -93,17 +89,15 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
     return switch (index) {
       0 => Icon(Icons.dark_mode,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
-      1 => Icon(Icons.language,
+      1 => Icon(Icons.support,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
-      2 => Icon(Icons.support,
+      2 => Icon(Icons.description,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
       3 => Icon(Icons.description,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
-      4 => Icon(Icons.description,
+      4 => Icon(Icons.delete,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
-      5 => Icon(Icons.delete,
-          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
-      6 => Icon(Icons.logout,
+      5 => Icon(Icons.logout,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
       _ => Icon(Icons.description,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD))

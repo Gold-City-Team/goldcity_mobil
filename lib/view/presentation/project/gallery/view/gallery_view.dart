@@ -392,6 +392,7 @@ class _GalleryViewState extends State<GalleryView> {
       width: 150 * 1.77777,
       height: 150,
       decoration: BoxDecoration(
+        color: context.toColor(APPLICATION_COLOR.DARK),
         border: Border.all(
           width: 2,
           color: context.toColor(
@@ -413,6 +414,7 @@ class _GalleryViewState extends State<GalleryView> {
       alignment: Alignment.center,
       children: [
         Container(
+          color: context.toColor(APPLICATION_COLOR.DARK),
           width: 90 * 1.77777,
           height: 90,
           decoration: BoxDecoration(

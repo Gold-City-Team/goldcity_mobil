@@ -72,7 +72,8 @@ abstract class _AnnouncementViewModelBase with Store, BaseViewModel {
     entitySearch = entity;
 
     var result = entitySearch!
-        .where((element) => element.title.toLowerCase().contains(search))
+        .where((element) =>
+            element.title.toLowerCase().contains(search.toLowerCase()))
         .toList();
     entitySearch = result;
   }

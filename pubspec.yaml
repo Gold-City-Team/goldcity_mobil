@@ -54,6 +54,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   app_links: ^6.1.4
   cool_dropdown: ^2.1.0
+  flutter_native_splash: ^2.4.1
   
 dev_dependencies:
   flutter_test:
