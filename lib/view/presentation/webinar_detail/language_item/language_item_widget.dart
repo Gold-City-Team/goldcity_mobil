@@ -39,7 +39,10 @@ class LanguageItemWidget extends StatelessWidget {
                   borderRadius: BorderRadius.all(
                       isTablet() ? Radius.circular(75) : Radius.circular(50))),
               height: isTablet() ? 150 : 100,
-              child: NormalNetworkImage(source: value.mediaItem.url)),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.all(
+                      isTablet() ? Radius.circular(75) : Radius.circular(50)),
+                  child: NormalNetworkImage(source: value.mediaItem.url))),
           Gap(context.veryLargeSpacerSize),
           LabelText(
             text: value.name,
