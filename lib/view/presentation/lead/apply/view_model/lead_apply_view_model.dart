@@ -7,6 +7,7 @@ import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
 import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
+import 'package:goldcity/view/widget/snackbar/error_snackbar.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lead_apply_view_model.g.dart';
@@ -29,7 +30,7 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
   String fullName = "";
 
   Future<void> apply() async {
-    await _leadUseCase.leadApply(
+    var result = await _leadUseCase.leadApply(
       SendLeadApplyDto(
         campaignName: "MOBILE",
         language: "tr-TR",
@@ -39,6 +40,20 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
         tel: telephone,
       ),
     );
+    if (result == null) {
+      showSnackbar(ErrorSnackBar(message: "Başvurun Alındı!"))
+          .show(viewModelContext);
+      viewModelContext.pop();
+    } else {
+      if (result.errors != null) {
+        showSnackbar(ErrorSnackBar(
+                message: result.errors!.entries.first.value.first))
+            .show(viewModelContext);
+      } else {
+        showSnackbar(ErrorSnackBar(message: result.detail ?? ""))
+            .show(viewModelContext);
+      }
+    }
   }
 
   Future<void> login() async {

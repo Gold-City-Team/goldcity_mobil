@@ -34,7 +34,8 @@ abstract class _ComplexDoubleGalleryTemplateViewModelBase
 
   @action
   Future<void> _getDetail() async {
-    var result = await _complexDetailUseCase.getComplexTemplateDetail(detailId);
+    var result =
+        await _complexDetailUseCase.getComplexTemplateDetail(settingsId);
     if (result.isRight) {
       templateEntity = (result.right.template as ComplexTemplateSevenEntity);
     }

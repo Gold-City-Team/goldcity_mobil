@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,8 @@ import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/firebase_options.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
+import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:goldcity/injection_container.dart' as di;
@@ -68,9 +72,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove();
     return MaterialApp.router(
+      scrollBehavior: MyCustomScrollBehavior(),
       title: 'GoldCity',
+      color: context.toColor(APPLICATION_COLOR.DARK),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
@@ -79,4 +84,12 @@ class _MyAppState extends State<MyApp> {
       routerConfig: router,
     );
   }
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

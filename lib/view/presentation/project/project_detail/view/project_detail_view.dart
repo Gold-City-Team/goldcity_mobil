@@ -133,31 +133,37 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                 );
               }),
               Gap(context.veryLargeSpacerSize),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: value.language.length,
-                  itemBuilder: (context, index) {
-                    return Center(
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                            onTap: () {
-                              value.languageId = value.language[index].id;
-                              value.getProjectDetail();
-                            },
-                            child: Container(
-                              margin: context.largeSpacerOnlyRight,
-                              height: context.sHeight * .4,
-                              child: LanguageItemWidget(
-                                  value: value.language[index]),
-                            )),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              Observer(builder: (context) {
+                if (value.language == null) {
+                  return const SizedBox.shrink();
+                }
+                return Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: value.language!.languages.length,
+                    itemBuilder: (context, index) {
+                      return Center(
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                              onTap: () {
+                                value.languageId =
+                                    value.language!.languages[index].id;
+                                value.getProjectDetail();
+                              },
+                              child: Container(
+                                margin: context.largeSpacerOnlyRight,
+                                height: context.sHeight * .4,
+                                child: LanguageItemWidget(
+                                    value: value.language!.languages[index]),
+                              )),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }),
               Gap(context.veryLargeSpacerSize),
             ],
           ),
@@ -712,94 +718,98 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
               SizedBox(
                 height: context.sHeight,
                 width: context.sWidth,
-                child: Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              height: context.sHeight,
-                              width: context.sWidth / 2,
-                              child: NormalNetworkImage(
-                                  fit: BoxFit.cover,
-                                  source:
-                                      "https://parametric-architecture.com/wp-content/uploads/2023/05/Tim-Fu-AI-3.jpg"),
-                            ),
-                            Center(
-                              child: Padding(
-                                padding: context.xlargeSpacerOnlyHorizontal,
+                child: Observer(builder: (context) {
+                  if (value.language == null) {
+                    return const SizedBox.shrink();
+                  }
+                  return Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: context.sHeight,
+                                width: context.sWidth / 2,
                                 child: NormalNetworkImage(
                                     fit: BoxFit.cover,
-                                    source:
-                                        "https://parametric-architecture.com/wp-content/uploads/2023/05/Tim-Fu-AI-3.jpg"),
+                                    source: value.language!.mainImage.url),
                               ),
-                            ),
-                          ],
-                        )),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: context.xlargeSpacerOnlyLeft,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Observer(builder: (context) {
-                              if (value.languageList.isEmpty) {
-                                return const SizedBox.shrink();
-                              }
-                              return DefaultTextStyle(
-                                style: context
-                                    .toTextStyle(FONT_SIZE.DISPLAY_SMALL)
-                                    .copyWith(
-                                      color: context.toColor(
-                                          APPLICATION_COLOR.OPPOSITE_COLOR),
-                                    ),
-                                child: AnimatedTextKit(
-                                  animatedTexts: value.languageList
-                                      .map((e) => TyperAnimatedText(e,
-                                          speed: Duration(milliseconds: 125)))
-                                      .toList(),
+                              Center(
+                                child: Padding(
+                                  padding: context.xlargeSpacerOnlyHorizontal,
+                                  child: NormalNetworkImage(
+                                      fit: BoxFit.cover,
+                                      source: value.language!.logo.url),
                                 ),
-                              );
-                            }),
-                            Gap(context.veryLargeSpacerSize),
-                            SizedBox(
-                              height: context.sHeight * .6,
-                              width: (context.sWidth / 3) * 2,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: value.language.length,
-                                itemBuilder: (context, index) {
-                                  return MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: SizedBox(
-                                      height: context.sHeight,
-                                      width: 170,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            value.languageId =
-                                                value.language[index].id;
-                                            value.getProjectDetail();
-                                          },
-                                          child: Container(
-                                            margin:
-                                                context.largeSpacerOnlyRight,
-                                            child: LanguageItemWidget(
-                                                value: value.language[index]),
-                                          )),
-                                    ),
-                                  );
-                                },
                               ),
-                            ),
-                          ],
+                            ],
+                          )),
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: context.xlargeSpacerOnlyLeft,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Observer(builder: (context) {
+                                if (value.languageList.isEmpty) {
+                                  return const SizedBox.shrink();
+                                }
+                                return DefaultTextStyle(
+                                  style: context
+                                      .toTextStyle(FONT_SIZE.DISPLAY_SMALL)
+                                      .copyWith(
+                                        color: context.toColor(
+                                            APPLICATION_COLOR.OPPOSITE_COLOR),
+                                      ),
+                                  child: AnimatedTextKit(
+                                    animatedTexts: value.languageList
+                                        .map((e) => TyperAnimatedText(e,
+                                            speed: Duration(milliseconds: 125)))
+                                        .toList(),
+                                  ),
+                                );
+                              }),
+                              Gap(context.veryLargeSpacerSize),
+                              SizedBox(
+                                height: context.sHeight * .6,
+                                width: (context.sWidth / 3) * 2,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: value.language!.languages.length,
+                                  itemBuilder: (context, index) {
+                                    return MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: SizedBox(
+                                        height: context.sHeight,
+                                        width: 170,
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              value.languageId = value.language!
+                                                  .languages[index].id;
+                                              value.getProjectDetail();
+                                            },
+                                            child: Container(
+                                              margin:
+                                                  context.largeSpacerOnlyRight,
+                                              child: LanguageItemWidget(
+                                                  value: value.language!
+                                                      .languages[index]),
+                                            )),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
+                      )
+                    ],
+                  );
+                }),
               ),
               MouseRegion(
                 cursor: SystemMouseCursors.click,

@@ -52,23 +52,6 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LabelText(
-                text: value.templateTwo!.title,
-                maxLines: 1,
-                fontSize: FONT_SIZE.HEADLINE_LARGE,
-                textLineHeight: 1,
-              ),
-              Gap(context.midSpacerSize),
-              SizedBox(
-                child: Center(
-                  child: LabelText(
-                    text: value.templateTwo!.description,
-                    maxLines: 10,
-                    textColor: APPLICATION_COLOR.SUBTITLE,
-                    fontSize: FONT_SIZE.TITLE_MEDIUM,
-                  ),
-                ),
-              ),
               SizedBox(
                 height: context.sWidth / 1.77 + 75,
                 child: Stack(
@@ -129,6 +112,19 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              Gap(context.midSpacerSize),
+              LabelText(
+                text: value.templateTwo!.title,
+                maxLines: 1,
+                fontSize: FONT_SIZE.HEADLINE_LARGE,
+                textLineHeight: 1,
+              ),
+              Gap(context.midSpacerSize),
+              LabelText(
+                text: value.templateTwo!.description,
+                textColor: APPLICATION_COLOR.SUBTITLE,
+                fontSize: FONT_SIZE.TITLE_MEDIUM,
               ),
               Gap(context.midSpacerSize),
               Observer(
@@ -273,7 +269,6 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                                     Gap(context.largeSpacerSize),
                                     LabelText(
                                       text: value.templateTwo!.description,
-                                      maxLines: 10,
                                       textColor: APPLICATION_COLOR.SUBTITLE,
                                       fontSize: FONT_SIZE.TITLE_MEDIUM,
                                     ),
@@ -357,7 +352,6 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                                     Gap(context.largeSpacerSize),
                                     LabelText(
                                       text: value.templateTwo!.description,
-                                      maxLines: 10,
                                       textColor: APPLICATION_COLOR.SUBTITLE,
                                       fontSize: FONT_SIZE.TITLE_MEDIUM,
                                     ),

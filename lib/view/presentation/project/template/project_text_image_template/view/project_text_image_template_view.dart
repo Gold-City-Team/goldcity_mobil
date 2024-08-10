@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
-import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
+import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -193,7 +192,7 @@ class ProjectTextImageTemplateView extends StatelessWidget {
           Padding(
             padding: context.largeSpacerOnlyHorizontal,
             child: LabelText(
-                text: LocaleKeys.gallery.tr(),
+                text: GeneralConstant.FIELD_NAME["Galleries"],
                 fontSize: FONT_SIZE.HEADLINE_LARGE),
           ),
           Gap(context.midSpacerSize),
@@ -450,7 +449,7 @@ class ProjectTextImageTemplateView extends StatelessWidget {
           Padding(
             padding: context.xlargeSpacerOnlyLeft,
             child: LabelText(
-                text: LocaleKeys.gallery.tr(),
+                text: GeneralConstant.FIELD_NAME["Galleries"],
                 fontSize: FONT_SIZE.DISPLAY_LARGE),
           ),
           Gap(context.midSpacerSize),

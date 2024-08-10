@@ -18,51 +18,48 @@ class FeaturesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: context.midSpacer,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            height: isTablet() ? 30 : 25,
-            width: isTablet() ? 30 : 25,
-            child: kIsWeb
-                ? Image.network(
-                    featuresEntity.media.url,
-                    color: context.toColor(APPLICATION_COLOR.GOLD),
-                  )
-                : SvgPicture.network(
-                    featuresEntity.media.url,
-                    color: context.toColor(APPLICATION_COLOR.GOLD),
-                  ),
-          ),
-          Gap(context.midSpacerSize),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                LabelText(
-                  textLineHeight: 1,
-                  text: featuresEntity.value,
-                  textColor: APPLICATION_COLOR.TITLE,
-                  fontSize: isTablet()
-                      ? FONT_SIZE.HEADLINE_SMALL
-                      : FONT_SIZE.BODY_LARGE,
-                ),
-                Gap(context.midSpacerSize),
-                LabelText(
-                  text: featuresEntity.title,
-                  textColor: APPLICATION_COLOR.SUBTITLE,
-                  fontSize:
-                      isTablet() ? FONT_SIZE.BODY_LARGE : FONT_SIZE.LABEL_LARGE,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: isTablet() ? 35 : 25,
+          width: isTablet() ? 35 : 25,
+          child: kIsWeb
+              ? Image.network(
+                  featuresEntity.media.url,
+                  color: context.toColor(APPLICATION_COLOR.GOLD),
                 )
-              ],
-            ),
-          )
-        ],
-      ).animate().fade(duration: const Duration(milliseconds: 750)),
-    );
+              : SvgPicture.network(
+                  featuresEntity.media.url,
+                  color: context.toColor(APPLICATION_COLOR.GOLD),
+                ),
+        ),
+        Gap(context.midSpacerSize),
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              LabelText(
+                textLineHeight: 1,
+                text: featuresEntity.value,
+                maxLines: 1,
+                textColor: APPLICATION_COLOR.TITLE,
+                fontSize:
+                    isTablet() ? FONT_SIZE.TITLE_LARGE : FONT_SIZE.BODY_LARGE,
+              ),
+              Gap(context.midSpacerSize),
+              LabelText(
+                text: featuresEntity.title,
+                maxLines: 1,
+                textColor: APPLICATION_COLOR.SUBTITLE,
+                fontSize: FONT_SIZE.LABEL_LARGE,
+              )
+            ],
+          ),
+        )
+      ],
+    ).animate().fade(duration: const Duration(milliseconds: 750));
   }
 }

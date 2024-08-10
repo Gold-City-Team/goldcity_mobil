@@ -111,13 +111,13 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
       Atom(name: '_ProjectDetailViewModelBase.language', context: context);
 
   @override
-  List<LanguageDetailEntity> get language {
+  ProjectEntity? get language {
     _$languageAtom.reportRead();
     return super.language;
   }
 
   @override
-  set language(List<LanguageDetailEntity> value) {
+  set language(ProjectEntity? value) {
     _$languageAtom.reportWrite(value, super.language, () {
       super.language = value;
     });
@@ -129,15 +129,6 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
   @override
   Future<void> _getDetail() {
     return _$_getDetailAsyncAction.run(() => super._getDetail());
-  }
-
-  late final _$getProjectDetailAsyncAction = AsyncAction(
-      '_ProjectDetailViewModelBase.getProjectDetail',
-      context: context);
-
-  @override
-  Future<void> getProjectDetail() {
-    return _$getProjectDetailAsyncAction.run(() => super.getProjectDetail());
   }
 
   late final _$_ProjectDetailViewModelBaseActionController =
@@ -160,6 +151,17 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
         .startAction(name: '_ProjectDetailViewModelBase.togglePageSelector');
     try {
       return super.togglePageSelector();
+    } finally {
+      _$_ProjectDetailViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void getProjectDetail() {
+    final _$actionInfo = _$_ProjectDetailViewModelBaseActionController
+        .startAction(name: '_ProjectDetailViewModelBase.getProjectDetail');
+    try {
+      return super.getProjectDetail();
     } finally {
       _$_ProjectDetailViewModelBaseActionController.endAction(_$actionInfo);
     }

@@ -95,13 +95,13 @@ mixin _$ComplexDetailViewModel on _ComplexDetailViewModelBase, Store {
       Atom(name: '_ComplexDetailViewModelBase.language', context: context);
 
   @override
-  List<LanguageDetailEntity> get language {
+  ComplexEntity? get language {
     _$languageAtom.reportRead();
     return super.language;
   }
 
   @override
-  set language(List<LanguageDetailEntity> value) {
+  set language(ComplexEntity? value) {
     _$languageAtom.reportWrite(value, super.language, () {
       super.language = value;
     });

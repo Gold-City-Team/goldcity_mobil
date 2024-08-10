@@ -1,3 +1,4 @@
+import 'package:goldcity/data/dto/receive/language_detail/language_detail_dto.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
 import 'package:goldcity/data/dto/receive/project/project_detail/project_detail_dto.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
@@ -8,6 +9,7 @@ part 'project_dto.g.dart';
 class ProjectDto {
   int? id;
   ProjectDetailDto? projectDetail;
+  List<LanguageDetailDto>? languages;
   MediaDto? logo;
   MediaDto? mainImage;
   ProjectDto({this.id, this.projectDetail, this.logo, this.mainImage});
@@ -20,6 +22,9 @@ class ProjectDto {
         detail: projectDetail != null
             ? projectDetail!.toEntity()
             : ProjectDetailDto().toEntity(),
+        languages: languages != null
+            ? languages!.map((e) => e.toEntity()).toList()
+            : [LanguageDetailDto().toEntity()],
         mainImage:
             mainImage != null ? mainImage!.toEntity() : MediaDto().toEntity(),
         logo: logo != null ? logo!.toEntity() : MediaDto().toEntity(),

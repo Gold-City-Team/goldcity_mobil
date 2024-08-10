@@ -1,7 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:goldcity/data/source/remote/project/project_remote_data_source.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
-import 'package:goldcity/domain/entity/project/language/project_language_entity.dart';
 import 'package:goldcity/domain/repository/project/project_repository.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
@@ -30,12 +29,22 @@ class ProjectRepositoryImpl implements ProjectRepository {
   }
 
   @override
-  Future<Either<BaseErrorModel, List<LanguageDetailEntity>>>
-      getProjectLanguageList(int id) async {
+  Future<Either<BaseErrorModel, ProjectEntity>> getProjectLanguageList(
+      int id) async {
     var result =
         await locator<ProjectRemoteDataSource>().getProjectLanguageList(id);
     if (result.isRight) {
-      return Right(result.right.map((e) => e.toEntity()).toList());
+      return Right(result.right.toEntity());
+    }
+    return Left(result.left);
+  }
+
+  @override
+  Future<Either<BaseErrorModel, Map<String, dynamic>>> getFieldName(
+      int id) async {
+    var result = await locator<ProjectRemoteDataSource>().getFieldName(id);
+    if (result.isRight) {
+      return Right(result.right);
     }
     return Left(result.left);
   }

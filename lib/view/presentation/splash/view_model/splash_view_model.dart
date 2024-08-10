@@ -43,7 +43,6 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     locator<AuthenticationSource>().isUserStillValid();
     viewModelContext.pushReplacement(NavigationConstant.MAIN);
     locator<FcmManager>().getMessages(viewModelContext);
-
     tokenProccess();
   }
 

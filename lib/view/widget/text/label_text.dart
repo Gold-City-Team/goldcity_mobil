@@ -18,7 +18,7 @@ class LabelText extends StatelessWidget {
       this.textColor = APPLICATION_COLOR.TITLE,
       this.overflow = TextOverflow.visible,
       this.align = TextAlign.left,
-      this.textLineHeight,
+      this.textLineHeight = 1.5,
       this.fontWeight,
       this.maxLines});
 
@@ -52,8 +52,9 @@ class LabelText extends StatelessWidget {
         addSpan(
             match.group(1)!,
             TextStyle(
-                fontWeight: FontWeight.w900,
-                color: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR)));
+                fontWeight: FontWeight.w700,
+                height: 1.5,
+                color: context.toColor(APPLICATION_COLOR.TITLE)));
       } else if (italicPattern.hasMatch(match.group(0)!)) {
         addSpan(match.group(1)!, TextStyle(fontStyle: FontStyle.italic));
       }

@@ -6,7 +6,7 @@ class GeneralConstant {
   static const LOGO_ASSET_PATH = "assets/image/logo.png";
   static const TURKISH_FLAG_PATH = "assets/image/turkflag.webp";
   static const ENGLISH_FLAG_PATH = "assets/image/englishflag.webp";
-
+  static Map<String, dynamic> FIELD_NAME = {};
   static const DARK_MAP_THEME = '''[
   {
     "elementType": "geometry",

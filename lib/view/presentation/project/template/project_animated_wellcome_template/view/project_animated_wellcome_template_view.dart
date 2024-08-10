@@ -79,7 +79,10 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
                         .withAlpha(200),
                     context
                         .toColor(APPLICATION_COLOR.OVERLAY_COLOR)
-                        .withAlpha(120),
+                        .withAlpha(190),
+                    context
+                        .toColor(APPLICATION_COLOR.OVERLAY_COLOR)
+                        .withAlpha(150),
                     context
                         .toColor(APPLICATION_COLOR.OVERLAY_COLOR)
                         .withAlpha(0),
@@ -101,11 +104,11 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
               width: context.sWidth,
               child: SafeArea(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      width: context.sWidth,
+                      width: context.sWidth / 2,
                       child: NormalNetworkImage(
                         fit: BoxFit.contain,
                         source: value.templateEntity!.logo.url,
@@ -116,9 +119,12 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
                     Gap(context.largeSpacerSize),
                     Padding(
                       padding: context.midSpacerOnlyHorizontal,
-                      child: Wrap(
+                      child: Column(
                         children: value.templateEntity!.features
-                            .map((e) => FeaturesWidget(featuresEntity: e))
+                            .map((e) => Container(
+                                padding: context.midSpacer,
+                                alignment: Alignment.topLeft,
+                                child: FeaturesWidget(featuresEntity: e)))
                             .toSet()
                             .toList(),
                       )
@@ -202,29 +208,38 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
             return Padding(
               padding: context.largeSpacerOnlyHorizontal,
               child: SizedBox(
-                width: context.sWidth / 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: context.sWidth / 3,
-                      child: NormalNetworkImage(
-                        fit: BoxFit.contain,
-                        source: value.templateEntity!.logo.url,
-                      ),
-                    )
-                        .animate(delay: const Duration(milliseconds: 1500))
-                        .fade(duration: const Duration(milliseconds: 1500)),
-                    Gap(context.largeSpacerSize),
-                    Padding(
-                      padding: context.midSpacerOnlyHorizontal,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: value.templateEntity!.features
-                            .map((e) => FeaturesWidget(featuresEntity: e))
-                            .toSet()
-                            .toList(),
+                    Expanded(
+                      child: SizedBox(
+                        width: context.sWidth / 4,
+                        child: NormalNetworkImage(
+                          fit: BoxFit.contain,
+                          source: value.templateEntity!.logo.url,
+                        ),
+                      )
+                          .animate(delay: const Duration(milliseconds: 1500))
+                          .fade(duration: const Duration(milliseconds: 1500)),
+                    ),
+                    Flexible(
+                      child: SizedBox(
+                        width: context.sWidth / 4,
+                        height: context.sHeight / 3,
+                        child: Wrap(
+                          alignment: WrapAlignment.start,
+                          runAlignment: WrapAlignment.start,
+                          direction: Axis.vertical,
+                          children: value.templateEntity!.features
+                              .map((e) => Container(
+                                  height: (context.sHeight / 3) / 3,
+                                  padding: context.midSpacer,
+                                  alignment: Alignment.centerLeft,
+                                  child: FeaturesWidget(featuresEntity: e)))
+                              .toSet()
+                              .toList(),
+                        ),
                       ),
                     )
                   ],

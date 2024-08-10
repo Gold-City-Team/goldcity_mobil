@@ -18,12 +18,15 @@ ProjectDto _$ProjectDtoFromJson(Map<String, dynamic> json) => ProjectDto(
       mainImage: json['mainImage'] == null
           ? null
           : MediaDto.fromJson(json['mainImage'] as Map<String, dynamic>),
-    );
+    )..languages = (json['languages'] as List<dynamic>?)
+        ?.map((e) => LanguageDetailDto.fromJson(e as Map<String, dynamic>))
+        .toList();
 
 Map<String, dynamic> _$ProjectDtoToJson(ProjectDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'projectDetail': instance.projectDetail,
+      'languages': instance.languages,
       'logo': instance.logo,
       'mainImage': instance.mainImage,
     };

@@ -14,15 +14,24 @@ ComplexDto _$ComplexDtoFromJson(Map<String, dynamic> json) => ComplexDto(
           ? null
           : ComplexDetailDto.fromJson(
               json['complexDetail'] as Map<String, dynamic>),
-    )..logo = json['logo'] == null
-        ? null
-        : MediaDto.fromJson(json['logo'] as Map<String, dynamic>);
+    )
+      ..languages = (json['languages'] as List<dynamic>?)
+          ?.map((e) => LanguageDetailDto.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..mainImage = json['mainImage'] == null
+          ? null
+          : MediaDto.fromJson(json['mainImage'] as Map<String, dynamic>)
+      ..logo = json['logo'] == null
+          ? null
+          : MediaDto.fromJson(json['logo'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$ComplexDtoToJson(ComplexDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'slogan': instance.slogan,
+      'languages': instance.languages,
+      'mainImage': instance.mainImage,
       'logo': instance.logo,
       'complexDetail': instance.complexDetail,
     };

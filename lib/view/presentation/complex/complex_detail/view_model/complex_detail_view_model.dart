@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/complex/complex/complex_entity.dart';
-import 'package:goldcity/domain/entity/project/language/project_language_entity.dart';
 import 'package:goldcity/domain/usecase/complex_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
@@ -76,7 +75,7 @@ abstract class _ComplexDetailViewModelBase with Store, BaseViewModel {
   @observable
   int languageId = 0;
   @observable
-  List<LanguageDetailEntity> language = [];
+  ComplexEntity? language;
 
   List<String> languageList = ObservableList<String>.of([]);
   @action

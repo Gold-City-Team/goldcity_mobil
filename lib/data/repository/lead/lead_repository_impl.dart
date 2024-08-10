@@ -1,3 +1,4 @@
+import 'package:goldcity/data/dto/send/lead/change_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_login_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_login_google_dto.dart';
@@ -20,5 +21,10 @@ class LeadRepositoryImpl implements LeadRepository {
   @override
   Future<BaseErrorModel?> loginGoogle(SendLeadLoginGoogleDto dto) async {
     return await locator<LeadRemoteDataSource>().loginGoogle(dto);
+  }
+
+  @override
+  Future<BaseErrorModel?> leadChangePassword(ChangePasswordDto dto) async {
+    return await locator<LeadRemoteDataSource>().leadChangePassword(dto);
   }
 }

@@ -1,9 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_six/project_template_six_dto.dart';
 import 'package:goldcity/domain/entity/project/project_templates/project_template_six/project_template_six_entity.dart';
+import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -32,7 +31,8 @@ class RowWidget extends StatelessWidget {
               Gap(context.largeSpacerSize),
               Expanded(
                   child: LabelText(
-                      text: LocaleKeys.floor.tr(args: [home.first.floor]))),
+                      text:
+                          " ${GeneralConstant.FIELD_NAME['Floor']}: ${home.first.floor}")),
               const Spacer(),
               CircleAvatar(
                 maxRadius: 14,
@@ -81,46 +81,8 @@ class RowWidget extends StatelessWidget {
                                       .withAlpha(13),
                                   child: Center(
                                     child: LabelText(
-                                        text: LocaleKeys.apartmentNumber.tr()),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: .5,
-                                height: 50,
-                                color: context
-                                    .toColor(APPLICATION_COLOR
-                                        .CLOSE_BACKGROUND_COLOR)
-                                    .withAlpha(150),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 50,
-                                  color: context
-                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
-                                      .withAlpha(13),
-                                  child: const Center(
-                                    child: LabelText(text: "m²"),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: .5,
-                                height: 50,
-                                color: context
-                                    .toColor(APPLICATION_COLOR
-                                        .CLOSE_BACKGROUND_COLOR)
-                                    .withAlpha(150),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  height: 50,
-                                  color: context
-                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
-                                      .withAlpha(13),
-                                  child: Center(
-                                    child:
-                                        LabelText(text: LocaleKeys.price.tr()),
+                                        text:
+                                            "${GeneralConstant.FIELD_NAME['Number']}"),
                                   ),
                                 ),
                               ),
@@ -140,7 +102,50 @@ class RowWidget extends StatelessWidget {
                                       .withAlpha(13),
                                   child: Center(
                                     child: LabelText(
-                                      text: LocaleKeys.numberOfFloors.tr(),
+                                        text:
+                                            "${GeneralConstant.FIELD_NAME['Area']}"),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: Center(
+                                    child: LabelText(
+                                        text:
+                                            "${GeneralConstant.FIELD_NAME['Price']}"),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: .5,
+                                height: 50,
+                                color: context
+                                    .toColor(APPLICATION_COLOR
+                                        .CLOSE_BACKGROUND_COLOR)
+                                    .withAlpha(150),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 50,
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
+                                      .withAlpha(13),
+                                  child: Center(
+                                    child: LabelText(
+                                      text:
+                                          "${GeneralConstant.FIELD_NAME['HomeType']}",
                                     ),
                                   ),
                                 ),
@@ -162,7 +167,8 @@ class RowWidget extends StatelessWidget {
                                   child: Center(
                                     child: LabelText(
                                       maxLines: 1,
-                                      text: LocaleKeys.numberOfRooms.tr(),
+                                      text:
+                                          "${GeneralConstant.FIELD_NAME['RoomSize']}",
                                     ),
                                   ),
                                 ),
@@ -182,8 +188,9 @@ class RowWidget extends StatelessWidget {
                                       .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)
                                       .withAlpha(13),
                                   child: Center(
-                                    child:
-                                        LabelText(text: LocaleKeys.state.tr()),
+                                    child: LabelText(
+                                        text:
+                                            "${GeneralConstant.FIELD_NAME['SaleState']}"),
                                   ),
                                 ),
                               ),
@@ -255,7 +262,7 @@ class RowWidget extends StatelessWidget {
                                 Expanded(
                                     child: Center(
                                         child: LabelText(
-                                            text: "${home[index].price} €"))),
+                                            text: home[index].price))),
                                 Container(
                                   width: .5,
                                   height: 50,
@@ -339,9 +346,9 @@ class RowWidget extends StatelessWidget {
 
   String getTextFromState(BuildContext context, HOME_STATE state) {
     return switch (state) {
-      HOME_STATE.RESERVED => LocaleKeys.reserved.tr(),
-      HOME_STATE.ON_SALE => LocaleKeys.onSale.tr(),
-      HOME_STATE.SOLD => LocaleKeys.sold.tr()
+      HOME_STATE.RESERVED => GeneralConstant.FIELD_NAME['RESERVED'],
+      HOME_STATE.ON_SALE => GeneralConstant.FIELD_NAME['ON_SALE'],
+      HOME_STATE.SOLD => GeneralConstant.FIELD_NAME['SOLD']
     };
   }
 }

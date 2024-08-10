@@ -12,12 +12,12 @@ import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/data/dto/send/shareable_page/create_shareable_link_dto.dart';
 import 'package:goldcity/domain/entity/contact/contact_entity.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
-import 'package:goldcity/domain/entity/project/language/project_language_entity.dart';
 import 'package:goldcity/domain/entity/shareable_page/shareable_page_entity.dart';
 import 'package:goldcity/domain/usecase/contact_usecase.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/domain/usecase/shareable_page_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/create_link_widget.dart';
 import 'package:mobx/mobx.dart';
@@ -91,7 +91,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   }
 
   @observable
-  List<LanguageDetailEntity> language = [];
+  ProjectEntity? language;
 
   List<String> languageList = ObservableList<String>.of([]);
   @action
@@ -103,7 +103,8 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   }
 
   @action
-  Future<void> getProjectDetail() async {
+  void getProjectDetail() {
+    getLanguages();
     _projeclUseCase.getDetail(projectId, languageId).listen((event) {
       if (event.isRight) {
         if (!kIsWeb) {
@@ -137,8 +138,6 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
         CreateShareableLinkDto(pageType: "PROJECT", pageId: projectId));
     if (result.isRight) {
       return result.right;
-    } else {
-      debugPrint("something wrong ${result.left!.detail} --- ${result.left}");
     }
     return await null;
   }
@@ -151,11 +150,11 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
           context: viewModelContext,
           builder: (context) {
             return CreateLinkWidget(
-                link: "https://www.goldcitycondominium.com/project/$result");
+                link: "https://goldcitycondominium.com/project/$result");
           },
         );
       } else {
-        Share.share("https://www.goldcitycondominium.com/project/$result",
+        Share.share("https://goldcitycondominium.com/project_detail/$result",
             sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
       }
     }
@@ -176,6 +175,17 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
     var result = await _contactUseCase.getContact();
     if (result.isRight) {
       contactEntity = result.right;
+    }
+  }
+
+  Future<void> getLanguages() async {
+    debugPrint("test $languageId");
+    var result = await _projeclUseCase.getFieldName(languageId);
+    debugPrint("test no errror${result.right}");
+    if (result.isRight) {
+      GeneralConstant.FIELD_NAME = result.right;
+    } else {
+      debugPrint("test ${result.left.detail}");
     }
   }
 }

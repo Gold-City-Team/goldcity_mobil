@@ -19,15 +19,7 @@ abstract class  LocaleKeys {
   static const darkTheme = 'darkTheme';
   static const lightTheme = 'lightTheme';
   static const change = 'change';
-  static const floor = 'floor';
-  static const apartmentNumber = 'apartmentNumber';
-  static const price = 'price';
   static const type = 'type';
-  static const state = 'state';
-  static const onSale = 'onSale';
-  static const reserved = 'reserved';
-  static const sold = 'sold';
-  static const block = 'block';
   static const changeLanguage = 'changeLanguage';
   static const turkish = 'turkish';
   static const english = 'english';
@@ -58,5 +50,12 @@ abstract class  LocaleKeys {
   static const searchHint = 'searchHint';
   static const shareProject = 'shareProject';
   static const linkCopied = 'linkCopied';
+  static const passChange = 'passChange';
+  static const oldPassword = 'oldPassword';
+  static const newPassword = 'newPassword';
+  static const newPasswordAgain = 'newPasswordAgain';
+  static const doNotMatch = 'doNotMatch';
+  static const webinarNotFound = 'webinarNotFound';
+  static const educationNotFound = 'educationNotFound';
 
 }

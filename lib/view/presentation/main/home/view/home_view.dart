@@ -33,10 +33,8 @@ class HomeView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, HomeViewModel value) => Scaffold(
-        body: SafeArea(
-            child: isTablet()
-                ? tabletView(context, value)
-                : phoneView(context, value)),
+        body:
+            isTablet() ? tabletView(context, value) : phoneView(context, value),
       ),
     );
   }
@@ -53,155 +51,160 @@ class HomeView extends StatelessWidget {
               onExploreTap: () =>
                   value.navigateComplexDetail(value.complexList!.last.id));
         }),
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Padding(
-            padding: context.xLargeSpacerOnlyBottom,
-            child: Observer(builder: (context) {
-              if (value.projectList == null) {
-                return const SizedBox.shrink();
-              }
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Spacer(),
-                  Spacer(),
-                  Container(
+        SafeArea(
+          child: Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: context.xLargeSpacerOnlyBottom,
+              child: Observer(builder: (context) {
+                if (value.projectList == null) {
+                  return const SizedBox.shrink();
+                }
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Spacer(),
+                    Spacer(),
+                    Container(
+                        margin: context.largeSpacerOnlyLeft,
+                        child: LabelText(
+                          text: context.tr("projects"),
+                          fontSize: FONT_SIZE.HEADLINE_LARGE,
+                          textColor: APPLICATION_COLOR.GOLD,
+                        )),
+                    Gap(context.largeSpacerSize),
+                    Container(
+                      height: context.sHeight * .18,
                       margin: context.largeSpacerOnlyLeft,
-                      child: LabelText(
-                        text: context.tr("projects"),
-                        fontSize: FONT_SIZE.HEADLINE_LARGE,
-                        textColor: APPLICATION_COLOR.GOLD,
-                      )),
-                  Gap(context.largeSpacerSize),
-                  Container(
-                    height: context.sHeight * .18,
-                    margin: context.largeSpacerOnlyLeft,
-                    width: isTablet() ? context.sWidth / 1.5 : context.sWidth,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: value.projectList!.length,
-                        itemBuilder: (context, index) {
-                          return MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () => value.navigateProjectDetail(
-                                  value.projectList![index].id),
-                              child: Container(
-                                margin: context.largeSpacerOnlyRight,
-                                child: ProjectListWidget(
-                                    project: value.projectList![index]),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                  Spacer(),
-                ],
-              );
-            }),
-          ),
-        ),
-        Padding(
-          padding: context.largeSpacer,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(
-                  height: 70,
-                  child: Image.asset("assets/applogo/app_logo.webp")),
-              Spacer(),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: SizedBox(
-                  height: 50,
-                  width: 70,
-                  child: CoolDropdown(
-                    resultOptions: ResultOptions(
-                        render: ResultRender.all,
-                        openBoxDecoration: BoxDecoration(
-                            borderRadius: context.midRadius,
-                            border: null,
-                            color: context.toColor(APPLICATION_COLOR.LIGHT))),
-                    controller: dropdownController,
-                    dropdownList: context.supportedLocales
-                        .map(
-                          (element) => CoolDropdownItem(
-                              icon: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: SizedBox(
-                                  height: 25,
-                                  width: 25,
-                                  child: Image.asset(value.getFlagFromLanguage(
-                                      element.languageCode)),
+                      width: isTablet() ? context.sWidth / 1.5 : context.sWidth,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: value.projectList!.length,
+                          itemBuilder: (context, index) {
+                            return MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () => value.navigateProjectDetail(
+                                    value.projectList![index].id),
+                                child: Container(
+                                  margin: context.largeSpacerOnlyRight,
+                                  child: ProjectListWidget(
+                                      project: value.projectList![index]),
                                 ),
                               ),
-                              label: "",
-                              value: element.toLanguageTag()),
-                        )
-                        .toList(),
-                    onChange: (p0) {
-                      context.setLocale(
-                          Locale(p0.split("-")[0], p0.split("-")[1]));
-                      Future.delayed(Duration(milliseconds: 50), () {
-                        value.init();
-                      });
-                      dropdownController.close();
-                    },
-                    dropdownItemOptions: DropdownItemOptions(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      selectedTextStyle: TextStyle(
+                            );
+                          }),
+                    ),
+                    Spacer(),
+                  ],
+                );
+              }),
+            ),
+          ),
+        ),
+        SafeArea(
+          child: Padding(
+            padding: context.largeSpacer,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                    height: 70,
+                    child: Image.asset("assets/applogo/app_logo.webp")),
+                Spacer(),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: SizedBox(
+                    height: 50,
+                    width: 70,
+                    child: CoolDropdown(
+                      resultOptions: ResultOptions(
+                          render: ResultRender.all,
+                          openBoxDecoration: BoxDecoration(
+                              borderRadius: context.midRadius,
+                              border: null,
+                              color: context.toColor(APPLICATION_COLOR.LIGHT))),
+                      controller: dropdownController,
+                      dropdownList: context.supportedLocales
+                          .map(
+                            (element) => CoolDropdownItem(
+                                icon: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                    child: Image.asset(
+                                        value.getFlagFromLanguage(
+                                            element.languageCode)),
+                                  ),
+                                ),
+                                label: "",
+                                value: element.toLanguageTag()),
+                          )
+                          .toList(),
+                      onChange: (p0) {
+                        context.setLocale(
+                            Locale(p0.split("-")[0], p0.split("-")[1]));
+                        Future.delayed(Duration(milliseconds: 50), () {
+                          value.init();
+                        });
+                        dropdownController.close();
+                      },
+                      dropdownItemOptions: DropdownItemOptions(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        selectedTextStyle: TextStyle(
+                          color: context.toColor(
+                            APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
+                          ),
+                        ),
+                        textStyle: TextStyle(
+                          color: context.toColor(
+                            APPLICATION_COLOR.OPPOSITE_COLOR,
+                          ),
+                        ),
+                      ),
+                      dropdownOptions: DropdownOptions(
+                        borderSide: BorderSide(width: 1, color: Colors.black),
                         color: context.toColor(
                           APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
                         ),
                       ),
-                      textStyle: TextStyle(
-                        color: context.toColor(
-                          APPLICATION_COLOR.OPPOSITE_COLOR,
-                        ),
-                      ),
-                    ),
-                    dropdownOptions: DropdownOptions(
-                      borderSide: BorderSide(width: 1, color: Colors.black),
-                      color: context.toColor(
-                        APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR,
-                      ),
-                    ),
-                    defaultItem: CoolDropdownItem(
-                        icon: MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: SizedBox(
-                            height: 25,
-                            width: 25,
-                            child: Image.asset(value.getFlagFromLanguage(
-                                context.locale.languageCode)),
+                      defaultItem: CoolDropdownItem(
+                          icon: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: Image.asset(value.getFlagFromLanguage(
+                                  context.locale.languageCode)),
+                            ),
                           ),
-                        ),
-                        label: "",
-                        value: context.locale.toLanguageTag()),
-                  ),
-                ),
-              ),
-              Gap(context.largeSpacerSize),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () => value.togglePageSelector(),
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: context.toColor(APPLICATION_COLOR.GOLD),
-                        borderRadius: context.midRadius),
-                    child: Icon(
-                      Icons.menu_rounded,
-                      color: context.toColor(APPLICATION_COLOR.LIGHT),
+                          label: "",
+                          value: context.locale.toLanguageTag()),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Gap(context.largeSpacerSize),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => value.togglePageSelector(),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                          borderRadius: context.midRadius),
+                      child: Icon(
+                        Icons.menu_rounded,
+                        color: context.toColor(APPLICATION_COLOR.LIGHT),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Align(

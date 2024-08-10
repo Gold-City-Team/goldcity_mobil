@@ -1,6 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
@@ -29,6 +30,7 @@ final router = GoRouter(
   errorBuilder: (context, state) {
     return const SplashView();
   },
+  observers: [GoRouterObserver()],
   redirect: (context, state) async {
     var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
     if (state.fullPath!.contains(NavigationConstant.GALLERY) &&
@@ -49,12 +51,32 @@ final router = GoRouter(
     GoRoute(
       path: NavigationConstant.DEFAULT,
       name: NavigationConstant.DEFAULT,
-      builder: (context, state) => const SplashView(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const SplashView(),
+        transitionDuration: Duration(milliseconds: 500),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(
+          opacity: CurveTween(curve: Curves.ease).animate(
+            animation,
+          ),
+          child: child,
+        ),
+      ),
     ),
     GoRoute(
       name: NavigationConstant.MAIN,
       path: NavigationConstant.MAIN,
-      builder: (context, state) => const MainView(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const MainView(),
+        transitionDuration: Duration(milliseconds: 500),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+            FadeTransition(
+          opacity: CurveTween(curve: Curves.ease).animate(animation),
+          child: child,
+        ),
+      ),
       routes: [
         GoRoute(
           name: NavigationConstant.PROJECT_DETAIL,
@@ -146,3 +168,37 @@ final router = GoRouter(
     ),
   ],
 );
+
+class GoRouterObserver extends NavigatorObserver {
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    super.didPush(route, previousRoute);
+    Future.delayed((Duration(milliseconds: 300))).then((e) {
+      FlutterNativeSplash.remove();
+    });
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    super.didPop(route, previousRoute);
+    Future.delayed((Duration(milliseconds: 300))).then((e) {
+      FlutterNativeSplash.remove();
+    });
+  }
+
+  @override
+  void didRemove(Route route, Route? previousRoute) {
+    super.didRemove(route, previousRoute);
+    Future.delayed((Duration(milliseconds: 300))).then((e) {
+      FlutterNativeSplash.remove();
+    });
+  }
+
+  @override
+  void didReplace({Route? newRoute, Route? oldRoute}) {
+    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    Future.delayed((Duration(milliseconds: 300))).then((e) {
+      FlutterNativeSplash.remove();
+    });
+  }
+}

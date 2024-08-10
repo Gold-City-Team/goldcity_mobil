@@ -59,81 +59,77 @@ class LeadLoginView extends StatelessWidget {
   Widget phoneView(BuildContext context, LeadLoginViewModel value) {
     return Column(
       children: [
-        Expanded(
-          flex: 4,
-          child: SizedBox(
-            height: context.sHeight,
-            child: NormalNetworkImage(
-                fit: BoxFit.cover,
-                source:
-                    "https://goldcitycondominium.com/_next/image?url=%2Fimages%2Fprojects%2FleJardin%2Flejardin.webp&w=1080&q=75"),
-          ),
+        SizedBox(
+          width: context.sWidth,
+          height: context.sWidth / 1.777,
+          child: NormalNetworkImage(
+              fit: BoxFit.cover,
+              source:
+                  "https://goldcitycondominium.com/_next/image?url=%2Fimages%2Fprojects%2FleJardin%2Flejardin.webp&w=1080&q=75"),
         ),
-        Expanded(
-            flex: 6,
-            child: Container(
-              padding: context.xlargeSpacerOnlyHorizontal,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      padding: context.midSpacerOnlyBottom,
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(
-                                  width: 1.5,
-                                  color: context
-                                      .toColor(APPLICATION_COLOR.GOLD)))),
-                      child: LabelText(
-                        text: context.tr("login"),
-                        fontSize: FONT_SIZE.HEADLINE_LARGE,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Gap(context.midSpacerSize),
-                  LabelText(
-                    text: context.tr("partnerLoginDetail"),
-                    fontSize: FONT_SIZE.LABEL_LARGE,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  Gap(context.largeSpacerSize),
-                  LabelText(
-                    text: LocaleKeys.mailQuestion.tr(),
-                    fontWeight: FontWeight.w400,
-                    textColor: APPLICATION_COLOR.GOLD,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    child: RoundedTextField(
-                        key: const Key("mailAdress"),
-                        newText: (newText) => value.mailAdress = newText),
-                  ),
-                  Gap(context.largeSpacerSize),
-                  LabelText(
-                    text: LocaleKeys.passwordQuestion.tr(),
-                    fontWeight: FontWeight.w400,
-                    textColor: APPLICATION_COLOR.GOLD,
-                  ),
-                  SizedBox(
-                    height: 40,
-                    child: RoundedTextField(
-                        key: const Key("password"),
-                        inputType: InputType.PASSWORD,
-                        newText: (newText) => value.password = newText),
-                  ),
-                  Gap(context.largeSpacerSize),
-                  SizedBox(
-                    height: 40,
-                    child: NormalButton(
-                      backgroundColor: APPLICATION_COLOR.GOLD,
-                      onTap: () => value.login(),
-                      textColor: APPLICATION_COLOR.LIGHT,
-                      text: LocaleKeys.send.tr(),
-                    ),
-                  ),
-                ],
+        Gap(context.largeSpacerSize),
+        Container(
+          padding: context.xlargeSpacerOnlyHorizontal,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  padding: context.midSpacerOnlyBottom,
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              width: 1.5,
+                              color: context.toColor(APPLICATION_COLOR.GOLD)))),
+                  child: LabelText(
+                    text: context.tr("login"),
+                    fontSize: FONT_SIZE.HEADLINE_LARGE,
+                    fontWeight: FontWeight.bold,
+                  )),
+              Gap(context.midSpacerSize),
+              LabelText(
+                text: context.tr("partnerLoginDetail"),
+                fontSize: FONT_SIZE.LABEL_LARGE,
+                fontWeight: FontWeight.w400,
               ),
-            ))
+              Gap(context.largeSpacerSize),
+              LabelText(
+                text: LocaleKeys.mailQuestion.tr(),
+                fontWeight: FontWeight.w400,
+                textColor: APPLICATION_COLOR.GOLD,
+              ),
+              SizedBox(
+                height: 40,
+                child: RoundedTextField(
+                    key: const Key("mailAdress"),
+                    newText: (newText) => value.mailAdress = newText),
+              ),
+              Gap(context.largeSpacerSize),
+              LabelText(
+                text: LocaleKeys.passwordQuestion.tr(),
+                fontWeight: FontWeight.w400,
+                textColor: APPLICATION_COLOR.GOLD,
+              ),
+              SizedBox(
+                height: 40,
+                child: RoundedTextField(
+                    key: const Key("password"),
+                    inputType: InputType.PASSWORD,
+                    newText: (newText) => value.password = newText),
+              ),
+              Gap(context.largeSpacerSize),
+              SizedBox(
+                height: 40,
+                child: NormalButton(
+                  backgroundColor: APPLICATION_COLOR.GOLD,
+                  onTap: () => value.login(),
+                  textColor: APPLICATION_COLOR.LIGHT,
+                  text: LocaleKeys.send.tr(),
+                ),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

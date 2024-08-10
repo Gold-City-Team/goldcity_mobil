@@ -167,15 +167,14 @@ class LeadApplyView extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 10,
-            child: SizedBox(
-              height: context.sHeight,
-              child: NormalNetworkImage(
-                  fit: BoxFit.cover,
-                  source:
-                      "https://parametric-architecture.com/wp-content/uploads/2023/05/Tim-Fu-AI-3.jpg"),
-            ),
+            width: context.sWidth,
+            height: context.sWidth / 1.777,
+            child: NormalNetworkImage(
+                fit: BoxFit.cover,
+                source:
+                    "https://goldcitycondominium.com/_next/image?url=%2Fimages%2Fprojects%2FleJardin%2Flejardin.webp&w=1080&q=75"),
           ),
+          Gap(context.largeSpacerSize),
           Container(
             padding: context.xlargeSpacerOnlyHorizontal,
             child: Column(

@@ -1,10 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
-import 'package:goldcity/config/language/locale_keys.g.dart';
+import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -100,7 +99,8 @@ class PlanTemplateView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           LabelText(
-                            text: LocaleKeys.block.tr(args: [blok]),
+                            text:
+                                "$blok ${GeneralConstant.FIELD_NAME['Block']}",
                             fontSize: FONT_SIZE.HEADLINE_LARGE,
                           ),
                           Gap(context.midSpacerSize),
@@ -207,7 +207,8 @@ class PlanTemplateView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               LabelText(
-                                text: LocaleKeys.block.tr(args: [blok]),
+                                text:
+                                    "$blok ${GeneralConstant.FIELD_NAME['Block']}",
                                 fontSize: FONT_SIZE.HEADLINE_LARGE,
                               ),
                               Gap(context.midSpacerSize),

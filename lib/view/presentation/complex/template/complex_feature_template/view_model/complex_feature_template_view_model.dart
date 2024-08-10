@@ -41,6 +41,7 @@ abstract class _ComplexFeatureTemplateViewModelBase with Store, BaseViewModel {
   int complexSettingsId = 0;
   @action
   Future<void> _getDetail() async {
+    debugPrint("test $complexDetailId");
     var result =
         await _complexDetailUseCase.getComplexTemplateDetail(complexDetailId);
     if (result.isRight) {

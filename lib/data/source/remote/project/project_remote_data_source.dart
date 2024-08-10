@@ -1,10 +1,11 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/data/local_manager.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/receive/project/project/project_dto.dart';
-import 'package:goldcity/data/dto/receive/language_detail/language_detail_dto.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/enum/source_path.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
@@ -12,10 +13,10 @@ import 'package:goldcity/util/resources/base_error_model.dart';
 abstract class ProjectRemoteDataSource {
   Future<Either<BaseErrorModel, ProjectDto>> getDetail(
       int projectId, languageId);
-  Future<Either<BaseErrorModel, List<LanguageDetailDto>>>
-      getProjectLanguageList(int id);
+  Future<Either<BaseErrorModel, ProjectDto>> getProjectLanguageList(int id);
 
   Future<Either<BaseErrorModel, List<ProjectDto>>> getProjectList();
+  Future<Either<BaseErrorModel, Map<String, dynamic>>> getFieldName(int id);
 }
 
 class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
@@ -54,16 +55,27 @@ class ProjectRemoteDataSourceImpl extends ProjectRemoteDataSource {
   }
 
   @override
-  Future<Either<BaseErrorModel, List<LanguageDetailDto>>>
-      getProjectLanguageList(int id) async {
+  Future<Either<BaseErrorModel, ProjectDto>> getProjectLanguageList(
+      int id) async {
     try {
       var result = await locator<RemoteManager>()
           .networkManager
           .get(SourcePath.PROJECT_LANGUAGE_LIST.rawValue(data: [id]));
 
-      return Right((result.data as List)
-          .map((e) => LanguageDetailDto.fromJson(e))
-          .toList());
+      return Right(ProjectDto.fromJson(result.data ?? {}));
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, Map<String, dynamic>>> getFieldName(
+      int id) async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.LOCALIZATION_FIELD_NAME.rawValue(data: [id]));
+      return Right(jsonDecode(result.data.toString()) ?? {});
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
+import 'package:goldcity/data/dto/send/lead/change_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_login_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_login_google_dto.dart';
@@ -11,6 +12,7 @@ abstract class LeadRemoteDataSource {
   Future<BaseErrorModel?> apply(SendLeadApplyDto dto);
   Future<BaseErrorModel?> login(SendLeadLoginDto dto);
   Future<BaseErrorModel?> loginGoogle(SendLeadLoginGoogleDto dto);
+  Future<BaseErrorModel?> leadChangePassword(ChangePasswordDto dto);
 }
 
 class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
@@ -45,6 +47,19 @@ class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
       await locator<RemoteManager>()
           .networkManager
           .post(SourcePath.LEAD_LOGIN_GOOGLE.rawValue(), data: dto.toJson());
+
+      return null;
+    } on DioException catch (e) {
+      return BaseErrorModel.fromJson(e.response?.data ?? {});
+    }
+  }
+
+  @override
+  Future<BaseErrorModel?> leadChangePassword(ChangePasswordDto dto) async {
+    try {
+      await locator<RemoteManager>()
+          .networkManager
+          .post(SourcePath.LEAD_CHANGE_PASSWORD.rawValue(), data: dto.toJson());
 
       return null;
     } on DioException catch (e) {

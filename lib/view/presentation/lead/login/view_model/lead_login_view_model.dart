@@ -6,6 +6,7 @@ import 'package:goldcity/data/dto/send/lead/send_lead_login_dto.dart';
 import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
+import 'package:goldcity/view/widget/snackbar/error_snackbar.dart';
 import 'package:mobx/mobx.dart';
 
 part 'lead_login_view_model.g.dart';
@@ -31,6 +32,15 @@ abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
         .leadLogin(SendLeadLoginDto(email: mailAdress, password: password));
     if (result == null) {
       viewModelContext.pushReplacement(NavigationConstant.DEFAULT);
+    } else {
+      if (result.errors != null) {
+        showSnackbar(ErrorSnackBar(
+                message: result.errors!.entries.first.value.first))
+            .show(viewModelContext);
+      } else {
+        showSnackbar(ErrorSnackBar(message: result.detail ?? ""))
+            .show(viewModelContext);
+      }
     }
   }
 }

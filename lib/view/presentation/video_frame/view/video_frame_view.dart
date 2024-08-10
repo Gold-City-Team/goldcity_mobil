@@ -135,76 +135,34 @@ class _VideoFrameViewState extends State<VideoFrameView>
                     ],
                   )
                 : const SizedBox.shrink(),
-            widget.isFullScreen && !widget.isBackVisible
-                ? Observer(builder: (context) {
-                    return value.isOpacityFull
-                        ? Positioned(
-                            right: 10,
-                            top: 10,
-                            child: SafeArea(
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => widget.fullScreen(),
-                                  child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: context.toColor(
-                                            APPLICATION_COLOR.OPPOSITE_COLOR),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: SizedBox(
-                                      child: Icon(
-                                        Icons.fullscreen,
-                                        size: 28,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink();
-                  })
-                : const SizedBox.shrink(),
-            widget.isBackVisible
-                ? Observer(builder: (context) {
-                    return value.isOpacityFull
-                        ? Positioned(
-                            left: 10,
-                            top: 10,
-                            child: SafeArea(
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => context.pop(),
-                                  child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        color: context.toColor(
-                                            APPLICATION_COLOR.OPPOSITE_COLOR),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: SizedBox(
-                                      child: Icon(
-                                        Icons.arrow_back,
-                                        size: 28,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink();
-                  })
-                : const SizedBox.shrink()
+            Positioned(
+              right: 10,
+              top: 10,
+              child: GestureDetector(
+                onTap: () => context.pop(),
+                child: SafeArea(
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                          color:
+                              context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20))),
+                      child: SizedBox(
+                        child: Icon(
+                          Icons.close,
+                          size: 28,
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -52,6 +52,7 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
           }
           return GoogleMap(
             zoomControlsEnabled: false,
+            padding: EdgeInsets.zero,
             zoomGesturesEnabled: true,
             compassEnabled: false,
             onMapCreated: (GoogleMapController controller) {
@@ -90,7 +91,7 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
                     .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
                     .withAlpha(150),
               ),
-              margin: context.midSpacerOnlyHorizontal,
+              margin: context.xxlargeSpacerOnlyTop,
               padding: context.midLargeSpacerOnlyVertical,
               height: 160,
               child: ListView.builder(

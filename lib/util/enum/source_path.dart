@@ -5,12 +5,14 @@ enum SourcePath {
   LEAD,
   LEAD_LOGIN,
   LEAD_LOGIN_GOOGLE,
+  LEAD_CHANGE_PASSWORD,
   COMPLEX,
   COMPLEX_LIST,
   ANNOUNCEMENT_LIST,
   ANNOUNCEMENT,
   PROJECT,
   PROJECT_LANGUAGE_LIST,
+  LOCALIZATION_FIELD_NAME,
   PROJECT_LIST,
   PROJECT_POSSIBILITY,
   PROJECT_TEMPLATE_DETAIL,
@@ -34,8 +36,8 @@ enum SourcePath {
 extension SourcePathExtension on SourcePath {
   String rawValue({List<dynamic>? data}) {
     return switch (this) {
-      SourcePath.BASE_URL => "https://gold-city-2.denizegece.com.tr",
-      SourcePath.MEDIA => "https://gold-city-2.denizegece.com.tr/media/",
+      SourcePath.BASE_URL => "https://api.goldcitycondominium.com",
+      SourcePath.MEDIA => "https://api.goldcitycondominium.com/media/",
       SourcePath.LEAD_LOGIN => '/auth/mobilelogin',
       SourcePath.LEAD_LOGIN_GOOGLE => '/auth/logingoogle',
       SourcePath.LEAD => '/lead',
@@ -50,6 +52,8 @@ extension SourcePathExtension on SourcePath {
       SourcePath.ANNOUNCEMENT_LIST => '/announcement/myannouncement',
       SourcePath.ANNOUNCEMENT => '/announcement/myannouncement/${data?[0]}',
       SourcePath.PROJECT_LIST => '/project',
+      SourcePath.LOCALIZATION_FIELD_NAME =>
+        '/localization/${data?[0]}/fieldname',
       SourcePath.PROJECT_INTERIOR_GALLERY =>
         '/projectdetail/${data?[0]}/interiorgallery',
       SourcePath.PROJECT_OUTDOOR_GALLERY =>
@@ -69,6 +73,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.EDUCATION_GALLERY => '/educationgallery/${data?[0]}',
       SourcePath.SHARE_PAGE => '/shareablepage',
       SourcePath.SHARE_PAGE_DETAIL => '/shareablepage/${data?[0]}',
+      SourcePath.LEAD_CHANGE_PASSWORD => '/user/changepassword',
     };
   }
 }

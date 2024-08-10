@@ -202,91 +202,165 @@ class _GalleryViewState extends State<GalleryView> {
   Widget tabletImageView(
       GalleryViewModel viewModel, CarouselController controller) {
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Gap(context.midSpacerSize),
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () => context.pop(),
-              child: Container(
-                width: 50,
-                margin: context.largeSpacerOnlyHorizontal,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: context.toColor(APPLICATION_COLOR.GOLD),
-                    borderRadius: context.midRadius),
-                child: const Icon(Icons.keyboard_arrow_left),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gap(context.midSpacerSize),
+              Align(
+                alignment: Alignment.topRight,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => context.pop(),
+                    child: Container(
+                      width: 50,
+                      margin: context.largeSpacerOnlyHorizontal,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                          borderRadius: context.midRadius),
+                      child: const Icon(Icons.close),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-          Gap(context.midSpacerSize),
-          Flexible(
-            flex: 2,
-            child: SizedBox(
-              width: context.sWidth,
-              child: FlutterCarousel(
-                options: CarouselOptions(
-                    onPageChanged: (index, reason) {
-                      viewModel.selectedMediaIndexChange(index);
-                      if (index + 4 <= viewModel.gallery.length) {
-                        c.jumpTo(index * (150 * 1.84));
-                      }
-                    },
-                    controller: carouselController,
-                    showIndicator: false,
-                    initialPage: viewModel.selectedMediaIndex,
-                    enlargeCenterPage: true,
-                    enlargeStrategy: CenterPageEnlargeStrategy.height,
-                    pageSnapping: true),
-                items: viewModel.gallery.map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                        margin: context.midSpacerOnlyHorizontal,
-                        width: context.sWidth,
-                        child: NormalNetworkImage(
-                          fit: BoxFit.contain,
-                          source: i.media.url,
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Gap(context.largeSpacerSize),
-          Observer(builder: (context) {
-            if (viewModel.selectedMediaIndex == -1) {
-              return const SizedBox.shrink();
-            }
-            return SizedBox(
-                height: 150,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.zero,
-                  itemCount: viewModel.gallery.length,
-                  controller: c,
-                  itemBuilder: (context, index) {
-                    return MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () => {
-                          viewModel.selectedMediaIndexChange(index),
-                          carouselController.jumpToPage(index)
+              Gap(context.midSpacerSize),
+              Flexible(
+                flex: 2,
+                child: SizedBox(
+                  width: context.sWidth,
+                  child: FlutterCarousel(
+                    options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          viewModel.selectedMediaIndexChange(index);
+                          if (index + 4 <= viewModel.gallery.length) {
+                            c.jumpTo(index * (150 * 1.84));
+                          }
                         },
-                        child: Padding(
-                          padding: context.midSpacerOnlyLeft,
-                          child: mediaPart(viewModel.gallery[index].media.url,
-                              viewModel.selectedMediaIndex == index, context),
-                        ),
-                      ),
-                    );
+                        controller: carouselController,
+                        showIndicator: false,
+                        initialPage: viewModel.selectedMediaIndex,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        pageSnapping: true),
+                    items: viewModel.gallery.map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                            margin: context.midSpacerOnlyHorizontal,
+                            width: context.sWidth,
+                            child: NormalNetworkImage(
+                              fit: BoxFit.contain,
+                              source: i.media.url,
+                            ),
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+              Gap(context.largeSpacerSize),
+              Observer(builder: (context) {
+                if (viewModel.selectedMediaIndex == -1) {
+                  return const SizedBox.shrink();
+                }
+                return SizedBox(
+                    height: 150,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.zero,
+                      itemCount: viewModel.gallery.length,
+                      controller: c,
+                      itemBuilder: (context, index) {
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => {
+                              viewModel.selectedMediaIndexChange(index),
+                              carouselController.jumpToPage(index)
+                            },
+                            child: Padding(
+                              padding: context.midSpacerOnlyLeft,
+                              child: mediaPart(
+                                  viewModel.gallery[index].media.url,
+                                  viewModel.selectedMediaIndex == index,
+                                  context),
+                            ),
+                          ),
+                        );
+                      },
+                    ));
+              })
+            ],
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  if (viewModel.selectedMediaIndex !=
+                      viewModel.gallery.length - 1) {
+                    viewModel.selectedMediaIndexChange(
+                        viewModel.selectedMediaIndex + 1);
+                    controller.jumpToPage(viewModel.selectedMediaIndex);
+                  }
+                },
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  color: viewModel.selectedMediaIndex ==
+                          viewModel.gallery.length - 1
+                      ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
+                      : context.toColor(APPLICATION_COLOR.DARK),
+                  child: Icon(
+                    Icons.chevron_right_sharp,
+                    color: viewModel.selectedMediaIndex ==
+                            viewModel.gallery.length - 1
+                        ? context.toColor(APPLICATION_COLOR.LIGHT).withAlpha(60)
+                        : context.toColor(APPLICATION_COLOR.LIGHT),
+                    size: 56,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Observer(builder: (context) {
+              return MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () {
+                    if (viewModel.selectedMediaIndex != 0) {
+                      viewModel.selectedMediaIndexChange(
+                          viewModel.selectedMediaIndex - 1);
+                      controller.jumpToPage(viewModel.selectedMediaIndex);
+                    }
                   },
-                ));
-          })
+                  child: Container(
+                    height: 60,
+                    width: 60,
+                    color: viewModel.selectedMediaIndex == 0
+                        ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
+                        : context.toColor(APPLICATION_COLOR.DARK),
+                    child: Icon(
+                      Icons.chevron_left_sharp,
+                      color: viewModel.selectedMediaIndex == 0
+                          ? context
+                              .toColor(APPLICATION_COLOR.LIGHT)
+                              .withAlpha(60)
+                          : context.toColor(APPLICATION_COLOR.LIGHT),
+                      size: 56,
+                    ),
+                  ),
+                ),
+              );
+            }),
+          )
         ],
       ),
     );
@@ -299,7 +373,7 @@ class _GalleryViewState extends State<GalleryView> {
           return VideoFrameView(
               key: Key("${viewModel.gallery[viewModel.selectedMediaIndex].id}"),
               isFullScreen: !viewModel.isBottomVisible,
-              fullScreen: () => context.pop(),
+              fullScreen: () => debugPrint("ontap"),
               url: viewModel.gallery[viewModel.selectedMediaIndex].media.url);
         }),
         Observer(builder: (context) {
@@ -311,6 +385,7 @@ class _GalleryViewState extends State<GalleryView> {
                 child: GestureDetector(
                   onTap: () => viewModel.toggleBottomVisible(),
                   child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       LabelText(text: LocaleKeys.allVideos.tr()),
                       Gap(context.midSpacerSize),
@@ -382,6 +457,70 @@ class _GalleryViewState extends State<GalleryView> {
               ),
             ),
           );
+        }),
+        Observer(builder: (context) {
+          return Align(
+            alignment: Alignment.centerRight,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  debugPrint("test ${viewModel.gallery.length}");
+                  if (viewModel.selectedMediaIndex !=
+                      viewModel.gallery.length - 1) {
+                    viewModel.selectedMediaIndexChange(
+                        viewModel.selectedMediaIndex + 1);
+                  }
+                },
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  color: viewModel.selectedMediaIndex ==
+                          viewModel.gallery.length - 1
+                      ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
+                      : context.toColor(APPLICATION_COLOR.DARK),
+                  child: Icon(
+                    Icons.chevron_right_sharp,
+                    color: viewModel.selectedMediaIndex ==
+                            viewModel.gallery.length - 1
+                        ? context.toColor(APPLICATION_COLOR.LIGHT).withAlpha(60)
+                        : context.toColor(APPLICATION_COLOR.LIGHT),
+                    size: 56,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }),
+        Observer(builder: (context) {
+          return Align(
+            alignment: Alignment.centerLeft,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  if (viewModel.selectedMediaIndex != 0) {
+                    viewModel.selectedMediaIndexChange(
+                        viewModel.selectedMediaIndex - 1);
+                  }
+                },
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  color: viewModel.selectedMediaIndex == 0
+                      ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
+                      : context.toColor(APPLICATION_COLOR.DARK),
+                  child: Icon(
+                    Icons.chevron_left_sharp,
+                    color: viewModel.selectedMediaIndex == 0
+                        ? context.toColor(APPLICATION_COLOR.LIGHT).withAlpha(60)
+                        : context.toColor(APPLICATION_COLOR.LIGHT),
+                    size: 56,
+                  ),
+                ),
+              ),
+            ),
+          );
         })
       ],
     );
@@ -414,10 +553,10 @@ class _GalleryViewState extends State<GalleryView> {
       alignment: Alignment.center,
       children: [
         Container(
-          color: context.toColor(APPLICATION_COLOR.DARK),
           width: 90 * 1.77777,
           height: 90,
           decoration: BoxDecoration(
+            color: context.toColor(APPLICATION_COLOR.DARK),
             border: Border.all(
               width: 2,
               color: context.toColor(isSelected
