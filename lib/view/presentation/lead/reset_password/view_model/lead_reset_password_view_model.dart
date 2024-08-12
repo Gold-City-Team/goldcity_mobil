@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
-import 'package:goldcity/data/dto/send/lead/send_lead_login_dto.dart';
+import 'package:goldcity/data/dto/send/lead/reset_password_dto.dart';
 import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/navigation_constant.dart';
@@ -26,11 +26,10 @@ abstract class _LeadResetPasswordViewModelBase with Store, BaseViewModel {
   }
 
   String mailAdress = "zaferkurumsal@gmail.com";
-  String password = "10568332323";
 
-  Future<void> login() async {
+  Future<void> reset() async {
     var result = await _leadUseCase
-        .leadLogin(SendLeadLoginDto(email: mailAdress, password: password));
+        .leadResetPassword(ResetPasswordDto(email: mailAdress));
     if (result == null) {
       viewModelContext.pushReplacement(NavigationConstant.DEFAULT);
     } else {

@@ -6,6 +6,7 @@ enum SourcePath {
   LEAD_LOGIN,
   LEAD_LOGIN_GOOGLE,
   LEAD_CHANGE_PASSWORD,
+  LEAD_FORGOT_PASSWORD,
   COMPLEX,
   COMPLEX_LIST,
   ANNOUNCEMENT_LIST,
@@ -41,6 +42,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.LEAD_LOGIN => '/auth/mobilelogin',
       SourcePath.LEAD_LOGIN_GOOGLE => '/auth/logingoogle',
       SourcePath.LEAD => '/lead',
+      SourcePath.LEAD_FORGOT_PASSWORD => '/auth/forgotpassword',
       SourcePath.CONTACT => '/contact',
       SourcePath.PROJECT => '/project/${data?[0]}/selectedlanguage/${data?[1]}',
       SourcePath.PROJECT_LANGUAGE_LIST =>

@@ -43,43 +43,8 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
 
   Widget phoneView(
       BuildContext context, ProjectPossibilityTemplateViewModel value) {
-    return Stack(
-      alignment: Alignment.topCenter,
+    return Column(
       children: [
-        Observer(builder: (context) {
-          if (value.templateThree == null) {
-            return const SizedBox.shrink();
-          }
-          return GoogleMap(
-            zoomControlsEnabled: false,
-            padding: EdgeInsets.zero,
-            zoomGesturesEnabled: true,
-            compassEnabled: false,
-            onMapCreated: (GoogleMapController controller) {
-              value.controller.complete(controller);
-            },
-            style: context.watch<ThemeNotifier>().appTheme == APP_THEME.DARK
-                ? GeneralConstant.DARK_MAP_THEME
-                : GeneralConstant.LIGHT_MAP_THEME,
-            myLocationButtonEnabled: false,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(value.templateThree!.location.latitude,
-                  value.templateThree!.location.longitude),
-              zoom: 15,
-            ),
-            markers: value.templateThree!.possibilities
-                .map(
-                  (e) => Marker(
-                    infoWindow:
-                        InfoWindow(title: e.title, snippet: e.description),
-                    icon: BitmapDescriptor.defaultMarkerWithHue(e.color),
-                    markerId: MarkerId("${e.id}"),
-                    position: LatLng(e.location.latitude, e.location.longitude),
-                  ),
-                )
-                .toSet(),
-          );
-        }),
         SafeArea(
           child: Observer(builder: (context) {
             if (value.templateThree == null || value.selectedPinIndex == -2) {
@@ -89,7 +54,7 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
               decoration: BoxDecoration(
                 color: context
                     .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                    .withAlpha(150),
+                    .withAlpha(200),
               ),
               margin: context.xxlargeSpacerOnlyTop,
               padding: context.midLargeSpacerOnlyVertical,
@@ -106,6 +71,7 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
                   return MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
+                      behavior: HitTestBehavior.deferToChild,
                       onTap: () => value.changeSelectedPinIndex(index),
                       child: Padding(
                         padding: EdgeInsets.zero,
@@ -129,7 +95,45 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
               ),
             );
           }),
-        )
+        ),
+        Expanded(
+          child: Observer(builder: (context) {
+            if (value.templateThree == null) {
+              return const SizedBox.shrink();
+            }
+            return GoogleMap(
+              zoomControlsEnabled: false,
+              padding: EdgeInsets.zero,
+              zoomGesturesEnabled: true,
+              gestureRecognizers: Set(),
+              compassEnabled: false,
+              onMapCreated: (GoogleMapController controller) {
+                value.controller.complete(controller);
+              },
+              style: context.watch<ThemeNotifier>().appTheme == APP_THEME.DARK
+                  ? GeneralConstant.DARK_MAP_THEME
+                  : GeneralConstant.LIGHT_MAP_THEME,
+              myLocationButtonEnabled: false,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(value.templateThree!.location.latitude,
+                    value.templateThree!.location.longitude),
+                zoom: 15,
+              ),
+              markers: value.templateThree!.possibilities
+                  .map(
+                    (e) => Marker(
+                      infoWindow:
+                          InfoWindow(title: e.title, snippet: e.description),
+                      icon: BitmapDescriptor.defaultMarkerWithHue(e.color),
+                      markerId: MarkerId("${e.id}"),
+                      position:
+                          LatLng(e.location.latitude, e.location.longitude),
+                    ),
+                  )
+                  .toSet(),
+            );
+          }),
+        ),
       ],
     );
   }

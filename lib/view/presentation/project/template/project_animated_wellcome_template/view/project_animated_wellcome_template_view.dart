@@ -117,19 +117,22 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
                         .animate(delay: const Duration(milliseconds: 1500))
                         .fade(duration: const Duration(milliseconds: 1500)),
                     Gap(context.largeSpacerSize),
-                    Padding(
-                      padding: context.midSpacerOnlyHorizontal,
-                      child: Column(
+                    SizedBox(
+                      width: context.sWidth,
+                      child: Wrap(
+                        alignment: WrapAlignment.start,
+                        runSpacing: 0,
+                        spacing: 0,
+                        runAlignment: WrapAlignment.start,
+                        direction: Axis.horizontal,
                         children: value.templateEntity!.features
                             .map((e) => Container(
-                                padding: context.midSpacer,
-                                alignment: Alignment.topLeft,
+                                width: (context.sWidth / 2) - 15,
+                                alignment: Alignment.centerLeft,
                                 child: FeaturesWidget(featuresEntity: e)))
                             .toSet()
                             .toList(),
-                      )
-                          .animate(delay: const Duration(milliseconds: 1500))
-                          .fade(duration: const Duration(milliseconds: 1500)),
+                      ),
                     ),
                     Gap(context.veryLargeSpacerSize),
                   ],

@@ -1,4 +1,5 @@
 import 'package:goldcity/data/dto/send/lead/change_password_dto.dart';
+import 'package:goldcity/data/dto/send/lead/reset_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_login_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_login_google_dto.dart';
@@ -21,5 +22,9 @@ class LeadUseCase {
 
   Future<BaseErrorModel?> leadChangePassword(ChangePasswordDto dto) {
     return locator<LeadRepository>().leadChangePassword(dto);
+  }
+
+  Future<BaseErrorModel?> leadResetPassword(ResetPasswordDto dto) {
+    return locator<LeadRepository>().leadResetPassword(dto);
   }
 }

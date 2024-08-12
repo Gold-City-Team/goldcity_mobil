@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
-import 'package:goldcity/util/enum/input_type.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
@@ -105,45 +104,15 @@ class LeadResetPasswordView extends StatelessWidget {
                     newText: (newText) => value.mailAdress = newText),
               ),
               Gap(context.largeSpacerSize),
-              LabelText(
-                text: LocaleKeys.passwordQuestion.tr(),
-                fontWeight: FontWeight.w400,
-                textColor: APPLICATION_COLOR.GOLD,
-              ),
-              SizedBox(
-                height: 40,
-                child: RoundedTextField(
-                    key: const Key("password"),
-                    inputType: InputType.PASSWORD,
-                    newText: (newText) => value.password = newText),
-              ),
-              Gap(context.largeSpacerSize),
               SizedBox(
                 height: 40,
                 child: NormalButton(
                   backgroundColor: APPLICATION_COLOR.GOLD,
-                  onTap: () => value.login(),
+                  onTap: () => value.reset(),
                   textColor: APPLICATION_COLOR.LIGHT,
                   text: LocaleKeys.send.tr(),
                 ),
               ),
-              Gap(context.midSpacerSize),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LabelText(text: context.tr("forgotPassword")),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () => value.login(),
-                      child: LabelText(
-                        text: " ${context.tr("resetButton")}",
-                        textColor: APPLICATION_COLOR.GOLD,
-                      ),
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
         )
@@ -208,7 +177,7 @@ class LeadResetPasswordView extends StatelessWidget {
                   height: 40,
                   child: NormalButton(
                     backgroundColor: APPLICATION_COLOR.GOLD,
-                    onTap: () => value.login(),
+                    onTap: () => value.reset(),
                     textColor: APPLICATION_COLOR.LIGHT,
                     text: LocaleKeys.send.tr(),
                   ),
