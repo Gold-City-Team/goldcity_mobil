@@ -54,5 +54,9 @@
     "newPasswordAgain": "Yeni Şifre Tekrar",
     "doNotMatch": "Şifreler eşleşmedi",
     "webinarNotFound": "Seminer bulunamadı!",
-    "educationNotFound": "Eğitim bulunamadı!"
+    "educationNotFound": "Eğitim bulunamadı!",
+    "forgotPassword": "Şifreni mi unuttun?",
+    "resetButton": "Sıfırla",
+    "resetPassword": "Şifreni sıfırla",
+    "resetPasswordDetail": "Lütfen hesabınıza giriş yaparken kullandığınız mail adresinizi girin. Sıfırlama işlemleri için bir mail yollayacağız."
 }

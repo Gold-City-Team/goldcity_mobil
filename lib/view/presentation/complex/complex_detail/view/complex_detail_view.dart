@@ -17,7 +17,7 @@ import 'package:goldcity/view/presentation/complex/template/complex_feature_and_
 import 'package:goldcity/view/presentation/complex/template/complex_feature_template/view/complex_feature_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_general_information_and_gallery_template/view/complex_general_information_and_gallery_template_view.dart';
 import 'package:goldcity/view/presentation/complex/template/complex_possibilty_template/view/complex_possibilty_template_view.dart';
-import 'package:goldcity/view/presentation/webinar_detail/language_item/language_item_widget.dart';
+import 'package:goldcity/view/widget/language_item/language_item_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 
@@ -326,32 +326,37 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
             );
           }),
           Gap(context.veryLargeSpacerSize),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: value.language!.languages.length,
-              itemBuilder: (context, index) {
-                return Center(
-                  child: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                        onTap: () {
-                          value.languageId =
-                              value.language!.languages[index].id;
-                          value.getComplexDetail();
-                        },
-                        child: Container(
-                          margin: context.largeSpacerOnlyRight,
-                          height: context.sHeight * .4,
-                          child: LanguageItemWidget(
-                              value: value.language!.languages[index]),
-                        )),
-                  ),
-                );
-              },
-            ),
-          ),
+          Observer(builder: (context) {
+            if (value.language == null) {
+              return const SizedBox.shrink();
+            }
+            return Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: value.language!.languages.length,
+                itemBuilder: (context, index) {
+                  return Center(
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                          onTap: () {
+                            value.languageId =
+                                value.language!.languages[index].id;
+                            value.getComplexDetail();
+                          },
+                          child: Container(
+                            margin: context.largeSpacerOnlyRight,
+                            height: context.sHeight * .4,
+                            child: LanguageItemWidget(
+                                value: value.language!.languages[index]),
+                          )),
+                    ),
+                  );
+                },
+              ),
+            );
+          }),
           Gap(context.veryLargeSpacerSize),
         ],
       ),

@@ -14,6 +14,7 @@ import 'package:goldcity/view/presentation/education_detail/video_player/view/ed
 import 'package:goldcity/view/presentation/education_detail/view/education_detail_view.dart';
 import 'package:goldcity/view/presentation/lead/apply/view/lead_apply_view.dart';
 import 'package:goldcity/view/presentation/lead/login/view/lead_login_view.dart';
+import 'package:goldcity/view/presentation/lead/reset_password/view/lead_reset_password_view.dart';
 import 'package:goldcity/view/presentation/main/announcement/view/announcement_view.dart';
 import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
 import 'package:goldcity/view/presentation/webinar_detail/view/webinar_detail_view.dart';
@@ -158,6 +159,11 @@ final router = GoRouter(
           name: NavigationConstant.LEAD_LOGIN,
           path: NavigationConstant.LEAD_LOGIN,
           builder: (context, state) => LeadLoginView(),
+        ),
+        GoRoute(
+          name: NavigationConstant.LEAD_FORGOT_PASSWORD,
+          path: NavigationConstant.LEAD_FORGOT_PASSWORD,
+          builder: (context, state) => LeadResetPasswordView(),
         ),
         GoRoute(
           name: NavigationConstant.ANNOUNCEMENT,

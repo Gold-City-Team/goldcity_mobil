@@ -9,11 +9,12 @@ import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/view/widget/snackbar/error_snackbar.dart';
 import 'package:mobx/mobx.dart';
 
-part 'lead_login_view_model.g.dart';
+part 'lead_reset_password_view_model.g.dart';
 
-class LeadLoginViewModel = _LeadLoginViewModelBase with _$LeadLoginViewModel;
+class LeadResetPasswordViewModel = _LeadResetPasswordViewModelBase
+    with _$LeadResetPasswordViewModel;
 
-abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
+abstract class _LeadResetPasswordViewModelBase with Store, BaseViewModel {
   late LeadUseCase _leadUseCase;
 
   @override
@@ -42,9 +43,5 @@ abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
             .show(viewModelContext);
       }
     }
-  }
-
-  Future<void> forgotPassword() async {
-    viewModelContext.pushNamed(NavigationConstant.LEAD_FORGOT_PASSWORD);
   }
 }

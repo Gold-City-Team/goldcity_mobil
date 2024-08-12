@@ -19,30 +19,36 @@ class LanguageItemWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color:
               context.toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-          borderRadius: BorderRadius.all(
-              isTablet() ? Radius.circular(75) : Radius.circular(50))),
+          borderRadius: BorderRadius.all(Radius.circular(75))),
       child: Column(
         children: [
-          Container(
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: context
-                            .toColor(APPLICATION_COLOR.DARK)
-                            .withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: Offset(0, 7)),
-                  ],
-                  color: context
-                      .toColor(APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
-                  borderRadius: BorderRadius.all(
-                      isTablet() ? Radius.circular(75) : Radius.circular(50))),
-              height: isTablet() ? 150 : 100,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.all(
-                      isTablet() ? Radius.circular(75) : Radius.circular(50)),
-                  child: NormalNetworkImage(source: value.mediaItem.url))),
+          Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: context
+                              .toColor(APPLICATION_COLOR.DARK)
+                              .withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: Offset(0, 7)),
+                    ],
+                    color: context.toColor(
+                        APPLICATION_COLOR.EXTRA_CLOSE_BACKGROUND_COLOR),
+                    borderRadius: BorderRadius.all(Radius.circular(75))),
+                height: isTablet() ? 150 : 125,
+                width: isTablet() ? 150 : 125,
+              ),
+              ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(75)),
+                  child: SizedBox(
+                      height: isTablet() ? 150 : 125,
+                      width: isTablet() ? 150 : 125,
+                      child: NormalNetworkImage(source: value.mediaItem.url)))
+            ],
+          ),
           Gap(context.veryLargeSpacerSize),
           LabelText(
             text: value.name,

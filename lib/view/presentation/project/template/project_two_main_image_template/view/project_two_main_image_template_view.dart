@@ -121,10 +121,12 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                 textLineHeight: 1,
               ),
               Gap(context.midSpacerSize),
-              LabelText(
-                text: value.templateTwo!.description,
-                textColor: APPLICATION_COLOR.SUBTITLE,
-                fontSize: FONT_SIZE.TITLE_MEDIUM,
+              SingleChildScrollView(
+                child: LabelText(
+                  text: value.templateTwo!.description,
+                  textColor: APPLICATION_COLOR.SUBTITLE,
+                  fontSize: FONT_SIZE.TITLE_MEDIUM,
+                ),
               ),
               Gap(context.midSpacerSize),
               Observer(

@@ -25,7 +25,7 @@ import 'package:goldcity/view/presentation/project/template/project_text_image_t
 import 'package:goldcity/view/presentation/project/template/project_two_main_image_template/view/project_two_main_image_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/shareable_material/view/shareable_material_template_view.dart';
 import 'package:goldcity/view/presentation/project/template/virtual_tour_template/view/virtual_tour_template_view.dart';
-import 'package:goldcity/view/presentation/webinar_detail/language_item/language_item_widget.dart';
+import 'package:goldcity/view/widget/language_item/language_item_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';

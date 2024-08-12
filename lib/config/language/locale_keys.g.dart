@@ -57,5 +57,9 @@ abstract class  LocaleKeys {
   static const doNotMatch = 'doNotMatch';
   static const webinarNotFound = 'webinarNotFound';
   static const educationNotFound = 'educationNotFound';
+  static const forgotPassword = 'forgotPassword';
+  static const resetButton = 'resetButton';
+  static const resetPassword = 'resetPassword';
+  static const resetPasswordDetail = 'resetPasswordDetail';
 
 }

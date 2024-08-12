@@ -61,18 +61,17 @@ class HomeView extends StatelessWidget {
                   return const SizedBox.shrink();
                 }
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(),
-                    Spacer(),
                     Container(
-                        margin: context.largeSpacerOnlyLeft,
-                        child: LabelText(
-                          text: context.tr("projects"),
-                          fontSize: FONT_SIZE.HEADLINE_LARGE,
-                          textColor: APPLICATION_COLOR.GOLD,
-                        )),
+                      margin: context.largeSpacerOnlyLeft,
+                      child: LabelText(
+                        text: context.tr("projects"),
+                        fontSize: FONT_SIZE.HEADLINE_LARGE,
+                        textColor: APPLICATION_COLOR.GOLD,
+                      ),
+                    ),
                     Gap(context.largeSpacerSize),
                     Container(
                       height: context.sHeight * .18,
@@ -96,7 +95,6 @@ class HomeView extends StatelessWidget {
                             );
                           }),
                     ),
-                    Spacer(),
                   ],
                 );
               }),

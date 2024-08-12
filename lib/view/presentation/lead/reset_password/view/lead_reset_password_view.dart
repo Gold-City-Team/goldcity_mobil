@@ -9,24 +9,24 @@ import 'package:goldcity/util/enum/input_type.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/lead/login/view_model/lead_login_view_model.dart';
+import 'package:goldcity/view/presentation/lead/reset_password/view_model/lead_reset_password_view_model.dart';
 import 'package:goldcity/view/widget/button/normal_button.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:goldcity/view/widget/text_field/rounded_text_field.dart';
 
-class LeadLoginView extends StatelessWidget {
-  const LeadLoginView({super.key});
+class LeadResetPasswordView extends StatelessWidget {
+  const LeadResetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<LeadLoginViewModel>(
-      viewModel: LeadLoginViewModel(),
+    return BaseView<LeadResetPasswordViewModel>(
+      viewModel: LeadResetPasswordViewModel(),
       onModelReady: (model) {
         model.init();
         model.setContext(context);
       },
-      onPageBuilder: (BuildContext context, LeadLoginViewModel value) =>
+      onPageBuilder: (BuildContext context, LeadResetPasswordViewModel value) =>
           Scaffold(
         body: SafeArea(
           child: Stack(
@@ -56,7 +56,7 @@ class LeadLoginView extends StatelessWidget {
     );
   }
 
-  Widget phoneView(BuildContext context, LeadLoginViewModel value) {
+  Widget phoneView(BuildContext context, LeadResetPasswordViewModel value) {
     return Column(
       children: [
         SizedBox(
@@ -82,13 +82,13 @@ class LeadLoginView extends StatelessWidget {
                               width: 1.5,
                               color: context.toColor(APPLICATION_COLOR.GOLD)))),
                   child: LabelText(
-                    text: context.tr("login"),
+                    text: context.tr("resetPassword"),
                     fontSize: FONT_SIZE.HEADLINE_LARGE,
                     fontWeight: FontWeight.bold,
                   )),
               Gap(context.midSpacerSize),
               LabelText(
-                text: context.tr("partnerLoginDetail"),
+                text: context.tr("resetPasswordDetail"),
                 fontSize: FONT_SIZE.LABEL_LARGE,
                 fontWeight: FontWeight.w400,
               ),
@@ -135,7 +135,7 @@ class LeadLoginView extends StatelessWidget {
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
-                      onTap: () => value.forgotPassword(),
+                      onTap: () => value.login(),
                       child: LabelText(
                         text: " ${context.tr("resetButton")}",
                         textColor: APPLICATION_COLOR.GOLD,
@@ -151,7 +151,7 @@ class LeadLoginView extends StatelessWidget {
     );
   }
 
-  Widget tabletView(BuildContext context, LeadLoginViewModel value) {
+  Widget tabletView(BuildContext context, LeadResetPasswordViewModel value) {
     return Row(
       children: [
         Expanded(
@@ -181,13 +181,13 @@ class LeadLoginView extends StatelessWidget {
                                 color:
                                     context.toColor(APPLICATION_COLOR.GOLD)))),
                     child: LabelText(
-                      text: context.tr("login"),
+                      text: context.tr("resetPassword"),
                       fontSize: FONT_SIZE.HEADLINE_LARGE,
                       fontWeight: FontWeight.bold,
                     )),
                 Gap(context.midSpacerSize),
                 LabelText(
-                  text: context.tr("partnerLoginDetail"),
+                  text: context.tr("resetPasswordDetail"),
                   fontSize: FONT_SIZE.LABEL_LARGE,
                   fontWeight: FontWeight.w400,
                 ),
@@ -204,19 +204,6 @@ class LeadLoginView extends StatelessWidget {
                       newText: (newText) => value.mailAdress = newText),
                 ),
                 Gap(context.largeSpacerSize),
-                LabelText(
-                  text: LocaleKeys.passwordQuestion.tr(),
-                  fontWeight: FontWeight.w400,
-                  textColor: APPLICATION_COLOR.GOLD,
-                ),
-                SizedBox(
-                  height: 40,
-                  child: RoundedTextField(
-                      key: const Key("password"),
-                      inputType: InputType.PASSWORD,
-                      newText: (newText) => value.password = newText),
-                ),
-                Gap(context.largeSpacerSize),
                 SizedBox(
                   height: 40,
                   child: NormalButton(
@@ -226,23 +213,6 @@ class LeadLoginView extends StatelessWidget {
                     text: LocaleKeys.send.tr(),
                   ),
                 ),
-                Gap(context.midSpacerSize),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LabelText(text: context.tr("forgotPassword")),
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () => value.forgotPassword(),
-                        child: LabelText(
-                          text: " ${context.tr("resetButton")}",
-                          textColor: APPLICATION_COLOR.GOLD,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
           ),

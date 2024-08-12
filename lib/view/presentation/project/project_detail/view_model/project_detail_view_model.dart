@@ -134,8 +134,8 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   }
 
   Future<String?> _createLink() async {
-    var result = await _shareablePageUseCase.createLink(
-        CreateShareableLinkDto(pageType: "PROJECT", pageId: projectId));
+    var result = await _shareablePageUseCase.createLink(CreateShareableLinkDto(
+        pageType: "PROJECT", pageId: projectId, title: entity?.detail.title));
     if (result.isRight) {
       return result.right;
     }

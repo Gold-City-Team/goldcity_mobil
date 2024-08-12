@@ -59,7 +59,7 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                 ),
               ),
               Container(
-                height: context.sWidth,
+                height: context.sHeight,
                 width: (context.sWidth),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -69,13 +69,13 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                       context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                       context
                           .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .withAlpha(150),
+                      context
+                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
                           .withAlpha(100),
                       context
                           .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(0),
-                      context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(0),
+                          .withAlpha(50),
                       context
                           .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
                           .withAlpha(0),
@@ -87,13 +87,14 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
           ),
         ),
         Container(
-          width: context.sWidth / 3,
+          width: context.sWidth,
           margin: context.xxlargeSpacerOnlyLeft,
           height: context.sHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Gap(context.largeSpacerSize),
               LabelText(
                 text: context.tr("wellcome"),
                 align: TextAlign.center,
@@ -106,38 +107,36 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                 textColor: APPLICATION_COLOR.SUBTITLE,
                 align: TextAlign.center,
               ),
-              Gap(context.largeSpacerSize),
-            ],
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () => widget.onExploreTap(),
-              child: Container(
-                width: context.sWidth / 4 - 10,
-                height: 60,
-                margin: context.xLargeSpacerOnlyBottom,
-                decoration: BoxDecoration(
-                  color: context
-                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                      .withAlpha(235),
-                ),
-                padding: context.largeSpacerOnlyHorizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    LabelText(
-                      text: context.tr("explore"),
-                      fontSize: FONT_SIZE.TITLE_LARGE,
+              Gap(context.xlargeSpacerSize),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => widget.onExploreTap(),
+                  child: Container(
+                    width: context.sWidth / 4 - 10,
+                    height: 60,
+                    margin: context.xLargeSpacerOnlyBottom,
+                    decoration: BoxDecoration(
+                      color: context
+                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                          .withAlpha(235),
                     ),
-                    const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
-                  ],
+                    padding: context.largeSpacerOnlyHorizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        LabelText(
+                          text: context.tr("explore"),
+                          fontSize: FONT_SIZE.TITLE_LARGE,
+                        ),
+                        const Icon(Icons.keyboard_arrow_right_outlined,
+                            size: 36)
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ],
@@ -204,7 +203,6 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Spacer(),
                     LabelText(
                       text: widget.complexEntity.title,
                       fontSize: FONT_SIZE.HEADLINE_LARGE,
@@ -217,39 +215,35 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
                       fontSize: FONT_SIZE.TITLE_SMALL,
                     ),
                     Gap(context.largeSpacerSize),
-                    Spacer(),
-                    Spacer(),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => widget.onExploreTap(),
-                child: Container(
-                  width: context.sWidth / 2,
-                  height: 60,
-                  margin: context.xLargeSpacerOnlyBottom,
-                  decoration: BoxDecoration(
-                    color: context
-                        .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                        .withAlpha(200),
-                  ),
-                  padding: context.largeSpacerOnlyHorizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      LabelText(
-                        text: LocaleKeys.explore.tr(),
-                        fontSize: FONT_SIZE.TITLE_LARGE,
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => widget.onExploreTap(),
+                        child: Container(
+                          width: context.sWidth / 2,
+                          height: 60,
+                          margin: context.xLargeSpacerOnlyBottom,
+                          decoration: BoxDecoration(
+                            color: context
+                                .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                                .withAlpha(200),
+                          ),
+                          padding: context.largeSpacerOnlyHorizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              LabelText(
+                                text: LocaleKeys.explore.tr(),
+                                fontSize: FONT_SIZE.TITLE_LARGE,
+                              ),
+                              const Icon(Icons.keyboard_arrow_right_outlined,
+                                  size: 36)
+                            ],
+                          ),
+                        ),
                       ),
-                      const Icon(Icons.keyboard_arrow_right_outlined, size: 36)
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

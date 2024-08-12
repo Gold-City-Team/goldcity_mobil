@@ -24,38 +24,49 @@ class FeaturesWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          height: isTablet() ? 35 : 25,
-          width: isTablet() ? 35 : 25,
-          child: kIsWeb
-              ? Image.network(
-                  featuresEntity.media.url,
-                  color: context.toColor(APPLICATION_COLOR.GOLD),
-                )
-              : SvgPicture.network(
-                  featuresEntity.media.url,
-                  color: context.toColor(APPLICATION_COLOR.GOLD),
-                ),
+          height: 50,
+          child: Center(
+            child: SizedBox(
+              height: isTablet() ? 40 : 30,
+              width: isTablet() ? 40 : 30,
+              child: kIsWeb
+                  ? Image.network(
+                      featuresEntity.media.url,
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                    )
+                  : SvgPicture.network(
+                      featuresEntity.media.url,
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                    ),
+            ),
+          ),
         ),
         Gap(context.midSpacerSize),
         Flexible(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LabelText(
-                textLineHeight: 1,
-                text: featuresEntity.value,
-                maxLines: 1,
-                textColor: APPLICATION_COLOR.TITLE,
-                fontSize:
-                    isTablet() ? FONT_SIZE.TITLE_LARGE : FONT_SIZE.BODY_LARGE,
+              Container(
+                height: 50,
+                alignment: Alignment.centerLeft,
+                child: LabelText(
+                  textLineHeight: 1.2,
+                  text: featuresEntity.value,
+                  maxLines: 2,
+                  textColor: APPLICATION_COLOR.TITLE,
+                  fontSize:
+                      isTablet() ? FONT_SIZE.TITLE_LARGE : FONT_SIZE.BODY_LARGE,
+                ),
               ),
-              Gap(context.midSpacerSize),
-              LabelText(
-                text: featuresEntity.title,
-                maxLines: 1,
-                textColor: APPLICATION_COLOR.SUBTITLE,
-                fontSize: FONT_SIZE.LABEL_LARGE,
-              )
+              Gap(context.smallSpacerSize),
+              featuresEntity.title.isEmpty
+                  ? const SizedBox.shrink()
+                  : LabelText(
+                      text: featuresEntity.title,
+                      textColor: APPLICATION_COLOR.SUBTITLE,
+                      fontSize: FONT_SIZE.LABEL_LARGE,
+                    )
             ],
           ),
         )

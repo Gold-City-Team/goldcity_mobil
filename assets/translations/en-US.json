@@ -53,5 +53,9 @@
     "newPasswordAgain": "New Password Again",
     "doNotMatch": "Passwords do not match",
     "webinarNotFound": "Webinar not found!",
-    "educationNotFound": "Education not found!"
+    "educationNotFound": "Education not found!",
+    "forgotPassword": "Forgot Password?",
+    "resetButton": "Reset",
+    "resetPassword": "Reset password",
+    "resetPasswordDetail": "Please enter the e-mail address you used to log in to your account. We will send an e-mail for the reset process."
 }

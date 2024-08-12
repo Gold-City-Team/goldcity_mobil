@@ -64,7 +64,12 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                 padding: context.midSpacerOnlyHorizontal,
                 child: Wrap(
                   children: value.templateEntity!.features
-                      .map((e) => FeaturesWidget(featuresEntity: e))
+                      .map((e) => Column(
+                            children: [
+                              FeaturesWidget(featuresEntity: e),
+                              Gap(context.midSpacerSize),
+                            ],
+                          ))
                       .toSet()
                       .toList(),
                 ),
@@ -173,7 +178,8 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                                   value.templateEntity!.features[index]),
                           value.templateEntity!.features.length - 1 == index
                               ? Gap(context.veryLargeSpacerOnlyBottom.bottom)
-                              : const SizedBox.shrink()
+                              : const SizedBox.shrink(),
+                          Gap(context.midSpacerSize),
                         ],
                       );
                     });

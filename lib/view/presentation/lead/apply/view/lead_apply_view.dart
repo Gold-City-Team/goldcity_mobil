@@ -154,7 +154,7 @@ class LeadApplyView extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ))

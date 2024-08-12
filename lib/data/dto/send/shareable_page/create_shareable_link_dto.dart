@@ -5,7 +5,8 @@ part 'create_shareable_link_dto.g.dart';
 class CreateShareableLinkDto {
   String? pageType;
   int? pageId;
-  CreateShareableLinkDto({this.pageType, this.pageId});
+  String? title;
+  CreateShareableLinkDto({this.pageType, this.pageId, this.title});
   factory CreateShareableLinkDto.fromJson(Map<String, dynamic> json) =>
       _$CreateShareableLinkDtoFromJson(json);
 
