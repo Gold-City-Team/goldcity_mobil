@@ -105,7 +105,6 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
               zoomControlsEnabled: false,
               padding: EdgeInsets.zero,
               zoomGesturesEnabled: true,
-              gestureRecognizers: Set(),
               compassEnabled: false,
               onMapCreated: (GoogleMapController controller) {
                 value.controller.complete(controller);
