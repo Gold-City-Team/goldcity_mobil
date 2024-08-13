@@ -148,39 +148,44 @@ class SettingsView extends StatelessWidget {
                   runSpacing: 10,
                   children: value.menuItems
                       .map(
-                        (e) => MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: () => value.showBox(e),
-                            child: Container(
-                              width: context.sWidth - 25,
-                              height: 100,
-                              color: context.toColor(APPLICATION_COLOR
-                                  .EXTRA_CLOSE_BACKGROUND_COLOR),
-                              child: Padding(
-                                padding: context.midSpacerOnlyHorizontal,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        value.getIcon(e),
-                                        Gap(context.midSpacerSize),
-                                        LabelText(text: e),
-                                      ],
+                        (e) => e.isEmpty
+                            ? const SizedBox.shrink()
+                            : MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => value.showBox(e),
+                                  child: Container(
+                                    width: context.sWidth - 25,
+                                    height: 100,
+                                    color: context.toColor(APPLICATION_COLOR
+                                        .EXTRA_CLOSE_BACKGROUND_COLOR),
+                                    child: Padding(
+                                      padding: context.midSpacerOnlyHorizontal,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              value.getIcon(e),
+                                              Gap(context.midSpacerSize),
+                                              LabelText(text: e),
+                                            ],
+                                          ),
+                                          Gap(context.midSpacerSize),
+                                          LabelText(
+                                            text: e,
+                                            textColor:
+                                                APPLICATION_COLOR.SUBTITLE,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    Gap(context.midSpacerSize),
-                                    LabelText(
-                                      text: e,
-                                      textColor: APPLICATION_COLOR.SUBTITLE,
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ),
                       )
                       .toList(),
                 ),
