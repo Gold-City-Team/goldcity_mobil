@@ -27,6 +27,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
 
   @override
   Future<void> init() async {
+    debugPrint("girdi");
     _notificationUseCase = locator<NotificationUseCase>();
     locator<FcmManager>();
 
@@ -41,7 +42,8 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
 
     locator<AuthenticationSource>().initUserDto();
     locator<AuthenticationSource>().isUserStillValid();
-    viewModelContext.pushReplacement(NavigationConstant.MAIN);
+
+    viewModelContext.pushReplacementNamed(NavigationConstant.MAIN);
     locator<FcmManager>().getMessages(viewModelContext);
     tokenProccess();
   }

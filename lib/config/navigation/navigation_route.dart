@@ -53,6 +53,16 @@ final router = GoRouter(
       GoRoute(
         name: NavigationConstant.DEFAULT,
         path: NavigationConstant.DEFAULT,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const SplashView(),
+          transitionDuration: Duration(milliseconds: 500),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              FadeTransition(
+            opacity: CurveTween(curve: Curves.ease).animate(animation),
+            child: child,
+          ),
+        ),
         routes: [
           GoRoute(
             name: NavigationConstant.MAIN,
@@ -169,16 +179,6 @@ final router = GoRouter(
             ],
           ),
         ],
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: const MainView(),
-          transitionDuration: Duration(milliseconds: 500),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-              FadeTransition(
-            opacity: CurveTween(curve: Curves.ease).animate(animation),
-            child: child,
-          ),
-        ),
       ),
     ]);
 

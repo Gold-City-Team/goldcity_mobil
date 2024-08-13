@@ -25,7 +25,7 @@ abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
   }
 
   String mailAdress = "zaferkurumsal@gmail.com";
-  String password = "10568332323";
+  String password = "Atalay+1";
 
   Future<void> login() async {
     var result = await _leadUseCase

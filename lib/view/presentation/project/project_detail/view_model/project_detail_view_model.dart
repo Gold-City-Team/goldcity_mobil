@@ -150,7 +150,7 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
           context: viewModelContext,
           builder: (context) {
             return CreateLinkWidget(
-                link: "https://goldcitycondominium.com/project/$result");
+                link: "https://goldcitycondominium.com/project_detail/$result");
           },
         );
       } else {
