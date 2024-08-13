@@ -56,6 +56,84 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
               ).animate().fade();
             }),
             Gap(context.midSpacerSize),
+            Observer(
+              builder: (context) {
+                if (value.templateEntity == null) {
+                  return const SizedBox.shrink();
+                }
+                return SizedBox(
+                  height: ((context.sWidth / 2) - 20) / 1.7777,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: context.largeSpacerOnlyHorizontal,
+                      itemCount: value.templateEntity!.gallery.length,
+                      itemBuilder: (context, index) {
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => value.navigateGallery(
+                              value.templateEntity!.gallery.indexWhere(
+                                  (element) =>
+                                      element ==
+                                      value.templateEntity!.gallery[index]),
+                            ),
+                            child: Padding(
+                              padding: context.midSpacerOnlyRight,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  SizedBox(
+                                    height:
+                                        ((context.sWidth / 2) - 20) / 1.7777,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Container(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                        child: NormalNetworkImage(
+                                          fit: BoxFit.cover,
+                                          source: value
+                                                      .templateEntity!
+                                                      .gallery[index]
+                                                      .media
+                                                      .mediaType ==
+                                                  MEDIA_TYPE.IMAGE
+                                              ? value.templateEntity!
+                                                  .gallery[index].media.url
+                                              : value
+                                                  .templateEntity!
+                                                  .gallery[index]
+                                                  .media
+                                                  .mediaMetaData
+                                                  .thumbnail,
+                                        ),
+                                      ),
+                                    ).animate().fade(),
+                                  ),
+                                  value.templateEntity!.gallery[index].media
+                                              .mediaType ==
+                                          MEDIA_TYPE.VIDEO
+                                      ? Container(
+                                          width: 40,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.GOLD),
+                                              borderRadius:
+                                                  context.largeRadius),
+                                          child: const Icon(Icons.play_arrow),
+                                        )
+                                      : const SizedBox.shrink()
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                );
+              },
+            ),
+            Gap(context.midSpacerSize),
             Observer(builder: (context) {
               if (value.templateEntity == null) {
                 return const SizedBox.shrink();
@@ -76,74 +154,6 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
               );
             }),
             Gap(context.midSpacerSize),
-            Observer(
-              builder: (context) {
-                if (value.templateEntity == null) {
-                  return const SizedBox.shrink();
-                }
-                return Center(
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 10,
-                    runSpacing: 0,
-                    children: value.templateEntity!.gallery
-                        .map(
-                          (e) => MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () => value.navigateGallery(
-                                value.templateEntity!.gallery
-                                    .indexWhere((element) => element == e),
-                              ),
-                              child: Padding(
-                                padding: context.midSpacerOnlyBottom,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: (context.sWidth / 2) - 20,
-                                      height:
-                                          ((context.sWidth / 2) - 20) / 1.7777,
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Container(
-                                          color: context
-                                              .toColor(APPLICATION_COLOR.DARK),
-                                          child: NormalNetworkImage(
-                                            fit: BoxFit.cover,
-                                            source: e.media.mediaType ==
-                                                    MEDIA_TYPE.IMAGE
-                                                ? e.media.url
-                                                : e.media.mediaMetaData
-                                                    .thumbnail,
-                                          ),
-                                        ),
-                                      ).animate().fade(),
-                                    ),
-                                    e.media.mediaType == MEDIA_TYPE.VIDEO
-                                        ? Container(
-                                            width: 40,
-                                            height: 40,
-                                            decoration: BoxDecoration(
-                                                color: context.toColor(
-                                                    APPLICATION_COLOR.GOLD),
-                                                borderRadius:
-                                                    context.largeRadius),
-                                            child: const Icon(Icons.play_arrow),
-                                          )
-                                        : const SizedBox.shrink()
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                );
-              },
-            ),
             Gap(context.veryLargeSpacerOnlyBottom.bottom)
           ],
         ),

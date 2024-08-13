@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
 class NavigationConstant {
-  static const DEFAULT = '/splash';
-  static const MAIN = '/';
+  static const DEFAULT = '/';
+  static const MAIN = 'page';
   static const PROJECT_DETAIL = 'project_detail';
   static const COMPLEX_DETAIL = 'complex_detail';
   static const STORY = 'story';

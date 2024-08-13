@@ -70,7 +70,7 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                   }),
                 ),
                 Positioned(
-                  bottom: 0,
+                  bottom: -1,
                   child: Container(
                     width: context.sWidth,
                     height: (context.sWidth / 1.777) / 2,
@@ -134,6 +134,7 @@ class ProjectTextImageTemplateView extends StatelessWidget {
               child: Container(
                 color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                 child: ListView.builder(
+                    cacheExtent: 9999,
                     itemCount: value.miniImages.length,
                     padding: context.largeSpacerOnlyHorizontal,
                     scrollDirection: Axis.horizontal,
@@ -208,8 +209,9 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: value.allImages.length,
                     itemBuilder: (context, index) {
-                      return SizedBox(
+                      return Container(
                         width: context.sWidth - 20,
+                        padding: context.midSpacerOnlyBottom,
                         height: (context.sWidth - 20) / 1.7777,
                         child: MouseRegion(
                           cursor: SystemMouseCursors.click,
@@ -223,14 +225,17 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
-                                  child: NormalNetworkImage(
-                                    fit: BoxFit.cover,
-                                    source: value.allImages[index].media
-                                                .mediaType ==
-                                            MEDIA_TYPE.IMAGE
-                                        ? value.allImages[index].media.url
-                                        : value.allImages[index].media
-                                            .mediaMetaData.thumbnail,
+                                  child: SizedBox(
+                                    width: context.sWidth,
+                                    child: NormalNetworkImage(
+                                      fit: BoxFit.cover,
+                                      source: value.allImages[index].media
+                                                  .mediaType ==
+                                              MEDIA_TYPE.IMAGE
+                                          ? value.allImages[index].media.url
+                                          : value.allImages[index].media
+                                              .mediaMetaData.thumbnail,
+                                    ),
                                   ),
                                 ).animate().fade(),
                                 value.allImages[index].media.mediaType ==

@@ -121,78 +121,107 @@ class _GalleryViewState extends State<GalleryView> {
 
   Widget phoneImageView(
       GalleryViewModel viewModel, CarouselController controller) {
-    return Row(
+    return Stack(
       children: [
-        SafeArea(
-          right: false,
-          top: false,
-          bottom: false,
-          child: Observer(builder: (context) {
-            if (viewModel.selectedMediaIndex == -1) {
-              return const SizedBox.shrink();
-            }
-            return Container(
-              padding: context.midSpacerOnlyTop,
-              width: 100,
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                controller: c,
-                itemCount: viewModel.gallery.length,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 150,
-                    width: 100,
-                    child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () => {
-                          viewModel.selectedMediaIndexChange(index),
-                          controller.jumpToPage(index)
-                        },
-                        child: Padding(
-                          padding: context.midSpacerOnlyBottom,
-                          child: mediaPart(viewModel.gallery[index].media.url,
-                              viewModel.selectedMediaIndex == index, context),
+        Row(
+          children: [
+            SafeArea(
+              right: false,
+              top: false,
+              bottom: false,
+              child: Observer(builder: (context) {
+                if (viewModel.selectedMediaIndex == -1) {
+                  return const SizedBox.shrink();
+                }
+                return Container(
+                  padding: context.midSpacerOnlyTop,
+                  width: 100,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    controller: c,
+                    itemCount: viewModel.gallery.length,
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        height: 150,
+                        width: 100,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => {
+                              viewModel.selectedMediaIndexChange(index),
+                              controller.jumpToPage(index)
+                            },
+                            child: Padding(
+                              padding: context.midSpacerOnlyBottom,
+                              child: mediaPart(
+                                  viewModel.gallery[index].media.url,
+                                  viewModel.selectedMediaIndex == index,
+                                  context),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            );
-          }),
-        ),
-        Gap(context.midSpacerSize),
-        Expanded(
-          child: FlutterCarousel(
-            options: CarouselOptions(
-                onPageChanged: (index, reason) {
-                  c.animateTo(index * 150,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeIn);
+                      );
+                    },
+                  ),
+                );
+              }),
+            ),
+            Gap(context.midSpacerSize),
+            Expanded(
+              child: FlutterCarousel(
+                options: CarouselOptions(
+                    onPageChanged: (index, reason) {
+                      c.animateTo(index * 150,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn);
 
-                  viewModel.selectedMediaIndexChange(index);
-                },
-                controller: controller,
-                showIndicator: false,
-                initialPage: viewModel.selectedMediaIndex,
-                enlargeCenterPage: true,
-                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                pageSnapping: true),
-            items: viewModel.gallery.map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                    margin: context.midSpacerOnlyHorizontal,
-                    width: context.sWidth,
-                    child: NormalNetworkImage(
-                      fit: BoxFit.contain,
-                      source: i.media.url,
-                    ),
+                      viewModel.selectedMediaIndexChange(index);
+                    },
+                    controller: controller,
+                    showIndicator: false,
+                    initialPage: viewModel.selectedMediaIndex,
+                    enlargeCenterPage: true,
+                    enlargeStrategy: CenterPageEnlargeStrategy.height,
+                    pageSnapping: true),
+                items: viewModel.gallery.map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        margin: context.midSpacerOnlyHorizontal,
+                        width: context.sWidth,
+                        child: NormalNetworkImage(
+                          fit: BoxFit.contain,
+                          source: i.media.url,
+                        ),
+                      );
+                    },
                   );
-                },
-              );
-            }).toList(),
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
+        SafeArea(
+          child: Padding(
+            padding: context.midSpacer,
+            child: Align(
+              alignment: Alignment.topRight,
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Container(
+                    width: 50,
+                    margin: context.largeSpacerOnlyHorizontal,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: context.toColor(APPLICATION_COLOR.GOLD),
+                        borderRadius: context.midRadius),
+                    child: const Icon(Icons.close),
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ],

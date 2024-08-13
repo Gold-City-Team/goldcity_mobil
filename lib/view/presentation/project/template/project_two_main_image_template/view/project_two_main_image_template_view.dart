@@ -53,19 +53,19 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: context.sWidth / 1.77 + 75,
+                height: context.sWidth / 1.77 + 20,
                 child: Stack(
                   children: [
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SizedBox(
                         width: context.sWidth,
-                        height: context.sWidth / 1.78,
+                        height: context.sWidth / 2,
                         child: ClipRRect(
                           borderRadius: context.midRadius,
                           child: SizedBox(
                             width: context.sWidth,
-                            height: context.sWidth / 1.78,
+                            height: context.sWidth / 2,
                             child: NormalNetworkImage(
                                 source: value.templateTwo!.mediaItem.url),
                           ),
@@ -74,21 +74,17 @@ class ProjectTwoMainImageTemplateView extends StatelessWidget {
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        width: context.sWidth,
-                        height: context.sWidth / 1.75,
-                        child: ClipRRect(
-                          borderRadius: context.midRadius,
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                            child: Container(
-                              width: context.sWidth,
-                              height: context.sWidth / 1.75,
-                              color: context
-                                  .toColor(APPLICATION_COLOR.DARK)
-                                  .withOpacity(.4),
-                              alignment: Alignment.center,
-                            ),
+                      child: ClipRRect(
+                        borderRadius: context.midRadius,
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                          child: Container(
+                            width: context.sWidth,
+                            height: context.sWidth / 2,
+                            color: context
+                                .toColor(APPLICATION_COLOR.DARK)
+                                .withOpacity(.4),
+                            alignment: Alignment.center,
                           ),
                         ),
                       ),

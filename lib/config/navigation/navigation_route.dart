@@ -27,153 +27,160 @@ import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
 import 'package:provider/provider.dart';
 
 final router = GoRouter(
-  initialLocation: NavigationConstant.DEFAULT,
-  errorBuilder: (context, state) {
-    return const SplashView();
-  },
-  observers: [GoRouterObserver()],
-  redirect: (context, state) async {
-    var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
-    if (state.fullPath!.contains(NavigationConstant.GALLERY) &&
-        state.extra == null) {
-      context.pop();
-    }
-    await Future.delayed(const Duration(), () {
-      if (theme == "LIGHT") {
-        context.read<ThemeNotifier>().setLightTheme();
-      } else {
-        context.read<ThemeNotifier>().setDarkTheme();
+    initialLocation: NavigationConstant.DEFAULT,
+    errorBuilder: (context, state) {
+      return const SplashView();
+    },
+    navigatorKey: GlobalKey(),
+    observers: [GoRouterObserver()],
+    redirect: (context, state) async {
+      var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
+      if (state.fullPath!.contains(NavigationConstant.GALLERY) &&
+          state.extra == null) {
+        context.pop();
       }
-    });
+      await Future.delayed(const Duration(), () {
+        if (theme == "LIGHT") {
+          context.read<ThemeNotifier>().setLightTheme();
+        } else {
+          context.read<ThemeNotifier>().setDarkTheme();
+        }
+      });
 
-    return null;
-  },
-  routes: [
-    GoRoute(
-      path: NavigationConstant.DEFAULT,
-      name: NavigationConstant.DEFAULT,
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        child: const SplashView(),
-        transitionDuration: Duration(milliseconds: 500),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: CurveTween(curve: Curves.ease).animate(
-            animation,
-          ),
-          child: child,
-        ),
-      ),
-    ),
-    GoRoute(
-      name: NavigationConstant.MAIN,
-      path: NavigationConstant.MAIN,
-      pageBuilder: (context, state) => CustomTransitionPage(
-        key: state.pageKey,
-        child: const MainView(),
-        transitionDuration: Duration(milliseconds: 500),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
-          opacity: CurveTween(curve: Curves.ease).animate(animation),
-          child: child,
-        ),
-      ),
-      routes: [
-        GoRoute(
-          name: NavigationConstant.PROJECT_DETAIL,
-          path: "${NavigationConstant.PROJECT_DETAIL}/:projectId",
-          builder: (context, state) => ProjectDetailView(
-              key: Key("${state.pathParameters['projectId']}"),
-              projectId: state.pathParameters['projectId']),
-        ),
-        GoRoute(
-          name: NavigationConstant.COMPLEX_DETAIL,
-          path: "${NavigationConstant.COMPLEX_DETAIL}/:complexId",
-          builder: (context, state) => ComplexDetailView(
-            key: Key("${state.pathParameters['complexId']}"),
-            complexId:
-                int.tryParse(state.pathParameters['complexId'] ?? "0") ?? 0,
-          ),
-        ),
-        GoRoute(
-            name: NavigationConstant.WEBINARS,
-            path: NavigationConstant.WEBINARS,
-            builder: (context, state) => const WebinarView(),
+      return null;
+    },
+    routes: [
+      GoRoute(
+        name: NavigationConstant.DEFAULT,
+        path: NavigationConstant.DEFAULT,
+        routes: [
+          GoRoute(
+            name: NavigationConstant.MAIN,
+            path: NavigationConstant.MAIN,
+            pageBuilder: (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: const MainView(),
+              transitionDuration: Duration(milliseconds: 500),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(
+                opacity: CurveTween(curve: Curves.ease).animate(animation),
+                child: child,
+              ),
+            ),
             routes: [
               GoRoute(
-                name: NavigationConstant.WEBINAR_DETAIL,
-                path: ":meetingId",
-                builder: (context, state) => WebinarDetailView(
-                  meetingId:
-                      int.tryParse(state.pathParameters['meetingId']!) ?? 0,
+                name: NavigationConstant.PROJECT_DETAIL,
+                path: "${NavigationConstant.PROJECT_DETAIL}/:projectId",
+                builder: (context, state) => ProjectDetailView(
+                    key: Key("${state.pathParameters['projectId']}"),
+                    projectId: state.pathParameters['projectId']),
+              ),
+              GoRoute(
+                name: NavigationConstant.COMPLEX_DETAIL,
+                path: "${NavigationConstant.COMPLEX_DETAIL}/:complexId",
+                builder: (context, state) => ComplexDetailView(
+                  key: Key("${state.pathParameters['complexId']}"),
+                  complexId:
+                      int.tryParse(state.pathParameters['complexId'] ?? "0") ??
+                          0,
                 ),
               ),
-            ]),
-        GoRoute(
-          name: NavigationConstant.SETTINGS,
-          path: NavigationConstant.SETTINGS,
-          builder: (context, state) => const SettingsView(),
-        ),
-        GoRoute(
-            name: NavigationConstant.EDUCATIONS,
-            path: NavigationConstant.EDUCATIONS,
-            builder: (context, state) => const EducationView(),
-            routes: [
               GoRoute(
-                name: NavigationConstant.EDUCATION_DETAIL,
-                path: ":educationId",
-                routes: [
-                  GoRoute(
-                    name: NavigationConstant.EDUCATION_DETAIL_VIDEO_PLAYER,
-                    path: ":videoId",
-                    builder: (context, state) => EducationDetailVideoPlayerView(
-                      videoId:
-                          int.tryParse(state.pathParameters['videoId']!) ?? 0,
+                  name: NavigationConstant.WEBINARS,
+                  path: NavigationConstant.WEBINARS,
+                  builder: (context, state) => const WebinarView(),
+                  routes: [
+                    GoRoute(
+                      name: NavigationConstant.WEBINAR_DETAIL,
+                      path: ":meetingId",
+                      builder: (context, state) => WebinarDetailView(
+                        meetingId:
+                            int.tryParse(state.pathParameters['meetingId']!) ??
+                                0,
+                      ),
                     ),
-                  ),
-                ],
-                builder: (context, state) => EducationDetailView(
-                  educationId:
-                      int.tryParse(state.pathParameters['educationId']!) ?? 0,
+                  ]),
+              GoRoute(
+                name: NavigationConstant.SETTINGS,
+                path: NavigationConstant.SETTINGS,
+                builder: (context, state) => const SettingsView(),
+              ),
+              GoRoute(
+                  name: NavigationConstant.EDUCATIONS,
+                  path: NavigationConstant.EDUCATIONS,
+                  builder: (context, state) => const EducationView(),
+                  routes: [
+                    GoRoute(
+                      name: NavigationConstant.EDUCATION_DETAIL,
+                      path: ":educationId",
+                      routes: [
+                        GoRoute(
+                          name:
+                              NavigationConstant.EDUCATION_DETAIL_VIDEO_PLAYER,
+                          path: ":videoId",
+                          builder: (context, state) =>
+                              EducationDetailVideoPlayerView(
+                            videoId: int.tryParse(
+                                    state.pathParameters['videoId']!) ??
+                                0,
+                          ),
+                        ),
+                      ],
+                      builder: (context, state) => EducationDetailView(
+                        educationId: int.tryParse(
+                                state.pathParameters['educationId']!) ??
+                            0,
+                      ),
+                    ),
+                  ]),
+              GoRoute(
+                name: NavigationConstant.GALLERY,
+                path: NavigationConstant.GALLERY,
+                builder: (context, state) => GalleryView(
+                  gallery: (state.extra as Map<String, dynamic>)["gallery"]
+                      as List<GalleryMediaEntity>,
+                  selectedIndex: (state.extra
+                      as Map<String, dynamic>)["selectedIndex"] as int,
+                  isExperiance: (state.extra
+                      as Map<String, dynamic>)["isExperiance"] as bool,
                 ),
               ),
-            ]),
-        GoRoute(
-          name: NavigationConstant.GALLERY,
-          path: NavigationConstant.GALLERY,
-          builder: (context, state) => GalleryView(
-            gallery: (state.extra as Map<String, dynamic>)["gallery"]
-                as List<GalleryMediaEntity>,
-            selectedIndex:
-                (state.extra as Map<String, dynamic>)["selectedIndex"] as int,
-            isExperiance:
-                (state.extra as Map<String, dynamic>)["isExperiance"] as bool,
+              GoRoute(
+                name: NavigationConstant.LEAD_APPLY,
+                path: NavigationConstant.LEAD_APPLY,
+                builder: (context, state) => LeadApplyView(),
+              ),
+              GoRoute(
+                name: NavigationConstant.LEAD_LOGIN,
+                path: NavigationConstant.LEAD_LOGIN,
+                builder: (context, state) => LeadLoginView(),
+              ),
+              GoRoute(
+                name: NavigationConstant.LEAD_FORGOT_PASSWORD,
+                path: NavigationConstant.LEAD_FORGOT_PASSWORD,
+                builder: (context, state) => LeadResetPasswordView(),
+              ),
+              GoRoute(
+                name: NavigationConstant.ANNOUNCEMENT,
+                path: NavigationConstant.ANNOUNCEMENT,
+                builder: (context, state) => AnnouncementView(),
+              )
+            ],
+          ),
+        ],
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const MainView(),
+          transitionDuration: Duration(milliseconds: 500),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              FadeTransition(
+            opacity: CurveTween(curve: Curves.ease).animate(animation),
+            child: child,
           ),
         ),
-        GoRoute(
-          name: NavigationConstant.LEAD_APPLY,
-          path: NavigationConstant.LEAD_APPLY,
-          builder: (context, state) => LeadApplyView(),
-        ),
-        GoRoute(
-          name: NavigationConstant.LEAD_LOGIN,
-          path: NavigationConstant.LEAD_LOGIN,
-          builder: (context, state) => LeadLoginView(),
-        ),
-        GoRoute(
-          name: NavigationConstant.LEAD_FORGOT_PASSWORD,
-          path: NavigationConstant.LEAD_FORGOT_PASSWORD,
-          builder: (context, state) => LeadResetPasswordView(),
-        ),
-        GoRoute(
-          name: NavigationConstant.ANNOUNCEMENT,
-          path: NavigationConstant.ANNOUNCEMENT,
-          builder: (context, state) => AnnouncementView(),
-        )
-      ],
-    ),
-  ],
-);
+      ),
+    ]);
 
 class GoRouterObserver extends NavigatorObserver {
   @override
