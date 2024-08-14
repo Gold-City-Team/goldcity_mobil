@@ -280,7 +280,7 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                             }
                             return SizedBox(
                               width: context.sWidth / 1.3 - 10,
-                              height: context.sHeight / 1.5,
+                              height: context.sHeight / 1.5 - 10,
                               child: NormalNetworkImage(
                                   source: value.templateEntity!.mediaItem.url),
                             );

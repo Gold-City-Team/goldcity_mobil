@@ -1,3 +1,4 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,7 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
+import 'package:goldcity/view/widget/snackbar/error_snackbar.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class CreateLinkWidget extends StatelessWidget {
@@ -37,7 +39,9 @@ class CreateLinkWidget extends StatelessWidget {
                     Material(
                       child: Container(
                         height: 50,
-                        width: (context.sWidth / 2) - 90,
+                        width: isTablet()
+                            ? (context.sWidth / 2) - 90
+                            : context.sWidth - 120,
                         alignment: Alignment.center,
                         padding: context.largeSpacerOnlyHorizontal,
                         color:
@@ -56,9 +60,13 @@ class CreateLinkWidget extends StatelessWidget {
                         onTap: () => {
                           Clipboard.setData(ClipboardData(text: link))
                               .then((_) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content:
-                                    LabelText(text: context.tr("linkCopied"))));
+                            AnimatedSnackBar(
+                                    desktopSnackBarPosition:
+                                        DesktopSnackBarPosition.topCenter,
+                                    snackBarStrategy: RemoveSnackBarStrategy(),
+                                    builder: (context) => ErrorSnackBar(
+                                        message: context.tr("linkCopied")))
+                                .show(context);
                           })
                         },
                         child: Container(

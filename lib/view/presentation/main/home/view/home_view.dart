@@ -270,27 +270,29 @@ class HomeView extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: Padding(
             padding: context.xLargeSpacerOnlyBottom,
-            child: Observer(builder: (context) {
-              if (value.projectList == null) {
-                return const SizedBox.shrink();
-              }
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
+            child: Observer(
+              builder: (context) {
+                if (value.projectList == null) {
+                  return const SizedBox.shrink();
+                }
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
                       margin: context.xxlargeSpacerOnlyLeft,
                       child: LabelText(
                         text: context.tr("projects"),
                         fontSize: FONT_SIZE.HEADLINE_LARGE,
                         textColor: APPLICATION_COLOR.TITLE,
-                      )),
-                  Gap(context.largeSpacerSize),
-                  Container(
-                    height: context.sHeight * .18,
-                    margin: context.xxlargeSpacerOnlyLeft,
-                    width: context.sWidth / 1.5,
-                    child: ListView.builder(
+                      ),
+                    ),
+                    Gap(context.largeSpacerSize),
+                    Container(
+                      height: context.sHeight * .18,
+                      margin: context.xxlargeSpacerOnlyLeft,
+                      width: context.sWidth / 1.5,
+                      child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: value.projectList!.length,
                         itemBuilder: (context, index) {
@@ -306,11 +308,13 @@ class HomeView extends StatelessWidget {
                               ),
                             ),
                           );
-                        }),
-                  ),
-                ],
-              );
-            }),
+                        },
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
         Padding(

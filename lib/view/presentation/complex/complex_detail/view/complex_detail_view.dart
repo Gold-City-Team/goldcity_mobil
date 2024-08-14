@@ -383,6 +383,7 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
                   Expanded(
                       flex: 1,
                       child: Stack(
+                        alignment: Alignment.center,
                         children: [
                           SizedBox(
                             height: context.sHeight,
@@ -391,13 +392,12 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
                                 fit: BoxFit.cover,
                                 source: value.language!.mainImage.url),
                           ),
-                          Center(
-                            child: Padding(
-                              padding: context.xlargeSpacerOnlyHorizontal,
-                              child: NormalNetworkImage(
-                                  fit: BoxFit.cover,
-                                  source: value.language!.logo.url),
-                            ),
+                          Container(
+                            width: (context.sWidth / 3) / 1.2,
+                            padding: context.xlargeSpacerOnlyHorizontal,
+                            child: NormalNetworkImage(
+                                fit: BoxFit.contain,
+                                source: value.language!.logo.url),
                           ),
                         ],
                       )),
