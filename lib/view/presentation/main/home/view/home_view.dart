@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
                       child: LabelText(
                         text: context.tr("projects"),
                         fontSize: FONT_SIZE.HEADLINE_LARGE,
-                        textColor: APPLICATION_COLOR.GOLD,
+                        textColor: APPLICATION_COLOR.TITLE,
                       ),
                     ),
                     Gap(context.largeSpacerSize),
@@ -283,7 +283,7 @@ class HomeView extends StatelessWidget {
                       child: LabelText(
                         text: context.tr("projects"),
                         fontSize: FONT_SIZE.HEADLINE_LARGE,
-                        textColor: APPLICATION_COLOR.GOLD,
+                        textColor: APPLICATION_COLOR.TITLE,
                       )),
                   Gap(context.largeSpacerSize),
                   Container(

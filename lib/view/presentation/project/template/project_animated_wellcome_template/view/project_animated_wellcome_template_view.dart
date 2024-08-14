@@ -204,52 +204,53 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
           )
               .animate(delay: const Duration(milliseconds: 1500))
               .fade(duration: const Duration(milliseconds: 1500)),
-          Observer(builder: (context) {
-            if (value.templateEntity == null) {
-              return const SizedBox.shrink();
-            }
-            return Padding(
-              padding: context.largeSpacerOnlyHorizontal,
-              child: SizedBox(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        width: context.sWidth / 4,
-                        child: NormalNetworkImage(
-                          fit: BoxFit.contain,
-                          source: value.templateEntity!.logo.url,
+          Observer(
+            builder: (context) {
+              if (value.templateEntity == null) {
+                return const SizedBox.shrink();
+              }
+              return Padding(
+                padding: context.largeSpacerOnlyHorizontal,
+                child: SizedBox(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          width: context.sWidth / 4,
+                          child: NormalNetworkImage(
+                            fit: BoxFit.contain,
+                            source: value.templateEntity!.logo.url,
+                          ),
+                        )
+                            .animate(delay: const Duration(milliseconds: 1500))
+                            .fade(duration: const Duration(milliseconds: 1500)),
+                      ),
+                      Flexible(
+                        child: SizedBox(
+                          width: context.sWidth / 4,
+                          height: context.sHeight / 3,
+                          child: Wrap(
+                            alignment: WrapAlignment.start,
+                            runAlignment: WrapAlignment.start,
+                            direction: Axis.vertical,
+                            children: value.templateEntity!.features
+                                .map((e) => Container(
+                                    height: ((context.sHeight / 3) / 3),
+                                    alignment: Alignment.centerLeft,
+                                    child: FeaturesWidget(featuresEntity: e)))
+                                .toSet()
+                                .toList(),
+                          ),
                         ),
                       )
-                          .animate(delay: const Duration(milliseconds: 1500))
-                          .fade(duration: const Duration(milliseconds: 1500)),
-                    ),
-                    Flexible(
-                      child: SizedBox(
-                        width: context.sWidth / 4,
-                        height: context.sHeight / 3,
-                        child: Wrap(
-                          alignment: WrapAlignment.start,
-                          runAlignment: WrapAlignment.start,
-                          direction: Axis.vertical,
-                          children: value.templateEntity!.features
-                              .map((e) => Container(
-                                  height: ((context.sHeight / 3) / 3) + 5,
-                                  padding: context.midSpacer,
-                                  alignment: Alignment.centerLeft,
-                                  child: FeaturesWidget(featuresEntity: e)))
-                              .toSet()
-                              .toList(),
-                        ),
-                      ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }),
+              );
+            },
+          ),
         ],
       ),
     );

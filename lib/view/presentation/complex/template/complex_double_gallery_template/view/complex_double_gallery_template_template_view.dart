@@ -279,7 +279,7 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                               return const SizedBox.shrink();
                             }
                             return SizedBox(
-                              width: context.sWidth / 1.3,
+                              width: context.sWidth / 1.3 - 10,
                               height: context.sHeight / 1.5,
                               child: NormalNetworkImage(
                                   source: value.templateEntity!.mediaItem.url),
@@ -439,12 +439,6 @@ class ComplexDoubleGalleryTemplateView extends StatelessWidget {
                   }),
                 ],
               )),
-          Padding(
-            padding: context.largeSpacerOnlyLeft,
-            child: LabelText(
-                text: LocaleKeys.experiances.tr(),
-                fontSize: FONT_SIZE.DISPLAY_LARGE),
-          ),
           Gap(context.midSpacerSize),
           Padding(
             padding: context.largeSpacerOnlyHorizontal,

@@ -18,59 +18,64 @@ class FeaturesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          height: 50,
-          child: Center(
-            child: SizedBox(
-              height: isTablet() ? 40 : 30,
-              width: isTablet() ? 40 : 30,
-              child: kIsWeb
-                  ? Image.network(
-                      featuresEntity.media.url,
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                    )
-                  : SvgPicture.network(
-                      featuresEntity.media.url,
-                      color: context.toColor(APPLICATION_COLOR.GOLD),
-                    ),
-            ),
-          ),
-        ),
-        Gap(context.midSpacerSize),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 50,
-                alignment: Alignment.centerLeft,
-                child: LabelText(
-                  textLineHeight: 1.2,
-                  text: featuresEntity.value,
-                  maxLines: 2,
-                  textColor: APPLICATION_COLOR.TITLE,
-                  fontSize:
-                      isTablet() ? FONT_SIZE.TITLE_LARGE : FONT_SIZE.BODY_LARGE,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Center(
+                child: SizedBox(
+                  height: isTablet() ? 40 : 30,
+                  width: isTablet() ? 40 : 30,
+                  child: kIsWeb
+                      ? Image.network(
+                          featuresEntity.media.url,
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                        )
+                      : SvgPicture.network(
+                          featuresEntity.media.url,
+                          color: context.toColor(APPLICATION_COLOR.GOLD),
+                        ),
                 ),
               ),
-              Gap(context.smallSpacerSize),
-              featuresEntity.title.isEmpty
-                  ? const SizedBox.shrink()
-                  : LabelText(
-                      text: featuresEntity.title,
-                      textColor: APPLICATION_COLOR.SUBTITLE,
-                      fontSize: FONT_SIZE.LABEL_LARGE,
-                    )
-            ],
-          ),
+            ),
+            Gap(context.midSpacerSize),
+            Container(
+              height: 50,
+              alignment: Alignment.centerLeft,
+              child: LabelText(
+                textLineHeight: 1.2,
+                text: featuresEntity.value,
+                maxLines: 2,
+                textColor: APPLICATION_COLOR.TITLE,
+                fontSize:
+                    isTablet() ? FONT_SIZE.TITLE_LARGE : FONT_SIZE.BODY_LARGE,
+              ),
+            ),
+          ],
+        ).animate().fade(duration: const Duration(milliseconds: 750)),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(width: 60),
+            featuresEntity.title.isEmpty
+                ? const SizedBox.shrink()
+                : LabelText(
+                    text: featuresEntity.title,
+                    textColor: APPLICATION_COLOR.SUBTITLE,
+                    fontSize: FONT_SIZE.LABEL_LARGE,
+                  )
+          ],
         )
       ],
-    ).animate().fade(duration: const Duration(milliseconds: 750));
+    );
   }
 }
