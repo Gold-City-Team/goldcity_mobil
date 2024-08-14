@@ -31,7 +31,7 @@ class WebinarView extends StatelessWidget {
               return Stack(
                 children: [
                   Padding(
-                    padding: context.largeSpacerOnlyHorizontal,
+                    padding: context.largeSpacer,
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
