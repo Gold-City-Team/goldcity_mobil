@@ -236,7 +236,7 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
                           direction: Axis.vertical,
                           children: value.templateEntity!.features
                               .map((e) => Container(
-                                  height: (context.sHeight / 3) / 3,
+                                  height: ((context.sHeight / 3) / 3) + 5,
                                   padding: context.midSpacer,
                                   alignment: Alignment.centerLeft,
                                   child: FeaturesWidget(featuresEntity: e)))

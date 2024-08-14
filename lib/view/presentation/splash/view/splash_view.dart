@@ -10,18 +10,22 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<SplashViewModel>(
-      viewModel: SplashViewModel(),
-      onModelReady: (model) {
-        model.setContext(context);
-        model.init();
-      },
-      onPageBuilder: (BuildContext context, SplashViewModel value) => Scaffold(
-          body: Container(
-        width: context.sWidth,
-        height: context.sHeight,
-        color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-      )),
+    return PopScope(
+      canPop: false,
+      child: BaseView<SplashViewModel>(
+        viewModel: SplashViewModel(),
+        onModelReady: (model) {
+          model.setContext(context);
+          model.init();
+        },
+        onPageBuilder: (BuildContext context, SplashViewModel value) =>
+            Scaffold(
+                body: Container(
+          width: context.sWidth,
+          height: context.sHeight,
+          color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+        )),
+      ),
     );
   }
 }

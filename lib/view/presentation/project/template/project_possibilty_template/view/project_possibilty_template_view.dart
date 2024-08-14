@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:gap/gap.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/notifier/theme_notifier.dart';
 import 'package:goldcity/data/dto/receive/media/media_dto.dart';
@@ -11,6 +12,7 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/project/template/project_possibilty_template/view_model/project_possibility_template_view_model.dart';
 import 'package:goldcity/view/widget/facilities/facilities_widget.dart';
+import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -58,40 +60,91 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
               ),
               margin: context.xxlargeSpacerOnlyTop,
               padding: context.midLargeSpacerOnlyVertical,
-              height: 160,
-              child: ListView.builder(
-                itemCount: value.templateThree!.possibilities.length,
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: ((context, index) {
-                  if (value.templateThree!.possibilities[index].description
-                      .isEmpty) {
-                    return const SizedBox.shrink();
-                  }
-                  return MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.deferToChild,
-                      onTap: () => value.changeSelectedPinIndex(index),
-                      child: Padding(
-                        padding: EdgeInsets.zero,
-                        child: FacilitiesWidget(
-                          isSelected: index == value.selectedPinIndex,
-                          possibilityEntity: PossibilityDto(
-                            title:
-                                value.templateThree!.possibilities[index].title,
-                            description: value.templateThree!
-                                .possibilities[index].description,
-                            mediaItem: MediaDto(
-                              url: value.templateThree!.possibilities[index]
-                                  .media.url,
+              height: 220,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: Observer(builder: (context) {
+                      if (value.selectedCategoryIndex == -1) {
+                        return const SizedBox.shrink();
+                      }
+                      return ListView.builder(
+                        padding: context.largeSpacerOnlyHorizontal,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: value.categoryList.length,
+                        itemBuilder: (context, index) {
+                          if (value.categoryList[index] == "") {
+                            return const SizedBox.shrink();
+                          }
+                          return MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.changeCagetory(index),
+                              child: Container(
+                                alignment: Alignment.center,
+                                margin: context.midSpacerOnlyRight,
+                                padding: context.midSpacerOnlyHorizontal,
+                                decoration: BoxDecoration(
+                                    color: context.toColor(
+                                      value.selectedCategoryIndex == index
+                                          ? APPLICATION_COLOR.GOLD
+                                          : APPLICATION_COLOR.TITLE,
+                                    ),
+                                    borderRadius: context.midRadius),
+                                child: LabelText(
+                                    fontSize: FONT_SIZE.TITLE_LARGE,
+                                    text: value.categoryList[index],
+                                    textColor: value.selectedCategoryIndex ==
+                                            index
+                                        ? APPLICATION_COLOR.TITLE
+                                        : APPLICATION_COLOR.BACKGROUND_COLOR),
+                              ),
                             ),
-                          ).toEntity(),
-                        ),
-                      ),
+                          );
+                        },
+                      );
+                    }),
+                  ),
+                  Gap(context.midSpacerSize),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: value.possibilitiesWithFilter.length,
+                      padding: EdgeInsets.zero,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: ((context, index) {
+                        if (value.possibilitiesWithFilter[index].description
+                            .isEmpty) {
+                          return const SizedBox.shrink();
+                        }
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.deferToChild,
+                            onTap: () => value.changeSelectedPinIndex(index),
+                            child: Padding(
+                              padding: EdgeInsets.zero,
+                              child: FacilitiesWidget(
+                                isSelected: index == value.selectedPinIndex,
+                                possibilityEntity: PossibilityDto(
+                                  title: value
+                                      .possibilitiesWithFilter[index].title,
+                                  description: value
+                                      .possibilitiesWithFilter[index]
+                                      .description,
+                                  mediaItem: MediaDto(
+                                    url: value.possibilitiesWithFilter[index]
+                                        .media.url,
+                                  ),
+                                ).toEntity(),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
                     ),
-                  );
-                }),
+                  ),
+                ],
               ),
             );
           }),
@@ -118,7 +171,7 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
                     value.templateThree!.location.longitude),
                 zoom: 15,
               ),
-              markers: value.templateThree!.possibilities
+              markers: value.possibilitiesWithFilter
                   .map(
                     (e) => Marker(
                       infoWindow:
@@ -155,39 +208,90 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
               margin: context.midSpacer,
               width: context.sWidth / 3,
               padding: context.largeSpacerOnlyVertical,
-              child: ListView.builder(
-                itemCount: value.templateThree!.possibilities.length,
-                itemBuilder: ((context, index) {
-                  if (value.templateThree!.possibilities[index].description
-                      .isEmpty) {
-                    return const SizedBox.shrink();
-                  }
-                  return MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () => value.changeSelectedPinIndex(index),
-                      child: Padding(
-                        padding: index !=
-                                value.templateThree!.possibilities.length - 1
-                            ? context.midSpacerOnlyBottom
-                            : EdgeInsets.zero,
-                        child: FacilitiesWidget(
-                          isSelected: index == value.selectedPinIndex,
-                          possibilityEntity: PossibilityDto(
-                            title:
-                                value.templateThree!.possibilities[index].title,
-                            description: value.templateThree!
-                                .possibilities[index].description,
-                            mediaItem: MediaDto(
-                              url: value.templateThree!.possibilities[index]
-                                  .media.url,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: Observer(builder: (context) {
+                      if (value.selectedCategoryIndex == -1) {
+                        return const SizedBox.shrink();
+                      }
+                      return ListView.builder(
+                        padding: context.largeSpacerOnlyHorizontal,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: value.categoryList.length,
+                        itemBuilder: (context, index) {
+                          if (value.categoryList[index] == "") {
+                            return const SizedBox.shrink();
+                          }
+                          return MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.changeCagetory(index),
+                              child: Container(
+                                alignment: Alignment.center,
+                                margin: context.midSpacerOnlyRight,
+                                padding: context.midSpacerOnlyHorizontal,
+                                decoration: BoxDecoration(
+                                    color: context.toColor(
+                                      value.selectedCategoryIndex == index
+                                          ? APPLICATION_COLOR.GOLD
+                                          : APPLICATION_COLOR.TITLE,
+                                    ),
+                                    borderRadius: context.midRadius),
+                                child: LabelText(
+                                    fontSize: FONT_SIZE.TITLE_LARGE,
+                                    text: value.categoryList[index],
+                                    textColor: value.selectedCategoryIndex ==
+                                            index
+                                        ? APPLICATION_COLOR.TITLE
+                                        : APPLICATION_COLOR.BACKGROUND_COLOR),
+                              ),
                             ),
-                          ).toEntity(),
-                        ),
-                      ),
+                          );
+                        },
+                      );
+                    }),
+                  ),
+                  Gap(context.midSpacerSize),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: value.possibilitiesWithFilter.length,
+                      itemBuilder: ((context, index) {
+                        if (value.possibilitiesWithFilter[index].description
+                            .isEmpty) {
+                          return const SizedBox.shrink();
+                        }
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () => value.changeSelectedPinIndex(index),
+                            child: Padding(
+                              padding: index !=
+                                      value.possibilitiesWithFilter.length - 1
+                                  ? context.midSpacerOnlyBottom
+                                  : EdgeInsets.zero,
+                              child: FacilitiesWidget(
+                                isSelected: index == value.selectedPinIndex,
+                                possibilityEntity: PossibilityDto(
+                                  title: value
+                                      .possibilitiesWithFilter[index].title,
+                                  description: value
+                                      .possibilitiesWithFilter[index]
+                                      .description,
+                                  mediaItem: MediaDto(
+                                    url: value.possibilitiesWithFilter[index]
+                                        .media.url,
+                                  ),
+                                ).toEntity(),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
                     ),
-                  );
-                }),
+                  ),
+                ],
               ),
             );
           }),
@@ -212,7 +316,7 @@ class ProjectPossibiltyTemplateView extends StatelessWidget {
                       value.templateThree!.location.longitude),
                   zoom: 15,
                 ),
-                markers: value.templateThree!.possibilities
+                markers: value.possibilitiesWithFilter
                     .map(
                       (e) => Marker(
                         infoWindow:

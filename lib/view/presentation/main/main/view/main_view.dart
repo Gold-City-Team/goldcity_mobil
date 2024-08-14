@@ -8,16 +8,19 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<MainViewModel>(
-      viewModel: MainViewModel(),
-      onModelReady: (model) {
-        model.setContext(context);
-        model.init();
-      },
-      onPageBuilder: (BuildContext context, MainViewModel value) => Scaffold(
-        body: Observer(builder: (context) {
-          return value.getView();
-        }),
+    return PopScope(
+      canPop: false,
+      child: BaseView<MainViewModel>(
+        viewModel: MainViewModel(),
+        onModelReady: (model) {
+          model.setContext(context);
+          model.init();
+        },
+        onPageBuilder: (BuildContext context, MainViewModel value) => Scaffold(
+          body: Observer(builder: (context) {
+            return value.getView();
+          }),
+        ),
       ),
     );
   }

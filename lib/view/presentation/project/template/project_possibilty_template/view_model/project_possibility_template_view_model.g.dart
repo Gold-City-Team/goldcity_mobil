@@ -27,6 +27,42 @@ mixin _$ProjectPossibilityTemplateViewModel
     });
   }
 
+  late final _$possibilitiesWithFilterAtom = Atom(
+      name: '_ProjectPossibilityTemplateViewModelBase.possibilitiesWithFilter',
+      context: context);
+
+  @override
+  List<PossibilityEntity> get possibilitiesWithFilter {
+    _$possibilitiesWithFilterAtom.reportRead();
+    return super.possibilitiesWithFilter;
+  }
+
+  @override
+  set possibilitiesWithFilter(List<PossibilityEntity> value) {
+    _$possibilitiesWithFilterAtom
+        .reportWrite(value, super.possibilitiesWithFilter, () {
+      super.possibilitiesWithFilter = value;
+    });
+  }
+
+  late final _$selectedCategoryIndexAtom = Atom(
+      name: '_ProjectPossibilityTemplateViewModelBase.selectedCategoryIndex',
+      context: context);
+
+  @override
+  int get selectedCategoryIndex {
+    _$selectedCategoryIndexAtom.reportRead();
+    return super.selectedCategoryIndex;
+  }
+
+  @override
+  set selectedCategoryIndex(int value) {
+    _$selectedCategoryIndexAtom.reportWrite(value, super.selectedCategoryIndex,
+        () {
+      super.selectedCategoryIndex = value;
+    });
+  }
+
   late final _$selectedPinIndexAtom = Atom(
       name: '_ProjectPossibilityTemplateViewModelBase.selectedPinIndex',
       context: context);
@@ -58,6 +94,32 @@ mixin _$ProjectPossibilityTemplateViewModel
           name: '_ProjectPossibilityTemplateViewModelBase', context: context);
 
   @override
+  dynamic _getCategoryList() {
+    final _$actionInfo =
+        _$_ProjectPossibilityTemplateViewModelBaseActionController.startAction(
+            name: '_ProjectPossibilityTemplateViewModelBase._getCategoryList');
+    try {
+      return super._getCategoryList();
+    } finally {
+      _$_ProjectPossibilityTemplateViewModelBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic changeCagetory(int index) {
+    final _$actionInfo =
+        _$_ProjectPossibilityTemplateViewModelBaseActionController.startAction(
+            name: '_ProjectPossibilityTemplateViewModelBase.changeCagetory');
+    try {
+      return super.changeCagetory(index);
+    } finally {
+      _$_ProjectPossibilityTemplateViewModelBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeSelectedPinIndex(int newIndex) {
     final _$actionInfo =
         _$_ProjectPossibilityTemplateViewModelBaseActionController.startAction(
@@ -75,6 +137,8 @@ mixin _$ProjectPossibilityTemplateViewModel
   String toString() {
     return '''
 templateThree: ${templateThree},
+possibilitiesWithFilter: ${possibilitiesWithFilter},
+selectedCategoryIndex: ${selectedCategoryIndex},
 selectedPinIndex: ${selectedPinIndex}
     ''';
   }

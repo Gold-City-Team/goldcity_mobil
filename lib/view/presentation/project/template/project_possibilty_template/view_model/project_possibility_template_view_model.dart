@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_three/project_template_three_dto.dart';
+import 'package:goldcity/domain/entity/possibility/possibility_entity.dart';
 import 'package:goldcity/domain/entity/project/project_templates/project_template_three/project_template_three_entity.dart';
 import 'package:goldcity/domain/usecase/project_detail_usecase.dart';
 import 'package:goldcity/injection_container.dart';
@@ -31,7 +32,6 @@ abstract class _ProjectPossibilityTemplateViewModelBase
   @override
   void init() {
     _getDetail();
-    debugPrint("page: ProjectPossibilityTemplateView");
 
     isTablet()
         ? SystemChrome.setPreferredOrientations([
@@ -63,6 +63,55 @@ abstract class _ProjectPossibilityTemplateViewModelBase
           longitude: templateThree!.location.longitude,
         ),
       ).toEntity());
+
+      _getCategoryList();
+    }
+  }
+
+  List<String> categoryList = ObservableList<String>.of([]);
+  @observable
+  List<PossibilityEntity> possibilitiesWithFilter = [];
+
+  @observable
+  int selectedCategoryIndex = 0;
+  @action
+  _getCategoryList() {
+    selectedCategoryIndex = 0;
+    categoryList.clear();
+    categoryList.add("Tümü");
+    categoryList.addAll(templateThree!.possibilities
+        .map((e) => e.category.translation.title)
+        .toSet());
+    changeCagetory(0);
+  }
+
+  @action
+  changeCagetory(int index) {
+    selectedCategoryIndex = 0;
+    selectedCategoryIndex = index;
+
+    if (index == 0) {
+      possibilitiesWithFilter = templateThree!.possibilities;
+      changeSelectedPinIndex(possibilitiesWithFilter.length - 1);
+    } else {
+      possibilitiesWithFilter = templateThree!.possibilities
+          .where((e) => e.category.translation.title == categoryList[index])
+          .toList();
+      possibilitiesWithFilter.add(PossibilityDto(
+        title: templateThree!.location.title,
+        location: LocationDto(
+          title: templateThree!.location.title,
+          id: templateThree!.location.id,
+          latitude: templateThree!.location.latitude,
+          longitude: templateThree!.location.longitude,
+        ),
+      ).toEntity());
+
+      changeSelectedPinIndex(
+          selectedPinIndex > possibilitiesWithFilter.length - 1 ||
+                  selectedPinIndex == -1
+              ? 0
+              : selectedPinIndex);
     }
   }
 
@@ -78,10 +127,8 @@ abstract class _ProjectPossibilityTemplateViewModelBase
     controller.future.then(
       (e) => e.animateCamera(
         CameraUpdate.newLatLng(
-          LatLng(
-              templateThree!.possibilities[newIndex].location.latitude,
-              templateThree!.possibilities[newIndex].location.longitude -
-                  0.001),
+          LatLng(possibilitiesWithFilter[newIndex].location.latitude,
+              possibilitiesWithFilter[newIndex].location.longitude - 0.001),
         ),
       ),
     );

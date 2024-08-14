@@ -11,6 +11,7 @@ CreateShareableLinkDto _$CreateShareableLinkDtoFromJson(
     CreateShareableLinkDto(
       pageType: json['pageType'] as String?,
       pageId: (json['pageId'] as num?)?.toInt(),
+      title: json['title'] as String?,
     );
 
 Map<String, dynamic> _$CreateShareableLinkDtoToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$CreateShareableLinkDtoToJson(
     <String, dynamic>{
       'pageType': instance.pageType,
       'pageId': instance.pageId,
+      'title': instance.title,
     };

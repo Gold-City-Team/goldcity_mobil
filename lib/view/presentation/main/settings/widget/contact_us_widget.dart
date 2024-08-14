@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
@@ -42,11 +43,14 @@ class ContactUsWidget extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         var contact = contactEntity.phoneNumber;
-                        var androidUrl = "whatsapp://send?phone=$contact&";
+                        var androidUrl = "whatsapp://send?phone=$contact";
                         var iosUrl = "https://wa.me/$contact";
-
-                        if (Platform.isIOS) {
-                          await launchUrl(Uri.parse(iosUrl));
+                        if (!kIsWeb) {
+                          if (Platform.isIOS) {
+                            await launchUrl(Uri.parse(iosUrl));
+                          } else {
+                            await launchUrl(Uri.parse(androidUrl));
+                          }
                         } else {
                           await launchUrl(Uri.parse(androidUrl));
                         }
