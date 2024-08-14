@@ -5,5 +5,14 @@ import 'package:goldcity/domain/entity/gallery_media/gallery_media_entity.dart';
 class ProjectTemplateEightEntity {
   final int id;
   final List<TitleDescriptionGalleriesEntity> items;
-  const ProjectTemplateEightEntity({required this.id, required this.items});
+  final ProjectTemplateEightMetaDataEntity metaData;
+
+  const ProjectTemplateEightEntity(
+      {required this.id, required this.items, required this.metaData});
+}
+
+@immutable
+class ProjectTemplateEightMetaDataEntity {
+  final bool isFiltered;
+  const ProjectTemplateEightMetaDataEntity({required this.isFiltered});
 }

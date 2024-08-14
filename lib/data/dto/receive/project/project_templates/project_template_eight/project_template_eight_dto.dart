@@ -6,17 +6,43 @@ part 'project_template_eight_dto.g.dart';
 @JsonSerializable()
 class ProjectTemplateEightDto {
   int? id;
+
   List<TitleDescriptionGalleriesDto>? titleDescriptionGalleries;
-  ProjectTemplateEightDto({this.id, this.titleDescriptionGalleries});
+
+  ProjectTemplateEightMetaDataDto? metaData;
+
+  ProjectTemplateEightDto(
+      {this.id, this.titleDescriptionGalleries, this.metaData});
+
   factory ProjectTemplateEightDto.fromJson(Map<String, dynamic> json) =>
       _$ProjectTemplateEightDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProjectTemplateEightDtoToJson(this);
 
-  ProjectTemplateEightEntity toEntity() => ProjectTemplateEightEntity(
-        id: id ?? 0,
-        items: titleDescriptionGalleries != null
-            ? titleDescriptionGalleries!.map((e) => e.toEntity()).toList()
-            : [TitleDescriptionGalleriesDto().toEntity()],
-      );
+  ProjectTemplateEightEntity toEntity() {
+    return ProjectTemplateEightEntity(
+      id: id ?? 0,
+      metaData: metaData != null
+          ? metaData!.toEntity()
+          : ProjectTemplateEightMetaDataDto().toEntity(),
+      items: titleDescriptionGalleries != null
+          ? titleDescriptionGalleries!.map((e) => e.toEntity()).toList()
+          : [TitleDescriptionGalleriesDto().toEntity()],
+    );
+  }
+}
+
+@JsonSerializable()
+class ProjectTemplateEightMetaDataDto {
+  bool? isFilterable;
+  ProjectTemplateEightMetaDataDto({this.isFilterable});
+
+  factory ProjectTemplateEightMetaDataDto.fromJson(Map<String, dynamic> json) =>
+      _$ProjectTemplateEightMetaDataDtoFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$ProjectTemplateEightMetaDataDtoToJson(this);
+
+  ProjectTemplateEightMetaDataEntity toEntity() =>
+      ProjectTemplateEightMetaDataEntity(isFiltered: isFilterable ?? false);
 }

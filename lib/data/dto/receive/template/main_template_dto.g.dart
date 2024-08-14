@@ -45,10 +45,12 @@ MainTemplateMetaDataDto _$MainTemplateMetaDataDtoFromJson(
         Map<String, dynamic> json) =>
     MainTemplateMetaDataDto(
       viewType: json['viewType'] as String?,
+      isFiltered: json['isFiltered'] as bool?,
     );
 
 Map<String, dynamic> _$MainTemplateMetaDataDtoToJson(
         MainTemplateMetaDataDto instance) =>
     <String, dynamic>{
       'viewType': instance.viewType,
+      'isFiltered': instance.isFiltered,
     };

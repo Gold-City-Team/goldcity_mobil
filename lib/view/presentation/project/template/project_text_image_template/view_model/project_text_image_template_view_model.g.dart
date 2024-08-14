@@ -78,6 +78,15 @@ mixin _$ProjectTextImageTemplateViewModel
     });
   }
 
+  late final _$_getDetailAsyncAction = AsyncAction(
+      '_ProjectTextImageTemplateViewModelBase._getDetail',
+      context: context);
+
+  @override
+  Future<void> _getDetail() {
+    return _$_getDetailAsyncAction.run(() => super._getDetail());
+  }
+
   late final _$_ProjectTextImageTemplateViewModelBaseActionController =
       ActionController(
           name: '_ProjectTextImageTemplateViewModelBase', context: context);

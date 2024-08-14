@@ -19,7 +19,6 @@ class ProjectDetailRemoteDataSourceImpl extends ProjectDetailRemoteDataSource {
       var result = await locator<RemoteManager>()
           .networkManager
           .get(SourcePath.PROJECT_TEMPLATE_DETAIL.rawValue(data: [settingsId]));
-
       return Right(ProjectTemplateDto.fromJson(result.data ?? {}));
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));

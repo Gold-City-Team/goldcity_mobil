@@ -60,9 +60,10 @@ class MainTemplateDto {
 @JsonSerializable()
 class MainTemplateMetaDataDto {
   String? viewType;
-  MainTemplateMetaDataDto({this.viewType});
-  MainTemplateMetaDataEntity toEntity() =>
-      MainTemplateMetaDataEntity(viewType: viewType ?? "ONE");
+  bool? isFiltered;
+  MainTemplateMetaDataDto({this.viewType, this.isFiltered});
+  MainTemplateMetaDataEntity toEntity() => MainTemplateMetaDataEntity(
+      viewType: viewType ?? "ONE", isFiltered: isFiltered ?? false);
 
   factory MainTemplateMetaDataDto.fromJson(Map<String, dynamic> json) =>
       _$MainTemplateMetaDataDtoFromJson(json);

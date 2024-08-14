@@ -15,6 +15,10 @@ ProjectTemplateEightDto _$ProjectTemplateEightDtoFromJson(
           ?.map((e) =>
               TitleDescriptionGalleriesDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      metaData: json['metaData'] == null
+          ? null
+          : ProjectTemplateEightMetaDataDto.fromJson(
+              json['metaData'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ProjectTemplateEightDtoToJson(
@@ -22,4 +26,17 @@ Map<String, dynamic> _$ProjectTemplateEightDtoToJson(
     <String, dynamic>{
       'id': instance.id,
       'titleDescriptionGalleries': instance.titleDescriptionGalleries,
+      'metaData': instance.metaData,
+    };
+
+ProjectTemplateEightMetaDataDto _$ProjectTemplateEightMetaDataDtoFromJson(
+        Map<String, dynamic> json) =>
+    ProjectTemplateEightMetaDataDto(
+      isFilterable: json['isFilterable'] as bool?,
+    );
+
+Map<String, dynamic> _$ProjectTemplateEightMetaDataDtoToJson(
+        ProjectTemplateEightMetaDataDto instance) =>
+    <String, dynamic>{
+      'isFilterable': instance.isFilterable,
     };

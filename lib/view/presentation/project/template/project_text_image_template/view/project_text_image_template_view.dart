@@ -57,16 +57,37 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                     if (value.template == null || value.allImages.isEmpty) {
                       return const SizedBox.shrink();
                     }
-                    return NormalNetworkImage(
-                            fit: BoxFit.cover,
-                            source: value.allImages
-                                .where((element) =>
-                                    element.id == value.selectedImageGalleryId)
-                                .first
-                                .media
-                                .url)
-                        .animate()
-                        .fade(duration: const Duration(seconds: 1));
+                    return SizedBox(
+                      width: context.sWidth,
+                      height: context.sWidth / 1.777,
+                      child: NormalNetworkImage(
+                              fit: BoxFit.cover,
+                              source: value.allImages
+                                          .where((element) =>
+                                              element.id ==
+                                              value.selectedImageGalleryId)
+                                          .first
+                                          .media
+                                          .mediaType ==
+                                      MEDIA_TYPE.VIDEO
+                                  ? value.allImages
+                                      .where((element) =>
+                                          element.id ==
+                                          value.selectedImageGalleryId)
+                                      .first
+                                      .media
+                                      .mediaMetaData
+                                      .thumbnail
+                                  : value.allImages
+                                      .where((element) =>
+                                          element.id ==
+                                          value.selectedImageGalleryId)
+                                      .first
+                                      .media
+                                      .url)
+                          .animate()
+                          .fade(duration: const Duration(seconds: 1)),
+                    );
                   }),
                 ),
                 Positioned(
@@ -158,8 +179,12 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                                   height: (context.sWidth / 1.85) / 1.7777,
                                   child: NormalNetworkImage(
                                       fit: BoxFit.cover,
-                                      source:
-                                          value.miniImages[index].media.url),
+                                      source: value.miniImages[index].media
+                                                  .mediaType ==
+                                              MEDIA_TYPE.VIDEO
+                                          ? value.miniImages[index].media
+                                              .mediaMetaData.thumbnail
+                                          : value.miniImages[index].media.url),
                                 ),
                                 value.title !=
                                         value.getSelectedGallerySetTitle(
@@ -201,7 +226,9 @@ class ProjectTextImageTemplateView extends StatelessWidget {
             padding: context.largeSpacerOnlyHorizontal,
             child: Observer(
               builder: (context) {
-                if (value.allImages.isEmpty) {
+                if (value.allImages.isEmpty ||
+                    value.description == "" ||
+                    value.title == "") {
                   return const SizedBox.shrink();
                 }
                 return ListView.builder(
@@ -294,12 +321,29 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                               return NormalNetworkImage(
                                       fit: BoxFit.cover,
                                       source: value.allImages
-                                          .where((element) =>
-                                              element.id ==
-                                              value.selectedImageGalleryId)
-                                          .first
-                                          .media
-                                          .url)
+                                                  .where((element) =>
+                                                      element.id ==
+                                                      value
+                                                          .selectedImageGalleryId)
+                                                  .first
+                                                  .media
+                                                  .mediaType ==
+                                              MEDIA_TYPE.VIDEO
+                                          ? value.allImages
+                                              .where((element) =>
+                                                  element.id ==
+                                                  value.selectedImageGalleryId)
+                                              .first
+                                              .media
+                                              .mediaMetaData
+                                              .thumbnail
+                                          : value.allImages
+                                              .where((element) =>
+                                                  element.id ==
+                                                  value.selectedImageGalleryId)
+                                              .first
+                                              .media
+                                              .url)
                                   .animate()
                                   .fade(duration: const Duration(seconds: 1));
                             }),
@@ -380,7 +424,15 @@ class ProjectTextImageTemplateView extends StatelessWidget {
                                             child: NormalNetworkImage(
                                                 fit: BoxFit.cover,
                                                 source: value.miniImages[index]
-                                                    .media.url),
+                                                            .media.mediaType ==
+                                                        MEDIA_TYPE.VIDEO
+                                                    ? value
+                                                        .miniImages[index]
+                                                        .media
+                                                        .mediaMetaData
+                                                        .thumbnail
+                                                    : value.miniImages[index]
+                                                        .media.url),
                                           ),
                                           value.title !=
                                                   value
@@ -462,7 +514,9 @@ class ProjectTextImageTemplateView extends StatelessWidget {
             padding: context.largeSpacerOnlyHorizontal,
             child: Observer(
               builder: (context) {
-                if (value.allImages.isEmpty) {
+                if (value.allImages.isEmpty ||
+                    value.description == "" ||
+                    value.title == "") {
                   return const SizedBox.shrink();
                 }
                 return Wrap(

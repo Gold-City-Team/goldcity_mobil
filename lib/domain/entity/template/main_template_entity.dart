@@ -18,5 +18,7 @@ class MainTemplateEntity {
 @immutable
 class MainTemplateMetaDataEntity {
   final String viewType;
-  const MainTemplateMetaDataEntity({required this.viewType});
+  final bool isFiltered;
+  const MainTemplateMetaDataEntity(
+      {required this.viewType, required this.isFiltered});
 }

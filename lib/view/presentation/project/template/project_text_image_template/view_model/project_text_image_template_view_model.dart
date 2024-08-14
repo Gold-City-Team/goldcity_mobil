@@ -58,15 +58,22 @@ abstract class _ProjectTextImageTemplateViewModelBase
   int detailId = 0;
   int settingsId = 0;
 
+  @action
   Future<void> _getDetail() async {
     var result =
         await _projectDetailUseCase.getProjectTemplateDetail(settingsId);
     if (result.isRight) {
       template = (result.right.template as ProjectTemplateEightEntity);
+      if (template!.metaData.isFiltered) {
+        allImages.addAll(template!.items.first.galleries.where((e) => e == e));
+      }
       for (var e in template!.items) {
         lockImage = false;
+
         for (var y in e.galleries) {
-          allImages.add(y);
+          if (!template!.metaData.isFiltered) {
+            allImages.add(y);
+          }
           if (!lockImage) {
             miniImages.add(y);
             lockImage = true;
@@ -91,6 +98,16 @@ abstract class _ProjectTextImageTemplateViewModelBase
 
   @action
   void setSelectedGallerySet() {
+    if (template!.metaData.isFiltered) {
+      for (var e in template!.items) {
+        for (var y in e.galleries) {
+          if (y.id == selectedImageGalleryId) {
+            allImages = e.galleries;
+          }
+        }
+      }
+    }
+
     for (var e in template!.items) {
       for (var y in e.galleries) {
         if (y.id == selectedImageGalleryId) {

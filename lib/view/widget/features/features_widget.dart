@@ -48,6 +48,7 @@ class FeaturesWidget extends StatelessWidget {
             Gap(context.midSpacerSize),
             Container(
               height: 50,
+              width: isTablet() ? 200 : 100,
               alignment: Alignment.centerLeft,
               child: LabelText(
                 textLineHeight: 1.2,
@@ -68,10 +69,14 @@ class FeaturesWidget extends StatelessWidget {
             Container(width: 60),
             featuresEntity.title.isEmpty
                 ? const SizedBox.shrink()
-                : LabelText(
-                    text: featuresEntity.title,
-                    textColor: APPLICATION_COLOR.SUBTITLE,
-                    fontSize: FONT_SIZE.LABEL_LARGE,
+                : SizedBox(
+                    width: isTablet() ? 200 : 100,
+                    child: LabelText(
+                      text: featuresEntity.title,
+                      maxLines: 2,
+                      textColor: APPLICATION_COLOR.SUBTITLE,
+                      fontSize: FONT_SIZE.LABEL_LARGE,
+                    ),
                   )
           ],
         )
