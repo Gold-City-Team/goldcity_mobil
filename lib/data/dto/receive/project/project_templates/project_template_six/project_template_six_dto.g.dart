@@ -37,7 +37,13 @@ ProjectHomeDto _$ProjectHomeDtoFromJson(Map<String, dynamic> json) =>
       roomSize: json['roomSize'] as String?,
       homeType: json['homeType'] as String?,
       saleState: $enumDecodeNullable(_$HOME_STATEEnumMap, json['saleState']),
-    );
+    )
+      ..imageGalleries = (json['imageGalleries'] as List<dynamic>?)
+          ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..videoGalleries = (json['videoGalleries'] as List<dynamic>?)
+          ?.map((e) => GalleryMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$ProjectHomeDtoToJson(ProjectHomeDto instance) =>
     <String, dynamic>{
@@ -50,6 +56,8 @@ Map<String, dynamic> _$ProjectHomeDtoToJson(ProjectHomeDto instance) =>
       'price': instance.price,
       'homeType': instance.homeType,
       'saleState': _$HOME_STATEEnumMap[instance.saleState],
+      'imageGalleries': instance.imageGalleries,
+      'videoGalleries': instance.videoGalleries,
     };
 
 const _$HOME_STATEEnumMap = {

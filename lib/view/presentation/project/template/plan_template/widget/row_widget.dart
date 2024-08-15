@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goldcity/data/dto/receive/project/project_templates/project_template_six/project_template_six_dto.dart';
 import 'package:goldcity/domain/entity/project/project_templates/project_template_six/project_template_six_entity.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
+import 'package:goldcity/util/constant/navigation_constant.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
@@ -235,8 +237,58 @@ class RowWidget extends StatelessWidget {
                                       .withAlpha(150),
                                 ),
                                 Expanded(
-                                  child: Center(
-                                    child: LabelText(text: home[index].number),
+                                  child: Stack(
+                                    children: [
+                                      Center(
+                                          child: LabelText(
+                                              text: home[index].number)),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          home[index].imageGalleries.isNotEmpty
+                                              ? GestureDetector(
+                                                  onTap: () => context
+                                                          .pushNamed(
+                                                              NavigationConstant
+                                                                  .GALLERY,
+                                                              extra: {
+                                                            "gallery": home[
+                                                                    index]
+                                                                .imageGalleries,
+                                                            "isExperiance":
+                                                                false,
+                                                            "selectedIndex": 0
+                                                          }),
+                                                  child: Icon(Icons.image))
+                                              : const SizedBox.shrink(),
+                                          home[index].imageGalleries.isNotEmpty
+                                              ? Gap(context.midSpacerSize)
+                                              : const SizedBox.shrink(),
+                                          home[index].videoGalleries.isNotEmpty
+                                              ? GestureDetector(
+                                                  onTap: () => context
+                                                      .pushNamed(
+                                                          NavigationConstant
+                                                              .GALLERY,
+                                                          extra: {
+                                                        "gallery": home[index]
+                                                            .videoGalleries,
+                                                        "isExperiance": false,
+                                                        "selectedIndex": 0
+                                                      }),
+                                                  child: Icon(Icons
+                                                      .video_collection_sharp),
+                                                )
+                                              : const SizedBox.shrink(),
+                                          home[index].videoGalleries.isNotEmpty
+                                              ? Gap(context.midSpacerSize)
+                                              : const SizedBox.shrink(),
+                                        ],
+                                      )
+                                    ],
                                   ),
                                 ),
                                 Container(

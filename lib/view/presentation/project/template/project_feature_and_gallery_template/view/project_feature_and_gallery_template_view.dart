@@ -144,7 +144,10 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                   children: value.templateEntity!.features
                       .map((e) => Column(
                             children: [
-                              FeaturesWidget(featuresEntity: e),
+                              FeaturesWidget(
+                                featuresEntity: e,
+                                width: context.sWidth - 80,
+                              ),
                               Gap(context.midSpacerSize),
                             ],
                           ))
@@ -184,6 +187,7 @@ class ProjectFeatureAndGalleryTemplateView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           FeaturesWidget(
+                              width: context.sWidth * .6 - 100,
                               featuresEntity:
                                   value.templateEntity!.features[index]),
                           value.templateEntity!.features.length - 1 == index

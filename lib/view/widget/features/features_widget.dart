@@ -14,10 +14,16 @@ import 'package:goldcity/view/widget/text/label_text.dart';
 
 class FeaturesWidget extends StatelessWidget {
   final FeaturesEntity featuresEntity;
-  const FeaturesWidget({super.key, required this.featuresEntity});
+  double width = 0;
+  FeaturesWidget({super.key, this.width = 0, required this.featuresEntity});
 
   @override
   Widget build(BuildContext context) {
+    width = width == 0
+        ? isTablet()
+            ? 300
+            : 100
+        : width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -70,7 +76,7 @@ class FeaturesWidget extends StatelessWidget {
             featuresEntity.title.isEmpty
                 ? const SizedBox.shrink()
                 : SizedBox(
-                    width: isTablet() ? 300 : 100,
+                    width: width,
                     child: LabelText(
                       text: featuresEntity.title,
                       textColor: APPLICATION_COLOR.SUBTITLE,

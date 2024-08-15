@@ -23,6 +23,8 @@ class ProjectHomeEntity {
   final String roomSize;
   final String homeType;
   final HOME_STATE saleState;
+  final List<GalleryMediaEntity> imageGalleries;
+  final List<GalleryMediaEntity> videoGalleries;
   const ProjectHomeEntity({
     required this.id,
     required this.block,
@@ -33,5 +35,7 @@ class ProjectHomeEntity {
     required this.price,
     required this.homeType,
     required this.saleState,
+    required this.imageGalleries,
+    required this.videoGalleries,
   });
 }
