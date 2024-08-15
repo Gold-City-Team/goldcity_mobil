@@ -729,10 +729,17 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                             children: [
                               SizedBox(
                                 height: context.sHeight,
-                                width: context.sWidth / 2,
+                                width: context.sWidth,
                                 child: NormalNetworkImage(
                                     fit: BoxFit.cover,
                                     source: value.language!.mainImage.url),
+                              ),
+                              Container(
+                                height: context.sHeight,
+                                width: context.sWidth / 2,
+                                color: context
+                                    .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                                    .withOpacity(.7),
                               ),
                               Center(
                                 child: Padding(

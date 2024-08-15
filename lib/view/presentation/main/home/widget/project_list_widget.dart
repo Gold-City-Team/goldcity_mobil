@@ -48,7 +48,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
                   : context.sHeight * .18 * 1.77,
               height:
                   isTablet() ? context.sHeight * .18 : context.sHeight * .18,
-              color: context.toColor(APPLICATION_COLOR.DARK).withAlpha(150)),
+              color: context.toColor(APPLICATION_COLOR.DARK).withOpacity(.70)),
           Center(
             child: SizedBox(
               height: 50,
