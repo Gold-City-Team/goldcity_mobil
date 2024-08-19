@@ -1,13 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "gold-city-9d670",
-  "private_key_id": "fe5b8b4d8b3a4e19ced4599794a5189820f8aae6",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDOl2jJBHn1/8r4\nJCSJeyhcAP8BMb5Txk2DjC7HL43Gkniy0XD24dsijdTVaZhI68ksFpDkObzjhcUu\nsA1UqU20eMirPbx4onRI7CaIhyMar+L+EZiPBQ1LkRgqp2zBl4vi3oYYd7L1g8oS\n77l9ZYZTSrdzdi+PekzZt3EBYMXgtIqk861rudz7bihtcBZXzZWvBf2e5zD4LiLo\n59ZOovGdLS3aZXoCjbmbty+DYKV3uqju4BuBm5z8+riqumW+kgzKUOoRDkIY/r3q\n3vesaC6B7k/SbfPjyhkqo0aWeS0d6nMW3vJu/YTcShnxzBg3hccnKzmd4MNBrGrD\nwhslPOUvAgMBAAECggEAC1Uz26wAFL8HdK8RjLPRvS+kW7ai2qaD+SdnC0xshM+q\nXnafsY7tyLGxxIwolf6Vr3JZ5qQNFXqNHFaLJKo8CzrWw64LToLQO44RsNj1Yc1l\nIln3bAgsP2z3htvszLc5SiS59Yr7cG8XOdOYRxdiN3Imt+czYgsWlCdY4IWWDi3q\nmj4KAMCIxVnl5yapazpOBVFHa7A6hEwIEcaI2SGd0PR+65zZlBcIZH1BMC4cOJSd\nWL5CIioXSEmyXD/QYtKA/c9aDS9EEx9h8pnwGRFmkRaeqqdsSxfqcRhfT1iyP0B8\n43HoZIcJ6bNvZAp+j6/amNcqaXk/ntUp/j6WJgs9QQKBgQD3+RcFw2H8E6x1VhMA\ncnb6QWjC8LmUuayI8rFAQBjnJQ+Kgjky/vv7Ufo6lgzfHoduzwk+c8M/H0On+dyh\nrn4viwoAR4SuEEXrXcYYNv1MeDgmR+B0879MKhs1Zi0If4Ls1yWcXofNkvu9oolS\na789RuGZu8bpYFL2lYOANMalOQKBgQDVR2W8eRomztFjArh5zOTm943T0a4ycHyb\nSfVEllK7Y0j5EicIshBlQ8wvwNk8tb4OSk6q5MgnpFzWmt/XTpD7Um5jVyGewDk8\nnsvnH/zutbJhyKfGeP/eLZ6KOvZb0QEqQNKKHCWRYf2Mi/QyCOfT6hl6XdY8jX1p\nDRFiTtUFpwKBgC3wIli5+nQFfQR7vqdtjScNaQf8KpUn1JPGShn6BeMEVZ22RDxz\nSmEjrbSeyaGn+TUI+9BrB7ew5gq/WiVFuzC5lE+68BSDBUD2LVWdEk3RU62b0TQ5\nV64XetToqd0SKkIQFXKjfIsT+LkH3GK9fT8v22lshQwFATmXNzZQEKDZAoGAFeKm\nsOloYpUUbWmJDo6U6pJ6jkLU8j4Su0iij3AxeyMcCNrxAHZtMkb7u+a5I/6uSv8b\nBXRGibLXB/qKf6iDPhbeVvlI7OZiuTK+T7A7ny8r59bUSIyADQd3Xk3gm9ldmj1e\nnWd3/2wjvXlbDItXZqp+BM1+P2ZxeQcrQoA+Yb8CgYBwCkfo6j4Id1JdpyGEUdqh\n2YKD5+lfzS3TqxQwBnojTMkVvY2//cJwmk3V0CiFCGjdFYnB4Ir7RSdC14X0awzr\nXho9iPWC3WBAED03o2pHAYaNGcuFirSmEByk6RaUPHqAI94Z8iBHLY4gv5whjikE\nuFmjs+Ji30AnN3DR8PAZlA==\n-----END PRIVATE KEY-----\n",
-  "client_email": "fastlane@gold-city-9d670.iam.gserviceaccount.com",
-  "client_id": "118317542805492623178",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fastlane%40gold-city-9d670.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
-}
+{}
