@@ -31,17 +31,18 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-      apiKey: "AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs",
-      authDomain: "gold-city-9d670.firebaseapp.com",
-      projectId: "gold-city-9d670",
-      storageBucket: "gold-city-9d670.appspot.com",
-      messagingSenderId: "941064344872",
-      appId: "1:941064344872:web:0e20f65f93fd8254d36c1d",
-      measurementId: "G-B9ZDD9T1LL");
+    apiKey: 'AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs',
+    appId: '1:941064344872:web:f2e4665cceb92d9dd36c1d',
+    messagingSenderId: '941064344872',
+    projectId: 'gold-city-9d670',
+    authDomain: 'gold-city-9d670.firebaseapp.com',
+    storageBucket: 'gold-city-9d670.appspot.com',
+    measurementId: 'G-HXXSL6GF9D',
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCqfwhizPjWnv4mbM2y-pwE2FF9iC_ScLI',
-    appId: '1:941064344872:android:6b3d6a37cd120548d36c1d',
+    appId: '1:941064344872:android:c719dbc61a94501bd36c1d',
     messagingSenderId: '941064344872',
     projectId: 'gold-city-9d670',
     storageBucket: 'gold-city-9d670.appspot.com',
@@ -49,33 +50,32 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA0qjKVPdwToPrciT0Y3Ek1xsPX70DRCc8',
-    appId: '1:941064344872:ios:1ae7f6541b8a7ddcd36c1d',
+    appId: '1:941064344872:ios:5aebd45b8763781bd36c1d',
     messagingSenderId: '941064344872',
     projectId: 'gold-city-9d670',
     storageBucket: 'gold-city-9d670.appspot.com',
-    iosClientId:
-        '941064344872-53qss7697pbjhm0lhcs1paha8nuk4qnj.apps.googleusercontent.com',
-    iosBundleId: 'com.goldcity.goldcityMobil',
+    iosClientId: '941064344872-4c6mt7g8rr6qjo42jl2tulm7sp8v2q9b.apps.googleusercontent.com',
+    iosBundleId: 'com.goldcity.condominium',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyA0qjKVPdwToPrciT0Y3Ek1xsPX70DRCc8',
-    appId: '1:941064344872:ios:8b4c07d7a9b77ea2d36c1d',
+    appId: '1:941064344872:ios:5aebd45b8763781bd36c1d',
     messagingSenderId: '941064344872',
     projectId: 'gold-city-9d670',
     storageBucket: 'gold-city-9d670.appspot.com',
-    iosClientId:
-        '941064344872-tik6gumst6sbaps050j5t1hh8jfeatlp.apps.googleusercontent.com',
-    iosBundleId: 'com.goldcity.goldcity',
+    iosClientId: '941064344872-4c6mt7g8rr6qjo42jl2tulm7sp8v2q9b.apps.googleusercontent.com',
+    iosBundleId: 'com.goldcity.condominium',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyA-okPckRFVoe6-NK0F1Dl_BJLEqNlwKLs',
-    appId: '1:941064344872:web:bacd536ad6db510fd36c1d',
+    appId: '1:941064344872:web:ace12c063d405480d36c1d',
     messagingSenderId: '941064344872',
     projectId: 'gold-city-9d670',
     authDomain: 'gold-city-9d670.firebaseapp.com',
     storageBucket: 'gold-city-9d670.appspot.com',
-    measurementId: 'G-N94SW76JQQ',
+    measurementId: 'G-GB8QSQERHT',
   );
+
 }

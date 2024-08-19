@@ -466,18 +466,21 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
               ),
             );
           }),
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () => context.pop(),
-              child: Container(
-                width: 50,
-                margin: context.largeSpacer,
-                height: 50,
-                decoration: BoxDecoration(
-                    color: context.toColor(APPLICATION_COLOR.GOLD),
-                    borderRadius: context.midRadius),
-                child: const Icon(Icons.close),
+          Align(
+            alignment: Alignment.topLeft,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => context.pop(),
+                child: Container(
+                  width: 50,
+                  margin: context.largeSpacer,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                      borderRadius: context.midRadius),
+                  child: const Icon(Icons.close),
+                ),
               ),
             ),
           ),

@@ -27,12 +27,16 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset("assets/video/trailer.mp4");
+    _controller = VideoPlayerController.networkUrl(Uri.parse(
+        "https://goldcity.s3.eu-central-1.amazonaws.com/giris-sayfasi.mp4"));
+
     _controller.setLooping(true);
     _controller.initialize().then((value) => {
-          if (mounted) {setState(() {})}
+          setState(() {
+            _controller.play();
+          })
         });
-    _controller.play();
+
     _controller.setVolume(0);
   }
 
@@ -61,27 +65,9 @@ class _CondominiumTrailerWidgetState extends State<CondominiumTrailerWidget> {
               Container(
                 height: context.sHeight,
                 width: (context.sWidth),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
-                      context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(150),
-                      context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(100),
-                      context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(50),
-                      context
-                          .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                          .withAlpha(0),
-                    ],
-                  ),
-                ),
+                color: context
+                    .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                    .withOpacity(.5),
               ),
             ],
           ),

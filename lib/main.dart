@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -39,6 +40,8 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
   runApp(
     EasyLocalization(
       path: GeneralConstant.LANG_ASSET_PATH,
@@ -74,7 +77,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       scrollBehavior: MyCustomScrollBehavior(),
-      title: 'GoldCity',
+      title: 'GoldCity Condominium',
       color: context.toColor(APPLICATION_COLOR.DARK),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

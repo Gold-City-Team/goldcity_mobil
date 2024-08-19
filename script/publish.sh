@@ -1,5 +1,5 @@
 cd ..
-flutter build web --release
+flutter build web --web-renderer html --release
 ssh root@167.86.75.254 << EOF
 cd /zafercetin
 rm -rf *

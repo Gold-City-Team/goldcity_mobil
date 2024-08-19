@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:941064344872:android:6b3d6a37cd120548d36c1d",
+        "mobilesdk_app_id": "1:941064344872:android:c719dbc61a94501bd36c1d",
         "android_client_info": {
-          "package_name": "com.goldcity.goldcity"
+          "package_name": "com.goldcity.condominium"
         }
       },
       "oauth_client": [
@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "941064344872-53qss7697pbjhm0lhcs1paha8nuk4qnj.apps.googleusercontent.com",
+              "client_id": "941064344872-4c6mt7g8rr6qjo42jl2tulm7sp8v2q9b.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.goldcity.goldcityMobil"
+                "bundle_id": "com.goldcity.condominium"
               }
             }
           ]

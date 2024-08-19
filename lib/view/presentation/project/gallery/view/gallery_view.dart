@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as ma;
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -18,7 +18,7 @@ import 'package:goldcity/view/presentation/video_frame/view/video_frame_view.dar
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
-class GalleryView extends StatefulWidget {
+class GalleryView extends ma.StatefulWidget {
   final List<GalleryMediaEntity> gallery;
   final int selectedIndex;
   final bool isExperiance;
@@ -31,17 +31,17 @@ class GalleryView extends StatefulWidget {
   });
 
   @override
-  State<GalleryView> createState() => _GalleryViewState();
+  ma.State<GalleryView> createState() => _GalleryViewState();
 }
 
-class _GalleryViewState extends State<GalleryView> {
-  ScrollController c = ScrollController();
+class _GalleryViewState extends ma.State<GalleryView> {
+  ma.ScrollController c = ma.ScrollController();
   late GalleryViewModel v;
   @override
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    ma.WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!widget.isExperiance) {
         if (v.gallery.first.media.mediaType == MEDIA_TYPE.IMAGE) {
           if (isTablet()) {
@@ -50,7 +50,7 @@ class _GalleryViewState extends State<GalleryView> {
             c.animateTo(
               v.selectedMediaIndex * 150,
               duration: const Duration(milliseconds: 300),
-              curve: Curves.easeIn,
+              curve: ma.Curves.easeIn,
             );
           }
         }
@@ -59,7 +59,7 @@ class _GalleryViewState extends State<GalleryView> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  ma.Widget build(ma.BuildContext context) {
     return BaseView<GalleryViewModel>(
       viewModel: GalleryViewModel(),
       onModelReady: (model) {
@@ -70,13 +70,13 @@ class _GalleryViewState extends State<GalleryView> {
         model.init();
         v = model;
       },
-      onPageBuilder: (BuildContext context, GalleryViewModel value) =>
-          Scaffold(body: body(value, context)),
+      onPageBuilder: (ma.BuildContext context, GalleryViewModel value) =>
+          ma.Scaffold(body: body(value, context)),
     );
   }
 
   CarouselController carouselController = CarouselController();
-  Widget body(GalleryViewModel viewModel, BuildContext context) {
+  ma.Widget body(GalleryViewModel viewModel, ma.BuildContext context) {
     return isTablet()
         ? viewModel.gallery.first.media.mediaType == MEDIA_TYPE.IMAGE
             ? tabletImageView(viewModel, carouselController)
@@ -88,9 +88,9 @@ class _GalleryViewState extends State<GalleryView> {
             : videoView(viewModel);
   }
 
-  Widget phoneImageViewExperiance(
+  ma.Widget phoneImageViewExperiance(
       GalleryViewModel viewModel, CarouselController controller) {
-    return Center(
+    return ma.Center(
       child: FlutterCarousel(
         options: CarouselOptions(
             controller: controller,
@@ -102,13 +102,13 @@ class _GalleryViewState extends State<GalleryView> {
             enlargeStrategy: CenterPageEnlargeStrategy.scale,
             pageSnapping: true),
         items: viewModel.gallery.map((i) {
-          return Builder(
-            builder: (BuildContext context) {
-              return SizedBox(
+          return ma.Builder(
+            builder: (ma.BuildContext context) {
+              return ma.SizedBox(
                 width: context.sWidth,
                 height: context.sHeight,
                 child: NormalNetworkImage(
-                  fit: BoxFit.contain,
+                  fit: ma.BoxFit.contain,
                   source: i.media.url,
                 ),
               );
@@ -119,39 +119,39 @@ class _GalleryViewState extends State<GalleryView> {
     );
   }
 
-  Widget phoneImageView(
+  ma.Widget phoneImageView(
       GalleryViewModel viewModel, CarouselController controller) {
-    return Stack(
+    return ma.Stack(
       children: [
-        Row(
+        ma.Row(
           children: [
-            SafeArea(
+            ma.SafeArea(
               right: false,
               top: false,
               bottom: false,
               child: Observer(builder: (context) {
                 if (viewModel.selectedMediaIndex == -1) {
-                  return const SizedBox.shrink();
+                  return const ma.SizedBox.shrink();
                 }
-                return Container(
+                return ma.Container(
                   padding: context.midSpacerOnlyTop,
                   width: 100,
-                  child: ListView.builder(
-                    padding: EdgeInsets.zero,
+                  child: ma.ListView.builder(
+                    padding: ma.EdgeInsets.zero,
                     controller: c,
                     itemCount: viewModel.gallery.length,
                     itemBuilder: (context, index) {
-                      return SizedBox(
+                      return ma.SizedBox(
                         height: 150,
                         width: 100,
-                        child: MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
+                        child: ma.MouseRegion(
+                          cursor: ma.SystemMouseCursors.click,
+                          child: ma.GestureDetector(
                             onTap: () => {
                               viewModel.selectedMediaIndexChange(index),
                               controller.jumpToPage(index)
                             },
-                            child: Padding(
+                            child: ma.Padding(
                               padding: context.midSpacerOnlyBottom,
                               child: mediaPart(
                                   viewModel.gallery[index].media.url,
@@ -167,13 +167,13 @@ class _GalleryViewState extends State<GalleryView> {
               }),
             ),
             Gap(context.midSpacerSize),
-            Expanded(
+            ma.Expanded(
               child: FlutterCarousel(
                 options: CarouselOptions(
                     onPageChanged: (index, reason) {
                       c.animateTo(index * 150,
                           duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeIn);
+                          curve: ma.Curves.easeIn);
 
                       viewModel.selectedMediaIndexChange(index);
                     },
@@ -184,13 +184,13 @@ class _GalleryViewState extends State<GalleryView> {
                     enlargeStrategy: CenterPageEnlargeStrategy.height,
                     pageSnapping: true),
                 items: viewModel.gallery.map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
+                  return ma.Builder(
+                    builder: (ma.BuildContext context) {
+                      return ma.Container(
                         margin: context.midSpacerOnlyHorizontal,
                         width: context.sWidth,
                         child: NormalNetworkImage(
-                          fit: BoxFit.contain,
+                          fit: ma.BoxFit.contain,
                           source: i.media.url,
                         ),
                       );
@@ -201,23 +201,23 @@ class _GalleryViewState extends State<GalleryView> {
             ),
           ],
         ),
-        SafeArea(
-          child: Padding(
+        ma.SafeArea(
+          child: ma.Padding(
             padding: context.midSpacer,
-            child: Align(
-              alignment: Alignment.topRight,
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
+            child: ma.Align(
+              alignment: ma.Alignment.topRight,
+              child: ma.MouseRegion(
+                cursor: ma.SystemMouseCursors.click,
+                child: ma.GestureDetector(
                   onTap: () => context.pop(),
-                  child: Container(
+                  child: ma.Container(
                     width: 50,
                     margin: context.largeSpacerOnlyHorizontal,
                     height: 50,
-                    decoration: BoxDecoration(
+                    decoration: ma.BoxDecoration(
                         color: context.toColor(APPLICATION_COLOR.GOLD),
                         borderRadius: context.midRadius),
-                    child: const Icon(Icons.close),
+                    child: const ma.Icon(ma.Icons.close),
                   ),
                 ),
               ),
@@ -228,37 +228,37 @@ class _GalleryViewState extends State<GalleryView> {
     );
   }
 
-  Widget tabletImageView(
+  ma.Widget tabletImageView(
       GalleryViewModel viewModel, CarouselController controller) {
-    return SafeArea(
-      child: Stack(
+    return ma.SafeArea(
+      child: ma.Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          ma.Column(
+            crossAxisAlignment: ma.CrossAxisAlignment.start,
             children: [
               Gap(context.midSpacerSize),
-              Align(
-                alignment: Alignment.topRight,
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
+              ma.Align(
+                alignment: ma.Alignment.topRight,
+                child: ma.MouseRegion(
+                  cursor: ma.SystemMouseCursors.click,
+                  child: ma.GestureDetector(
                     onTap: () => context.pop(),
-                    child: Container(
+                    child: ma.Container(
                       width: 50,
                       margin: context.largeSpacerOnlyHorizontal,
                       height: 50,
-                      decoration: BoxDecoration(
+                      decoration: ma.BoxDecoration(
                           color: context.toColor(APPLICATION_COLOR.GOLD),
                           borderRadius: context.midRadius),
-                      child: const Icon(Icons.close),
+                      child: const ma.Icon(ma.Icons.close),
                     ),
                   ),
                 ),
               ),
               Gap(context.midSpacerSize),
-              Flexible(
+              ma.Flexible(
                 flex: 2,
-                child: SizedBox(
+                child: ma.SizedBox(
                   width: context.sWidth,
                   child: FlutterCarousel(
                     options: CarouselOptions(
@@ -275,13 +275,13 @@ class _GalleryViewState extends State<GalleryView> {
                         enlargeStrategy: CenterPageEnlargeStrategy.height,
                         pageSnapping: true),
                     items: viewModel.gallery.map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
+                      return ma.Builder(
+                        builder: (ma.BuildContext context) {
+                          return ma.Container(
                             margin: context.midSpacerOnlyHorizontal,
                             width: context.sWidth,
                             child: NormalNetworkImage(
-                              fit: BoxFit.contain,
+                              fit: ma.BoxFit.contain,
                               source: i.media.url,
                             ),
                           );
@@ -294,24 +294,24 @@ class _GalleryViewState extends State<GalleryView> {
               Gap(context.largeSpacerSize),
               Observer(builder: (context) {
                 if (viewModel.selectedMediaIndex == -1) {
-                  return const SizedBox.shrink();
+                  return const ma.SizedBox.shrink();
                 }
-                return SizedBox(
+                return ma.SizedBox(
                     height: 150,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.zero,
+                    child: ma.ListView.builder(
+                      scrollDirection: ma.Axis.horizontal,
+                      padding: ma.EdgeInsets.zero,
                       itemCount: viewModel.gallery.length,
                       controller: c,
                       itemBuilder: (context, index) {
-                        return MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
+                        return ma.MouseRegion(
+                          cursor: ma.SystemMouseCursors.click,
+                          child: ma.GestureDetector(
                             onTap: () => {
                               viewModel.selectedMediaIndexChange(index),
                               carouselController.jumpToPage(index)
                             },
-                            child: Padding(
+                            child: ma.Padding(
                               padding: context.midSpacerOnlyLeft,
                               child: mediaPart(
                                   viewModel.gallery[index].media.url,
@@ -325,11 +325,11 @@ class _GalleryViewState extends State<GalleryView> {
               })
             ],
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
+          ma.Align(
+            alignment: ma.Alignment.centerRight,
+            child: ma.MouseRegion(
+              cursor: ma.SystemMouseCursors.click,
+              child: ma.GestureDetector(
                 onTap: () {
                   if (viewModel.selectedMediaIndex !=
                       viewModel.gallery.length - 1) {
@@ -338,15 +338,15 @@ class _GalleryViewState extends State<GalleryView> {
                     controller.jumpToPage(viewModel.selectedMediaIndex);
                   }
                 },
-                child: Container(
+                child: ma.Container(
                   height: 60,
                   width: 60,
                   color: viewModel.selectedMediaIndex ==
                           viewModel.gallery.length - 1
                       ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
                       : context.toColor(APPLICATION_COLOR.DARK),
-                  child: Icon(
-                    Icons.chevron_right_sharp,
+                  child: ma.Icon(
+                    ma.Icons.chevron_right_sharp,
                     color: viewModel.selectedMediaIndex ==
                             viewModel.gallery.length - 1
                         ? context.toColor(APPLICATION_COLOR.LIGHT).withAlpha(60)
@@ -357,12 +357,12 @@ class _GalleryViewState extends State<GalleryView> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
+          ma.Align(
+            alignment: ma.Alignment.centerLeft,
             child: Observer(builder: (context) {
-              return MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
+              return ma.MouseRegion(
+                cursor: ma.SystemMouseCursors.click,
+                child: ma.GestureDetector(
                   onTap: () {
                     if (viewModel.selectedMediaIndex != 0) {
                       viewModel.selectedMediaIndexChange(
@@ -370,14 +370,14 @@ class _GalleryViewState extends State<GalleryView> {
                       controller.jumpToPage(viewModel.selectedMediaIndex);
                     }
                   },
-                  child: Container(
+                  child: ma.Container(
                     height: 60,
                     width: 60,
                     color: viewModel.selectedMediaIndex == 0
                         ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
                         : context.toColor(APPLICATION_COLOR.DARK),
-                    child: Icon(
-                      Icons.chevron_left_sharp,
+                    child: ma.Icon(
+                      ma.Icons.chevron_left_sharp,
                       color: viewModel.selectedMediaIndex == 0
                           ? context
                               .toColor(APPLICATION_COLOR.LIGHT)
@@ -395,42 +395,43 @@ class _GalleryViewState extends State<GalleryView> {
     );
   }
 
-  Widget videoView(GalleryViewModel viewModel) {
-    return Stack(
+  ma.Widget videoView(GalleryViewModel viewModel) {
+    return ma.Stack(
       children: [
         Observer(builder: (context) {
           return VideoFrameView(
-              key: Key("${viewModel.gallery[viewModel.selectedMediaIndex].id}"),
+              key: ma.Key(
+                  "${viewModel.gallery[viewModel.selectedMediaIndex].id}"),
               isFullScreen: !viewModel.isBottomVisible,
-              fullScreen: () => debugPrint("ontap"),
+              fullScreen: () => ma.debugPrint("ontap"),
               url: viewModel.gallery[viewModel.selectedMediaIndex].media.url);
         }),
         Observer(builder: (context) {
-          return Padding(
+          return ma.Padding(
             padding: context.midSpacer,
-            child: SafeArea(
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
+            child: ma.SafeArea(
+              child: ma.MouseRegion(
+                cursor: ma.SystemMouseCursors.click,
+                child: ma.GestureDetector(
                   onTap: () => viewModel.toggleBottomVisible(),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                  child: ma.Row(
+                    mainAxisSize: ma.MainAxisSize.min,
                     children: [
                       LabelText(text: LocaleKeys.allVideos.tr()),
                       Gap(context.midSpacerSize),
-                      Container(
+                      ma.Container(
                         height: 40,
                         width: 40,
-                        decoration: BoxDecoration(
+                        decoration: ma.BoxDecoration(
                             color: context
                                 .toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20))),
-                        child: SizedBox(
-                          child: Icon(
+                            borderRadius: const ma.BorderRadius.all(
+                                ma.Radius.circular(20))),
+                        child: ma.SizedBox(
+                          child: ma.Icon(
                             viewModel.isBottomVisible
-                                ? Icons.arrow_drop_up
-                                : Icons.arrow_drop_down,
+                                ? ma.Icons.arrow_drop_up
+                                : ma.Icons.arrow_drop_down,
                             size: 28,
                             color: context.toColor(APPLICATION_COLOR.GOLD),
                           ),
@@ -446,24 +447,24 @@ class _GalleryViewState extends State<GalleryView> {
         Observer(builder: (context) {
           if (!viewModel.isBottomVisible ||
               viewModel.selectedMediaIndex == -1) {
-            return const SizedBox.shrink();
+            return const ma.SizedBox.shrink();
           }
-          return Padding(
+          return ma.Padding(
             padding: context.midSpacer,
-            child: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+            child: ma.SafeArea(
+              child: ma.Column(
+                mainAxisAlignment: ma.MainAxisAlignment.end,
                 children: [
-                  SizedBox(
+                  ma.SizedBox(
                     height: isTablet() ? 150 : 90,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
+                    child: ma.ListView.builder(
+                        scrollDirection: ma.Axis.horizontal,
                         itemCount: viewModel.gallery.length,
                         itemBuilder: ((context, index) {
-                          return Padding(
+                          return ma.Padding(
                             padding: context.midSpacerOnlyRight,
-                            child: MouseRegion(
-                              child: GestureDetector(
+                            child: ma.MouseRegion(
+                              child: ma.GestureDetector(
                                 onTap: () =>
                                     viewModel.selectedMediaIndexChange(index),
                                 child: isTablet()
@@ -488,28 +489,28 @@ class _GalleryViewState extends State<GalleryView> {
           );
         }),
         Observer(builder: (context) {
-          return Align(
-            alignment: Alignment.centerRight,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
+          return ma.Align(
+            alignment: ma.Alignment.centerRight,
+            child: ma.MouseRegion(
+              cursor: ma.SystemMouseCursors.click,
+              child: ma.GestureDetector(
                 onTap: () {
-                  debugPrint("test ${viewModel.gallery.length}");
+                  ma.debugPrint("test ${viewModel.gallery.length}");
                   if (viewModel.selectedMediaIndex !=
                       viewModel.gallery.length - 1) {
                     viewModel.selectedMediaIndexChange(
                         viewModel.selectedMediaIndex + 1);
                   }
                 },
-                child: Container(
+                child: ma.Container(
                   height: 60,
                   width: 60,
                   color: viewModel.selectedMediaIndex ==
                           viewModel.gallery.length - 1
                       ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
                       : context.toColor(APPLICATION_COLOR.DARK),
-                  child: Icon(
-                    Icons.chevron_right_sharp,
+                  child: ma.Icon(
+                    ma.Icons.chevron_right_sharp,
                     color: viewModel.selectedMediaIndex ==
                             viewModel.gallery.length - 1
                         ? context.toColor(APPLICATION_COLOR.LIGHT).withAlpha(60)
@@ -522,25 +523,25 @@ class _GalleryViewState extends State<GalleryView> {
           );
         }),
         Observer(builder: (context) {
-          return Align(
-            alignment: Alignment.centerLeft,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
+          return ma.Align(
+            alignment: ma.Alignment.centerLeft,
+            child: ma.MouseRegion(
+              cursor: ma.SystemMouseCursors.click,
+              child: ma.GestureDetector(
                 onTap: () {
                   if (viewModel.selectedMediaIndex != 0) {
                     viewModel.selectedMediaIndexChange(
                         viewModel.selectedMediaIndex - 1);
                   }
                 },
-                child: Container(
+                child: ma.Container(
                   height: 60,
                   width: 60,
                   color: viewModel.selectedMediaIndex == 0
                       ? context.toColor(APPLICATION_COLOR.DARK).withAlpha(60)
                       : context.toColor(APPLICATION_COLOR.DARK),
-                  child: Icon(
-                    Icons.chevron_left_sharp,
+                  child: ma.Icon(
+                    ma.Icons.chevron_left_sharp,
                     color: viewModel.selectedMediaIndex == 0
                         ? context.toColor(APPLICATION_COLOR.LIGHT).withAlpha(60)
                         : context.toColor(APPLICATION_COLOR.LIGHT),
@@ -555,60 +556,61 @@ class _GalleryViewState extends State<GalleryView> {
     );
   }
 
-  Widget mediaPart(String imageUrl, bool isSelected, BuildContext context) {
-    return Container(
+  ma.Widget mediaPart(
+      String imageUrl, bool isSelected, ma.BuildContext context) {
+    return ma.Container(
       width: 150 * 1.77777,
       height: 150,
-      decoration: BoxDecoration(
+      decoration: ma.BoxDecoration(
         color: context.toColor(APPLICATION_COLOR.DARK),
-        border: Border.all(
+        border: ma.Border.all(
           width: 2,
           color: context.toColor(
               isSelected ? APPLICATION_COLOR.GOLD : APPLICATION_COLOR.LIGHT),
         ),
       ),
-      child: Center(
+      child: ma.Center(
         child: NormalNetworkImage(
           source: imageUrl,
-          fit: BoxFit.contain,
+          fit: ma.BoxFit.contain,
         ),
       ),
     );
   }
 
-  Widget littleMediaPart(
-      String imageUrl, bool isSelected, BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
+  ma.Widget littleMediaPart(
+      String imageUrl, bool isSelected, ma.BuildContext context) {
+    return ma.Stack(
+      alignment: ma.Alignment.center,
       children: [
-        Container(
+        ma.Container(
           width: 90 * 1.77777,
           height: 90,
-          decoration: BoxDecoration(
+          decoration: ma.BoxDecoration(
             color: context.toColor(APPLICATION_COLOR.DARK),
-            border: Border.all(
+            border: ma.Border.all(
               width: 2,
               color: context.toColor(isSelected
                   ? APPLICATION_COLOR.GOLD
                   : APPLICATION_COLOR.LIGHT),
             ),
           ),
-          child: SizedBox(
+          child: ma.SizedBox(
             width: 90 * 1.77777,
             height: 90,
             child: NormalNetworkImage(
               source: imageUrl,
-              fit: BoxFit.cover,
+              fit: ma.BoxFit.cover,
             ),
           ),
         ),
-        Container(
+        ma.Container(
           width: 30,
           height: 30,
-          decoration: BoxDecoration(
+          decoration: ma.BoxDecoration(
               color: context.toColor(APPLICATION_COLOR.GOLD),
               borderRadius: context.largeRadius),
-          child: const Icon(Icons.play_arrow),
+          child: const ma.Icon(ma.Icons.play_arrow),
         )
       ],
     );

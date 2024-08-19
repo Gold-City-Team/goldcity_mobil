@@ -35,11 +35,11 @@ dependencies:
   either_dart: ^0.4.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  video_player: ^2.8.6
+  video_player: ^2.9.1
   flutter_svg: ^2.0.10+1
   salomon_bottom_bar: ^3.3.2
   flutter_animate: ^4.5.0
-  flutter_carousel_widget: ^2.2.0
+  flutter_carousel_widget: ^2.3.0
   shared_preferences: ^2.2.3
   share_plus: ^9.0.0
   url_launcher: ^6.3.0
@@ -48,8 +48,9 @@ dependencies:
   transparent_image: ^2.0.1
   webviewx_plus: ^0.5.0
   giffy_dialog: ^2.1.0
-  firebase_core: ^3.1.1
-  firebase_messaging: ^15.0.4
+  firebase_core: ^2.32.0
+  firebase_crashlytics: ^3.5.7
+  firebase_messaging: ^14.7.6
   flutter_notification_channel: ^2.0.0
   animated_text_kit: ^4.2.2
   app_links: ^6.1.4
@@ -94,7 +95,8 @@ flutter:
     - assets/image/logo.png    
     - assets/applogo/logo.jpg    
     - assets/applogo/app_logo.webp    
-    - assets/video/trailer.mp4    
+    # - assets/video/trailer.mp4    
+    - assets/video/firstframe.webp    
   fonts:
     - family: Encode
       fonts:
