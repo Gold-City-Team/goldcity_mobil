@@ -106,6 +106,14 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$_getProjectListAsyncAction =
+      AsyncAction('_HomeViewModelBase._getProjectList', context: context);
+
+  @override
+  Future<void> _getProjectList() {
+    return _$_getProjectListAsyncAction.run(() => super._getProjectList());
+  }
+
   late final _$changeIndexAsyncAction =
       AsyncAction('_HomeViewModelBase.changeIndex', context: context);
 
@@ -116,17 +124,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
 
   late final _$_HomeViewModelBaseActionController =
       ActionController(name: '_HomeViewModelBase', context: context);
-
-  @override
-  void _getProjectList() {
-    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
-        name: '_HomeViewModelBase._getProjectList');
-    try {
-      return super._getProjectList();
-    } finally {
-      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   void togglePageSelector() {

@@ -290,7 +290,7 @@ class HomeView extends StatelessWidget {
                     Container(
                       height: context.sHeight * .18,
                       margin: context.xxlargeSpacerOnlyLeft,
-                      width: context.sWidth / 1.5,
+                      width: context.sWidth,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: value.projectList!.length,
@@ -449,6 +449,7 @@ class HomeView extends StatelessWidget {
                         : ""
                   ],
                   selectedIndex: 0,
+                  contactEntity: value.contactEntity,
                   newIndex: (newIndex) => value.changeIndex(newIndex),
                 )
                     .animate(

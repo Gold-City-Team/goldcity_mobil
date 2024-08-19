@@ -5,8 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/domain/entity/complex/complex/complex_entity.dart';
+import 'package:goldcity/domain/entity/contact/contact_entity.dart';
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/domain/usecase/complex_usecase.dart';
+import 'package:goldcity/domain/usecase/contact_usecase.dart';
 import 'package:goldcity/domain/usecase/project_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
@@ -21,6 +23,7 @@ class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
 abstract class _HomeViewModelBase with Store, BaseViewModel {
   late ProjectUseCase _projectUseCase;
   late ComplexUseCase _complexUseCase;
+  late ContactUseCase _contactUseCase;
   @override
   void setContext(BuildContext context) => viewModelContext = context;
 
@@ -28,6 +31,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   void init() {
     _projectUseCase = locator<ProjectUseCase>();
     _complexUseCase = locator<ComplexUseCase>();
+    _contactUseCase = locator<ContactUseCase>();
     pageList.clear();
     projectList?.clear();
     complexList?.clear();
@@ -50,17 +54,24 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   int pageIndex = -1;
   @observable
   List<ProjectEntity>? projectList;
+
+  ContactEntity? contactEntity;
+
   @action
-  void _getProjectList() {
+  Future<void> _getProjectList() async {
     projectList?.clear();
 
     _projectUseCase.getProjectList().listen((event) {
       if (event.isRight) {
         projectList = event.right;
-      } else {
-        debugPrint("test: ${event.left.status}");
-      }
+      } else {}
     });
+
+    var result = await _contactUseCase.getContact();
+
+    if (result.isRight) {
+      contactEntity = result.right;
+    }
   }
 
   @observable

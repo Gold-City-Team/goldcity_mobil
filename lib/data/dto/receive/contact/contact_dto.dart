@@ -10,14 +10,22 @@ class ContactDto {
   String? companyName;
   String? email;
   String? phoneNumber;
+  String? whatsapp;
+  MediaDto? emailImage;
+  MediaDto? whatsappImage;
+  MediaDto? phoneNumberImage;
   List<SocialMediaDto>? socialMedias;
   ContactDto(
       {this.id,
       this.fullName,
       this.companyName,
       this.email,
+      this.whatsapp,
       this.phoneNumber,
-      this.socialMedias});
+      this.socialMedias,
+      this.emailImage,
+      this.phoneNumberImage,
+      this.whatsappImage});
   factory ContactDto.fromJson(Map<String, dynamic> json) =>
       _$ContactDtoFromJson(json);
 
@@ -28,7 +36,16 @@ class ContactDto {
         fullName: fullName ?? "",
         companyName: companyName ?? "",
         email: email ?? "",
+        whatsapp: whatsapp ?? "",
         phoneNumber: phoneNumber ?? "",
+        whatsappImage: whatsappImage != null
+            ? whatsappImage!.toEntity()
+            : MediaDto().toEntity(),
+        phoneNumberImage: phoneNumberImage != null
+            ? phoneNumberImage!.toEntity()
+            : MediaDto().toEntity(),
+        emailImage:
+            emailImage != null ? emailImage!.toEntity() : MediaDto().toEntity(),
         socialMedias: socialMedias != null
             ? socialMedias!.map((e) => e.toEntity()).toList()
             : [SocialMediaDto().toEntity()],

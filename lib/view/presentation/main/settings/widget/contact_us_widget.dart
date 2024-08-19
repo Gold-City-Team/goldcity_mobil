@@ -42,9 +42,9 @@ class ContactUsWidget extends StatelessWidget {
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
                       onTap: () async {
-                        var contact = contactEntity.phoneNumber;
-                        var androidUrl = "whatsapp://send?phone=$contact";
-                        var iosUrl = "https://wa.me/$contact";
+                        var androidUrl =
+                            "whatsapp://send?phone=${contactEntity.whatsapp}";
+                        var iosUrl = "https://wa.me/${contactEntity.whatsapp}";
                         if (!kIsWeb) {
                           if (Platform.isIOS) {
                             await launchUrl(Uri.parse(iosUrl));

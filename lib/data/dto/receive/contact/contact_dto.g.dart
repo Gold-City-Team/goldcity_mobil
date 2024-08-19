@@ -11,10 +11,20 @@ ContactDto _$ContactDtoFromJson(Map<String, dynamic> json) => ContactDto(
       fullName: json['fullName'] as String?,
       companyName: json['companyName'] as String?,
       email: json['email'] as String?,
+      whatsapp: json['whatsapp'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       socialMedias: (json['socialMedias'] as List<dynamic>?)
           ?.map((e) => SocialMediaDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      emailImage: json['emailImage'] == null
+          ? null
+          : MediaDto.fromJson(json['emailImage'] as Map<String, dynamic>),
+      phoneNumberImage: json['phoneNumberImage'] == null
+          ? null
+          : MediaDto.fromJson(json['phoneNumberImage'] as Map<String, dynamic>),
+      whatsappImage: json['whatsappImage'] == null
+          ? null
+          : MediaDto.fromJson(json['whatsappImage'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ContactDtoToJson(ContactDto instance) =>
@@ -24,6 +34,10 @@ Map<String, dynamic> _$ContactDtoToJson(ContactDto instance) =>
       'companyName': instance.companyName,
       'email': instance.email,
       'phoneNumber': instance.phoneNumber,
+      'whatsapp': instance.whatsapp,
+      'emailImage': instance.emailImage,
+      'whatsappImage': instance.whatsappImage,
+      'phoneNumberImage': instance.phoneNumberImage,
       'socialMedias': instance.socialMedias,
     };
 
