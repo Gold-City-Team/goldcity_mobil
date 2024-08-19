@@ -9,6 +9,7 @@
 .history
 .svn/
 
+
 # IntelliJ related
 *.iml
 *.ipr
@@ -31,6 +32,7 @@
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
+**/android/goldencity.json
 **/android/captures/
 **/android/gradlew
 **/android/gradlew.bat
