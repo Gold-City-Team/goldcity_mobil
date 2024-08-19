@@ -61,5 +61,7 @@ abstract class  LocaleKeys {
   static const resetButton = 'resetButton';
   static const resetPassword = 'resetPassword';
   static const resetPasswordDetail = 'resetPasswordDetail';
+  static const deleteAccount = 'deleteAccount';
+  static const areYouSure = 'areYouSure';
 
 }

@@ -11,4 +11,5 @@ abstract class LeadRepository {
   Future<BaseErrorModel?> loginGoogle(SendLeadLoginGoogleDto dto);
   Future<BaseErrorModel?> leadChangePassword(ChangePasswordDto dto);
   Future<BaseErrorModel?> leadResetPassword(ResetPasswordDto dto);
+  Future<BaseErrorModel?> deleteAccount();
 }

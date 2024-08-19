@@ -27,4 +27,8 @@ class LeadUseCase {
   Future<BaseErrorModel?> leadResetPassword(ResetPasswordDto dto) {
     return locator<LeadRepository>().leadResetPassword(dto);
   }
+
+  Future<BaseErrorModel?> deleteAccount() {
+    return locator<LeadRepository>().deleteAccount();
+  }
 }

@@ -9,6 +9,7 @@ import 'package:goldcity/config/data/shared_manager.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/domain/entity/contact/contact_entity.dart';
 import 'package:goldcity/domain/usecase/contact_usecase.dart';
+import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
@@ -17,6 +18,7 @@ import 'package:goldcity/view/presentation/main/settings/widget/change_password_
 import 'package:goldcity/view/presentation/main/settings/widget/change_theme_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/contact_us_widget.dart';
 import 'package:goldcity/view/presentation/main/settings/widget/loguot_widget.dart';
+import 'package:goldcity/view/presentation/main/settings/widget/delete_account_widget.dart';
 import 'package:mobx/mobx.dart';
 
 part 'settings_view_model.g.dart';
@@ -38,9 +40,11 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
         : "",
     locator<AuthenticationSource>().isUserStillValid()
         ? LocaleKeys.logOut.tr()
+        : "",
+    locator<AuthenticationSource>().isUserStillValid()
+        ? LocaleKeys.deleteAccount.tr()
         : ""
   ]);
-
   updateList() {
     menuItems.clear();
     menuItems.add(LocaleKeys.changeTheme.tr());
@@ -55,13 +59,18 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
     locator<AuthenticationSource>().isUserStillValid()
         ? menuItems.add(LocaleKeys.logOut.tr())
         : null;
+    locator<AuthenticationSource>().isUserStillValid()
+        ? menuItems.add(LocaleKeys.deleteAccount.tr())
+        : null;
   }
 
+  late LeadUseCase _leadUseCase;
   late ContactUseCase _contactUseCase;
   ContactEntity? entity;
   @override
   void init() {
     _contactUseCase = locator<ContactUseCase>();
+    _leadUseCase = locator<LeadUseCase>();
     _getContact();
   }
 
@@ -85,6 +94,7 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
             4 => const ChangeThemeWidget(),
             5 => ChangePasswordWidget(),
             6 => const LogoutWidget(),
+            7 => DeleteAccountWidget(lead: _leadUseCase),
             _ => const ChangeThemeWidget()
           };
         },
@@ -109,6 +119,8 @@ abstract class _SettingsViewModelBase with Store, BaseViewModel {
       5 => Icon(Icons.password,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
       6 => Icon(Icons.logout,
+          color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
+      7 => Icon(Icons.delete_forever_rounded,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD)),
       _ => Icon(Icons.description,
           color: viewModelContext.toColor(APPLICATION_COLOR.GOLD))

@@ -4,6 +4,7 @@ enum SourcePath {
   BASE_URL,
   LEAD,
   LEAD_LOGIN,
+  USER,
   LEAD_LOGIN_GOOGLE,
   LEAD_CHANGE_PASSWORD,
   LEAD_FORGOT_PASSWORD,
@@ -39,6 +40,7 @@ extension SourcePathExtension on SourcePath {
     return switch (this) {
       SourcePath.BASE_URL => "https://api.goldcitycondominium.com",
       SourcePath.MEDIA => "https://api.goldcitycondominium.com/media/",
+      SourcePath.USER => "/USER",
       SourcePath.LEAD_LOGIN => '/auth/mobilelogin',
       SourcePath.LEAD_LOGIN_GOOGLE => '/auth/logingoogle',
       SourcePath.LEAD => '/lead',

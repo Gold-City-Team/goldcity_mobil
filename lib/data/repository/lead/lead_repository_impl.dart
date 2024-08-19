@@ -33,4 +33,9 @@ class LeadRepositoryImpl implements LeadRepository {
   Future<BaseErrorModel?> leadResetPassword(ResetPasswordDto dto) async {
     return await locator<LeadRemoteDataSource>().leadResetPassword(dto);
   }
+
+  @override
+  Future<BaseErrorModel?> deleteAccount() async {
+    return await locator<LeadRemoteDataSource>().deleteAccount();
+  }
 }

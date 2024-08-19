@@ -58,5 +58,7 @@
     "forgotPassword": "Şifreni mi unuttun?",
     "resetButton": "Sıfırla",
     "resetPassword": "Şifreni sıfırla",
-    "resetPasswordDetail": "Lütfen hesabınıza giriş yaparken kullandığınız mail adresinizi girin. Sıfırlama işlemleri için bir mail yollayacağız."
+    "resetPasswordDetail": "Lütfen hesabınıza giriş yaparken kullandığınız mail adresinizi girin. Sıfırlama işlemleri için bir mail yollayacağız.",
+    "deleteAccount": "Hesabını Sil",
+    "areYouSure": "Emin Misin?"
 }

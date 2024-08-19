@@ -57,5 +57,7 @@
     "forgotPassword": "Forgot Password?",
     "resetButton": "Reset",
     "resetPassword": "Reset password",
-    "resetPasswordDetail": "Please enter the e-mail address you used to log in to your account. We will send an e-mail for the reset process."
+    "resetPasswordDetail": "Please enter the e-mail address you used to log in to your account. We will send an e-mail for the reset process.",
+    "deleteAccount": "Delete Account",
+    "areYouSure": "Are You Sure?"
 }

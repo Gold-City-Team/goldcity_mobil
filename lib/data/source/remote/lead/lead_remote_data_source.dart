@@ -15,6 +15,7 @@ abstract class LeadRemoteDataSource {
   Future<BaseErrorModel?> loginGoogle(SendLeadLoginGoogleDto dto);
   Future<BaseErrorModel?> leadChangePassword(ChangePasswordDto dto);
   Future<BaseErrorModel?> leadResetPassword(ResetPasswordDto dto);
+  Future<BaseErrorModel?> deleteAccount();
 }
 
 class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
@@ -76,6 +77,18 @@ class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
           .networkManager
           .post(SourcePath.LEAD_FORGOT_PASSWORD.rawValue(), data: dto.toJson());
 
+      return null;
+    } on DioException catch (e) {
+      return BaseErrorModel.fromJson(e.response?.data ?? {});
+    }
+  }
+
+  @override
+  Future<BaseErrorModel?> deleteAccount() async {
+    try {
+      await locator<RemoteManager>()
+          .networkManager
+          .delete(SourcePath.USER.rawValue());
       return null;
     } on DioException catch (e) {
       return BaseErrorModel.fromJson(e.response?.data ?? {});

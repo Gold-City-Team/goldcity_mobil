@@ -129,7 +129,10 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
                             .map((e) => Container(
                                 width: (context.sWidth / 2) - 15,
                                 alignment: Alignment.centerLeft,
-                                child: FeaturesWidget(featuresEntity: e)))
+                                child: FeaturesWidget(
+                                  featuresEntity: e,
+                                  width: (context.sWidth / 2) - 15,
+                                )))
                             .toSet()
                             .toList(),
                       ),

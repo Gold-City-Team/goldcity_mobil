@@ -5,18 +5,21 @@ import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
+import 'package:goldcity/domain/entity/contact/contact_entity.dart';
 
 class PageSelectorWidget extends StatelessWidget {
   final List<String> pages;
   final int selectedIndex;
   final Function(int) newIndex;
   final bool showPop;
+  final ContactEntity? contactEntity;
 
   const PageSelectorWidget({
     required this.pages,
     required this.selectedIndex,
     required this.newIndex,
     this.showPop = true,
+    this.contactEntity,
     super.key,
   });
 
