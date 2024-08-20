@@ -62,5 +62,6 @@
     "resetPasswordDetail": "Lütfen hesabınıza giriş yaparken kullandığınız mail adresinizi girin. Sıfırlama işlemleri için bir mail yollayacağız.",
     "deleteAccount": "Hesabını Sil",
     "areYouSure": "Emin Misin?",
-    "agreements": "{privacy}, {terms} ve {illumination} okudum, onaylıyorum"
+    "agreements": "{privacy}, {terms} ve {illumination} okudum, onaylıyorum",
+    "pleaseAgreements": "Lütfen sözleşme metnini kabul edin!"
 }

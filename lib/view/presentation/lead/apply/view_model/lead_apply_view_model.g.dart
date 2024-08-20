@@ -25,6 +25,30 @@ mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
     });
   }
 
+  late final _$termAtom =
+      Atom(name: '_LeadApplyViewModelBase.term', context: context);
+
+  @override
+  String get term {
+    _$termAtom.reportRead();
+    return super.term;
+  }
+
+  @override
+  set term(String value) {
+    _$termAtom.reportWrite(value, super.term, () {
+      super.term = value;
+    });
+  }
+
+  late final _$_getPolicyAsyncAction =
+      AsyncAction('_LeadApplyViewModelBase._getPolicy', context: context);
+
+  @override
+  Future<void> _getPolicy() {
+    return _$_getPolicyAsyncAction.run(() => super._getPolicy());
+  }
+
   late final _$_LeadApplyViewModelBaseActionController =
       ActionController(name: '_LeadApplyViewModelBase', context: context);
 
@@ -42,7 +66,8 @@ mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
   @override
   String toString() {
     return '''
-agreement: ${agreement}
+agreement: ${agreement},
+term: ${term}
     ''';
   }
 }

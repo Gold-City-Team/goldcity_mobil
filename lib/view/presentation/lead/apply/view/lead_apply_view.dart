@@ -277,6 +277,45 @@ class LeadApplyView extends StatelessWidget {
                       newText: (newText) => value.mailAdress = newText),
                 ),
                 Gap(context.largeSpacerSize),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Observer(builder: (context) {
+                      return Checkbox(
+                        value: value.agreement,
+                        onChanged: (e) => value.changeAgreement(),
+                        activeColor:
+                            context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
+                        fillColor: WidgetStateProperty.resolveWith<Color>(
+                            (Set<WidgetState> states) {
+                          return context
+                              .toColor(APPLICATION_COLOR.OPPOSITE_COLOR);
+                        }),
+                        checkColor: context.toColor(APPLICATION_COLOR.GOLD),
+                        side: BorderSide(
+                            color: context
+                                .toColor(APPLICATION_COLOR.OPPOSITE_COLOR)),
+                      );
+                    }),
+                    Observer(builder: (context) {
+                      if (value.term.isEmpty) {
+                        return const SizedBox.shrink();
+                      }
+                      return Expanded(
+                        child: LabelText(
+                            text: context.tr('agreements', namedArgs: {
+                          'privacy':
+                              '[${LocaleKeys.confidentialityAgreement.tr()}](${value.privacy})',
+                          'terms':
+                              '[${LocaleKeys.termsOfUse.tr()}](${value.term})',
+                          'illumination':
+                              '[${LocaleKeys.illuminationText.tr()}](${value.illumination})',
+                        })),
+                      );
+                    }),
+                  ],
+                ),
+                Gap(context.largeSpacerSize),
                 SizedBox(
                   height: 40,
                   child: NormalButton(

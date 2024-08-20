@@ -61,5 +61,6 @@
     "resetPasswordDetail": "Please enter the e-mail address you used to log in to your account. We will send an e-mail for the reset process.",
     "deleteAccount": "Delete Account",
     "areYouSure": "Are You Sure?",
-    "agreements": " I read {privacy}, {terms} and {illumination} and I approve."
+    "agreements": " I read {privacy}, {terms} and {illumination} and I approve.",
+    "pleaseAgreements": "Please accept the contract text!"
 }

@@ -65,5 +65,6 @@ abstract class  LocaleKeys {
   static const deleteAccount = 'deleteAccount';
   static const areYouSure = 'areYouSure';
   static const agreements = 'agreements';
+  static const pleaseAgreements = 'pleaseAgreements';
 
 }

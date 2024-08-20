@@ -1,8 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
 import 'package:goldcity/domain/usecase/lead_usecase.dart';
 import 'package:goldcity/injection_container.dart';
@@ -37,36 +39,44 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
   void changeAgreement() => agreement = !agreement;
 
   Future<void> apply() async {
-    var result = await _leadUseCase.leadApply(
-      SendLeadApplyDto(
-        campaignName: "MOBILE",
-        language: "tr-TR",
-        dataSource: "MOBILE",
-        email: mailAdress,
-        fullName: fullName,
-        tel: telephone,
-      ),
-    );
-    if (result == null) {
-      showSnackbar(ErrorSnackBar(message: "Başvurun Alındı!"))
-          .show(viewModelContext);
-      viewModelContext.pop();
-    } else {
-      if (result.errors != null) {
-        showSnackbar(ErrorSnackBar(
-                message: result.errors!.entries.first.value.first))
+    if (agreement) {
+      var result = await _leadUseCase.leadApply(
+        SendLeadApplyDto(
+          campaignName: "MOBILE",
+          language: "tr-TR",
+          dataSource: "MOBILE",
+          email: mailAdress,
+          fullName: fullName,
+          tel: telephone,
+        ),
+      );
+      if (result == null) {
+        showSnackbar(ErrorSnackBar(message: "Başvurun Alındı!"))
             .show(viewModelContext);
+        viewModelContext.pop();
       } else {
-        showSnackbar(ErrorSnackBar(message: result.detail ?? ""))
-            .show(viewModelContext);
+        if (result.errors != null) {
+          showSnackbar(ErrorSnackBar(
+                  message: result.errors!.entries.first.value.first))
+              .show(viewModelContext);
+        } else {
+          showSnackbar(ErrorSnackBar(message: result.detail ?? ""))
+              .show(viewModelContext);
+        }
       }
+    } else {
+      showSnackbar(ErrorSnackBar(message: LocaleKeys.pleaseAgreements.tr()))
+          .show(viewModelContext);
     }
   }
 
+  @observable
   String term = "";
+
   String privacy = "";
   String illumination = "";
 
+  @action
   Future<void> _getPolicy() async {
     var result = await _leadUseCase.getPrivacy();
     if (result.isRight) {

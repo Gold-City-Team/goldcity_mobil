@@ -57,9 +57,9 @@ class PageSelectorWidget extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () => newIndex(selectedIndex),
                             child: Container(
-                              width: 35,
+                              width: 50,
                               margin: context.largeSpacer,
-                              height: 35,
+                              height: 50,
                               decoration: BoxDecoration(
                                   color:
                                       context.toColor(APPLICATION_COLOR.GOLD),
@@ -70,8 +70,8 @@ class PageSelectorWidget extends StatelessWidget {
                         )
                       : Container(
                           margin: context.largeSpacer,
-                          width: 35,
-                          height: 35,
+                          width: 50,
+                          height: 50,
                         ),
                   ListView.builder(
                       shrinkWrap: true,
@@ -101,6 +101,7 @@ class PageSelectorWidget extends StatelessWidget {
                                 height: 35,
                                 margin: context.midSpacerOnlyBottom,
                                 child: LabelText(
+                                  textLineHeight: 1,
                                   align: TextAlign.center,
                                   text: "• ${pages[index]}",
                                   textColor: selectedIndex == index
