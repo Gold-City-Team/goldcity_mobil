@@ -231,6 +231,7 @@ class HomeView extends StatelessWidget {
                         : ""
                   ],
                   selectedIndex: 0,
+                  contactEntity: value.contactEntity,
                   newIndex: (newIndex) => value.changeIndex(newIndex),
                 )
                     .animate(

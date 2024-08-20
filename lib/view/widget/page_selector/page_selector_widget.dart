@@ -114,12 +114,13 @@ class PageSelectorWidget extends StatelessWidget {
                         );
                       }),
                   Gap(context.largeSpacerSize),
+                  Spacer(),
                   contactEntity != null
                       ? Container(
                           height: 35,
                           padding: EdgeInsets.only(left: 40, right: 40),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               MouseRegion(
                                 cursor: SystemMouseCursors.click,
@@ -135,14 +136,12 @@ class PageSelectorWidget extends StatelessWidget {
                                         ? Image.network(
                                             contactEntity!.phoneNumberImage.url,
                                             color: context.toColor(
-                                                APPLICATION_COLOR
-                                                    .OPPOSITE_COLOR),
+                                                APPLICATION_COLOR.SUBTITLE),
                                           )
                                         : SvgPicture.network(
                                             fit: BoxFit.contain,
                                             color: context.toColor(
-                                                APPLICATION_COLOR
-                                                    .OPPOSITE_COLOR),
+                                                APPLICATION_COLOR.SUBTITLE),
                                             contactEntity!
                                                 .phoneNumberImage.url),
                                   ),
@@ -173,14 +172,12 @@ class PageSelectorWidget extends StatelessWidget {
                                         ? Image.network(
                                             contactEntity!.whatsappImage.url,
                                             color: context.toColor(
-                                                APPLICATION_COLOR
-                                                    .OPPOSITE_COLOR),
+                                                APPLICATION_COLOR.SUBTITLE),
                                           )
                                         : SvgPicture.network(
                                             fit: BoxFit.contain,
                                             color: context.toColor(
-                                                APPLICATION_COLOR
-                                                    .OPPOSITE_COLOR),
+                                                APPLICATION_COLOR.SUBTITLE),
                                             contactEntity!.whatsappImage.url),
                                   ),
                                 ),
@@ -199,15 +196,13 @@ class PageSelectorWidget extends StatelessWidget {
                                         ? Image.network(
                                             contactEntity!.emailImage.url,
                                             color: context.toColor(
-                                                APPLICATION_COLOR
-                                                    .OPPOSITE_COLOR),
+                                                APPLICATION_COLOR.SUBTITLE),
                                           )
                                         : SvgPicture.network(
                                             contactEntity!.emailImage.url,
                                             fit: BoxFit.contain,
                                             color: context.toColor(
-                                                APPLICATION_COLOR
-                                                    .OPPOSITE_COLOR),
+                                                APPLICATION_COLOR.SUBTITLE),
                                           ),
                                   ),
                                 ),
@@ -215,7 +210,8 @@ class PageSelectorWidget extends StatelessWidget {
                             ],
                           ),
                         )
-                      : const SizedBox.shrink()
+                      : const SizedBox.shrink(),
+                  Gap(context.largeSpacerSize),
                 ],
               ),
             ),

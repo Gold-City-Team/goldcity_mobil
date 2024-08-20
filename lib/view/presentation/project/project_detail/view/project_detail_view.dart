@@ -577,6 +577,7 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                               source: value.entity!.logo.url,
                             ),
                           ),
+                          Gap(context.smallSpacerSize),
                           WebViewAware(
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,

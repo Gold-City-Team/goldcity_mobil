@@ -31,11 +31,11 @@ class RowWidget extends StatelessWidget {
                   ? const Icon(Icons.arrow_drop_down)
                   : const Icon(Icons.arrow_drop_up),
               Gap(context.largeSpacerSize),
-              Expanded(
+              Flexible(
                   child: LabelText(
                       text:
                           " ${GeneralConstant.FIELD_NAME['Floor']}: ${home.first.floor}")),
-              const Spacer(),
+              Gap(context.largeSpacerSize),
               CircleAvatar(
                 maxRadius: 14,
                 backgroundColor:

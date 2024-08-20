@@ -155,7 +155,7 @@ class PlanTemplateView extends StatelessWidget {
               return SizedBox(
                 height: ((context.sWidth / 1.10) - 20) / 1.7777,
                 child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: value.template!.gallery.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: ((context, index) {
                     return MouseRegion(

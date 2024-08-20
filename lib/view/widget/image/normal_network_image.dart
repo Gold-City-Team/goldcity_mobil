@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class NormalNetworkImage extends StatelessWidget {
   final String source;
@@ -17,9 +17,8 @@ class NormalNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeInImage.memoryNetwork(
-      placeholder: kTransparentImage,
-      image: source,
+    return CachedNetworkImage(
+      imageUrl: source,
       fit: fit,
       alignment: alignment,
     );
