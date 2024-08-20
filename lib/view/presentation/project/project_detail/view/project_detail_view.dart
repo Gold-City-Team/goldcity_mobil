@@ -41,37 +41,19 @@ class ProjectDetailView extends StatefulWidget {
 }
 
 class _ProjectDetailViewState extends State<ProjectDetailView> {
-  final FocusNode _focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
-    _focusNode.dispose();
     super.dispose();
-  }
-
-  KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
-    if (modelGlobal != null && event.runtimeType == KeyUpEvent) {
-      if (event.physicalKey == PhysicalKeyboardKey.arrowLeft) {
-        modelGlobal!.templateIndex != 0
-            ? modelGlobal!.changeIndex(modelGlobal!.templateIndex - 1)
-            : null;
-      } else if (event.physicalKey == PhysicalKeyboardKey.arrowRight) {
-        modelGlobal!.templateIndex !=
-                modelGlobal!.entity!.detail.template.length - 1
-            ? modelGlobal!.changeIndex(modelGlobal!.templateIndex + 1)
-            : null;
-      }
-    }
-    return KeyEventResult.handled;
   }
 
   ProjectDetailViewModel? modelGlobal;
   @override
   Widget build(BuildContext context) {
-    debugPrint("push test project");
-
-    FocusScope.of(context).requestFocus(_focusNode);
-
     return BaseView<ProjectDetailViewModel>(
       viewModel: ProjectDetailViewModel(),
       onModelReady: (model) {
@@ -171,539 +153,529 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
           ),
         );
       }
-      return Focus(
-        focusNode: _focusNode,
-        onKeyEvent: _handleKeyEvent,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Observer(builder: (context) {
-              if (value.entity == null ||
-                  value.entity!.detail.template.isEmpty) {
-                return const SizedBox.shrink();
-              }
-              return switch (
-                  value.entity!.detail.template[value.templateIndex].type) {
-                TEMPLATE.PROJECT_TEMPLATE_ONE =>
-                  ProjectAnimatedWellcomeTemplateView(
-                    key: Key(
-                        "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_TWO => value.entity!.detail
-                            .template[value.templateIndex].metaData.viewType ==
-                        "ONE"
-                    ? Padding(
-                        padding: isTablet()
-                            ? EdgeInsets.zero
-                            : EdgeInsets.only(top: 75),
-                        child: ProjectTwoMainImageTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                      )
-                    : Padding(
-                        padding: isTablet()
-                            ? EdgeInsets.zero
-                            : EdgeInsets.only(top: 75),
-                        child: ProjectGalleryAndInfoTemplate(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
+      return Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Observer(builder: (context) {
+            if (value.entity == null || value.entity!.detail.template.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return switch (
+                value.entity!.detail.template[value.templateIndex].type) {
+              TEMPLATE.PROJECT_TEMPLATE_ONE =>
+                ProjectAnimatedWellcomeTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_TWO => value.entity!.detail
+                          .template[value.templateIndex].metaData.viewType ==
+                      "ONE"
+                  ? Padding(
+                      padding: isTablet()
+                          ? EdgeInsets.zero
+                          : EdgeInsets.only(top: 75),
+                      child: ProjectTwoMainImageTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
                       ),
-                TEMPLATE.PROJECT_TEMPLATE_THREE =>
-                  ProjectPossibiltyTemplateView(
-                    key: Key(
-                        "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectDetailId: value.entity!.detail.id,
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_FOUR => Padding(
-                    padding: EdgeInsets.only(top: 75),
-                    child: ProjectFeatureAndGalleryTemplateView(
-                      key: Key(
-                          "${value.entity!.detail.template[value.templateIndex].id}"),
-                      projectSettingsId:
-                          value.entity!.detail.template[value.templateIndex].id,
+                    )
+                  : Padding(
+                      padding: isTablet()
+                          ? EdgeInsets.zero
+                          : EdgeInsets.only(top: 75),
+                      child: ProjectGalleryAndInfoTemplate(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
+                      ),
                     ),
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_FIVE => Padding(
-                    padding: EdgeInsets.only(top: 75),
-                    child: ShareableMaterialTemplateView(
-                      key: Key(
-                          "${value.entity!.detail.template[value.templateIndex].id}"),
-                      projectSettingsId:
-                          value.entity!.detail.template[value.templateIndex].id,
-                    ),
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_SIX => Padding(
-                    padding: EdgeInsets.only(top: 75),
-                    child: PlanTemplateView(
-                      settingsId:
-                          value.entity!.detail.template[value.templateIndex].id,
-                      key: Key(
-                          "${value.entity!.detail.template[value.templateIndex].id}"),
-                    ),
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
+              TEMPLATE.PROJECT_TEMPLATE_THREE => ProjectPossibiltyTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectDetailId: value.entity!.detail.id,
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_FOUR => Padding(
+                  padding: EdgeInsets.only(top: 75),
+                  child: ProjectFeatureAndGalleryTemplateView(
                     key: Key(
                         "${value.entity!.detail.template[value.templateIndex].id}"),
                     projectSettingsId:
                         value.entity!.detail.template[value.templateIndex].id,
                   ),
-                TEMPLATE.PROJECT_TEMPLATE_EIGHT => ProjectTextImageTemplateView(
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_FIVE => Padding(
+                  padding: EdgeInsets.only(top: 75),
+                  child: ShareableMaterialTemplateView(
                     key: Key(
                         "${value.entity!.detail.template[value.templateIndex].id}"),
-                    detailId: value.entity!.detail.id,
+                    projectSettingsId:
+                        value.entity!.detail.template[value.templateIndex].id,
+                  ),
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_SIX => Padding(
+                  padding: EdgeInsets.only(top: 75),
+                  child: PlanTemplateView(
                     settingsId:
                         value.entity!.detail.template[value.templateIndex].id,
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_NINE => ProjectCampanyTemplateView(
                     key: Key(
                         "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
                   ),
-                _ => ProjectFeatureTemplateView(
-                    key: Key(
-                        "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
-                  ),
-              };
-            }),
-            Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                height: 50,
-                margin: context.midSpacerOnlyTop,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Observer(builder: (context) {
-                      if (value.isShared && value.shareData != null) {
-                        return Container(
-                          height: 50,
-                          alignment: Alignment.centerLeft,
-                          padding: context.largeSpacerOnlyHorizontal,
-                          color: context.toColor(APPLICATION_COLOR.LIGHT),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                                maxWidth: isTablet()
-                                    ? context.sWidth / 2
-                                    : context.sWidth - 140),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                LabelText(
-                                  text: value.shareData!.creatorUser.name,
-                                  textColor: APPLICATION_COLOR.DARK,
-                                  maxLines: 1,
-                                  textLineHeight: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: FONT_SIZE.TITLE_LARGE,
-                                ),
-                                value.shareData!.creatorUser.company.name != ""
-                                    ? LabelText(
-                                        text: value.shareData!.creatorUser
-                                            .company.name,
-                                        textColor: APPLICATION_COLOR.DARK,
-                                        fontSize: FONT_SIZE.LABEL_SMALL,
-                                        textLineHeight: 1.2,
-                                      )
-                                    : const SizedBox.shrink(),
-                              ],
-                            ),
-                          ),
-                        );
-                      } else if (!value.isShared &&
-                          !locator<AuthenticationSource>().isUserStillValid() &&
-                          value.contactEntity != null) {
-                        return Container(
-                          height: 50,
-                          alignment: Alignment.centerLeft,
-                          padding: context.largeSpacerOnlyHorizontal,
-                          color: context.toColor(APPLICATION_COLOR.LIGHT),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                                maxWidth: isTablet()
-                                    ? context.sWidth / 2
-                                    : context.sWidth - 140),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                LabelText(
-                                  text: value.contactEntity!.fullName,
-                                  textColor: APPLICATION_COLOR.DARK,
-                                  maxLines: 1,
-                                  textLineHeight: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: FONT_SIZE.TITLE_LARGE,
-                                ),
-                                LabelText(
-                                  text: value.contactEntity!.companyName,
-                                  textColor: APPLICATION_COLOR.DARK,
-                                  fontSize: FONT_SIZE.LABEL_SMALL,
-                                  textLineHeight: 1.2,
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                      return const SizedBox();
-                    }),
-                    Observer(builder: (context) {
-                      if (value.isShared) {
-                        return SizedBox(
-                          height: 50,
-                          child: Row(
-                            children: [
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "mailto:${value.shareData!.creatorUser.email}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.mail,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "tel:${value.shareData!.creatorUser.tel}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.call,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else if (!locator<AuthenticationSource>()
-                              .isUserStillValid() &&
-                          value.contactEntity != null) {
-                        return SizedBox(
-                          height: 50,
-                          child: Row(
-                            children: [
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "mailto:${value.contactEntity!.email}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.mail,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "tel:${value.contactEntity!.phoneNumber}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.call,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                      return locator<AuthenticationSource>().isUserStillValid()
-                          ? Padding(
-                              padding: EdgeInsets.only(right: 15),
-                              child: WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => value.sharePageDialog(context
-                                        .findRenderObject() as RenderBox?),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                      ),
-                                      child: const Icon(Icons.link),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : const SizedBox.shrink();
-                    }),
-                  ],
                 ),
-              ),
-            ),
-            Observer(builder: (context) {
-              if (value.entity == null ||
-                  value.entity!.detail.template.isEmpty) {
-                return const SizedBox.shrink();
-              }
-              return value.entity!.detail.template[value.templateIndex].type ==
-                          TEMPLATE.PROJECT_TEMPLATE_SEVEN ||
-                      value.entity!.detail.template[value.templateIndex].type ==
-                          TEMPLATE.PROJECT_TEMPLATE_THREE
-                  ? const SizedBox.shrink()
-                  : Positioned(
-                      bottom: 0,
-                      child: SizedBox(
-                        width: context.sWidth,
-                        height: 150,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                                colors: [
-                                  context.toColor(
-                                      APPLICATION_COLOR.BACKGROUND_COLOR),
-                                  context
-                                      .toColor(
-                                          APPLICATION_COLOR.BACKGROUND_COLOR)
-                                      .withAlpha(200),
-                                  context
-                                      .toColor(
-                                          APPLICATION_COLOR.BACKGROUND_COLOR)
-                                      .withAlpha(0),
-                                ],
+              TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_EIGHT => ProjectTextImageTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  detailId: value.entity!.detail.id,
+                  settingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_NINE => ProjectCampanyTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              _ => ProjectFeatureTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+            };
+          }),
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              height: 50,
+              margin: context.midSpacerOnlyTop,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Observer(builder: (context) {
+                    if (value.isShared && value.shareData != null) {
+                      return Container(
+                        height: 50,
+                        alignment: Alignment.centerLeft,
+                        padding: context.largeSpacerOnlyHorizontal,
+                        color: context.toColor(APPLICATION_COLOR.LIGHT),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                              maxWidth: isTablet()
+                                  ? context.sWidth / 2
+                                  : context.sWidth - 140),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LabelText(
+                                text: value.shareData!.creatorUser.name,
+                                textColor: APPLICATION_COLOR.DARK,
+                                maxLines: 1,
+                                textLineHeight: 1,
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: FONT_SIZE.TITLE_LARGE,
                               ),
-                            ),
+                              value.shareData!.creatorUser.company.name != ""
+                                  ? LabelText(
+                                      text: value
+                                          .shareData!.creatorUser.company.name,
+                                      textColor: APPLICATION_COLOR.DARK,
+                                      fontSize: FONT_SIZE.LABEL_SMALL,
+                                      textLineHeight: 1.2,
+                                    )
+                                  : const SizedBox.shrink(),
+                            ],
                           ),
                         ),
-                      ),
-                    );
-            }),
-            SafeArea(
-              child: Container(
-                padding: context.largeSpacerOnlyHorizontal,
-                margin: context.smallSpacerOnlyBottom,
-                child: Observer(
-                  builder: (context) {
-                    if (value.entity == null ||
-                        value.entity!.detail.template.isEmpty) {
-                      return const SizedBox.shrink();
+                      );
+                    } else if (!value.isShared &&
+                        !locator<AuthenticationSource>().isUserStillValid() &&
+                        value.contactEntity != null) {
+                      return Container(
+                        height: 50,
+                        alignment: Alignment.centerLeft,
+                        padding: context.largeSpacerOnlyHorizontal,
+                        color: context.toColor(APPLICATION_COLOR.LIGHT),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                              maxWidth: isTablet()
+                                  ? context.sWidth / 2
+                                  : context.sWidth - 140),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LabelText(
+                                text: value.contactEntity!.fullName,
+                                textColor: APPLICATION_COLOR.DARK,
+                                maxLines: 1,
+                                textLineHeight: 1,
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: FONT_SIZE.TITLE_LARGE,
+                              ),
+                              LabelText(
+                                text: value.contactEntity!.companyName,
+                                textColor: APPLICATION_COLOR.DARK,
+                                fontSize: FONT_SIZE.LABEL_SMALL,
+                                textLineHeight: 1.2,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
                     }
-                    return Padding(
-                      padding: value.entity!.detail
-                                  .template[value.templateIndex].type ==
-                              TEMPLATE.PROJECT_TEMPLATE_SEVEN
-                          ? context.xLargeSpacerOnlyBottom
-                          : EdgeInsets.zero,
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            height: 50,
-                            child: NormalNetworkImage(
-                              fit: BoxFit.contain,
-                              source: value.entity!.logo.url,
-                            ),
-                          ),
-                          Gap(context.smallSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => context.pop(),
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.GOLD),
+                    return const SizedBox();
+                  }),
+                  Observer(builder: (context) {
+                    if (value.isShared) {
+                      return SizedBox(
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "mailto:${value.shareData!.creatorUser.email}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.mail,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.home),
                                 ),
                               ),
                             ),
-                          ),
-                          Gap(context.midSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => value.togglePageSelector(),
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.GOLD),
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "tel:${value.shareData!.creatorUser.tel}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.call,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.menu),
                                 ),
                               ),
                             ),
-                          ),
-                          Gap(context.midSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => value.templateIndex != 0
-                                    ? value.changeIndex(value.templateIndex - 1)
-                                    : null,
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: context
-                                        .toColor(APPLICATION_COLOR.GOLD)
-                                        .withAlpha(value.templateIndex != 0
-                                            ? 255
-                                            : 120),
+                          ],
+                        ),
+                      );
+                    } else if (!locator<AuthenticationSource>()
+                            .isUserStillValid() &&
+                        value.contactEntity != null) {
+                      return SizedBox(
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "mailto:${value.contactEntity!.email}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.mail,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.keyboard_arrow_left),
                                 ),
                               ),
                             ),
-                          ),
-                          Gap(context.midSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => value.templateIndex !=
-                                        value.entity!.detail.template.length - 1
-                                    ? value.changeIndex(value.templateIndex + 1)
-                                    : null,
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: context
-                                        .toColor(APPLICATION_COLOR.GOLD)
-                                        .withAlpha(value.templateIndex !=
-                                                value.entity!.detail.template
-                                                        .length -
-                                                    1
-                                            ? 255
-                                            : 120),
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "tel:${value.contactEntity!.phoneNumber}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.call,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.keyboard_arrow_right),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    return locator<AuthenticationSource>().isUserStillValid()
+                        ? Padding(
+                            padding: EdgeInsets.only(right: 15),
+                            child: WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => value.sharePageDialog(
+                                      context.findRenderObject() as RenderBox?),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                    ),
+                                    child: const Icon(Icons.link),
+                                  ),
                                 ),
                               ),
                             ),
                           )
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        : const SizedBox.shrink();
+                  }),
+                ],
               ),
             ),
-            Observer(builder: (context) {
-              if (value.entity == null) {
-                return const SizedBox.shrink();
-              }
-              return !value.isPageSelectorLock
-                  ? Align(
-                      alignment: Alignment.centerRight,
-                      child: PageSelectorWidget(
-                        pages: value.entity!.detail.template
-                            .map((e) => e.title)
-                            .toList(),
-                        selectedIndex: value.templateIndex,
-                        newIndex: (newIndex) => value.changeIndex(newIndex),
-                      )
-                          .animate(
-                              onComplete: (controller) =>
-                                  value.isPageSelectorVisible == false
-                                      ? value.isPageSelectorLock = true
-                                      : null,
-                              key: Key(
-                                  "${DateTime.now().millisecondsSinceEpoch}"))
-                          .slideX(
-                            begin: value.isPageSelectorVisible ? 1 : 0,
-                            end: value.isPageSelectorVisible ? 0 : 1,
-                            curve: Curves.easeOutCubic,
-                            duration: Duration(milliseconds: 600),
+          ),
+          Observer(builder: (context) {
+            if (value.entity == null || value.entity!.detail.template.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return value.entity!.detail.template[value.templateIndex].type ==
+                        TEMPLATE.PROJECT_TEMPLATE_SEVEN ||
+                    value.entity!.detail.template[value.templateIndex].type ==
+                        TEMPLATE.PROJECT_TEMPLATE_THREE
+                ? const SizedBox.shrink()
+                : Positioned(
+                    bottom: 0,
+                    child: SizedBox(
+                      width: context.sWidth,
+                      height: 150,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: [
+                                context.toColor(
+                                    APPLICATION_COLOR.BACKGROUND_COLOR),
+                                context
+                                    .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                                    .withAlpha(200),
+                                context
+                                    .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                                    .withAlpha(0),
+                              ],
+                            ),
                           ),
+                        ),
+                      ),
+                    ),
+                  );
+          }),
+          SafeArea(
+            child: Container(
+              padding: context.largeSpacerOnlyHorizontal,
+              margin: context.smallSpacerOnlyBottom,
+              child: Observer(
+                builder: (context) {
+                  if (value.entity == null ||
+                      value.entity!.detail.template.isEmpty) {
+                    return const SizedBox.shrink();
+                  }
+                  return Padding(
+                    padding: value.entity!.detail.template[value.templateIndex]
+                                .type ==
+                            TEMPLATE.PROJECT_TEMPLATE_SEVEN
+                        ? context.xLargeSpacerOnlyBottom
+                        : EdgeInsets.zero,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        SizedBox(
+                          width: 100,
+                          height: 50,
+                          child: NormalNetworkImage(
+                            fit: BoxFit.contain,
+                            source: value.entity!.logo.url,
+                          ),
+                        ),
+                        Gap(context.smallSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => context.pop(),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.GOLD),
+                                ),
+                                child: const Icon(Icons.home),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.togglePageSelector(),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.GOLD),
+                                ),
+                                child: const Icon(Icons.menu),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.templateIndex != 0
+                                  ? value.changeIndex(value.templateIndex - 1)
+                                  : null,
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.GOLD)
+                                      .withAlpha(
+                                          value.templateIndex != 0 ? 255 : 120),
+                                ),
+                                child: const Icon(Icons.keyboard_arrow_left),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.templateIndex !=
+                                      value.entity!.detail.template.length - 1
+                                  ? value.changeIndex(value.templateIndex + 1)
+                                  : null,
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.GOLD)
+                                      .withAlpha(value.templateIndex !=
+                                              value.entity!.detail.template
+                                                      .length -
+                                                  1
+                                          ? 255
+                                          : 120),
+                                ),
+                                child: const Icon(Icons.keyboard_arrow_right),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Observer(builder: (context) {
+            if (value.entity == null) {
+              return const SizedBox.shrink();
+            }
+            return !value.isPageSelectorLock
+                ? Align(
+                    alignment: Alignment.centerRight,
+                    child: PageSelectorWidget(
+                      pages: value.entity!.detail.template
+                          .map((e) => e.title)
+                          .toList(),
+                      selectedIndex: value.templateIndex,
+                      newIndex: (newIndex) => value.changeIndex(newIndex),
                     )
-                  : const SizedBox.shrink();
-            })
-          ],
-        ),
+                        .animate(
+                            onComplete: (controller) =>
+                                value.isPageSelectorVisible == false
+                                    ? value.isPageSelectorLock = true
+                                    : null,
+                            key:
+                                Key("${DateTime.now().millisecondsSinceEpoch}"))
+                        .slideX(
+                          begin: value.isPageSelectorVisible ? 1 : 0,
+                          end: value.isPageSelectorVisible ? 0 : 1,
+                          curve: Curves.easeOutCubic,
+                          duration: Duration(milliseconds: 600),
+                        ),
+                  )
+                : const SizedBox.shrink();
+          })
+        ],
       );
     });
   }
@@ -839,539 +811,529 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
           ),
         );
       }
-      return Focus(
-        focusNode: _focusNode,
-        onKeyEvent: _handleKeyEvent,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Observer(builder: (context) {
-              if (value.entity == null ||
-                  value.entity!.detail.template.isEmpty) {
-                return const SizedBox.shrink();
-              }
-              return switch (
-                  value.entity!.detail.template[value.templateIndex].type) {
-                TEMPLATE.PROJECT_TEMPLATE_ONE =>
-                  ProjectAnimatedWellcomeTemplateView(
-                    key: Key(
-                        "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_TWO => value.entity!.detail
-                            .template[value.templateIndex].metaData.viewType ==
-                        "ONE"
-                    ? Padding(
-                        padding: isTablet()
-                            ? EdgeInsets.zero
-                            : EdgeInsets.only(top: 75),
-                        child: ProjectTwoMainImageTemplateView(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
-                      )
-                    : Padding(
-                        padding: isTablet()
-                            ? EdgeInsets.zero
-                            : EdgeInsets.only(top: 75),
-                        child: ProjectGalleryAndInfoTemplate(
-                          key: Key(
-                              "${value.entity!.detail.template[value.templateIndex].id}"),
-                          projectSettingsId: value
-                              .entity!.detail.template[value.templateIndex].id,
-                        ),
+      return Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Observer(builder: (context) {
+            if (value.entity == null || value.entity!.detail.template.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return switch (
+                value.entity!.detail.template[value.templateIndex].type) {
+              TEMPLATE.PROJECT_TEMPLATE_ONE =>
+                ProjectAnimatedWellcomeTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_TWO => value.entity!.detail
+                          .template[value.templateIndex].metaData.viewType ==
+                      "ONE"
+                  ? Padding(
+                      padding: isTablet()
+                          ? EdgeInsets.zero
+                          : EdgeInsets.only(top: 75),
+                      child: ProjectTwoMainImageTemplateView(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
                       ),
-                TEMPLATE.PROJECT_TEMPLATE_THREE =>
-                  ProjectPossibiltyTemplateView(
-                    key: Key(
-                        "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectDetailId: value.entity!.detail.id,
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_FOUR => Padding(
-                    padding: EdgeInsets.only(top: 75),
-                    child: ProjectFeatureAndGalleryTemplateView(
-                      key: Key(
-                          "${value.entity!.detail.template[value.templateIndex].id}"),
-                      projectSettingsId:
-                          value.entity!.detail.template[value.templateIndex].id,
+                    )
+                  : Padding(
+                      padding: isTablet()
+                          ? EdgeInsets.zero
+                          : EdgeInsets.only(top: 75),
+                      child: ProjectGalleryAndInfoTemplate(
+                        key: Key(
+                            "${value.entity!.detail.template[value.templateIndex].id}"),
+                        projectSettingsId: value
+                            .entity!.detail.template[value.templateIndex].id,
+                      ),
                     ),
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_FIVE => Padding(
-                    padding: EdgeInsets.only(top: 75),
-                    child: ShareableMaterialTemplateView(
-                      key: Key(
-                          "${value.entity!.detail.template[value.templateIndex].id}"),
-                      projectSettingsId:
-                          value.entity!.detail.template[value.templateIndex].id,
-                    ),
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_SIX => Padding(
-                    padding: EdgeInsets.only(top: 75),
-                    child: PlanTemplateView(
-                      settingsId:
-                          value.entity!.detail.template[value.templateIndex].id,
-                      key: Key(
-                          "${value.entity!.detail.template[value.templateIndex].id}"),
-                    ),
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
+              TEMPLATE.PROJECT_TEMPLATE_THREE => ProjectPossibiltyTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectDetailId: value.entity!.detail.id,
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_FOUR => Padding(
+                  padding: EdgeInsets.only(top: 75),
+                  child: ProjectFeatureAndGalleryTemplateView(
                     key: Key(
                         "${value.entity!.detail.template[value.templateIndex].id}"),
                     projectSettingsId:
                         value.entity!.detail.template[value.templateIndex].id,
                   ),
-                TEMPLATE.PROJECT_TEMPLATE_EIGHT => ProjectTextImageTemplateView(
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_FIVE => Padding(
+                  padding: EdgeInsets.only(top: 75),
+                  child: ShareableMaterialTemplateView(
                     key: Key(
                         "${value.entity!.detail.template[value.templateIndex].id}"),
-                    detailId: value.entity!.detail.id,
+                    projectSettingsId:
+                        value.entity!.detail.template[value.templateIndex].id,
+                  ),
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_SIX => Padding(
+                  padding: EdgeInsets.only(top: 75),
+                  child: PlanTemplateView(
                     settingsId:
                         value.entity!.detail.template[value.templateIndex].id,
-                  ),
-                TEMPLATE.PROJECT_TEMPLATE_NINE => ProjectCampanyTemplateView(
                     key: Key(
                         "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
                   ),
-                _ => ProjectFeatureTemplateView(
-                    key: Key(
-                        "${value.entity!.detail.template[value.templateIndex].id}"),
-                    projectSettingsId:
-                        value.entity!.detail.template[value.templateIndex].id,
-                  ),
-              };
-            }),
-            Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                height: 50,
-                margin: context.midSpacerOnlyTop,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Observer(builder: (context) {
-                      if (value.isShared && value.shareData != null) {
-                        return Container(
-                          height: 50,
-                          alignment: Alignment.centerLeft,
-                          padding: context.largeSpacerOnlyHorizontal,
-                          color: context.toColor(APPLICATION_COLOR.LIGHT),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                                maxWidth: isTablet()
-                                    ? context.sWidth / 2
-                                    : context.sWidth - 140),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                LabelText(
-                                  text: value.shareData!.creatorUser.name,
-                                  textColor: APPLICATION_COLOR.DARK,
-                                  maxLines: 1,
-                                  textLineHeight: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: FONT_SIZE.TITLE_LARGE,
-                                ),
-                                value.shareData!.creatorUser.company.name != ""
-                                    ? LabelText(
-                                        text: value.shareData!.creatorUser
-                                            .company.name,
-                                        textColor: APPLICATION_COLOR.DARK,
-                                        fontSize: FONT_SIZE.LABEL_SMALL,
-                                        textLineHeight: 1.2,
-                                      )
-                                    : const SizedBox.shrink(),
-                              ],
-                            ),
-                          ),
-                        );
-                      } else if (!value.isShared &&
-                          !locator<AuthenticationSource>().isUserStillValid() &&
-                          value.contactEntity != null) {
-                        return Container(
-                          height: 50,
-                          alignment: Alignment.centerLeft,
-                          padding: context.largeSpacerOnlyHorizontal,
-                          color: context.toColor(APPLICATION_COLOR.LIGHT),
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(
-                                maxWidth: isTablet()
-                                    ? context.sWidth / 2
-                                    : context.sWidth - 140),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                LabelText(
-                                  text: value.contactEntity!.fullName,
-                                  textColor: APPLICATION_COLOR.DARK,
-                                  maxLines: 1,
-                                  textLineHeight: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: FONT_SIZE.TITLE_LARGE,
-                                ),
-                                LabelText(
-                                  text: value.contactEntity!.companyName,
-                                  textColor: APPLICATION_COLOR.DARK,
-                                  fontSize: FONT_SIZE.LABEL_SMALL,
-                                  textLineHeight: 1.2,
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                      return const SizedBox();
-                    }),
-                    Observer(builder: (context) {
-                      if (value.isShared) {
-                        return SizedBox(
-                          height: 50,
-                          child: Row(
-                            children: [
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "mailto:${value.shareData!.creatorUser.email}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.mail,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "tel:${value.shareData!.creatorUser.tel}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.call,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else if (!locator<AuthenticationSource>()
-                              .isUserStillValid() &&
-                          value.contactEntity != null) {
-                        return SizedBox(
-                          height: 50,
-                          child: Row(
-                            children: [
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "mailto:${value.contactEntity!.email}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.mail,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Gap(context.smallSpacerSize),
-                              WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      launchUrl(Uri.parse(
-                                          "tel:${value.contactEntity!.phoneNumber}"))
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.LIGHT),
-                                      ),
-                                      child: Icon(
-                                        Icons.call,
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.DARK),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                      return locator<AuthenticationSource>().isUserStillValid()
-                          ? Padding(
-                              padding: EdgeInsets.only(right: 15),
-                              child: WebViewAware(
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () => value.sharePageDialog(context
-                                        .findRenderObject() as RenderBox?),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .toColor(APPLICATION_COLOR.GOLD),
-                                      ),
-                                      child: const Icon(Icons.ios_share),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : const SizedBox.shrink();
-                    }),
-                  ],
                 ),
-              ),
-            ),
-            Observer(builder: (context) {
-              if (value.entity == null ||
-                  value.entity!.detail.template.isEmpty) {
-                return const SizedBox.shrink();
-              }
-              return value.entity!.detail.template[value.templateIndex].type ==
-                          TEMPLATE.PROJECT_TEMPLATE_SEVEN ||
-                      value.entity!.detail.template[value.templateIndex].type ==
-                          TEMPLATE.PROJECT_TEMPLATE_THREE
-                  ? const SizedBox.shrink()
-                  : Positioned(
-                      bottom: 0,
-                      child: SizedBox(
-                        width: context.sWidth,
-                        height: 150,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                                colors: [
-                                  context.toColor(
-                                      APPLICATION_COLOR.BACKGROUND_COLOR),
-                                  context
-                                      .toColor(
-                                          APPLICATION_COLOR.BACKGROUND_COLOR)
-                                      .withAlpha(200),
-                                  context
-                                      .toColor(
-                                          APPLICATION_COLOR.BACKGROUND_COLOR)
-                                      .withAlpha(0),
-                                ],
+              TEMPLATE.PROJECT_TEMPLATE_SEVEN => VirtualTourTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_EIGHT => ProjectTextImageTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  detailId: value.entity!.detail.id,
+                  settingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              TEMPLATE.PROJECT_TEMPLATE_NINE => ProjectCampanyTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+              _ => ProjectFeatureTemplateView(
+                  key: Key(
+                      "${value.entity!.detail.template[value.templateIndex].id}"),
+                  projectSettingsId:
+                      value.entity!.detail.template[value.templateIndex].id,
+                ),
+            };
+          }),
+          Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              height: 50,
+              margin: context.midSpacerOnlyTop,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Observer(builder: (context) {
+                    if (value.isShared && value.shareData != null) {
+                      return Container(
+                        height: 50,
+                        alignment: Alignment.centerLeft,
+                        padding: context.largeSpacerOnlyHorizontal,
+                        color: context.toColor(APPLICATION_COLOR.LIGHT),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                              maxWidth: isTablet()
+                                  ? context.sWidth / 2
+                                  : context.sWidth - 140),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LabelText(
+                                text: value.shareData!.creatorUser.name,
+                                textColor: APPLICATION_COLOR.DARK,
+                                maxLines: 1,
+                                textLineHeight: 1,
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: FONT_SIZE.TITLE_LARGE,
                               ),
-                            ),
+                              value.shareData!.creatorUser.company.name != ""
+                                  ? LabelText(
+                                      text: value
+                                          .shareData!.creatorUser.company.name,
+                                      textColor: APPLICATION_COLOR.DARK,
+                                      fontSize: FONT_SIZE.LABEL_SMALL,
+                                      textLineHeight: 1.2,
+                                    )
+                                  : const SizedBox.shrink(),
+                            ],
                           ),
                         ),
-                      ),
-                    );
-            }),
-            SafeArea(
-              child: Container(
-                padding: context.largeSpacerOnlyHorizontal,
-                margin: context.smallSpacerOnlyBottom,
-                child: Observer(
-                  builder: (context) {
-                    if (value.entity == null ||
-                        value.entity!.detail.template.isEmpty) {
-                      return const SizedBox.shrink();
+                      );
+                    } else if (!value.isShared &&
+                        !locator<AuthenticationSource>().isUserStillValid() &&
+                        value.contactEntity != null) {
+                      return Container(
+                        height: 50,
+                        alignment: Alignment.centerLeft,
+                        padding: context.largeSpacerOnlyHorizontal,
+                        color: context.toColor(APPLICATION_COLOR.LIGHT),
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                              maxWidth: isTablet()
+                                  ? context.sWidth / 2
+                                  : context.sWidth - 140),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LabelText(
+                                text: value.contactEntity!.fullName,
+                                textColor: APPLICATION_COLOR.DARK,
+                                maxLines: 1,
+                                textLineHeight: 1,
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: FONT_SIZE.TITLE_LARGE,
+                              ),
+                              LabelText(
+                                text: value.contactEntity!.companyName,
+                                textColor: APPLICATION_COLOR.DARK,
+                                fontSize: FONT_SIZE.LABEL_SMALL,
+                                textLineHeight: 1.2,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
                     }
-                    return Padding(
-                      padding: value.entity!.detail
-                                  .template[value.templateIndex].type ==
-                              TEMPLATE.PROJECT_TEMPLATE_SEVEN
-                          ? context.xLargeSpacerOnlyBottom
-                          : EdgeInsets.zero,
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            height: 50,
-                            child: NormalNetworkImage(
-                              fit: BoxFit.contain,
-                              source: value.entity!.logo.url,
-                            ),
-                          ),
-                          Gap(context.midSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => context.pop(),
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.GOLD),
+                    return const SizedBox();
+                  }),
+                  Observer(builder: (context) {
+                    if (value.isShared) {
+                      return SizedBox(
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "mailto:${value.shareData!.creatorUser.email}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.mail,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.home),
                                 ),
                               ),
                             ),
-                          ),
-                          Gap(context.midSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => value.togglePageSelector(),
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color:
-                                        context.toColor(APPLICATION_COLOR.GOLD),
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "tel:${value.shareData!.creatorUser.tel}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.call,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.menu),
                                 ),
                               ),
                             ),
-                          ),
-                          Gap(context.midSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => value.templateIndex != 0
-                                    ? value.changeIndex(value.templateIndex - 1)
-                                    : null,
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: context
-                                        .toColor(APPLICATION_COLOR.GOLD)
-                                        .withAlpha(value.templateIndex != 0
-                                            ? 255
-                                            : 120),
+                          ],
+                        ),
+                      );
+                    } else if (!locator<AuthenticationSource>()
+                            .isUserStillValid() &&
+                        value.contactEntity != null) {
+                      return SizedBox(
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "mailto:${value.contactEntity!.email}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.mail,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.keyboard_arrow_left),
                                 ),
                               ),
                             ),
-                          ),
-                          Gap(context.midSpacerSize),
-                          WebViewAware(
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () => value.templateIndex !=
-                                        value.entity!.detail.template.length - 1
-                                    ? value.changeIndex(value.templateIndex + 1)
-                                    : null,
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: context
-                                        .toColor(APPLICATION_COLOR.GOLD)
-                                        .withAlpha(value.templateIndex !=
-                                                value.entity!.detail.template
-                                                        .length -
-                                                    1
-                                            ? 255
-                                            : 120),
+                            Gap(context.smallSpacerSize),
+                            WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(Uri.parse(
+                                        "tel:${value.contactEntity!.phoneNumber}"))
+                                  },
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.LIGHT),
+                                    ),
+                                    child: Icon(
+                                      Icons.call,
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.DARK),
+                                    ),
                                   ),
-                                  child: const Icon(Icons.keyboard_arrow_right),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    return locator<AuthenticationSource>().isUserStillValid()
+                        ? Padding(
+                            padding: EdgeInsets.only(right: 15),
+                            child: WebViewAware(
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => value.sharePageDialog(
+                                      context.findRenderObject() as RenderBox?),
+                                  child: Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: context
+                                          .toColor(APPLICATION_COLOR.GOLD),
+                                    ),
+                                    child: const Icon(Icons.ios_share),
+                                  ),
                                 ),
                               ),
                             ),
                           )
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        : const SizedBox.shrink();
+                  }),
+                ],
               ),
             ),
-            Observer(builder: (context) {
-              if (value.entity == null) {
-                return const SizedBox.shrink();
-              }
-              return !value.isPageSelectorLock
-                  ? Align(
-                      alignment: Alignment.centerRight,
-                      child: PageSelectorWidget(
-                        pages: value.entity!.detail.template
-                            .map((e) => e.title)
-                            .toList(),
-                        selectedIndex: value.templateIndex,
-                        newIndex: (newIndex) => value.changeIndex(newIndex),
-                      )
-                          .animate(
-                              onComplete: (controller) =>
-                                  value.isPageSelectorVisible == false
-                                      ? value.isPageSelectorLock = true
-                                      : null,
-                              key: Key(
-                                  "${DateTime.now().millisecondsSinceEpoch}"))
-                          .slideX(
-                            begin: value.isPageSelectorVisible ? 1 : 0,
-                            end: value.isPageSelectorVisible ? 0 : 1,
-                            curve: Curves.easeOutCubic,
-                            duration: Duration(milliseconds: 600),
+          ),
+          Observer(builder: (context) {
+            if (value.entity == null || value.entity!.detail.template.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return value.entity!.detail.template[value.templateIndex].type ==
+                        TEMPLATE.PROJECT_TEMPLATE_SEVEN ||
+                    value.entity!.detail.template[value.templateIndex].type ==
+                        TEMPLATE.PROJECT_TEMPLATE_THREE
+                ? const SizedBox.shrink()
+                : Positioned(
+                    bottom: 0,
+                    child: SizedBox(
+                      width: context.sWidth,
+                      height: 150,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: [
+                                context.toColor(
+                                    APPLICATION_COLOR.BACKGROUND_COLOR),
+                                context
+                                    .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                                    .withAlpha(200),
+                                context
+                                    .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
+                                    .withAlpha(0),
+                              ],
+                            ),
                           ),
+                        ),
+                      ),
+                    ),
+                  );
+          }),
+          SafeArea(
+            child: Container(
+              padding: context.largeSpacerOnlyHorizontal,
+              margin: context.smallSpacerOnlyBottom,
+              child: Observer(
+                builder: (context) {
+                  if (value.entity == null ||
+                      value.entity!.detail.template.isEmpty) {
+                    return const SizedBox.shrink();
+                  }
+                  return Padding(
+                    padding: value.entity!.detail.template[value.templateIndex]
+                                .type ==
+                            TEMPLATE.PROJECT_TEMPLATE_SEVEN
+                        ? context.xLargeSpacerOnlyBottom
+                        : EdgeInsets.zero,
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        SizedBox(
+                          width: 100,
+                          height: 50,
+                          child: NormalNetworkImage(
+                            fit: BoxFit.contain,
+                            source: value.entity!.logo.url,
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => context.pop(),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.GOLD),
+                                ),
+                                child: const Icon(Icons.home),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.togglePageSelector(),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color:
+                                      context.toColor(APPLICATION_COLOR.GOLD),
+                                ),
+                                child: const Icon(Icons.menu),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.templateIndex != 0
+                                  ? value.changeIndex(value.templateIndex - 1)
+                                  : null,
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.GOLD)
+                                      .withAlpha(
+                                          value.templateIndex != 0 ? 255 : 120),
+                                ),
+                                child: const Icon(Icons.keyboard_arrow_left),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Gap(context.midSpacerSize),
+                        WebViewAware(
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.templateIndex !=
+                                      value.entity!.detail.template.length - 1
+                                  ? value.changeIndex(value.templateIndex + 1)
+                                  : null,
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: context
+                                      .toColor(APPLICATION_COLOR.GOLD)
+                                      .withAlpha(value.templateIndex !=
+                                              value.entity!.detail.template
+                                                      .length -
+                                                  1
+                                          ? 255
+                                          : 120),
+                                ),
+                                child: const Icon(Icons.keyboard_arrow_right),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Observer(builder: (context) {
+            if (value.entity == null) {
+              return const SizedBox.shrink();
+            }
+            return !value.isPageSelectorLock
+                ? Align(
+                    alignment: Alignment.centerRight,
+                    child: PageSelectorWidget(
+                      pages: value.entity!.detail.template
+                          .map((e) => e.title)
+                          .toList(),
+                      selectedIndex: value.templateIndex,
+                      newIndex: (newIndex) => value.changeIndex(newIndex),
                     )
-                  : const SizedBox.shrink();
-            })
-          ],
-        ),
+                        .animate(
+                            onComplete: (controller) =>
+                                value.isPageSelectorVisible == false
+                                    ? value.isPageSelectorLock = true
+                                    : null,
+                            key:
+                                Key("${DateTime.now().millisecondsSinceEpoch}"))
+                        .slideX(
+                          begin: value.isPageSelectorVisible ? 1 : 0,
+                          end: value.isPageSelectorVisible ? 0 : 1,
+                          curve: Curves.easeOutCubic,
+                          duration: Duration(milliseconds: 600),
+                        ),
+                  )
+                : const SizedBox.shrink();
+          })
+        ],
       );
     });
   }
