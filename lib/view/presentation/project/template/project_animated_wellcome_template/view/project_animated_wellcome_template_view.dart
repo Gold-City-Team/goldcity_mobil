@@ -174,7 +174,7 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
           ).animate(delay: const Duration(milliseconds: 100)).slideX(
               begin: 0.2,
               end: 1,
-              duration: const Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 750),
               curve: Curves.easeOutCubic),
           SizedBox(
             width: context.sWidth / 2,
@@ -205,8 +205,8 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
               ),
             ),
           )
-              .animate(delay: const Duration(milliseconds: 1500))
-              .fade(duration: const Duration(milliseconds: 1500)),
+              .animate(delay: const Duration(milliseconds: 500))
+              .fade(duration: const Duration(milliseconds: 500)),
           Observer(
             builder: (context) {
               if (value.templateEntity == null) {
@@ -228,8 +228,8 @@ class ProjectAnimatedWellcomeTemplateView extends StatelessWidget {
                           source: value.templateEntity!.logo.url,
                         ),
                       )
-                          .animate(delay: const Duration(milliseconds: 1500))
-                          .fade(duration: const Duration(milliseconds: 1500)),
+                          .animate(delay: const Duration(milliseconds: 500))
+                          .fade(duration: const Duration(milliseconds: 500)),
                       SizedBox(
                         width: context.sWidth / 4,
                         height: context.sHeight / 3,

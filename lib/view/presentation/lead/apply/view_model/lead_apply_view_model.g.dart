@@ -41,12 +41,36 @@ mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
     });
   }
 
+  late final _$imageAtom =
+      Atom(name: '_LeadApplyViewModelBase.image', context: context);
+
+  @override
+  String get image {
+    _$imageAtom.reportRead();
+    return super.image;
+  }
+
+  @override
+  set image(String value) {
+    _$imageAtom.reportWrite(value, super.image, () {
+      super.image = value;
+    });
+  }
+
   late final _$_getPolicyAsyncAction =
       AsyncAction('_LeadApplyViewModelBase._getPolicy', context: context);
 
   @override
   Future<void> _getPolicy() {
     return _$_getPolicyAsyncAction.run(() => super._getPolicy());
+  }
+
+  late final _$_getImageAsyncAction =
+      AsyncAction('_LeadApplyViewModelBase._getImage', context: context);
+
+  @override
+  Future _getImage() {
+    return _$_getImageAsyncAction.run(() => super._getImage());
   }
 
   late final _$_LeadApplyViewModelBaseActionController =
@@ -67,7 +91,8 @@ mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
   String toString() {
     return '''
 agreement: ${agreement},
-term: ${term}
+term: ${term},
+image: ${image}
     ''';
   }
 }

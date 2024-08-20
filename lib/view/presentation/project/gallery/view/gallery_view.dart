@@ -1,6 +1,7 @@
-// ignore_for_file: must_be_immutable
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as ma;
+import 'package:flutter/services.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
@@ -35,6 +36,39 @@ class GalleryView extends ma.StatefulWidget {
 }
 
 class _GalleryViewState extends ma.State<GalleryView> {
+  final ma.FocusNode _focusNode = ma.FocusNode();
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  GalleryViewModel? modelGlobal;
+
+  ma.KeyEventResult _handleKeyEvent(ma.FocusNode node, KeyEvent event) {
+    if (modelGlobal != null && event.runtimeType == KeyUpEvent) {
+      if (event.physicalKey == PhysicalKeyboardKey.arrowLeft) {
+        modelGlobal!.selectedMediaIndex != 0
+            ? {
+                modelGlobal!.selectedMediaIndexChange(
+                    modelGlobal!.selectedMediaIndex - 1),
+                carouselController.jumpToPage(modelGlobal!.selectedMediaIndex)
+              }
+            : null;
+      } else if (event.physicalKey == PhysicalKeyboardKey.arrowRight) {
+        modelGlobal!.selectedMediaIndex != modelGlobal!.gallery.length - 1
+            ? {
+                modelGlobal!.selectedMediaIndexChange(
+                    modelGlobal!.selectedMediaIndex + 1),
+                carouselController.jumpToPage(modelGlobal!.selectedMediaIndex)
+              }
+            : null;
+      }
+    }
+    return ma.KeyEventResult.handled;
+  }
+
   ma.ScrollController c = ma.ScrollController();
   late GalleryViewModel v;
   @override
@@ -60,6 +94,9 @@ class _GalleryViewState extends ma.State<GalleryView> {
 
   @override
   ma.Widget build(ma.BuildContext context) {
+    ma.FocusScope.of(context).requestFocus(_focusNode);
+    debugPrint("only test init");
+
     return BaseView<GalleryViewModel>(
       viewModel: GalleryViewModel(),
       onModelReady: (model) {
@@ -68,10 +105,20 @@ class _GalleryViewState extends ma.State<GalleryView> {
         model.selectedMediaIndex = widget.selectedIndex;
         model.isExperiance = widget.isExperiance;
         model.init();
+        modelGlobal = model;
         v = model;
       },
       onPageBuilder: (ma.BuildContext context, GalleryViewModel value) =>
-          ma.Scaffold(body: body(value, context)),
+          ma.Scaffold(
+        body: ma.Focus(
+          focusNode: _focusNode,
+          onKeyEvent: _handleKeyEvent,
+          child: body(
+            value,
+            context,
+          ),
+        ),
+      ),
     );
   }
 
@@ -148,6 +195,8 @@ class _GalleryViewState extends ma.State<GalleryView> {
                           cursor: ma.SystemMouseCursors.click,
                           child: ma.GestureDetector(
                             onTap: () => {
+                              ma.FocusScope.of(context)
+                                  .requestFocus(_focusNode),
                               viewModel.selectedMediaIndexChange(index),
                               controller.jumpToPage(index)
                             },
@@ -308,6 +357,8 @@ class _GalleryViewState extends ma.State<GalleryView> {
                           cursor: ma.SystemMouseCursors.click,
                           child: ma.GestureDetector(
                             onTap: () => {
+                              ma.FocusScope.of(context)
+                                  .requestFocus(_focusNode),
                               viewModel.selectedMediaIndexChange(index),
                               carouselController.jumpToPage(index)
                             },
@@ -331,6 +382,7 @@ class _GalleryViewState extends ma.State<GalleryView> {
               cursor: ma.SystemMouseCursors.click,
               child: ma.GestureDetector(
                 onTap: () {
+                  ma.FocusScope.of(context).requestFocus(_focusNode);
                   if (viewModel.selectedMediaIndex !=
                       viewModel.gallery.length - 1) {
                     viewModel.selectedMediaIndexChange(
@@ -364,6 +416,8 @@ class _GalleryViewState extends ma.State<GalleryView> {
                 cursor: ma.SystemMouseCursors.click,
                 child: ma.GestureDetector(
                   onTap: () {
+                    ma.FocusScope.of(context).requestFocus(_focusNode);
+
                     if (viewModel.selectedMediaIndex != 0) {
                       viewModel.selectedMediaIndexChange(
                           viewModel.selectedMediaIndex - 1);
@@ -413,7 +467,10 @@ class _GalleryViewState extends ma.State<GalleryView> {
               child: ma.MouseRegion(
                 cursor: ma.SystemMouseCursors.click,
                 child: ma.GestureDetector(
-                  onTap: () => viewModel.toggleBottomVisible(),
+                  onTap: () => {
+                    ma.FocusScope.of(context).requestFocus(_focusNode),
+                    viewModel.toggleBottomVisible()
+                  },
                   child: ma.Row(
                     mainAxisSize: ma.MainAxisSize.min,
                     children: [
@@ -465,8 +522,11 @@ class _GalleryViewState extends ma.State<GalleryView> {
                             padding: context.midSpacerOnlyRight,
                             child: ma.MouseRegion(
                               child: ma.GestureDetector(
-                                onTap: () =>
-                                    viewModel.selectedMediaIndexChange(index),
+                                onTap: () => {
+                                  viewModel.selectedMediaIndexChange(index),
+                                  ma.FocusScope.of(context)
+                                      .requestFocus(_focusNode),
+                                },
                                 child: isTablet()
                                     ? mediaPart(
                                         viewModel.gallery[index].media
@@ -495,6 +555,7 @@ class _GalleryViewState extends ma.State<GalleryView> {
               cursor: ma.SystemMouseCursors.click,
               child: ma.GestureDetector(
                 onTap: () {
+                  ma.FocusScope.of(context).requestFocus(_focusNode);
                   ma.debugPrint("test ${viewModel.gallery.length}");
                   if (viewModel.selectedMediaIndex !=
                       viewModel.gallery.length - 1) {
@@ -529,6 +590,7 @@ class _GalleryViewState extends ma.State<GalleryView> {
               cursor: ma.SystemMouseCursors.click,
               child: ma.GestureDetector(
                 onTap: () {
+                  ma.FocusScope.of(context).requestFocus(_focusNode);
                   if (viewModel.selectedMediaIndex != 0) {
                     viewModel.selectedMediaIndexChange(
                         viewModel.selectedMediaIndex - 1);

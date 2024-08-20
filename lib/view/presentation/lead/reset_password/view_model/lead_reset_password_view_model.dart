@@ -23,15 +23,17 @@ abstract class _LeadResetPasswordViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     _leadUseCase = locator<LeadUseCase>();
+    _getImage();
   }
 
-  String mailAdress = "zaferkurumsal@gmail.com";
+  String mailAdress = "";
 
   Future<void> reset() async {
+    debugPrint("test $mailAdress");
     var result = await _leadUseCase
         .leadResetPassword(ResetPasswordDto(email: mailAdress));
     if (result == null) {
-      viewModelContext.pushReplacement(NavigationConstant.DEFAULT);
+      viewModelContext.pushReplacement(NavigationConstant.MAIN);
     } else {
       if (result.errors != null) {
         showSnackbar(ErrorSnackBar(
@@ -41,6 +43,16 @@ abstract class _LeadResetPasswordViewModelBase with Store, BaseViewModel {
         showSnackbar(ErrorSnackBar(message: result.detail ?? ""))
             .show(viewModelContext);
       }
+    }
+  }
+
+  @observable
+  String image = "";
+  @action
+  _getImage() async {
+    var result = await _leadUseCase.getLoginImage();
+    if (result.isRight) {
+      image = result.right;
     }
   }
 }

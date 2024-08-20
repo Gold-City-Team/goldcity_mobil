@@ -71,6 +71,7 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
       ),
       obscureText: inputType == InputType.PASSWORD,
       decoration: InputDecoration.collapsed(
+        hintStyle: TextStyle(color: context.toColor(APPLICATION_COLOR.TITLE)),
         hintText: widget.hintText,
       ),
     );

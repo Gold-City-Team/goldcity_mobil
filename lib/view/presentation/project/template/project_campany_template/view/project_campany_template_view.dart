@@ -176,7 +176,6 @@ class ProjectCampanyTemplateView extends StatelessWidget {
                   child: LabelText(
                     text: value.templateNine!.campaigns[value.selectedIndex]
                         .description,
-                    maxLines: 10,
                     textColor: APPLICATION_COLOR.SUBTITLE,
                     fontSize: FONT_SIZE.TITLE_MEDIUM,
                   ),
@@ -256,7 +255,6 @@ class ProjectCampanyTemplateView extends StatelessWidget {
                                       .templateNine!
                                       .campaigns[value.selectedIndex]
                                       .description,
-                                  maxLines: 10,
                                   textColor: APPLICATION_COLOR.SUBTITLE,
                                   fontSize: FONT_SIZE.TITLE_MEDIUM,
                                 ),

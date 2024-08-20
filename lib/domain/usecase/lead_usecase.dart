@@ -44,4 +44,12 @@ class LeadUseCase {
   Future<Either<BaseErrorModel, String>> getInformation() async {
     return locator<LeadRepository>().getInformation();
   }
+
+  Future<Either<BaseErrorModel, String>> getRegisterImage() async {
+    return locator<LeadRepository>().getRegisterImage();
+  }
+
+  Future<Either<BaseErrorModel, String>> getLoginImage() async {
+    return locator<LeadRepository>().getLoginImage();
+  }
 }

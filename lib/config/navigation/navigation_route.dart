@@ -23,15 +23,13 @@ import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
 import 'package:goldcity/view/presentation/main/settings/view/settings_view.dart';
 import 'package:goldcity/view/presentation/project/gallery/view/gallery_view.dart';
 import 'package:goldcity/view/presentation/project/project_detail/view/project_detail_view.dart';
-import 'package:goldcity/view/presentation/splash/view/splash_view.dart';
 import 'package:provider/provider.dart';
 
 final router = GoRouter(
   initialLocation: NavigationConstant.MAIN,
   errorBuilder: (context, state) {
-    return const SplashView();
+    return const MainView();
   },
-  navigatorKey: GlobalKey(),
   observers: [GoRouterObserver()],
   redirect: (context, state) async {
     var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
@@ -164,7 +162,7 @@ class GoRouterObserver extends NavigatorObserver {
   @override
   void didPush(Route route, Route? previousRoute) {
     super.didPush(route, previousRoute);
-    Future.delayed((Duration(milliseconds: 300))).then((e) {
+    Future.delayed((Duration(milliseconds: 500))).then((e) {
       FlutterNativeSplash.remove();
     });
   }
@@ -172,7 +170,7 @@ class GoRouterObserver extends NavigatorObserver {
   @override
   void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
-    Future.delayed((Duration(milliseconds: 300))).then((e) {
+    Future.delayed((Duration(milliseconds: 500))).then((e) {
       FlutterNativeSplash.remove();
     });
   }
@@ -180,7 +178,7 @@ class GoRouterObserver extends NavigatorObserver {
   @override
   void didRemove(Route route, Route? previousRoute) {
     super.didRemove(route, previousRoute);
-    Future.delayed((Duration(milliseconds: 300))).then((e) {
+    Future.delayed((Duration(milliseconds: 500))).then((e) {
       FlutterNativeSplash.remove();
     });
   }
@@ -188,7 +186,7 @@ class GoRouterObserver extends NavigatorObserver {
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
-    Future.delayed((Duration(milliseconds: 300))).then((e) {
+    Future.delayed((Duration(milliseconds: 500))).then((e) {
       FlutterNativeSplash.remove();
     });
   }

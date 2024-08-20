@@ -22,6 +22,7 @@ abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     _leadUseCase = locator<LeadUseCase>();
+    _getImage();
   }
 
   String mailAdress = "zaferkurumsal@gmail.com";
@@ -31,7 +32,7 @@ abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
     var result = await _leadUseCase
         .leadLogin(SendLeadLoginDto(email: mailAdress, password: password));
     if (result == null) {
-      viewModelContext.pushReplacement(NavigationConstant.DEFAULT);
+      viewModelContext.pushReplacement(NavigationConstant.MAIN);
     } else {
       if (result.errors != null) {
         showSnackbar(ErrorSnackBar(
@@ -46,5 +47,15 @@ abstract class _LeadLoginViewModelBase with Store, BaseViewModel {
 
   Future<void> forgotPassword() async {
     viewModelContext.pushNamed(NavigationConstant.LEAD_FORGOT_PASSWORD);
+  }
+
+  @observable
+  String image = "";
+  @action
+  _getImage() async {
+    var result = await _leadUseCase.getLoginImage();
+    if (result.isRight) {
+      image = result.right;
+    }
   }
 }

@@ -68,6 +68,8 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
   ProjectDetailViewModel? modelGlobal;
   @override
   Widget build(BuildContext context) {
+    debugPrint("push test project");
+
     FocusScope.of(context).requestFocus(_focusNode);
 
     return BaseView<ProjectDetailViewModel>(

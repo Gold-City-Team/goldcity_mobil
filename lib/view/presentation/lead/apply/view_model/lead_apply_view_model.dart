@@ -26,6 +26,7 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
   void init() {
     _leadUseCase = locator<LeadUseCase>();
     _getPolicy();
+    _getImage();
   }
 
   String mailAdress = "";
@@ -99,5 +100,16 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
 
   Future<void> login() async {
     viewModelContext.pushNamed(NavigationConstant.LEAD_LOGIN);
+  }
+
+  @observable
+  String image = "";
+  @action
+  Future<void> _getImage() async {
+    var result = await _leadUseCase.getRegisterImage();
+    debugPrint("test ${result.right}");
+    if (result.isRight) {
+      image = result.right;
+    }
   }
 }

@@ -51,7 +51,7 @@ class DeleteAccountWidget extends StatelessWidget {
                       locator<AuthenticationSource>().clearUserDto();
                       locator<SharedManager>()
                           .removeKey(PreferenceKey.USER_DTO);
-                      context.pushReplacement(NavigationConstant.DEFAULT);
+                      context.pushReplacement(NavigationConstant.MAIN);
                     },
                     child: Container(
                       color:

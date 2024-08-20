@@ -133,14 +133,11 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
         case 2:
           viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
         case 3:
-          await viewModelContext.pushNamed(NavigationConstant.ANNOUNCEMENT);
-          init();
+          viewModelContext.goNamed(NavigationConstant.ANNOUNCEMENT);
         case 4:
-          await viewModelContext.pushNamed(NavigationConstant.SETTINGS);
-          init();
+          viewModelContext.goNamed(NavigationConstant.SETTINGS);
         case 5:
-          await viewModelContext.pushNamed(NavigationConstant.LEAD_APPLY);
-          init();
+          viewModelContext.goNamed(NavigationConstant.LEAD_APPLY);
         default:
           viewModelContext.pushReplacement(NavigationConstant.MAIN);
       }

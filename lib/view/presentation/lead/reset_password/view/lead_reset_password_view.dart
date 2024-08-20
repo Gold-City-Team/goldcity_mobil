@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
@@ -58,14 +59,16 @@ class LeadResetPasswordView extends StatelessWidget {
   Widget phoneView(BuildContext context, LeadResetPasswordViewModel value) {
     return Column(
       children: [
-        SizedBox(
-          width: context.sWidth,
-          height: context.sWidth / 1.777,
-          child: NormalNetworkImage(
-              fit: BoxFit.cover,
-              source:
-                  "https://goldcitycondominium.com/_next/image?url=%2Fimages%2Fprojects%2FleJardin%2Flejardin.webp&w=1080&q=75"),
-        ),
+        Observer(builder: (context) {
+          if (value.image.isEmpty) {
+            return const SizedBox.shrink();
+          }
+          return SizedBox(
+            width: context.sWidth,
+            height: context.sWidth / 1.777,
+            child: NormalNetworkImage(fit: BoxFit.cover, source: value.image),
+          );
+        }),
         Gap(context.largeSpacerSize),
         Container(
           padding: context.xlargeSpacerOnlyHorizontal,
@@ -125,13 +128,15 @@ class LeadResetPasswordView extends StatelessWidget {
       children: [
         Expanded(
           flex: 6,
-          child: SizedBox(
-            height: context.sHeight,
-            child: NormalNetworkImage(
-                fit: BoxFit.cover,
-                source:
-                    "https://goldcitycondominium.com/_next/image?url=%2Fimages%2Fprojects%2FleJardin%2Flejardin.webp&w=1080&q=75"),
-          ),
+          child: Observer(builder: (context) {
+            if (value.image.isEmpty) {
+              return const SizedBox.shrink();
+            }
+            return SizedBox(
+              height: context.sHeight,
+              child: NormalNetworkImage(fit: BoxFit.cover, source: value.image),
+            );
+          }),
         ),
         Expanded(
           flex: 4,

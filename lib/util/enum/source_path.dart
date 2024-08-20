@@ -35,7 +35,9 @@ enum SourcePath {
   COMPLEX_LANGUAGE_LIST,
   TERMS,
   PRIVACY,
-  ILLUMINATION
+  ILLUMINATION,
+  LOGIN_IMAGE,
+  REGISTER_IMAGE
 }
 
 extension SourcePathExtension on SourcePath {
@@ -84,6 +86,8 @@ extension SourcePathExtension on SourcePath {
       SourcePath.PRIVACY => '/api/policy/privacy',
       SourcePath.TERMS => '/api/policy/termsofservice',
       SourcePath.ILLUMINATION => '/api/policy/informationdisclosure',
+      SourcePath.LOGIN_IMAGE => '/pageimages/leadpageimage',
+      SourcePath.REGISTER_IMAGE => '/pageimages/registerpageimage',
     };
   }
 }
