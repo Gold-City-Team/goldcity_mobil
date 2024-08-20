@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:either_dart/either.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/send/lead/change_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/reset_password_dto.dart';
@@ -16,6 +17,11 @@ abstract class LeadRemoteDataSource {
   Future<BaseErrorModel?> leadChangePassword(ChangePasswordDto dto);
   Future<BaseErrorModel?> leadResetPassword(ResetPasswordDto dto);
   Future<BaseErrorModel?> deleteAccount();
+  Future<Either<BaseErrorModel, String>> getTerms();
+
+  Future<Either<BaseErrorModel, String>> getPrivacy();
+
+  Future<Either<BaseErrorModel, String>> getInformation();
 }
 
 class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
@@ -92,6 +98,42 @@ class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
       return null;
     } on DioException catch (e) {
       return BaseErrorModel.fromJson(e.response?.data ?? {});
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getInformation() async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.ILLUMINATION.rawValue());
+      return Right(result.data["agreement"]);
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getPrivacy() async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.PRIVACY.rawValue());
+      return Right(result.data["agreement"]);
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getTerms() async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.TERMS.rawValue());
+      return Right(result.data["agreement"]);
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }
   }
 }

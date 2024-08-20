@@ -1,3 +1,4 @@
+import 'package:either_dart/either.dart';
 import 'package:goldcity/data/dto/send/lead/change_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/reset_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
@@ -30,5 +31,17 @@ class LeadUseCase {
 
   Future<BaseErrorModel?> deleteAccount() {
     return locator<LeadRepository>().deleteAccount();
+  }
+
+  Future<Either<BaseErrorModel, String>> getTerms() async {
+    return locator<LeadRepository>().getTerms();
+  }
+
+  Future<Either<BaseErrorModel, String>> getPrivacy() async {
+    return locator<LeadRepository>().getPrivacy();
+  }
+
+  Future<Either<BaseErrorModel, String>> getInformation() async {
+    return locator<LeadRepository>().getInformation();
   }
 }

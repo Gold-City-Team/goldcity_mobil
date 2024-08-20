@@ -9,10 +9,40 @@ part of 'lead_apply_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
+  late final _$agreementAtom =
+      Atom(name: '_LeadApplyViewModelBase.agreement', context: context);
+
+  @override
+  bool get agreement {
+    _$agreementAtom.reportRead();
+    return super.agreement;
+  }
+
+  @override
+  set agreement(bool value) {
+    _$agreementAtom.reportWrite(value, super.agreement, () {
+      super.agreement = value;
+    });
+  }
+
+  late final _$_LeadApplyViewModelBaseActionController =
+      ActionController(name: '_LeadApplyViewModelBase', context: context);
+
+  @override
+  void changeAgreement() {
+    final _$actionInfo = _$_LeadApplyViewModelBaseActionController.startAction(
+        name: '_LeadApplyViewModelBase.changeAgreement');
+    try {
+      return super.changeAgreement();
+    } finally {
+      _$_LeadApplyViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-
+agreement: ${agreement}
     ''';
   }
 }

@@ -28,6 +28,7 @@ abstract class  LocaleKeys {
   static const termsOfUse = 'termsOfUse';
   static const clearCache = 'clearCache';
   static const confidentialityAgreement = 'confidentialityAgreement';
+  static const illuminationText = 'illuminationText';
   static const wellcome = 'wellcome';
   static const experiances = 'experiances';
   static const gallery = 'gallery';
@@ -63,5 +64,6 @@ abstract class  LocaleKeys {
   static const resetPasswordDetail = 'resetPasswordDetail';
   static const deleteAccount = 'deleteAccount';
   static const areYouSure = 'areYouSure';
+  static const agreements = 'agreements';
 
 }

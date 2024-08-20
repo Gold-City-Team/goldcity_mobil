@@ -32,7 +32,10 @@ enum SourcePath {
   SEND_NOTIFICATION,
   SHARE_PAGE,
   SHARE_PAGE_DETAIL,
-  COMPLEX_LANGUAGE_LIST
+  COMPLEX_LANGUAGE_LIST,
+  TERMS,
+  PRIVACY,
+  ILLUMINATION
 }
 
 extension SourcePathExtension on SourcePath {
@@ -78,6 +81,9 @@ extension SourcePathExtension on SourcePath {
       SourcePath.SHARE_PAGE => '/shareablepage',
       SourcePath.SHARE_PAGE_DETAIL => '/shareablepage/${data?[0]}',
       SourcePath.LEAD_CHANGE_PASSWORD => '/user/changepassword',
+      SourcePath.PRIVACY => '/api/policy/privacy',
+      SourcePath.TERMS => '/api/policy/termsofservice',
+      SourcePath.ILLUMINATION => '/api/policy/informationdisclosure',
     };
   }
 }

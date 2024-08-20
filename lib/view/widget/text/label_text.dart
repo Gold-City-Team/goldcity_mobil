@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LabelText extends StatelessWidget {
   final String text;
@@ -27,19 +29,34 @@ class LabelText extends StatelessWidget {
     var formattedText = parseMarkdown(text);
     final boldPattern = RegExp(r'<strong>(.*?)</strong>');
     final italicPattern = RegExp(r'<em>(.*?)</em>');
+    final linkPattern = RegExp(r'<a href="(.*?)">(.*?)</a>');
     final spans = <TextSpan>[];
 
     int currentIndex = 0;
 
-    void addSpan(String text, [TextStyle? style]) {
+    void addSpan(String text, [TextStyle? style, String? link]) {
       if (text.isNotEmpty) {
-        spans.add(TextSpan(text: text, style: style));
+        if (link != null) {
+          spans.add(
+            TextSpan(
+              text: text,
+              style: style,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  launchUrl(Uri.parse(link));
+                },
+            ),
+          );
+        } else {
+          spans.add(TextSpan(text: text, style: style));
+        }
       }
     }
 
     final matches = [
       ...boldPattern.allMatches(formattedText),
       ...italicPattern.allMatches(formattedText),
+      ...linkPattern.allMatches(formattedText),
     ];
     matches.sort((a, b) => a.start.compareTo(b.start));
 
@@ -57,6 +74,13 @@ class LabelText extends StatelessWidget {
                 color: context.toColor(APPLICATION_COLOR.TITLE)));
       } else if (italicPattern.hasMatch(match.group(0)!)) {
         addSpan(match.group(1)!, TextStyle(fontStyle: FontStyle.italic));
+      } else if (linkPattern.hasMatch(match.group(0)!)) {
+        addSpan(
+            match.group(2)!,
+            TextStyle(
+              color: context.toColor(APPLICATION_COLOR.GOLD),
+            ),
+            match.group(1)!);
       }
 
       currentIndex = match.end;
@@ -91,6 +115,10 @@ class LabelText extends StatelessWidget {
     final italicPattern = RegExp(r'(\*|_)(.*?)\1');
     processedLine = processedLine.replaceAllMapped(italicPattern, (match) {
       return '<em>${match.group(2)}</em>';
+    });
+    final linkPattern = RegExp(r'\[(.*?)\]\((.*?)\)');
+    processedLine = processedLine.replaceAllMapped(linkPattern, (match) {
+      return '<a href="${match.group(2)}">${match.group(1)}</a>';
     });
 
     return processedLine;

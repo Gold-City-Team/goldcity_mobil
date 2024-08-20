@@ -1,3 +1,4 @@
+import 'package:either_dart/either.dart';
 import 'package:goldcity/data/dto/send/lead/change_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/reset_password_dto.dart';
 import 'package:goldcity/data/dto/send/lead/send_lead_apply_dto.dart';
@@ -37,5 +38,20 @@ class LeadRepositoryImpl implements LeadRepository {
   @override
   Future<BaseErrorModel?> deleteAccount() async {
     return await locator<LeadRemoteDataSource>().deleteAccount();
+  }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getInformation() async {
+    return await locator<LeadRemoteDataSource>().getInformation();
+  }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getPrivacy() async {
+    return await locator<LeadRemoteDataSource>().getPrivacy();
+  }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getTerms() async {
+    return await locator<LeadRemoteDataSource>().getTerms();
   }
 }

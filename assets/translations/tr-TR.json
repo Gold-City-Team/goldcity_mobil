@@ -26,6 +26,7 @@
     "termsOfUse": "Kullanım Koşulları",
     "clearCache": "Önbellek Verilerini Temizle",
     "confidentialityAgreement": "Gizlilik Sözleşmesi",
+    "illuminationText": "Aydınlatma Metni",
     "wellcome": "Hoş Geldiniz",
     "experiances": "Deneyimler",
     "gallery": "Galeri",
@@ -60,5 +61,6 @@
     "resetPassword": "Şifreni sıfırla",
     "resetPasswordDetail": "Lütfen hesabınıza giriş yaparken kullandığınız mail adresinizi girin. Sıfırlama işlemleri için bir mail yollayacağız.",
     "deleteAccount": "Hesabını Sil",
-    "areYouSure": "Emin Misin?"
+    "areYouSure": "Emin Misin?",
+    "agreements": "{privacy}, {terms} ve {illumination} okudum, onaylıyorum"
 }

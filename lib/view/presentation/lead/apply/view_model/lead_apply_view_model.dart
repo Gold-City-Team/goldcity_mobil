@@ -23,11 +23,18 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     _leadUseCase = locator<LeadUseCase>();
+    _getPolicy();
   }
 
   String mailAdress = "";
   String telephone = "";
   String fullName = "";
+
+  @observable
+  bool agreement = false;
+
+  @action
+  void changeAgreement() => agreement = !agreement;
 
   Future<void> apply() async {
     var result = await _leadUseCase.leadApply(
@@ -53,6 +60,30 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
         showSnackbar(ErrorSnackBar(message: result.detail ?? ""))
             .show(viewModelContext);
       }
+    }
+  }
+
+  String term = "";
+  String privacy = "";
+  String illumination = "";
+
+  Future<void> _getPolicy() async {
+    var result = await _leadUseCase.getPrivacy();
+    if (result.isRight) {
+      privacy = result.right;
+      debugPrint("test $privacy");
+    }
+
+    var result2 = await _leadUseCase.getTerms();
+    if (result2.isRight) {
+      term = result2.right;
+      debugPrint("test terms $term");
+    }
+
+    var result3 = await _leadUseCase.getInformation();
+    if (result3.isRight) {
+      illumination = result3.right;
+      debugPrint("test info $illumination");
     }
   }
 
