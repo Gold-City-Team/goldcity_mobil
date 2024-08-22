@@ -49,10 +49,21 @@ class WebinarView extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.center,
-                    child: LabelText(
-                      text: LocaleKeys.webinarNotFound.tr(),
-                      fontSize: FONT_SIZE.HEADLINE_SMALL,
-                      textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LabelText(
+                          text: LocaleKeys.webinarNotFound.tr(),
+                          fontSize: FONT_SIZE.HEADLINE_SMALL,
+                          textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                        ),
+                        Gap(context.midSpacerSize),
+                        LabelText(
+                          text: LocaleKeys.webinarNotFoundDetailed.tr(),
+                          fontSize: FONT_SIZE.TITLE_MEDIUM,
+                          textColor: APPLICATION_COLOR.SUBTITLE,
+                        ),
+                      ],
                     ),
                   ),
                 ],

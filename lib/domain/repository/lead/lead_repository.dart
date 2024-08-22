@@ -23,4 +23,5 @@ abstract class LeadRepository {
   Future<Either<BaseErrorModel, String>> getRegisterImage();
 
   Future<Either<BaseErrorModel, String>> getLoginImage();
+  Future<Either<BaseErrorModel, String>> getVersion();
 }

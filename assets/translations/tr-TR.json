@@ -55,7 +55,9 @@
     "newPasswordAgain": "Yeni Şifre Tekrar",
     "doNotMatch": "Şifreler eşleşmedi",
     "webinarNotFound": "Seminer bulunamadı!",
+    "webinarNotFoundDetailed": "İş süreçlerinizi geliştirecek tüm seminerler burada paylaşılacaktır. Katılım için duyurularımızı takip edin!!",
     "educationNotFound": "Eğitim bulunamadı!",
+    "educationNotFoundDetailed": "İş süreçlerinizi destekleyecek tüm eğitimler burada listelenecektir",
     "forgotPassword": "Şifreni mi unuttun?",
     "resetButton": "Sıfırla",
     "resetPassword": "Şifreni sıfırla",
@@ -63,5 +65,7 @@
     "deleteAccount": "Hesabını Sil",
     "areYouSure": "Emin Misin?",
     "agreements": "{privacy}, {terms} ve {illumination} okudum, onaylıyorum",
-    "pleaseAgreements": "Lütfen sözleşme metnini kabul edin!"
+    "pleaseAgreements": "Lütfen sözleşme metnini kabul edin!",
+    "updateRequired": "Güncelleme Yapmanız gerekli",
+    "update": "Güncelle"
 }

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
@@ -43,10 +44,21 @@ class EducationView extends StatelessWidget {
                 return const SizedBox.shrink();
               } else if (value.entity!.isEmpty) {
                 return Center(
-                  child: LabelText(
-                    text: LocaleKeys.educationNotFound.tr(),
-                    fontSize: FONT_SIZE.HEADLINE_SMALL,
-                    textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LabelText(
+                        text: LocaleKeys.educationNotFound.tr(),
+                        fontSize: FONT_SIZE.HEADLINE_SMALL,
+                        textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                      ),
+                      Gap(context.midSpacerSize),
+                      LabelText(
+                        text: LocaleKeys.educationNotFoundDetailed.tr(),
+                        fontSize: FONT_SIZE.TITLE_MEDIUM,
+                        textColor: APPLICATION_COLOR.SUBTITLE,
+                      ),
+                    ],
                   ),
                 );
               }
@@ -104,10 +116,22 @@ class EducationView extends StatelessWidget {
                 return const SizedBox.shrink();
               } else if (value.entity!.isEmpty) {
                 return Center(
-                  child: LabelText(
-                    text: LocaleKeys.educationNotFound.tr(),
-                    fontSize: FONT_SIZE.HEADLINE_SMALL,
-                    textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LabelText(
+                        text: LocaleKeys.educationNotFound.tr(),
+                        fontSize: FONT_SIZE.HEADLINE_SMALL,
+                        textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                      ),
+                      Gap(context.midSpacerSize),
+                      LabelText(
+                        align: TextAlign.center,
+                        text: LocaleKeys.educationNotFoundDetailed.tr(),
+                        fontSize: FONT_SIZE.TITLE_MEDIUM,
+                        textColor: APPLICATION_COLOR.SUBTITLE,
+                      ),
+                    ],
                   ),
                 );
               }

@@ -153,7 +153,9 @@ class LeadApplyView extends StatelessWidget {
                         );
                       }),
                       Observer(builder: (context) {
-                        if (value.term.isEmpty) {
+                        if (value.term.isEmpty ||
+                            value.privacy.isEmpty ||
+                            value.illumination.isEmpty) {
                           return const SizedBox.shrink();
                         }
                         return Expanded(

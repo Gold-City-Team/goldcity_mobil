@@ -147,9 +147,7 @@ class WebinarDetailView extends StatelessWidget {
             child: Stack(
               children: [
                 Container(
-                  color: context
-                      .toColor(APPLICATION_COLOR.BACKGROUND_COLOR)
-                      .withAlpha(220),
+                  color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
                   height: context.sHeight,
                   margin: context.midSpacer,
                   width: context.sWidth / 2.5,

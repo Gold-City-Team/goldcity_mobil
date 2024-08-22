@@ -73,8 +73,9 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
 
   @observable
   String term = "";
-
+  @observable
   String privacy = "";
+  @observable
   String illumination = "";
 
   @action
@@ -107,7 +108,6 @@ abstract class _LeadApplyViewModelBase with Store, BaseViewModel {
   @action
   Future<void> _getImage() async {
     var result = await _leadUseCase.getRegisterImage();
-    debugPrint("test ${result.right}");
     if (result.isRight) {
       image = result.right;
     }

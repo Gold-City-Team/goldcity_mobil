@@ -22,7 +22,7 @@ platform :android do
   end
 
   lane :internal do |options|
-    versionNumber = "0.0.0"
+    versionNumber = "1.0.0"
     if(options[:version]!=nil)
       versionNumber = options[:version]
     end

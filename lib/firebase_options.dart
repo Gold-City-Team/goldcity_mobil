@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
     projectId: 'gold-city-9d670',
     storageBucket: 'gold-city-9d670.appspot.com',
     iosClientId: '941064344872-4c6mt7g8rr6qjo42jl2tulm7sp8v2q9b.apps.googleusercontent.com',
-    iosBundleId: 'com.goldcity.condominium',
+    iosBundleId: 'com.goldcity.goldcitycondominium',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -65,7 +65,7 @@ class DefaultFirebaseOptions {
     projectId: 'gold-city-9d670',
     storageBucket: 'gold-city-9d670.appspot.com',
     iosClientId: '941064344872-4c6mt7g8rr6qjo42jl2tulm7sp8v2q9b.apps.googleusercontent.com',
-    iosBundleId: 'com.goldcity.condominium',
+    iosBundleId: 'com.goldcity.goldcitycondominium',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

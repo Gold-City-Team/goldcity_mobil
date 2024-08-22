@@ -37,7 +37,8 @@ enum SourcePath {
   PRIVACY,
   ILLUMINATION,
   LOGIN_IMAGE,
-  REGISTER_IMAGE
+  REGISTER_IMAGE,
+  VERSION,
 }
 
 extension SourcePathExtension on SourcePath {
@@ -83,11 +84,12 @@ extension SourcePathExtension on SourcePath {
       SourcePath.SHARE_PAGE => '/shareablepage',
       SourcePath.SHARE_PAGE_DETAIL => '/shareablepage/${data?[0]}',
       SourcePath.LEAD_CHANGE_PASSWORD => '/user/changepassword',
-      SourcePath.PRIVACY => '/api/policy/privacy',
-      SourcePath.TERMS => '/api/policy/termsofservice',
-      SourcePath.ILLUMINATION => '/api/policy/informationdisclosure',
+      SourcePath.PRIVACY => '/policy/privacy',
+      SourcePath.TERMS => '/policy/termsofservice',
+      SourcePath.ILLUMINATION => '/policy/illuminationtext',
       SourcePath.LOGIN_IMAGE => '/pageimages/leadpageimage',
       SourcePath.REGISTER_IMAGE => '/pageimages/registerpageimage',
+      SourcePath.VERSION => '/version',
     };
   }
 }

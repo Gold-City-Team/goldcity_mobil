@@ -1,4 +1,4 @@
-package com.goldcity.condominium_mobil
+package com.goldcity.goldcitycondominium_mobil
 
 import io.flutter.embedding.android.FlutterActivity
 

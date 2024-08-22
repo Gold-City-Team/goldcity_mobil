@@ -1,5 +1,5 @@
-app_identifier("com.goldcity.condominium") # The bundle identifier of your app
-apple_id("goldcitysoftware@gmail.com") # Your Apple Developer Portal username
+app_identifier("com.goldcity.goldcitycondominium") # The bundle identifier of your app
+apple_id("zaferkurumsal@gmail.com") # Your Apple Developer Portal username
 
 itc_team_id("127203568") # App Store Connect Team ID
 team_id("867WBC2Y93") # Developer Portal Team ID

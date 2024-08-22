@@ -64,4 +64,9 @@ class LeadRepositoryImpl implements LeadRepository {
   Future<Either<BaseErrorModel, String>> getRegisterImage() async {
     return await locator<LeadRemoteDataSource>().getRegisterImage();
   }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getVersion() async {
+    return await locator<LeadRemoteDataSource>().getVersion();
+  }
 }

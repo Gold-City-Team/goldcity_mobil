@@ -41,6 +41,38 @@ mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
     });
   }
 
+  late final _$privacyAtom =
+      Atom(name: '_LeadApplyViewModelBase.privacy', context: context);
+
+  @override
+  String get privacy {
+    _$privacyAtom.reportRead();
+    return super.privacy;
+  }
+
+  @override
+  set privacy(String value) {
+    _$privacyAtom.reportWrite(value, super.privacy, () {
+      super.privacy = value;
+    });
+  }
+
+  late final _$illuminationAtom =
+      Atom(name: '_LeadApplyViewModelBase.illumination', context: context);
+
+  @override
+  String get illumination {
+    _$illuminationAtom.reportRead();
+    return super.illumination;
+  }
+
+  @override
+  set illumination(String value) {
+    _$illuminationAtom.reportWrite(value, super.illumination, () {
+      super.illumination = value;
+    });
+  }
+
   late final _$imageAtom =
       Atom(name: '_LeadApplyViewModelBase.image', context: context);
 
@@ -69,7 +101,7 @@ mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
       AsyncAction('_LeadApplyViewModelBase._getImage', context: context);
 
   @override
-  Future _getImage() {
+  Future<void> _getImage() {
     return _$_getImageAsyncAction.run(() => super._getImage());
   }
 
@@ -92,6 +124,8 @@ mixin _$LeadApplyViewModel on _LeadApplyViewModelBase, Store {
     return '''
 agreement: ${agreement},
 term: ${term},
+privacy: ${privacy},
+illumination: ${illumination},
 image: ${image}
     ''';
   }

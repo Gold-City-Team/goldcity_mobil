@@ -2,6 +2,7 @@
 
 class GeneralConstant {
   static const FONT_FAMILY = "Encode";
+  static const VERSION = "1.0.0";
   static const LANG_ASSET_PATH = "assets/translations";
   static const LOGO_ASSET_PATH = "assets/image/logo.png";
   static const TURKISH_FLAG_PATH = "assets/image/turkflag.webp";

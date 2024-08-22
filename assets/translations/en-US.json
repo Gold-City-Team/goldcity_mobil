@@ -53,7 +53,9 @@
     "newPasswordAgain": "New Password Again",
     "doNotMatch": "Passwords do not match",
     "webinarNotFound": "Webinar not found!",
+    "webinarNotFoundDetailed": "All webinars that will improve your business processes will be shared here. Follow our announcements to participate!",
     "educationNotFound": "Education not found!",
+    "educationNotFoundDetailed": "All educations that will support your business processes will be listed here",
     "forgotPassword": "Forgot Password?",
     "resetButton": "Reset",
     "illuminationText": "Illumination Text",
@@ -62,5 +64,7 @@
     "deleteAccount": "Delete Account",
     "areYouSure": "Are You Sure?",
     "agreements": " I read {privacy}, {terms} and {illumination} and I approve.",
-    "pleaseAgreements": "Please accept the contract text!"
+    "pleaseAgreements": "Please accept the contract text!",
+    "updateRequired": "Update Required",
+    "update": "Update"
 }

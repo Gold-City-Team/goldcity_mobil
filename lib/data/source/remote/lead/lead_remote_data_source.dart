@@ -26,6 +26,7 @@ abstract class LeadRemoteDataSource {
   Future<Either<BaseErrorModel, String>> getRegisterImage();
 
   Future<Either<BaseErrorModel, String>> getLoginImage();
+  Future<Either<BaseErrorModel, String>> getVersion();
 }
 
 class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
@@ -160,6 +161,18 @@ class LeadRemoteDataSourceImpl extends LeadRemoteDataSource {
           .networkManager
           .get(SourcePath.REGISTER_IMAGE.rawValue());
       return Right(result.data["image"]);
+    } on DioException catch (e) {
+      return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<Either<BaseErrorModel, String>> getVersion() async {
+    try {
+      var result = await locator<RemoteManager>()
+          .networkManager
+          .get(SourcePath.VERSION.rawValue());
+      return Right(result.data["version"]);
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
     }

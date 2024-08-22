@@ -57,7 +57,9 @@ abstract class  LocaleKeys {
   static const newPasswordAgain = 'newPasswordAgain';
   static const doNotMatch = 'doNotMatch';
   static const webinarNotFound = 'webinarNotFound';
+  static const webinarNotFoundDetailed = 'webinarNotFoundDetailed';
   static const educationNotFound = 'educationNotFound';
+  static const educationNotFoundDetailed = 'educationNotFoundDetailed';
   static const forgotPassword = 'forgotPassword';
   static const resetButton = 'resetButton';
   static const resetPassword = 'resetPassword';
@@ -66,5 +68,7 @@ abstract class  LocaleKeys {
   static const areYouSure = 'areYouSure';
   static const agreements = 'agreements';
   static const pleaseAgreements = 'pleaseAgreements';
+  static const updateRequired = 'updateRequired';
+  static const update = 'update';
 
 }
