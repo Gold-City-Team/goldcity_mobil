@@ -9,8 +9,8 @@ import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
-import 'package:goldcity/view/presentation/main/education/widget/education_row_widget.dart';
 import 'package:goldcity/view/presentation/main/news/view_model/news_view_model.dart';
+import 'package:goldcity/view/presentation/main/news/widget/news_row_widget.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
 class NewsView extends StatelessWidget {
@@ -66,7 +66,7 @@ class NewsView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return SizedBox(
                       width: context.sWidth / 3,
-                      child: EducationRowWidget(
+                      child: NewsRowWidget(
                         onTap: () => value
                             .navigateEducationDetail(value.entity![index].id),
                         entity: value.entity![index],
@@ -141,7 +141,7 @@ class NewsView extends StatelessWidget {
                     return SizedBox(
                         width: context.sWidth,
                         height: context.sHeight,
-                        child: EducationRowWidget(
+                        child: NewsRowWidget(
                           onTap: () => value
                               .navigateEducationDetail(value.entity![index].id),
                           entity: value.entity![index],

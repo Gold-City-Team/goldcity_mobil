@@ -13,13 +13,13 @@ mixin _$NewsViewModel on _NewsViewModelBase, Store {
       Atom(name: '_NewsViewModelBase.entity', context: context);
 
   @override
-  List<EducationEntity>? get entity {
+  List<NewsEntity>? get entity {
     _$entityAtom.reportRead();
     return super.entity;
   }
 
   @override
-  set entity(List<EducationEntity>? value) {
+  set entity(List<NewsEntity>? value) {
     _$entityAtom.reportWrite(value, super.entity, () {
       super.entity = value;
     });

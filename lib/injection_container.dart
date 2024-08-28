@@ -8,6 +8,7 @@ import 'package:goldcity/data/repository/complex/complex_repository_impl.dart';
 import 'package:goldcity/data/repository/complex_detail/complex_detail_repository_impl.dart';
 import 'package:goldcity/data/repository/contact/contact_repository_impl.dart';
 import 'package:goldcity/data/repository/education/education_repository_impl.dart';
+import 'package:goldcity/data/repository/news/news_repository_impl.dart';
 import 'package:goldcity/data/repository/shareable_page/shareable_page_repository_impl.dart';
 import 'package:goldcity/data/repository/webinar/webinar_repository_impl.dart';
 import 'package:goldcity/data/repository/lead/lead_repository_impl.dart';
@@ -21,6 +22,7 @@ import 'package:goldcity/data/source/remote/complex/complex_remote_data_source.d
 import 'package:goldcity/data/source/remote/complex_detail/complex_detail_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/contact/contact_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/education/education_remote_data_source.dart';
+import 'package:goldcity/data/source/remote/news/news_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/shareable_page/shareable_page_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/webinar/webinar_remote_data_source.dart';
 import 'package:goldcity/data/source/remote/lead/lead_remote_data_source.dart';
@@ -32,6 +34,7 @@ import 'package:goldcity/domain/repository/complex/complex_repository.dart';
 import 'package:goldcity/domain/repository/complex_detail/complex_detail_repository.dart';
 import 'package:goldcity/domain/repository/contact/contact_repository.dart';
 import 'package:goldcity/domain/repository/education/education_repository.dart';
+import 'package:goldcity/domain/repository/news/news_repository.dart';
 import 'package:goldcity/domain/repository/shareable_page/shareable_page_repository.dart';
 import 'package:goldcity/domain/repository/webinar/webinar_repository.dart';
 import 'package:goldcity/domain/repository/lead/lead_repository.dart';
@@ -43,6 +46,7 @@ import 'package:goldcity/domain/usecase/complex_detail_usecase.dart';
 import 'package:goldcity/domain/usecase/complex_usecase.dart';
 import 'package:goldcity/domain/usecase/contact_usecase.dart';
 import 'package:goldcity/domain/usecase/education_usecase.dart';
+import 'package:goldcity/domain/usecase/news_usecase.dart';
 import 'package:goldcity/domain/usecase/shareable_page_usecase.dart';
 import 'package:goldcity/domain/usecase/webinar_usecase.dart';
 import 'package:goldcity/domain/usecase/lead_usecase.dart';
@@ -63,6 +67,7 @@ void init() {
   locator.registerLazySingleton(() => NotificationUseCase());
   locator.registerLazySingleton(() => WebinarUseCase());
   locator.registerLazySingleton(() => ShareablePageUseCase());
+  locator.registerLazySingleton(() => NewsUseCase());
   locator.registerLazySingleton(() => ComplexDetailUseCase());
   locator.registerLazySingleton(() => ProjectUseCase());
   locator.registerLazySingleton(() => ProjectDetailUseCase());
@@ -131,4 +136,8 @@ void init() {
       () => AnnouncementRemoteDataSourceImpl());
   locator.registerLazySingleton<AnnouncementLocalDataSource>(
       () => AnnouncementLocalDataSourceImpl());
+
+  locator.registerLazySingleton<NewsRepository>(() => NewsRepositoryImpl());
+  locator.registerLazySingleton<NewsRemoteDataSource>(
+      () => NewsRemoteDataSourceImpl());
 }
