@@ -16,4 +16,5 @@ class NavigationConstant {
   static const LEAD_LOGIN = 'lead_login';
   static const LEAD_FORGOT_PASSWORD = 'lead_forgot_password';
   static const GALLERY = 'gallery';
+  static const NEWS = 'news';
 }

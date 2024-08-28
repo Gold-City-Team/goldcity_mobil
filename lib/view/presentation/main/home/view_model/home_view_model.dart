@@ -138,6 +138,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
           viewModelContext.goNamed(NavigationConstant.SETTINGS);
         case 5:
           viewModelContext.goNamed(NavigationConstant.LEAD_APPLY);
+        case 6:
+          viewModelContext.goNamed(NavigationConstant.NEWS);
         default:
           viewModelContext.pushReplacement(NavigationConstant.MAIN);
       }

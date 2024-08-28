@@ -66,5 +66,6 @@
     "agreements": " I read {privacy}, {terms} and {illumination} and I approve.",
     "pleaseAgreements": "Please accept the contract text!",
     "updateRequired": "Update Required",
-    "update": "Update"
+    "update": "Update",
+    "news": "News"
 }

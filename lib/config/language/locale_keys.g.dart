@@ -70,5 +70,6 @@ abstract class  LocaleKeys {
   static const pleaseAgreements = 'pleaseAgreements';
   static const updateRequired = 'updateRequired';
   static const update = 'update';
+  static const news = 'news';
 
 }

@@ -67,5 +67,6 @@
     "agreements": "{privacy}, {terms} ve {illumination} okudum, onaylıyorum",
     "pleaseAgreements": "Lütfen sözleşme metnini kabul edin!",
     "updateRequired": "Güncelleme Yapmanız gerekli",
-    "update": "Güncelle"
+    "update": "Güncelle",
+    "news": "Haberler"
 }

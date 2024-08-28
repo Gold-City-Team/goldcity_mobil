@@ -17,6 +17,7 @@ import 'package:goldcity/view/presentation/lead/login/view/lead_login_view.dart'
 import 'package:goldcity/view/presentation/lead/reset_password/view/lead_reset_password_view.dart';
 import 'package:goldcity/view/presentation/main/announcement/view/announcement_view.dart';
 import 'package:goldcity/view/presentation/main/education/view/education_view.dart';
+import 'package:goldcity/view/presentation/main/news/view/news_view.dart';
 import 'package:goldcity/view/presentation/webinar_detail/view/webinar_detail_view.dart';
 import 'package:goldcity/view/presentation/main/webinar/view/webinar_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
@@ -132,6 +133,11 @@ final router = GoRouter(
             isExperiance:
                 (state.extra as Map<String, dynamic>)["isExperiance"] as bool,
           ),
+        ),
+        GoRoute(
+          name: NavigationConstant.NEWS,
+          path: NavigationConstant.NEWS,
+          builder: (context, state) => NewsView(),
         ),
         GoRoute(
           name: NavigationConstant.LEAD_APPLY,

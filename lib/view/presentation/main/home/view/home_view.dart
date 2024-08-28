@@ -228,7 +228,8 @@ class HomeView extends StatelessWidget {
                     context.tr("settings"),
                     !locator<AuthenticationSource>().isUserStillValid()
                         ? context.tr("beingPartner")
-                        : ""
+                        : "",
+                    context.tr("news"),
                   ],
                   selectedIndex: 0,
                   contactEntity: value.contactEntity,
@@ -447,7 +448,8 @@ class HomeView extends StatelessWidget {
                     context.tr("settings"),
                     !locator<AuthenticationSource>().isUserStillValid()
                         ? context.tr("beingPartner")
-                        : ""
+                        : "",
+                    context.tr("news"),
                   ],
                   selectedIndex: 0,
                   contactEntity: value.contactEntity,
