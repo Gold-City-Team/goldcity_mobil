@@ -35,73 +35,17 @@ class FavoriteProjectView extends StatelessWidget {
     return SizedBox(
       height: context.sHeight,
       width: context.sWidth,
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Observer(
-            builder: (context) {
-              if (value.projectList == null) {
-                return const SizedBox.shrink();
-              } else if (value.projectList!.isEmpty) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      LabelText(
-                        text: LocaleKeys.educationNotFound.tr(),
-                        fontSize: FONT_SIZE.HEADLINE_SMALL,
-                        textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
-                      ),
-                      Gap(context.midSpacerSize),
-                      LabelText(
-                        text: LocaleKeys.educationNotFoundDetailed.tr(),
-                        fontSize: FONT_SIZE.TITLE_MEDIUM,
-                        textColor: APPLICATION_COLOR.SUBTITLE,
-                      ),
-                    ],
-                  ),
-                );
-              }
-              return Wrap(
-                direction: Axis.horizontal,
-                runSpacing: 10,
-                alignment: WrapAlignment.start,
-                children: value.projectList!
-                    .map(
-                      (e) => SizedBox(
-                        width: isTablet()
-                            ? context.sHeight * .18 * 1.77
-                            : context.sHeight * .18 * 1.77,
-                        height: isTablet()
-                            ? context.sHeight * .18
-                            : context.sHeight * .18,
-                        child: MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: () => null,
-                            child: Container(
-                              margin: context.largeSpacerOnlyRight,
-                              child: ProjectFavoriteListWidget(project: e),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              );
-            },
-          ),
-          Positioned(
-            top: MediaQuery.of(context).padding.top <= 0
-                ? 10
-                : MediaQuery.of(context).padding.top,
-            left: 10,
+          Padding(
+            padding: context.largeSpacer,
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
                 onTap: () => context.pop(),
                 child: Container(
                   width: 50,
-                  margin: context.largeSpacerOnlyHorizontal,
                   height: 50,
                   decoration: BoxDecoration(
                       color: context.toColor(APPLICATION_COLOR.GOLD),
@@ -109,6 +53,61 @@ class FavoriteProjectView extends StatelessWidget {
                   child: const Icon(Icons.keyboard_arrow_left),
                 ),
               ),
+            ),
+          ),
+          Gap(context.largeSpacerSize),
+          Padding(
+            padding: context.largeSpacerOnlyHorizontal,
+            child: Observer(
+              builder: (context) {
+                if (value.projectList.isEmpty) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LabelText(
+                          text: LocaleKeys.educationNotFound.tr(),
+                          fontSize: FONT_SIZE.HEADLINE_SMALL,
+                          textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                        ),
+                        Gap(context.midSpacerSize),
+                        LabelText(
+                          text: LocaleKeys.educationNotFoundDetailed.tr(),
+                          fontSize: FONT_SIZE.TITLE_MEDIUM,
+                          textColor: APPLICATION_COLOR.SUBTITLE,
+                        ),
+                      ],
+                    ),
+                  );
+                }
+                return Wrap(
+                  direction: Axis.horizontal,
+                  runSpacing: 10,
+                  alignment: WrapAlignment.start,
+                  children: value.projectList
+                      .map(
+                        (e) => SizedBox(
+                          width: isTablet()
+                              ? context.sHeight * .18 * 1.77
+                              : context.sHeight * .18 * 1.77,
+                          height: isTablet()
+                              ? context.sHeight * .18
+                              : context.sHeight * .18,
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () => value.navigateProjectDetail(e.id),
+                              child: Container(
+                                margin: context.largeSpacerOnlyRight,
+                                child: ProjectFavoriteListWidget(project: e),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                );
+              },
             ),
           ),
         ],
@@ -124,9 +123,7 @@ class FavoriteProjectView extends StatelessWidget {
         children: [
           Observer(
             builder: (context) {
-              if (value.projectList == null) {
-                return const SizedBox.shrink();
-              } else if (value.projectList!.isEmpty) {
+              if (value.projectList.isEmpty) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -149,16 +146,17 @@ class FavoriteProjectView extends StatelessWidget {
               }
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: value.projectList!.length,
+                itemCount: value.projectList.length,
                 itemBuilder: (context, index) {
                   return MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
-                      onTap: () => null,
+                      onTap: () => value
+                          .navigateProjectDetail(value.projectList[index].id),
                       child: Container(
                         margin: context.largeSpacerOnlyRight,
                         child: ProjectFavoriteListWidget(
-                            project: value.projectList![index]),
+                            project: value.projectList[index]),
                       ),
                     ),
                   );
