@@ -116,76 +116,76 @@ class FavoriteProjectView extends StatelessWidget {
   }
 
   Widget phoneView(BuildContext context, FavoriteProjectViewModel value) {
-    return SizedBox(
-      height: context.sHeight,
-      width: context.sWidth,
-      child: Stack(
-        children: [
-          Observer(
-            builder: (context) {
-              if (value.projectList.isEmpty) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      LabelText(
-                        text: LocaleKeys.educationNotFound.tr(),
-                        fontSize: FONT_SIZE.HEADLINE_SMALL,
-                        textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
-                      ),
-                      Gap(context.midSpacerSize),
-                      LabelText(
-                        align: TextAlign.center,
-                        text: LocaleKeys.educationNotFoundDetailed.tr(),
-                        fontSize: FONT_SIZE.TITLE_MEDIUM,
-                        textColor: APPLICATION_COLOR.SUBTITLE,
-                      ),
-                    ],
-                  ),
-                );
-              }
-              return ListView.builder(
-                scrollDirection: Axis.horizontal,
+    return Column(
+      children: [
+        SafeArea(
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => context.pop(),
+                child: Container(
+                  width: 50,
+                  margin: context.largeSpacer,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.GOLD),
+                      borderRadius: context.midRadius),
+                  child: const Icon(Icons.keyboard_arrow_left),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Observer(
+          builder: (context) {
+            if (value.projectList.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LabelText(
+                      text: LocaleKeys.educationNotFound.tr(),
+                      fontSize: FONT_SIZE.HEADLINE_SMALL,
+                      textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
+                    ),
+                    Gap(context.midSpacerSize),
+                    LabelText(
+                      align: TextAlign.center,
+                      text: LocaleKeys.educationNotFoundDetailed.tr(),
+                      fontSize: FONT_SIZE.TITLE_MEDIUM,
+                      textColor: APPLICATION_COLOR.SUBTITLE,
+                    ),
+                  ],
+                ),
+              );
+            }
+            return Expanded(
+              child: ListView.builder(
+                padding: context.largeSpacerOnlyHorizontal,
                 itemCount: value.projectList.length,
                 itemBuilder: (context, index) {
-                  return MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () => value
-                          .navigateProjectDetail(value.projectList[index].id),
-                      child: Container(
-                        margin: context.largeSpacerOnlyRight,
+                  return Container(
+                    margin: context.largeSpacerOnlyBottom,
+                    width: context.sWidth,
+                    height: context.sHeight * .18,
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => value
+                            .navigateProjectDetail(value.projectList[index].id),
                         child: ProjectFavoriteListWidget(
                             project: value.projectList[index]),
                       ),
                     ),
                   );
                 },
-              );
-            },
-          ),
-          SafeArea(
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () => context.pop(),
-                  child: Container(
-                    width: 50,
-                    margin: context.largeSpacer,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: context.toColor(APPLICATION_COLOR.GOLD),
-                        borderRadius: context.midRadius),
-                    child: const Icon(Icons.keyboard_arrow_left),
-                  ),
-                ),
               ),
-            ),
-          ),
-        ],
-      ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

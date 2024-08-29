@@ -31,10 +31,8 @@ class _ProjectFavoriteListWidgetState extends State<ProjectFavoriteListWidget> {
         alignment: Alignment.center,
         children: [
           SizedBox(
-            width: isTablet()
-                ? context.sHeight * .18 * 1.77
-                : context.sHeight * .18 * 1.77,
-            height: isTablet() ? context.sHeight * .18 : context.sHeight * .18,
+            width: isTablet() ? context.sHeight * .18 * 1.77 : context.sWidth,
+            height: context.sHeight * .18,
             child: NormalNetworkImage(
                 fit: BoxFit.cover,
                 alignment: Alignment.centerLeft,
@@ -48,11 +46,8 @@ class _ProjectFavoriteListWidgetState extends State<ProjectFavoriteListWidget> {
                 .withAlpha(180),
           ),
           Container(
-              width: isTablet()
-                  ? context.sHeight * .18 * 1.77
-                  : context.sHeight * .18 * 1.77,
-              height:
-                  isTablet() ? context.sHeight * .18 : context.sHeight * .18,
+              width: isTablet() ? context.sHeight * .18 * 1.77 : context.sWidth,
+              height: context.sHeight * .18,
               color: context.toColor(APPLICATION_COLOR.DARK).withOpacity(.70)),
           Center(
             child: SizedBox(

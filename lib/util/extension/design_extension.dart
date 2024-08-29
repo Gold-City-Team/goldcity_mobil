@@ -62,7 +62,7 @@ extension MarginPaddingExtension on BuildContext {
   EdgeInsets get smallSpacer => const EdgeInsets.all(5);
 
   EdgeInsets get midSpacer => const EdgeInsets.all(10);
-  EdgeInsets get largeSpacer => const EdgeInsets.all(20);
+  EdgeInsets get largeSpacer => EdgeInsets.all(isTablet() ? 20 : 15);
   EdgeInsets get largeSpacerOnlyTop => const EdgeInsets.only(top: 20);
   EdgeInsets get midSpacerOnlyTop => const EdgeInsets.only(top: 10);
   EdgeInsets get xLargeSpacerOnlyBottom => const EdgeInsets.only(bottom: 60);
