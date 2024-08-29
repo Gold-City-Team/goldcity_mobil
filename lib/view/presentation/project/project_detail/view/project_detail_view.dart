@@ -1113,6 +1113,53 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                                 ),
                               ),
                             ),
+                            Gap(context.smallSpacerSize),
+                            Observer(builder: (context) {
+                              if (value.isFavorite) {
+                                return WebViewAware(
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => value.toggleFavorite(),
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.LIGHT),
+                                        ),
+                                        child: Icon(
+                                          Icons.favorite,
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.DARK),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              return WebViewAware(
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () => value.toggleFavorite(),
+                                    child: Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.LIGHT),
+                                      ),
+                                      child: Icon(
+                                        Icons.favorite_border,
+                                        color: context
+                                            .toColor(APPLICATION_COLOR.DARK),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
                           ],
                         ),
                       );

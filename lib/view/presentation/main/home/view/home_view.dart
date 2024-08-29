@@ -450,6 +450,7 @@ class HomeView extends StatelessWidget {
                         ? context.tr("beingPartner")
                         : "",
                     context.tr("news"),
+                    context.tr("favorite"),
                   ],
                   selectedIndex: 0,
                   contactEntity: value.contactEntity,

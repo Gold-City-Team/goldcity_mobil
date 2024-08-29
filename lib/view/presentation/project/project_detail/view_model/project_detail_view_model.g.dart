@@ -123,6 +123,22 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
     });
   }
 
+  late final _$isFavoriteAtom =
+      Atom(name: '_ProjectDetailViewModelBase.isFavorite', context: context);
+
+  @override
+  bool get isFavorite {
+    _$isFavoriteAtom.reportRead();
+    return super.isFavorite;
+  }
+
+  @override
+  set isFavorite(bool value) {
+    _$isFavoriteAtom.reportWrite(value, super.isFavorite, () {
+      super.isFavorite = value;
+    });
+  }
+
   late final _$_getDetailAsyncAction =
       AsyncAction('_ProjectDetailViewModelBase._getDetail', context: context);
 
@@ -168,6 +184,28 @@ mixin _$ProjectDetailViewModel on _ProjectDetailViewModelBase, Store {
   }
 
   @override
+  void _checkFavorite() {
+    final _$actionInfo = _$_ProjectDetailViewModelBaseActionController
+        .startAction(name: '_ProjectDetailViewModelBase._checkFavorite');
+    try {
+      return super._checkFavorite();
+    } finally {
+      _$_ProjectDetailViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void toggleFavorite() {
+    final _$actionInfo = _$_ProjectDetailViewModelBaseActionController
+        .startAction(name: '_ProjectDetailViewModelBase.toggleFavorite');
+    try {
+      return super.toggleFavorite();
+    } finally {
+      _$_ProjectDetailViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isShared: ${isShared},
@@ -176,7 +214,8 @@ entity: ${entity},
 languageId: ${languageId},
 isPageSelectorVisible: ${isPageSelectorVisible},
 isPageSelectorLock: ${isPageSelectorLock},
-language: ${language}
+language: ${language},
+isFavorite: ${isFavorite}
     ''';
   }
 }

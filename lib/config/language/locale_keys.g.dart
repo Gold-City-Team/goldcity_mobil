@@ -74,5 +74,6 @@ abstract class  LocaleKeys {
   static const makeComment = 'makeComment';
   static const comment = 'comment';
   static const comments = 'comments';
+  static const favorites = 'favorites';
 
 }

@@ -30,10 +30,16 @@ class SharedManager {
     await _preferences.setBool(key.name, value);
   }
 
+  Future<void> setBoolStringValue(String key, bool value) async {
+    await _preferences.setBool(key, value);
+  }
+
   String getStringValue(PreferenceKey key) =>
       _preferences.getString(key.name) ?? '';
   int getIntegerValue(PreferenceKey key) => _preferences.getInt(key.name) ?? 0;
 
   bool getBoolValue(PreferenceKey key) =>
       _preferences.getBool(key.name) ?? false;
+
+  bool getBoolStringValue(String value) => _preferences.getBool(value) ?? false;
 }
