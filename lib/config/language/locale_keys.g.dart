@@ -77,5 +77,7 @@ abstract class  LocaleKeys {
   static const favorites = 'favorites';
   static const favoriteNotFound = 'favoriteNotFound';
   static const favoriteNotFoundDetailed = 'favoriteNotFoundDetailed';
+  static const newsNotFound = 'newsNotFound';
+  static const newsNotFoundDetailed = 'newsNotFoundDetailed';
 
 }

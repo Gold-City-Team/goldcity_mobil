@@ -73,5 +73,7 @@
     "comments": "Comments",
     "favorites": "Favorites",
     "favoriteNotFound": "You don't have a favorite project",
-    "favoriteNotFoundDetailed": "Your favorite projects will be listed here"
+    "favoriteNotFoundDetailed": "Your favorite projects will be listed here",
+    "newsNotFound": "No news has been published yet.",
+    "newsNotFoundDetailed": "News will be listed here."
 }

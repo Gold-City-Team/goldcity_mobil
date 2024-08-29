@@ -46,13 +46,13 @@ class NewsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       LabelText(
-                        text: LocaleKeys.educationNotFound.tr(),
+                        text: LocaleKeys.newsNotFound.tr(),
                         fontSize: FONT_SIZE.HEADLINE_SMALL,
                         textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
                       ),
                       Gap(context.midSpacerSize),
                       LabelText(
-                        text: LocaleKeys.educationNotFoundDetailed.tr(),
+                        text: LocaleKeys.newsNotFoundDetailed.tr(),
                         fontSize: FONT_SIZE.TITLE_MEDIUM,
                         textColor: APPLICATION_COLOR.SUBTITLE,
                       ),
@@ -118,14 +118,14 @@ class NewsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       LabelText(
-                        text: LocaleKeys.educationNotFound.tr(),
+                        text: LocaleKeys.newsNotFound.tr(),
                         fontSize: FONT_SIZE.HEADLINE_SMALL,
                         textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
                       ),
                       Gap(context.midSpacerSize),
                       LabelText(
                         align: TextAlign.center,
-                        text: LocaleKeys.educationNotFoundDetailed.tr(),
+                        text: LocaleKeys.newsNotFoundDetailed.tr(),
                         fontSize: FONT_SIZE.TITLE_MEDIUM,
                         textColor: APPLICATION_COLOR.SUBTITLE,
                       ),
