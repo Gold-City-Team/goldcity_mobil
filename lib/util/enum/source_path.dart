@@ -42,6 +42,7 @@ enum SourcePath {
   NEWS,
   NEWS_DETAIL,
   NEWS_COMMENT,
+  SEND_NEWS_COMMENT,
 }
 
 extension SourcePathExtension on SourcePath {
@@ -96,6 +97,7 @@ extension SourcePathExtension on SourcePath {
       SourcePath.NEWS => '/news/selectedlanguage',
       SourcePath.NEWS_DETAIL => '/news/${data?[0]}',
       SourcePath.NEWS_COMMENT => '/news/${data?[0]}/commentsaccepted',
+      SourcePath.SEND_NEWS_COMMENT => '/newscomment',
     };
   }
 }

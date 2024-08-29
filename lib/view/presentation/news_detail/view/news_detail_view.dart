@@ -71,7 +71,7 @@ class NewsDetailView extends StatelessWidget {
                       SizedBox(
                         height: 40,
                         child: RoundedTextField(
-                          newText: (e) => null,
+                          newText: (e) => value.userName = e,
                           hintText: LocaleKeys.nameSurnameQuestion.tr(),
                         ),
                       ),
@@ -80,7 +80,7 @@ class NewsDetailView extends StatelessWidget {
                         height: 100,
                         child: RoundedTextField(
                           maxLines: 4,
-                          newText: (e) => null,
+                          newText: (e) => value.content = e,
                           hintText: "Yorum",
                         ),
                       ),
@@ -89,7 +89,7 @@ class NewsDetailView extends StatelessWidget {
                         height: 40,
                         child: NormalButton(
                           backgroundColor: APPLICATION_COLOR.GOLD,
-                          onTap: () => null,
+                          onTap: () => value.SendComment(),
                           textColor: APPLICATION_COLOR.LIGHT,
                           text: LocaleKeys.send.tr(),
                         ),

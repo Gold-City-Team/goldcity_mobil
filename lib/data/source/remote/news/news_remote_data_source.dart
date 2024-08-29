@@ -3,6 +3,7 @@ import 'package:either_dart/either.dart';
 import 'package:goldcity/config/data/remote_manager.dart';
 import 'package:goldcity/data/dto/receive/news/comment_dto.dart';
 import 'package:goldcity/data/dto/receive/news/news_dto.dart';
+import 'package:goldcity/data/dto/send/comment/news_send_comment_dto.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/enum/source_path.dart';
 import 'package:goldcity/util/resources/base_error_model.dart';
@@ -11,6 +12,7 @@ abstract class NewsRemoteDataSource {
   Future<Either<BaseErrorModel, List<NewsDto>>> getNews();
   Future<Either<BaseErrorModel, NewsDto>> getNewsDetail(int id);
   Future<Either<BaseErrorModel, List<CommentDto>>> getNewsComment(int id);
+  Future<BaseErrorModel?> SendNewsComment(SendNewsCommentDto dto);
 }
 
 class NewsRemoteDataSourceImpl extends NewsRemoteDataSource {
@@ -53,6 +55,19 @@ class NewsRemoteDataSourceImpl extends NewsRemoteDataSource {
           (result.data as List).map((e) => CommentDto.fromJson(e)).toList());
     } on DioException catch (e) {
       return Left(BaseErrorModel.fromJson(e.response?.data ?? {}));
+    }
+  }
+
+  @override
+  Future<BaseErrorModel?> SendNewsComment(SendNewsCommentDto dto) async {
+    try {
+      await locator<RemoteManager>()
+          .networkManager
+          .post(SourcePath.SEND_NEWS_COMMENT.rawValue(), data: dto.toJson());
+
+      return null;
+    } on DioException catch (e) {
+      return BaseErrorModel.fromJson(e.response?.data ?? {});
     }
   }
 }

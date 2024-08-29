@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:goldcity/data/dto/send/comment/news_send_comment_dto.dart';
 import 'package:goldcity/data/source/remote/news/news_remote_data_source.dart';
 import 'package:goldcity/domain/entity/news/comment_entity.dart';
 import 'package:goldcity/domain/entity/news/news_entity.dart';
@@ -34,5 +35,10 @@ class NewsRepositoryImpl implements NewsRepository {
       return Right(result.right.map((e) => e.toEntity()).toList());
     }
     return Left(result.left);
+  }
+
+  @override
+  Future<BaseErrorModel?> SendNewsComment(SendNewsCommentDto dto) async {
+    return await locator<NewsRemoteDataSource>().SendNewsComment(dto);
   }
 }

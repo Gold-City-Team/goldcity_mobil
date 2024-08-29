@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:goldcity/data/dto/send/comment/news_send_comment_dto.dart';
 import 'package:goldcity/domain/entity/news/comment_entity.dart';
 import 'package:goldcity/domain/entity/news/news_entity.dart';
 import 'package:goldcity/domain/repository/news/news_repository.dart';
@@ -16,5 +17,9 @@ class NewsUseCase {
 
   Future<Either<BaseErrorModel, List<CommentEntity>>> getComment(int id) async {
     return locator<NewsRepository>().getNewsComment(id);
+  }
+
+  Future<BaseErrorModel?> sendComment(SendNewsCommentDto dto) async {
+    return locator<NewsRepository>().SendNewsComment(dto);
   }
 }

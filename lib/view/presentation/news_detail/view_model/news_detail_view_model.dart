@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/data/dto/send/comment/news_send_comment_dto.dart';
 import 'package:goldcity/domain/entity/news/comment_entity.dart';
 import 'package:goldcity/domain/entity/news/news_entity.dart';
 import 'package:goldcity/domain/usecase/news_usecase.dart';
 import 'package:goldcity/injection_container.dart';
+import 'package:goldcity/view/widget/snackbar/error_snackbar.dart';
 import 'package:mobx/mobx.dart';
 part 'news_detail_view_model.g.dart';
 
@@ -29,6 +31,9 @@ abstract class _NewsDetailViewModelBase with Store, BaseViewModel {
   @observable
   List<CommentEntity> commentList = [];
 
+  String userName = "";
+  String content = "";
+
   @action
   Future<void> _getData() async {
     var result = await _newsUseCase.getNewsDetail(newsId);
@@ -39,6 +44,20 @@ abstract class _NewsDetailViewModelBase with Store, BaseViewModel {
     var resultComment = await _newsUseCase.getComment(newsId);
     if (result.isRight) {
       commentList = resultComment.right;
+    }
+  }
+
+  Future<void> SendComment() async {
+    var result = await _newsUseCase.sendComment(SendNewsCommentDto(
+        newsId: newsId, content: content, userName: userName));
+    if (result != null) {
+      showSnackbar(ErrorSnackBar(message: "Bir Hata Oluştu!"))
+          .show(viewModelContext);
+    } else {
+      showSnackbar(ErrorSnackBar(
+              message:
+                  "Yorumun alındı. İncelendikten sonra yayına alınacaktır!"))
+          .show(viewModelContext);
     }
   }
 }
