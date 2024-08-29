@@ -40,6 +40,8 @@ enum SourcePath {
   REGISTER_IMAGE,
   VERSION,
   NEWS,
+  NEWS_DETAIL,
+  NEWS_COMMENT,
 }
 
 extension SourcePathExtension on SourcePath {
@@ -92,6 +94,8 @@ extension SourcePathExtension on SourcePath {
       SourcePath.REGISTER_IMAGE => '/pageimages/registerpageimage',
       SourcePath.VERSION => '/version',
       SourcePath.NEWS => '/news/selectedlanguage',
+      SourcePath.NEWS_DETAIL => '/news/${data?[0]}',
+      SourcePath.NEWS_COMMENT => '/news/${data?[0]}/commentsaccepted',
     };
   }
 }

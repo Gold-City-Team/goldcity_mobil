@@ -4,6 +4,7 @@ class NewsEntity {
   int id;
   String title;
   String shortContent;
+  String content;
   DateTime createdAt;
   DateTime updatedAt;
   MediaEntity media;
@@ -13,6 +14,7 @@ class NewsEntity {
     required this.shortContent,
     required this.createdAt,
     required this.updatedAt,
+    required this.content,
     required this.media,
   });
 }

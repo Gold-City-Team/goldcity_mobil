@@ -67,8 +67,8 @@ class NewsView extends StatelessWidget {
                   return SizedBox(
                       width: context.sWidth / 3,
                       child: NewsRowWidget(
-                        onTap: () => value
-                            .navigateEducationDetail(value.entity![index].id),
+                        onTap: () =>
+                            value.navigateNewsDetail(value.entity![index].id),
                         entity: value.entity![index],
                         isReverse: index % 2 == 0,
                       ));
@@ -142,8 +142,8 @@ class NewsView extends StatelessWidget {
                         width: context.sWidth,
                         height: context.sHeight,
                         child: NewsRowWidget(
-                          onTap: () => value
-                              .navigateEducationDetail(value.entity![index].id),
+                          onTap: () =>
+                              value.navigateNewsDetail(value.entity![index].id),
                           entity: value.entity![index],
                           isPhone: true,
                           isReverse: false,

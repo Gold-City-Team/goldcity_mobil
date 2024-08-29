@@ -9,6 +9,7 @@ class RoundedTextField extends StatefulWidget {
   final String initValue;
   final String hintText;
   final int? maxLength;
+  final int? maxLines;
   final InputType inputType;
 
   final Function(String) newText;
@@ -18,6 +19,7 @@ class RoundedTextField extends StatefulWidget {
     this.hintText = "",
     this.inputType = InputType.TEXT,
     this.maxLength,
+    this.maxLines,
     required this.newText,
   });
 
@@ -46,6 +48,7 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: context.midSpacerOnlyBottom,
       decoration: BoxDecoration(
         border: Border(
             bottom: BorderSide(
@@ -64,6 +67,8 @@ class _RoundedTextFieldState extends State<RoundedTextField> {
       controller: _controller,
       keyboardType: inputType.getInputType(),
       autocorrect: false,
+      maxLines: widget.maxLines ?? 1,
+      textAlign: TextAlign.left,
       maxLength: widget.maxLength,
       cursorColor: context.toColor(APPLICATION_COLOR.OPPOSITE_COLOR),
       style: TextStyle(

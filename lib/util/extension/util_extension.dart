@@ -37,6 +37,10 @@ extension FormatTime on DateTime {
   String get formatTime {
     return "$day ${monthsInYear[month - 1]} $year / ${hour < 10 ? "0$hour" : "$hour"}:${minute < 10 ? "0$minute" : "$minute"}";
   }
+
+  String get formatTimeDate {
+    return "$day ${monthsInYear[month - 1]} $year";
+  }
 }
 
 enum NOTIFICATION_TYPE { MEETING_REMINDER, PROJECT_DETAIL_REMOVE_DRAFT, CUSTOM }

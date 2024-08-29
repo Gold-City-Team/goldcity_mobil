@@ -43,6 +43,7 @@ class NewsDto {
                 .parse(updatedAt.toString(), true)
                 .toLocal()
             : DateTime.now(),
+        content: content ?? "",
         media:
             mediaItem != null ? mediaItem!.toEntity() : MediaDto().toEntity(),
       );
