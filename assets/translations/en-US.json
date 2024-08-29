@@ -71,5 +71,7 @@
     "makeComment": "Make A Comment",
     "comment": "Your Comment",
     "comments": "Comments",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "favoriteNotFound": "You don't have a favorite project",
+    "favoriteNotFoundDetailed": "Your favorite projects will be listed here"
 }

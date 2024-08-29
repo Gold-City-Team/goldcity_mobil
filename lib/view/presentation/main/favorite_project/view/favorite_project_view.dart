@@ -66,13 +66,13 @@ class FavoriteProjectView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         LabelText(
-                          text: LocaleKeys.educationNotFound.tr(),
+                          text: LocaleKeys.favoriteNotFound.tr(),
                           fontSize: FONT_SIZE.HEADLINE_SMALL,
                           textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
                         ),
                         Gap(context.midSpacerSize),
                         LabelText(
-                          text: LocaleKeys.educationNotFoundDetailed.tr(),
+                          text: LocaleKeys.favoriteNotFoundDetailed.tr(),
                           fontSize: FONT_SIZE.TITLE_MEDIUM,
                           textColor: APPLICATION_COLOR.SUBTITLE,
                         ),
@@ -146,14 +146,14 @@ class FavoriteProjectView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     LabelText(
-                      text: LocaleKeys.educationNotFound.tr(),
+                      text: LocaleKeys.favoriteNotFound.tr(),
                       fontSize: FONT_SIZE.HEADLINE_SMALL,
                       textColor: APPLICATION_COLOR.OPPOSITE_COLOR,
                     ),
                     Gap(context.midSpacerSize),
                     LabelText(
                       align: TextAlign.center,
-                      text: LocaleKeys.educationNotFoundDetailed.tr(),
+                      text: LocaleKeys.favoriteNotFoundDetailed.tr(),
                       fontSize: FONT_SIZE.TITLE_MEDIUM,
                       textColor: APPLICATION_COLOR.SUBTITLE,
                     ),

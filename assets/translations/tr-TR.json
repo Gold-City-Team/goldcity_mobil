@@ -72,5 +72,7 @@
     "makeComment": "Yorum Yap",
     "comment": "Yorumun",
     "comments": "Yorumlar",
-    "favorites": "Favoriler"
+    "favorites": "Favoriler",
+    "favoriteNotFound": "Bir favori projen yok",
+    "favoriteNotFoundDetailed": "Favori projelerin burada listelenecek."
 }
