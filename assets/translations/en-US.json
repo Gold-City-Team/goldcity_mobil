@@ -67,5 +67,8 @@
     "pleaseAgreements": "Please accept the contract text!",
     "updateRequired": "Update Required",
     "update": "Update",
-    "news": "News"
+    "news": "News",
+    "makeComment": "Make A Comment",
+    "comment": "Your Comment",
+    "comments": "Comments"
 }

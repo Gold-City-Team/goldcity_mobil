@@ -68,5 +68,8 @@
     "pleaseAgreements": "Lütfen sözleşme metnini kabul edin!",
     "updateRequired": "Güncelleme Yapmanız gerekli",
     "update": "Güncelle",
-    "news": "Haberler"
+    "news": "Haberler",
+    "makeComment": "Yorum Yap",
+    "comment": "Yorumun",
+    "comments": "Yorumlar"
 }

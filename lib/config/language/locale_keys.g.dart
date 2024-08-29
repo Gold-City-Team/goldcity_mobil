@@ -71,5 +71,8 @@ abstract class  LocaleKeys {
   static const updateRequired = 'updateRequired';
   static const update = 'update';
   static const news = 'news';
+  static const makeComment = 'makeComment';
+  static const comment = 'comment';
+  static const comments = 'comments';
 
 }

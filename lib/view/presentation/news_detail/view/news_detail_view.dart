@@ -67,7 +67,7 @@ class NewsDetailView extends StatelessWidget {
                       ),
                       Gap(context.xlargeSpacerSize),
                       LabelText(
-                        text: "Yorum Yap",
+                        text: LocaleKeys.makeComment.tr(),
                         fontSize: FONT_SIZE.HEADLINE_MEDIUM,
                       ),
                       Gap(context.xlargeSpacerSize),
@@ -87,7 +87,7 @@ class NewsDetailView extends StatelessWidget {
                             child: RoundedTextField(
                               maxLines: 4,
                               newText: (e) => value.content = e,
-                              hintText: "Yorum",
+                              hintText: LocaleKeys.comment.tr(),
                             ),
                           ),
                           Gap(context.largeSpacerSize),
@@ -109,7 +109,7 @@ class NewsDetailView extends StatelessWidget {
                       ),
                       Gap(context.largeSpacerSize),
                       LabelText(
-                        text: "Yorumlar",
+                        text: LocaleKeys.comments.tr(),
                         fontSize: FONT_SIZE.HEADLINE_MEDIUM,
                       ),
                       Gap(context.xlargeSpacerSize),
