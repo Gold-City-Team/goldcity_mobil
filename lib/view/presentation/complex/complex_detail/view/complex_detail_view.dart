@@ -20,6 +20,7 @@ import 'package:goldcity/view/presentation/complex/template/complex_possibilty_t
 import 'package:goldcity/view/widget/language_item/language_item_widget.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/page_selector/page_selector_widget.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ComplexDetailView extends StatefulWidget {
   final int complexId;
@@ -273,7 +274,30 @@ class _ComplexDetailViewState extends State<ComplexDetailView> {
                               ),
                         )
                       : const SizedBox.shrink();
-                })
+                }),
+                Padding(
+                  padding: EdgeInsets.only(right: 15, top: 15),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: WebViewAware(
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => value.sharePageDialog(
+                              context.findRenderObject() as RenderBox?),
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: context.toColor(APPLICATION_COLOR.GOLD),
+                            ),
+                            child: const Icon(Icons.ios_share),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           );
