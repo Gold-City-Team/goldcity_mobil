@@ -75,5 +75,8 @@
     "favoriteNotFound": "You don't have a favorite project",
     "favoriteNotFoundDetailed": "Your favorite projects will be listed here",
     "newsNotFound": "No news has been published yet.",
-    "newsNotFoundDetailed": "News will be listed here."
+    "newsNotFoundDetailed": "News will be listed here.",
+    "addFavorite": "Project Added to Favorites",
+    "removeFavorite": "Project Removed to Favorites",
+    "addComment": "Your comment has been received. It will be published after review!"
 }

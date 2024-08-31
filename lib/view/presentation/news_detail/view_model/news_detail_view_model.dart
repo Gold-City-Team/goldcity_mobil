@@ -1,11 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/send/comment/news_send_comment_dto.dart';
 import 'package:goldcity/domain/entity/news/comment_entity.dart';
 import 'package:goldcity/domain/entity/news/news_entity.dart';
 import 'package:goldcity/domain/usecase/news_usecase.dart';
 import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/view/widget/snackbar/error_snackbar.dart';
+import 'package:goldcity/view/widget/snackbar/info_snackbar.dart';
 import 'package:mobx/mobx.dart';
 part 'news_detail_view_model.g.dart';
 
@@ -54,9 +57,7 @@ abstract class _NewsDetailViewModelBase with Store, BaseViewModel {
       showSnackbar(ErrorSnackBar(message: "Bir Hata Oluştu!"))
           .show(viewModelContext);
     } else {
-      showSnackbar(ErrorSnackBar(
-              message:
-                  "Yorumun alındı. İncelendikten sonra yayına alınacaktır!"))
+      showSnackbar(InfoSnackBar(message: LocaleKeys.addComment.tr()))
           .show(viewModelContext);
     }
   }

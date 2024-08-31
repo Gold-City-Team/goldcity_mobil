@@ -4,11 +4,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:goldcity/config/base/view_model/base_view_model.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 import 'package:goldcity/data/dto/receive/template/main_template_dto.dart';
 import 'package:goldcity/data/dto/send/shareable_page/create_shareable_link_dto.dart';
 import 'package:goldcity/domain/entity/contact/contact_entity.dart';
@@ -21,7 +23,7 @@ import 'package:goldcity/injection_container.dart';
 import 'package:goldcity/util/constant/general_constant.dart';
 import 'package:goldcity/util/extension/util_extension.dart';
 import 'package:goldcity/view/presentation/project/project_detail/widget/create_link_widget.dart';
-import 'package:goldcity/view/widget/snackbar/error_snackbar.dart';
+import 'package:goldcity/view/widget/snackbar/info_snackbar.dart';
 import 'package:mobx/mobx.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -205,10 +207,10 @@ abstract class _ProjectDetailViewModelBase with Store, BaseViewModel {
   void toggleFavorite() {
     isFavorite = !isFavorite;
     if (isFavorite) {
-      showSnackbar(ErrorSnackBar(message: "Proje Favorilerine Eklendi"))
+      showSnackbar(InfoSnackBar(message: LocaleKeys.addFavorite.tr()))
           .show(viewModelContext);
     } else {
-      showSnackbar(ErrorSnackBar(message: "Proje Favorilerinden Çıkartıldı"))
+      showSnackbar(InfoSnackBar(message: LocaleKeys.removeFavorite.tr()))
           .show(viewModelContext);
     }
 

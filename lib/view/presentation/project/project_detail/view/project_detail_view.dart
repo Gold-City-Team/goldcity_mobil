@@ -1308,23 +1308,76 @@ class _ProjectDetailViewState extends State<ProjectDetailView> {
                     return locator<AuthenticationSource>().isUserStillValid()
                         ? Padding(
                             padding: EdgeInsets.only(right: 15),
-                            child: WebViewAware(
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => value.sharePageDialog(
-                                      context.findRenderObject() as RenderBox?),
-                                  child: Container(
-                                    width: 50,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: context
-                                          .toColor(APPLICATION_COLOR.GOLD),
+                            child: Row(
+                              children: [
+                                WebViewAware(
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => value.sharePageDialog(context
+                                          .findRenderObject() as RenderBox?),
+                                      child: Container(
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: context
+                                              .toColor(APPLICATION_COLOR.LIGHT),
+                                        ),
+                                        child: Icon(Icons.ios_share,
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.DARK)),
+                                      ),
                                     ),
-                                    child: const Icon(Icons.ios_share),
                                   ),
                                 ),
-                              ),
+                                Gap(context.midSpacerSize),
+                                Observer(builder: (context) {
+                                  if (value.isFavorite) {
+                                    return WebViewAware(
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () => value.toggleFavorite(),
+                                          child: Container(
+                                            width: 50,
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.LIGHT),
+                                            ),
+                                            child: Icon(
+                                              Icons.favorite,
+                                              color: context.toColor(
+                                                  APPLICATION_COLOR.DARK),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return WebViewAware(
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => value.toggleFavorite(),
+                                        child: Container(
+                                          width: 50,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.LIGHT),
+                                          ),
+                                          child: Icon(
+                                            Icons.favorite_border,
+                                            color: context.toColor(
+                                                APPLICATION_COLOR.DARK),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                })
+                              ],
                             ),
                           )
                         : const SizedBox.shrink();

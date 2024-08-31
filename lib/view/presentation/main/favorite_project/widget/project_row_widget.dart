@@ -1,8 +1,8 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:goldcity/config/data/shared_manager.dart';
+import 'package:goldcity/config/language/locale_keys.g.dart';
 
 import 'package:goldcity/domain/entity/project/project/project_entity.dart';
 import 'package:goldcity/injection_container.dart';
@@ -72,14 +72,14 @@ class _ProjectFavoriteListWidgetState extends State<ProjectFavoriteListWidget> {
                           DesktopSnackBarPosition.topCenter,
                       snackBarStrategy: RemoveSnackBarStrategy(),
                       builder: (context) => ErrorSnackBar(
-                          message: "Proje Favorilerine Eklendi")).show(context);
+                          message: LocaleKeys.addFavorite.tr())).show(context);
                 } else {
                   AnimatedSnackBar(
                           desktopSnackBarPosition:
                               DesktopSnackBarPosition.topCenter,
                           snackBarStrategy: RemoveSnackBarStrategy(),
                           builder: (context) => ErrorSnackBar(
-                              message: "Proje Favorilerinden Çıkartıldı"))
+                              message: LocaleKeys.removeFavorite.tr()))
                       .show(context);
                 }
 
