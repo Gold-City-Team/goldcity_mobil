@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -229,7 +232,7 @@ class HomeView extends StatelessWidget {
                     !locator<AuthenticationSource>().isUserStillValid()
                         ? context.tr("beingPartner")
                         : "",
-                    context.tr("news"),
+                    !kIsWeb && !Platform.isAndroid ? context.tr("news") : "",
                     context.tr("favorites"),
                   ],
                   selectedIndex: 0,
@@ -450,7 +453,7 @@ class HomeView extends StatelessWidget {
                     !locator<AuthenticationSource>().isUserStillValid()
                         ? context.tr("beingPartner")
                         : "",
-                    context.tr("news"),
+                    !kIsWeb && !Platform.isAndroid ? context.tr("news") : "",
                     context.tr("favorites"),
                   ],
                   selectedIndex: 0,

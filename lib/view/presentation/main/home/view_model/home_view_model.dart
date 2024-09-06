@@ -1,5 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -125,25 +128,46 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   Future<void> changeIndex(newIndex) async {
     togglePageSelector();
     if (newIndex != pageIndex) {
-      switch (newIndex) {
-        case 0:
-          debugPrint("");
-        case 1:
-          viewModelContext.goNamed(NavigationConstant.WEBINARS);
-        case 2:
-          viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
-        case 3:
-          viewModelContext.goNamed(NavigationConstant.ANNOUNCEMENT);
-        case 4:
-          viewModelContext.goNamed(NavigationConstant.SETTINGS);
-        case 5:
-          viewModelContext.goNamed(NavigationConstant.LEAD_APPLY);
-        case 6:
-          viewModelContext.goNamed(NavigationConstant.NEWS);
-        case 7:
-          viewModelContext.goNamed(NavigationConstant.FAVORITES);
-        default:
-          viewModelContext.pushReplacement(NavigationConstant.MAIN);
+      if (!kIsWeb && !Platform.isAndroid) {
+        switch (newIndex) {
+          case 0:
+            debugPrint("");
+          case 1:
+            viewModelContext.goNamed(NavigationConstant.WEBINARS);
+          case 2:
+            viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
+          case 3:
+            viewModelContext.goNamed(NavigationConstant.ANNOUNCEMENT);
+          case 4:
+            viewModelContext.goNamed(NavigationConstant.SETTINGS);
+          case 5:
+            viewModelContext.goNamed(NavigationConstant.LEAD_APPLY);
+          case 6:
+            viewModelContext.goNamed(NavigationConstant.NEWS);
+          case 7:
+            viewModelContext.goNamed(NavigationConstant.FAVORITES);
+          default:
+            viewModelContext.pushReplacement(NavigationConstant.MAIN);
+        }
+      } else {
+        switch (newIndex) {
+          case 0:
+            debugPrint("");
+          case 1:
+            viewModelContext.goNamed(NavigationConstant.WEBINARS);
+          case 2:
+            viewModelContext.goNamed(NavigationConstant.EDUCATIONS);
+          case 3:
+            viewModelContext.goNamed(NavigationConstant.ANNOUNCEMENT);
+          case 4:
+            viewModelContext.goNamed(NavigationConstant.SETTINGS);
+          case 5:
+            viewModelContext.goNamed(NavigationConstant.LEAD_APPLY);
+          case 6:
+            viewModelContext.goNamed(NavigationConstant.FAVORITES);
+          default:
+            viewModelContext.pushReplacement(NavigationConstant.MAIN);
+        }
       }
     }
   }
