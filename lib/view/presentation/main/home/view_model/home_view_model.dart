@@ -147,7 +147,11 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
           case 7:
             viewModelContext.goNamed(NavigationConstant.FAVORITES);
           case 8:
-            viewModelContext.goNamed(NavigationConstant.OUR_SERVICES);
+            viewModelContext.goNamed(
+              NavigationConstant.OUR_SERVICES,
+              pathParameters: {"index": "0"},
+            );
+
           default:
             viewModelContext.pushReplacement(NavigationConstant.MAIN);
         }
@@ -169,7 +173,10 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
           case 7:
             viewModelContext.goNamed(NavigationConstant.FAVORITES);
           case 8:
-            viewModelContext.goNamed(NavigationConstant.OUR_SERVICES);
+            viewModelContext.goNamed(
+              NavigationConstant.OUR_SERVICES,
+              pathParameters: {"index": "0"},
+            );
           default:
             viewModelContext.pushReplacement(NavigationConstant.MAIN);
         }

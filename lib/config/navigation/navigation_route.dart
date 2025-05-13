@@ -164,8 +164,11 @@ final router = GoRouter(
         ),
         GoRoute(
           name: NavigationConstant.OUR_SERVICES,
-          path: NavigationConstant.OUR_SERVICES,
-          builder: (context, state) => OurServicesMainView(),
+          path: "${NavigationConstant.OUR_SERVICES}/:index",
+          builder: (context, state) => OurServicesMainView(
+            key: Key(state.pathParameters['index'] ?? "0"),
+            index: int.tryParse(state.pathParameters['index'] ?? "0") ?? 0,
+          ),
         ),
       ],
     ),
