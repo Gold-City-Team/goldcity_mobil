@@ -96,7 +96,9 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
             child: Container(
               margin: context.midSpacerOnlyHorizontal,
               height: 90,
-              decoration: index == 0 ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius) : null,
+              decoration: index == 0
+                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
                 text: "Vatandaşlık",
@@ -116,7 +118,9 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
             child: Container(
               margin: context.midSpacerOnlyHorizontal,
               height: 90,
-              decoration: index == 1 ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius) : null,
+              decoration: index == 1
+                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
                 text: "Türkiye'de Emlak Satınalma ve İşlemleri  ",
@@ -136,7 +140,9 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
             child: Container(
               margin: context.midSpacerOnlyHorizontal,
               height: 90,
-              decoration: index == 2 ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius) : null,
+              decoration: index == 2
+                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
                 text: "Tapu İşlemlerinde Gerekli Belgeler",
@@ -156,7 +162,9 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
             child: Container(
               margin: context.midSpacerOnlyHorizontal,
               height: 90,
-              decoration: index == 3 ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius) : null,
+              decoration: index == 3
+                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
                 text: "Satış Sonrası Hizmetlerimiz",
@@ -176,7 +184,9 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
             child: Container(
               margin: context.midSpacerOnlyHorizontal,
               height: 90,
-              decoration: index == 4 ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius) : null,
+              decoration: index == 4
+                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
                 text: "Tüm Temsilciler",
