@@ -146,10 +146,13 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
             viewModelContext.goNamed(NavigationConstant.NEWS);
           case 7:
             viewModelContext.goNamed(NavigationConstant.FAVORITES);
+          case 8:
+            viewModelContext.goNamed(NavigationConstant.OUR_SERVICES);
           default:
             viewModelContext.pushReplacement(NavigationConstant.MAIN);
         }
       } else {
+        debugPrint("test $newIndex");
         switch (newIndex) {
           case 0:
             debugPrint("");
@@ -163,8 +166,10 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
             viewModelContext.goNamed(NavigationConstant.SETTINGS);
           case 5:
             viewModelContext.goNamed(NavigationConstant.LEAD_APPLY);
-          case 6:
+          case 7:
             viewModelContext.goNamed(NavigationConstant.FAVORITES);
+          case 8:
+            viewModelContext.goNamed(NavigationConstant.OUR_SERVICES);
           default:
             viewModelContext.pushReplacement(NavigationConstant.MAIN);
         }

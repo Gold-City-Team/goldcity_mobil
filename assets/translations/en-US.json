@@ -25,7 +25,7 @@
     "termsOfUse": "Terms of Use",
     "clearCache": "Clear Cache",
     "confidentialityAgreement": "Confidentiality Agreement",
-    "wellcome": "Wellcome",
+    "wellcome": "Welcome",
     "experiances": "Experiances",
     "gallery": "Gallery",
     "allVideos": "All Videos",
@@ -78,5 +78,6 @@
     "newsNotFoundDetailed": "News will be listed here.",
     "addFavorite": "Project Added to Favorites",
     "removeFavorite": "Project Removed to Favorites",
-    "addComment": "Your comment has been received. It will be published after review!"
+    "addComment": "Your comment has been received. It will be published after review!",
+    "ourServices": "Our Services"
 }

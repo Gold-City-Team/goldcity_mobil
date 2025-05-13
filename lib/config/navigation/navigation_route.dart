@@ -20,6 +20,7 @@ import 'package:goldcity/view/presentation/main/education/view/education_view.da
 import 'package:goldcity/view/presentation/main/favorite_project/view/favorite_project_view.dart';
 import 'package:goldcity/view/presentation/main/news/view/news_view.dart';
 import 'package:goldcity/view/presentation/news_detail/view/news_detail_view.dart';
+import 'package:goldcity/view/presentation/our_services/main_view/view/our_services_main_view.dart';
 import 'package:goldcity/view/presentation/webinar_detail/view/webinar_detail_view.dart';
 import 'package:goldcity/view/presentation/main/webinar/view/webinar_view.dart';
 import 'package:goldcity/view/presentation/main/main/view/main_view.dart';
@@ -36,8 +37,7 @@ final router = GoRouter(
   observers: [GoRouterObserver()],
   redirect: (context, state) async {
     var theme = locator<SharedManager>().getStringValue(PreferenceKey.THEME);
-    if (state.fullPath!.contains(NavigationConstant.GALLERY) &&
-        state.extra == null) {
+    if (state.fullPath!.contains(NavigationConstant.GALLERY) && state.extra == null) {
       context.pop();
     }
     await Future.delayed(const Duration(), () {
@@ -58,8 +58,7 @@ final router = GoRouter(
         key: state.pageKey,
         child: const MainView(),
         transitionDuration: Duration(milliseconds: 500),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            FadeTransition(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
           opacity: CurveTween(curve: Curves.ease).animate(animation),
           child: child,
         ),
@@ -68,33 +67,26 @@ final router = GoRouter(
         GoRoute(
           name: NavigationConstant.PROJECT_DETAIL,
           path: "${NavigationConstant.PROJECT_DETAIL}/:projectId",
-          builder: (context, state) => ProjectDetailView(
-              key: Key("${state.pathParameters['projectId']}"),
-              projectId: state.pathParameters['projectId']),
+          builder: (context, state) =>
+              ProjectDetailView(key: Key("${state.pathParameters['projectId']}"), projectId: state.pathParameters['projectId']),
         ),
         GoRoute(
           name: NavigationConstant.COMPLEX_DETAIL,
           path: "${NavigationConstant.COMPLEX_DETAIL}/:complexId",
           builder: (context, state) => ComplexDetailView(
             key: Key("${state.pathParameters['complexId']}"),
-            complexId:
-                int.tryParse(state.pathParameters['complexId'] ?? "0") ?? 0,
+            complexId: int.tryParse(state.pathParameters['complexId'] ?? "0") ?? 0,
           ),
         ),
-        GoRoute(
-            name: NavigationConstant.WEBINARS,
-            path: NavigationConstant.WEBINARS,
-            builder: (context, state) => const WebinarView(),
-            routes: [
-              GoRoute(
-                name: NavigationConstant.WEBINAR_DETAIL,
-                path: ":meetingId",
-                builder: (context, state) => WebinarDetailView(
-                  meetingId:
-                      int.tryParse(state.pathParameters['meetingId']!) ?? 0,
-                ),
-              ),
-            ]),
+        GoRoute(name: NavigationConstant.WEBINARS, path: NavigationConstant.WEBINARS, builder: (context, state) => const WebinarView(), routes: [
+          GoRoute(
+            name: NavigationConstant.WEBINAR_DETAIL,
+            path: ":meetingId",
+            builder: (context, state) => WebinarDetailView(
+              meetingId: int.tryParse(state.pathParameters['meetingId']!) ?? 0,
+            ),
+          ),
+        ]),
         GoRoute(
           name: NavigationConstant.SETTINGS,
           path: NavigationConstant.SETTINGS,
@@ -113,14 +105,12 @@ final router = GoRouter(
                     name: NavigationConstant.EDUCATION_DETAIL_VIDEO_PLAYER,
                     path: ":videoId",
                     builder: (context, state) => EducationDetailVideoPlayerView(
-                      videoId:
-                          int.tryParse(state.pathParameters['videoId']!) ?? 0,
+                      videoId: int.tryParse(state.pathParameters['videoId']!) ?? 0,
                     ),
                   ),
                 ],
                 builder: (context, state) => EducationDetailView(
-                  educationId:
-                      int.tryParse(state.pathParameters['educationId']!) ?? 0,
+                  educationId: int.tryParse(state.pathParameters['educationId']!) ?? 0,
                 ),
               ),
             ]),
@@ -128,12 +118,9 @@ final router = GoRouter(
           name: NavigationConstant.GALLERY,
           path: NavigationConstant.GALLERY,
           builder: (context, state) => GalleryView(
-            gallery: (state.extra as Map<String, dynamic>)["gallery"]
-                as List<GalleryMediaEntity>,
-            selectedIndex:
-                (state.extra as Map<String, dynamic>)["selectedIndex"] as int,
-            isExperiance:
-                (state.extra as Map<String, dynamic>)["isExperiance"] as bool,
+            gallery: (state.extra as Map<String, dynamic>)["gallery"] as List<GalleryMediaEntity>,
+            selectedIndex: (state.extra as Map<String, dynamic>)["selectedIndex"] as int,
+            isExperiance: (state.extra as Map<String, dynamic>)["isExperiance"] as bool,
           ),
         ),
         GoRoute(
@@ -174,7 +161,12 @@ final router = GoRouter(
           name: NavigationConstant.FAVORITES,
           path: NavigationConstant.FAVORITES,
           builder: (context, state) => FavoriteProjectView(),
-        )
+        ),
+        GoRoute(
+          name: NavigationConstant.OUR_SERVICES,
+          path: NavigationConstant.OUR_SERVICES,
+          builder: (context, state) => OurServicesMainView(),
+        ),
       ],
     ),
   ],

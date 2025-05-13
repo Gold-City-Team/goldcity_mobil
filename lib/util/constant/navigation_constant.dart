@@ -19,4 +19,5 @@ class NavigationConstant {
   static const NEWS = 'news';
   static const NEWS_DETAIL = 'news_detail';
   static const FAVORITES = 'favorites';
+  static const OUR_SERVICES = 'our_services';
 }

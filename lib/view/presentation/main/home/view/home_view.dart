@@ -35,8 +35,7 @@ class HomeView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, HomeViewModel value) => Scaffold(
-        body:
-            isTablet() ? tabletView(context, value) : phoneView(context, value),
+        body: isTablet() ? tabletView(context, value) : phoneView(context, value),
       ),
     );
   }
@@ -49,9 +48,7 @@ class HomeView extends StatelessWidget {
             return const SizedBox.shrink();
           }
           return CondominiumTrailerWidget(
-              complexEntity: value.complexList!.last,
-              onExploreTap: () =>
-                  value.navigateComplexDetail(value.complexList!.last.id));
+              complexEntity: value.complexList!.last, onExploreTap: () => value.navigateComplexDetail(value.complexList!.last.id));
         }),
         SafeArea(
           child: Align(
@@ -86,12 +83,10 @@ class HomeView extends StatelessWidget {
                             return MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                                onTap: () => value.navigateProjectDetail(
-                                    value.projectList![index].id),
+                                onTap: () => value.navigateProjectDetail(value.projectList![index].id),
                                 child: Container(
                                   margin: context.largeSpacerOnlyRight,
-                                  child: ProjectListWidget(
-                                      project: value.projectList![index]),
+                                  child: ProjectListWidget(project: value.projectList![index]),
                                 ),
                               ),
                             );
@@ -109,9 +104,7 @@ class HomeView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                SizedBox(
-                    height: 70,
-                    child: Image.asset("assets/applogo/app_logo.webp")),
+                SizedBox(height: 70, child: Image.asset("assets/applogo/app_logo.webp")),
                 Spacer(),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
@@ -121,10 +114,8 @@ class HomeView extends StatelessWidget {
                     child: CoolDropdown(
                       resultOptions: ResultOptions(
                           render: ResultRender.all,
-                          openBoxDecoration: BoxDecoration(
-                              borderRadius: context.midRadius,
-                              border: null,
-                              color: context.toColor(APPLICATION_COLOR.LIGHT))),
+                          openBoxDecoration:
+                              BoxDecoration(borderRadius: context.midRadius, border: null, color: context.toColor(APPLICATION_COLOR.LIGHT))),
                       controller: dropdownController,
                       dropdownList: context.supportedLocales
                           .map(
@@ -134,9 +125,7 @@ class HomeView extends StatelessWidget {
                                   child: SizedBox(
                                     height: 25,
                                     width: 25,
-                                    child: Image.asset(
-                                        value.getFlagFromLanguage(
-                                            element.languageCode)),
+                                    child: Image.asset(value.getFlagFromLanguage(element.languageCode)),
                                   ),
                                 ),
                                 label: "",
@@ -144,8 +133,7 @@ class HomeView extends StatelessWidget {
                           )
                           .toList(),
                       onChange: (p0) {
-                        context.setLocale(
-                            Locale(p0.split("-")[0], p0.split("-")[1]));
+                        context.setLocale(Locale(p0.split("-")[0], p0.split("-")[1]));
                         Future.delayed(Duration(milliseconds: 50), () {
                           value.init();
                         });
@@ -176,8 +164,7 @@ class HomeView extends StatelessWidget {
                             child: SizedBox(
                               height: 25,
                               width: 25,
-                              child: Image.asset(value.getFlagFromLanguage(
-                                  context.locale.languageCode)),
+                              child: Image.asset(value.getFlagFromLanguage(context.locale.languageCode)),
                             ),
                           ),
                           label: "",
@@ -193,9 +180,7 @@ class HomeView extends StatelessWidget {
                     child: Container(
                       width: 50,
                       height: 50,
-                      decoration: BoxDecoration(
-                          color: context.toColor(APPLICATION_COLOR.GOLD),
-                          borderRadius: context.midRadius),
+                      decoration: BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius),
                       child: Icon(
                         Icons.menu_rounded,
                         color: context.toColor(APPLICATION_COLOR.LIGHT),
@@ -219,31 +204,21 @@ class HomeView extends StatelessWidget {
                 child: PageSelectorWidget(
                   pages: [
                     context.tr("explore"),
-                    locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("webinars")
-                        : "",
-                    locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("educations")
-                        : "",
-                    locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("announcements")
-                        : "",
+                    locator<AuthenticationSource>().isUserStillValid() ? context.tr("webinars") : "",
+                    locator<AuthenticationSource>().isUserStillValid() ? context.tr("educations") : "",
+                    locator<AuthenticationSource>().isUserStillValid() ? context.tr("announcements") : "",
                     context.tr("settings"),
-                    !locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("beingPartner")
-                        : "",
+                    !locator<AuthenticationSource>().isUserStillValid() ? context.tr("beingPartner") : "",
                     !kIsWeb && !Platform.isAndroid ? context.tr("news") : "",
                     context.tr("favorites"),
+                    context.tr("ourServices"),
                   ],
                   selectedIndex: 0,
                   contactEntity: value.contactEntity,
                   newIndex: (newIndex) => value.changeIndex(newIndex),
                 )
                     .animate(
-                        onComplete: (controller) =>
-                            value.isPageSelectorVisible == false
-                                ? value.isPageSelectorLock = true
-                                : null,
+                        onComplete: (controller) => value.isPageSelectorVisible == false ? value.isPageSelectorLock = true : null,
                         key: Key("${DateTime.now().millisecondsSinceEpoch}"))
                     .slideX(
                       begin: value.isPageSelectorVisible ? 1 : 0,
@@ -267,9 +242,7 @@ class HomeView extends StatelessWidget {
             return const SizedBox.shrink();
           }
           return CondominiumTrailerWidget(
-              complexEntity: value.complexList!.last,
-              onExploreTap: () =>
-                  value.navigateComplexDetail(value.complexList!.last.id));
+              complexEntity: value.complexList!.last, onExploreTap: () => value.navigateComplexDetail(value.complexList!.last.id));
         }),
         Align(
           alignment: Alignment.bottomLeft,
@@ -304,12 +277,10 @@ class HomeView extends StatelessWidget {
                           return MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
-                              onTap: () => value.navigateProjectDetail(
-                                  value.projectList![index].id),
+                              onTap: () => value.navigateProjectDetail(value.projectList![index].id),
                               child: Container(
                                 margin: context.largeSpacerOnlyRight,
-                                child: ProjectListWidget(
-                                    project: value.projectList![index]),
+                                child: ProjectListWidget(project: value.projectList![index]),
                               ),
                             ),
                           );
@@ -328,9 +299,7 @@ class HomeView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Gap(40),
-              SizedBox(
-                  height: 70,
-                  child: Image.asset("assets/applogo/app_logo.webp")),
+              SizedBox(height: 70, child: Image.asset("assets/applogo/app_logo.webp")),
               Spacer(),
               MouseRegion(
                 cursor: SystemMouseCursors.click,
@@ -340,10 +309,8 @@ class HomeView extends StatelessWidget {
                   child: CoolDropdown(
                     resultOptions: ResultOptions(
                         render: ResultRender.all,
-                        openBoxDecoration: BoxDecoration(
-                            borderRadius: context.midRadius,
-                            border: null,
-                            color: context.toColor(APPLICATION_COLOR.LIGHT))),
+                        openBoxDecoration:
+                            BoxDecoration(borderRadius: context.midRadius, border: null, color: context.toColor(APPLICATION_COLOR.LIGHT))),
                     controller: dropdownController,
                     dropdownList: context.supportedLocales
                         .map(
@@ -353,19 +320,15 @@ class HomeView extends StatelessWidget {
                                 child: SizedBox(
                                   height: 25,
                                   width: 25,
-                                  child: Image.asset(value.getFlagFromLanguage(
-                                      element.languageCode)),
+                                  child: Image.asset(value.getFlagFromLanguage(element.languageCode)),
                                 ),
                               ),
-                              label: element
-                                  .toLanguageTag()
-                                  .localeToNativeLanguage,
+                              label: element.toLanguageTag().localeToNativeLanguage,
                               value: element.toLanguageTag()),
                         )
                         .toList(),
                     onChange: (p0) {
-                      context.setLocale(
-                          Locale(p0.split("-")[0], p0.split("-")[1]));
+                      context.setLocale(Locale(p0.split("-")[0], p0.split("-")[1]));
                       Future.delayed(Duration(milliseconds: 50), () {
                         value.init();
                       });
@@ -396,13 +359,10 @@ class HomeView extends StatelessWidget {
                           child: SizedBox(
                             height: 25,
                             width: 25,
-                            child: Image.asset(value.getFlagFromLanguage(
-                                context.locale.languageCode)),
+                            child: Image.asset(value.getFlagFromLanguage(context.locale.languageCode)),
                           ),
                         ),
-                        label: context.locale
-                            .toLanguageTag()
-                            .localeToNativeLanguage,
+                        label: context.locale.toLanguageTag().localeToNativeLanguage,
                         value: context.locale.toLanguageTag()),
                   ),
                 ),
@@ -415,9 +375,7 @@ class HomeView extends StatelessWidget {
                   child: Container(
                     width: 50,
                     height: 50,
-                    decoration: BoxDecoration(
-                        color: context.toColor(APPLICATION_COLOR.GOLD),
-                        borderRadius: context.midRadius),
+                    decoration: BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius),
                     child: Icon(
                       Icons.menu_rounded,
                       color: context.toColor(APPLICATION_COLOR.LIGHT),
@@ -440,31 +398,21 @@ class HomeView extends StatelessWidget {
                 child: PageSelectorWidget(
                   pages: [
                     context.tr("explore"),
-                    locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("webinars")
-                        : "",
-                    locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("educations")
-                        : "",
-                    locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("announcements")
-                        : "",
+                    locator<AuthenticationSource>().isUserStillValid() ? context.tr("webinars") : "",
+                    locator<AuthenticationSource>().isUserStillValid() ? context.tr("educations") : "",
+                    locator<AuthenticationSource>().isUserStillValid() ? context.tr("announcements") : "",
                     context.tr("settings"),
-                    !locator<AuthenticationSource>().isUserStillValid()
-                        ? context.tr("beingPartner")
-                        : "",
+                    !locator<AuthenticationSource>().isUserStillValid() ? context.tr("beingPartner") : "",
                     !kIsWeb && !Platform.isAndroid ? context.tr("news") : "",
                     context.tr("favorites"),
+                    context.tr("ourServices"),
                   ],
                   selectedIndex: 0,
                   contactEntity: value.contactEntity,
                   newIndex: (newIndex) => value.changeIndex(newIndex),
                 )
                     .animate(
-                        onComplete: (controller) =>
-                            value.isPageSelectorVisible == false
-                                ? value.isPageSelectorLock = true
-                                : null,
+                        onComplete: (controller) => value.isPageSelectorVisible == false ? value.isPageSelectorLock = true : null,
                         key: Key("${DateTime.now().millisecondsSinceEpoch}"))
                     .slideX(
                       begin: value.isPageSelectorVisible ? 1 : 0,
