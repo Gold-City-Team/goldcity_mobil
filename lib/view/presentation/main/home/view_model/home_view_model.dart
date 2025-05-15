@@ -106,6 +106,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     return switch (language) {
       "tr" => GeneralConstant.TURKISH_FLAG_PATH,
       "en" => GeneralConstant.ENGLISH_FLAG_PATH,
+      "ru" => GeneralConstant.RUSSIAN_FLAG_PATH,
       _ => GeneralConstant.ENGLISH_FLAG_PATH
     };
   }

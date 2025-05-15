@@ -6,8 +6,11 @@ import 'package:goldcity/config/base/view/base_view.dart';
 import 'package:goldcity/util/constant/general_enum.dart';
 import 'package:goldcity/util/extension/design_extension.dart';
 import 'package:goldcity/util/extension/theme_extension.dart';
+import 'package:goldcity/view/presentation/our_services/after_purchase/view/after_purchase_view.dart';
 import 'package:goldcity/view/presentation/our_services/citizenship_page/view/citizenship_page_view.dart';
+import 'package:goldcity/view/presentation/our_services/documents/view/documents_view.dart';
 import 'package:goldcity/view/presentation/our_services/main_view/view_model/our_services_main_view_model.dart';
+import 'package:goldcity/view/presentation/our_services/purchase/view/purchase_view.dart';
 import 'package:goldcity/view/widget/image/normal_network_image.dart';
 import 'package:goldcity/view/widget/text/label_text.dart';
 
@@ -29,6 +32,7 @@ class OurServicesMainView extends StatelessWidget {
           viewModel = model;
         },
         onPageBuilder: (BuildContext context, OurServicesMainViewModel value) => Scaffold(
+              backgroundColor: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
               body: ListView(
                 shrinkWrap: false,
                 children: [
@@ -74,10 +78,20 @@ class OurServicesMainView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Gap(context.veryLargeSpacerSize),
-                  rowPart(context, index, viewModel!),
-                  Gap(context.veryLargeSpacerSize),
-                  CitizenshipPageView()
+                  Container(
+                      color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      padding: context.midSpacerOnlyBottom,
+                      child: Align(
+                          alignment: Alignment.center, child: SizedBox(width: context.sWidth / 1.4, child: rowPart(context, index, viewModel!)))),
+                  Gap(context.largeSpacerSize),
+                  if (index == 0)
+                    CitizenshipPageView()
+                  else if (index == 1)
+                    PurchaseView()
+                  else if (index == 2)
+                    DocumentsView()
+                  else if (index == 3)
+                    AfterPurchaseView()
                 ],
               ),
             ));
@@ -94,16 +108,18 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
           child: GestureDetector(
             onTap: () => viewmodel.navigator(0),
             child: Container(
-              margin: context.midSpacerOnlyHorizontal,
               height: 90,
               decoration: index == 0
-                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  ? BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      border: Border(bottom: BorderSide(width: 1, color: context.toColor(APPLICATION_COLOR.GOLD))))
                   : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
-                text: "Vatandaşlık",
-                fontWeight: FontWeight.w400,
-                fontSize: FONT_SIZE.TITLE_LARGE,
+                text: context.tr("ourServicesTab0"),
+                fontWeight: FontWeight.w700,
+                fontSize: FONT_SIZE.TITLE_MEDIUM,
+                textColor: index == 0 ? APPLICATION_COLOR.LIGHT : APPLICATION_COLOR.SUBTITLE,
                 align: TextAlign.center,
               ),
             ),
@@ -119,13 +135,16 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
               margin: context.midSpacerOnlyHorizontal,
               height: 90,
               decoration: index == 1
-                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  ? BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      border: Border(bottom: BorderSide(width: 1, color: context.toColor(APPLICATION_COLOR.GOLD))))
                   : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
-                text: "Türkiye'de Emlak Satınalma ve İşlemleri  ",
-                fontWeight: FontWeight.w400,
-                fontSize: FONT_SIZE.TITLE_LARGE,
+                text: context.tr("ourServicesTab1"),
+                fontWeight: FontWeight.w700,
+                fontSize: FONT_SIZE.TITLE_MEDIUM,
+                textColor: index == 1 ? APPLICATION_COLOR.LIGHT : APPLICATION_COLOR.SUBTITLE,
                 align: TextAlign.center,
               ),
             ),
@@ -138,16 +157,18 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
           child: GestureDetector(
             onTap: () => viewmodel.navigator(2),
             child: Container(
-              margin: context.midSpacerOnlyHorizontal,
               height: 90,
               decoration: index == 2
-                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  ? BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      border: Border(bottom: BorderSide(width: 1, color: context.toColor(APPLICATION_COLOR.GOLD))))
                   : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
-                text: "Tapu İşlemlerinde Gerekli Belgeler",
-                fontWeight: FontWeight.w400,
-                fontSize: FONT_SIZE.TITLE_LARGE,
+                text: context.tr("ourServicesTab2"),
+                fontWeight: FontWeight.w700,
+                fontSize: FONT_SIZE.TITLE_MEDIUM,
+                textColor: index == 2 ? APPLICATION_COLOR.LIGHT : APPLICATION_COLOR.SUBTITLE,
                 align: TextAlign.center,
               ),
             ),
@@ -160,16 +181,18 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
           child: GestureDetector(
             onTap: () => viewmodel.navigator(3),
             child: Container(
-              margin: context.midSpacerOnlyHorizontal,
               height: 90,
               decoration: index == 3
-                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  ? BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      border: Border(bottom: BorderSide(width: 1, color: context.toColor(APPLICATION_COLOR.GOLD))))
                   : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
-                text: "Satış Sonrası Hizmetlerimiz",
-                fontWeight: FontWeight.w400,
-                fontSize: FONT_SIZE.TITLE_LARGE,
+                text: context.tr("ourServicesTab3"),
+                fontWeight: FontWeight.w700,
+                fontSize: FONT_SIZE.TITLE_MEDIUM,
+                textColor: index == 3 ? APPLICATION_COLOR.LIGHT : APPLICATION_COLOR.SUBTITLE,
                 align: TextAlign.center,
               ),
             ),
@@ -182,16 +205,18 @@ Widget rowPart(BuildContext context, int index, OurServicesMainViewModel viewmod
           child: GestureDetector(
             onTap: () => viewmodel.navigator(4),
             child: Container(
-              margin: context.midSpacerOnlyHorizontal,
               height: 90,
               decoration: index == 4
-                  ? BoxDecoration(color: context.toColor(APPLICATION_COLOR.GOLD), borderRadius: context.midRadius)
+                  ? BoxDecoration(
+                      color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR),
+                      border: Border(bottom: BorderSide(width: 1, color: context.toColor(APPLICATION_COLOR.GOLD))))
                   : BoxDecoration(color: context.toColor(APPLICATION_COLOR.BACKGROUND_COLOR)),
               alignment: Alignment.center,
               child: LabelText(
-                text: "Tüm Temsilciler",
-                fontWeight: FontWeight.w400,
-                fontSize: FONT_SIZE.TITLE_LARGE,
+                text: context.tr("ourServicesTab4"),
+                fontWeight: FontWeight.w700,
+                fontSize: FONT_SIZE.TITLE_MEDIUM,
+                textColor: index == 4 ? APPLICATION_COLOR.LIGHT : APPLICATION_COLOR.SUBTITLE,
                 align: TextAlign.center,
               ),
             ),

@@ -17,6 +17,7 @@ class LanguageManager {
   }
 
   final enLocal = const Locale("en", "US");
+  final ruLocal = const Locale("ru", "RU");
   final trLocal = const Locale("tr", "TR");
-  List<Locale> get supportedLocale => [enLocal, trLocal];
+  List<Locale> get supportedLocale => [enLocal, trLocal, ruLocal];
 }

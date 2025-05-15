@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:goldcity/config/language/locale_keys.g.dart';
 
 bool isTablet() {
-  final data = MediaQueryData.fromView(
-      WidgetsBinding.instance.platformDispatcher.views.single);
+  final data = MediaQueryData.fromView(WidgetsBinding.instance.platformDispatcher.views.single);
   return data.size.shortestSide < 600 ? false : true;
 }
 
@@ -13,6 +12,7 @@ extension LocaleToNativeLanguage on String {
     return switch (this) {
       "en-US" => LocaleKeys.english.tr(),
       "tr-TR" => LocaleKeys.turkish.tr(),
+      "ru-RU" => LocaleKeys.russian.tr(),
       _ => LocaleKeys.english.tr(),
     };
   }
@@ -48,8 +48,7 @@ enum NOTIFICATION_TYPE { MEETING_REMINDER, PROJECT_DETAIL_REMOVE_DRAFT, CUSTOM }
 extension HumanTextToNotificationEnum on String {
   NOTIFICATION_TYPE get humanToNotification {
     return switch (this) {
-      "PROJECT_DETAIL_REMOVE_DRAFT" =>
-        NOTIFICATION_TYPE.PROJECT_DETAIL_REMOVE_DRAFT,
+      "PROJECT_DETAIL_REMOVE_DRAFT" => NOTIFICATION_TYPE.PROJECT_DETAIL_REMOVE_DRAFT,
       "MEETING_REMINDER" => NOTIFICATION_TYPE.MEETING_REMINDER,
       _ => NOTIFICATION_TYPE.CUSTOM,
     };

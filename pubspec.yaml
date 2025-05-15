@@ -1,21 +1,18 @@
 name: goldcity
 description: "A new Flutter project."
 
-publish_to: 'none'
-
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_web_plugins: 
-    sdk: flutter  
-
-
+  flutter_web_plugins:
+    sdk: flutter
 
   cupertino_icons: ^1.0.2
   # state management
@@ -58,7 +55,7 @@ dependencies:
   flutter_native_splash: ^2.4.1
   animated_snack_bar: ^0.4.0
   cached_network_image: ^3.4.0
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,7 +67,7 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/applogo/logo.jpg"
-  min_sdk_android: 21 
+  min_sdk_android: 21
   web:
     generate: true
     image_path: "assets/applogo/logo.jpg"
@@ -84,20 +81,20 @@ flutter_launcher_icons:
     generate: true
     image_path: "assets/applogo/logo.jpg"
 
-
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/translations/    
-    - assets/image/logo.png    
+    - assets/translations/
+    - assets/image/logo.png
     - assets/image/englishflag.webp
     - assets/image/turkflag.webp
-    - assets/image/logo.png    
-    - assets/applogo/logo.jpg    
-    - assets/applogo/app_logo.webp    
-    # - assets/video/trailer.mp4    
-    - assets/video/firstframe.webp    
+    - assets/image/logo.png
+    - assets/applogo/logo.jpg
+    - assets/applogo/app_logo.webp
+    - assets/image/russia.webp
+    # - assets/video/trailer.mp4
+    - assets/video/firstframe.webp
   fonts:
     - family: Encode
       fonts:

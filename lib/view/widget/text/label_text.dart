@@ -13,6 +13,8 @@ class LabelText extends StatelessWidget {
   final TextAlign align;
   final int? maxLines;
   final FontWeight? fontWeight;
+  final double? wordSpacing;
+
   const LabelText(
       {super.key,
       required this.text,
@@ -22,6 +24,7 @@ class LabelText extends StatelessWidget {
       this.align = TextAlign.left,
       this.textLineHeight = 1.5,
       this.fontWeight,
+      this.wordSpacing = 1,
       this.maxLines});
 
   @override
@@ -66,12 +69,7 @@ class LabelText extends StatelessWidget {
       }
 
       if (boldPattern.hasMatch(match.group(0)!)) {
-        addSpan(
-            match.group(1)!,
-            TextStyle(
-                fontWeight: FontWeight.w700,
-                height: 1.5,
-                color: context.toColor(APPLICATION_COLOR.TITLE)));
+        addSpan(match.group(1)!, TextStyle(fontWeight: FontWeight.w700, height: 1.5, color: context.toColor(APPLICATION_COLOR.TITLE)));
       } else if (italicPattern.hasMatch(match.group(0)!)) {
         addSpan(match.group(1)!, TextStyle(fontStyle: FontStyle.italic));
       } else if (linkPattern.hasMatch(match.group(0)!)) {
@@ -98,6 +96,7 @@ class LabelText extends StatelessWidget {
           style: context.toTextStyle(fontSize).copyWith(
                 color: context.toColor(textColor),
                 fontWeight: fontWeight,
+                wordSpacing: wordSpacing,
                 height: textLineHeight,
               )),
       maxLines: maxLines,

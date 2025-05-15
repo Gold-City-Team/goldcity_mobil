@@ -37,27 +37,19 @@ extension MarginPaddingExtension on BuildContext {
 
   EdgeInsets get midSpacerOnlyLeft => const EdgeInsets.only(left: 10);
   EdgeInsets get smallSpacerOnlyLeft => const EdgeInsets.only(left: 5);
-  EdgeInsets get midLargeSpacerOnlyVertical =>
-      const EdgeInsets.symmetric(vertical: 15);
-  EdgeInsets get largeSpacerOnlyVertical =>
-      const EdgeInsets.symmetric(vertical: 20);
+  EdgeInsets get midLargeSpacerOnlyVertical => const EdgeInsets.symmetric(vertical: 15);
+  EdgeInsets get largeSpacerOnlyVertical => const EdgeInsets.symmetric(vertical: 20);
   EdgeInsets get xxlargeSpacerOnlyTop => const EdgeInsets.only(top: 60);
 
   EdgeInsets get xxlargeSpacerOnlyLeft => const EdgeInsets.only(left: 60);
   EdgeInsets get xlargeSpacerOnlyLeft => const EdgeInsets.only(left: 40);
-  EdgeInsets get xlargeSpacerOnlyHorizontal =>
-      const EdgeInsets.symmetric(horizontal: 40);
-  EdgeInsets get largeSpacerOnlyHorizontal =>
-      EdgeInsets.symmetric(horizontal: isTablet() ? 20 : 15);
-  EdgeInsets get midSpacerOnlyVertical =>
-      const EdgeInsets.symmetric(vertical: 5);
-  EdgeInsets get midSpacerOnlyHorizontal =>
-      const EdgeInsets.symmetric(horizontal: 10);
+  EdgeInsets get xlargeSpacerOnlyHorizontal => const EdgeInsets.symmetric(horizontal: 40);
+  EdgeInsets get largeSpacerOnlyHorizontal => EdgeInsets.symmetric(horizontal: isTablet() ? 20 : 15);
+  EdgeInsets get midSpacerOnlyVertical => const EdgeInsets.symmetric(vertical: 5);
+  EdgeInsets get midSpacerOnlyHorizontal => const EdgeInsets.symmetric(horizontal: 10);
 
-  EdgeInsets get smallSpacerOnlyHorizontal =>
-      const EdgeInsets.symmetric(horizontal: 5);
-  EdgeInsets get smallSpacerOnlyVertical =>
-      const EdgeInsets.symmetric(vertical: 5);
+  EdgeInsets get smallSpacerOnlyHorizontal => const EdgeInsets.symmetric(horizontal: 5);
+  EdgeInsets get smallSpacerOnlyVertical => const EdgeInsets.symmetric(vertical: 5);
   EdgeInsets get largeSpacerOnlyRight => const EdgeInsets.only(right: 20);
   EdgeInsets get smallSpacer => const EdgeInsets.all(5);
 
